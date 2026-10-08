@@ -148,3 +148,35 @@ def test_run_end_to_end(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None
     assert result["metrics"]["snapshots_complete"]["value"] == 3
     assert result["metrics"]["rows_lost"] == {"value": 0.333333333, "n": 3, "denominator": 9}
     assert result["metrics"]["downloads_timed"] == {"value": 3, "n": 3, "denominator": 3}
+
+
+def test_run_since_leaves_earlier_versions(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(ts.time, "sleep", lambda _s: None)
+    monkeypatch.setenv("RADAR_DATA_DIR", str(tmp_path / "data"))
+    monkeypatch.setattr(ts, "LOG_PATH", tmp_path / "absent.log")
+    monkeypatch.setattr(radar.results, "RESULTS", tmp_path / "results")
+    client, seen = _server(SNAPSHOT)
+    tmp_dir = tmp_path / "data" / "tmp"
+    raw = tmp_path / "data" / "raw"
+
+    assert ts._run(client, limit=None, keep_xml=False, tmp_dir=tmp_dir, since=date(2026, 7, 1)) == 2
+    assert not is_complete("trudvsem_snapshot", date(2026, 6, 30), raw)
+    assert is_complete("trudvsem_snapshot", date(2026, 7, 1), raw)
+    assert is_complete("trudvsem_snapshot", date(2026, 10, 7), raw)
+    assert not any("20260630" in str(r.url) for r in seen)
+
+    assert ts._run(client, limit=None, keep_xml=False, tmp_dir=tmp_dir, since=date(2026, 10, 8)) == 0
+
+
+def test_since_argument(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    calls: list[tuple[int | None, date | None]] = []
+
+    def fake_run(limit: int | None, keep_xml: bool, tmp_dir: Path, since: date | None) -> int:
+        calls.append((limit, since))
+        return 0
+
+    monkeypatch.setattr(ts, "setup_logging", lambda: None)
+    monkeypatch.setattr(ts, "run", fake_run)
+    assert ts.main(["--since", "2026-10-09", "--tmp-dir", str(tmp_path)]) == 0
+    assert ts.main(["--tmp-dir", str(tmp_path)]) == 0
+    assert calls == [(None, date(2026, 10, 9)), (None, None)]

@@ -2,9 +2,13 @@
 # Daily collection until Airflow takes over. One source after another, never in parallel:
 # the trudvsem API and the snapshot files live on the same host. A failed source does not stop the
 # others; the script exits non-zero if any failed. Each run appends to logs/daily/<date>.log, and
-# the last line for every source says how it ended.
+# the last line for every source says how it ended. Logs older than RADAR_LOG_DAYS (60) are removed.
 #   scripts/daily_collect.sh                 all sources
 #   scripts/daily_collect.sh habr trudvsem   only these
+# RADAR_SNAPSHOT_SINCE=YYYY-MM-DD passes --since to the snapshot collector: the daily server takes
+# new versions only and leaves older ones to the backfill on another machine (docs/vps.md).
+# The stack is brought up only where it is defined (infra/compose); the daily server runs the
+# collectors alone, and they finish with a warning when the stream is not configured.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
@@ -27,6 +31,7 @@ if ! mkdir "$lock" 2>/dev/null; then
   exit 1
 fi
 trap 'rmdir "$lock"' EXIT
+find logs/daily -maxdepth 1 -type f -name '*.log' -mtime "+${RADAR_LOG_DAYS:-60}" -delete
 
 # The WSL VM shuts down when no wsl.exe session is open, and with it Redpanda and ClickHouse.
 # A sleeping session keeps the stack up for the run; collectors still finish if it is down.
@@ -38,13 +43,19 @@ case "$(uname -s)" in
     trap 'kill "$keepalive" 2>/dev/null; rmdir "$lock"' EXIT
     ;;
 esac
-scripts/up.sh core >>"$day_log" 2>&1 || echo "$(date '+%F %T') stack is not up, partitions wait for a replay" | tee -a "$day_log"
+if [ -f infra/compose/docker-compose.yml ]; then
+  scripts/up.sh core >>"$day_log" 2>&1 || echo "$(date '+%F %T') stack is not up, partitions wait for a replay" | tee -a "$day_log"
+fi
 
 failed=()
 for source in "${sources[@]}"; do
-  echo "$(date '+%F %T') == $source start" >>"$day_log"
+  args=()
+  if [ "$source" = trudvsem_snapshot ] && [ -n "${RADAR_SNAPSHOT_SINCE:-}" ]; then
+    args=(--since "$RADAR_SNAPSHOT_SINCE")
+  fi
+  echo "$(date '+%F %T') == $source start ${args[*]}" >>"$day_log"
   started=$SECONDS
-  "$PY" -m "radar.collect.$source" >>"$day_log" 2>&1
+  "$PY" -m "radar.collect.$source" "${args[@]}" >>"$day_log" 2>&1
   code=$?
   echo "$(date '+%F %T') == $source exit $code in $((SECONDS - started)) s" | tee -a "$day_log"
   [ "$code" -eq 0 ] || failed+=("$source")

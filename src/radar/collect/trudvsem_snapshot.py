@@ -11,9 +11,10 @@ continues where the last one stopped.
 The results file is rebuilt from disk after every snapshot (`--summarize` does only that), and the
 partition is published to the topic `raw.trudvsem_snapshot`; a stream that is down costs a warning.
 `--repair DT` appends records missing from a complete partition, from a local XML of the same
-version, without touching what is already written.
+version, without touching what is already written. `--since DATE` leaves versions dated earlier to
+another machine: the daily server takes new versions while the backfill of old ones runs elsewhere.
 
-    RADAR_USER_AGENT='...' python -m radar.collect.trudvsem_snapshot [--limit N]
+    RADAR_USER_AGENT='...' python -m radar.collect.trudvsem_snapshot [--limit N] [--since 2026-10-09]
     python -m radar.collect.trudvsem_snapshot --summarize
     python -m radar.collect.trudvsem_snapshot --repair 2026-06-30
 """
@@ -546,16 +547,19 @@ def repair(dt: date, tmp_dir: Path, root: Path | None = None) -> dict[str, Any]:
     return result
 
 
-def run(limit: int | None, keep_xml: bool, tmp_dir: Path) -> int:
+def run(limit: int | None, keep_xml: bool, tmp_dir: Path, since: date | None = None) -> int:
     # Identity encoding: with gzip the server streams without a length and byte ranges stop lining up.
     headers = {"User-Agent": user_agent(), "Accept-Encoding": "identity"}
     with httpx.Client(headers=headers, timeout=httpx.Timeout(60.0, read=120.0), follow_redirects=True) as client:
-        return _run(client, limit, keep_xml, tmp_dir)
+        return _run(client, limit, keep_xml, tmp_dir, since)
 
 
-def _run(client: httpx.Client, limit: int | None, keep_xml: bool, tmp_dir: Path) -> int:
+def _run(client: httpx.Client, limit: int | None, keep_xml: bool, tmp_dir: Path, since: date | None = None) -> int:
     versions = fetch_versions(client)
     log.info("passport lists %d versions, %s .. %s", len(versions), versions[0].created, versions[-1].created)
+    if since is not None:
+        versions = [v for v in versions if v.dt >= since]
+        log.info("%d versions dated %s or later", len(versions), since)
     processed = 0
     for version in versions:
         if is_complete(SOURCE, version.dt):
@@ -623,6 +627,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--tmp-dir", type=Path, default=None, help="where XML is downloaded (default data/tmp)")
     parser.add_argument("--summarize", action="store_true", help="only rebuild the results file from disk")
     parser.add_argument("--repair", type=date.fromisoformat, metavar="YYYY-MM-DD", help="append missing records")
+    parser.add_argument(
+        "--since", type=date.fromisoformat, metavar="YYYY-MM-DD", help="skip versions dated earlier than this"
+    )
     args = parser.parse_args(argv)
     setup_logging()
     tmp_dir = args.tmp_dir or data_dir() / "tmp" / SOURCE
@@ -641,7 +648,7 @@ def main(argv: list[str] | None = None) -> int:
     log.info("raw root %s, tmp %s", raw_root(), tmp_dir)
     try:
         with single_instance(tmp_dir / "collector.lock"):
-            processed = run(args.limit, args.keep_xml, tmp_dir)
+            processed = run(args.limit, args.keep_xml, tmp_dir, args.since)
     except AlreadyRunning as exc:
         log.info("another run is in progress, nothing to do: %s", exc)
         return 0
