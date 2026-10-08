@@ -2,14 +2,17 @@
 
 The same patterns drive both `clean_text` and `scan_text`, so a scan after cleaning must come back
 empty; the structured checks in `radar.pii.records` are what make the scanner more than a mirror.
-Names are only caught where the shape is reliable: a patronymic, initials, or a contact label.
+Names are caught where the shape is reliable: a patronymic, initials, a contact label, or a first
+name from `first_names.csv` next to a surname-shaped word, alone on its line or in a signature line.
 """
 
+import csv
 import re
 from collections import Counter
-from collections.abc import Iterable
+from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
 from functools import lru_cache
+from pathlib import Path
 
 PLACEHOLDER = {
     "email": "[email]",
@@ -75,7 +78,7 @@ _NAME = re.compile(
 )
 _LABELLED_NAME = re.compile(
     r"(?i:контактное\s+лицо|контакт|менеджер\s+по\s+(?:персоналу|подбору)|рекрутер|hr(?:-|\s)?менеджер"
-    r"|обращаться\s+к|спросить|звонить|звоните|пишите|писать)"
+    r"|обращаться\s+к|спросить|звонить|звоните|пишите|писать|меня\s+зовут)"
     rf"[ \t]*[:\-–]?[ \t]*(?P<name>{_CAP}(?:[ \t]+{_CAP}){{0,2}})"
 )
 _NOT_NAMES = frozenset(
@@ -83,11 +86,159 @@ _NOT_NAMES = frozenset(
 )
 
 
+def _load_first_names() -> dict[str, bool]:
+    with Path(__file__).with_name("first_names.csv").open(encoding="utf-8", newline="") as f:
+        return {row["name"]: row["ambiguous"] == "1" for row in csv.DictReader(f)}
+
+
+# First name -> it is also a common word, a place or a product ("Вера", "Владимир", "Алиса", "Julia").
+_FIRST_NAMES = _load_first_names()
+_WORD = re.compile(r"(?<![\w-])(?:[А-ЯЁ][а-яё]+(?:-[А-ЯЁ][а-яё]+)?|[A-Z][a-z]+(?:-[A-Z][a-z]+)?)(?![\w-])")
+_SURNAME = re.compile(
+    r"(?:ов|ев|ёв|ин|ын|ова|ева|ёва|ина|ына|ский|цкий|ская|цкая|енко|ук|юк|ич|ян|янц|дзе|швили|их|ых"
+    r"|ov|ova|ev|eva|in|ina|yn|yna|sky|skiy|skii|skaya|enko|uk|yuk|ich|vich|yan|dze|shvili|ikh|ykh)$"
+)
+# A line that signs a post or gives a contact; placeholders count, so cleaned text reads the same.
+_SIGNATURE = re.compile(
+    r"(?<!\w)(?:hr|hrbp|recruit\w*|talent|contacts?|manager|telegram|tg)(?!\w)"
+    r"|(?<!\w)(?:рекрут|контакт|пишите|напишите|писать|менеджер|телеграм)"
+    r"|@\w|\[(?:nick|phone|email|link)\]",
+    re.IGNORECASE,
+)
+# Capitalized words that stand next to a name in a signature without being a surname.
+_NOT_SURNAMES = _NOT_NAMES | {
+    "Контакт",
+    "Контакты",
+    "Пишите",
+    "Напишите",
+    "Менеджер",
+    "Рекрутер",
+    "Рекрутёр",
+    "Директор",
+    "Руководитель",
+    "Специалист",
+    "Разработчик",
+    "Аналитик",
+    "Инженер",
+    "Ведущий",
+    "Старший",
+    "Главный",
+    "Команда",
+    "Связь",
+    "Вакансия",
+    "Привет",
+    "Здравствуйте",
+    "Ищет",
+    "Ищем",
+    "Ещё",
+    "Еще",
+    "Hey",
+    "Hi",
+    "Hello",
+    "Спасибо",
+    "Head",
+    "Lead",
+    "Senior",
+    "Middle",
+    "Junior",
+    "Manager",
+    "Recruiter",
+    "Developer",
+    "Engineer",
+    "Analyst",
+    "Team",
+    "Talent",
+    "Partner",
+    "Founder",
+    "Contact",
+    "Contacts",
+    "Telegram",
+}
+_EDGES = re.compile(r"^[\W\d_]+|[\W\d_]+$")
+
+
 @dataclass(frozen=True)
 class Finding:
     kind: str
     start: int
     end: int
+    rule: str = ""  # for person_name found by first name: full_name, name_line or signature
+
+
+def _same_script(a: str, b: str) -> bool:
+    return a[0].isascii() == b[0].isascii()
+
+
+def _is_surname(word: str, name: str) -> bool:
+    return len(word) >= 4 and word not in _FIRST_NAMES and _same_script(word, name) and bool(_SURNAME.search(word))
+
+
+def _is_other_word(word: str, name: str) -> bool:
+    return _same_script(word, name) and word not in _NOT_SURNAMES
+
+
+def _pair(name: str, other: str, ambiguous: bool, alone: bool, signature: bool, after: bool) -> bool:
+    if _is_surname(other, name):
+        # Latin names that are also tools (Julia, Victoria) need a signature line to count.
+        return signature or not (ambiguous and name.isascii())
+    # In a signature the word before a name is mostly a verb or a title ("Ищет", "Рекрутер").
+    return (alone or (signature and after)) and not ambiguous and _is_other_word(other, name)
+
+
+def _runs(words: list[re.Match[str]], text: str) -> Iterator[list[re.Match[str]]]:
+    """Capitalized words separated by nothing but spaces."""
+    run: list[re.Match[str]] = []
+    for w in words:
+        if run and text[run[-1].end() : w.start()].strip(" \t"):
+            yield run
+            run = []
+        run.append(w)
+    if run:
+        yield run
+
+
+def _flag_run(run: list[re.Match[str]], alone: bool, signature: bool) -> set[int]:
+    flagged: set[int] = set()
+    for i, w in enumerate(run):
+        name = w.group()
+        if name not in _FIRST_NAMES:
+            continue
+        ambiguous = _FIRST_NAMES[name]
+        for j in (i - 1, i + 1):
+            if not 0 <= j < len(run):
+                continue
+            if _pair(name, run[j].group(), ambiguous, alone, signature, after=j > i):
+                flagged |= {i, j}
+        if signature and not ambiguous:
+            flagged.add(i)
+    if alone and flagged:
+        flagged = set(range(len(run)))
+    return flagged
+
+
+def _person_names(text: str, context: list[tuple[int, int]]) -> Iterator[tuple[str, int, int]]:
+    """First name plus surname, a name alone on its line, or a name in a signature line."""
+    hits = [m for m in _WORD.finditer(text) if m.group() in _FIRST_NAMES]
+    for start in sorted({text.rfind("\n", 0, m.start()) + 1 for m in hits}):
+        end = text.find("\n", start)
+        end = len(text) if end < 0 else end
+        body = text[start:end]
+        core = _EDGES.sub("", body)
+        signature = bool(_SIGNATURE.search(body)) or any(s < end and start < e for s, e in context)
+        for run in _runs(list(_WORD.finditer(text, start, end)), text):
+            alone = len(run) in (2, 3) and core == text[run[0].start() : run[-1].end()]
+            flagged = _flag_run(run, alone, signature)
+            rule = "name_line" if alone else "signature" if signature else "full_name"
+            i = 0
+            while i < len(run):
+                if i not in flagged:
+                    i += 1
+                    continue
+                j = i
+                while j + 1 in flagged:
+                    j += 1
+                yield rule, run[i].start(), run[j].end()
+                i = j + 1
 
 
 def _keep_profile(match: re.Match[str], keep: frozenset[str]) -> bool:
@@ -117,11 +268,11 @@ def _spans(text: str, keep: frozenset[str]) -> list[Finding]:
     found: list[Finding] = []
     taken: list[tuple[int, int]] = []
 
-    def add(kind: str, start: int, end: int) -> None:
+    def add(kind: str, start: int, end: int, rule: str = "") -> None:
         if any(start < e and s < end for s, e in taken):
             return
         taken.append((start, end))
-        found.append(Finding(kind, start, end))
+        found.append(Finding(kind, start, end, rule))
 
     if "@" in text:
         for m in _EMAIL.finditer(text):
@@ -151,6 +302,9 @@ def _spans(text: str, keep: frozenset[str]) -> list[Finding]:
         name = m.group("name")
         if name.split()[0] not in _NOT_NAMES:
             add("person_name", m.start("name"), m.end("name"))
+    contacts = [(f.start, f.end) for f in found if f.kind != "person_name"]
+    for rule, start, end in _person_names(text, contacts):
+        add("person_name", start, end, rule)
     return sorted(found, key=lambda f: f.start)
 
 

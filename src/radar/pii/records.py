@@ -11,7 +11,7 @@ from collections.abc import Iterable, Iterator
 from typing import Any
 
 from radar.pii.employer import clean_employer_name, coarse_address, digits, is_ip_name, is_person_employer
-from radar.pii.text import clean_text_counts, scan_text
+from radar.pii.text import DEFAULT_KEEP_HANDLES, clean_text_counts, scan_text
 
 Record = dict[str, Any]
 
@@ -220,11 +220,13 @@ def _walk(node: Any, key: str = "", parent: str = "") -> Iterator[tuple[str, str
             yield from _walk(v, key, parent)
 
 
-def scan_record(record: Any) -> Counter[str]:
+def scan_record(record: Any, keep: Iterable[str] = DEFAULT_KEEP_HANDLES) -> Counter[str]:
     """Personal data still present in a record: structured fields plus every free-text string.
 
     Used on cleaned records (must find nothing) and on raw fixtures (must find what was planted).
+    `keep` lists the handles that are not people; for Telegram, the channels of its config.
     """
+    keep = frozenset(h.lower() for h in keep)
     found: Counter[str] = Counter()
     for key, parent, value in _walk(record):
         if key in _CONTACT_KEYS and value:
@@ -247,6 +249,6 @@ def scan_record(record: Any) -> Counter[str]:
             if not opaque and _OGRNIP_RUN.search(value):
                 found["company_code"] += 1
             if not opaque and key not in _NOT_TEXT:
-                for finding in scan_text(value):
+                for finding in scan_text(value, keep):
                     found[finding.kind] += 1
     return found
