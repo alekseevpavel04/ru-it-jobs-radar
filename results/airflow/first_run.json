@@ -1,0 +1,161 @@
+{
+  "source_script": "airflow/run_report.py",
+  "command": "python airflow/run_report.py radar_collect:manual__2026-10-08 radar_load:collect__2026-10-08 radar_dbt:load__2026-10-08 --out airflow/first_run.json",
+  "commit": "8c92f6d-dirty",
+  "created_at": "2026-10-08T16:43:16+00:00",
+  "metrics": {
+    "runs_success": {
+      "value": 3,
+      "n": 3,
+      "denominator": 3
+    },
+    "seconds_wall": {
+      "value": 671.0,
+      "n": null,
+      "denominator": null
+    },
+    "seconds_tasks_span": {
+      "value": 422.5,
+      "n": null,
+      "denominator": null
+    },
+    "rows_replayed": {
+      "value": 48817,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "method": "states and start/end times of the DAG runs and task instances from the Airflow REST API; seconds are end minus start as Airflow recorded them, for a task its last try; seconds_tasks_span runs from the first task start to the last task end; load summaries are the XCom each load task printed",
+  "runs": [
+    {
+      "dag_id": "radar_collect",
+      "run_id": "manual__2026-10-08",
+      "logical_date": "2026-10-08T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T16:31:02.505439Z",
+      "end_date": "2026-10-08T16:35:16.907718Z",
+      "seconds": 254.4,
+      "seconds_tasks_span": 6.6,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 2,
+          "seconds": 4.0
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.1
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.5
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-10-08",
+      "logical_date": "2026-10-08T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T16:35:16.891452Z",
+      "end_date": "2026-10-08T16:35:26.102501Z",
+      "seconds": 9.2,
+      "seconds_tasks_span": 8.6,
+      "tasks": [
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.6
+        },
+        {
+          "task_id": "load_habr",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 6.9,
+          "summary": {
+            "source": "habr",
+            "dt": "2026-10-08",
+            "rows_parquet": 1260,
+            "rows_clickhouse_before": 1069,
+            "replayed": true,
+            "seconds_until_consumed": 6.2,
+            "rows_clickhouse_final": 1260,
+            "error_messages": 0
+          }
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 5.5,
+          "summary": {
+            "source": "telegram",
+            "dt": "2026-10-08",
+            "rows_parquet": 47557,
+            "rows_clickhouse_before": 1157,
+            "replayed": true,
+            "seconds_until_consumed": 4.4,
+            "rows_clickhouse_final": 47557,
+            "error_messages": 0
+          }
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.6
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7,
+          "summary": {
+            "source": "trudvsem",
+            "dt": "2026-10-08",
+            "rows_parquet": 11632,
+            "rows_clickhouse_before": 11632,
+            "replayed": false,
+            "rows_clickhouse_final": 11632
+          }
+        },
+        {
+          "task_id": "trigger_dbt",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.5
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_dbt",
+      "run_id": "load__2026-10-08",
+      "logical_date": "2026-10-08T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T16:35:26.087891Z",
+      "end_date": "2026-10-08T16:42:13.519758Z",
+      "seconds": 407.4,
+      "seconds_tasks_span": 407.3,
+      "tasks": [
+        {
+          "task_id": "build",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 403.7
+        },
+        {
+          "task_id": "source_freshness",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 3.0
+        }
+      ]
+    }
+  ]
+}

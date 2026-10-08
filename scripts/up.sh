@@ -9,6 +9,9 @@ set -euo pipefail
 reexec_in_wsl up.sh "$@"
 require_env_file
 select_profiles "$@"
+require_profile_secrets
+# Mount points of the Airflow worker's dbt target/ and logs/ volumes inside its read-only dbt/.
+mkdir -p "$RADAR_ROOT/dbt/target" "$RADAR_ROOT/dbt/logs"
 
 services=$(compose "${PROFILE_ARGS[@]}" config --services)
 # `up --wait` reports a one-shot container that exited as a failure, so the *-init services

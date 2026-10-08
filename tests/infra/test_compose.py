@@ -16,9 +16,21 @@ SERVICES: dict[str, dict[str, Any]] = COMPOSE["services"]
 EXPECTED_PROFILES = {"core", "ml", "orchestration", "bi", "mlops", "api"}
 RAW_TOPICS = {"raw.trudvsem", "raw.trudvsem_snapshot", "raw.habr", "raw.telegram", "raw.superjob"}
 
+LIB = (COMPOSE_DIR / "lib.sh").read_text(encoding="utf-8")
+# Set by lib.sh in front of every compose call (`NAME=${NAME:-default} docker compose`), not by .env.
+FROM_LIB = set(re.findall(r"\b(\w+)=\$\{\1:-", LIB))
+# Secrets of one profile: interpolated with :- and checked by scripts/up.sh for that profile only.
+PROFILE_SECRETS = set(" ".join(re.findall(r'^  \[\w+\]="(.+)"$', LIB, flags=re.MULTILINE)).split())
+# Bind mounts a service writes to, with the reason.
+WRITABLE_BINDS = {
+    # The sync from the collection server adds partitions to the raw layer.
+    ("airflow-scheduler", "../../data/raw"),
+}
+
 
 def is_oneshot(name: str) -> bool:
-    return name.endswith("-init")
+    # *-init runs after the stack is healthy; *-migrate before the services that depend on it.
+    return name.endswith(("-init", "-migrate"))
 
 
 def profile_services(profile: str) -> set[str]:
@@ -34,6 +46,22 @@ def test_every_service_belongs_to_one_spec_profile() -> None:
 def test_core_and_ml_profiles_hold_spec_services() -> None:
     assert {"clickhouse", "redpanda", "console", "redis"} <= profile_services("core")
     assert "mlflow" in profile_services("ml")
+
+
+def test_orchestration_profile_holds_airflow() -> None:
+    assert profile_services("orchestration") == {
+        "airflow-db",
+        "airflow-migrate",
+        "airflow-api-server",
+        "airflow-scheduler",
+        "airflow-dag-processor",
+    }
+
+
+def test_host_ports_are_unique_and_leave_llama_server_its_port() -> None:
+    host_ports = [p.split(":")[1] for svc in SERVICES.values() for p in svc.get("ports", [])]
+    assert len(host_ports) == len(set(host_ports)), host_ports
+    assert "8080" not in host_ports
 
 
 def test_llama_server_stays_outside_compose() -> None:
@@ -52,7 +80,9 @@ def test_image_has_exact_version_tag(name: str) -> None:
     svc = SERVICES[name]
     assert_pinned(svc["image"], name)
     if "build" in svc:
-        dockerfile = (COMPOSE_DIR / svc["build"] / "Dockerfile").read_text(encoding="utf-8")
+        build = svc["build"] if isinstance(svc["build"], dict) else {"context": svc["build"]}
+        dockerfile_path = COMPOSE_DIR / build["context"] / build.get("dockerfile", "Dockerfile")
+        dockerfile = dockerfile_path.read_text(encoding="utf-8")
         for base in re.findall(r"^FROM\s+(\S+)", dockerfile, flags=re.MULTILINE):
             assert_pinned(base, f"{name} Dockerfile")
 
@@ -79,9 +109,10 @@ def test_ports_listen_on_loopback_only(name: str) -> None:
 def test_volumes_are_named_or_readonly_config(name: str) -> None:
     declared = set(COMPOSE.get("volumes") or {})
     for volume in SERVICES[name].get("volumes", []):
-        source = volume.split(":", 1)[0]
-        if source.startswith((".", "/")):
-            assert volume.endswith(":ro"), f"{name}: bind mount {volume} must be read-only"
+        source = volume.split(":", 1)[0] if not volume.startswith("${") else volume.split("}", 1)[0] + "}"
+        if source.startswith((".", "/", "${")):
+            writable = (name, source) in WRITABLE_BINDS
+            assert writable or volume.endswith(":ro"), f"{name}: bind mount {volume} must be read-only"
         else:
             assert source in declared, f"{name}: volume {source} is not declared"
 
@@ -97,8 +128,12 @@ def test_variables_are_required_and_documented() -> None:
     references = re.findall(r"\$\{(\w+)([^}]*)\}", COMPOSE_TEXT)
     assert references
     for var, rest in references:
-        assert rest.startswith(":?"), f"${{{var}{rest}}} must fail on an empty value"
-        assert var in documented, f"{var} is missing from .env.example"
+        if var in PROFILE_SECRETS:
+            assert rest == ":-", f"${{{var}{rest}}}: profile secrets are checked by scripts/up.sh"
+        else:
+            assert rest.startswith(":?"), f"${{{var}{rest}}} must fail on an empty value"
+        assert var in documented or var in FROM_LIB, f"{var} is missing from .env.example"
+    assert documented >= PROFILE_SECRETS
 
 
 def test_topic_init_creates_spec_topics() -> None:
