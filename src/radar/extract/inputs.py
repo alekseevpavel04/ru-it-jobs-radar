@@ -45,20 +45,102 @@ def rub_range(low: int, high: int) -> str | None:
     return f"от {_thousands(low)} до {_thousands(high)} руб."
 
 
-def facts_trudvsem_snapshot(payload: Mapping[str, Any]) -> Facts:
+def _trudvsem_page(salary_min: Any, salary_max: Any, address: Any, experience: Any, busy: Any, schedule: Any) -> Facts:
+    """The trudvsem vacancy page; the snapshot and the API name its fields differently."""
     facts: Facts = []
-    salary = rub_range(_int(payload.get("salaryMin", 0)), _int(payload.get("salaryMax", 0)))
+    salary = rub_range(_int(salary_min), _int(salary_max))
     if salary:
         facts.append(("Зарплата", salary))
-    address = payload.get("vacancyAddress") or payload.get("regionName")
     if address:
         facts.append(("Адрес", str(address).rstrip("; ")))
-    experience = _int(payload.get("experienceRequirements", 0))
-    if experience > 0:
-        facts.append(("Требуемый опыт", _years(experience)))
-    for key, label in (("busyType", "Тип занятости"), ("scheduleType", "График")):
-        if payload.get(key):
-            facts.append((label, str(payload[key])))
+    years = _int(experience)
+    if years > 0:
+        facts.append(("Требуемый опыт", _years(years)))
+    for value, label in ((busy, "Тип занятости"), (schedule, "График")):
+        if value:
+            facts.append((label, str(value)))
+    return facts
+
+
+def facts_trudvsem_snapshot(payload: Mapping[str, Any]) -> Facts:
+    return _trudvsem_page(
+        payload.get("salaryMin", 0),
+        payload.get("salaryMax", 0),
+        payload.get("vacancyAddress") or payload.get("regionName"),
+        payload.get("experienceRequirements", 0),
+        payload.get("busyType"),
+        payload.get("scheduleType"),
+    )
+
+
+def facts_trudvsem(payload: Mapping[str, Any]) -> Facts:
+    """The API record of the same page as the snapshot, so the same header. The API's own `salary`
+    string keeps only the lower bound ("от 33867" for 33 867 to 50 000), so the range is rebuilt
+    from `salary_min` and `salary_max`."""
+    addresses = (payload.get("addresses") or {}).get("address") or []
+    address = "; ".join(str(a["location"]).rstrip("; ") for a in addresses if a.get("location"))
+    return _trudvsem_page(
+        payload.get("salary_min", 0),
+        payload.get("salary_max", 0),
+        address or (payload.get("region") or {}).get("name"),
+        (payload.get("requirement") or {}).get("experience", 0),
+        payload.get("employment"),
+        payload.get("schedule"),
+    )
+
+
+HABR_EMPLOYMENT = {"full_time": "Полный рабочий день", "part_time": "Неполный рабочий день"}
+
+
+def _titles(items: Any) -> str:
+    return ", ".join(str(item["title"]) for item in items or () if item.get("title"))
+
+
+def _habr_card_localities(card: Mapping[str, Any]) -> str:
+    places = card.get("jobLocation") or []
+    if isinstance(places, Mapping):
+        places = [places]
+    localities = []
+    for place in places:
+        address = place.get("address")
+        if isinstance(address, Mapping) and address.get("addressLocality"):
+            localities.append(str(address["addressLocality"]))
+    return ", ".join(localities)
+
+
+def facts_habr(payload: Mapping[str, Any]) -> Facts:
+    """A Habr Career vacancy as its list entry shows it: salary as published, specializations,
+    qualification, skill tags, cities, employment and the "можно удаленно" flag.
+
+    Habr's own salary estimate (`predictedSalary`) is the site's guess, not the employer's, and is
+    never rendered. The card's JSON-LD repeats the list (salary, remote, employment) and says
+    FULL_TIME also where the list states no employment, so it is used for one thing only: a vacancy
+    with an office address instead of a city list gets the address's locality as its city.
+
+    A vacancy whose card was not read yet has no description: the extractor sees the title and this
+    header only, so nothing is known about experience, gross or net, or the language of the text.
+    """
+    facts: Facts = []
+    salary = (payload.get("salary") or {}).get("formatted")
+    if salary:
+        facts.append(("Зарплата", str(salary)))
+    divisions = _titles(payload.get("divisions"))
+    if divisions:
+        facts.append(("Специализация", divisions))
+    qualification = (payload.get("salaryQualification") or {}).get("title") or payload.get("qualification")
+    if qualification:
+        facts.append(("Квалификация", str(qualification)))
+    skills = _titles(payload.get("skills"))
+    if skills:
+        facts.append(("Навыки", skills))
+    places = _titles(payload.get("locations")) or _habr_card_localities(payload.get("card") or {})
+    if places:
+        facts.append(("Местоположение", places))
+    employment = payload.get("employment")
+    if employment:
+        facts.append(("Тип занятости", HABR_EMPLOYMENT.get(employment, str(employment))))
+    if payload.get("remoteWork") is True:
+        facts.append(("Формат работы", "Можно удаленно"))
     return facts
 
 
@@ -67,7 +149,9 @@ def _no_facts(payload: Mapping[str, Any]) -> Facts:
 
 
 FACTS: dict[str, Callable[[Mapping[str, Any]], Facts]] = {
+    "trudvsem": facts_trudvsem,
     "trudvsem_snapshot": facts_trudvsem_snapshot,
+    "habr": facts_habr,
     "telegram": _no_facts,
 }
 
