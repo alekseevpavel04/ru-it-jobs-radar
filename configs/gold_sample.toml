@@ -1,0 +1,39 @@
+# Gold samples (`python -m radar.extract.corpus sample`). The seed is the one of
+# configs/eval.toml. Changing anything here redraws test and dev: `sample` refuses once they exist,
+# and a redraw is a new line in docs/EXPERIMENTS.md.
+
+# Groups per role-proxy bucket. The natural distribution is about 1.5% ml_ds_data and 45%
+# non_it_noise; ML, DS and data roles are oversampled so that per-field metrics on them have support,
+# but test and dev together take a bit over half of those groups, so the training pool keeps the rest.
+# Noise stays in: the IT filter of trudvsem is noisy and "non_it" is an answer the extractor must give.
+[test]
+ml_ds_data = 80
+dev = 90
+qa_devops_sys = 80
+analyst_other = 50
+other_it = 50
+non_it_noise = 90
+
+[dev]
+ml_ds_data = 30
+dev = 35
+qa_devops_sys = 30
+analyst_other = 20
+other_it = 20
+non_it_noise = 30
+
+[allocation]
+# Inside a bucket the groups are spread over sources in proportion to N_h ** power: 1 is
+# proportional, 0 is equal. 0.5 gives Habr (459 of 15 929 corpus records) enough support for a
+# per-source report without emptying it.
+power = 0.5
+# Test and dev together take at most this share of a stratum's groups (rounded down); what does
+# not fit goes to the other sources of the bucket, so every stratum keeps groups for training.
+max_share = 0.6
+
+[leak]
+# Near-duplicate check of test and dev against the training pool: word 3-shingles of the input
+# string, MinHash LSH proposes pairs, the exact Jaccard decides. Looser than the text clusters (0.8).
+jaccard = 0.5
+shingle_k = 3
+num_perm = 128

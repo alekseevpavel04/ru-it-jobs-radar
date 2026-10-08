@@ -1,0 +1,779 @@
+{
+  "source_script": "src/radar/extract/corpus.py",
+  "command": "python -m radar.extract.corpus sample --resample",
+  "commit": "ace4d66-dirty",
+  "created_at": "2026-10-08T15:51:37+00:00",
+  "metrics": {
+    "staged.records": {
+      "value": 22751,
+      "n": null,
+      "denominator": null
+    },
+    "corpus.records": {
+      "value": 0.7001,
+      "n": 15929,
+      "denominator": 22751
+    },
+    "corpus.groups": {
+      "value": 13468,
+      "n": null,
+      "denominator": null
+    },
+    "staged.records.trudvsem": {
+      "value": 8480,
+      "n": null,
+      "denominator": null
+    },
+    "staged.short_text.trudvsem": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 8480
+    },
+    "corpus.records.trudvsem": {
+      "value": 0.4972,
+      "n": 7920,
+      "denominator": 15929
+    },
+    "staged.records.trudvsem_snapshot": {
+      "value": 13234,
+      "n": null,
+      "denominator": null
+    },
+    "staged.short_text.trudvsem_snapshot": {
+      "value": 0.0005,
+      "n": 7,
+      "denominator": 13234
+    },
+    "corpus.records.trudvsem_snapshot": {
+      "value": 0.474,
+      "n": 7550,
+      "denominator": 15929
+    },
+    "staged.records.habr": {
+      "value": 1037,
+      "n": null,
+      "denominator": null
+    },
+    "staged.short_text.habr": {
+      "value": 0.5304,
+      "n": 550,
+      "denominator": 1037
+    },
+    "corpus.records.habr": {
+      "value": 0.0288,
+      "n": 459,
+      "denominator": 15929
+    },
+    "role_proxy.corpus.ml_ds_data": {
+      "value": 0.0134,
+      "n": 214,
+      "denominator": 15929
+    },
+    "role_proxy.corpus.dev": {
+      "value": 0.2109,
+      "n": 3360,
+      "denominator": 15929
+    },
+    "role_proxy.corpus.analyst_other": {
+      "value": 0.0348,
+      "n": 555,
+      "denominator": 15929
+    },
+    "role_proxy.corpus.qa_devops_sys": {
+      "value": 0.2069,
+      "n": 3295,
+      "denominator": 15929
+    },
+    "role_proxy.corpus.other_it": {
+      "value": 0.0726,
+      "n": 1156,
+      "denominator": 15929
+    },
+    "role_proxy.corpus.non_it_noise": {
+      "value": 0.4614,
+      "n": 7349,
+      "denominator": 15929
+    },
+    "role_proxy.corpus.trudvsem.ml_ds_data": {
+      "value": 0.0071,
+      "n": 56,
+      "denominator": 7920
+    },
+    "role_proxy.corpus.trudvsem.dev": {
+      "value": 0.2355,
+      "n": 1865,
+      "denominator": 7920
+    },
+    "role_proxy.corpus.trudvsem.analyst_other": {
+      "value": 0.0332,
+      "n": 263,
+      "denominator": 7920
+    },
+    "role_proxy.corpus.trudvsem.qa_devops_sys": {
+      "value": 0.1595,
+      "n": 1263,
+      "denominator": 7920
+    },
+    "role_proxy.corpus.trudvsem.other_it": {
+      "value": 0.0509,
+      "n": 403,
+      "denominator": 7920
+    },
+    "role_proxy.corpus.trudvsem.non_it_noise": {
+      "value": 0.5139,
+      "n": 4070,
+      "denominator": 7920
+    },
+    "role_proxy.corpus.trudvsem_snapshot.ml_ds_data": {
+      "value": 0.0142,
+      "n": 107,
+      "denominator": 7550
+    },
+    "role_proxy.corpus.trudvsem_snapshot.dev": {
+      "value": 0.1849,
+      "n": 1396,
+      "denominator": 7550
+    },
+    "role_proxy.corpus.trudvsem_snapshot.analyst_other": {
+      "value": 0.0321,
+      "n": 242,
+      "denominator": 7550
+    },
+    "role_proxy.corpus.trudvsem_snapshot.qa_devops_sys": {
+      "value": 0.2487,
+      "n": 1878,
+      "denominator": 7550
+    },
+    "role_proxy.corpus.trudvsem_snapshot.other_it": {
+      "value": 0.0931,
+      "n": 703,
+      "denominator": 7550
+    },
+    "role_proxy.corpus.trudvsem_snapshot.non_it_noise": {
+      "value": 0.427,
+      "n": 3224,
+      "denominator": 7550
+    },
+    "role_proxy.corpus.habr.ml_ds_data": {
+      "value": 0.1111,
+      "n": 51,
+      "denominator": 459
+    },
+    "role_proxy.corpus.habr.dev": {
+      "value": 0.2157,
+      "n": 99,
+      "denominator": 459
+    },
+    "role_proxy.corpus.habr.analyst_other": {
+      "value": 0.1089,
+      "n": 50,
+      "denominator": 459
+    },
+    "role_proxy.corpus.habr.qa_devops_sys": {
+      "value": 0.3355,
+      "n": 154,
+      "denominator": 459
+    },
+    "role_proxy.corpus.habr.other_it": {
+      "value": 0.1089,
+      "n": 50,
+      "denominator": 459
+    },
+    "role_proxy.corpus.habr.non_it_noise": {
+      "value": 0.1198,
+      "n": 55,
+      "denominator": 459
+    },
+    "role_proxy.corpus_groups.ml_ds_data": {
+      "value": 0.0141,
+      "n": 190,
+      "denominator": 13468
+    },
+    "test.records": {
+      "value": 440,
+      "n": null,
+      "denominator": null
+    },
+    "test.role_proxy.ml_ds_data": {
+      "value": 0.1818,
+      "n": 80,
+      "denominator": 440
+    },
+    "test.role_proxy.dev": {
+      "value": 0.2045,
+      "n": 90,
+      "denominator": 440
+    },
+    "test.role_proxy.analyst_other": {
+      "value": 0.1136,
+      "n": 50,
+      "denominator": 440
+    },
+    "test.role_proxy.qa_devops_sys": {
+      "value": 0.1818,
+      "n": 80,
+      "denominator": 440
+    },
+    "test.role_proxy.other_it": {
+      "value": 0.1136,
+      "n": 50,
+      "denominator": 440
+    },
+    "test.role_proxy.non_it_noise": {
+      "value": 0.2045,
+      "n": 90,
+      "denominator": 440
+    },
+    "test.source.trudvsem": {
+      "value": 0.4114,
+      "n": 181,
+      "denominator": 440
+    },
+    "test.ml_ds_data.trudvsem": {
+      "value": 0.1326,
+      "n": 24,
+      "denominator": 181
+    },
+    "test.source.trudvsem_snapshot": {
+      "value": 0.4409,
+      "n": 194,
+      "denominator": 440
+    },
+    "test.ml_ds_data.trudvsem_snapshot": {
+      "value": 0.1753,
+      "n": 34,
+      "denominator": 194
+    },
+    "test.source.habr": {
+      "value": 0.1477,
+      "n": 65,
+      "denominator": 440
+    },
+    "test.ml_ds_data.habr": {
+      "value": 0.3385,
+      "n": 22,
+      "denominator": 65
+    },
+    "leak.test_with_train_neighbour_drawn": {
+      "value": 0.0841,
+      "n": 37,
+      "denominator": 440
+    },
+    "leak.test_with_train_neighbour": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 440
+    },
+    "dev.records": {
+      "value": 165,
+      "n": null,
+      "denominator": null
+    },
+    "dev.role_proxy.ml_ds_data": {
+      "value": 0.1818,
+      "n": 30,
+      "denominator": 165
+    },
+    "dev.role_proxy.dev": {
+      "value": 0.2121,
+      "n": 35,
+      "denominator": 165
+    },
+    "dev.role_proxy.analyst_other": {
+      "value": 0.1212,
+      "n": 20,
+      "denominator": 165
+    },
+    "dev.role_proxy.qa_devops_sys": {
+      "value": 0.1818,
+      "n": 30,
+      "denominator": 165
+    },
+    "dev.role_proxy.other_it": {
+      "value": 0.1212,
+      "n": 20,
+      "denominator": 165
+    },
+    "dev.role_proxy.non_it_noise": {
+      "value": 0.1818,
+      "n": 30,
+      "denominator": 165
+    },
+    "dev.source.trudvsem": {
+      "value": 0.4061,
+      "n": 67,
+      "denominator": 165
+    },
+    "dev.ml_ds_data.trudvsem": {
+      "value": 0.1343,
+      "n": 9,
+      "denominator": 67
+    },
+    "dev.source.trudvsem_snapshot": {
+      "value": 0.4424,
+      "n": 73,
+      "denominator": 165
+    },
+    "dev.ml_ds_data.trudvsem_snapshot": {
+      "value": 0.1781,
+      "n": 13,
+      "denominator": 73
+    },
+    "dev.source.habr": {
+      "value": 0.1515,
+      "n": 25,
+      "denominator": 165
+    },
+    "dev.ml_ds_data.habr": {
+      "value": 0.32,
+      "n": 8,
+      "denominator": 25
+    },
+    "leak.dev_with_train_neighbour_drawn": {
+      "value": 0.0848,
+      "n": 14,
+      "denominator": 165
+    },
+    "leak.dev_with_train_neighbour": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 165
+    },
+    "leak.test_dev_pairs": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "leak.withheld_groups": {
+      "value": 66,
+      "n": null,
+      "denominator": null
+    },
+    "leak.records_in_two_splits": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "frame.groups": {
+      "value": 13463,
+      "n": null,
+      "denominator": null
+    },
+    "frame.blocked_by_fixtures": {
+      "value": 11,
+      "n": null,
+      "denominator": null
+    },
+    "decisions10.corpus.ml_ds_data.trudvsem": {
+      "value": 0.0071,
+      "n": 56,
+      "denominator": 7920
+    },
+    "decisions10.corpus.ml_ds_data.trudvsem_snapshot": {
+      "value": 0.0142,
+      "n": 107,
+      "denominator": 7550
+    },
+    "decisions10.corpus.ml_ds_data.habr": {
+      "value": 0.1111,
+      "n": 51,
+      "denominator": 459
+    },
+    "decisions10.train_pool.ml_ds_data": {
+      "value": 0.0062,
+      "n": 94,
+      "denominator": 15183
+    }
+  },
+  "min_text_chars": 40,
+  "config": {
+    "targets": {
+      "test": {
+        "ml_ds_data": 80,
+        "dev": 90,
+        "analyst_other": 50,
+        "qa_devops_sys": 80,
+        "other_it": 50,
+        "non_it_noise": 90
+      },
+      "dev": {
+        "ml_ds_data": 30,
+        "dev": 35,
+        "analyst_other": 20,
+        "qa_devops_sys": 30,
+        "other_it": 20,
+        "non_it_noise": 30
+      }
+    },
+    "power": 0.5,
+    "max_share": 0.6,
+    "seed": 20261008,
+    "leak_jaccard": 0.5
+  },
+  "shortfall": {
+    "test": {},
+    "dev": {}
+  },
+  "strata": [
+    {
+      "stratum": "habr|analyst_other",
+      "frame_groups": 50,
+      "test": 9,
+      "dev": 4,
+      "pi_test": 0.18,
+      "pi_dev": 0.08
+    },
+    {
+      "stratum": "habr|dev",
+      "frame_groups": 97,
+      "test": 10,
+      "dev": 4,
+      "pi_test": 0.103093,
+      "pi_dev": 0.041237
+    },
+    {
+      "stratum": "habr|ml_ds_data",
+      "frame_groups": 51,
+      "test": 22,
+      "dev": 8,
+      "pi_test": 0.431373,
+      "pi_dev": 0.156863
+    },
+    {
+      "stratum": "habr|non_it_noise",
+      "frame_groups": 53,
+      "test": 6,
+      "dev": 2,
+      "pi_test": 0.113208,
+      "pi_dev": 0.037736
+    },
+    {
+      "stratum": "habr|other_it",
+      "frame_groups": 50,
+      "test": 7,
+      "dev": 3,
+      "pi_test": 0.14,
+      "pi_dev": 0.06
+    },
+    {
+      "stratum": "habr|qa_devops_sys",
+      "frame_groups": 152,
+      "test": 11,
+      "dev": 4,
+      "pi_test": 0.072368,
+      "pi_dev": 0.026316
+    },
+    {
+      "stratum": "trudvsem_snapshot|analyst_other",
+      "frame_groups": 220,
+      "test": 20,
+      "dev": 8,
+      "pi_test": 0.090909,
+      "pi_dev": 0.036364
+    },
+    {
+      "stratum": "trudvsem_snapshot|dev",
+      "frame_groups": 1309,
+      "test": 37,
+      "dev": 15,
+      "pi_test": 0.028266,
+      "pi_dev": 0.011459
+    },
+    {
+      "stratum": "trudvsem_snapshot|ml_ds_data",
+      "frame_groups": 84,
+      "test": 34,
+      "dev": 13,
+      "pi_test": 0.404762,
+      "pi_dev": 0.154762
+    },
+    {
+      "stratum": "trudvsem_snapshot|non_it_noise",
+      "frame_groups": 2548,
+      "test": 41,
+      "dev": 13,
+      "pi_test": 0.016091,
+      "pi_dev": 0.005102
+    },
+    {
+      "stratum": "trudvsem_snapshot|other_it",
+      "frame_groups": 611,
+      "test": 24,
+      "dev": 10,
+      "pi_test": 0.03928,
+      "pi_dev": 0.016367
+    },
+    {
+      "stratum": "trudvsem_snapshot|qa_devops_sys",
+      "frame_groups": 1771,
+      "test": 38,
+      "dev": 14,
+      "pi_test": 0.021457,
+      "pi_dev": 0.007905
+    },
+    {
+      "stratum": "trudvsem|analyst_other",
+      "frame_groups": 240,
+      "test": 21,
+      "dev": 8,
+      "pi_test": 0.0875,
+      "pi_dev": 0.033333
+    },
+    {
+      "stratum": "trudvsem|dev",
+      "frame_groups": 1736,
+      "test": 43,
+      "dev": 16,
+      "pi_test": 0.02477,
+      "pi_dev": 0.009217
+    },
+    {
+      "stratum": "trudvsem|ml_ds_data",
+      "frame_groups": 55,
+      "test": 24,
+      "dev": 9,
+      "pi_test": 0.436364,
+      "pi_dev": 0.163636
+    },
+    {
+      "stratum": "trudvsem|non_it_noise",
+      "frame_groups": 2882,
+      "test": 43,
+      "dev": 15,
+      "pi_test": 0.01492,
+      "pi_dev": 0.005205
+    },
+    {
+      "stratum": "trudvsem|other_it",
+      "frame_groups": 348,
+      "test": 19,
+      "dev": 7,
+      "pi_test": 0.054598,
+      "pi_dev": 0.020115
+    },
+    {
+      "stratum": "trudvsem|qa_devops_sys",
+      "frame_groups": 1206,
+      "test": 31,
+      "dev": 12,
+      "pi_test": 0.025705,
+      "pi_dev": 0.00995
+    }
+  ],
+  "hashes": {
+    "test_ids_sha256": "aece163fd971bb1f65cb1bbb977f87309f2543233c7b894fd8dbbf4bd09b9334",
+    "dev_ids_sha256": "873019f521269ece975ea6791350c4638105fd6fd054b7102144aa8f59a1bbd9",
+    "train_pool_corpus_ids_sha256": "5244cd45d8623ce60f05c3c6878bbf402a06bca0b0471a69a6cd4e00a68800ef",
+    "split_content_sha256": "a9da11fdfca24bc9b0ade3868522a325081b60a5deae5fa342a6f3bbec28136f",
+    "split_file_sha256": "7ec5c9cbca808be8732f2e57388c1157e4398775f0186a4b88d3ab6414ef2c0c"
+  },
+  "leak_neighbours": {
+    "test": {
+      "trudvsem:1b46d3e8-a4f7-11f1-8f65-7f3d797fed49": [
+        "trudvsem_snapshot:19110de8-6f9e-11f1-80bc-f5dd2a282d14"
+      ],
+      "trudvsem:1f069a20-cf13-11f0-9e6d-7f84843aeb6f": [
+        "trudvsem:7a9d6128-d954-11f0-8fce-2f43d24e31a4",
+        "trudvsem:f816aba8-d66d-11f0-8fce-2f43d24e31a4"
+      ],
+      "trudvsem:2f4cb908-b8d8-11f1-8936-155fc3dbaa44": [
+        "trudvsem_snapshot:ccb05dd8-3739-11f1-baf9-5bf979b29a8e"
+      ],
+      "trudvsem:32cb12f4-b5ba-11f1-823b-a9fe92e671b2": [
+        "trudvsem_snapshot:c0113b80-5db3-11f1-98ad-ebddbd2d9713"
+      ],
+      "trudvsem:3690d5d8-8a7e-11f1-bb45-4b2af1e5c9cb": [
+        "trudvsem:6a648bd8-8a7f-11f1-bb45-4b2af1e5c9cb"
+      ],
+      "trudvsem:3948f568-7115-11f0-9a09-cb26dff57dd7": [
+        "trudvsem:26436048-711f-11f0-9e6f-e7d0d2cf29b1"
+      ],
+      "trudvsem:45d3d4b8-4939-11f1-b4d8-b7a0ba5a93f0": [
+        "trudvsem:7f652158-ac19-11f1-9f0e-a574101ccb6b"
+      ],
+      "trudvsem:6b0cbdda-c0a5-11f1-a6ab-f7c7dbb1567d": [
+        "trudvsem:c0de4f90-e54e-11f0-a13d-5d53137c7068"
+      ],
+      "trudvsem:84edc4e8-922b-11f1-9d62-2f50b9e6b1e0": [
+        "trudvsem_snapshot:ab698678-7a09-11f1-96a1-71ec6ab38b2c"
+      ],
+      "trudvsem:91dd4868-83df-11f1-8bd7-5f354e027c4d": [
+        "trudvsem_snapshot:9e2ebe18-fbf8-11f0-9730-057157315846"
+      ],
+      "trudvsem:943b0c34-bb0e-11f1-9ace-3fec7ae36db8": [
+        "trudvsem_snapshot:f5efc774-641c-11f1-8c56-69bbdeec1f9c"
+      ],
+      "trudvsem:b610cd48-68c0-11f1-a95e-05a97d193f2d": [
+        "trudvsem:28930278-68ad-11f1-9198-073774f6909c"
+      ],
+      "trudvsem:bead6bf9-a1f2-11f1-805f-61e527cd6ba8": [
+        "trudvsem:3f13bc7c-a1fa-11f1-b89a-011db2a3ebbd"
+      ],
+      "trudvsem:c19c14d8-b1b3-11f1-98bc-350b59df29cf": [
+        "trudvsem_snapshot:0db36108-4910-11f1-862b-c921de52508b",
+        "trudvsem_snapshot:265f8858-49fb-11f1-b4bd-353d35c994b0",
+        "trudvsem_snapshot:2de66dd0-4930-11f1-ab4d-756dc9627e75",
+        "trudvsem_snapshot:9272e5a8-76ce-11f1-a323-9d73f5e76293"
+      ],
+      "trudvsem:c46c8e90-be17-11f1-9dff-97d306130813": [
+        "trudvsem:374da567-c161-11f1-a6ab-f7c7dbb1567d"
+      ],
+      "trudvsem:c60f3fa0-15d9-11f0-82b1-d549be31d974": [
+        "trudvsem_snapshot:5ef85838-5839-11f1-aec1-4103e3ed6448"
+      ],
+      "trudvsem:c71dcaf8-8efb-11f1-b546-0def9408a49f": [
+        "trudvsem:90085160-1d41-11f1-8f30-01f4356002f8"
+      ],
+      "trudvsem:fcabd480-b1c1-11f1-98bc-350b59df29cf": [
+        "trudvsem_snapshot:c9c92068-dcb8-11f0-8267-f1182d825d16"
+      ],
+      "trudvsem_snapshot:0ea20dd8-f4fd-11f0-a027-0dd543315e5a": [
+        "trudvsem:318eb8a8-a201-11f1-805f-61e527cd6ba8",
+        "trudvsem:3b89ca48-81ac-11f1-a65f-59f30d2f7521"
+      ],
+      "trudvsem_snapshot:524349bb-791d-11f1-9a9e-6f4b77459deb": [
+        "trudvsem:25d4055b-7c3c-11f1-be4b-5ffb8b1668a9"
+      ],
+      "trudvsem_snapshot:6a25489d-7539-11f1-b9b5-65617fd8588f": [
+        "trudvsem:e58a421c-ab76-11f1-86d3-9d322d9153e2"
+      ],
+      "trudvsem_snapshot:6b42b464-4e06-11f1-a33c-8730bb28edc7": [
+        "trudvsem_snapshot:6ba91754-4e06-11f1-8e76-174f1d09c67b"
+      ],
+      "trudvsem_snapshot:6ee85248-0032-11f1-ba5c-d3eaa583f472": [
+        "trudvsem:1210fd88-79de-11f1-96a1-71ec6ab38b2c"
+      ],
+      "trudvsem_snapshot:703dc9fa-81b4-11f1-a65f-59f30d2f7521": [
+        "trudvsem:77680d6a-b0f5-11f1-b99e-4972ddb33ebb"
+      ],
+      "trudvsem_snapshot:7793dd08-79fa-11f1-be4b-5ffb8b1668a9": [
+        "trudvsem_snapshot:86df4e08-f2b1-11f0-8628-a3cca5294b78"
+      ],
+      "trudvsem_snapshot:7d74b358-5382-11f1-a9ee-9db463ad26ad": [
+        "trudvsem:efc10708-b0da-11f1-9b06-338bb3104f83"
+      ],
+      "trudvsem_snapshot:817b6f08-7472-11f1-850d-bfc964a65fee": [
+        "trudvsem:0c640d66-be2f-11f1-a6ab-f7c7dbb1567d"
+      ],
+      "trudvsem_snapshot:8f46d218-d4f3-11f0-8987-1f09eae535df": [
+        "trudvsem:fc1dd008-ab58-11f1-8587-2b3d872122a6"
+      ],
+      "trudvsem_snapshot:a7629544-79ea-11f1-83a1-9990255add98": [
+        "trudvsem_snapshot:6d063944-64a2-11f1-909a-659035eaf7c3"
+      ],
+      "trudvsem_snapshot:b6773098-7e51-11ef-aa78-bb4c34bddc95": [
+        "trudvsem:1b89cfe8-7444-11f0-b2d9-cb26dff57dd7",
+        "trudvsem:ae1700c7-36f3-11ee-afe9-dd0276383d19",
+        "trudvsem_snapshot:5964b707-3817-11ee-afe9-dd0276383d19",
+        "trudvsem_snapshot:8f6b7f12-eedb-11ef-a7d0-d549be31d974"
+      ],
+      "trudvsem_snapshot:bea1cfb8-4dde-11f1-9066-512467d01833": [
+        "trudvsem_snapshot:0d992e28-537f-11f0-8660-cb26dff57dd7",
+        "trudvsem_snapshot:36993ca8-2699-11f1-ba68-e7fd5bf5650b",
+        "trudvsem_snapshot:53755558-f2bb-11f0-ba7d-9959eb3311ba",
+        "trudvsem_snapshot:91ab85a8-947f-11f0-a327-abd4f0e64f6f",
+        "trudvsem_snapshot:d3a326a8-32bc-11ef-a2f9-cb26dff57dd7"
+      ],
+      "trudvsem_snapshot:c24a589e-832b-11f0-a6ed-bdc82d0d5dcd": [
+        "trudvsem:0b98bd18-0b04-11f1-8187-d30096f1aeab"
+      ],
+      "trudvsem_snapshot:d381e5b8-790c-11f1-a323-9d73f5e76293": [
+        "trudvsem_snapshot:f8e38788-790e-11f1-a41f-c3af44321512"
+      ],
+      "trudvsem_snapshot:e0a318a8-7947-11f1-96a1-71ec6ab38b2c": [
+        "trudvsem_snapshot:5d47d990-52c9-11f1-afa6-0fa3243f5f0a"
+      ],
+      "trudvsem_snapshot:ea9ea238-60c3-11f1-ae65-05b28ac604d6": [
+        "trudvsem:90cbffd8-b28c-11f1-98bc-350b59df29cf"
+      ],
+      "trudvsem_snapshot:f28bf5c8-2f3b-11f0-b4ee-d549be31d974": [
+        "trudvsem_snapshot:6a64c9e0-340f-11f1-a643-f344d815f06b"
+      ],
+      "trudvsem_snapshot:fd1e8804-8033-11f1-98b5-7d198ff3aa1a": [
+        "trudvsem:7eaac824-bc16-11f1-b63c-790d10f69fe4"
+      ]
+    },
+    "dev": {
+      "habr:1000169003": [
+        "habr:1000168983"
+      ],
+      "trudvsem:8e633d68-b040-11f1-b99e-4972ddb33ebb": [
+        "trudvsem_snapshot:88538eb8-7c3e-11f1-be4b-5ffb8b1668a9"
+      ],
+      "trudvsem:af170c54-9d6f-11f1-b9c2-997744e380d5": [
+        "trudvsem_snapshot:8e49f9e4-6a40-11f1-bf78-d72079647ecf"
+      ],
+      "trudvsem:cae20358-7acd-11f1-be4b-5ffb8b1668a9": [
+        "trudvsem_snapshot:3d9f8cc2-a3e8-11ed-bd0f-93f7cc862eb6"
+      ],
+      "trudvsem:e42e2cd8-a0a7-11f1-ae19-97b17645c340": [
+        "trudvsem:66719408-a0aa-11f1-9845-b5db8f41d690",
+        "trudvsem:d80ec5c8-a0a9-11f1-ae19-97b17645c340"
+      ],
+      "trudvsem:e78d4ee8-545f-11f1-a270-795d94faeb6e": [
+        "trudvsem:25261438-6bf8-11f1-a0ef-714ad8f097f6",
+        "trudvsem:273c9118-215a-11f1-9ac8-d164183f71d4",
+        "trudvsem:297f95d8-6e12-11f1-ac73-1996bddbbd0d",
+        "trudvsem:2a38fda8-2159-11f1-99d5-5f9d65125ca1",
+        "trudvsem:2f1bdaf8-7f72-11f1-af90-fdfd96230151",
+        "trudvsem:36b07bc9-6ef3-11f1-98e1-d1d8770b7b2f",
+        "trudvsem:3e457159-6ef4-11f1-973f-ad582879672a",
+        "trudvsem:61977b00-7f73-11f1-9786-b151fd9bdcea",
+        "trudvsem:62bea7a8-6bc4-11f1-8502-2d3bc7583fb8",
+        "trudvsem:7aa8c118-6bf7-11f1-9321-217c6d399832",
+        "trudvsem:85c60598-6e12-11f1-973f-ad582879672a",
+        "trudvsem:8dd486e9-f580-11f0-a027-0dd543315e5a",
+        "trudvsem:a9011d98-2157-11f1-9ac8-d164183f71d4",
+        "trudvsem:ba10dfb0-2159-11f1-a132-1bfbe2e9d3d5",
+        "trudvsem:bfaa2048-7f68-11f1-9786-b151fd9bdcea",
+        "trudvsem:db06be48-7f66-11f1-9786-b151fd9bdcea",
+        "trudvsem:de7cbf58-944f-11f0-9320-bdc82d0d5dcd",
+        "trudvsem:e58f389d-7617-11f1-a105-676a61c15a9a",
+        "trudvsem:e82804f0-229e-11f1-a132-1bfbe2e9d3d5",
+        "trudvsem:e8b22a58-9445-11f0-a327-abd4f0e64f6f",
+        "trudvsem:f970cdf8-7c30-11f1-bfbc-a1d6d860641d",
+        "trudvsem:f985e898-2157-11f1-9ac8-d164183f71d4",
+        "trudvsem_snapshot:6fb23de8-7f66-11f1-8ec3-4d99c9c3a123",
+        "trudvsem_snapshot:acf54a68-6bc2-11f1-8502-2d3bc7583fb8",
+        "trudvsem_snapshot:e65fb4f8-6bc4-11f1-8502-2d3bc7583fb8",
+        "trudvsem_snapshot:f81469d8-7f73-11f1-af90-fdfd96230151"
+      ],
+      "trudvsem:f132b988-ab76-11f1-9f0e-a574101ccb6b": [
+        "trudvsem:96f5e328-ab7b-11f1-8587-2b3d872122a6"
+      ],
+      "trudvsem:ffcf6210-36f3-11f1-baf9-5bf979b29a8e": [
+        "trudvsem_snapshot:2d5a3510-f299-11f0-8628-a3cca5294b78"
+      ],
+      "trudvsem_snapshot:2fcd3fe4-64b3-11f1-909a-659035eaf7c3": [
+        "trudvsem_snapshot:4903faa4-8400-11f1-aff0-c55f97f117a7"
+      ],
+      "trudvsem_snapshot:32e012b8-8403-11f1-8258-9913d1c7dc1e": [
+        "trudvsem_snapshot:8f3bd7d8-8406-11f1-8bd7-5f354e027c4d"
+      ],
+      "trudvsem_snapshot:61955888-6271-11f1-875d-37533a592c34": [
+        "trudvsem_snapshot:395f5c98-212a-11f1-9ac8-d164183f71d4",
+        "trudvsem_snapshot:41dffe48-13d0-11f1-86c2-f745e3d76249",
+        "trudvsem_snapshot:f7b95eb8-4953-11f1-ab4d-756dc9627e75"
+      ],
+      "trudvsem_snapshot:6c9b9195-7232-11ee-9eda-d549be31d974": [
+        "trudvsem:66a20a18-ab43-11f1-9f0e-a574101ccb6b"
+      ],
+      "trudvsem_snapshot:9482a258-541d-11f1-9bb5-a37b5f7031a5": [
+        "trudvsem:8f5f0740-a202-11f1-b956-512fe6f6cdc2",
+        "trudvsem:fd1ea4f8-a1e6-11f1-b956-512fe6f6cdc2"
+      ],
+      "trudvsem_snapshot:f4c870c2-f30b-11ed-9ec8-93f7cc862eb6": [
+        "trudvsem:02d32aa0-02f2-11f0-98a6-cb26dff57dd7",
+        "trudvsem:0624db88-065d-11f1-924f-d76efaa18f41",
+        "trudvsem:f6e34128-7691-11f1-a323-9d73f5e76293",
+        "trudvsem_snapshot:05827248-bf96-11f0-93eb-c3084e6d8ff5",
+        "trudvsem_snapshot:28713498-768d-11f1-9a9e-6f4b77459deb",
+        "trudvsem_snapshot:2dbd6528-49f8-11f1-b4bd-353d35c994b0",
+        "trudvsem_snapshot:3e119f38-768b-11f1-9a9e-6f4b77459deb",
+        "trudvsem_snapshot:661a0c58-bf99-11f0-9c68-9d153624f252",
+        "trudvsem_snapshot:c4b22008-33d3-11f1-a71c-83b780c79983"
+      ]
+    }
+  },
+  "leak_test_dev_pairs": []
+}
