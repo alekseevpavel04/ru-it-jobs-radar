@@ -367,21 +367,7 @@ check-host.net `check-http`, 2026-10-08: `4fad769ckd25` (API, 200 с us1, us2, d
 
 ## Фикстуры
 
-Все фикстуры записаны 2026-10-08 и **обезличены вручную**: реальные значения заменены синтетическими того же вида, исходные значения нигде в репозитории не сохранены. Заменены типы: ФИО контактного лица, телефоны (`+7 900 000-00-00` и варианты записи), почты (`@example.com`, `@example.org`), название ИП с ФИО, ИНН ИП (12 цифр), ОГРНИП и `companycode` ИП вместе с `company.url` и `vac_url`, адрес и координаты ИП, id вакансии ИП (trudvsem и Хабр) и id компании ИП (Хабр), @ники и ссылки `t.me/<ник>` людей, имена авторов пересланных постов, почты в текстах постов. Названия юрлиц, каналов и ботов оставлены. Проверка: поиск по почтам и телефонам в `tests/fixtures/` находит только синтетические значения.
-
-| Файл | Что |
-|---|---|
-| `trudvsem/robots.txt`, `trudvsem/robots_trudvsem_ru.txt` | robots.txt хоста открытых данных и основного сайта |
-| `trudvsem/vacancies_it_page.json` | ответ `industry=InformationTechnology`, обрезан до 3 записей: ИП, обычная вакансия, «Вакансия интернет ресурса» |
-| `trudvsem/vacancies_500_offset_over_limit.json` | ответ на `offset=100` |
-| `trudvsem/industry.json` | справочник сфер целиком |
-| `habr/robots.txt` | robots.txt |
-| `habr/vacancies_page.json` | страница списка, обрезана до 3 записей: с зарплатой, с оценкой Хабра, компания-ИП |
-| `habr/vacancy_card_1000150058.html` | карточка, оставлены `<title>`, JSON-LD и SSR-состояние |
-| `telegram/datasciencejobs_latest.html`, `habr_career_latest.html`, `nlp_jobs_latest.html` | страницы t.me/s, обрезаны до 5 постов (4 первых и последний) с шапкой канала |
-| `telegram/robots_404.html` | ответ на `t.me/robots.txt` |
-| `superjob/robots.txt`, `superjob/vacancies_403_no_key.json` | robots.txt API и ответ без ключа |
-| `<источник>/checkhost_2026-10-08.json` | ответы check-host.net с идентификаторами проверок |
+Ответы источников записаны 2026-10-08 и лежат в `tests/fixtures/`, что в них записано как есть и что заменено, описано в `tests/fixtures/README.md`. Коротко: у Хабр Карьеры и Telegram сохранена разметка, а тексты, компании и описания каналов выдуманы (DECISIONS 2); у trudvsem тексты оставлены, персональные данные заменены синтетическими (DECISIONS 3).
 
 ## Что не выяснено
 
