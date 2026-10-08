@@ -1,0 +1,373 @@
+version: 2
+
+# History of a vacancy within its source: SCD2 versions, lifetime with censoring, and
+# reposts. The key everywhere is (source, source_id); the cross-source entity of the dedup (3.5)
+# joins on it to get vacancy_entity_id. Rules and their reasons: macros/history.sql.
+
+models:
+  - name: hist_snapshot_days
+    description: >
+      IT candidates (is_it_candidate) of each trudvsem snapshot day in the columns the history
+      compares, about 10k of 550k rows a day. Built one snapshot day per statement from
+      stg_trudvsem_snapshot (materialization incremental_by_day), so a history of 100 snapshot days
+      never reads the whole snapshot at once. A vacancy that leaves the IT filter on a later day
+      (its title changed) reads as absent that day; how often is it_filter_left_while_listed in
+      results/dbt/history.json.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source_id, dt]
+    columns:
+      - name: source_id
+        description: Vacancy id at the source (UUID).
+        data_tests: [not_null]
+      - name: dt
+        description: Snapshot date.
+        data_tests: [not_null]
+
+  - name: hist_observations
+    description: >
+      Every sighting of a tracked vacancy, one row per (source, source_id, dt): snapshot IT
+      candidates, all of Habr, all of the API slice. The history columns are the same for every
+      source; a column a source lacks is NULL.
+    columns:
+      - name: source
+        description: trudvsem, trudvsem_snapshot or habr.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [trudvsem, trudvsem_snapshot, habr]
+      - name: is_closed_state
+        description: >
+          The record itself says the vacancy is not open: snapshot deleted, or status "Не
+          опубликовано" or "Не одобрено" ("Ожидает подтверждения" counts as open); Habr archived.
+          The API has no such field.
+      - name: title_norm
+        description: Title lowercased, ё as е, punctuation and repeated spaces removed.
+      - name: employer_key
+        description: >
+          Employer identity for reposts: INN for trudvsem, company id for Habr, else the name; NULL
+          for a sole proprietor, whose name is removed to the bare "ИП".
+      - name: location_key
+        description: Region for trudvsem, the sorted city list for Habr.
+      - name: skills
+        description: Skills sorted, so that a reordering is not a change.
+      - name: text_hash
+        description: cityHash64 of the text lowercased with spacing collapsed; NULL without text.
+
+  - name: hist_calendar
+    description: >
+      Collected days per source and what absence after each of them means. A day is complete when
+      it has at least 0.9 of the source's median rows per day (a day still streaming in or a run cut
+      short is not evidence of closures). A vacancy last seen on dt and not seen again by
+      closure_confirmed_dt is closed as of next_complete_dt.
+    columns:
+      - name: is_complete
+        description: n_rows is at least 0.9 of median_rows.
+        data_tests: [not_null]
+      - name: absent_days_to_close
+        description: >
+          Consecutive complete days a vacancy has to be missing to count as closed: 1 for the
+          snapshot (a full dump), 3 for Habr (the list misses about 14% of open vacancies on a
+          day), NULL for the API (an incremental slice, absence means nothing).
+      - name: next_complete_dt
+        description: First complete day after dt.
+      - name: closure_confirmed_dt
+        description: The absent_days_to_close-th complete day after dt; NULL when there are not enough days yet.
+
+  - name: hist_vacancy_scd2
+    description: >
+      SCD2 versions of a vacancy within its source. A new version starts when the vacancy first
+      appears, when its content_hash changes, or when it is seen again after it closed. valid_to is
+      exclusive: the day the next version was first seen, or the day it closed; NULL for the version
+      valid now. Closure per source: snapshot, the first complete snapshot without it, or the first
+      day its record is deleted or unpublished; Habr, missing three consecutive complete days (as of
+      the first) or archived; API, never by absence. Snapshot vacancies also vanish for a few days
+      and come back (around weekends in July 2026); each return is a reopened version, and
+      closures_reopened in results/dbt/history.json says how often a closure was not final. Join
+      (source, source_id) to the dedup mapping for vacancy_entity_id.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source, source_id, valid_from]
+      - unique_combination:
+          arguments:
+            columns: [source, source_id, version_no]
+    columns:
+      - name: source
+        description: trudvsem, trudvsem_snapshot or habr.
+        data_tests: [not_null]
+      - name: source_id
+        description: Vacancy id at the source; with source, the join key to the dedup entity.
+        data_tests: [not_null]
+      - name: version_no
+        description: 1 for the first version of the vacancy, then consecutive.
+        data_tests: [not_null]
+      - name: valid_from
+        description: First day this version was seen.
+        data_tests: [not_null]
+      - name: valid_to
+        description: Exclusive end; NULL while the version is valid.
+      - name: is_current
+        description: valid_to is NULL. A closed vacancy has no current row.
+        data_tests: [not_null]
+      - name: change_reason
+        description: new, changed (content_hash differs from the previous version) or reopened (seen again after it closed).
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [new, changed, reopened]
+      - name: ended_by
+        description: changed, closed, or NULL for the current version.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [changed, closed]
+      - name: changed_fields
+        description: >
+          Fields that differ from the previous version, of title, employer_name, salary_from,
+          salary_to, salary_currency_code, schedule, employment, remote_work, status, skills and
+          text_hash; "other" when content_hash changed in none of them (snapshot on
+          2026-06-30..07-21: mostly the key federalDistrictCode appearing or disappearing, then geo,
+          company details, workPlaces). Empty for the first version and for a
+          reopening with nothing changed.
+      - name: last_seen
+        description: Last day this version was seen; valid_to - last_seen > 1 means days without a sighting.
+      - name: days_seen
+        description: Collected days on which this version was seen.
+
+  - name: hist_reposts
+    description: >
+      A closed vacancy and the vacancy that replaced it under a new source_id within the same
+      source: same employer_key, location_key, title_norm and text_hash, first seen from the old
+      one's last sighting up to 30 days after its closure. is_repost applies the window of 14 days.
+      Greedy one-to-one: each old vacancy keeps its earliest successor, each new one its latest
+      predecessor.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source, old_source_id]
+      - unique_combination:
+          arguments:
+            columns: [source, new_source_id]
+    columns:
+      - name: gap_days
+        description: new_first_seen - old_closed_at in days; -1 when the new one appeared on the old one's last day.
+        data_tests: [not_null]
+      - name: is_repost
+        description: gap_days is within the repost window (14 days).
+        data_tests: [not_null]
+
+  - name: hist_vacancy_lifetime
+    description: >
+      One row per vacancy within its source, for survival analysis (7.3) and the site.
+      duration_days is closed_at - first_seen for a closed vacancy, last_seen + 1 - first_seen for
+      an open one (right-censored at its last sighting). A reopened vacancy is one subject from its
+      first sighting to its final closure.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source, source_id]
+    columns:
+      - name: is_closed
+        description: The vacancy has no current version (hist_vacancy_scd2).
+        data_tests: [not_null]
+      - name: closed_at
+        description: First day the vacancy was no longer open (its final closure); NULL while open.
+      - name: is_censored
+        description: The end was not observed (still open, or an API vacancy, whose closure is never observed).
+        data_tests: [not_null]
+      - name: is_left_censored
+        description: First seen on the source's first collected day, so it was posted earlier; published_at is the source's date.
+        data_tests: [not_null]
+      - name: duration_days
+        description: Days from first sighting to closure, or to the last sighting inclusive while open.
+        data_tests: [not_null]
+      - name: absent_days_to_close
+        description: The closure rule of the source (hist_calendar); NULL where absence never closes.
+      - name: n_reopened
+        description: Times it was seen again after closing.
+      - name: n_salary_changes
+        description: Versions whose changed_fields name salary_from, salary_to or salary_currency_code.
+      - name: closed_by_repost
+        description: It closed and a repost (hist_reposts, is_repost) replaced it.
+
+unit_tests:
+  - name: hist_calendar_complete_days
+    description: A day with too few rows is not complete; closure dates step over it. Habr needs three days.
+    model: hist_calendar
+    given:
+      - input: ref('hist_observations')
+        rows:
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-01}
+          - {source: trudvsem_snapshot, source_id: b, dt: 2026-07-01}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-02}
+          - {source: trudvsem_snapshot, source_id: b, dt: 2026-07-02}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-03}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-04}
+          - {source: trudvsem_snapshot, source_id: b, dt: 2026-07-04}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-05}
+          - {source: trudvsem_snapshot, source_id: b, dt: 2026-07-05}
+          - {source: habr, source_id: h, dt: 2026-10-01}
+          - {source: habr, source_id: h, dt: 2026-10-02}
+          - {source: habr, source_id: h, dt: 2026-10-03}
+          - {source: habr, source_id: h, dt: 2026-10-04}
+          - {source: trudvsem, source_id: t, dt: 2026-10-01}
+          - {source: trudvsem, source_id: t, dt: 2026-10-02}
+    expect:
+      rows:
+        - {source: trudvsem_snapshot, dt: 2026-07-01, is_complete: true, next_complete_dt: 2026-07-02, closure_confirmed_dt: 2026-07-02}
+        - {source: trudvsem_snapshot, dt: 2026-07-02, is_complete: true, next_complete_dt: 2026-07-04, closure_confirmed_dt: 2026-07-04}
+        - {source: trudvsem_snapshot, dt: 2026-07-03, is_complete: false, next_complete_dt: 2026-07-04, closure_confirmed_dt: 2026-07-04}
+        - {source: trudvsem_snapshot, dt: 2026-07-04, is_complete: true, next_complete_dt: 2026-07-05, closure_confirmed_dt: 2026-07-05}
+        - {source: trudvsem_snapshot, dt: 2026-07-05, is_complete: true, next_complete_dt: null, closure_confirmed_dt: null}
+        - {source: habr, dt: 2026-10-01, is_complete: true, next_complete_dt: 2026-10-02, closure_confirmed_dt: 2026-10-04}
+        - {source: habr, dt: 2026-10-02, is_complete: true, next_complete_dt: 2026-10-03, closure_confirmed_dt: null}
+        - {source: habr, dt: 2026-10-03, is_complete: true, next_complete_dt: 2026-10-04, closure_confirmed_dt: null}
+        - {source: habr, dt: 2026-10-04, is_complete: true, next_complete_dt: null, closure_confirmed_dt: null}
+        - {source: trudvsem, dt: 2026-10-01, is_complete: true, next_complete_dt: 2026-10-02, closure_confirmed_dt: null}
+        - {source: trudvsem, dt: 2026-10-02, is_complete: true, next_complete_dt: null, closure_confirmed_dt: null}
+
+  # Snapshot days 07-01..07-08 with 07-05 incomplete; Habr days 10-01..10-06; API days 10-01, 10-09.
+  #   s_change    salary changes on 07-03, absent on the incomplete 07-05: two versions, no closure
+  #   s_reopen    absent on the complete 07-03, back on 07-06: closed 07-03, reopened
+  #   s_hidden    unpublished on 07-02: closed 07-02
+  #   s_gone      absent on the last day: closed 07-08
+  #   h_miss      missing two Habr days (coverage): one version, open
+  #   h_closed    missing from 10-02 to the end: closed 10-02
+  #   h_pending   missing the last two days only: still open
+  #   h_archived  archived on 10-02: closed 10-02
+  #   h_text      card text arrives on the second day: a version with changed text; then missing
+  #               10-03..10-05, three complete days: closed 10-03
+  #   t_api       API vacancy seen twice with a gap: never closed
+  - name: hist_vacancy_scd2_synthetic_history
+    description: Appear, salary change, disappear, reappear, unpublish, Habr coverage miss and closure, API gap.
+    model: hist_vacancy_scd2
+    given:
+      - input: ref('hist_observations')
+        rows:
+          - {source: trudvsem_snapshot, source_id: s_change, dt: 2026-07-01, content_hash: h1, salary_from: 100000}
+          - {source: trudvsem_snapshot, source_id: s_change, dt: 2026-07-02, content_hash: h1, salary_from: 100000}
+          - {source: trudvsem_snapshot, source_id: s_change, dt: 2026-07-03, content_hash: h2, salary_from: 120000}
+          - {source: trudvsem_snapshot, source_id: s_change, dt: 2026-07-04, content_hash: h2, salary_from: 120000}
+          - {source: trudvsem_snapshot, source_id: s_change, dt: 2026-07-06, content_hash: h2, salary_from: 120000}
+          - {source: trudvsem_snapshot, source_id: s_change, dt: 2026-07-07, content_hash: h2, salary_from: 120000}
+          - {source: trudvsem_snapshot, source_id: s_change, dt: 2026-07-08, content_hash: h2, salary_from: 120000}
+          - {source: trudvsem_snapshot, source_id: s_reopen, dt: 2026-07-01, content_hash: r1}
+          - {source: trudvsem_snapshot, source_id: s_reopen, dt: 2026-07-02, content_hash: r1}
+          - {source: trudvsem_snapshot, source_id: s_reopen, dt: 2026-07-06, content_hash: r1}
+          - {source: trudvsem_snapshot, source_id: s_reopen, dt: 2026-07-07, content_hash: r1}
+          - {source: trudvsem_snapshot, source_id: s_reopen, dt: 2026-07-08, content_hash: r1}
+          - {source: trudvsem_snapshot, source_id: s_hidden, dt: 2026-07-01, content_hash: d1, status: Одобрено}
+          - {source: trudvsem_snapshot, source_id: s_hidden, dt: 2026-07-02, content_hash: d2, status: Не опубликовано, is_closed_state: true}
+          - {source: trudvsem_snapshot, source_id: s_gone, dt: 2026-07-06, content_hash: g1}
+          - {source: trudvsem_snapshot, source_id: s_gone, dt: 2026-07-07, content_hash: g1}
+          - {source: habr, source_id: h_miss, dt: 2026-10-01, content_hash: m1}
+          - {source: habr, source_id: h_miss, dt: 2026-10-02, content_hash: m1}
+          - {source: habr, source_id: h_miss, dt: 2026-10-05, content_hash: m1}
+          - {source: habr, source_id: h_miss, dt: 2026-10-06, content_hash: m1}
+          - {source: habr, source_id: h_closed, dt: 2026-10-01, content_hash: c1}
+          - {source: habr, source_id: h_pending, dt: 2026-10-03, content_hash: p1}
+          - {source: habr, source_id: h_pending, dt: 2026-10-04, content_hash: p1}
+          - {source: habr, source_id: h_archived, dt: 2026-10-01, content_hash: a1}
+          - {source: habr, source_id: h_archived, dt: 2026-10-02, content_hash: a2, is_closed_state: true}
+          - {source: habr, source_id: h_text, dt: 2026-10-01, content_hash: x1}
+          - {source: habr, source_id: h_text, dt: 2026-10-02, content_hash: x2, text_hash: 123}
+          - {source: trudvsem, source_id: t_api, dt: 2026-10-01, content_hash: t1}
+          - {source: trudvsem, source_id: t_api, dt: 2026-10-09, content_hash: t1}
+      - input: ref('hist_calendar')
+        rows:
+          - {source: trudvsem_snapshot, dt: 2026-07-01, next_complete_dt: 2026-07-02, closure_confirmed_dt: 2026-07-02}
+          - {source: trudvsem_snapshot, dt: 2026-07-02, next_complete_dt: 2026-07-03, closure_confirmed_dt: 2026-07-03}
+          - {source: trudvsem_snapshot, dt: 2026-07-03, next_complete_dt: 2026-07-04, closure_confirmed_dt: 2026-07-04}
+          - {source: trudvsem_snapshot, dt: 2026-07-04, next_complete_dt: 2026-07-06, closure_confirmed_dt: 2026-07-06}
+          - {source: trudvsem_snapshot, dt: 2026-07-05, next_complete_dt: 2026-07-06, closure_confirmed_dt: 2026-07-06}
+          - {source: trudvsem_snapshot, dt: 2026-07-06, next_complete_dt: 2026-07-07, closure_confirmed_dt: 2026-07-07}
+          - {source: trudvsem_snapshot, dt: 2026-07-07, next_complete_dt: 2026-07-08, closure_confirmed_dt: 2026-07-08}
+          - {source: trudvsem_snapshot, dt: 2026-07-08, next_complete_dt: null, closure_confirmed_dt: null}
+          - {source: habr, dt: 2026-10-01, next_complete_dt: 2026-10-02, closure_confirmed_dt: 2026-10-04}
+          - {source: habr, dt: 2026-10-02, next_complete_dt: 2026-10-03, closure_confirmed_dt: 2026-10-05}
+          - {source: habr, dt: 2026-10-03, next_complete_dt: 2026-10-04, closure_confirmed_dt: 2026-10-06}
+          - {source: habr, dt: 2026-10-04, next_complete_dt: 2026-10-05, closure_confirmed_dt: null}
+          - {source: habr, dt: 2026-10-05, next_complete_dt: 2026-10-06, closure_confirmed_dt: null}
+          - {source: habr, dt: 2026-10-06, next_complete_dt: null, closure_confirmed_dt: null}
+          - {source: trudvsem, dt: 2026-10-01, next_complete_dt: 2026-10-09, closure_confirmed_dt: null}
+          - {source: trudvsem, dt: 2026-10-09, next_complete_dt: null, closure_confirmed_dt: null}
+    expect:
+      rows:
+        - {source: trudvsem_snapshot, source_id: s_change, version_no: 1, valid_from: 2026-07-01, valid_to: 2026-07-03, is_current: false, change_reason: new, ended_by: changed, changed_fields: "[]", last_seen: 2026-07-02, days_seen: 2}
+        - {source: trudvsem_snapshot, source_id: s_change, version_no: 2, valid_from: 2026-07-03, valid_to: null, is_current: true, change_reason: changed, ended_by: null, changed_fields: "['salary_from']", last_seen: 2026-07-08, days_seen: 5}
+        - {source: trudvsem_snapshot, source_id: s_reopen, version_no: 1, valid_from: 2026-07-01, valid_to: 2026-07-03, is_current: false, change_reason: new, ended_by: closed, changed_fields: "[]", last_seen: 2026-07-02, days_seen: 2}
+        - {source: trudvsem_snapshot, source_id: s_reopen, version_no: 2, valid_from: 2026-07-06, valid_to: null, is_current: true, change_reason: reopened, ended_by: null, changed_fields: "[]", last_seen: 2026-07-08, days_seen: 3}
+        - {source: trudvsem_snapshot, source_id: s_hidden, version_no: 1, valid_from: 2026-07-01, valid_to: 2026-07-02, is_current: false, change_reason: new, ended_by: closed, changed_fields: "[]", last_seen: 2026-07-01, days_seen: 1}
+        - {source: trudvsem_snapshot, source_id: s_gone, version_no: 1, valid_from: 2026-07-06, valid_to: 2026-07-08, is_current: false, change_reason: new, ended_by: closed, changed_fields: "[]", last_seen: 2026-07-07, days_seen: 2}
+        - {source: habr, source_id: h_miss, version_no: 1, valid_from: 2026-10-01, valid_to: null, is_current: true, change_reason: new, ended_by: null, changed_fields: "[]", last_seen: 2026-10-06, days_seen: 4}
+        - {source: habr, source_id: h_closed, version_no: 1, valid_from: 2026-10-01, valid_to: 2026-10-02, is_current: false, change_reason: new, ended_by: closed, changed_fields: "[]", last_seen: 2026-10-01, days_seen: 1}
+        - {source: habr, source_id: h_pending, version_no: 1, valid_from: 2026-10-03, valid_to: null, is_current: true, change_reason: new, ended_by: null, changed_fields: "[]", last_seen: 2026-10-04, days_seen: 2}
+        - {source: habr, source_id: h_archived, version_no: 1, valid_from: 2026-10-01, valid_to: 2026-10-02, is_current: false, change_reason: new, ended_by: closed, changed_fields: "[]", last_seen: 2026-10-01, days_seen: 1}
+        - {source: habr, source_id: h_text, version_no: 1, valid_from: 2026-10-01, valid_to: 2026-10-02, is_current: false, change_reason: new, ended_by: changed, changed_fields: "[]", last_seen: 2026-10-01, days_seen: 1}
+        - {source: habr, source_id: h_text, version_no: 2, valid_from: 2026-10-02, valid_to: 2026-10-03, is_current: false, change_reason: changed, ended_by: closed, changed_fields: "['text_hash']", last_seen: 2026-10-02, days_seen: 1}
+        - {source: trudvsem, source_id: t_api, version_no: 1, valid_from: 2026-10-01, valid_to: null, is_current: true, change_reason: new, ended_by: null, changed_fields: "[]", last_seen: 2026-10-09, days_seen: 2}
+
+  # Pairs with distinct text so that only the intended ones match.
+  #   old_a -> new_a      gap 2: a repost
+  #   old_b -> new_b      another region: no pair
+  #   old_c -> new_c      gap 23: a candidate outside the 14-day window
+  #   old_e1, old_e2 -> new_e   one successor, the later closure keeps it
+  #   old_d (open) -> new_d     the old one never closed: no pair
+  #   ip_old -> ip_new    employer is a bare sole proprietor (no key): no pair
+  - name: hist_reposts_pairs
+    description: Same employer, region, title and text under a new id after the old one closed.
+    model: hist_reposts
+    given:
+      - input: ref('hist_vacancy_scd2')
+        rows:
+          - {source: trudvsem_snapshot, source_id: old_a, version_no: 1, valid_from: 2026-07-01, valid_to: 2026-07-04, is_current: false, last_seen: 2026-07-03, employer_key: inn1, location_key: Москва, title_norm: python разработчик, text_hash: 1}
+          - {source: trudvsem_snapshot, source_id: new_a, version_no: 1, valid_from: 2026-07-06, is_current: true, last_seen: 2026-07-08, employer_key: inn1, location_key: Москва, title_norm: python разработчик, text_hash: 1}
+          - {source: trudvsem_snapshot, source_id: old_b, version_no: 1, valid_from: 2026-07-01, valid_to: 2026-07-04, is_current: false, last_seen: 2026-07-03, employer_key: inn1, location_key: Москва, title_norm: тестировщик, text_hash: 2}
+          - {source: trudvsem_snapshot, source_id: new_b, version_no: 1, valid_from: 2026-07-05, is_current: true, last_seen: 2026-07-08, employer_key: inn1, location_key: Казань, title_norm: тестировщик, text_hash: 2}
+          - {source: trudvsem_snapshot, source_id: old_c, version_no: 1, valid_from: 2026-07-01, valid_to: 2026-07-02, is_current: false, last_seen: 2026-07-01, employer_key: inn2, location_key: Москва, title_norm: аналитик данных, text_hash: 3}
+          - {source: trudvsem_snapshot, source_id: new_c, version_no: 1, valid_from: 2026-07-25, is_current: true, last_seen: 2026-07-26, employer_key: inn2, location_key: Москва, title_norm: аналитик данных, text_hash: 3}
+          - {source: trudvsem_snapshot, source_id: old_e1, version_no: 1, valid_from: 2026-07-01, valid_to: 2026-07-04, is_current: false, last_seen: 2026-07-03, employer_key: inn3, location_key: Москва, title_norm: devops инженер, text_hash: 5}
+          - {source: trudvsem_snapshot, source_id: old_e2, version_no: 1, valid_from: 2026-07-02, valid_to: 2026-07-05, is_current: false, last_seen: 2026-07-04, employer_key: inn3, location_key: Москва, title_norm: devops инженер, text_hash: 5}
+          - {source: trudvsem_snapshot, source_id: new_e, version_no: 1, valid_from: 2026-07-06, is_current: true, last_seen: 2026-07-08, employer_key: inn3, location_key: Москва, title_norm: devops инженер, text_hash: 5}
+          - {source: trudvsem_snapshot, source_id: old_d, version_no: 1, valid_from: 2026-07-01, is_current: true, last_seen: 2026-07-08, employer_key: inn4, location_key: Москва, title_norm: программист 1с, text_hash: 6}
+          - {source: trudvsem_snapshot, source_id: new_d, version_no: 1, valid_from: 2026-07-05, is_current: true, last_seen: 2026-07-08, employer_key: inn4, location_key: Москва, title_norm: программист 1с, text_hash: 6}
+          - {source: trudvsem_snapshot, source_id: ip_old, version_no: 1, valid_from: 2026-07-01, valid_to: 2026-07-03, is_current: false, last_seen: 2026-07-02, employer_key: null, location_key: Москва, title_norm: верстальщик, text_hash: 7}
+          - {source: trudvsem_snapshot, source_id: ip_new, version_no: 1, valid_from: 2026-07-04, is_current: true, last_seen: 2026-07-08, employer_key: null, location_key: Москва, title_norm: верстальщик, text_hash: 7}
+    expect:
+      rows:
+        - {source: trudvsem_snapshot, old_source_id: old_a, new_source_id: new_a, old_closed_at: 2026-07-04, new_first_seen: 2026-07-06, gap_days: 2, is_repost: true}
+        - {source: trudvsem_snapshot, old_source_id: old_c, new_source_id: new_c, old_closed_at: 2026-07-02, new_first_seen: 2026-07-25, gap_days: 23, is_repost: false}
+        - {source: trudvsem_snapshot, old_source_id: old_e2, new_source_id: new_e, old_closed_at: 2026-07-05, new_first_seen: 2026-07-06, gap_days: 1, is_repost: true}
+
+  - name: hist_vacancy_lifetime_censoring
+    description: Closed, open, left-censored, API and reposted vacancies.
+    model: hist_vacancy_lifetime
+    given:
+      - input: ref('hist_vacancy_scd2')
+        rows:
+          - {source: trudvsem_snapshot, source_id: l_open, version_no: 1, valid_from: 2026-07-01, is_current: true, last_seen: 2026-07-08, change_reason: new, changed_fields: "[]"}
+          - {source: trudvsem_snapshot, source_id: l_closed, version_no: 1, valid_from: 2026-07-02, valid_to: 2026-07-03, is_current: false, last_seen: 2026-07-02, change_reason: new, changed_fields: "[]", salary_from: 100000}
+          - {source: trudvsem_snapshot, source_id: l_closed, version_no: 2, valid_from: 2026-07-03, valid_to: 2026-07-05, is_current: false, last_seen: 2026-07-04, change_reason: changed, changed_fields: "['salary_from']", salary_from: 120000}
+          - {source: trudvsem_snapshot, source_id: l_old, version_no: 1, valid_from: 2026-07-02, valid_to: 2026-07-04, is_current: false, last_seen: 2026-07-03, change_reason: new, changed_fields: "[]"}
+          - {source: trudvsem_snapshot, source_id: l_new, version_no: 1, valid_from: 2026-07-05, is_current: true, last_seen: 2026-07-08, change_reason: new, changed_fields: "[]"}
+          - {source: trudvsem, source_id: l_api, version_no: 1, valid_from: 2026-10-01, is_current: true, last_seen: 2026-10-09, change_reason: new, changed_fields: "[]"}
+      - input: ref('hist_calendar')
+        rows:
+          - {source: trudvsem_snapshot, dt: 2026-07-01}
+          - {source: trudvsem_snapshot, dt: 2026-07-08}
+          - {source: trudvsem, dt: 2026-10-01}
+      - input: ref('hist_reposts')
+        rows:
+          - {source: trudvsem_snapshot, old_source_id: l_old, new_source_id: l_new, is_repost: true}
+          - {source: trudvsem_snapshot, old_source_id: l_closed, new_source_id: l_far, is_repost: false}
+    expect:
+      rows:
+        - {source: trudvsem_snapshot, source_id: l_open, first_seen: 2026-07-01, last_seen: 2026-07-08, is_closed: false, closed_at: null, is_censored: true, is_left_censored: true, duration_days: 8, absent_days_to_close: 1, n_versions: 1, n_salary_changes: 0, salary_from_first: null, salary_from_last: null, repost_of_source_id: null, reposted_as_source_id: null, closed_by_repost: false}
+        - {source: trudvsem_snapshot, source_id: l_closed, first_seen: 2026-07-02, last_seen: 2026-07-04, is_closed: true, closed_at: 2026-07-05, is_censored: false, is_left_censored: false, duration_days: 3, absent_days_to_close: 1, n_versions: 2, n_salary_changes: 1, salary_from_first: 100000, salary_from_last: 120000, repost_of_source_id: null, reposted_as_source_id: null, closed_by_repost: false}
+        - {source: trudvsem_snapshot, source_id: l_old, first_seen: 2026-07-02, last_seen: 2026-07-03, is_closed: true, closed_at: 2026-07-04, is_censored: false, is_left_censored: false, duration_days: 2, absent_days_to_close: 1, n_versions: 1, n_salary_changes: 0, salary_from_first: null, salary_from_last: null, repost_of_source_id: null, reposted_as_source_id: l_new, closed_by_repost: true}
+        - {source: trudvsem_snapshot, source_id: l_new, first_seen: 2026-07-05, last_seen: 2026-07-08, is_closed: false, closed_at: null, is_censored: true, is_left_censored: false, duration_days: 4, absent_days_to_close: 1, n_versions: 1, n_salary_changes: 0, salary_from_first: null, salary_from_last: null, repost_of_source_id: l_old, reposted_as_source_id: null, closed_by_repost: false}
+        - {source: trudvsem, source_id: l_api, first_seen: 2026-10-01, last_seen: 2026-10-09, is_closed: false, closed_at: null, is_censored: true, is_left_censored: true, duration_days: 9, absent_days_to_close: null, n_versions: 1, n_salary_changes: 0, salary_from_first: null, salary_from_last: null, repost_of_source_id: null, reposted_as_source_id: null, closed_by_repost: false}

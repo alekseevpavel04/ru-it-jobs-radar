@@ -15,6 +15,14 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 STAGING = {"stg_trudvsem_api", "stg_trudvsem_snapshot", "stg_habr"}
+HISTORY = {
+    "hist_snapshot_days",
+    "hist_observations",
+    "hist_calendar",
+    "hist_vacancy_scd2",
+    "hist_reposts",
+    "hist_vacancy_lifetime",
+}
 
 
 @pytest.fixture(scope="module")
@@ -47,8 +55,12 @@ def _models(manifest: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {n["name"]: n for n in manifest["nodes"].values() if n["resource_type"] == "model"}
 
 
+def _folder(manifest: dict[str, Any], folder: str) -> dict[str, dict[str, Any]]:
+    return {name: m for name, m in _models(manifest).items() if m["fqn"][1] == folder}
+
+
 def test_staging_models_exist_and_land_in_staging(manifest: dict[str, Any]) -> None:
-    models = _models(manifest)
+    models = _folder(manifest, "staging")
     assert set(models) == STAGING | {"stg_vacancies"}
     assert {m["schema"] for m in models.values()} == {"staging"}
     for name in STAGING:
@@ -71,7 +83,7 @@ def test_grain_is_tested_on_each_source_model(manifest: dict[str, Any]) -> None:
         and n.get("test_metadata", {}).get("name") == "unique_combination"
         and n["test_metadata"]["kwargs"]["columns"] == ["source_id", "dt"]
     }
-    assert grain == STAGING
+    assert grain & set(_folder(manifest, "staging")) == STAGING
 
 
 def test_union_row_count_test_exists(manifest: dict[str, Any]) -> None:
@@ -88,3 +100,22 @@ def test_every_source_has_its_own_freshness(manifest: dict[str, Any]) -> None:
         assert freshness["warn_after"]["count"] and freshness["error_after"]["count"], name
         assert freshness["filter"] == f"source = '{name}'"
         assert spec["loaded_at_field"] == "fetched_at"
+
+
+def test_history_models_and_their_tests(manifest: dict[str, Any]) -> None:
+    models = _folder(manifest, "history")
+    assert set(models) == HISTORY
+    assert {m["schema"] for m in models.values()} == {"staging"}
+    assert models["hist_snapshot_days"]["config"]["materialized"] == "incremental_by_day"
+    unit = {n["model"] for n in manifest["unit_tests"].values()}
+    assert {"hist_calendar", "hist_vacancy_scd2", "hist_reposts", "hist_vacancy_lifetime"} <= unit
+    tests = [n for n in manifest["nodes"].values() if n["resource_type"] == "test"]
+    singular = {n["name"] for n in tests if "test_metadata" not in n}
+    assert {"assert_hist_scd2_intervals", "assert_hist_one_current_per_open_vacancy"} <= singular
+    grain = {
+        tuple(n["test_metadata"]["kwargs"]["columns"])
+        for n in tests
+        if n.get("test_metadata", {}).get("name") == "unique_combination"
+        and n["attached_node"].endswith(".hist_vacancy_scd2")
+    }
+    assert ("source", "source_id", "valid_from") in grain

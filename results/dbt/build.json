@@ -1,13 +1,13 @@
 {
   "source_script": "dbt/report.py",
   "command": "python dbt/report.py",
-  "commit": "668014a-dirty",
-  "created_at": "2026-10-08T14:44:18+00:00",
+  "commit": "2a949fb-dirty",
+  "created_at": "2026-10-08T15:27:41+00:00",
   "metrics": {
     "models_ok": {
       "value": 1.0,
-      "n": 4,
-      "denominator": 4
+      "n": 10,
+      "denominator": 10
     },
     "seeds_ok": {
       "value": 1.0,
@@ -16,21 +16,21 @@
     },
     "tests_passed": {
       "value": 1.0,
-      "n": 60,
-      "denominator": 60
+      "n": 87,
+      "denominator": 87
     },
     "tests_warned": {
       "value": 0,
       "n": 0,
-      "denominator": 60
+      "denominator": 87
     },
     "tests_failed": {
       "value": 0,
       "n": 0,
-      "denominator": 60
+      "denominator": 87
     },
     "build_seconds": {
-      "value": 108.6,
+      "value": 405.7,
       "n": null,
       "denominator": null
     },
@@ -38,22 +38,22 @@
       "value": "pass",
       "n": null,
       "denominator": null,
-      "hours_since_last_fetch": 1.6,
-      "checked_at": "2026-10-08T14:44:14.965412Z"
+      "hours_since_last_fetch": 2.3,
+      "checked_at": "2026-10-08T15:27:06.407421Z"
     },
     "freshness_trudvsem_snapshot": {
       "value": "pass",
       "n": null,
       "denominator": null,
-      "hours_since_last_fetch": 2.7,
-      "checked_at": "2026-10-08T14:44:14.965412Z"
+      "hours_since_last_fetch": 0.8,
+      "checked_at": "2026-10-08T15:27:06.407421Z"
     },
     "freshness_trudvsem": {
       "value": "pass",
       "n": null,
       "denominator": null,
-      "hours_since_last_fetch": 1.8,
-      "checked_at": "2026-10-08T14:44:14.965412Z"
+      "hours_since_last_fetch": 2.5,
+      "checked_at": "2026-10-08T15:27:06.407421Z"
     },
     "rows_stg_trudvsem_api_trudvsem": {
       "value": 11632,
@@ -61,7 +61,7 @@
       "denominator": null
     },
     "rows_stg_trudvsem_snapshot_trudvsem_snapshot": {
-      "value": 2759254,
+      "value": 11991726,
       "n": null,
       "denominator": null
     },
@@ -81,7 +81,7 @@
       "denominator": null
     },
     "rows_stg_vacancies_trudvsem_snapshot": {
-      "value": 2759254,
+      "value": 11991726,
       "n": null,
       "denominator": null
     },
@@ -110,6 +110,91 @@
       "n": 9357,
       "denominator": 545417
     },
+    "it_candidates_trudvsem_snapshot_2026-07-05": {
+      "value": 0.0171,
+      "n": 9120,
+      "denominator": 533751
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-06": {
+      "value": 0.0169,
+      "n": 9081,
+      "denominator": 536108
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-07": {
+      "value": 0.0171,
+      "n": 9377,
+      "denominator": 548818
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-08": {
+      "value": 0.0171,
+      "n": 9528,
+      "denominator": 557870
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-09": {
+      "value": 0.0172,
+      "n": 9524,
+      "denominator": 554163
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-10": {
+      "value": 0.0173,
+      "n": 9568,
+      "denominator": 551713
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-11": {
+      "value": 0.0174,
+      "n": 9445,
+      "denominator": 541869
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-12": {
+      "value": 0.0174,
+      "n": 9283,
+      "denominator": 533611
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-13": {
+      "value": 0.0173,
+      "n": 9339,
+      "denominator": 541066
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-14": {
+      "value": 0.0173,
+      "n": 9540,
+      "denominator": 549905
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-15": {
+      "value": 0.0174,
+      "n": 9614,
+      "denominator": 553097
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-16": {
+      "value": 0.0174,
+      "n": 9556,
+      "denominator": 549739
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-17": {
+      "value": 0.0175,
+      "n": 9603,
+      "denominator": 548461
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-18": {
+      "value": 0.0177,
+      "n": 9524,
+      "denominator": 538722
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-19": {
+      "value": 0.0178,
+      "n": 9382,
+      "denominator": 527099
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-20": {
+      "value": 0.0176,
+      "n": 9324,
+      "denominator": 528493
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-21": {
+      "value": 0.0176,
+      "n": 9453,
+      "denominator": 537987
+    },
     "it_candidates_trudvsem_api_2026-10-08": {
       "value": 0.729,
       "n": 8480,
@@ -122,7 +207,7 @@
     }
   },
   "dbt_version": "1.12.5",
-  "build_finished_at": "2026-10-08T14:44:05.532739Z",
+  "build_finished_at": "2026-10-08T15:26:48.948848Z",
   "notes": {
     "it_candidates": "wide IT filter is_it_candidate, not measured against labels yet",
     "habr_future_date_posted": "cards whose datePosted is later than the fetch, of cards read that day"
