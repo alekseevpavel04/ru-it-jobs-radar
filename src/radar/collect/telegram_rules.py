@@ -1,12 +1,15 @@
 """Rules that tell a vacancy post from everything else in a job channel, and count vacancies in a post.
 
 A vacancy post names at least one concrete position with an employer or conditions. Ads, resumes,
-courses, articles, market news and empty media posts are not vacancies. Agreement with manual labels
-is reported by analyze.py; the rules overrate content channels without vacancies (see docs/sources.md).
+courses, articles, market news and empty media posts are not vacancies. Rules v2: agreement with
+manual labels is reported by scripts/telegram_survey/analyze.py; the rules overrate content channels
+without vacancies (see docs/sources.md, Telegram 1.5), so they are used only with the enabled channels.
 """
 
 import re
 from dataclasses import dataclass
+
+RULES_VERSION = 2
 
 AD = re.compile(r"\berid\b|#реклама|^\s*реклама\b|партн[её]рский (пост|материал)|на правах рекламы", re.I | re.M)
 RESUME = re.compile(

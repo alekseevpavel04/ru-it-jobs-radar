@@ -11,6 +11,8 @@ import tomllib
 
 import tg
 
+from radar.collect.telegram_page import Post, page_url
+
 SAMPLE = 50
 WINDOWS = 8
 OUT = tg.CACHE.parent / "survey.json"
@@ -23,7 +25,7 @@ def layout(base: int, last: int) -> list[int]:
     return [base + int(span * (k + 1) / (WINDOWS + 1)) for k in range(WINDOWS)]
 
 
-def strata_estimate(client: tg.Client, ch: str, xs: list[int], start: int, sample: list[tg.Post]) -> tuple[int, list]:
+def strata_estimate(client: tg.Client, ch: str, xs: list[int], start: int, sample: list[Post]) -> tuple[int, list]:
     """Each window `?before=x` stands for the ids between the previous window and x; the newest stratum
     is counted from the sample of latest posts."""
     bounds = [start, *xs]
@@ -83,7 +85,7 @@ def survey(client: tg.Client, ch: str) -> dict:
             base = early[1]
         layouts = [layout(base.id, last.id)]
         alt = layout(start.id, last.id)
-        if alt != layouts[0] and all(client.is_cached(tg.page_url(ch, before=x)) for x in alt):
+        if alt != layouts[0] and all(client.is_cached(page_url(ch, before=x)) for x in alt):
             layouts.append(alt)
         for xs in layouts:
             by_layout.append(strata_estimate(client, ch, sorted({x for x in xs if x > start.id}), start.id, sample)[0])

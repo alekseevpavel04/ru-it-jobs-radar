@@ -2,6 +2,7 @@
 
 import logging
 import time
+from collections import Counter
 from collections.abc import Mapping, Sequence
 from typing import Any
 
@@ -34,6 +35,8 @@ class Fetcher:
         self.retry_status = retry_status
         self.requests = 0
         self.retries = 0
+        # Failed attempts by cause ("HTTP 429", "HTTP 503", "ConnectTimeout"), the last one included.
+        self.failed_attempts: Counter[str] = Counter()
         self.seconds_in_requests = 0.0
         self._last_end: float | None = None
 
@@ -51,16 +54,18 @@ class Fetcher:
                 response = self.client.get(url, params=params)  # type: ignore[arg-type]
             except httpx.TransportError as exc:
                 problem: str = f"{type(exc).__name__}: {exc}"
+                cause = type(exc).__name__
                 retry_after = None
             else:
                 if response.status_code not in self.retry_status:
                     self._done(started)
                     return response
-                problem = f"HTTP {response.status_code}"
+                problem = cause = f"HTTP {response.status_code}"
                 retry_after = response.headers.get("retry-after")
             finally:
                 self._last_end = time.monotonic()
             self._done(started)
+            self.failed_attempts[cause] += 1
             if pause is None:
                 raise RuntimeError(f"GET {url} failed after {attempt + 1} attempts: {problem}")
             wait = float(retry_after) if retry_after and retry_after.isdigit() else pause

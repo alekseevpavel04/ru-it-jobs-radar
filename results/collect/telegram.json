@@ -1,0 +1,1247 @@
+{
+  "source_script": "src/radar/collect/telegram.py",
+  "command": "python -m radar.collect.telegram",
+  "commit": "f707872-dirty",
+  "created_at": "2026-10-08T14:22:51+00:00",
+  "metrics": {
+    "channels_enabled": {
+      "value": 58,
+      "n": null,
+      "denominator": null
+    },
+    "posts": {
+      "value": 1157,
+      "n": null,
+      "denominator": null
+    },
+    "vacancy_posts": {
+      "value": 0.8176,
+      "n": 946,
+      "denominator": 1157
+    },
+    "multi_vacancy_posts": {
+      "value": 0.0814,
+      "n": 77,
+      "denominator": 946
+    },
+    "backfill_channels_reached_start": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 57
+    },
+    "last_daily_run_requests": {
+      "value": 59,
+      "n": null,
+      "denominator": null
+    },
+    "last_daily_run_http_429": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "last_daily_run_seconds": {
+      "value": 187.5,
+      "n": null,
+      "denominator": null
+    },
+    "last_daily_run_posts_written": {
+      "value": 1157,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "method": "recomputed from data/raw/telegram partitions (latest version of each post), _meta/runs.jsonl and _meta/state; years by published_at in Moscow time; vacancy posts by rules v2",
+  "years": {
+    "2025": {
+      "posts": 22,
+      "vacancy_posts": 20
+    },
+    "2026": {
+      "posts": 1135,
+      "vacancy_posts": 926
+    }
+  },
+  "channels": {
+    "datasciencejobs": {
+      "posts": 20,
+      "vacancy_posts": 14,
+      "multi_vacancy_posts": 1,
+      "first_published": "2026-09-15",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "geekjobs": {
+      "posts": 20,
+      "vacancy_posts": 16,
+      "multi_vacancy_posts": 6,
+      "first_published": "2026-09-30",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "habr_career": {
+      "posts": 20,
+      "vacancy_posts": 12,
+      "multi_vacancy_posts": 9,
+      "first_published": "2026-10-06",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "foranalysts": {
+      "posts": 20,
+      "vacancy_posts": 17,
+      "multi_vacancy_posts": 3,
+      "first_published": "2026-09-30",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "datajobschannel": {
+      "posts": 19,
+      "vacancy_posts": 15,
+      "multi_vacancy_posts": 2,
+      "first_published": "2026-08-28",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "llm_jobs": {
+      "posts": 20,
+      "vacancy_posts": 18,
+      "multi_vacancy_posts": 0,
+      "first_published": "2025-11-14",
+      "last_published": "2026-10-07",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "nlp_jobs": {
+      "posts": 20,
+      "vacancy_posts": 18,
+      "multi_vacancy_posts": 2,
+      "first_published": "2025-01-13",
+      "last_published": "2026-09-23",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "remoteit": {
+      "posts": 20,
+      "vacancy_posts": 16,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-10-05",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "jobforjunior": {
+      "posts": 20,
+      "vacancy_posts": 18,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-10-05",
+      "last_published": "2026-10-07",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "job_python": {
+      "posts": 20,
+      "vacancy_posts": 18,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-28",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "it_vakansii_jobs": {
+      "posts": 20,
+      "vacancy_posts": 16,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-24",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "juniors_rabota_jobs": {
+      "posts": 19,
+      "vacancy_posts": 14,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-24",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "it_interns": {
+      "posts": 20,
+      "vacancy_posts": 19,
+      "multi_vacancy_posts": 11,
+      "first_published": "2026-10-01",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "remotejun": {
+      "posts": 20,
+      "vacancy_posts": 15,
+      "multi_vacancy_posts": 7,
+      "first_published": "2026-10-04",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "getitrussia": {
+      "posts": 20,
+      "vacancy_posts": 18,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-10-05",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "devs_it": {
+      "posts": 16,
+      "vacancy_posts": 13,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-10-01",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "progjob": {
+      "posts": 20,
+      "vacancy_posts": 18,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-10-08",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "jc_it": {
+      "posts": 20,
+      "vacancy_posts": 14,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-10-03",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "jobofferinside": {
+      "posts": 20,
+      "vacancy_posts": 19,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-10-02",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "myitjob": {
+      "posts": 16,
+      "vacancy_posts": 11,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-10-06",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "backend_frontend_jobs": {
+      "posts": 20,
+      "vacancy_posts": 15,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-16",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "remote_job_it_geeklink": {
+      "posts": 20,
+      "vacancy_posts": 13,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-04-17",
+      "last_published": "2026-10-06",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "remotegeekjob": {
+      "posts": 20,
+      "vacancy_posts": 19,
+      "multi_vacancy_posts": 1,
+      "first_published": "2026-10-07",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "datajob": {
+      "posts": 20,
+      "vacancy_posts": 11,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-07-31",
+      "last_published": "2026-10-05",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "data_hr": {
+      "posts": 20,
+      "vacancy_posts": 12,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-02",
+      "last_published": "2026-10-07",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "data_secrets_career": {
+      "posts": 19,
+      "vacancy_posts": 12,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-28",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "offersanalysis": {
+      "posts": 20,
+      "vacancy_posts": 19,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-17",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "datascjobs": {
+      "posts": 20,
+      "vacancy_posts": 14,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-05-01",
+      "last_published": "2026-10-06",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "de_rabota": {
+      "posts": 20,
+      "vacancy_posts": 18,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-20",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "dataviz_jobs": {
+      "posts": 20,
+      "vacancy_posts": 18,
+      "multi_vacancy_posts": 7,
+      "first_published": "2026-09-16",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "data_engineer_jobs": {
+      "posts": 20,
+      "vacancy_posts": 17,
+      "multi_vacancy_posts": 1,
+      "first_published": "2026-08-23",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "analytics_jobs": {
+      "posts": 20,
+      "vacancy_posts": 18,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-08-30",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "ai_rabota": {
+      "posts": 20,
+      "vacancy_posts": 18,
+      "multi_vacancy_posts": 1,
+      "first_published": "2026-09-24",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "dsml_jobs": {
+      "posts": 20,
+      "vacancy_posts": 19,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-05-04",
+      "last_published": "2026-10-05",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "fordevops": {
+      "posts": 20,
+      "vacancy_posts": 18,
+      "multi_vacancy_posts": 2,
+      "first_published": "2026-09-28",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "forallqa": {
+      "posts": 20,
+      "vacancy_posts": 17,
+      "multi_vacancy_posts": 2,
+      "first_published": "2026-09-25",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "qajoboffer": {
+      "posts": 20,
+      "vacancy_posts": 12,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-29",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "jobforqa": {
+      "posts": 17,
+      "vacancy_posts": 15,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-10-01",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "qa_testirovshchik_jobs_vakansii": {
+      "posts": 20,
+      "vacancy_posts": 20,
+      "multi_vacancy_posts": 2,
+      "first_published": "2026-09-18",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "jun_qa": {
+      "posts": 20,
+      "vacancy_posts": 19,
+      "multi_vacancy_posts": 8,
+      "first_published": "2026-09-28",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "job_react": {
+      "posts": 20,
+      "vacancy_posts": 20,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-28",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "javascript_jobs_feed": {
+      "posts": 20,
+      "vacancy_posts": 20,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-10-08",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "forfrontend": {
+      "posts": 20,
+      "vacancy_posts": 16,
+      "multi_vacancy_posts": 1,
+      "first_published": "2026-09-21",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "job_javadevs": {
+      "posts": 20,
+      "vacancy_posts": 18,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-27",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "golangjobsit": {
+      "posts": 20,
+      "vacancy_posts": 13,
+      "multi_vacancy_posts": 1,
+      "first_published": "2026-08-13",
+      "last_published": "2026-10-06",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "pydevjob": {
+      "posts": 20,
+      "vacancy_posts": 13,
+      "multi_vacancy_posts": 1,
+      "first_published": "2026-07-28",
+      "last_published": "2026-10-02",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "forpython": {
+      "posts": 20,
+      "vacancy_posts": 17,
+      "multi_vacancy_posts": 1,
+      "first_published": "2026-09-29",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "pythonpythonjobs": {
+      "posts": 20,
+      "vacancy_posts": 19,
+      "multi_vacancy_posts": 3,
+      "first_published": "2026-09-26",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "alljvmjobs": {
+      "posts": 20,
+      "vacancy_posts": 17,
+      "multi_vacancy_posts": 2,
+      "first_published": "2026-09-23",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "dotnetrujobsfeed": {
+      "posts": 20,
+      "vacancy_posts": 9,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-23",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "rabota_golang": {
+      "posts": 19,
+      "vacancy_posts": 18,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-22",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "forallmobile": {
+      "posts": 20,
+      "vacancy_posts": 15,
+      "multi_vacancy_posts": 2,
+      "first_published": "2026-09-18",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "v1c_rabota": {
+      "posts": 20,
+      "vacancy_posts": 20,
+      "multi_vacancy_posts": 1,
+      "first_published": "2026-09-11",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "infosec_work": {
+      "posts": 20,
+      "vacancy_posts": 17,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-30",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "gamedevjob": {
+      "posts": 19,
+      "vacancy_posts": 13,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-23",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "devjobs": {
+      "posts": 20,
+      "vacancy_posts": 17,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-24",
+      "last_published": "2026-10-08",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "product_jobs": {
+      "posts": 20,
+      "vacancy_posts": 17,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-14",
+      "last_published": "2026-10-07",
+      "backfill": {
+        "done": null,
+        "pages": null,
+        "posts_written": null,
+        "started_at": null,
+        "reached_start_at": null
+      }
+    },
+    "runello_rus_frontend": {
+      "posts": 33,
+      "vacancy_posts": 24,
+      "multi_vacancy_posts": 0,
+      "first_published": "2026-09-25",
+      "last_published": "2026-10-07",
+      "backfill": "daily only"
+    }
+  },
+  "channel_years": {
+    "ai_rabota": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 18
+      }
+    },
+    "alljvmjobs": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 17
+      }
+    },
+    "analytics_jobs": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 18
+      }
+    },
+    "backend_frontend_jobs": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 15
+      }
+    },
+    "data_engineer_jobs": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 17
+      }
+    },
+    "data_hr": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 12
+      }
+    },
+    "data_secrets_career": {
+      "2026": {
+        "posts": 19,
+        "vacancy_posts": 12
+      }
+    },
+    "datajob": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 11
+      }
+    },
+    "datajobschannel": {
+      "2026": {
+        "posts": 19,
+        "vacancy_posts": 15
+      }
+    },
+    "datasciencejobs": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 14
+      }
+    },
+    "datascjobs": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 14
+      }
+    },
+    "dataviz_jobs": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 18
+      }
+    },
+    "de_rabota": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 18
+      }
+    },
+    "devjobs": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 17
+      }
+    },
+    "devs_it": {
+      "2026": {
+        "posts": 16,
+        "vacancy_posts": 13
+      }
+    },
+    "dotnetrujobsfeed": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 9
+      }
+    },
+    "dsml_jobs": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 19
+      }
+    },
+    "forallmobile": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 15
+      }
+    },
+    "forallqa": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 17
+      }
+    },
+    "foranalysts": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 17
+      }
+    },
+    "fordevops": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 18
+      }
+    },
+    "forfrontend": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 16
+      }
+    },
+    "forpython": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 17
+      }
+    },
+    "gamedevjob": {
+      "2026": {
+        "posts": 19,
+        "vacancy_posts": 13
+      }
+    },
+    "geekjobs": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 16
+      }
+    },
+    "getitrussia": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 18
+      }
+    },
+    "golangjobsit": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 13
+      }
+    },
+    "habr_career": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 12
+      }
+    },
+    "infosec_work": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 17
+      }
+    },
+    "it_interns": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 19
+      }
+    },
+    "it_vakansii_jobs": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 16
+      }
+    },
+    "javascript_jobs_feed": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 20
+      }
+    },
+    "jc_it": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 14
+      }
+    },
+    "job_javadevs": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 18
+      }
+    },
+    "job_python": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 18
+      }
+    },
+    "job_react": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 20
+      }
+    },
+    "jobforjunior": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 18
+      }
+    },
+    "jobforqa": {
+      "2026": {
+        "posts": 17,
+        "vacancy_posts": 15
+      }
+    },
+    "jobofferinside": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 19
+      }
+    },
+    "jun_qa": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 19
+      }
+    },
+    "juniors_rabota_jobs": {
+      "2026": {
+        "posts": 19,
+        "vacancy_posts": 14
+      }
+    },
+    "llm_jobs": {
+      "2025": {
+        "posts": 4,
+        "vacancy_posts": 4
+      },
+      "2026": {
+        "posts": 16,
+        "vacancy_posts": 14
+      }
+    },
+    "myitjob": {
+      "2026": {
+        "posts": 16,
+        "vacancy_posts": 11
+      }
+    },
+    "nlp_jobs": {
+      "2025": {
+        "posts": 18,
+        "vacancy_posts": 16
+      },
+      "2026": {
+        "posts": 2,
+        "vacancy_posts": 2
+      }
+    },
+    "offersanalysis": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 19
+      }
+    },
+    "product_jobs": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 17
+      }
+    },
+    "progjob": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 18
+      }
+    },
+    "pydevjob": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 13
+      }
+    },
+    "pythonpythonjobs": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 19
+      }
+    },
+    "qa_testirovshchik_jobs_vakansii": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 20
+      }
+    },
+    "qajoboffer": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 12
+      }
+    },
+    "rabota_golang": {
+      "2026": {
+        "posts": 19,
+        "vacancy_posts": 18
+      }
+    },
+    "remote_job_it_geeklink": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 13
+      }
+    },
+    "remotegeekjob": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 19
+      }
+    },
+    "remoteit": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 16
+      }
+    },
+    "remotejun": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 15
+      }
+    },
+    "runello_rus_frontend": {
+      "2026": {
+        "posts": 33,
+        "vacancy_posts": 24
+      }
+    },
+    "v1c_rabota": {
+      "2026": {
+        "posts": 20,
+        "vacancy_posts": 20
+      }
+    }
+  },
+  "days": [
+    {
+      "dt": "2026-10-08",
+      "complete": true,
+      "rows": 1157,
+      "distinct_ids": 1157,
+      "parquet_bytes": 1284736,
+      "pii_removed": {
+        "email": 135,
+        "inn": 2,
+        "nick": 533,
+        "person_name": 16,
+        "phone": 2,
+        "profile_link": 56
+      }
+    }
+  ]
+}

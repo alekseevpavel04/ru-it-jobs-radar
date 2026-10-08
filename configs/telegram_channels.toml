@@ -5,7 +5,8 @@
 # A channel is enabled when its last post is at most 30 days old, at least 15 of its last 50 posts
 # carry a vacancy (rules, and the manual check where one was made), at least 30% of its text posts are
 # in Russian, the topic is IT and it is not a copy of another enabled channel. `exception` records why
-# a channel stays enabled although it fails a criterion.
+# a channel stays enabled although it fails a criterion; `backfill = false` marks a channel that keeps
+# only recent posts, so it is collected daily and never backfilled.
 #
 # `network` groups channels of one publisher: their posts overlap, so cross-channel dedup is required
 # (the same goes for habr_career and progjob against the Habr Career source).
@@ -433,6 +434,7 @@ name = "runello_rus_frontend"
 topic = "frontend"
 network = "runello"
 enabled = true
+backfill = false
 reason = "frontend vacancies; keeps only about two weeks of posts (older ids are deleted), so no backfill, daily collection only"
 
 # Surveyed in 1.5 and left out

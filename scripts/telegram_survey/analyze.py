@@ -1,8 +1,9 @@
 """Survey of public Telegram job channels: writes results/sources/telegram_channels.json.
 
 Per channel it reports subscribers, the creation date, the first and last post, an estimate of the
-number of posts, and on the last 50 posts the share of vacancy posts (rules in classify.py), multi-vacancy
-posts, Russian posts, posts per week and near duplicates in other channels. It also checks the channel
+number of posts, and on the last 50 posts the share of vacancy posts (rules in
+src/radar/collect/telegram_rules.py), multi-vacancy posts, Russian posts, posts per week and near
+duplicates in other channels. It also checks the channel
 selection in configs/telegram_channels.toml against the criteria below and fails if an enabled channel
 does not meet them without a recorded exception. Method and tables: docs/sources.md, section Telegram.
 
@@ -26,8 +27,8 @@ from datetime import datetime
 from pathlib import Path
 
 import tg
-from classify import Verdict, classify
 
+from radar.collect.telegram_rules import Verdict, classify
 from radar.results import write_result
 
 HERE = Path(__file__).parent
@@ -308,7 +309,7 @@ def main() -> None:
         source_script="scripts/telegram_survey/analyze.py",
         method={
             "sample": f"last {SAMPLE} posts per channel, service messages excluded",
-            "vacancy_rule": "scripts/telegram_survey/classify.py, manual labels in check_labels.csv",
+            "vacancy_rule": "src/radar/collect/telegram_rules.py, manual labels in check_labels.csv",
             "depth": "first and last post, 8 windows of ?before= as strata (deep.py)",
             "near_duplicate": f"word {SHINGLE}-shingles, Jaccard >= {DUP_JACCARD}, vacancy posts across samples",
             "selection": f"alive <= {ALIVE_DAYS} days, vacancy share >= {MIN_VACANCY_SHARE}, russian posts >= "

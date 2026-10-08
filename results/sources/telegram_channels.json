@@ -1,18 +1,18 @@
 {
   "source_script": "scripts/telegram_survey/analyze.py",
   "command": "python scripts/telegram_survey/analyze.py",
-  "commit": "9163ace-dirty",
-  "created_at": "2026-10-08T14:04:15+00:00",
+  "commit": "f707872-dirty",
+  "created_at": "2026-10-08T14:28:52+00:00",
   "metrics": {
     "rules_v2_tuning_agreement": {
-      "value": 0.943,
-      "n": 283,
+      "value": 0.947,
+      "n": 284,
       "denominator": 300
     },
     "rules_v2_tuning_precision": {
-      "value": 0.938,
+      "value": 0.942,
       "n": 195,
-      "denominator": 208
+      "denominator": 207
     },
     "rules_v2_tuning_recall": {
       "value": 0.98,
@@ -100,7 +100,7 @@
       "denominator": null
     },
     "vacancy_posts_per_week_enabled": {
-      "value": 866,
+      "value": 865,
       "n": null,
       "denominator": null
     },
@@ -115,14 +115,14 @@
       "denominator": null
     },
     "vacancy_share_enabled_pooled": {
-      "value": 0.833,
-      "n": 2390,
+      "value": 0.832,
+      "n": 2388,
       "denominator": 2869
     },
     "near_duplicate_share_enabled_pooled": {
       "value": 0.127,
       "n": 304,
-      "denominator": 2390
+      "denominator": 2388
     },
     "requests_survey": {
       "value": 886,
@@ -167,7 +167,7 @@
   },
   "method": {
     "sample": "last 50 posts per channel, service messages excluded",
-    "vacancy_rule": "scripts/telegram_survey/classify.py, manual labels in check_labels.csv",
+    "vacancy_rule": "src/radar/collect/telegram_rules.py, manual labels in check_labels.csv",
     "depth": "first and last post, 8 windows of ?before= as strata (deep.py)",
     "near_duplicate": "word 5-shingles, Jaccard >= 0.5, vacancy posts across samples",
     "selection": "alive <= 30 days, vacancy share >= 0.3, russian posts >= 0.3 (cyrillic letters >= 0.4), IT topic, no channel repeated on shared dates",
@@ -627,7 +627,7 @@
         "value": 25.9
       },
       "cyrillic_letter_share": {
-        "value": 0.74
+        "value": 0.75
       },
       "russian_post_share": {
         "value": 0.78,
@@ -1071,17 +1071,17 @@
         "to": "2026-10-08"
       },
       "vacancy_share": {
-        "value": 0.86,
-        "n": 43,
+        "value": 0.84,
+        "n": 42,
         "denominator": 50
       },
       "multi_share": {
         "value": 0.0,
         "n": 0,
-        "denominator": 43
+        "denominator": 42
       },
       "vacancy_units_in_sample": {
-        "value": 43
+        "value": 42
       },
       "ad_share": {
         "value": 0.0,
@@ -1102,17 +1102,17 @@
         "value": 29.0
       },
       "vacancy_posts_per_week": {
-        "value": 25.0
+        "value": 24.4
       },
       "vacancy_units_per_week": {
-        "value": 25.0
+        "value": 24.4
       },
       "cyrillic_letter_share": {
-        "value": 0.27
+        "value": 0.3
       },
       "russian_post_share": {
-        "value": 0.128,
-        "n": 6,
+        "value": 0.149,
+        "n": 7,
         "denominator": 47
       },
       "forwarded_from_channel_share": {
@@ -1126,12 +1126,12 @@
       "habr_link_share": {
         "value": 0.0,
         "n": 0,
-        "denominator": 43
+        "denominator": 42
       },
       "near_duplicate_share": {
         "value": 0.0,
         "n": 0,
-        "denominator": 43
+        "denominator": 42
       },
       "near_duplicate_top": {
         "value": ""
@@ -1229,7 +1229,7 @@
         "value": 14.4
       },
       "cyrillic_letter_share": {
-        "value": 0.74
+        "value": 0.75
       },
       "russian_post_share": {
         "value": 0.76,
@@ -1377,7 +1377,7 @@
         "denominator": 48
       },
       "near_duplicate_top": {
-        "value": "ai_rabota 3, devs_it 3, job_javadevs 2"
+        "value": "ai_rabota 3, devs_it 3, job_react 2"
       },
       "days_since_last_post": {
         "value": 0
@@ -2726,7 +2726,7 @@
         "denominator": 38
       },
       "near_duplicate_top": {
-        "value": "job_react 1, job_javadevs 1, devs_it 1"
+        "value": "job_python 1, job_react 1, devs_it 1"
       },
       "days_since_last_post": {
         "value": 0
@@ -2942,7 +2942,7 @@
         "value": 229.8
       },
       "cyrillic_letter_share": {
-        "value": 0.36
+        "value": 0.39
       },
       "russian_post_share": {
         "value": 0.44,
@@ -3089,7 +3089,7 @@
         "denominator": 26
       },
       "near_duplicate_top": {
-        "value": "ai_rabota 1, datasciencejobs 1"
+        "value": "datasciencejobs 1, ai_rabota 1"
       },
       "days_since_last_post": {
         "value": 3
@@ -3273,17 +3273,17 @@
         "to": "2026-10-08"
       },
       "vacancy_share": {
-        "value": 0.64,
-        "n": 32,
+        "value": 0.62,
+        "n": 31,
         "denominator": 50
       },
       "multi_share": {
         "value": 0.0,
         "n": 0,
-        "denominator": 32
+        "denominator": 31
       },
       "vacancy_units_in_sample": {
-        "value": 32
+        "value": 31
       },
       "ad_share": {
         "value": 0.02,
@@ -3304,10 +3304,10 @@
         "value": 11.7
       },
       "vacancy_posts_per_week": {
-        "value": 7.5
+        "value": 7.3
       },
       "vacancy_units_per_week": {
-        "value": 7.5
+        "value": 7.3
       },
       "cyrillic_letter_share": {
         "value": 0.92
@@ -3328,12 +3328,12 @@
       "habr_link_share": {
         "value": 0.0,
         "n": 0,
-        "denominator": 32
+        "denominator": 31
       },
       "near_duplicate_share": {
         "value": 0.0,
         "n": 0,
-        "denominator": 32
+        "denominator": 31
       },
       "near_duplicate_top": {
         "value": ""
@@ -4404,7 +4404,7 @@
         "value": 11.5
       },
       "cyrillic_letter_share": {
-        "value": 0.55
+        "value": 0.56
       },
       "russian_post_share": {
         "value": 0.46,
@@ -4525,7 +4525,7 @@
         "value": 10.3
       },
       "cyrillic_letter_share": {
-        "value": 0.7
+        "value": 0.71
       },
       "russian_post_share": {
         "value": 0.7,
@@ -4775,12 +4775,12 @@
         "denominator": 50
       },
       "forwarded_from_channel_share": {
-        "value": 0.06,
-        "n": 3,
+        "value": 0.04,
+        "n": 2,
         "denominator": 50
       },
       "forwarded_from_top": {
-        "value": "other 2, qajoboffer 1"
+        "value": "other 1, qajoboffer 1"
       },
       "habr_link_share": {
         "value": 0.0,
@@ -5377,7 +5377,7 @@
         "value": 10.2
       },
       "cyrillic_letter_share": {
-        "value": 0.52
+        "value": 0.53
       },
       "russian_post_share": {
         "value": 0.36,
@@ -5524,7 +5524,7 @@
         "denominator": 48
       },
       "near_duplicate_top": {
-        "value": "devs_it 7, job_python 2, backend_frontend_jobs 1"
+        "value": "devs_it 7, job_python 2, job_react 1"
       },
       "days_since_last_post": {
         "value": 0
@@ -5866,7 +5866,7 @@
         "value": 15.6
       },
       "cyrillic_letter_share": {
-        "value": 0.55
+        "value": 0.57
       },
       "russian_post_share": {
         "value": 0.46,
@@ -6471,7 +6471,7 @@
         "value": 6.4
       },
       "cyrillic_letter_share": {
-        "value": 0.66
+        "value": 0.67
       },
       "russian_post_share": {
         "value": 0.56,
