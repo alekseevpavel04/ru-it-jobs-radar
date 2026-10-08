@@ -180,3 +180,14 @@ def test_since_argument(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None
     assert ts.main(["--since", "2026-10-09", "--tmp-dir", str(tmp_path)]) == 0
     assert ts.main(["--tmp-dir", str(tmp_path)]) == 0
     assert calls == [(None, date(2026, 10, 9)), (None, None)]
+
+
+def test_head_retries_a_transient_error(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(ts, "BACKOFF_S", (0,))
+    answers = iter([405, 200])
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(next(answers), headers={"content-length": "10"})
+
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        assert ts._head(client, "https://example.com/data.xml").status_code == 200

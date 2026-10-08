@@ -244,6 +244,26 @@ def _timing(path: Path) -> dict[str, Any] | None:
     return loaded
 
 
+def _head(client: httpx.Client, url: str) -> httpx.Response:
+    """HEAD with the download's backoff: the server once answered 405 to a HEAD that worked minutes later."""
+    for attempt, pause in enumerate((*BACKOFF_S, None)):
+        try:
+            head = client.head(url)
+        except httpx.TransportError as exc:
+            problem = f"{type(exc).__name__}: {exc}"
+        else:
+            if head.status_code == 404:
+                raise GoneError(url)
+            if head.is_success:
+                return head
+            problem = f"HTTP {head.status_code}"
+        if pause is None:
+            raise RuntimeError(f"HEAD {url} failed after {attempt + 1} attempts: {problem}")
+        log.warning("HEAD %s: %s, retry %d in %ds", url, problem, attempt + 1, pause)
+        time.sleep(pause)
+    raise AssertionError("unreachable")
+
+
 def download(client: httpx.Client, version: Version, tmp_dir: Path) -> Download:
     """Download one version to `tmp_dir`, resuming a partial file; one stream, never parallel.
 
@@ -256,10 +276,7 @@ def download(client: httpx.Client, version: Version, tmp_dir: Path) -> Download:
     part = final.with_suffix(".xml.part")
     stamp = final.with_suffix(".fetched_at")
     timing_path = final.with_suffix(".download.json")
-    head = client.head(version.url)
-    if head.status_code == 404:
-        raise GoneError(version.url)
-    head.raise_for_status()
+    head = _head(client, version.url)
     if "content-length" not in head.headers:
         raise RuntimeError(f"{version.url}: no Content-Length, cannot resume or verify the download")
     total = int(head.headers["content-length"])
