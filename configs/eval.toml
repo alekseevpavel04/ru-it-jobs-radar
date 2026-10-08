@@ -1,0 +1,17 @@
+# Settings for `python -m radar.eval`. Changing any value changes every reported number:
+# record the change in docs/EXPERIMENTS.md.
+
+[bootstrap]
+# EXPERIMENTS.md: paired bootstrap, 1000 resamples or more, seed fixed here.
+n_resamples = 2000
+seed = 20261008
+confidence = 0.95
+
+[salary]
+# Relative tolerance for each bound of the range. 0.01 forgives rounding ("около 50 000" against
+# 49 900), not a different bound: 300 000 against 320 000 is a miss.
+rel_tol = 0.01
+
+[macro]
+# Fields averaged into macro_f1 (F1 of each field, equal weight). `lang` is reported but not averaged.
+fields = ["role", "grade", "skills", "salary", "work_format", "cities", "experience_years", "employment_type"]

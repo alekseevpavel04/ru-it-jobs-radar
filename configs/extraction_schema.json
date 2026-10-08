@@ -1,0 +1,285 @@
+{
+  "$defs": {
+    "Experience": {
+      "additionalProperties": false,
+      "properties": {
+        "min": {
+          "anyOf": [
+            {
+              "maximum": 50,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Min"
+        },
+        "max": {
+          "anyOf": [
+            {
+              "maximum": 50,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Max"
+        }
+      },
+      "required": [
+        "min",
+        "max"
+      ],
+      "title": "Experience",
+      "type": "object"
+    },
+    "Salary": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "From"
+        },
+        "to": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "To"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "enum": [
+                "RUB",
+                "USD",
+                "EUR",
+                "KZT",
+                "BYN",
+                "UZS",
+                "CNY",
+                "GBP"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Currency"
+        },
+        "gross_net": {
+          "anyOf": [
+            {
+              "enum": [
+                "gross",
+                "net"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Gross Net"
+        },
+        "period": {
+          "anyOf": [
+            {
+              "enum": [
+                "month",
+                "year",
+                "day",
+                "hour"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Period"
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "currency",
+        "gross_net",
+        "period"
+      ],
+      "title": "Salary",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Every key is required: null (or an empty list) is an explicit \"not stated in the text\".",
+  "properties": {
+    "role": {
+      "anyOf": [
+        {
+          "enum": [
+            "ml_engineer",
+            "data_scientist",
+            "mlops",
+            "data_engineer",
+            "data_analyst",
+            "business_analyst",
+            "system_analyst",
+            "backend",
+            "frontend",
+            "fullstack",
+            "mobile",
+            "software_engineer",
+            "developer_1c",
+            "embedded",
+            "devops",
+            "qa",
+            "sysadmin",
+            "support",
+            "security",
+            "designer",
+            "manager",
+            "other_it",
+            "non_it"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Role"
+    },
+    "grade": {
+      "anyOf": [
+        {
+          "enum": [
+            "intern",
+            "junior",
+            "middle",
+            "senior",
+            "lead"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Grade"
+    },
+    "skills": {
+      "items": {
+        "maxLength": 80,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 60,
+      "title": "Skills",
+      "type": "array"
+    },
+    "salary": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Salary"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "work_format": {
+      "anyOf": [
+        {
+          "enum": [
+            "office",
+            "hybrid",
+            "remote"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Work Format"
+    },
+    "cities": {
+      "items": {
+        "maxLength": 80,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Cities",
+      "type": "array"
+    },
+    "experience_years": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Experience"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "employment_type": {
+      "anyOf": [
+        {
+          "enum": [
+            "labor_contract",
+            "gph",
+            "self_employed",
+            "internship"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Employment Type"
+    },
+    "lang": {
+      "enum": [
+        "ru",
+        "en",
+        "other"
+      ],
+      "title": "Lang",
+      "type": "string"
+    }
+  },
+  "required": [
+    "role",
+    "grade",
+    "skills",
+    "salary",
+    "work_format",
+    "cities",
+    "experience_years",
+    "employment_type",
+    "lang"
+  ],
+  "title": "VacancyFields",
+  "type": "object"
+}

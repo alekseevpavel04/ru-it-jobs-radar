@@ -41,7 +41,7 @@ class ResultFile(BaseModel):
     metrics: dict[str, Metric]
 
 
-def _git_commit() -> str:
+def git_commit() -> str:
     try:
         out = subprocess.run(
             ["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=True
@@ -52,11 +52,19 @@ def _git_commit() -> str:
     return out.stdout.strip() + ("-dirty" if dirty.strip() else "")
 
 
+def invocation() -> str:
+    """The command line as typed: `python -m radar.eval ...` rather than `__main__.py ...`."""
+    main = sys.modules.get("__main__")
+    spec = getattr(main, "__spec__", None)
+    head = f"python -m {spec.name.removesuffix('.__main__')}" if spec else Path(sys.argv[0]).name
+    return " ".join([head, *sys.argv[1:]])
+
+
 def write_result(relpath: str, metrics: dict[str, dict[str, Any]], source_script: str, **extra: Any) -> Path:
     doc = ResultFile(
         source_script=source_script,
-        command=" ".join([Path(sys.argv[0]).name, *sys.argv[1:]]),
-        commit=_git_commit(),
+        command=invocation(),
+        commit=git_commit(),
         created_at=datetime.now(UTC).isoformat(timespec="seconds"),
         metrics={k: Metric.model_validate(v) for k, v in metrics.items()},
         **extra,
