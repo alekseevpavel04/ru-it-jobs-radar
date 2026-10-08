@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/dedup/__main__.py",
   "command": "python -m radar.dedup candidates",
-  "commit": "fcb9a0b-dirty",
-  "created_at": "2026-10-08T15:12:21+00:00",
+  "commit": "2a949fb-dirty",
+  "created_at": "2026-10-08T15:28:43+00:00",
   "metrics": {
     "units.trudvsem": {
       "value": 8480,
@@ -10,7 +10,7 @@
       "denominator": null
     },
     "units.trudvsem_snapshot": {
-      "value": 10553,
+      "value": 13234,
       "n": null,
       "denominator": null
     },
@@ -20,7 +20,7 @@
       "denominator": null
     },
     "units.total": {
-      "value": 20070,
+      "value": 22751,
       "n": null,
       "denominator": null
     },
@@ -31,8 +31,8 @@
     },
     "units_with_text.trudvsem_snapshot": {
       "value": 0.9998,
-      "n": 10551,
-      "denominator": 10553
+      "n": 13232,
+      "denominator": 13234
     },
     "units_with_text.habr": {
       "value": 0.4696,
@@ -40,22 +40,22 @@
       "denominator": 1037
     },
     "id_links.snapshot_api": {
-      "value": 3258,
+      "value": 3803,
       "n": null,
       "denominator": null
     },
     "id_links.share_of_api_units": {
-      "value": 0.3842,
-      "n": 3258,
+      "value": 0.4485,
+      "n": 3803,
       "denominator": 8480
     },
     "id_links.same_title": {
-      "value": 0.9954,
-      "n": 3243,
-      "denominator": 3258
+      "value": 0.9979,
+      "n": 3795,
+      "denominator": 3803
     },
     "groups.total": {
-      "value": 16812,
+      "value": 18948,
       "n": null,
       "denominator": null
     },
@@ -65,7 +65,7 @@
       "denominator": null
     },
     "groups.trudvsem_snapshot": {
-      "value": 7295,
+      "value": 9431,
       "n": null,
       "denominator": null
     },
@@ -75,52 +75,52 @@
       "denominator": null
     },
     "pairs.minhash": {
-      "value": 448080,
+      "value": 772147,
       "n": null,
       "denominator": null
     },
     "pairs.embedding": {
-      "value": 101028,
+      "value": 115972,
       "n": null,
       "denominator": null
     },
     "pairs.both": {
-      "value": 20005,
+      "value": 24569,
       "n": null,
       "denominator": null
     },
     "pairs.union": {
-      "value": 529103,
+      "value": 863550,
       "n": null,
       "denominator": null
     },
     "pairs.cross_source": {
-      "value": 0.4563,
-      "n": 241442,
-      "denominator": 529103
+      "value": 0.474,
+      "n": 409347,
+      "denominator": 863550
     },
     "pairs.band.high_minhash": {
-      "value": 150632,
+      "value": 255200,
       "n": null,
       "denominator": null
     },
     "pairs.band.high_embed": {
-      "value": 98363,
+      "value": 164315,
       "n": null,
       "denominator": null
     },
     "pairs.band.border_minhash": {
-      "value": 185641,
+      "value": 325647,
       "n": null,
       "denominator": null
     },
     "pairs.band.border_embed": {
-      "value": 38783,
+      "value": 56557,
       "n": null,
       "denominator": null
     },
     "pairs.band.below_border": {
-      "value": 55684,
+      "value": 61831,
       "n": null,
       "denominator": null
     },
@@ -210,17 +210,17 @@
       "denominator": null
     },
     "seconds.embedding": {
-      "value": 39.2,
+      "value": 44.3,
       "n": null,
       "denominator": null
     },
     "seconds.minhash": {
-      "value": 10.6,
+      "value": 14.3,
       "n": null,
       "denominator": null
     },
     "seconds.knn": {
-      "value": 2.6,
+      "value": 3.5,
       "n": null,
       "denominator": null
     },
@@ -230,9 +230,9 @@
       "denominator": null
     },
     "embedding.truncated_texts": {
-      "value": 0.0789,
-      "n": 1583,
-      "denominator": 20070
+      "value": 0.0798,
+      "n": 1815,
+      "denominator": 22751
     }
   },
   "embedding": {
@@ -249,6 +249,7 @@
     "lsh_threshold": 0.5,
     "knn_k": 10,
     "knn_min_cosine": 0.93,
+    "embedding_model": "intfloat/multilingual-e5-base",
     "jaccard_high": 0.8,
     "jaccard_border": 0.4,
     "cosine_high": 0.98,
@@ -270,15 +271,7 @@
     "tuning_share": 0.5
   },
   "seed": 20261008,
-  "allocation_used": {
-    "high_minhash": 50,
-    "high_embed": 50,
-    "border_minhash": 70,
-    "border_embed": 70,
-    "cross_habr": 60,
-    "cross_trudvsem": 40,
-    "same_employer_low": 60
-  },
+  "sample_drawn_on": "stage A, 2026-10-08",
   "staging_days": {
     "trudvsem": [
       "2026-10-08",
@@ -286,7 +279,7 @@
     ],
     "trudvsem_snapshot": [
       "2026-06-30",
-      "2026-07-04"
+      "2026-07-21"
     ],
     "habr": [
       "2026-10-08",

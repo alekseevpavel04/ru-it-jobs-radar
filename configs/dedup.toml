@@ -1,0 +1,55 @@
+# Settings for `python -m radar.dedup`. Changing [candidates], [bands] or [sample]
+# changes the candidate set and the labeled sample; `candidates` refuses to overwrite a sample that
+# has been labeled. Changing [rule] changes every entity; record it in docs/EXPERIMENTS.md.
+
+[candidates]
+shingle_k = 3
+num_perm = 128
+lsh_threshold = 0.5
+knn_k = 10
+# e5 cosines are compressed: half of random unit pairs score above 0.87 and 1% above 0.93
+# (5 000 random pairs, 2026-10-08), so the neighbour floor sits at that 1% point.
+knn_min_cosine = 0.93
+embedding_model = "intfloat/multilingual-e5-base"
+
+[bands]
+jaccard_high = 0.8
+jaccard_border = 0.4
+cosine_high = 0.98
+cosine_border = 0.95
+
+[sample]
+tuning_share = 0.5
+# A stratum smaller than its allocation gives the remainder to these, in order.
+spill = ["border_embed", "border_minhash", "same_employer_low"]
+
+[sample.allocation]
+high_minhash = 50
+high_embed = 50
+border_minhash = 70
+border_embed = 70
+cross_habr = 60
+cross_trudvsem = 40
+same_employer_low = 60
+
+[selection]
+# Grid searched on the tuning half of the labeled pairs; the held-out half only scores the winner.
+jaccard = [0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95]
+cosine = [0.95, 0.955, 0.96, 0.965, 0.97, 0.975, 0.98, 0.985, 0.99, 0.995]
+
+# The decision rule, as chosen by `python -m radar.dedup evaluate` on the tuning half (highest
+# weighted F1). `evaluate` fails if this differs from what the selection picks, so the two cannot
+# drift apart. A missing threshold means that method takes no part: on the tuning half every
+# cosine threshold added to Jaccard 0.7 brought more false links than positives and lowered F1.
+[rule]
+jaccard = 0.7
+same_place = true
+same_title = false
+
+[text_cluster]
+# Same text regardless of place: the grouping for the gold split (5.2), not an entity.
+jaccard = 0.8
+
+[entities]
+# A component above this size is a chain through templates, not one vacancy; see entities.py.
+max_component = 25

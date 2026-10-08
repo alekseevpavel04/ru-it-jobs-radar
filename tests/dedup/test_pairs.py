@@ -10,7 +10,6 @@ from radar.dedup.pairs import (
     Candidate,
     Keys,
     ListedPairs,
-    Params,
     allocate,
     band,
     build_strata,
@@ -19,8 +18,9 @@ from radar.dedup.pairs import (
     sample_stratum,
     split_tuning,
 )
+from radar.dedup.settings import load
 
-P = Params()
+P = load().params
 
 
 def cand(jaccard: float, cosine: float) -> Candidate:

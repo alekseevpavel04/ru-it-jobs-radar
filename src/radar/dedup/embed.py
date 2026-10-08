@@ -18,6 +18,7 @@ from typing import Any
 
 import numpy as np
 
+from radar.dedup.settings import load
 from radar.dedup.units import inputs_digest, read_units
 
 log = logging.getLogger("radar.dedup.embed")
@@ -86,7 +87,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="python -m radar.dedup.embed")
     parser.add_argument("--units", type=Path, default=ROOT / "data" / "dedup" / "units.parquet")
     parser.add_argument("--out", type=Path, default=ROOT / "data" / "dedup" / "embeddings.npy")
-    parser.add_argument("--model", default="intfloat/multilingual-e5-base")
+    parser.add_argument("--model", default=load().params.embedding_model)
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--max-length", type=int, default=512)
     parser.add_argument("--limit", type=int, help="probe on the first N units; nothing is written")

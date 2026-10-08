@@ -26,8 +26,10 @@ its allocation is taken whole.
 import random
 from collections import defaultdict
 from collections.abc import Callable, Hashable, Iterable, Sequence
-from dataclasses import asdict, dataclass, field
+from dataclasses import dataclass
 from typing import Any, Protocol
+
+from radar.dedup.settings import Params
 
 STRATA = (
     "high_minhash",
@@ -39,38 +41,6 @@ STRATA = (
     "same_employer_low",
 )
 BAND_STRATA = STRATA[:4]
-
-
-@dataclass(frozen=True)
-class Params:
-    shingle_k: int = 3
-    num_perm: int = 128
-    lsh_threshold: float = 0.5
-    knn_k: int = 10
-    # e5 cosines are compressed: half of random unit pairs score above 0.87 and 1% above 0.93
-    # (5 000 random pairs, 2026-10-08), so the floor sits at that 1% point.
-    knn_min_cosine: float = 0.93
-    jaccard_high: float = 0.8
-    jaccard_border: float = 0.4
-    cosine_high: float = 0.98
-    cosine_border: float = 0.95
-    allocation: dict[str, int] = field(
-        default_factory=lambda: {
-            "high_minhash": 50,
-            "high_embed": 50,
-            "border_minhash": 70,
-            "border_embed": 70,
-            "cross_habr": 60,
-            "cross_trudvsem": 40,
-            "same_employer_low": 60,
-        }
-    )
-    # A stratum smaller than its allocation gives the remainder to these, in order.
-    spill: tuple[str, ...] = ("border_embed", "border_minhash", "same_employer_low")
-    tuning_share: float = 0.5
-
-    def as_dict(self) -> dict[str, Any]:
-        return asdict(self)
 
 
 @dataclass(frozen=True)

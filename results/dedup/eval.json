@@ -1,0 +1,329 @@
+{
+  "source_script": "src/radar/dedup/__main__.py",
+  "command": "python -m radar.dedup evaluate",
+  "commit": "8885d43-dirty",
+  "created_at": "2026-10-08T15:33:35+00:00",
+  "metrics": {
+    "heldout.rule.hajek.precision": {
+      "value": 0.2158,
+      "n": null,
+      "denominator": null,
+      "low": 0.0549,
+      "high": 0.8385,
+      "resamples_defined": 2000
+    },
+    "heldout.rule.hajek.recall": {
+      "value": 0.2338,
+      "n": null,
+      "denominator": null,
+      "low": 0.053,
+      "high": 0.9574,
+      "resamples_defined": 2000
+    },
+    "heldout.rule.hansen_hurwitz.precision": {
+      "value": 0.2188,
+      "n": null,
+      "denominator": null,
+      "low": 0.0634,
+      "high": 0.8113,
+      "resamples_defined": 2000
+    },
+    "heldout.rule.hansen_hurwitz.recall": {
+      "value": 0.2089,
+      "n": null,
+      "denominator": null,
+      "low": 0.0517,
+      "high": 0.9086,
+      "resamples_defined": 2000
+    },
+    "heldout.rule.raw.tp": {
+      "value": 9,
+      "n": null,
+      "denominator": null
+    },
+    "heldout.rule.raw.fp": {
+      "value": 6,
+      "n": null,
+      "denominator": null
+    },
+    "heldout.rule.raw.fn": {
+      "value": 5,
+      "n": null,
+      "denominator": null
+    },
+    "heldout.rule.raw.precision": {
+      "value": 0.6,
+      "n": 9,
+      "denominator": 15
+    },
+    "heldout.rule.raw.recall": {
+      "value": 0.6429,
+      "n": 9,
+      "denominator": 14
+    },
+    "tuning.rule.raw.tp": {
+      "value": 9,
+      "n": null,
+      "denominator": null
+    },
+    "tuning.rule.raw.fp": {
+      "value": 3,
+      "n": null,
+      "denominator": null
+    },
+    "tuning.rule.raw.fn": {
+      "value": 4,
+      "n": null,
+      "denominator": null
+    },
+    "tuning.rule.raw.precision": {
+      "value": 0.75,
+      "n": 9,
+      "denominator": 12
+    },
+    "tuning.rule.raw.recall": {
+      "value": 0.6923,
+      "n": 9,
+      "denominator": 13
+    },
+    "heldout.entity.hajek.precision": {
+      "value": 0.8326,
+      "n": null,
+      "denominator": null,
+      "low": 0.5193,
+      "high": 1.0,
+      "resamples_defined": 2000
+    },
+    "heldout.entity.hajek.recall": {
+      "value": 0.2338,
+      "n": null,
+      "denominator": null,
+      "low": 0.053,
+      "high": 0.9574,
+      "resamples_defined": 2000
+    },
+    "heldout.entity.hansen_hurwitz.precision": {
+      "value": 0.8122,
+      "n": null,
+      "denominator": null,
+      "low": 0.4962,
+      "high": 1.0,
+      "resamples_defined": 2000
+    },
+    "heldout.entity.hansen_hurwitz.recall": {
+      "value": 0.2089,
+      "n": null,
+      "denominator": null,
+      "low": 0.0517,
+      "high": 0.9086,
+      "resamples_defined": 2000
+    },
+    "heldout.entity.raw.tp": {
+      "value": 9,
+      "n": null,
+      "denominator": null
+    },
+    "heldout.entity.raw.fp": {
+      "value": 3,
+      "n": null,
+      "denominator": null
+    },
+    "heldout.entity.raw.fn": {
+      "value": 5,
+      "n": null,
+      "denominator": null
+    },
+    "heldout.entity.raw.precision": {
+      "value": 0.75,
+      "n": 9,
+      "denominator": 12
+    },
+    "heldout.entity.raw.recall": {
+      "value": 0.6429,
+      "n": 9,
+      "denominator": 14
+    },
+    "tuning.entity.raw.tp": {
+      "value": 9,
+      "n": null,
+      "denominator": null
+    },
+    "tuning.entity.raw.fp": {
+      "value": 3,
+      "n": null,
+      "denominator": null
+    },
+    "tuning.entity.raw.fn": {
+      "value": 4,
+      "n": null,
+      "denominator": null
+    },
+    "tuning.entity.raw.precision": {
+      "value": 0.75,
+      "n": 9,
+      "denominator": 12
+    },
+    "tuning.entity.raw.recall": {
+      "value": 0.6923,
+      "n": 9,
+      "denominator": 13
+    },
+    "heldout.rule.recall_worst_case": {
+      "value": 0.0112,
+      "n": null,
+      "denominator": null,
+      "strata_without_positives": [
+        "border_embed",
+        "cross_habr",
+        "cross_trudvsem",
+        "same_employer_low"
+      ]
+    },
+    "tuning.rule.hajek.f1": {
+      "value": 0.8081,
+      "n": null,
+      "denominator": null
+    },
+    "labels.same": {
+      "value": 27,
+      "n": null,
+      "denominator": null
+    },
+    "labels.different": {
+      "value": 370,
+      "n": null,
+      "denominator": null
+    },
+    "labels.unsure_excluded": {
+      "value": 0.0075,
+      "n": 3,
+      "denominator": 400
+    },
+    "labels.heldout_evaluated": {
+      "value": 199,
+      "n": null,
+      "denominator": null
+    },
+    "labels.tuning_evaluated": {
+      "value": 198,
+      "n": null,
+      "denominator": null
+    },
+    "agreement.pairs": {
+      "value": 0.9925,
+      "n": 397,
+      "denominator": 400
+    },
+    "agreement.kappa_same_different": {
+      "value": 1.0,
+      "n": null,
+      "denominator": null,
+      "pairs": 395
+    },
+    "agreement.kappa_three_labels": {
+      "value": 0.9472,
+      "n": null,
+      "denominator": null,
+      "pairs": 400
+    },
+    "entities.records": {
+      "value": 22751,
+      "n": null,
+      "denominator": null
+    },
+    "entities.total": {
+      "value": 16485,
+      "n": null,
+      "denominator": null
+    },
+    "entities.multi_record": {
+      "value": 0.3028,
+      "n": 4991,
+      "denominator": 16485
+    },
+    "entities.multi_source": {
+      "value": 0.2624,
+      "n": 4325,
+      "denominator": 16485
+    },
+    "entities.habr_and_trudvsem": {
+      "value": 0.0001,
+      "n": 1,
+      "denominator": 16485
+    },
+    "entities.largest": {
+      "value": 31,
+      "n": null,
+      "denominator": null
+    },
+    "text_clusters.total": {
+      "value": 14288,
+      "n": null,
+      "denominator": null
+    },
+    "text_clusters.largest": {
+      "value": 724,
+      "n": null,
+      "denominator": null
+    },
+    "text_clusters.multi_record": {
+      "value": 0.3117,
+      "n": 4453,
+      "denominator": 14288
+    },
+    "entities.with_trudvsem": {
+      "value": 7920,
+      "n": null,
+      "denominator": null
+    },
+    "entities.with_trudvsem_snapshot": {
+      "value": 11881,
+      "n": null,
+      "denominator": null
+    },
+    "entities.with_habr": {
+      "value": 1009,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "rule": {
+    "jaccard": 0.7,
+    "cosine": null,
+    "same_place": true,
+    "same_title": false
+  },
+  "selection": "highest Hajek-weighted F1 on the tuning half over the grid of configs/dedup.toml [selection]",
+  "entities_build": {
+    "built_at": "2026-10-08T15:31:39+00:00",
+    "rule": {
+      "jaccard": 0.7,
+      "cosine": null,
+      "same_place": true,
+      "same_title": false
+    },
+    "rule_edges": 9326,
+    "text_edges": 255200,
+    "largest_component_unconstrained": 60,
+    "links_refused_by_traits": 3525,
+    "largest_component_constrained": 22,
+    "max_component": 25,
+    "components_recut": 4,
+    "sizes_in": "groups (an API record and a snapshot record with one id are one group)",
+    "units_digest": "33071880ab4444a37d62f96350c140737d08f554dd4c8a47be92b5ead01088d3"
+  },
+  "bootstrap": {
+    "n_resamples": 2000,
+    "seed": 20261008,
+    "confidence": 0.95
+  },
+  "estimators": "Precision and recall of the dedup rule on the labeled pairs, weighted back to all pairs.\n\nPairs were drawn through units with a known per-draw probability p (pairs.py). Within a stratum\nthe Hansen-Hurwitz estimate of a pair total is mean(z / p) over the drawn pairs, so a pair through\na unit with few partners counts for few pairs and one through a template hub for many. Totals add\nover strata; precision and recall are ratios of totals. Pairs labeled unsure are left out, and the\nstratum mean is taken over the pairs that remain (assumes unsure is unrelated to the label).\n\nIntervals: percentile bootstrap that resamples pairs within each stratum, so every stratum keeps\nits size. A stratum with no positive pair contributes zero positives in every resample, and the\nbootstrap cannot say how many it misses; `missed_upper` gives the rule-of-three bound for that.\n",
+  "notes": [
+    "unsure pairs are excluded from every estimate",
+    "id links between trudvsem API and snapshots are taken as the same vacancy and are not in the sample",
+    "rule.* scores the pairwise decision; entity.* scores membership in one connected component",
+    "rule.* held-out scores are clean: the rule was fixed on the tuning half before the held-out half was scored",
+    "entity.* held-out scores are optimistic: the component constraints (one INN, one settlement, one street; place kept for remote sole proprietors) were added after the held-out pairwise errors had been seen, and the sole-proprietor case removes held-out pair d0004 directly",
+    "recall over all pairs is not estimable from this sample: four strata hold no positive pair, and recall_worst_case is the rule-of-three bound if they held 3/n of their pairs"
+  ]
+}
