@@ -56,7 +56,11 @@ def invocation() -> str:
     """The command line as typed: `python -m radar.eval ...` rather than `__main__.py ...`."""
     main = sys.modules.get("__main__")
     spec = getattr(main, "__spec__", None)
-    head = f"python -m {spec.name.removesuffix('.__main__')}" if spec else Path(sys.argv[0]).name
+    if spec:
+        head = f"python -m {spec.name.removesuffix('.__main__')}"
+    else:
+        script = Path(sys.argv[0]).resolve()
+        head = f"python {script.relative_to(ROOT).as_posix() if script.is_relative_to(ROOT) else script.name}"
     return " ".join([head, *sys.argv[1:]])
 
 
