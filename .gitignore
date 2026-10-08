@@ -1,0 +1,23 @@
+# secrets
+.env
+.env.*
+!.env.example
+*.session
+*.pem
+
+# tooling
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+logs/
+.vscode/
+.DS_Store
+
+data/
+models/
+mlruns/
+mlartifacts/
+storage/
+*.gguf
+*.safetensors
