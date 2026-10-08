@@ -1,0 +1,83 @@
+User-agent: *
+# Страницы lk и utm
+Disallow: /auth/*
+Disallow: /*utm_
+Disallow: *ysclid=*
+Disallow: /*candidate/ekd*
+Disallow: /*employer/ekd*
+Disallow: /*fsin-faq*
+Disallow: /*migration-faq*
+Disallow: /*registration-closed*
+Disallow: */unmoderated/*
+Disallow: */job_fair/*
+
+# Фильтрация вакансий
+Disallow: /*_sorting=*
+Disallow: /*_mobility=*
+Disallow: /*_quoted=*
+Disallow: /*_special=*
+Disallow: /*_salary=*
+Disallow: /*_experience=*
+Disallow: /*_pcid=*
+Disallow: /*_mainSpheres=*
+Disallow: /*_spheres=*
+Disallow: /*_education=*
+Disallow: /*_busy=*
+Disallow: /*_schedule=*
+Disallow: /*_vacancySource=*
+Disallow: /*_socialProtected=*
+Disallow: /*_accommodation=*
+Disallow: /*quoted=*
+
+# Фильтрация резюме
+Disallow: /*_relocationRegions=*
+Disallow: /*_driverLicense=*
+Disallow: /*_sphere=*
+Disallow: /*_competence=*
+Disallow: /*_langs=*
+Disallow: /*_countries=*
+Disallow: /*_busyType=*
+Disallow: /*_scheduleType=*
+Disallow: /*_minAge=*
+Disallow: /*_maxAge=*
+Disallow: /*_releaseDateFrom=*
+Disallow: /*_releaseDateTo=*
+Disallow: /*_gender=*
+Disallow: /*_children=*
+Disallow: /*_maritalStatus=*
+
+# Фильтрация поисковых дублей
+Disallow: /*?title=*
+Disallow: */company/*@*
+Disallow: */company/*.*
+Disallow: */iblocks/files/*
+Disallow: */company?companyId=*
+Disallow: */registration-closed?id=*
+
+# фильтрация поисковых параметров
+Disallow: /*&page
+Disallow: /*&_page
+Disallow: /*?page
+Disallow: /*?_page
+Disallow: /*_page
+Disallow: /*_regionCode
+Disallow: */vacancy/search?regionCode=*
+Disallow: /*sliders
+Disallow: /*_publishDateType=*
+Disallow: /*_titleType=*
+Disallow: /*companyCode*
+Disallow: /*profActivityCode*
+Disallow: /*proforientation_result*
+Disallow: /*result*
+Disallow: /*print*
+Disallow: /*BITRIX*
+Disallow: /*advert*
+Disallow: /*AssertionConsumerService*
+Disallow: /widget/*
+Disallow: /mailing/*
+Disallow: /*SingleLogoutService*
+Disallow: /*captcha*
+Disallow: /*profession?code=*
+
+Host: https://trudvsem.ru/
+sitemap: https://trudvsem.ru/sitemap.xml

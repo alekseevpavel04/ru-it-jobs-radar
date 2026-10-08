@@ -1,0 +1,426 @@
+{
+ "list": [
+  {
+   "id": 1000000101,
+   "href": "/vacancies/1000000101",
+   "title": "Менеджер по работе с ключевыми клиентами (IT-решения)",
+   "isMarked": true,
+   "remoteWork": false,
+   "salaryQualification": {
+    "title": "Ведущий (Lead)",
+    "href": "/vacancies?qid=6"
+   },
+   "publishedDate": {
+    "date": "2026-10-08T13:22:52+03:00",
+    "title": "8 октября"
+   },
+   "location": null,
+   "company": {
+    "id": 1000000011,
+    "alias_name": "alfa-tech-example",
+    "href": "/companies/alfa-tech-example",
+    "title": "Альфа Тех",
+    "accredited": false,
+    "logo": {
+     "src": "https://habrastorage.org/getpro/moikrug/uploads/company/100/000/011/1/logo/medium_example11.jpg"
+    },
+    "rating": null
+   },
+   "employment": "full_time",
+   "salary": {
+    "from": 250000,
+    "to": null,
+    "currency": "rur",
+    "formatted": "от 250 000 ₽"
+   },
+   "divisions": [
+    {
+     "title": "Менеджер по работе с клиентами",
+     "href": "/vacancies/spec/sales/account_manager"
+    }
+   ],
+   "skills": [
+    {
+     "title": "Управление проектами",
+     "href": "/vacancies/skills/upravlenie-proektami"
+    },
+    {
+     "title": "Ведение переговоров",
+     "href": "/vacancies/skills/vedenie-peregovorov"
+    },
+    {
+     "title": "Презентации",
+     "href": "/vacancies/skills/prezentatsii"
+    }
+   ],
+   "media": null,
+   "locations": [
+    {
+     "title": "Москва",
+     "href": "/vacancies?city_id=678"
+    }
+   ],
+   "favorite": false,
+   "archived": false,
+   "hidden": false,
+   "can_edit": false,
+   "userVacancyBanHref": "/api/frontend/user_vacancy_bans",
+   "quickResponseHref": "/api/frontend/quick_responses",
+   "qualification": "Lead",
+   "externalLink": null,
+   "predictedSalary": null,
+   "reactions": {
+    "items": [
+     {
+      "name": "arrow",
+      "title": "arrow",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f3af.svg"
+     },
+     {
+      "name": "bang",
+      "title": "bang",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f4a5.svg"
+     },
+     {
+      "name": "cash",
+      "title": "cash",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f4b0.svg"
+     },
+     {
+      "name": "boom",
+      "title": "boom",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f389.svg"
+     },
+     {
+      "name": "fire",
+      "title": "fire",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f525.svg"
+     },
+     {
+      "name": "glass",
+      "title": "glass",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f942.svg"
+     },
+     {
+      "name": "snow",
+      "title": "snow",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/2744.svg"
+     },
+     {
+      "name": "heart",
+      "title": "heart",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/2764.svg"
+     }
+    ],
+    "fallbackHref": "https://career.habr.com/users/auth/tmid"
+   },
+   "response": {
+    "kind": "guest"
+   },
+   "hasPublishedCBP": false,
+   "color": null
+  },
+  {
+   "id": 1000000102,
+   "href": "/vacancies/1000000102",
+   "title": "Руководитель группы поддержки 1С",
+   "isMarked": false,
+   "remoteWork": true,
+   "salaryQualification": {
+    "title": "Ведущий (Lead)",
+    "href": "/vacancies?qid=6"
+   },
+   "publishedDate": {
+    "date": "2026-10-08T13:19:00+03:00",
+    "title": "8 октября"
+   },
+   "location": null,
+   "company": {
+    "id": 1000000012,
+    "alias_name": "beta-soft-example",
+    "href": "/companies/beta-soft-example",
+    "title": "Бета Софт",
+    "accredited": true,
+    "logo": {
+     "src": "https://habrastorage.org/getpro/moikrug/uploads/company/100/000/012/1/logo/medium_example12.jpg"
+    },
+    "rating": null
+   },
+   "employment": "full_time",
+   "salary": {
+    "from": null,
+    "to": null,
+    "currency": null,
+    "formatted": ""
+   },
+   "divisions": [
+    {
+     "title": "Директор технической поддержки",
+     "href": "/vacancies/spec/support/technical_support_director"
+    }
+   ],
+   "skills": [
+    {
+     "title": "Управление людьми",
+     "href": "/vacancies/skills/upravlenie-personalom"
+    }
+   ],
+   "media": null,
+   "locations": [
+    {
+     "title": "Санкт-Петербург",
+     "href": "/vacancies?city_id=679"
+    }
+   ],
+   "favorite": false,
+   "archived": false,
+   "hidden": false,
+   "can_edit": false,
+   "userVacancyBanHref": "/api/frontend/user_vacancy_bans",
+   "quickResponseHref": "/api/frontend/quick_responses",
+   "qualification": "Lead",
+   "externalLink": "/vacancies/1000000102/external_response",
+   "predictedSalary": {
+    "from": 200000,
+    "to": 380000,
+    "currency": "rur",
+    "formatted": "от 200 000 до 380 000 ₽"
+   },
+   "reactions": {
+    "items": [
+     {
+      "name": "arrow",
+      "title": "arrow",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f3af.svg"
+     },
+     {
+      "name": "bang",
+      "title": "bang",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f4a5.svg"
+     },
+     {
+      "name": "cash",
+      "title": "cash",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f4b0.svg"
+     },
+     {
+      "name": "boom",
+      "title": "boom",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f389.svg"
+     },
+     {
+      "name": "fire",
+      "title": "fire",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f525.svg"
+     },
+     {
+      "name": "glass",
+      "title": "glass",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f942.svg"
+     },
+     {
+      "name": "snow",
+      "title": "snow",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/2744.svg"
+     },
+     {
+      "name": "heart",
+      "title": "heart",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/2764.svg"
+     }
+    ],
+    "fallbackHref": "https://career.habr.com/users/auth/tmid"
+   },
+   "response": {
+    "kind": "guest"
+   },
+   "hasPublishedCBP": false,
+   "color": null
+  },
+  {
+   "id": 1000000002,
+   "href": "/vacancies/1000000002",
+   "title": "Python backend",
+   "isMarked": false,
+   "remoteWork": false,
+   "salaryQualification": {
+    "title": "Средний (Middle)",
+    "href": "/vacancies?qid=4"
+   },
+   "publishedDate": {
+    "date": "2026-10-06T18:57:01+03:00",
+    "title": "6 октября"
+   },
+   "location": null,
+   "company": {
+    "id": 1000000001,
+    "alias_name": "ip-ivanov-example",
+    "href": "/companies/ip-ivanov-example",
+    "title": "ИП Иванов Иван Иванович",
+    "accredited": false,
+    "logo": null,
+    "rating": null
+   },
+   "employment": "full_time",
+   "salary": {
+    "from": 230000,
+    "to": null,
+    "currency": "rur",
+    "formatted": "от 230 000 ₽"
+   },
+   "divisions": [
+    {
+     "title": "Бэкенд разработчик",
+     "href": "/vacancies/spec/development/backend"
+    }
+   ],
+   "skills": [
+    {
+     "title": "Git",
+     "href": "/vacancies/skills/git"
+    },
+    {
+     "title": "Python",
+     "href": "/vacancies/programmist_python"
+    },
+    {
+     "title": "PostgreSQL",
+     "href": "/vacancies/skills/postgresql"
+    },
+    {
+     "title": "Linux",
+     "href": "/vacancies/skills/linux"
+    },
+    {
+     "title": "Docker",
+     "href": "/vacancies/skills/docker"
+    },
+    {
+     "title": "FastAPI",
+     "href": "/vacancies/skills/fastapi"
+    }
+   ],
+   "media": null,
+   "locations": [
+    {
+     "title": "Москва",
+     "href": "/vacancies?city_id=678"
+    }
+   ],
+   "favorite": false,
+   "archived": false,
+   "hidden": false,
+   "can_edit": false,
+   "userVacancyBanHref": "/api/frontend/user_vacancy_bans",
+   "quickResponseHref": "/api/frontend/quick_responses",
+   "qualification": "Middle",
+   "externalLink": null,
+   "predictedSalary": null,
+   "reactions": {
+    "items": [
+     {
+      "name": "arrow",
+      "title": "arrow",
+      "hasReacted": false,
+      "count": 1,
+      "image": "/images/emoji/1f3af.svg"
+     },
+     {
+      "name": "bang",
+      "title": "bang",
+      "hasReacted": false,
+      "count": 1,
+      "image": "/images/emoji/1f4a5.svg"
+     },
+     {
+      "name": "cash",
+      "title": "cash",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f4b0.svg"
+     },
+     {
+      "name": "boom",
+      "title": "boom",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f389.svg"
+     },
+     {
+      "name": "fire",
+      "title": "fire",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f525.svg"
+     },
+     {
+      "name": "glass",
+      "title": "glass",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/1f942.svg"
+     },
+     {
+      "name": "snow",
+      "title": "snow",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/2744.svg"
+     },
+     {
+      "name": "heart",
+      "title": "heart",
+      "hasReacted": false,
+      "count": 0,
+      "image": "/images/emoji/2764.svg"
+     }
+    ],
+    "fallbackHref": "https://career.habr.com/users/auth/tmid"
+   },
+   "response": {
+    "kind": "guest"
+   },
+   "hasPublishedCBP": false,
+   "color": null
+  }
+ ],
+ "meta": {
+  "totalResults": 1160,
+  "perPage": 50,
+  "currentPage": 1,
+  "totalPages": 20
+ },
+ "recommendedQuickVacancies": []
+}

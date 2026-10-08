@@ -1,0 +1,55 @@
+[
+ {
+  "target": "https://api.superjob.ru/2.0/vacancies/?count=1",
+  "request_id": "4fad80c3kd3f",
+  "permanent_link": "https://check-host.net/check-report/4fad80c3kd3f",
+  "checked_at_utc": "2026-10-08T10:35:10Z",
+  "result": {
+   "de1.node.check-host.net": [
+    [
+     1,
+     0.321900129318237,
+     "OK",
+     200,
+     "185.71.67.17"
+    ]
+   ],
+   "de4.node.check-host.net": [
+    [
+     0,
+     0.548675060272217,
+     "Forbidden",
+     "403",
+     "185.71.67.17"
+    ]
+   ],
+   "nl1.node.check-host.net": [
+    [
+     0,
+     0.19996190071106,
+     "Forbidden",
+     "403",
+     "185.71.67.17"
+    ]
+   ],
+   "us1.node.check-host.net": [
+    [
+     0,
+     1.3069179058075,
+     "Forbidden",
+     "403",
+     "185.71.67.17"
+    ]
+   ],
+   "us2.node.check-host.net": [
+    [
+     0,
+     0.696738004684448,
+     "Forbidden",
+     "403",
+     "185.71.67.17"
+    ]
+   ]
+  }
+ }
+]

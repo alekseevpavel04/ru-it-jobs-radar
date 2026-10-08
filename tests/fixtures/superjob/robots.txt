@@ -1,0 +1,45 @@
+User-agent: *
+Disallow: /
+Allow: /$
+Allow: /client
+Host: https://api.superjob.ru
+
+User-agent: AdsBot-Google-Mobile-Apps
+Disallow: /
+Allow: /$
+Allow: /client
+Allow: /2.0/vacancies/
+
+User-agent: twiceler
+Disallow: /
+
+User-agent: CazoodleBot
+Disallow: /
+
+User-agent: WebInject
+Disallow: /
+
+User-agent: IRLbot
+Disallow: /
+
+User-agent: gigabot
+Disallow: /
+
+User-agent: TurnitinBot
+Disallow: /
+
+User-agent: psbot
+Disallow: /
+
+User-agent: Riddler
+Disallow: /
+
+User-agent: msnbot
+Crawl-delay: 10
+
+User-agent: bingbot
+Crawl-delay: 10
+
+User-agent: Mail.Ru
+Crawl-delay: 60
+

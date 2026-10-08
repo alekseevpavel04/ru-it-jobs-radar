@@ -1,0 +1,108 @@
+[
+ {
+  "target": "https://opendata.trudvsem.ru/api/v1/vacancies?limit=1",
+  "request_id": "4fad769ckd25",
+  "permanent_link": "https://check-host.net/check-report/4fad769ckd25",
+  "checked_at_utc": "2026-10-08T10:34:13Z",
+  "result": {
+   "de1.node.check-host.net": [
+    [
+     1,
+     12.1927659511566,
+     "OK",
+     200,
+     "185.99.9.49"
+    ]
+   ],
+   "de4.node.check-host.net": [
+    [
+     1,
+     9.2973849773407,
+     "OK",
+     "200",
+     "185.99.9.49"
+    ]
+   ],
+   "nl1.node.check-host.net": [
+    [
+     1,
+     11.8643519878387,
+     "OK",
+     "200",
+     "185.99.9.49"
+    ]
+   ],
+   "us1.node.check-host.net": [
+    [
+     1,
+     12.7986431121826,
+     "OK",
+     "200",
+     "185.99.9.49"
+    ]
+   ],
+   "us2.node.check-host.net": [
+    [
+     1,
+     12.3771469593048,
+     "OK",
+     "200",
+     "185.99.9.49"
+    ]
+   ]
+  }
+ },
+ {
+  "target": "https://opendata.trudvsem.ru/json/industry.json",
+  "request_id": "4fad79fbkc51",
+  "permanent_link": "https://check-host.net/check-report/4fad79fbkc51",
+  "checked_at_utc": "2026-10-08T10:34:24Z",
+  "result": {
+   "de1.node.check-host.net": [
+    [
+     1,
+     1.21650290489197,
+     "OK",
+     200,
+     "185.99.9.49"
+    ]
+   ],
+   "de4.node.check-host.net": [
+    [
+     1,
+     1.24864602088928,
+     "OK",
+     "200",
+     "185.99.9.49"
+    ]
+   ],
+   "nl1.node.check-host.net": [
+    [
+     1,
+     1.20537495613098,
+     "OK",
+     "200",
+     "185.99.9.49"
+    ]
+   ],
+   "us1.node.check-host.net": [
+    [
+     1,
+     1.79225897789001,
+     "OK",
+     "200",
+     "185.99.9.49"
+    ]
+   ],
+   "us2.node.check-host.net": [
+    [
+     1,
+     1.65272903442383,
+     "OK",
+     "200",
+     "185.99.9.49"
+    ]
+   ]
+  }
+ }
+]

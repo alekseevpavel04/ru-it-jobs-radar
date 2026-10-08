@@ -1,0 +1,108 @@
+[
+ {
+  "target": "https://career.habr.com/api/frontend/vacancies?type=all&sort=date&page=1&per_page=1",
+  "request_id": "4fad7b7fk881",
+  "permanent_link": "https://check-host.net/check-report/4fad7b7fk881",
+  "checked_at_utc": "2026-10-08T10:34:36Z",
+  "result": {
+   "de1.node.check-host.net": [
+    [
+     1,
+     0.23799204826355,
+     "OK",
+     200,
+     "178.248.233.33"
+    ]
+   ],
+   "de4.node.check-host.net": [
+    [
+     1,
+     0.206614971160889,
+     "OK",
+     "200",
+     "178.248.233.33"
+    ]
+   ],
+   "nl1.node.check-host.net": [
+    [
+     1,
+     0.25847601890564,
+     "OK",
+     "200",
+     "178.248.233.33"
+    ]
+   ],
+   "us1.node.check-host.net": [
+    [
+     1,
+     0.684623956680298,
+     "OK",
+     "200",
+     "178.248.233.33"
+    ]
+   ],
+   "us2.node.check-host.net": [
+    [
+     1,
+     1.65618395805359,
+     "OK",
+     "200",
+     "178.248.233.33"
+    ]
+   ]
+  }
+ },
+ {
+  "target": "https://career.habr.com/vacancies/1000150058",
+  "request_id": "4fad7d0akf9f",
+  "permanent_link": "https://check-host.net/check-report/4fad7d0akf9f",
+  "checked_at_utc": "2026-10-08T10:34:47Z",
+  "result": {
+   "de1.node.check-host.net": [
+    [
+     1,
+     0.709122896194458,
+     "OK",
+     200,
+     "178.248.233.33"
+    ]
+   ],
+   "de4.node.check-host.net": [
+    [
+     1,
+     0.730233907699585,
+     "OK",
+     "200",
+     "178.248.233.33"
+    ]
+   ],
+   "nl1.node.check-host.net": [
+    [
+     1,
+     0.626018047332764,
+     "OK",
+     "200",
+     "178.248.233.33"
+    ]
+   ],
+   "us1.node.check-host.net": [
+    [
+     1,
+     0.961698055267334,
+     "OK",
+     "200",
+     "178.248.233.33"
+    ]
+   ],
+   "us2.node.check-host.net": [
+    [
+     1,
+     2.01136493682861,
+     "OK",
+     "200",
+     "178.248.233.33"
+    ]
+   ]
+  }
+ }
+]

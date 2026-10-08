@@ -1,0 +1,55 @@
+[
+ {
+  "target": "https://t.me/s/datasciencejobs",
+  "request_id": "4fad7ed7k20f",
+  "permanent_link": "https://check-host.net/check-report/4fad7ed7k20f",
+  "checked_at_utc": "2026-10-08T10:34:58Z",
+  "result": {
+   "de1.node.check-host.net": [
+    [
+     1,
+     0.156638860702515,
+     "OK",
+     200,
+     "149.154.167.99"
+    ]
+   ],
+   "de4.node.check-host.net": [
+    [
+     1,
+     0.169631958007812,
+     "OK",
+     "200",
+     "149.154.167.99"
+    ]
+   ],
+   "nl1.node.check-host.net": [
+    [
+     1,
+     0.147600173950195,
+     "OK",
+     "200",
+     "149.154.167.99"
+    ]
+   ],
+   "us1.node.check-host.net": [
+    [
+     1,
+     0.780067920684814,
+     "OK",
+     "200",
+     "149.154.167.99"
+    ]
+   ],
+   "us2.node.check-host.net": [
+    [
+     1,
+     0.62266206741333,
+     "OK",
+     "200",
+     "149.154.167.99"
+    ]
+   ]
+  }
+ }
+]
