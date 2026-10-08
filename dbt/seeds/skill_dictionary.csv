@@ -1,0 +1,266 @@
+skill,category,synonyms
+Python,language,python|питон[а-я]*|python3
+Java,language,java|джава
+Kotlin,language,kotlin|котлин
+Scala,language,scala
+JavaScript,language,javascript|js|джаваскрипт
+TypeScript,language,typescript|тайпскрипт
+Go,language,golang|go|го-разработ[а-я]*
+Rust,language,rust
+C++,language,c[+][+]|cpp|си[+][+]|с[+][+]
+C#,language,c#|си-шарп|с#
+PHP,language,php
+Ruby,language,ruby
+Swift,language,swift
+Objective-C,language,objective-c|obj-c
+Dart,language,dart
+R,language,язык r|r studio|rstudio|r shiny
+SQL,language,sql|t-sql|tsql|pl/sql|plsql|pl/pgsql|ansi sql
+Bash,language,bash|shell|sh-скрипт[а-я]*|shell-скрипт[а-я]*
+PowerShell,language,powershell
+Perl,language,perl
+Lua,language,lua
+Elixir,language,elixir
+Erlang,language,erlang
+Haskell,language,haskell
+Julia,language,julia
+MATLAB,language,matlab
+Delphi,language,delphi|object pascal
+Visual Basic,language,vba|visual basic|vb[.]net
+Groovy,language,groovy
+Solidity,language,solidity
+Assembler,language,assembler|ассемблер[а-я]*|asm
+Verilog,language,verilog|systemverilog
+VHDL,language,vhdl
+ABAP,language,abap
+1С,platform,1[сc]
+Bitrix,platform,битрикс[а-я0-9]*|bitrix[0-9]*|1[сc]-битрикс
+SAP,platform,sap|sap erp|sap hana|s/4hana
+Salesforce,platform,salesforce
+Django,framework,django|джанго
+Flask,framework,flask
+FastAPI,framework,fastapi
+aiohttp,framework,aiohttp
+Celery,framework,celery
+SQLAlchemy,framework,sqlalchemy
+Pydantic,framework,pydantic
+asyncio,framework,asyncio
+Spring,framework,spring|spring boot|springboot|spring framework|spring cloud
+Hibernate,framework,hibernate|jpa
+Quarkus,framework,quarkus
+Ktor,framework,ktor
+.NET,framework,[.]net|dotnet|[.]net core|asp[.]net|asp[.]net core
+Entity Framework,framework,entity framework|ef core
+Laravel,framework,laravel
+Symfony,framework,symfony
+Yii,framework,yii|yii2
+Ruby on Rails,framework,rails|ruby on rails|ror
+Node.js,framework,node[.]?js|node|нода
+NestJS,framework,nestjs|nest[.]js
+Express,framework,express[.]?js
+Gin,framework,gin
+gRPC,framework,grpc
+GraphQL,framework,graphql
+REST,framework,rest|rest api|restful
+SOAP,framework,soap
+WebSocket,framework,websockets?|веб-?сокет[а-я]*
+React,frontend,react|react[.]js|reactjs|реакт
+Vue,frontend,vue|vue[.]js|vuejs|vue3|nuxt|nuxt[.]js
+Angular,frontend,angular|angularjs
+Svelte,frontend,svelte|sveltekit
+Next.js,frontend,next[.]js|nextjs
+Redux,frontend,redux|redux toolkit
+MobX,frontend,mobx
+jQuery,frontend,jquery
+HTML,frontend,html|html5
+CSS,frontend,css|css3|sass|scss|less
+Tailwind,frontend,tailwind|tailwindcss
+Webpack,frontend,webpack
+Vite,frontend,vite
+Figma,design,figma|фигма
+Photoshop,design,photoshop|фотошоп
+Adobe Illustrator,design,illustrator
+Blender,design,blender
+iOS,mobile,ios
+Android,mobile,android|андроид
+SwiftUI,mobile,swiftui
+UIKit,mobile,uikit
+Jetpack Compose,mobile,jetpack compose
+Flutter,mobile,flutter|флаттер
+React Native,mobile,react native
+Kotlin Multiplatform,mobile,kotlin multiplatform|kmp|kmm
+PostgreSQL,database,postgresql|postgres|postgre|постгрес[а-я]*|pg
+MySQL,database,mysql|mariadb
+MS SQL Server,database,ms sql|mssql|ms sql server|sql server
+Oracle,database,oracle|оракл
+SQLite,database,sqlite
+MongoDB,database,mongodb|mongo|монго
+Redis,database,redis|редис
+ClickHouse,database,clickhouse|кликхаус
+Cassandra,database,cassandra
+Elasticsearch,database,elasticsearch|elastic|elk|opensearch
+Greenplum,database,greenplum|гринплам
+Vertica,database,vertica
+Snowflake,database,snowflake
+BigQuery,database,bigquery
+Tarantool,database,tarantool
+Neo4j,database,neo4j
+DynamoDB,database,dynamodb
+Memcached,database,memcached
+Firebird,database,firebird
+Kafka,data,kafka|apache kafka|кафка
+RabbitMQ,data,rabbitmq|rabbit
+NATS,data,nats
+Spark,data,spark|pyspark|apache spark|spark sql
+Hadoop,data,hadoop|hdfs|hive|yarn|mapreduce
+Airflow,data,airflow|apache airflow
+dbt,data,dbt
+Flink,data,flink|apache flink
+Trino,data,trino|presto
+Iceberg,data,iceberg|apache iceberg
+Delta Lake,data,delta lake
+NiFi,data,nifi|apache nifi
+Debezium,data,debezium
+DWH,data,dwh|хранилищ[а-я]* данных|data warehouse
+ETL,data,etl|elt
+Data Vault,data,data vault
+Big Data,data,big data|bigdata|больш[а-я]* данн[а-я]*
+Data Lake,data,data lake|datalake
+Pandas,data,pandas
+NumPy,data,numpy
+Polars,data,polars
+Jupyter,data,jupyter|ipython
+Excel,bi,excel|эксель|ms excel
+Power BI,bi,power bi|powerbi|power query|dax
+Tableau,bi,tableau
+Superset,bi,superset|apache superset
+Metabase,bi,metabase
+Looker,bi,looker|looker studio|data studio
+Qlik,bi,qlik|qlikview|qlik sense
+Grafana,devops,grafana
+DataLens,bi,datalens|yandex datalens
+Google Analytics,bi,google analytics|ga4
+Яндекс Метрика,bi,яндекс[.]?метрик[а-я]*|яндекс метрик[а-я]*|метрик[а-я]* яндекс|appmetrica
+A/B tests,analytics,a/b|ab[- ]тест[а-я]*|a/b[- ]тест[а-я]*|аб[- ]тест[а-я]*|ab testing|a/b testing|split[- ]тест[а-я]*
+Statistics,analytics,статистик[а-я]*|statistics|statistical|матстат[а-я]*|математическ[а-я]* статистик[а-я]*
+Product analytics,analytics,продуктов[а-я]* аналитик[а-я]*|product analytics|юнит[- ]экономик[а-я]*|unit economics|retention|когортн[а-я]* анализ[а-я]*
+Machine learning,ml,machine learning|машинн[а-я]* обучени[а-я]*|ml
+Deep learning,ml,deep learning|глубок[а-я]* обучени[а-я]*|нейронн[а-я]* сет[а-я]*|нейросет[а-я]*|neural networks?
+scikit-learn,ml,scikit-learn|sklearn|scikit
+PyTorch,ml,pytorch|torch
+TensorFlow,ml,tensorflow|keras
+JAX,ml,jax
+XGBoost,ml,xgboost
+LightGBM,ml,lightgbm|lgbm
+CatBoost,ml,catboost
+Gradient boosting,ml,градиентн[а-я]* бустинг[а-я]*|gradient boosting|бустинг[а-я]*
+Hugging Face,ml,hugging ?face|transformers
+LLM,ml,llm|llms|большие языковые модели|large language models?|gpt|chatgpt|gigachat|yandexgpt|llama|qwen|mistral
+RAG,ml,rag|retrieval[- ]augmented
+LangChain,ml,langchain|langgraph|llamaindex
+Prompt engineering,ml,prompt engineering|промпт[а-я]*|prompting
+Fine-tuning,ml,fine-?tuning|файнтюн[а-я]*|дообучени[а-я]*|lora|qlora|peft
+NLP,ml,nlp|natural language processing|обработк[а-я]* естественн[а-я]* язык[а-я]*
+Computer vision,ml,computer vision|компьютерн[а-я]* зрени[а-я]*|cv|opencv
+Recommender systems,ml,рекомендательн[а-я]* систем[а-я]*|recommender systems?|recsys
+Time series,ml,временн[а-я]* ряд[а-я]*|time series|прогнозировани[а-я]*|forecasting
+MLOps,ml,mlops
+MLflow,ml,mlflow
+Kubeflow,ml,kubeflow
+DVC,ml,dvc
+ONNX,ml,onnx|onnxruntime
+TensorRT,ml,tensorrt
+Triton,ml,triton
+vLLM,ml,vllm
+CUDA,ml,cuda
+Speech recognition,ml,asr|распознавани[а-я]* речи|speech recognition|tts|синтез[а-я]* речи
+Vector databases,ml,векторн[а-я]* баз[а-я]*|vector databases?|faiss|qdrant|milvus|pgvector|weaviate|chroma
+Docker,devops,docker|докер|docker-compose|docker compose
+Kubernetes,devops,kubernetes|k8s|кубернетес|openshift
+Helm,devops,helm
+Terraform,devops,terraform|terragrunt
+Ansible,devops,ansible
+Puppet,devops,puppet
+Chef,devops,chef
+CI/CD,devops,ci/cd|ci|непрерывн[а-я]* интеграци[а-я]*
+GitLab CI,devops,gitlab ci|gitlab-ci|gitlab
+GitHub Actions,devops,github actions
+Jenkins,devops,jenkins
+TeamCity,devops,teamcity
+ArgoCD,devops,argocd|argo cd|argo
+Prometheus,devops,prometheus
+Zabbix,devops,zabbix|заббикс
+ELK,devops,kibana|logstash|elk stack
+Nginx,devops,nginx
+Apache HTTP,devops,apache httpd|apache2
+Linux,os,linux|линукс|unix|ubuntu|debian|centos|rhel|red hat|astra linux|альт линукс|astra|ред ос|redos
+Windows,os,windows|виндовс|windows server
+Active Directory,os,active directory|ad ds|group policy|групповы[а-я]* политик[а-я]*
+VMware,devops,vmware|vsphere|esxi
+Hyper-V,devops,hyper-v
+Proxmox,devops,proxmox
+Virtualization,devops,виртуализаци[а-я]*|virtualization|kvm
+AWS,cloud,aws|amazon web services|ec2|s3
+GCP,cloud,gcp|google cloud
+Azure,cloud,azure
+Yandex Cloud,cloud,yandex cloud|яндекс облак[а-я]*|яндекс[.]облак[а-я]*
+VK Cloud,cloud,vk cloud
+Selectel,cloud,selectel|селектел
+OpenStack,cloud,openstack
+Networking,network,tcp/ip|tcp|udp|dns|dhcp|vlan|ospf|bgp|vpn|маршрутизаци[а-я]*|routing|switching|коммутаци[а-я]*|lan|wan
+Cisco,network,cisco|циско|ccna|ccnp
+MikroTik,network,mikrotik|микротик
+Huawei,network,huawei
+Wireshark,network,wireshark
+Git,tools,git|github|bitbucket
+Jira,tools,jira|джира
+Confluence,tools,confluence
+YouTrack,tools,youtrack
+Postman,tools,postman
+Swagger,tools,swagger|openapi
+Selenium,testing,selenium|селениум
+Playwright,testing,playwright
+Cypress,testing,cypress
+Appium,testing,appium
+pytest,testing,pytest
+JUnit,testing,junit|testng
+Jest,testing,jest
+Allure,testing,allure
+JMeter,testing,jmeter|gatling|locust|нагрузочн[а-я]* тестировани[а-я]*|load testing
+Manual testing,testing,ручн[а-я]* тестировани[а-я]*|manual testing|тест[- ]кейс[а-я]*|test cases?|чек[- ]лист[а-я]*
+Test automation,testing,автотест[а-я]*|автоматизаци[а-я]* тестировани[а-я]*|test automation
+Microservices,architecture,микросервис[а-я]*|microservices?
+System design,architecture,system design|высоконагруженн[а-я]*|highload|high load|архитектур[а-я]* (систем|приложени|по)[а-я]*
+OOP,architecture,ооп|oop|объектно-ориентированн[а-я]*
+SOLID,architecture,solid
+Design patterns,architecture,паттерн[а-я]* проектировани[а-я]*|design patterns?|gof
+DDD,architecture,ddd|domain-driven design
+Clean architecture,architecture,clean architecture|чист[а-я]* архитектур[а-я]*
+Algorithms,architecture,алгоритм[а-я]*|algorithms?|структур[а-я]* данных|data structures
+Multithreading,architecture,многопоточн[а-я]*|multithreading|concurrency|конкурентност[а-я]*
+UML,analysis,uml
+BPMN,analysis,bpmn|epc|idef0
+Requirements,analysis,сбор[а-я]* требовани[а-я]*|бизнес-требовани[а-я]*|функциональн[а-я]* требовани[а-я]*|техническ[а-я]* задани[а-я]*|тз|user stor(y|ies)|use case[s]?|srs|brd
+API integration,analysis,интеграци[а-я]*|integrations?|esb|api
+XML/JSON,analysis,xml|xsd|json|yaml
+Agile,methodology,agile|аджайл
+Scrum,methodology,scrum|скрам
+Kanban,methodology,kanban|канбан
+Waterfall,methodology,waterfall
+ITIL,methodology,itil|itsm
+SIEM,security,siem|soc|splunk|maxpatrol|kuma
+Pentest,security,pentest|пентест[а-я]*|penetration testing|burp|metasploit|kali
+DLP,security,dlp|infowatch|solar dozor
+Information security standards,security,152-фз|187-фз|кии|фстэк|фсб|гост р 57580|pci dss|iso 27001|iso/iec 27001
+Cryptography,security,криптограф[а-я]*|cryptography|pki|скзи|tls|ssl
+Firewalls,security,межсетев[а-я]* экран[а-я]*|firewall|ngfw|usergate|checkpoint|fortinet|palo alto|континент|vipnet|випнет
+Antivirus,security,антивирус[а-я]*|kaspersky|касперск[а-я]*|dr[.]? ?web
+Unity,gamedev,unity|юнити
+Unreal Engine,gamedev,unreal|unreal engine|ue4|ue5
+Embedded,embedded,embedded|встраиваем[а-я]*|микроконтроллер[а-я]*|stm32|arm|rtos|freertos|fpga|плис
+Qt,framework,qt|qml
+Electron,framework,electron
+WordPress,platform,wordpress
+English,language_human,английск[а-я]*|english|upper[- ]intermediate|intermediate|b1|b2|c1
+Communication,soft,коммуникабельн[а-я]*|коммуникативн[а-я]*|communication skills|навык[а-я]* коммуникаци[а-я]*
+Teamwork,soft,работ[а-я]* в команде|командн[а-я]* работ[а-я]*|teamwork|team player

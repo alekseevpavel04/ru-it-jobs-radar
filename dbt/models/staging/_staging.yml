@@ -528,3 +528,68 @@ models:
         data_tests: [not_null]
       - name: ingested_at
         description: When the chosen raw row reached ClickHouse.
+
+  - name: stg_telegram
+    description: >
+      Vacancy posts of the Telegram channels (raw is_vacancy by the rules of
+      radar.collect.telegram_rules), one row per post: an edited post is collected again under a new
+      content_hash and the latest fetch wins. For weekly aggregates only (DECISIONS 10): roles,
+      grades, formats and skills come from rules and the dictionary, no model. Neither the text nor
+      the first line is kept (DECISIONS 2). Cross-posts: the same normalized text (links, @names,
+      hashtags, punctuation and emoji aside) published in the same week counts once, whichever
+      channel carried it; the earliest copy is the one counted (is_week_duplicate false). The
+      configs network groups explain most copies, but the data also has copies across networks and
+      reposts inside one channel, so the week, not the network, is the dedup scope.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source_id]
+    columns:
+      - name: source_id
+        description: <channel>/<post id>.
+        data_tests: [not_null]
+      - name: channel
+        description: Channel name.
+        data_tests: [not_null]
+      - name: network
+        description: Publisher network of the channel (seed telegram_channels, from configs/telegram_channels.toml); the channel itself when it has none.
+        data_tests: [not_null]
+      - name: channel_topic
+        description: Topic of the channel in the config (data, ml, general, ...).
+      - name: dt
+        description: Raw partition (Moscow day of the run that read the post).
+      - name: fetched_at
+        description: When the page with the post was read (UTC).
+      - name: published_at
+        description: Post date (UTC).
+        data_tests: [not_null]
+      - name: published_week
+        description: Monday of the post's week, Moscow time.
+        data_tests: [not_null]
+      - name: is_multi_vacancy
+        description: The rules counted several vacancies in the post; not split.
+      - name: vacancies_in_post
+        description: Vacancies the rules counted in the post.
+      - name: links_to_habr
+        description: >
+          The post links a Habr Career vacancy. habr_career and progjob repost Habr Career; Telegram is
+          never added to Habr counts, so this only measures the overlap.
+      - name: text_hash
+        description: cityHash64 of the normalized text (macro telegram_text_hash).
+      - name: is_week_duplicate
+        description: An earlier post of the same week has the same normalized text.
+        data_tests: [not_null]
+      - name: role_bucket
+        description: >
+          Role bucket of the first line that is not only hashtags, else of the hashtags, else of the
+          first 300 characters; multi_post for multi-vacancy posts; not_it when nothing matches.
+      - name: grade
+        description: Grade named in the first line or the hashtags, lowest wins; unknown otherwise.
+      - name: work_format
+        description: office, hybrid, remote or unknown from phrases and hashtags of the text.
+      - name: no_experience_stated
+        description: The text says no experience is needed.
+      - name: skills
+        description: Dictionary skills found in the text, sorted.
+      - name: ingested_at
+        description: When the chosen raw row reached ClickHouse.

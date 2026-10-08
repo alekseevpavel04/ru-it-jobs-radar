@@ -1,0 +1,149 @@
+version: 2
+
+# Inputs of the marts, kept in the staging database (the read-only account cannot read them): the
+# rule fields of every IT vacancy record and the vacancy entity they make up.
+
+models:
+  - name: int_vacancy_records
+    description: >
+      One row per IT vacancy record within its source (source, source_id): the latest staged day of
+      the record, its lifetime from hist_vacancy_lifetime, the dedup entity and the rule fields of
+      the marts (macros/marts.sql). IT records are those the dedup links: snapshot and API records
+      with is_it_candidate, all of Habr. The entity is vacancy_entity_id of staging.vacancy_entities;
+      a record the dedup has not seen yet (staged after its last run) gets
+      "<family>:<source_id>", keyed by the portal so that its API and snapshot records still meet.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source, source_id]
+    columns:
+      - name: source
+        description: trudvsem, trudvsem_snapshot or habr.
+        data_tests: [not_null]
+      - name: source_id
+        description: Vacancy id at the source.
+        data_tests: [not_null]
+      - name: family
+        description: trudvsem (API and snapshots, one portal) or habr.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [trudvsem, habr]
+      - name: entity_id
+        description: Dedup entity, or "<family>:<source_id>" for a record the dedup has not seen.
+        data_tests: [not_null]
+      - name: has_dedup_entity
+        description: The entity comes from staging.vacancy_entities.
+      - name: dt
+        description: Latest staged day of the record (for the snapshot, the latest day it passed the IT filter).
+      - name: first_seen
+        description: First day seen open (hist_vacancy_lifetime); NULL when only closed-state rows exist.
+      - name: last_seen
+        description: Last day seen open.
+      - name: is_closed
+        description: The history observed the closure.
+      - name: closed_at
+        description: First day the vacancy counted as closed.
+      - name: duration_days
+        description: Lifetime in days as hist_vacancy_lifetime counts it.
+      - name: is_left_censored
+        description: Already open on the source's first collected day.
+      - name: title
+        description: Job title.
+      - name: employer_key
+        description: INN (trudvsem) or Habr company id; NULL for a sole proprietor.
+      - name: employer_name
+        description: Employer name; «ИП» for a sole proprietor.
+      - name: is_sole_proprietor
+        description: The employer is a sole proprietor (name «ИП» after the raw cleaner).
+      - name: salary_from
+        description: Lower bound as stated.
+      - name: salary_to
+        description: Upper bound as stated.
+      - name: salary_currency_code
+        description: ISO code of the stated currency.
+      - name: role_bucket
+        description: Role bucket of the title (macros/marts.sql, role_buckets); not_it when no IT role.
+      - name: grade
+        description: intern, junior, middle, senior, lead or unknown (Habr stated grade first, then the title).
+      - name: grade_is_stated
+        description: The grade is Habr's stated qualification, not the title rule.
+      - name: work_format
+        description: office, hybrid, remote or unknown (macros/marts.sql, work_format).
+      - name: region_group
+        description: moscow, spb, other, remote or unknown.
+      - name: experience_min_years
+        description: Required years of experience (trudvsem).
+      - name: no_experience
+        description: No experience required (trudvsem field 0; Habr text phrase).
+      - name: skills
+        description: Dictionary skills found in title, text and source skill tags, sorted.
+
+  - name: int_vacancy_entities
+    description: >
+      One row per vacancy (dedup entity) within its source family, with the fields of its latest
+      record: the latest staged day, the API before the snapshot on the same day. first_seen,
+      last_seen and closure span all its records; it is closed when all of them are. is_open_now
+      means not closed and seen within 7 days of the family's latest collected day (macro
+      open_now_days).
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [family, entity_id]
+    columns:
+      - name: family
+        description: trudvsem or habr.
+        data_tests: [not_null]
+      - name: entity_id
+        description: Dedup entity (see int_vacancy_records).
+        data_tests: [not_null]
+      - name: n_records
+        description: Records of the entity in the family (API and snapshot records, reposts with another id).
+      - name: sources
+        description: Sources the records come from.
+      - name: latest_source
+        description: Source of the record the fields come from.
+      - name: latest_source_id
+        description: Its id.
+      - name: latest_dt
+        description: Its latest staged day.
+      - name: first_seen
+        description: First day any record was seen open.
+      - name: last_seen
+        description: Last day any record was seen open.
+      - name: is_closed
+        description: Every record of the entity is closed.
+      - name: closed_at
+        description: Latest closure among its records, when all are closed.
+      - name: family_last_dt
+        description: Latest staged day of the family.
+      - name: is_open_now
+        description: Not closed and last seen within 7 days of family_last_dt.
+      - name: employer_key
+        description: INN or Habr company id of the latest record; NULL for a sole proprietor.
+      - name: employer_name
+        description: Employer name of the latest record.
+      - name: is_sole_proprietor
+        description: The employer is a sole proprietor.
+      - name: salary_from
+        description: Lower bound as stated in the latest record.
+      - name: salary_to
+        description: Upper bound as stated in the latest record.
+      - name: salary_currency_code
+        description: Currency of the latest record.
+      - name: role_bucket
+        description: Role bucket of the latest record.
+      - name: grade
+        description: Grade of the latest record.
+      - name: grade_is_stated
+        description: The grade is Habr's stated qualification.
+      - name: work_format
+        description: Work format of the latest record.
+      - name: region_group
+        description: Region group of the latest record.
+      - name: experience_min_years
+        description: Required years of experience (trudvsem).
+      - name: no_experience
+        description: No experience required.
+      - name: skills
+        description: Dictionary skills of the latest record.

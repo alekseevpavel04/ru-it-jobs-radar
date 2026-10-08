@@ -1,0 +1,51 @@
+version: 2
+
+seeds:
+  - name: skill_dictionary
+    description: >
+      Skill dictionary v0 for the marts: canonical skill, category and spellings, English
+      and Russian, picked from what the trudvsem, Habr and Telegram texts and Habr skill tags of
+      2026-10-08 obviously contain. Used for every source (marts and stg_telegram). The tuned dictionary replaces
+      it with the normalized skill dictionary of the extraction schema; until then the
+      skill counts are dictionary counts, with the false positives of short spellings in English
+      text (go, rest, solid) included.
+    config:
+      column_types:
+        skill: String
+        category: String
+        synonyms: String
+    columns:
+      - name: skill
+        description: Canonical skill name, the key of mart_skills.
+        data_tests: [unique, not_null]
+      - name: category
+        description: language, framework, frontend, mobile, database, data, bi, analytics, ml, devops, cloud, os, network, tools, testing, architecture, analysis, methodology, security, platform, design, gamedev, embedded, language_human, soft.
+        data_tests: [not_null]
+      - name: synonyms
+        description: >
+          Spellings separated by |, lowercase with ё written as е; each is an RE2 fragment matched
+          between non-word characters (macro skill_dictionary_constant), so + and . are written as
+          [+] and [.], and [а-я]* takes Russian endings.
+        data_tests: [not_null]
+
+  - name: telegram_channels
+    description: >
+      Channels of configs/telegram_channels.toml with their publisher network and topic, for
+      stg_telegram. A copy of the config, kept equal to it by tests/dbt (regenerate the CSV when the
+      config changes).
+    config:
+      column_types:
+        channel: String
+        network: String
+        topic: String
+        enabled: Bool
+    columns:
+      - name: channel
+        description: Channel name (t.me/s/<channel>).
+        data_tests: [unique, not_null]
+      - name: network
+        description: Publisher network; empty when the channel has none.
+      - name: topic
+        description: Topic in the config.
+      - name: enabled
+        description: Collected daily.

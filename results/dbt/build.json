@@ -1,36 +1,36 @@
 {
   "source_script": "dbt/report.py",
   "command": "python dbt/report.py",
-  "commit": "2a949fb-dirty",
-  "created_at": "2026-10-08T15:27:41+00:00",
+  "commit": "3aea5fa-dirty",
+  "created_at": "2026-10-08T16:07:56+00:00",
   "metrics": {
     "models_ok": {
       "value": 1.0,
-      "n": 10,
-      "denominator": 10
+      "n": 19,
+      "denominator": 19
     },
     "seeds_ok": {
       "value": 1.0,
-      "n": 1,
-      "denominator": 1
+      "n": 3,
+      "denominator": 3
     },
     "tests_passed": {
       "value": 1.0,
-      "n": 87,
-      "denominator": 87
+      "n": 158,
+      "denominator": 158
     },
     "tests_warned": {
       "value": 0,
       "n": 0,
-      "denominator": 87
+      "denominator": 158
     },
     "tests_failed": {
       "value": 0,
       "n": 0,
-      "denominator": 87
+      "denominator": 158
     },
     "build_seconds": {
-      "value": 405.7,
+      "value": 399.3,
       "n": null,
       "denominator": null
     },
@@ -38,22 +38,29 @@
       "value": "pass",
       "n": null,
       "denominator": null,
-      "hours_since_last_fetch": 2.3,
-      "checked_at": "2026-10-08T15:27:06.407421Z"
+      "hours_since_last_fetch": 3.0,
+      "checked_at": "2026-10-08T16:07:50.541180Z"
     },
-    "freshness_trudvsem_snapshot": {
+    "freshness_telegram": {
       "value": "pass",
       "n": null,
       "denominator": null,
-      "hours_since_last_fetch": 0.8,
-      "checked_at": "2026-10-08T15:27:06.407421Z"
+      "hours_since_last_fetch": 1.8,
+      "checked_at": "2026-10-08T16:07:50.541180Z"
     },
     "freshness_trudvsem": {
       "value": "pass",
       "n": null,
       "denominator": null,
-      "hours_since_last_fetch": 2.5,
-      "checked_at": "2026-10-08T15:27:06.407421Z"
+      "hours_since_last_fetch": 3.2,
+      "checked_at": "2026-10-08T16:07:50.541180Z"
+    },
+    "freshness_trudvsem_snapshot": {
+      "value": "pass",
+      "n": null,
+      "denominator": null,
+      "hours_since_last_fetch": 1.5,
+      "checked_at": "2026-10-08T16:07:50.541180Z"
     },
     "rows_stg_trudvsem_api_trudvsem": {
       "value": 11632,
@@ -207,7 +214,7 @@
     }
   },
   "dbt_version": "1.12.5",
-  "build_finished_at": "2026-10-08T15:26:48.948848Z",
+  "build_finished_at": "2026-10-08T16:05:45.589777Z",
   "notes": {
     "it_candidates": "wide IT filter is_it_candidate, not measured against labels yet",
     "habr_future_date_posted": "cards whose datePosted is later than the fetch, of cards read that day"

@@ -42,3 +42,36 @@ sources:
             warn_after: {count: 26, period: hour}
             error_after: {count: 50, period: hour}
             filter: "source = 'habr'"
+      - name: telegram
+        identifier: vacancies
+        description: >
+          Posts of the public Telegram channels of configs/telegram_channels.toml read through
+          t.me/s/ (DECISIONS 10: weekly aggregates only); dt is the Moscow day of the run, not of
+          the post. is_vacancy and multi_vacancy come from the rules of radar.collect.telegram_rules.
+        config:
+          freshness:
+            warn_after: {count: 26, period: hour}
+            error_after: {count: 50, period: hour}
+            filter: "source = 'telegram'"
+
+  - name: dedup
+    database: staging
+    schema: staging
+    description: >
+      Tables written by Python steps of the pipeline rather than by dbt.
+    tables:
+      - name: vacancy_entities
+        description: >
+          Cross-source dedup entities, written by `python -m radar.dedup link` over the IT
+          units of stg_trudvsem_api, stg_trudvsem_snapshot and stg_habr as staged when it ran. One
+          row per (source, source_id). Records staged after that run have no row yet; the marts then
+          fall back to the record's own id (int_vacancy_records).
+        columns:
+          - name: source
+            description: trudvsem, trudvsem_snapshot or habr.
+          - name: source_id
+            description: Vacancy id at the source; the API and the snapshots share ids.
+          - name: vacancy_entity_id
+            description: One vacancy across records and sources (connected component of the dedup rule).
+          - name: text_cluster_id
+            description: Near-identical text regardless of place and employer; the unit of the gold split.
