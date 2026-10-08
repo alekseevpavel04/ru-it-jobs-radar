@@ -1,0 +1,3 @@
+# vLLM venv inside WSL (~/venvs/vllm, Python 3.12), separate because vLLM pins torch 2.13 and Unsloth brings 2.14.
+# Exact resolved set: requirements-vllm.lock.txt.
+vllm==0.31.0

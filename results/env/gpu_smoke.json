@@ -1,0 +1,804 @@
+{
+  "source_script": "training/smoke_collect.py",
+  "command": "smoke_collect.py",
+  "commit": "1b190bd-dirty",
+  "created_at": "2026-10-08T11:51:20+00:00",
+  "metrics": {
+    "qlora_1p7b_peak_vram_mib": {
+      "value": 3695,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card incl. desktop baseline, max of training and full-length stress"
+    },
+    "qlora_1p7b_torch_peak_alloc_mib": {
+      "value": 2197,
+      "n": null,
+      "denominator": null,
+      "what": "torch.cuda.max_memory_allocated, max of training and full-length stress"
+    },
+    "qlora_1p7b_sec_per_step": {
+      "value": 4.53,
+      "n": null,
+      "denominator": null,
+      "what": "median over steps 2..N"
+    },
+    "qlora_1p7b_tokens_per_s": {
+      "value": 2367.4,
+      "n": null,
+      "denominator": null,
+      "what": "prompt+completion tokens / train time"
+    },
+    "qlora_1p7b_loss_first": {
+      "value": 0.9892,
+      "n": null,
+      "denominator": null
+    },
+    "qlora_1p7b_loss_last3": {
+      "value": 0.0008,
+      "n": null,
+      "denominator": null
+    },
+    "qlora_1p7b_held_out_valid_json": {
+      "value": 0.6667,
+      "n": 2,
+      "denominator": 3
+    },
+    "qlora_1p7b_peft_peak_vram_mib": {
+      "value": 5225,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card incl. desktop baseline, max of training and full-length stress"
+    },
+    "qlora_1p7b_peft_torch_peak_alloc_mib": {
+      "value": 4157,
+      "n": null,
+      "denominator": null,
+      "what": "torch.cuda.max_memory_allocated, max of training and full-length stress"
+    },
+    "qlora_1p7b_peft_sec_per_step": {
+      "value": 11.65,
+      "n": null,
+      "denominator": null,
+      "what": "median over steps 2..N"
+    },
+    "qlora_1p7b_peft_tokens_per_s": {
+      "value": 988.2,
+      "n": null,
+      "denominator": null,
+      "what": "prompt+completion tokens / train time"
+    },
+    "qlora_1p7b_peft_loss_first": {
+      "value": 0.9891,
+      "n": null,
+      "denominator": null
+    },
+    "qlora_1p7b_peft_loss_last3": {
+      "value": 0.0005,
+      "n": null,
+      "denominator": null
+    },
+    "qlora_1p7b_peft_held_out_valid_json": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "qlora_4b_peak_vram_mib": {
+      "value": 5165,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card incl. desktop baseline, max of training and full-length stress"
+    },
+    "qlora_4b_torch_peak_alloc_mib": {
+      "value": 3566,
+      "n": null,
+      "denominator": null,
+      "what": "torch.cuda.max_memory_allocated, max of training and full-length stress"
+    },
+    "qlora_4b_sec_per_step": {
+      "value": 10.07,
+      "n": null,
+      "denominator": null,
+      "what": "median over steps 2..N"
+    },
+    "qlora_4b_tokens_per_s": {
+      "value": 1110.7,
+      "n": null,
+      "denominator": null,
+      "what": "prompt+completion tokens / train time"
+    },
+    "qlora_4b_loss_first": {
+      "value": 0.7393,
+      "n": null,
+      "denominator": null
+    },
+    "qlora_4b_loss_last3": {
+      "value": 0.0003,
+      "n": null,
+      "denominator": null
+    },
+    "qlora_4b_held_out_valid_json": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "qlora_4b_peft_peak_vram_mib": {
+      "value": 7812,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card incl. desktop baseline, max of training and full-length stress"
+    },
+    "qlora_4b_peft_torch_peak_alloc_mib": {
+      "value": 6369,
+      "n": null,
+      "denominator": null,
+      "what": "torch.cuda.max_memory_allocated, max of training and full-length stress"
+    },
+    "qlora_4b_peft_sec_per_step": {
+      "value": 25.05,
+      "n": null,
+      "denominator": null,
+      "what": "median over steps 2..N"
+    },
+    "qlora_4b_peft_tokens_per_s": {
+      "value": 454.8,
+      "n": null,
+      "denominator": null,
+      "what": "prompt+completion tokens / train time"
+    },
+    "qlora_4b_peft_loss_first": {
+      "value": 0.7352,
+      "n": null,
+      "denominator": null
+    },
+    "qlora_4b_peft_loss_last3": {
+      "value": 0.0003,
+      "n": null,
+      "denominator": null
+    },
+    "qlora_4b_peft_held_out_valid_json": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "vllm_1p7b_peak_vram_mib": {
+      "value": 7694,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "vllm_1p7b_gpu_memory_utilization": {
+      "value": 0.85,
+      "n": null,
+      "denominator": null
+    },
+    "vllm_1p7b_tokens_per_s": {
+      "value": 88.2,
+      "n": null,
+      "denominator": null,
+      "what": "one request at a time, JSON schema"
+    },
+    "vllm_1p7b_tokens_per_s_concurrent": {
+      "value": 879.2,
+      "n": null,
+      "denominator": null,
+      "what": "20 requests in parallel, JSON schema"
+    },
+    "vllm_1p7b_valid_json": {
+      "value": 1.0,
+      "n": 40,
+      "denominator": 40
+    },
+    "vllm_1p7b_valid_json_no_schema": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 5
+    },
+    "vllm_4b_awq_peak_vram_mib": {
+      "value": 7858,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "vllm_4b_awq_gpu_memory_utilization": {
+      "value": 0.85,
+      "n": null,
+      "denominator": null
+    },
+    "vllm_4b_awq_tokens_per_s": {
+      "value": 95.8,
+      "n": null,
+      "denominator": null,
+      "what": "one request at a time, JSON schema"
+    },
+    "vllm_4b_awq_tokens_per_s_concurrent": {
+      "value": 925.8,
+      "n": null,
+      "denominator": null,
+      "what": "20 requests in parallel, JSON schema"
+    },
+    "vllm_4b_awq_valid_json": {
+      "value": 1.0,
+      "n": 40,
+      "denominator": 40
+    },
+    "vllm_4b_awq_valid_json_no_schema": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 5
+    },
+    "llama_qwen8b_valid_json": {
+      "value": 1.0,
+      "n": 10,
+      "denominator": 10
+    },
+    "llama_qwen8b_decode_tokens_per_s": {
+      "value": 65.3,
+      "n": null,
+      "denominator": null,
+      "what": "server timings, median"
+    },
+    "llama_qwen8b_end_to_end_tokens_per_s": {
+      "value": 58.9,
+      "n": null,
+      "denominator": null
+    },
+    "llama_qwen8b_peak_vram_mib": {
+      "value": 5744,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "llama_yandex8b_valid_json": {
+      "value": 1.0,
+      "n": 1,
+      "denominator": 1
+    },
+    "llama_yandex8b_decode_tokens_per_s": {
+      "value": 67.0,
+      "n": null,
+      "denominator": null,
+      "what": "server timings, median"
+    },
+    "llama_yandex8b_end_to_end_tokens_per_s": {
+      "value": 63.9,
+      "n": null,
+      "denominator": null
+    },
+    "llama_yandex8b_peak_vram_mib": {
+      "value": 5635,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    }
+  },
+  "repro_command": "bash training/gpu_smoke.sh",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3070",
+    "driver": "595.79",
+    "memory_total": "8192 MiB"
+  },
+  "failed": {
+    "vllm_4b_bnb": {
+      "model": "Qwen/Qwen3-4B",
+      "failed": true,
+      "quantization": "bitsandbytes",
+      "error": [
+        "pydantic_core._pydantic_core.ValidationError: 1 validation error for ModelConfig",
+        "  Value error, Unknown quantization method: bitsandbytes. Must be one of ['awq', 'auto_awq', 'fp8', 'fbgemm_fp8', 'fp_quant', 'modelopt', 'modelopt_fp4', 'modelopt_mxfp8', 'modelopt_mixed', 'auto_gptq', 'gptq', 'gptq_marlin', 'awq_marlin', 'humming', 'compressed-tensors', 'experts_int8', 'quark', 'moe_wna16', 'torchao', 'inc', 'mxfp4', 'gpt_oss_mxfp4', 'deepseek_v4_fp8', 'online', 'fp8_per_tensor', 'fp8_per_block', 'fp8_per_channel', 'int8_per_channel_weight_only', 'nvfp4_per_token', 'mxfp8']. [type=value_error, input_value=ArgsKwargs((), {'model': ...nderer_num_workers': 1}), input_type=ArgsKwargs]",
+        "    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+      ],
+      "server_log": "vllm_4b_bnb_server.log"
+    }
+  },
+  "missing": [],
+  "parts": {
+    "llama_qwen": {
+      "model": "Qwen3-8B-Q4_K_M",
+      "server_args": {
+        "slots": 2,
+        "ctx_per_slot": 4096,
+        "ngl": 99,
+        "flash_attn": "on",
+        "kv_cache": "q8_0"
+      },
+      "requests": 10,
+      "valid_json": 10,
+      "think_tags": 0,
+      "load_s": 7.7,
+      "vram_baseline_mib": 398,
+      "vram_loaded_mib": 5733,
+      "vram_peak_mib": 5744,
+      "decode_tok_per_s_median": 65.3,
+      "end_to_end_tok_per_s": 58.9,
+      "answers": [
+        {
+          "wall_s": 2.503,
+          "completion_tokens": 145,
+          "prompt_tokens": 329,
+          "decode_tok_per_s": 65.21056900297116,
+          "prompt_tok_per_s": 1346.6938461412515,
+          "valid": true,
+          "has_think_tag": false,
+          "finish_reason": "stop",
+          "content_head": "{\n  \"role\": \"mlops\",\n  \"grade\": \"middle\",\n  \"skills\": [\"Kubernetes\", \"MLflow\", \"Grafana\", \"Docker\", \"Terraform\", \"Helm\"],\n  \"salary\": {\n    \"from\": 5500,\n    \"to\": null,\n    \"currency\": \"USD\",\n    \"gr"
+        },
+        {
+          "wall_s": 2.228,
+          "completion_tokens": 135,
+          "prompt_tokens": 531,
+          "decode_tok_per_s": 66.05286792679765,
+          "prompt_tok_per_s": 2790.1469393410716,
+          "valid": true,
+          "has_think_tag": false,
+          "finish_reason": "stop",
+          "content_head": "{\n  \"role\": \"data_scientist\",\n  \"grade\": \"senior\",\n  \"skills\": [\"pandas\", \"CatBoost\", \"SQL\", \"Python\", \"scikit-learn\"],\n  \"salary\": {\n    \"from\": null,\n    \"to\": null,\n    \"currency\": null,\n    \"gross"
+        },
+        {
+          "wall_s": 2.169,
+          "completion_tokens": 132,
+          "prompt_tokens": 403,
+          "decode_tok_per_s": 65.4945966957726,
+          "prompt_tok_per_s": 2642.8529344925973,
+          "valid": true,
+          "has_think_tag": false,
+          "finish_reason": "stop",
+          "content_head": "{\n  \"role\": \"ml_engineer\",\n  \"grade\": \"senior\",\n  \"skills\": [\"PyTorch\", \"Docker\", \"Python\", \"SQL\"],\n  \"salary\": {\n    \"from\": null,\n    \"to\": 2000,\n    \"currency\": \"USD\",\n    \"gross_net\": \"gross\",\n   "
+        },
+        {
+          "wall_s": 2.414,
+          "completion_tokens": 140,
+          "prompt_tokens": 514,
+          "decode_tok_per_s": 63.348020351576956,
+          "prompt_tok_per_s": 2708.2697589258473,
+          "valid": true,
+          "has_think_tag": false,
+          "finish_reason": "stop",
+          "content_head": "{\n  \"role\": \"data_engineer\",\n  \"grade\": \"lead\",\n  \"skills\": [\"SQL\", \"Airflow\", \"Spark\", \"Python\", \"ClickHouse\"],\n  \"salary\": {\n    \"from\": 90000,\n    \"to\": 210000,\n    \"currency\": \"RUB\",\n    \"gross_ne"
+        },
+        {
+          "wall_s": 2.09,
+          "completion_tokens": 131,
+          "prompt_tokens": 321,
+          "decode_tok_per_s": 66.64838108518944,
+          "prompt_tok_per_s": 2465.9476965085146,
+          "valid": true,
+          "has_think_tag": false,
+          "finish_reason": "stop",
+          "content_head": "{\n  \"role\": \"ml_engineer\",\n  \"grade\": \"junior\",\n  \"skills\": [\"Airflow\", \"MLflow\", \"Python\", \"Git\", \"Docker\"],\n  \"salary\": {\n    \"from\": null,\n    \"to\": null,\n    \"currency\": null,\n    \"gross_net\": \"gr"
+        },
+        {
+          "wall_s": 2.903,
+          "completion_tokens": 140,
+          "prompt_tokens": 1957,
+          "decode_tok_per_s": 63.83352950280109,
+          "prompt_tok_per_s": 2866.256964257468,
+          "valid": true,
+          "has_think_tag": false,
+          "finish_reason": "stop",
+          "content_head": "{\n  \"role\": \"mlops\",\n  \"grade\": \"middle\",\n  \"skills\": [\"Kubernetes\", \"Terraform\", \"Docker\", \"Helm\"],\n  \"salary\": {\n    \"from\": 280000,\n    \"to\": 370000,\n    \"currency\": \"RUB\",\n    \"gross_net\": \"gross\""
+        },
+        {
+          "wall_s": 2.069,
+          "completion_tokens": 120,
+          "prompt_tokens": 406,
+          "decode_tok_per_s": 64.16318801539485,
+          "prompt_tok_per_s": 2637.1876632692833,
+          "valid": true,
+          "has_think_tag": false,
+          "finish_reason": "stop",
+          "content_head": "{\n  \"role\": \"data_engineer\",\n  \"grade\": null,\n  \"skills\": [\"Spark\", \"Kafka\", \"Airflow\", \"Python\", \"SQL\"],\n  \"salary\": {\n    \"from\": null,\n    \"to\": null,\n    \"currency\": null,\n    \"gross_net\": \"gross\""
+        },
+        {
+          "wall_s": 2.082,
+          "completion_tokens": 136,
+          "prompt_tokens": 256,
+          "decode_tok_per_s": 68.52433603725287,
+          "prompt_tok_per_s": 2308.4850566815526,
+          "valid": true,
+          "has_think_tag": false,
+          "finish_reason": "stop",
+          "content_head": "{\n  \"role\": \"ml_engineer\",\n  \"grade\": \"middle\",\n  \"skills\": [\"PyTorch\", \"Kubernetes\", \"MLflow\"],\n  \"salary\": {\n    \"from\": 4000,\n    \"to\": 6000,\n    \"currency\": \"USD\",\n    \"gross_net\": \"gross\",\n    \"p"
+        },
+        {
+          "wall_s": 2.219,
+          "completion_tokens": 137,
+          "prompt_tokens": 297,
+          "decode_tok_per_s": 65.4600833075825,
+          "prompt_tok_per_s": 2412.837681828677,
+          "valid": true,
+          "has_think_tag": false,
+          "finish_reason": "stop",
+          "content_head": "{\n  \"role\": \"backend\",\n  \"grade\": \"lead\",\n  \"skills\": [\"FastAPI\", \"Git\", \"Docker\"],\n  \"salary\": {\n    \"from\": 330000,\n    \"to\": null,\n    \"currency\": \"RUB\",\n    \"gross_net\": \"gross\",\n    \"period\": \"mo"
+        },
+        {
+          "wall_s": 2.365,
+          "completion_tokens": 142,
+          "prompt_tokens": 402,
+          "decode_tok_per_s": 63.91945966750095,
+          "prompt_tok_per_s": 2601.0936227500124,
+          "valid": true,
+          "has_think_tag": false,
+          "finish_reason": "stop",
+          "content_head": "{\n  \"role\": \"data_analyst\",\n  \"grade\": null,\n  \"skills\": [\"ClickHouse\", \"Superset\", \"Python\", \"SQL\"],\n  \"salary\": {\n    \"from\": 90000,\n    \"to\": 190000,\n    \"currency\": \"RUB\",\n    \"gross_net\": \"gross\""
+        }
+      ]
+    },
+    "llama_yandex": {
+      "model": "YandexGPT-5-Lite-8B-instruct-Q4_K_M",
+      "server_args": {
+        "slots": 2,
+        "ctx_per_slot": 4096,
+        "ngl": 99,
+        "flash_attn": "on",
+        "kv_cache": "q8_0"
+      },
+      "requests": 1,
+      "valid_json": 1,
+      "think_tags": 0,
+      "load_s": 4.6,
+      "vram_baseline_mib": 394,
+      "vram_loaded_mib": 5623,
+      "vram_peak_mib": 5635,
+      "decode_tok_per_s_median": 67.0,
+      "end_to_end_tok_per_s": 63.9,
+      "answers": [
+        {
+          "wall_s": 2.44,
+          "completion_tokens": 156,
+          "prompt_tokens": 223,
+          "decode_tok_per_s": 67.01155279170129,
+          "prompt_tok_per_s": 2483.019708273021,
+          "valid": true,
+          "has_think_tag": false,
+          "finish_reason": "stop",
+          "content_head": "{\n  \"role\": \"mlops\",\n  \"grade\": \"middle\",\n  \"skills\": [\"Kubernetes\", \"MLflow\", \"Grafana\", \"Docker\", \"Terraform\", \"Helm\"],\n  \"salary\": {\n    \"from\": null,\n    \"to\": 5500,\n    \"currency\": \"USD\",\n    \"gr"
+        }
+      ]
+    },
+    "qlora_1p7b_peft": {
+      "model": "Qwen/Qwen3-1.7B",
+      "backend": "peft",
+      "config": {
+        "quant": "bnb nf4, double quant, bf16 compute",
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "lora_targets": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj",
+          "gate_proj",
+          "up_proj",
+          "down_proj"
+        ],
+        "batch": 2,
+        "grad_accum": 8,
+        "steps": 30,
+        "max_len": 2048,
+        "lr": 0.0002,
+        "optim": "adamw_8bit",
+        "gradient_checkpointing": "torch",
+        "examples": 48,
+        "passes_over_data": 10.0,
+        "seq_len_min_median_max": [
+          310,
+          511,
+          2048
+        ]
+      },
+      "versions": {
+        "torch": "2.14.1+cu130",
+        "transformers": "5.17.0",
+        "trl": "1.13.0",
+        "peft": "0.21.2"
+      },
+      "load_s": 25.9,
+      "train_s": 345.3,
+      "sec_per_step_median": 11.65,
+      "first_step_s": 10.34,
+      "tokens_per_s": 988.2,
+      "loss_first": 0.9891,
+      "loss_last3_mean": 0.0005,
+      "vram_baseline_mib": 457,
+      "train_peak_alloc_mib": 4157,
+      "train_peak_reserved_mib": 4558,
+      "train_peak_nvidia_smi_mib": 5225,
+      "stress_seq_lens": [
+        2046,
+        2044
+      ],
+      "stress_sec_per_step_median": 3.25,
+      "stress_peak_alloc_mib": 4122,
+      "stress_peak_reserved_mib": 4558,
+      "stress_peak_nvidia_smi_mib": 5201,
+      "vram_total_mib": 8191,
+      "held_out_valid_json": 3,
+      "held_out_n": 3
+    },
+    "qlora_1p7b_unsloth": {
+      "model": "Qwen/Qwen3-1.7B",
+      "backend": "unsloth",
+      "config": {
+        "quant": "bnb nf4, double quant, bf16 compute",
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "lora_targets": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj",
+          "gate_proj",
+          "up_proj",
+          "down_proj"
+        ],
+        "batch": 2,
+        "grad_accum": 8,
+        "steps": 30,
+        "max_len": 2048,
+        "lr": 0.0002,
+        "optim": "adamw_8bit",
+        "gradient_checkpointing": "unsloth",
+        "examples": 48,
+        "passes_over_data": 10.0,
+        "seq_len_min_median_max": [
+          310,
+          511,
+          2048
+        ]
+      },
+      "versions": {
+        "torch": "2.14.1+cu130",
+        "transformers": "5.17.0",
+        "trl": "1.13.0",
+        "peft": "0.21.2",
+        "unsloth": "2026.10.2"
+      },
+      "load_s": 54.5,
+      "train_s": 144.1,
+      "sec_per_step_median": 4.53,
+      "first_step_s": 10.71,
+      "tokens_per_s": 2367.4,
+      "loss_first": 0.9892,
+      "loss_last3_mean": 0.0008,
+      "vram_baseline_mib": 424,
+      "train_peak_alloc_mib": 2197,
+      "train_peak_reserved_mib": 3002,
+      "train_peak_nvidia_smi_mib": 3695,
+      "stress_seq_lens": [
+        2046,
+        2044
+      ],
+      "stress_sec_per_step_median": 1.41,
+      "stress_peak_alloc_mib": 1897,
+      "stress_peak_reserved_mib": 2410,
+      "stress_peak_nvidia_smi_mib": 3090,
+      "vram_total_mib": 8191,
+      "held_out_valid_json": 2,
+      "held_out_n": 3
+    },
+    "qlora_4b_peft": {
+      "model": "Qwen/Qwen3-4B",
+      "backend": "peft",
+      "config": {
+        "quant": "bnb nf4, double quant, bf16 compute",
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "lora_targets": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj",
+          "gate_proj",
+          "up_proj",
+          "down_proj"
+        ],
+        "batch": 2,
+        "grad_accum": 8,
+        "steps": 30,
+        "max_len": 2048,
+        "lr": 0.0002,
+        "optim": "adamw_8bit",
+        "gradient_checkpointing": "torch",
+        "examples": 48,
+        "passes_over_data": 10.0,
+        "seq_len_min_median_max": [
+          310,
+          511,
+          2048
+        ]
+      },
+      "versions": {
+        "torch": "2.14.1+cu130",
+        "transformers": "5.17.0",
+        "trl": "1.13.0",
+        "peft": "0.21.2"
+      },
+      "load_s": 53.8,
+      "train_s": 750.3,
+      "sec_per_step_median": 25.05,
+      "first_step_s": 21.0,
+      "tokens_per_s": 454.8,
+      "loss_first": 0.7352,
+      "loss_last3_mean": 0.0003,
+      "vram_baseline_mib": 457,
+      "train_peak_alloc_mib": 6369,
+      "train_peak_reserved_mib": 6954,
+      "train_peak_nvidia_smi_mib": 7628,
+      "stress_seq_lens": [
+        2046,
+        2044
+      ],
+      "stress_sec_per_step_median": 7.22,
+      "stress_peak_alloc_mib": 6304,
+      "stress_peak_reserved_mib": 7146,
+      "stress_peak_nvidia_smi_mib": 7812,
+      "vram_total_mib": 8191,
+      "held_out_valid_json": 3,
+      "held_out_n": 3
+    },
+    "qlora_4b_unsloth": {
+      "model": "Qwen/Qwen3-4B",
+      "backend": "unsloth",
+      "config": {
+        "quant": "bnb nf4, double quant, bf16 compute",
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "lora_targets": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj",
+          "gate_proj",
+          "up_proj",
+          "down_proj"
+        ],
+        "batch": 2,
+        "grad_accum": 8,
+        "steps": 30,
+        "max_len": 2048,
+        "lr": 0.0002,
+        "optim": "adamw_8bit",
+        "gradient_checkpointing": "unsloth",
+        "examples": 48,
+        "passes_over_data": 10.0,
+        "seq_len_min_median_max": [
+          310,
+          511,
+          2048
+        ]
+      },
+      "versions": {
+        "torch": "2.14.1+cu130",
+        "transformers": "5.17.0",
+        "trl": "1.13.0",
+        "peft": "0.21.2",
+        "unsloth": "2026.10.2"
+      },
+      "load_s": 79.4,
+      "train_s": 307.2,
+      "sec_per_step_median": 10.07,
+      "first_step_s": 13.67,
+      "tokens_per_s": 1110.7,
+      "loss_first": 0.7393,
+      "loss_last3_mean": 0.0003,
+      "vram_baseline_mib": 457,
+      "train_peak_alloc_mib": 3566,
+      "train_peak_reserved_mib": 4474,
+      "train_peak_nvidia_smi_mib": 5165,
+      "stress_seq_lens": [
+        2046,
+        2044
+      ],
+      "stress_sec_per_step_median": 3.21,
+      "stress_peak_alloc_mib": 3521,
+      "stress_peak_reserved_mib": 3878,
+      "stress_peak_nvidia_smi_mib": 4557,
+      "vram_total_mib": 8191,
+      "held_out_valid_json": 3,
+      "held_out_n": 3
+    },
+    "vllm_1p7b": {
+      "model": "Qwen/Qwen3-1.7B",
+      "config": {
+        "gpu_memory_utilization": 0.85,
+        "max_model_len": 4096,
+        "quantization": "from checkpoint",
+        "structured_output": "response_format json_schema"
+      },
+      "versions": {
+        "vllm": "0.31.0"
+      },
+      "load_s": 78.7,
+      "vram_baseline_mib": 457,
+      "vram_loaded_mib": 7587,
+      "vram_peak_mib": 7694,
+      "from_server_log": {
+        "kv_cache_gib": 2.86,
+        "kv_cache_tokens": 26752.0,
+        "max_concurrency": 6.53,
+        "model_weights_gib": 3.22
+      },
+      "sequential_schema": {
+        "requests": 20,
+        "valid_json": 20,
+        "completion_tokens": 2866,
+        "wall_s": 32.51,
+        "tok_per_s": 88.2,
+        "per_request_tok_per_s_median": 89.7
+      },
+      "concurrent_schema": {
+        "requests": 20,
+        "valid_json": 20,
+        "completion_tokens": 2874,
+        "wall_s": 3.27,
+        "tok_per_s": 879.2,
+        "per_request_tok_per_s_median": 49.9
+      },
+      "sequential_no_schema": {
+        "requests": 5,
+        "valid_json": 0,
+        "completion_tokens": 782,
+        "wall_s": 8.53,
+        "tok_per_s": 91.6,
+        "per_request_tok_per_s_median": 91.6
+      }
+    },
+    "vllm_4b_awq": {
+      "model": "Qwen/Qwen3-4B-AWQ",
+      "config": {
+        "gpu_memory_utilization": 0.85,
+        "max_model_len": 4096,
+        "quantization": "from checkpoint",
+        "structured_output": "response_format json_schema"
+      },
+      "versions": {
+        "vllm": "0.31.0"
+      },
+      "load_s": 68.5,
+      "vram_baseline_mib": 457,
+      "vram_loaded_mib": 7600,
+      "vram_peak_mib": 7858,
+      "from_server_log": {
+        "kv_cache_gib": 3.4,
+        "kv_cache_tokens": 24784.0,
+        "max_concurrency": 6.05,
+        "model_weights_gib": 2.5
+      },
+      "sequential_schema": {
+        "requests": 20,
+        "valid_json": 20,
+        "completion_tokens": 2780,
+        "wall_s": 29.03,
+        "tok_per_s": 95.8,
+        "per_request_tok_per_s_median": 99.9
+      },
+      "concurrent_schema": {
+        "requests": 20,
+        "valid_json": 20,
+        "completion_tokens": 2773,
+        "wall_s": 3.0,
+        "tok_per_s": 925.8,
+        "per_request_tok_per_s_median": 49.6
+      },
+      "sequential_no_schema": {
+        "requests": 5,
+        "valid_json": 0,
+        "completion_tokens": 698,
+        "wall_s": 6.69,
+        "tok_per_s": 104.4,
+        "per_request_tok_per_s_median": 104.2
+      }
+    },
+    "vllm_4b_bnb": {
+      "model": "Qwen/Qwen3-4B",
+      "failed": true,
+      "quantization": "bitsandbytes",
+      "error": [
+        "pydantic_core._pydantic_core.ValidationError: 1 validation error for ModelConfig",
+        "  Value error, Unknown quantization method: bitsandbytes. Must be one of ['awq', 'auto_awq', 'fp8', 'fbgemm_fp8', 'fp_quant', 'modelopt', 'modelopt_fp4', 'modelopt_mxfp8', 'modelopt_mixed', 'auto_gptq', 'gptq', 'gptq_marlin', 'awq_marlin', 'humming', 'compressed-tensors', 'experts_int8', 'quark', 'moe_wna16', 'torchao', 'inc', 'mxfp4', 'gpt_oss_mxfp4', 'deepseek_v4_fp8', 'online', 'fp8_per_tensor', 'fp8_per_block', 'fp8_per_channel', 'int8_per_channel_weight_only', 'nvfp4_per_token', 'mxfp8']. [type=value_error, input_value=ArgsKwargs((), {'model': ...nderer_num_workers': 1}), input_type=ArgsKwargs]",
+        "    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+      ],
+      "server_log": "vllm_4b_bnb_server.log"
+    }
+  }
+}
