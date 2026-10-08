@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/collect/habr.py",
   "command": "python -m radar.collect.habr --summarize",
-  "commit": "10a148d-dirty",
-  "created_at": "2026-10-08T14:36:50+00:00",
+  "commit": "6ab4777-dirty",
+  "created_at": "2026-10-08T19:56:50+00:00",
   "metrics": {
     "days": {
       "value": 1,
@@ -10,32 +10,32 @@
       "denominator": null
     },
     "rows_total": {
-      "value": 1260,
+      "value": 1457,
       "n": null,
       "denominator": null
     },
     "last_run_coverage_of_site_counter": {
-      "value": 0.8557,
-      "n": 1050,
-      "denominator": 1227
+      "value": 0.8584,
+      "n": 1049,
+      "denominator": 1222
     },
     "last_run_cards_fetched": {
-      "value": 150,
+      "value": 149,
       "n": null,
       "denominator": null
     },
     "last_run_cards_carried": {
-      "value": 444,
+      "value": 585,
       "n": null,
       "denominator": null
     },
     "last_run_cards_failed": {
-      "value": 0,
+      "value": 1,
       "n": null,
       "denominator": null
     },
     "last_run_cards_deferred": {
-      "value": 456,
+      "value": 314,
       "n": null,
       "denominator": null
     },
@@ -49,10 +49,10 @@
   "days": [
     {
       "dt": "2026-10-08",
-      "rows": 1260,
-      "distinct_ids": 1053,
+      "rows": 1457,
+      "distinct_ids": 1058,
       "rejected_not_written": 0,
-      "parquet_bytes": 1120169,
+      "parquet_bytes": 1325406,
       "pii_removed": {
         "company_code": 5,
         "email": 5,
@@ -406,6 +406,179 @@
           "coverage": {
             "n": 1050,
             "denominator": 1227
+          }
+        },
+        {
+          "started_at": "2026-10-08T18:33:02.498057+00:00",
+          "finished_at": "2026-10-08T18:54:45.256917+00:00",
+          "dt": "2026-10-08",
+          "complete": true,
+          "site_counter": 1222,
+          "distinct_listed": 1049,
+          "passes": [
+            {
+              "name": "all_by_date",
+              "counter": 1222,
+              "pages": 20,
+              "items": 1000,
+              "capped": true
+            },
+            {
+              "name": "all_by_salary_desc",
+              "counter": 1222,
+              "pages": 20,
+              "items": 1000,
+              "capped": true
+            },
+            {
+              "name": "all_by_salary_asc",
+              "counter": 1222,
+              "pages": 20,
+              "items": 1000,
+              "capped": true
+            },
+            {
+              "name": "group:Разработка",
+              "counter": 269,
+              "pages": 6,
+              "items": 269,
+              "capped": false
+            },
+            {
+              "name": "group:Тестирование",
+              "counter": 61,
+              "pages": 2,
+              "items": 61,
+              "capped": false
+            },
+            {
+              "name": "group:Аналитика",
+              "counter": 180,
+              "pages": 4,
+              "items": 180,
+              "capped": false
+            },
+            {
+              "name": "group:Дизайн",
+              "counter": 7,
+              "pages": 1,
+              "items": 7,
+              "capped": false
+            },
+            {
+              "name": "group:Менеджмент",
+              "counter": 86,
+              "pages": 2,
+              "items": 86,
+              "capped": false
+            },
+            {
+              "name": "group:Информационная безопасность",
+              "counter": 71,
+              "pages": 2,
+              "items": 71,
+              "capped": false
+            },
+            {
+              "name": "group:Топ-менеджмент",
+              "counter": 11,
+              "pages": 1,
+              "items": 11,
+              "capped": false
+            },
+            {
+              "name": "group:Искусственный интеллект",
+              "counter": 31,
+              "pages": 1,
+              "items": 31,
+              "capped": false
+            },
+            {
+              "name": "group:Поддержка",
+              "counter": 70,
+              "pages": 2,
+              "items": 70,
+              "capped": false
+            },
+            {
+              "name": "group:Производство и строительство",
+              "counter": 5,
+              "pages": 1,
+              "items": 5,
+              "capped": false
+            },
+            {
+              "name": "group:Маркетинг",
+              "counter": 35,
+              "pages": 1,
+              "items": 35,
+              "capped": false
+            },
+            {
+              "name": "group:Администрирование",
+              "counter": 98,
+              "pages": 2,
+              "items": 98,
+              "capped": false
+            },
+            {
+              "name": "group:Контент",
+              "counter": 38,
+              "pages": 1,
+              "items": 38,
+              "capped": false
+            },
+            {
+              "name": "group:Продажи",
+              "counter": 62,
+              "pages": 2,
+              "items": 62,
+              "capped": false
+            },
+            {
+              "name": "group:HR",
+              "counter": 14,
+              "pages": 1,
+              "items": 14,
+              "capped": false
+            },
+            {
+              "name": "group:Офис",
+              "counter": 11,
+              "pages": 1,
+              "items": 11,
+              "capped": false
+            },
+            {
+              "name": "group:Зерокодинг",
+              "counter": 0,
+              "pages": 1,
+              "items": 0,
+              "capped": false
+            }
+          ],
+          "capped_passes": [
+            "all_by_date",
+            "all_by_salary_desc",
+            "all_by_salary_asc"
+          ],
+          "cards": {
+            "fetched": 149,
+            "carried": 585,
+            "gone": 0,
+            "failed": 1,
+            "deferred": 314,
+            "blocked": false
+          },
+          "written": 197,
+          "duplicates_skipped": 852,
+          "rejected": 0,
+          "requests": 242,
+          "retries": 0,
+          "seconds_in_requests": 226.2,
+          "coverage": {
+            "n": 1049,
+            "denominator": 1222
           }
         }
       ]
