@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/collect/trudvsem.py",
-  "command": "trudvsem.py --full",
-  "commit": "e997cea-dirty",
-  "created_at": "2026-10-08T12:55:01+00:00",
+  "command": "python -m radar.collect.trudvsem",
+  "commit": "d858ec7-dirty",
+  "created_at": "2026-10-08T13:36:33+00:00",
   "metrics": {
     "days": {
       "value": 1,
@@ -15,22 +15,22 @@
       "denominator": null
     },
     "last_run_distinct_vacancies": {
-      "value": 11632,
+      "value": 0,
       "n": null,
       "denominator": null
     },
     "last_run_written": {
-      "value": 11632,
+      "value": 0,
       "n": null,
       "denominator": null
     },
     "last_run_industry_it_total": {
-      "value": 6525,
+      "value": 0,
       "n": null,
       "denominator": null
     },
     "last_run_requests": {
-      "value": 153,
+      "value": 13,
       "n": null,
       "denominator": null
     },
@@ -158,6 +158,102 @@
           "requests": 153,
           "retries": 0,
           "seconds_in_requests": 2291.0
+        },
+        {
+          "started_at": "2026-10-08T13:32:27.847621+00:00",
+          "finished_at": "2026-10-08T13:36:33.317124+00:00",
+          "dt": "2026-10-08",
+          "mode": "incremental",
+          "modified_from": "2026-10-08T11:11:39.508134+00:00",
+          "complete": true,
+          "queries": {
+            "industry_it": {
+              "total": 0,
+              "pages": 1,
+              "records": 0,
+              "truncated": false
+            },
+            "text_программист": {
+              "total": 0,
+              "pages": 1,
+              "records": 0,
+              "truncated": false
+            },
+            "text_разработчик": {
+              "total": 0,
+              "pages": 1,
+              "records": 0,
+              "truncated": false
+            },
+            "text_аналитик": {
+              "total": 0,
+              "pages": 1,
+              "records": 0,
+              "truncated": false
+            },
+            "text_аналитик данных": {
+              "total": 0,
+              "pages": 1,
+              "records": 0,
+              "truncated": false
+            },
+            "text_инженер данных": {
+              "total": 0,
+              "pages": 1,
+              "records": 0,
+              "truncated": false
+            },
+            "text_машинное обучение": {
+              "total": 0,
+              "pages": 1,
+              "records": 0,
+              "truncated": false
+            },
+            "text_data scientist": {
+              "total": 0,
+              "pages": 1,
+              "records": 0,
+              "truncated": false
+            },
+            "text_data": {
+              "total": 0,
+              "pages": 1,
+              "records": 0,
+              "truncated": false
+            },
+            "text_python": {
+              "total": 0,
+              "pages": 1,
+              "records": 0,
+              "truncated": false
+            },
+            "text_devops": {
+              "total": 0,
+              "pages": 1,
+              "records": 0,
+              "truncated": false
+            },
+            "text_тестировщик": {
+              "total": 0,
+              "pages": 1,
+              "records": 0,
+              "truncated": false
+            },
+            "text_системный администратор": {
+              "total": 0,
+              "pages": 1,
+              "records": 0,
+              "truncated": false
+            }
+          },
+          "records_fetched": 0,
+          "distinct_vacancies": 0,
+          "written": 0,
+          "duplicates_skipped": 0,
+          "rejected": 0,
+          "requests": 13,
+          "retries": 0,
+          "seconds_in_requests": 221.4
         }
       ]
     }

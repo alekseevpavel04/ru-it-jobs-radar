@@ -28,6 +28,18 @@ if ! mkdir "$lock" 2>/dev/null; then
 fi
 trap 'rmdir "$lock"' EXIT
 
+# The WSL VM shuts down when no wsl.exe session is open, and with it Redpanda and ClickHouse.
+# A sleeping session keeps the stack up for the run; collectors still finish if it is down.
+keepalive=
+case "$(uname -s)" in
+  MINGW* | MSYS* | CYGWIN*)
+    MSYS_NO_PATHCONV=1 wsl.exe -d "${RADAR_WSL_DISTRO:-radar}" --exec sleep 14400 &
+    keepalive=$!
+    trap 'kill "$keepalive" 2>/dev/null; rmdir "$lock"' EXIT
+    ;;
+esac
+scripts/up.sh core >>"$day_log" 2>&1 || echo "$(date '+%F %T') stack is not up, partitions wait for a replay" | tee -a "$day_log"
+
 failed=()
 for source in "${sources[@]}"; do
   echo "$(date '+%F %T') == $source start" >>"$day_log"
@@ -37,6 +49,9 @@ for source in "${sources[@]}"; do
   echo "$(date '+%F %T') == $source exit $code in $((SECONDS - started)) s" | tee -a "$day_log"
   [ "$code" -eq 0 ] || failed+=("$source")
 done
+
+# ClickHouse reads the topics on its own; a snapshot day took 150 s to land (results/stream/replay.json).
+[ -z "$keepalive" ] || sleep 300
 
 if [ ${#failed[@]} -gt 0 ]; then
   echo "$(date '+%F %T') failed: ${failed[*]}" | tee -a "$day_log"
