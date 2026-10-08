@@ -40,6 +40,7 @@ from pydantic import ValidationError
 from radar.collect import setup_logging
 from radar.collect.contracts import TrudvsemSnapshotVacancy
 from radar.collect.envelope import RawRecord, content_hash
+from radar.collect.lock import AlreadyRunning, single_instance
 from radar.collect.summary import append_meta, meta_dir, partition_dates, partition_stats, read_meta
 from radar.collect.writer import PartitionWriter, is_complete, partition_dir, raw_root, read_marker
 from radar.config import ROOT, data_dir, user_agent
@@ -635,7 +636,12 @@ def main(argv: list[str] | None = None) -> int:
         log.info("results: %s", summarize())
         return 0
     log.info("raw root %s, tmp %s", raw_root(), tmp_dir)
-    processed = run(args.limit, args.keep_xml, tmp_dir)
+    try:
+        with single_instance(tmp_dir / "collector.lock"):
+            processed = run(args.limit, args.keep_xml, tmp_dir)
+    except AlreadyRunning as exc:
+        log.info("another run is in progress, nothing to do: %s", exc)
+        return 0
     log.info("finished, %d versions processed in this run", processed)
     return 0
 
