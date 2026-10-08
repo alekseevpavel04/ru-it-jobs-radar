@@ -1,0 +1,695 @@
+{
+  "source_script": "airflow/run_report.py",
+  "command": "python airflow/run_report.py radar_collect:backfill__2026-07-23T00:00:00+00:00 radar_collect:backfill__2026-07-24T00:00:00+00:00 radar_collect:backfill__2026-07-25T00:00:00+00:00 radar_collect:backfill__2026-07-26T00:00:00+00:00 radar_collect:backfill__2026-07-27T00:00:00+00:00 radar_collect:backfill__2026-07-28T00:00:00+00:00 radar_collect:backfill__2026-07-29T00:00:00+00:00 radar_load:collect__2026-07-22 radar_load:collect__2026-07-23 radar_load:collect__2026-07-24 radar_load:collect__2026-07-25 radar_load:collect__2026-07-26 radar_load:collect__2026-07-27 radar_load:collect__2026-07-28 radar_dbt:asset_triggered__2026-10-08T19:22:03.170553+00:00_L4WTP8nK --out airflow/backfill_7d.json --recount",
+  "commit": "35cdc76-dirty",
+  "created_at": "2026-10-08T19:28:07+00:00",
+  "metrics": {
+    "runs_success": {
+      "value": 15,
+      "n": 15,
+      "denominator": 15
+    },
+    "seconds_wall": {
+      "value": 741.3,
+      "n": null,
+      "denominator": null
+    },
+    "seconds_tasks_span": {
+      "value": 731.8,
+      "n": null,
+      "denominator": null
+    },
+    "seconds_window": {
+      "value": 723.0,
+      "n": null,
+      "denominator": null
+    },
+    "rows_replayed": {
+      "value": 3737552,
+      "n": null,
+      "denominator": null
+    },
+    "partitions_matched": {
+      "value": 7,
+      "n": 7,
+      "denominator": 7
+    }
+  },
+  "method": "states and start/end times of the DAG runs and task instances from the Airflow REST API; seconds are end minus start as Airflow recorded them, for a task its last try; seconds_tasks_span runs from the first task start to the last task end; seconds_window from the first run start to the last run end; load summaries are the XCom each load task printed; a partition matches when ClickHouse rows with FINAL equal the Parquet rows (with --recount counted again when the report is written)",
+  "runs": [
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-07-23T00:00:00+00:00",
+      "logical_date": "2026-07-22T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T19:15:05.140437Z",
+      "end_date": "2026-10-08T19:15:09.151991Z",
+      "seconds": 4.0,
+      "seconds_tasks_span": 3.5,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.2
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-07-24T00:00:00+00:00",
+      "logical_date": "2026-07-23T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T19:15:09.190897Z",
+      "end_date": "2026-10-08T19:15:12.548017Z",
+      "seconds": 3.4,
+      "seconds_tasks_span": 2.8,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.9
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-07-25T00:00:00+00:00",
+      "logical_date": "2026-07-24T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T19:15:12.594877Z",
+      "end_date": "2026-10-08T19:15:16.479349Z",
+      "seconds": 3.9,
+      "seconds_tasks_span": 3.5,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.0
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.3
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-07-26T00:00:00+00:00",
+      "logical_date": "2026-07-25T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T19:15:17.528016Z",
+      "end_date": "2026-10-08T19:15:21.509619Z",
+      "seconds": 4.0,
+      "seconds_tasks_span": 3.4,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.1
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-07-27T00:00:00+00:00",
+      "logical_date": "2026-07-26T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T19:15:22.552390Z",
+      "end_date": "2026-10-08T19:15:26.702651Z",
+      "seconds": 4.2,
+      "seconds_tasks_span": 3.5,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.0
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-07-28T00:00:00+00:00",
+      "logical_date": "2026-07-27T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T19:15:27.742268Z",
+      "end_date": "2026-10-08T19:15:31.534235Z",
+      "seconds": 3.8,
+      "seconds_tasks_span": 3.3,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.0
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-07-29T00:00:00+00:00",
+      "logical_date": "2026-07-28T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T19:15:32.579602Z",
+      "end_date": "2026-10-08T19:15:36.626460Z",
+      "seconds": 4.0,
+      "seconds_tasks_span": 3.5,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.9
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-07-22",
+      "logical_date": "2026-07-22T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T19:15:09.136406Z",
+      "end_date": "2026-10-08T19:16:08.335786Z",
+      "seconds": 59.2,
+      "seconds_tasks_span": 59.0,
+      "tasks": [
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 54.0,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-07-22",
+            "rows_parquet": 544968,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 51.4,
+            "rows_clickhouse_final": 544968,
+            "error_messages": 0,
+            "rows_parquet_at_report": 544968,
+            "rows_clickhouse_final_at_report": 544968
+          }
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.6
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-07-23",
+      "logical_date": "2026-07-23T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T19:16:08.634628Z",
+      "end_date": "2026-10-08T19:17:05.189790Z",
+      "seconds": 56.6,
+      "seconds_tasks_span": 55.6,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 51.3,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-07-23",
+            "rows_parquet": 540758,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 49.0,
+            "rows_clickhouse_final": 540758,
+            "error_messages": 0,
+            "rows_parquet_at_report": 540758,
+            "rows_clickhouse_final_at_report": 540758
+          }
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-07-24",
+      "logical_date": "2026-07-24T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T19:17:06.228954Z",
+      "end_date": "2026-10-08T19:18:04.009192Z",
+      "seconds": 57.8,
+      "seconds_tasks_span": 56.8,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 55.2,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-07-24",
+            "rows_parquet": 540717,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 53.0,
+            "rows_clickhouse_final": 540717,
+            "error_messages": 0,
+            "rows_parquet_at_report": 540717,
+            "rows_clickhouse_final_at_report": 540717
+          }
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.3
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-07-25",
+      "logical_date": "2026-07-25T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T19:18:04.667727Z",
+      "end_date": "2026-10-08T19:19:05.160589Z",
+      "seconds": 60.5,
+      "seconds_tasks_span": 59.8,
+      "tasks": [
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 57.6,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-07-25",
+            "rows_parquet": 531822,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 55.4,
+            "rows_clickhouse_final": 531822,
+            "error_messages": 0,
+            "rows_parquet_at_report": 531822,
+            "rows_clickhouse_final_at_report": 531822
+          }
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-07-26",
+      "logical_date": "2026-07-26T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T19:19:06.212508Z",
+      "end_date": "2026-10-08T19:20:06.713323Z",
+      "seconds": 60.5,
+      "seconds_tasks_span": 59.5,
+      "tasks": [
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 52.8,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-07-26",
+            "rows_parquet": 521375,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 50.6,
+            "rows_clickhouse_final": 521375,
+            "error_messages": 0,
+            "rows_parquet_at_report": 521375,
+            "rows_clickhouse_final_at_report": 521375
+          }
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-07-27",
+      "logical_date": "2026-07-27T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T19:20:07.744090Z",
+      "end_date": "2026-10-08T19:21:06.170787Z",
+      "seconds": 58.4,
+      "seconds_tasks_span": 58.0,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 56.1,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-07-27",
+            "rows_parquet": 524413,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 54.0,
+            "rows_clickhouse_final": 524413,
+            "error_messages": 0,
+            "rows_parquet_at_report": 524413,
+            "rows_clickhouse_final_at_report": 524413
+          }
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.3
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-07-28",
+      "logical_date": "2026-07-28T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-08T19:21:07.207471Z",
+      "end_date": "2026-10-08T19:22:03.571495Z",
+      "seconds": 56.4,
+      "seconds_tasks_span": 55.9,
+      "tasks": [
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 52.3,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-07-28",
+            "rows_parquet": 533499,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 50.1,
+            "rows_clickhouse_final": 533499,
+            "error_messages": 0,
+            "rows_parquet_at_report": 533499,
+            "rows_clickhouse_final_at_report": 533499
+          }
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_dbt",
+      "run_id": "asset_triggered__2026-10-08T19:22:03.170553+00:00_L4WTP8nK",
+      "logical_date": null,
+      "state": "success",
+      "start_date": "2026-10-08T19:22:03.555060Z",
+      "end_date": "2026-10-08T19:27:08.146954Z",
+      "seconds": 304.6,
+      "seconds_tasks_span": 303.7,
+      "tasks": [
+        {
+          "task_id": "build",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 298.5
+        },
+        {
+          "task_id": "source_freshness",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 4.4
+        }
+      ]
+    }
+  ]
+}

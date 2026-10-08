@@ -15,7 +15,15 @@ import pytest
 pytestmark = pytest.mark.slow
 
 CONTAINER = "radar-airflow-scheduler-1"
-EXPECTED = {"radar_collect", "radar_load", "radar_dbt", "radar_ml_label", "radar_retrain", "radar_publish"}
+EXPECTED = {
+    "radar_collect",
+    "radar_load",
+    "radar_dbt",
+    "radar_sla",
+    "radar_ml_label",
+    "radar_retrain",
+    "radar_publish",
+}
 
 
 def airflow(*args: str) -> str:
@@ -42,5 +50,5 @@ def test_every_dag_parses_with_its_tasks() -> None:
     report = last_json(airflow("dags", "report", "--output", "json"))
     dags = {dag_id: int(row["task_num"]) for row in report for dag_id in row["dags"]}
     assert set(dags) == EXPECTED
-    assert dags["radar_load"] == 6  # one task per raw topic plus the trigger of radar_dbt
+    assert dags["radar_load"] == 6  # one task per raw topic plus the hand-over to radar_dbt
     assert all(n >= 1 for n in dags.values())

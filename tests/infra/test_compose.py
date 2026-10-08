@@ -55,6 +55,7 @@ def test_orchestration_profile_holds_airflow() -> None:
         "airflow-api-server",
         "airflow-scheduler",
         "airflow-dag-processor",
+        "statsd-exporter",
     }
 
 

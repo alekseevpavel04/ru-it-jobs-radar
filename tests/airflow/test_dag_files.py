@@ -14,7 +14,7 @@ from radar.stream.producer import SOURCES
 ROOT = Path(__file__).resolve().parents[2]
 DAGS = ROOT / "airflow" / "dags"
 
-ACTIVE = {"radar_collect", "radar_load", "radar_dbt"}
+ACTIVE = {"radar_collect", "radar_load", "radar_dbt", "radar_sla"}
 SKELETONS = {"radar_ml_label", "radar_retrain", "radar_publish"}
 # The scheduler and the DAG processor import every file often: only Airflow and the standard
 # library at the top, the project's code runs in tasks under its own environment.
@@ -36,11 +36,15 @@ def keyword(call: ast.Call, name: str) -> object:
     raise KeyError(name)
 
 
-def constant(tree: ast.Module, name: str) -> object:
+def assigned(tree: ast.Module, name: str) -> ast.expr:
     for node in tree.body:
         if isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == name for t in node.targets):
-            return ast.literal_eval(node.value)
+            return node.value
     raise KeyError(name)
+
+
+def constant(tree: ast.Module, name: str) -> object:
+    return ast.literal_eval(assigned(tree, name))
 
 
 def parse(path: Path) -> ast.Module:
@@ -80,8 +84,9 @@ def test_skeletons_paused_and_daily_dags_active(path: Path) -> None:
     assert keyword(call, "is_paused_upon_creation") is (path.stem in SKELETONS)
 
 
-def test_load_dag_covers_every_raw_topic() -> None:
+def test_load_and_collect_cover_every_raw_topic() -> None:
     assert constant(parse(DAGS / "radar_load.py"), "SOURCES") == SOURCES
+    assert constant(parse(DAGS / "radar_collect.py"), "RAW_SOURCES") == SOURCES
 
 
 def test_load_dag_skip_code_matches_the_task_script() -> None:
@@ -92,8 +97,16 @@ def test_load_dag_skip_code_matches_the_task_script() -> None:
     assert constant(parse(DAGS / "radar_load.py"), "SKIP_EXIT_CODE") == module.SKIP_EXIT_CODE
 
 
-def test_chain_triggers_the_next_dag_for_the_same_date() -> None:
-    for path, target in ((DAGS / "radar_collect.py", "radar_load"), (DAGS / "radar_load.py", "radar_dbt")):
-        text = path.read_text(encoding="utf-8")
-        assert f'trigger_dag_id="{target}"' in text
-        assert 'logical_date="{{ ds }}"' in text
+def test_collect_triggers_load_for_the_same_date() -> None:
+    text = (DAGS / "radar_collect.py").read_text(encoding="utf-8")
+    assert 'trigger_dag_id="radar_load"' in text
+    assert 'logical_date="{{ ds }}"' in text
+
+
+def test_dbt_is_scheduled_by_the_asset_load_emits() -> None:
+    load, dbt = parse(DAGS / "radar_load.py"), parse(DAGS / "radar_dbt.py")
+    assert ast.dump(assigned(load, "RAW_VACANCIES")) == ast.dump(assigned(dbt, "RAW_VACANCIES"))
+    (call,) = dag_calls(dbt)
+    schedule = next(kw.value for kw in call.keywords if kw.arg == "schedule")
+    assert ast.unparse(schedule) == "[RAW_VACANCIES]"
+    assert "outlets=[RAW_VACANCIES]" in (DAGS / "radar_load.py").read_text(encoding="utf-8")

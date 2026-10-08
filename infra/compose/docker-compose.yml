@@ -41,6 +41,15 @@ x-airflow-env: &airflow-env
   AIRFLOW__API_AUTH__JWT_SECRET: ${AIRFLOW_JWT_SECRET:-}
   AIRFLOW__API__WORKERS: "1"
   AIRFLOW__API__BASE_URL: http://localhost:8090
+  # Metrics of every component and of the tasks (radar_sla) over StatsD to statsd-exporter. Tags
+  # go in InfluxDB style (name,tag=value), which the exporter turns into Prometheus labels; the
+  # legacy names, which put dag_id and task_id into the metric name, are off.
+  AIRFLOW__METRICS__STATSD_ON: "true"
+  AIRFLOW__METRICS__STATSD_HOST: statsd-exporter
+  AIRFLOW__METRICS__STATSD_PORT: "9125"
+  AIRFLOW__METRICS__STATSD_PREFIX: airflow
+  AIRFLOW__METRICS__STATSD_INFLUXDB_ENABLED: "true"
+  AIRFLOW__METRICS__LEGACY_NAMES_ON: "false"
 
 x-airflow: &airflow
   build:
@@ -271,6 +280,9 @@ services:
     depends_on:
       airflow-migrate:
         condition: service_completed_successfully
+      # The StatsD client resolves the host once; without it the process sends no metrics at all.
+      statsd-exporter:
+        condition: service_started
     command: ["bash", "/opt/radar/airflow/scripts/api-server.sh"]
     environment:
       <<: *airflow-env
@@ -290,6 +302,8 @@ services:
         condition: service_completed_successfully
       airflow-api-server:
         condition: service_healthy
+      statsd-exporter:
+        condition: service_started
     command: ["scheduler"]
     environment:
       <<: *airflow-env
@@ -301,6 +315,9 @@ services:
       CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:?set CLICKHOUSE_PASSWORD in .env}
       REDPANDA_BROKERS: redpanda:9092
       PYTHONDONTWRITEBYTECODE: "1"
+      # Standard-library helpers the Python tasks import under Airflow's interpreter (raw_layer,
+      # dbt_handover); the project's code runs under /opt/radar/.venv instead.
+      PYTHONPATH: /opt/radar/airflow/include
     volumes:
       - ../../airflow:/opt/radar/airflow:ro
       - ../../src:/opt/radar/src:ro
@@ -325,12 +342,28 @@ services:
     depends_on:
       airflow-migrate:
         condition: service_completed_successfully
+      statsd-exporter:
+        condition: service_started
     command: ["dag-processor"]
     mem_limit: 768m
     healthcheck:
       <<: *healthcheck
       interval: 60s
       test: ["CMD-SHELL", "airflow jobs check --job-type DagProcessorJob --local"]
+
+  # StatsD in, Prometheus format out (:9102/metrics) for the Airflow services, ready for the
+  # Prometheus of the mlops profile. Holds only current values, so it needs no volume.
+  statsd-exporter:
+    image: prom/statsd-exporter:v0.31.0
+    profiles: [orchestration]
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:9102:9102
+    mem_limit: 64m
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:9102/metrics"]
+    logging: *logging
 
 volumes:
   clickhouse-data:
