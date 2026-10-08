@@ -1,0 +1,44 @@
+version: 2
+
+# One physical table, raw.vacancies (infra/clickhouse/001_raw_vacancies.sql), declared once per
+# source so that each gets its own freshness check and lineage. Read it with FINAL: a replay
+# delivers rows again and the ReplacingMergeTree folds them only on merge.
+sources:
+  - name: raw
+    database: raw
+    schema: raw
+    description: >
+      Raw layer streamed from Redpanda. One row is one record of one raw partition dt;
+      the same vacancy seen on ten days is ten rows. Personal data are removed before the raw layer
+      (DECISIONS 3).
+    loaded_at_field: fetched_at
+    tables:
+      - name: trudvsem
+        identifier: vacancies
+        description: Daily IT slice of the trudvsem open-data API; dt is the Moscow day of the run.
+        config:
+          freshness:
+            warn_after: {count: 26, period: hour}
+            error_after: {count: 50, period: hour}
+            filter: "source = 'trudvsem'"
+      - name: trudvsem_snapshot
+        identifier: vacancies
+        description: >
+          Daily XML snapshots of the whole trudvsem set (all professions); dt is the snapshot date,
+          fetched_at the moment the backfill downloaded it. A snapshot is published about 13:50
+          Moscow time and takes hours to download and parse, hence the looser threshold.
+        config:
+          freshness:
+            warn_after: {count: 48, period: hour}
+            error_after: {count: 96, period: hour}
+            filter: "source = 'trudvsem_snapshot'"
+      - name: habr
+        identifier: vacancies
+        description: >
+          Daily snapshot of the Habr Career list plus card pages of new and changed vacancies;
+          dt is the Moscow day of the run.
+        config:
+          freshness:
+            warn_after: {count: 26, period: hour}
+            error_after: {count: 50, period: hour}
+            filter: "source = 'habr'"

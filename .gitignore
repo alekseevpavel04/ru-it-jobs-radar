@@ -14,8 +14,8 @@ logs/
 .vscode/
 .DS_Store
 
-data/
-models/
+/data/
+/models/
 mlruns/
 mlartifacts/
 storage/
@@ -24,3 +24,8 @@ storage/
 
 # training run caches
 unsloth_compiled_cache/
+
+# dbt build artifacts
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/

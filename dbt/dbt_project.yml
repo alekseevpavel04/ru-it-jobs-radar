@@ -1,0 +1,24 @@
+name: radar
+version: "1.0.0"
+config-version: 2
+profile: radar
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+clean-targets: ["target", "logs"]
+
+flags:
+  send_anonymous_usage_stats: false
+  use_colors: false
+
+models:
+  radar:
+    staging:
+      +schema: staging
+      +materialized: view
+
+seeds:
+  radar:
+    +schema: staging

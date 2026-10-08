@@ -1,0 +1,530 @@
+version: 2
+
+# Enumerations: a new currency fails the build (it would silently skew salary numbers); a new value
+# in a descriptive field only warns, so the daily load is not stopped by the portal adding a
+# schedule type. Value lists come from the data of 2026-06-30..2026-07-03 (snapshot) and
+# 2026-10-08 (API, Habr).
+
+models:
+  - name: stg_trudvsem_api
+    description: >
+      trudvsem open-data API, one row per vacancy per raw day (source_id, dt): the latest fetched_at
+      of that day. Typed fields from the payload; amounts and currency as the source states them,
+      parsing of free-text salaries is left to radar.extract. Built one day at a time
+      (materialization incremental_by_day). The collected slice is wide on purpose (IT sphere plus
+      role text queries), so it carries the same is_it_candidate flag as the snapshot.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source_id, dt]
+    columns:
+      - name: source
+        description: Always trudvsem here.
+        data_tests: [not_null]
+      - name: source_id
+        description: Vacancy id at the source (UUID).
+        data_tests: [not_null]
+      - name: dt
+        description: Raw partition date; for the API the Moscow day of the run.
+        data_tests: [not_null]
+      - name: content_hash
+        description: Hash of what the record says; with source, source_id and dt it is the key of the raw row.
+        data_tests: [not_null]
+      - name: fetched_at
+        description: When the record was requested (UTC).
+        data_tests: [not_null]
+      - name: published_at
+        description: Creation date at the source (creation-date / creationDate), UTC.
+      - name: modified_at
+        description: Last modification at the source (date_modify / dateModify), UTC.
+      - name: url
+        description: Vacancy page; null for sole proprietors, whose link carries the OGRNIP (DECISIONS, ИП).
+      - name: title
+        description: Job title.
+        data_tests: [not_null]
+      - name: text
+        description: Duties, requirements and conditions as labelled sections, after PII removal.
+      - name: has_text
+        description: text is present and not blank.
+        data_tests: [not_null]
+      - name: employer_name
+        description: Employer as named by the source; "ИП" for a sole proprietor, the name being personal data.
+      - name: employer_inn
+        description: Employer INN; removed for sole proprietors by the raw cleaner.
+      - name: region
+        description: Region name.
+      - name: region_code
+        description: Region code of the portal (13 digits).
+      - name: address
+        description: Workplace address as stated (first address for the API).
+      - name: salary_text
+        description: Salary as the portal prints it; always "от N" in the data seen, so it does not tell whether salary_to was stated.
+      - name: salary_from
+        description: salaryMin / salary_min; null when absent or 0, which the portal uses for "not stated".
+      - name: salary_to
+        description: >
+          salaryMax / salary_max; null when absent or 0. Equals salary_from on many records (3 921
+          of 11 632 in the API on 2026-10-08), which may mean a fixed amount or an unstated maximum.
+      - name: salary_currency
+        description: Currency as the source writes it.
+      - name: salary_currency_code
+        description: ISO code of the currency (RUB, USD, EUR, ...), null when no amount or currency.
+      - name: schedule
+        description: Working schedule (portal dictionary).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - Полный рабочий день
+                  - Неполный рабочий день/неполная рабочая неделя
+                  - Сменная работа
+                  - Ненормированный рабочий день
+                  - Режим гибкого рабочего времени
+                  - Вахтовый метод
+              config:
+                severity: warn
+      - name: employment
+        description: Employment type (portal dictionary); empty in the source becomes null.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - Полная занятость
+                  - Частичная занятость
+                  - Временная работа
+                  - Сезонная работа
+                  - Стажировка
+                  - Дистанционная (удаленная) работа
+              config:
+                severity: warn
+      - name: experience_min_years
+        description: Required years of experience as stated (a minimum).
+      - name: education
+        description: Required education (portal dictionary).
+      - name: sphere_name
+        description: Professional sphere name.
+      - name: profession_code
+        description: Profession code of the portal classifier; one typical position spans many codes.
+      - name: typical_position
+        description: Typical position of the portal's profession classifier.
+      - name: source_type
+        description: >
+          Who posted it. "Вакансия интернет ресурса" are reposts from commercial sites (rabota.ru);
+          their text is not to be published (DECISIONS, proposal).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - Вакансия работодателя
+                  - Вакансия интернет ресурса
+                  - Вакансия кадрового агентства
+                  - Цифровой хаб
+                  - Аккредитованное частное агентство занятости
+              config:
+                severity: warn
+      - name: skills
+        description: Skills listed by the employer.
+      - name: is_it_candidate
+        description: &it_rule >
+          Wide IT filter, not measured yet: true when the professional sphere is
+          InformationTechnology (API: its name), or the typical position is in the seed
+          it_typical_positions, or the lowercased title matches the pattern of macro
+          it_title_pattern (programmer, developer, analyst of data, DevOps, QA, sysadmin,
+          information security, language and stack names, IT as a word, and similar). It is meant
+          to keep recall high; the sphere alone is noisy (58 of 200 IT-like titles) and misses most
+          programmers (37 of 100), see docs/sources.md. Precision and recall are to be measured on
+          labelled data before the filter is narrowed.
+        data_tests: [not_null]
+      - name: ingested_at
+        description: When the chosen raw row reached ClickHouse; drives which days a build takes again.
+        data_tests: [not_null]
+      - name: is_hr_agency
+        description: Employer flagged by the API as a recruitment agency.
+      - name: collector_queries
+        description: Which collector queries (IT sphere, role text searches) returned the record.
+
+  - name: stg_trudvsem_snapshot
+    description: >
+      Daily XML snapshots of the whole trudvsem set, all professions, one row per vacancy per
+      snapshot date (source_id, dt). Filter IT with is_it_candidate. About 550k rows per day and
+      about 100 days, so it is a table partitioned by dt and built one day per statement
+      (materialization incremental_by_day): a single statement over all days does not fit the
+      server's memory.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source_id, dt]
+    columns:
+      - name: source
+        description: Always trudvsem_snapshot here.
+        data_tests: [not_null]
+      - name: source_id
+        description: Vacancy id at the source (UUID).
+        data_tests: [not_null]
+      - name: dt
+        description: Snapshot date (not the date it was downloaded).
+        data_tests: [not_null]
+      - name: content_hash
+        description: Hash of what the record says; with source, source_id and dt it is the key of the raw row.
+        data_tests: [not_null]
+      - name: fetched_at
+        description: When the backfill downloaded the snapshot (UTC).
+        data_tests: [not_null]
+      - name: published_at
+        description: creationDate, UTC.
+      - name: modified_at
+        description: dateModify, UTC.
+      - name: url
+        description: Vacancy page; null for sole proprietors.
+      - name: title
+        description: vacancyName.
+        data_tests: [not_null]
+      - name: text
+        description: >
+          Free-text sections (duties, requirements, conditions) after PII removal, for IT candidates
+          only; null for other professions (about 98% of rows), whose text stays in raw.vacancies
+          under (source, source_id, dt, content_hash). has_text tells whether the source had text.
+      - name: has_text
+        description: The source record has non-blank text (also where text is not kept).
+        data_tests: [not_null]
+      - name: employer_name
+        description: fullCompanyName; "ИП" for a sole proprietor.
+      - name: employer_inn
+        description: Employer INN; removed for sole proprietors.
+      - name: company_size
+        description: companyBusinessSize.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [MICRO, SMALL, MIDDLE, BIG, LARGE]
+              config:
+                severity: warn
+      - name: region
+        description: regionName.
+      - name: region_code
+        description: stateRegionCode (13 digits).
+      - name: address
+        description: vacancyAddress as stated.
+      - name: salary_text
+        description: Salary as the portal prints it ("от N").
+      - name: salary_from
+        description: salaryMin; null when absent or 0 ("not stated").
+      - name: salary_to
+        description: salaryMax; null when absent or 0. Often equal to salary_from (200 984 of 555 417 on 2026-07-01).
+      - name: salary_currency
+        description: Always null; the snapshot does not state a currency.
+      - name: salary_currency_code
+        description: >
+          RUB when an amount is present: the snapshot does not repeat the currency, while the API of
+          the same portal states «руб.» on every record (11 632 of 11 632 on 2026-10-08).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [RUB]
+      - name: schedule
+        description: scheduleType.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - Полный рабочий день
+                  - Неполный рабочий день/неполная рабочая неделя
+                  - Сменная работа
+                  - Ненормированный рабочий день
+                  - Режим гибкого рабочего времени
+                  - Вахтовый метод
+              config:
+                severity: warn
+      - name: employment
+        description: busyType; empty in the source becomes null.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - Полная занятость
+                  - Частичная занятость
+                  - Временная работа
+                  - Сезонная работа
+                  - Стажировка
+                  - Дистанционная (удаленная) работа
+              config:
+                severity: warn
+      - name: experience_min_years
+        description: experienceRequirements, years as stated (a minimum; a few values up to 60 are kept as stated).
+      - name: education
+        description: educationRequirements.educationType.
+      - name: sphere_code
+        description: codeProfessionalSphere (35 values in the portal dictionary).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [Medicine, Education, Sales, Industry, Communal, Transport, Agricultural,
+                  NotQualification, WorkingSpecialties, Restaurants, BuldindRealty, ElectricpowerIndustry,
+                  StateServices, Safety, Food, Culture, MechanicalEngineering, DeskWork, Resources,
+                  Management, Forest, AccountingTaxesManagement, InformationTechnology, ServiceMaintenance,
+                  Metallurgy, ChemicalAndFuelIndustry, Jurisprudence, RootLightIndustry,
+                  SportsFitnessBeautySalons, Finances, HumanRecruitment, Consulting, Marketing,
+                  HomePersonal, Entertainment]
+              config:
+                severity: warn
+      - name: sphere_name
+        description: professionalSphereName.
+      - name: profession_code
+        description: codeProfession; one typical position spans many codes ("Программист" 30 on 2026-07-01).
+      - name: typical_position
+        description: typicalPosition of the portal's profession classifier.
+      - name: source_type
+        description: sourceType; reposts from commercial sites are "Вакансия интернет ресурса".
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - Вакансия работодателя
+                  - Вакансия интернет ресурса
+                  - Вакансия кадрового агентства
+                  - Цифровой хаб
+                  - Аккредитованное частное агентство занятости
+              config:
+                severity: warn
+      - name: status
+        description: Moderation status at the portal.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [Одобрено, Не опубликовано, Ожидает подтверждения, Не одобрено]
+              config:
+                severity: warn
+      - name: is_deleted
+        description: deleted flag of the snapshot record.
+        data_tests: [not_null]
+      - name: work_places
+        description: Number of open positions.
+      - name: date_published
+        description: datePublished, UTC.
+      - name: change_time
+        description: changeTime, UTC.
+      - name: skills
+        description: Skills listed by the employer.
+      - name: snapshot_version
+        description: Version stamp of the snapshot file (YYYYMMDDTHHMMSS).
+      - name: is_it_candidate
+        description: *it_rule
+        data_tests: [not_null]
+      - name: ingested_at
+        description: When the chosen raw row reached ClickHouse; drives which days a build takes again.
+        data_tests: [not_null]
+
+  - name: stg_habr
+    description: >
+      Habr Career, one row per vacancy per raw day (source_id, dt). A rerun on the same day can write
+      a second raw row (32 of 1 069 on 2026-10-08); the latest fetched_at wins, then the latest
+      card_fetched_at. The list has no description; text comes from the card page and is carried
+      from the last card read when the list entry did not change.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source_id, dt]
+    columns:
+      - name: source
+        description: Always habr here.
+        data_tests: [not_null]
+      - name: source_id
+        description: Habr vacancy id.
+        data_tests: [not_null]
+      - name: dt
+        description: Moscow day of the run.
+        data_tests: [not_null]
+      - name: content_hash
+        description: Hash of what the record says; with source, source_id and dt it is the key of the raw row.
+        data_tests: [not_null]
+      - name: fetched_at
+        description: When the list page with this vacancy was requested (UTC).
+        data_tests: [not_null]
+      - name: published_at
+        description: datePosted of the card's JSON-LD, UTC; null without a card.
+      - name: has_future_published_at
+        description: >
+          published_at is later than fetched_at. Habr sometimes states a datePosted ahead of the day
+          the card was read (2 of 519 cards on 2026-10-08); kept and flagged, not dropped.
+        data_tests: [not_null]
+      - name: modified_at
+        description: Always null; Habr gives no modification date.
+      - name: url
+        description: Vacancy page.
+      - name: title
+        description: Job title.
+        data_tests: [not_null]
+      - name: text
+        description: Card description as plain text after PII removal; null until the card is read.
+      - name: has_text
+        description: text is present and not blank.
+        data_tests: [not_null]
+      - name: card_fetched_at
+        description: When the card page behind text was read (UTC).
+      - name: has_card
+        description: A card has been read for this vacancy.
+        data_tests: [not_null]
+      - name: employer_name
+        description: Company title; "ИП" for a sole proprietor.
+      - name: employer_id
+        description: Habr company id.
+      - name: employer_alias
+        description: Habr company alias (URL slug).
+      - name: cities
+        description: Location titles from the list entry.
+      - name: salary_text
+        description: Salary as Habr prints it; null when not stated.
+      - name: salary_from
+        description: Lower bound stated by the employer.
+      - name: salary_to
+        description: Upper bound stated by the employer.
+      - name: salary_currency
+        description: Currency as Habr writes it.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [rur, usd, eur]
+      - name: salary_currency_code
+        description: ISO code of salary_currency.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [RUB, USD, EUR]
+      - name: predicted_salary_from
+        description: Habr's own salary estimate, not stated by the employer; never mix with salary_from.
+      - name: predicted_salary_to
+        description: Upper bound of Habr's estimate.
+      - name: predicted_salary_currency
+        description: Currency of Habr's estimate.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [rur]
+              config:
+                severity: warn
+      - name: employment
+        description: Employment from the list entry.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [full_time, part_time]
+              config:
+                severity: warn
+      - name: card_employment_type
+        description: employmentType of the card's JSON-LD.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [FULL_TIME, PART_TIME]
+              config:
+                severity: warn
+      - name: remote_work
+        description: remoteWork flag of the list entry.
+      - name: job_location_type
+        description: jobLocationType of the card's JSON-LD (TELECOMMUTE for remote).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [TELECOMMUTE]
+              config:
+                severity: warn
+      - name: grade
+        description: Qualification stated by the employer, lowercased.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [intern, junior, middle, senior, lead]
+      - name: divisions
+        description: Specializations of the vacancy.
+      - name: skills
+        description: Skills tagged on the vacancy.
+      - name: raised_at
+        description: publishedDate of the list, the moment the vacancy was last raised; not its publication.
+      - name: valid_through
+        description: validThrough of the card's JSON-LD.
+      - name: is_archived
+        description: archived flag of the list entry.
+        data_tests: [not_null]
+      - name: collector_passes
+        description: Which list walks (by date, by salary, by specialization group) returned the vacancy.
+      - name: ingested_at
+        description: When the chosen raw row reached ClickHouse; drives which days a build takes again.
+        data_tests: [not_null]
+
+  - name: stg_vacancies
+    description: >
+      All staging sources in one column set (a view over the per-source tables). Columns a source
+      does not have are null or an empty array: region, schedule, experience and source_type are
+      trudvsem only; cities, remote_work and grade are Habr only. Every Habr vacancy is an IT
+      candidate. Row count equals the sum of the per-source models (singular test
+      assert_stg_vacancies_rows_match_sources).
+    columns:
+      - name: source
+        description: trudvsem, trudvsem_snapshot or habr.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [trudvsem, trudvsem_snapshot, habr]
+      - name: source_id
+        description: Vacancy id at the source.
+        data_tests: [not_null]
+      - name: dt
+        description: Raw partition date.
+        data_tests: [not_null]
+      - name: content_hash
+        description: Hash of what the record says; with source, source_id and dt it is the key of the raw row.
+        data_tests: [not_null]
+      - name: fetched_at
+        description: When the record was requested (UTC).
+      - name: published_at
+        description: Publication at the source, UTC.
+      - name: modified_at
+        description: Last modification at the source, UTC; trudvsem only.
+      - name: url
+        description: Vacancy page.
+      - name: title
+        description: Job title.
+      - name: text
+        description: Vacancy text after PII removal; for the snapshot only on IT candidates.
+      - name: has_text
+        description: text is present and not blank.
+      - name: employer_name
+        description: Employer as named by the source.
+      - name: region
+        description: Region name (trudvsem).
+      - name: cities
+        description: Location titles (Habr).
+      - name: salary_text
+        description: Salary as the source prints it.
+      - name: salary_from
+        description: Lower bound as stated; null when not stated.
+      - name: salary_to
+        description: Upper bound as stated; null when not stated.
+      - name: salary_currency
+        description: Currency as the source writes it.
+      - name: salary_currency_code
+        description: ISO code of the currency.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [RUB, USD, EUR, KZT, BYN, UZS, CNY, GBP]
+      - name: schedule
+        description: Working schedule (trudvsem).
+      - name: employment
+        description: Employment type as the source names it.
+      - name: remote_work
+        description: Remote flag (Habr).
+      - name: experience_min_years
+        description: Required years of experience (trudvsem).
+      - name: grade
+        description: Qualification (Habr).
+      - name: source_type
+        description: Who posted it (trudvsem).
+      - name: skills
+        description: Skills listed or tagged at the source.
+      - name: is_it_candidate
+        description: Wide IT filter for trudvsem (see stg_trudvsem_snapshot); always true for Habr.
+        data_tests: [not_null]
+      - name: ingested_at
+        description: When the chosen raw row reached ClickHouse.

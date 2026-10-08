@@ -1,0 +1,19 @@
+version: 2
+
+seeds:
+  - name: it_typical_positions
+    description: >
+      Values of trudvsem `typicalPosition` (the portal's profession classifier) that count as IT for
+      the wide filter is_it_candidate. Picked by hand from the positions present in the
+      InformationTechnology sphere and matching IT words in the 2026-07-01 snapshot. The position
+      name, not `codeProfession`, is the key: one position spans up to 30 profession codes
+      ("Программист" had 30 on 2026-07-01).
+    config:
+      column_types:
+        typical_position: String
+    columns:
+      - name: typical_position
+        description: Exact typicalPosition value.
+        data_tests:
+          - unique
+          - not_null

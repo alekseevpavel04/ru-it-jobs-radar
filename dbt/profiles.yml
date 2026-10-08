@@ -1,0 +1,17 @@
+# Connection from the environment only (.env); run through scripts/dbt.sh, which loads it.
+# CLICKHOUSE_URL is the HTTP endpoint, e.g. http://localhost:8123.
+radar:
+  target: local
+  outputs:
+    local:
+      type: clickhouse
+      driver: http
+      host: "{{ env_var('CLICKHOUSE_URL').split('://')[-1].split(':')[0].rstrip('/') }}"
+      port: "{{ env_var('CLICKHOUSE_URL').split('://')[-1].split(':')[-1].rstrip('/') | as_number }}"
+      secure: "{{ (env_var('CLICKHOUSE_URL').startswith('https://')) | as_bool }}"
+      user: "{{ env_var('CLICKHOUSE_USER') }}"
+      password: "{{ env_var('CLICKHOUSE_PASSWORD') }}"
+      schema: staging
+      threads: 2
+      connect_timeout: 30
+      send_receive_timeout: 1800
