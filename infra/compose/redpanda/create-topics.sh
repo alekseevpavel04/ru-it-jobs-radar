@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# One topic per source. Safe to rerun: existing topics keep their data and settings.
+# A single partition keeps per-source order; a day of vacancies is a few thousand messages.
+set -euo pipefail
+
+for topic in raw.trudvsem raw.habr raw.telegram raw.superjob; do
+  if rpk topic describe "$topic" >/dev/null 2>&1; then
+    echo "exists: $topic"
+  else
+    rpk topic create "$topic" --partitions 1 --replicas 1
+  fi
+done

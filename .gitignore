@@ -21,3 +21,6 @@ mlartifacts/
 storage/
 *.gguf
 *.safetensors
+
+# training run caches
+unsloth_compiled_cache/

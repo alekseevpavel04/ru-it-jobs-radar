@@ -1,0 +1,204 @@
+# The local stack. Profiles by layer; scripts/up.sh brings up all of them by default.
+# Variables come from the repo-root .env (scripts/up.sh passes it with --env-file); a required
+# variable that is empty stops `docker compose` before anything starts.
+name: radar
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: 10m
+    max-file: "3"
+
+x-healthcheck: &healthcheck
+  interval: 10s
+  timeout: 5s
+  retries: 12
+  start_period: 30s
+  start_interval: 2s
+
+# llama-server runs on Windows (scripts/llm_server.sh) to keep the GPU outside the VM, so it is not
+# a compose service. A service that calls the teacher merges this block.
+x-llm-client: &llm-client
+  extra_hosts:
+    - host.docker.internal:host-gateway
+  environment:
+    LLM_BASE_URL: http://host.docker.internal:8080/v1
+
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:26.8.20.9
+    profiles: [core]
+    restart: unless-stopped
+    environment:
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER:?set CLICKHOUSE_USER in .env}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:?set CLICKHOUSE_PASSWORD in .env}
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+      - ./clickhouse/low-memory.xml:/etc/clickhouse-server/config.d/low-memory.xml:ro
+    ports:
+      - 127.0.0.1:8123:8123
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    # The server sizes its memory pool from the cgroup limit (90% of it).
+    mem_limit: 4g
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "wget", "-q", "-O-", "http://127.0.0.1:8123/ping"]
+    logging: *logging
+
+  # Databases of the storage layers and the analyst agent's read-only account. Runs on every `up`
+  # and is idempotent, so a changed password in .env reaches the server without a volume reset.
+  clickhouse-init:
+    image: clickhouse/clickhouse-server:26.8.20.9
+    profiles: [core]
+    restart: "no"
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+    entrypoint: ["bash", "/init/init.sh"]
+    environment:
+      CLICKHOUSE_HOST: clickhouse
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER:?set CLICKHOUSE_USER in .env}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:?set CLICKHOUSE_PASSWORD in .env}
+      CLICKHOUSE_RO_USER: ${CLICKHOUSE_RO_USER:?set CLICKHOUSE_RO_USER in .env}
+      CLICKHOUSE_RO_PASSWORD: ${CLICKHOUSE_RO_PASSWORD:?set CLICKHOUSE_RO_PASSWORD in .env}
+    volumes:
+      - ../clickhouse/init.sh:/init/init.sh:ro
+    mem_limit: 256m
+    logging: *logging
+
+  redpanda:
+    image: redpandadata/redpanda:v26.2.4
+    profiles: [core]
+    restart: unless-stopped
+    command:
+      - redpanda
+      - start
+      - --mode=dev-container
+      - --smp=1
+      - --memory=1G
+      - --reserve-memory=0M
+      - --default-log-level=warn
+      - --kafka-addr=internal://0.0.0.0:9092,external://0.0.0.0:19092
+      - --advertise-kafka-addr=internal://redpanda:9092,external://localhost:19092
+      - --rpc-addr=redpanda:33145
+      - --advertise-rpc-addr=redpanda:33145
+    volumes:
+      - redpanda-data:/var/lib/redpanda/data
+    ports:
+      - 127.0.0.1:19092:19092
+    mem_limit: 1536m
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD-SHELL", "rpk cluster health | grep -E 'Healthy:.+true'"]
+    logging: *logging
+
+  redpanda-init:
+    image: redpandadata/redpanda:v26.2.4
+    profiles: [core]
+    restart: "no"
+    depends_on:
+      redpanda:
+        condition: service_healthy
+    entrypoint: ["bash", "/init/create-topics.sh"]
+    environment:
+      RPK_BROKERS: redpanda:9092
+    volumes:
+      - ./redpanda/create-topics.sh:/init/create-topics.sh:ro
+    mem_limit: 256m
+    logging: *logging
+
+  console:
+    image: redpandadata/console:v3.12.0
+    profiles: [core]
+    restart: unless-stopped
+    depends_on:
+      redpanda:
+        condition: service_healthy
+    environment:
+      KAFKA_BROKERS: redpanda:9092
+      REDPANDA_ADMINAPI_ENABLED: "true"
+      REDPANDA_ADMINAPI_URLS: http://redpanda:9644
+    ports:
+      - 127.0.0.1:8081:8080
+    mem_limit: 256m
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "wget", "-q", "-O-", "http://127.0.0.1:8080/admin/health"]
+    logging: *logging
+
+  # Cache for the API: losing it costs recomputation only, so memory is capped and keys evicted by LRU.
+  redis:
+    image: redis:8.10.2-alpine
+    profiles: [core]
+    restart: unless-stopped
+    command: ["redis-server", "--maxmemory", "256mb", "--maxmemory-policy", "allkeys-lru"]
+    volumes:
+      - redis-data:/data
+    ports:
+      - 127.0.0.1:6379:6379
+    mem_limit: 384m
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD-SHELL", "redis-cli ping | grep -q PONG"]
+    logging: *logging
+
+  mlflow-db:
+    image: postgres:18.6-alpine
+    profiles: [ml]
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: mlflow
+      POSTGRES_DB: mlflow
+      POSTGRES_PASSWORD: ${MLFLOW_DB_PASSWORD:?set MLFLOW_DB_PASSWORD in .env}
+    volumes:
+      # Postgres 18 keeps PGDATA in a versioned subdirectory of this path.
+      - mlflow-db:/var/lib/postgresql
+    mem_limit: 512m
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "pg_isready", "--username=mlflow", "--dbname=mlflow"]
+    logging: *logging
+
+  mlflow:
+    build: ./mlflow
+    image: radar/mlflow:3.17.0
+    profiles: [ml]
+    restart: unless-stopped
+    depends_on:
+      mlflow-db:
+        condition: service_healthy
+    environment:
+      # Server-side jobs serve the GenAI evaluation features and start seven worker processes
+      # (about 1 GB); tracking runs and the model registry do not use them.
+      MLFLOW_SERVER_ENABLE_JOB_EXECUTION: "false"
+    command:
+      - mlflow
+      - server
+      - --host=0.0.0.0
+      - --port=5000
+      - --workers=2
+      - --backend-store-uri=postgresql+psycopg2://mlflow:${MLFLOW_DB_PASSWORD:?set MLFLOW_DB_PASSWORD in .env}@mlflow-db:5432/mlflow
+      - --serve-artifacts
+      - --artifacts-destination=/mlartifacts
+      # Host header allowlist of the security middleware: the host side and other containers.
+      - --allowed-hosts=localhost:5000,127.0.0.1:5000,mlflow:5000
+    volumes:
+      - mlflow-artifacts:/mlartifacts
+    ports:
+      - 127.0.0.1:5000:5000
+    mem_limit: 1g
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/health', timeout=3)"]
+    logging: *logging
+
+volumes:
+  clickhouse-data:
+  redpanda-data:
+  redis-data:
+  mlflow-db:
+  mlflow-artifacts:
