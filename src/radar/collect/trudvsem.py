@@ -6,7 +6,7 @@ queries is collected and the precise IT filter is left to staging. The API serve
 records per page and 100 pages per query; a query above that is recorded as truncated.
 
 The first run (or `--full`) walks every query completely; later runs ask only for records modified
-since the last complete run started, with an hour of overlap. Records go to
+since the newest `date_modify` collected so far, with an hour of overlap. Records go to
 `data/raw/trudvsem/dt=<run date>/`; the same record twice in a day is written once. The partition
 is then published to the topic `raw.trudvsem`; a stream that is down costs a warning, not the run.
 
@@ -140,10 +140,23 @@ def last_complete_run(root: Path | None = None) -> dict[str, Any] | None:
     return runs[-1] if runs else None
 
 
+def watermark(previous: dict[str, Any]) -> datetime:
+    """The latest `date_modify` the collected data has reached.
+
+    The API is refreshed about once a day, so its newest `date_modify` lags the clock by hours; a
+    watermark taken from the run's start would skip what was modified between the refresh and the
+    run. Runs from before the watermark was kept fall back to a day before their start.
+    """
+    if previous.get("max_modified_at"):
+        return datetime.fromisoformat(previous["max_modified_at"])
+    return datetime.fromisoformat(previous["started_at"]) - timedelta(days=1)
+
+
 def collect(fetcher: Fetcher, full: bool, root: Path | None = None) -> dict[str, Any]:
     started_at = datetime.now(UTC)
     previous = None if full else last_complete_run(root)
-    modified_from = datetime.fromisoformat(previous["started_at"]) - OVERLAP if previous else None
+    reached = watermark(previous) if previous else None
+    modified_from = (reached - OVERLAP).astimezone(UTC) if reached else None
     mode = "incremental" if modified_from else "full"
     log.info("mode %s%s", mode, f", modifiedFrom {modified_from:%Y-%m-%dT%H:%M:%SZ}" if modified_from else "")
 
@@ -173,12 +186,15 @@ def collect(fetcher: Fetcher, full: bool, root: Path | None = None) -> dict[str,
                 writer.reject(vid, ".".join(str(p) for p in first["loc"]) + ": " + first["type"])
                 continue
             writer.add(record)
+            if record.modified_at and (reached is None or record.modified_at > reached):
+                reached = record.modified_at
     run = {
         "started_at": started_at.isoformat(),
         "finished_at": datetime.now(UTC).isoformat(),
         "dt": dt.isoformat(),
         "mode": mode,
         "modified_from": modified_from.isoformat() if modified_from else None,
+        "max_modified_at": reached.isoformat() if reached else None,
         "complete": True,
         "queries": {k: vars(v) for k, v in stats.queries.items()},
         "records_fetched": sum(q.records for q in stats.queries.values()),

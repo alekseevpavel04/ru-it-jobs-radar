@@ -1,4 +1,5 @@
 import json
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -66,6 +67,20 @@ def test_second_run_is_incremental(tmp_path: Path) -> None:
     assert run["mode"] == "incremental"
     assert run["modified_from"] < first["started_at"]
     assert all(r.url.params["modifiedFrom"].endswith("Z") for r in seen)
+
+
+def test_incremental_starts_from_the_newest_date_modify_not_the_clock(tmp_path: Path) -> None:
+    first = tv.collect(_fetcher()[0], full=True, root=tmp_path)
+    newest = datetime.fromisoformat("2026-10-07T13:00:23+03:00")
+    assert datetime.fromisoformat(first["max_modified_at"]) == newest
+    fetcher, seen = _fetcher()
+    tv.collect(fetcher, full=False, root=tmp_path)
+    assert {r.url.params["modifiedFrom"] for r in seen} == {"2026-10-07T09:00:23Z"}
+
+
+def test_watermark_of_a_run_without_one_is_a_day_before_its_start() -> None:
+    run = {"started_at": "2026-10-08T18:30:00+00:00"}
+    assert tv.watermark(run) == datetime(2026, 10, 7, 18, 30, tzinfo=UTC)
 
 
 def test_query_above_the_page_cap_is_marked_truncated(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
