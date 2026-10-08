@@ -67,8 +67,8 @@ _NOT_TEXT = frozenset(
         "snapshot_version",
     }
 )
-# Hex digests and UUIDs can hold any digit run; they are not checked for codes either.
-_OPAQUE = frozenset({"id", "source_id", "content_hash"})
+# UUIDs and hex digests (`*_hash`) can hold any digit run; they are not checked for codes either.
+_OPAQUE = frozenset({"id", "source_id"})
 
 _OGRNIP_RUN = re.compile(r"(?<!\d)3\d{14}(?!\d)")
 _CONTACT_KEYS = frozenset({"contactPerson", "contact_person", "contactList", "contact_list"})
@@ -243,9 +243,10 @@ def scan_record(record: Any) -> Counter[str]:
         ):
             found["employer_name"] += 1
         if isinstance(value, str) and value:
-            if key not in _OPAQUE and _OGRNIP_RUN.search(value):
+            opaque = key in _OPAQUE or key.endswith("_hash")
+            if not opaque and _OGRNIP_RUN.search(value):
                 found["company_code"] += 1
-            if key not in _NOT_TEXT:
+            if not opaque and key not in _NOT_TEXT:
                 for finding in scan_text(value):
                     found[finding.kind] += 1
     return found

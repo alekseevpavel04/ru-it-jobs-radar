@@ -1,0 +1,241 @@
+{
+  "source_script": "src/radar/collect/habr.py",
+  "command": "python -m radar.collect.habr",
+  "commit": "e997cea-dirty",
+  "created_at": "2026-10-08T13:27:08+00:00",
+  "metrics": {
+    "days": {
+      "value": 1,
+      "n": null,
+      "denominator": null
+    },
+    "rows_total": {
+      "value": 1069,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_coverage_of_site_counter": {
+      "value": 0.8577,
+      "n": 1037,
+      "denominator": 1209
+    },
+    "last_run_cards_fetched": {
+      "value": 149,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_cards_carried": {
+      "value": 306,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_cards_failed": {
+      "value": 1,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_cards_deferred": {
+      "value": 581,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_requests": {
+      "value": 242,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "method": "recomputed from data/raw/habr partitions and _meta/runs.jsonl",
+  "days": [
+    {
+      "dt": "2026-10-08",
+      "rows": 1069,
+      "distinct_ids": 1037,
+      "rejected_not_written": 0,
+      "parquet_bytes": 868897,
+      "pii_removed": {
+        "company_code": 4,
+        "email": 3,
+        "employer_name": 4,
+        "nick": 5,
+        "person_name": 2,
+        "phone": 2
+      },
+      "runs": [
+        {
+          "started_at": "2026-10-08T13:05:19.392676+00:00",
+          "finished_at": "2026-10-08T13:27:07.949680+00:00",
+          "dt": "2026-10-08",
+          "complete": true,
+          "site_counter": 1209,
+          "distinct_listed": 1037,
+          "passes": [
+            {
+              "name": "all_by_date",
+              "counter": 1209,
+              "pages": 20,
+              "items": 1000,
+              "capped": true
+            },
+            {
+              "name": "all_by_salary_desc",
+              "counter": 1209,
+              "pages": 20,
+              "items": 1000,
+              "capped": true
+            },
+            {
+              "name": "all_by_salary_asc",
+              "counter": 1209,
+              "pages": 20,
+              "items": 1000,
+              "capped": true
+            },
+            {
+              "name": "group:Разработка",
+              "counter": 268,
+              "pages": 6,
+              "items": 268,
+              "capped": false
+            },
+            {
+              "name": "group:Тестирование",
+              "counter": 60,
+              "pages": 2,
+              "items": 60,
+              "capped": false
+            },
+            {
+              "name": "group:Аналитика",
+              "counter": 175,
+              "pages": 4,
+              "items": 175,
+              "capped": false
+            },
+            {
+              "name": "group:Дизайн",
+              "counter": 7,
+              "pages": 1,
+              "items": 7,
+              "capped": false
+            },
+            {
+              "name": "group:Менеджмент",
+              "counter": 84,
+              "pages": 2,
+              "items": 84,
+              "capped": false
+            },
+            {
+              "name": "group:Информационная безопасность",
+              "counter": 69,
+              "pages": 2,
+              "items": 69,
+              "capped": false
+            },
+            {
+              "name": "group:Топ-менеджмент",
+              "counter": 12,
+              "pages": 1,
+              "items": 12,
+              "capped": false
+            },
+            {
+              "name": "group:Искусственный интеллект",
+              "counter": 31,
+              "pages": 1,
+              "items": 31,
+              "capped": false
+            },
+            {
+              "name": "group:Поддержка",
+              "counter": 67,
+              "pages": 2,
+              "items": 67,
+              "capped": false
+            },
+            {
+              "name": "group:Производство и строительство",
+              "counter": 5,
+              "pages": 1,
+              "items": 5,
+              "capped": false
+            },
+            {
+              "name": "group:Маркетинг",
+              "counter": 35,
+              "pages": 1,
+              "items": 35,
+              "capped": false
+            },
+            {
+              "name": "group:Администрирование",
+              "counter": 99,
+              "pages": 2,
+              "items": 99,
+              "capped": false
+            },
+            {
+              "name": "group:Контент",
+              "counter": 38,
+              "pages": 1,
+              "items": 38,
+              "capped": false
+            },
+            {
+              "name": "group:Продажи",
+              "counter": 62,
+              "pages": 2,
+              "items": 62,
+              "capped": false
+            },
+            {
+              "name": "group:HR",
+              "counter": 14,
+              "pages": 1,
+              "items": 14,
+              "capped": false
+            },
+            {
+              "name": "group:Офис",
+              "counter": 12,
+              "pages": 1,
+              "items": 12,
+              "capped": false
+            },
+            {
+              "name": "group:Зерокодинг",
+              "counter": 0,
+              "pages": 1,
+              "items": 0,
+              "capped": false
+            }
+          ],
+          "capped_passes": [
+            "all_by_date",
+            "all_by_salary_desc",
+            "all_by_salary_asc"
+          ],
+          "cards": {
+            "fetched": 149,
+            "carried": 306,
+            "gone": 1,
+            "failed": 0,
+            "deferred": 581,
+            "blocked": false
+          },
+          "written": 731,
+          "duplicates_skipped": 306,
+          "rejected": 0,
+          "requests": 242,
+          "retries": 0,
+          "seconds_in_requests": 232.2,
+          "coverage": {
+            "n": 1037,
+            "denominator": 1209
+          }
+        }
+      ]
+    }
+  ]
+}

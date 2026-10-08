@@ -1,0 +1,165 @@
+{
+  "source_script": "src/radar/collect/trudvsem.py",
+  "command": "trudvsem.py --full",
+  "commit": "e997cea-dirty",
+  "created_at": "2026-10-08T12:55:01+00:00",
+  "metrics": {
+    "days": {
+      "value": 1,
+      "n": null,
+      "denominator": null
+    },
+    "rows_total": {
+      "value": 11632,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_distinct_vacancies": {
+      "value": 11632,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_written": {
+      "value": 11632,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_industry_it_total": {
+      "value": 6525,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_requests": {
+      "value": 153,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_truncated_queries": {
+      "value": 0,
+      "n": 0,
+      "denominator": 13
+    }
+  },
+  "method": "recomputed from data/raw/trudvsem partitions and _meta/runs.jsonl",
+  "days": [
+    {
+      "dt": "2026-10-08",
+      "rows": 11632,
+      "distinct_ids": 11632,
+      "rejected_not_written": 0,
+      "parquet_bytes": 7305260,
+      "pii_removed": {
+        "address": 201,
+        "company_code": 201,
+        "contact_other": 90,
+        "contact_person": 11631,
+        "email": 17467,
+        "employer_name": 201,
+        "inn": 201,
+        "nick": 21,
+        "ogrn": 199,
+        "person_name": 258,
+        "phone": 12540,
+        "profile_link": 15
+      },
+      "runs": [
+        {
+          "started_at": "2026-10-08T12:11:39.508134+00:00",
+          "finished_at": "2026-10-08T12:55:01.235542+00:00",
+          "dt": "2026-10-08",
+          "mode": "full",
+          "modified_from": null,
+          "complete": true,
+          "queries": {
+            "industry_it": {
+              "total": 6525,
+              "pages": 66,
+              "records": 6525,
+              "truncated": false
+            },
+            "text_программист": {
+              "total": 1988,
+              "pages": 20,
+              "records": 1988,
+              "truncated": false
+            },
+            "text_разработчик": {
+              "total": 682,
+              "pages": 7,
+              "records": 682,
+              "truncated": false
+            },
+            "text_аналитик": {
+              "total": 1646,
+              "pages": 17,
+              "records": 1646,
+              "truncated": false
+            },
+            "text_аналитик данных": {
+              "total": 495,
+              "pages": 5,
+              "records": 495,
+              "truncated": false
+            },
+            "text_инженер данных": {
+              "total": 404,
+              "pages": 5,
+              "records": 404,
+              "truncated": false
+            },
+            "text_машинное обучение": {
+              "total": 1543,
+              "pages": 16,
+              "records": 1543,
+              "truncated": false
+            },
+            "text_data scientist": {
+              "total": 4,
+              "pages": 1,
+              "records": 4,
+              "truncated": false
+            },
+            "text_data": {
+              "total": 84,
+              "pages": 1,
+              "records": 84,
+              "truncated": false
+            },
+            "text_python": {
+              "total": 417,
+              "pages": 5,
+              "records": 417,
+              "truncated": false
+            },
+            "text_devops": {
+              "total": 76,
+              "pages": 1,
+              "records": 76,
+              "truncated": false
+            },
+            "text_тестировщик": {
+              "total": 75,
+              "pages": 1,
+              "records": 75,
+              "truncated": false
+            },
+            "text_системный администратор": {
+              "total": 779,
+              "pages": 8,
+              "records": 779,
+              "truncated": false
+            }
+          },
+          "records_fetched": 14718,
+          "distinct_vacancies": 11632,
+          "written": 11632,
+          "duplicates_skipped": 0,
+          "rejected": 0,
+          "requests": 153,
+          "retries": 0,
+          "seconds_in_requests": 2291.0
+        }
+      ]
+    }
+  ]
+}

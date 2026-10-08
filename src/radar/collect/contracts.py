@@ -55,7 +55,7 @@ class TrudvsemApiItem(_Open):
 
 
 class TrudvsemApiResults(_Open):
-    vacancies: list[TrudvsemApiItem]
+    vacancies: list[TrudvsemApiItem] = []
 
 
 class TrudvsemApiMeta(_Open):
@@ -66,7 +66,8 @@ class TrudvsemApiMeta(_Open):
 class TrudvsemApiResponse(_Open):
     status: Literal["200"]
     meta: TrudvsemApiMeta
-    results: TrudvsemApiResults
+    # An empty page comes without `vacancies`.
+    results: TrudvsemApiResults = TrudvsemApiResults()
 
 
 # trudvsem open-data XML snapshot: one <vacancy> turned into a dict, every leaf a string

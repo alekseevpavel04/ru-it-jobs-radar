@@ -1,4 +1,4 @@
-from radar.pii import clean_trudvsem_api, clean_trudvsem_snapshot
+from radar.pii import clean_trudvsem_api, clean_trudvsem_snapshot, scan_record
 
 
 def test_contacts_without_value_are_not_counted() -> None:
@@ -30,3 +30,9 @@ def test_company_that_loses_every_field_is_dropped_not_kept() -> None:
     cleaned, counts = clean_trudvsem_snapshot(record)
     assert cleaned == {"fullCompanyName": "ИП"}
     assert counts == {"employer_name": 1, "inn": 1, "ogrn": 1, "company_code": 1}
+
+
+def test_scanner_skips_digests_but_not_text() -> None:
+    digest = "ab" + "300000000000001" + "cd" * 23
+    assert scan_record({"content_hash": digest, "payload": {"list_hash": digest}}) == {}
+    assert scan_record({"payload": {"note": "код 300000000000001"}}) == {"company_code": 1}
