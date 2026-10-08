@@ -14,7 +14,7 @@ COMPOSE: dict[str, Any] = yaml.safe_load(COMPOSE_TEXT)
 SERVICES: dict[str, dict[str, Any]] = COMPOSE["services"]
 
 EXPECTED_PROFILES = {"core", "ml", "orchestration", "bi", "mlops", "api"}
-RAW_TOPICS = {"raw.trudvsem", "raw.habr", "raw.telegram", "raw.superjob"}
+RAW_TOPICS = {"raw.trudvsem", "raw.trudvsem_snapshot", "raw.habr", "raw.telegram", "raw.superjob"}
 
 
 def is_oneshot(name: str) -> bool:

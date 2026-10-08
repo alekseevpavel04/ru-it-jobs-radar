@@ -42,3 +42,13 @@ GRANT SELECT ON marts.* TO ${CLICKHOUSE_RO_USER};
 SQL
 
 echo "databases raw, staging, marts; ${CLICKHOUSE_RO_USER} can SELECT on marts only"
+
+# Tables of the layers: numbered DDL files next to this script, every statement idempotent. They are
+# applied only when the directory is mounted (not just this file); `python -m radar.stream.clickhouse`
+# applies the same files from the host.
+shopt -s nullglob
+for ddl in "$(dirname "$0")"/*.sql; do
+  clickhouse-client --host "${CLICKHOUSE_HOST:-clickhouse}" --user "$CLICKHOUSE_USER" \
+    --password "$CLICKHOUSE_PASSWORD" --multiquery <"$ddl"
+  echo "applied $(basename "$ddl")"
+done

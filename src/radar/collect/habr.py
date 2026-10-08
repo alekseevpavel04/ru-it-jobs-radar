@@ -10,7 +10,8 @@ or its list entry changed since the latest stored day; otherwise the description
 that day, with `card_fetched_at` telling when it was read and `card_list_hash` what the list said
 then. Cards are read slowly and at most `MAX_CARDS` per run (new vacancies first, newest first); a
 vacancy whose card waits keeps the text of its last card, or none, and is read on a later run. If the
-site stops answering, the remaining cards wait and the list snapshot is still written whole.
+site stops answering, the remaining cards wait and the list snapshot is still written whole. The
+partition is then published to the topic `raw.habr`; a stream that is down costs a warning, not the run.
 
     RADAR_USER_AGENT='...' python -m radar.collect.habr [--summarize]
 """
@@ -39,6 +40,7 @@ from radar.collect.summary import append_meta, partition_dates, partition_stats,
 from radar.collect.writer import PartitionWriter, partition_dir
 from radar.pii import clean_habr_card_company, clean_habr_vacancy, clean_text
 from radar.results import write_result
+from radar.stream.producer import publish_after_collect
 
 log = logging.getLogger("radar.collect.habr")
 
@@ -421,6 +423,7 @@ def main(argv: list[str] | None = None) -> int:
             run["cards"],
             run["written"],
         )
+        publish_after_collect(SOURCE, date.fromisoformat(run["dt"]))
     log.info("results: %s", summarize())
     return 0
 

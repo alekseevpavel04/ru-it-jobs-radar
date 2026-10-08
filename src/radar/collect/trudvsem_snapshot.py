@@ -8,7 +8,8 @@ changed later) to `data/raw/trudvsem_snapshot/dt=<snapshot date>/`. The XML is d
 its partition is complete. A version whose partition has `_SUCCESS` is skipped, so a rerun
 continues where the last one stopped.
 
-The results file is rebuilt from disk after every snapshot (`--summarize` does only that).
+The results file is rebuilt from disk after every snapshot (`--summarize` does only that), and the
+partition is published to the topic `raw.trudvsem_snapshot`; a stream that is down costs a warning.
 `--repair DT` appends records missing from a complete partition, from a local XML of the same
 version, without touching what is already written.
 
@@ -46,6 +47,7 @@ from radar.collect.writer import PartitionWriter, is_complete, partition_dir, ra
 from radar.config import ROOT, data_dir, user_agent
 from radar.pii import clean_trudvsem_snapshot
 from radar.results import write_result
+from radar.stream.producer import publish_after_collect
 
 log = logging.getLogger("radar.collect.trudvsem_snapshot")
 
@@ -609,6 +611,7 @@ def _run(client: httpx.Client, limit: int | None, keep_xml: bool, tmp_dir: Path)
         if not keep_xml:
             for suffix in (".xml", ".fetched_at", ".download.json"):
                 dl.path.with_suffix(suffix).unlink(missing_ok=True)
+        publish_after_collect(SOURCE, version.dt)
         processed += 1
     return processed
 

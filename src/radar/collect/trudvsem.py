@@ -7,7 +7,8 @@ records per page and 100 pages per query; a query above that is recorded as trun
 
 The first run (or `--full`) walks every query completely; later runs ask only for records modified
 since the last complete run started, with an hour of overlap. Records go to
-`data/raw/trudvsem/dt=<run date>/`; the same record twice in a day is written once.
+`data/raw/trudvsem/dt=<run date>/`; the same record twice in a day is written once. The partition
+is then published to the topic `raw.trudvsem`; a stream that is down costs a warning, not the run.
 
     RADAR_USER_AGENT='...' python -m radar.collect.trudvsem [--full] [--summarize]
 """
@@ -18,7 +19,7 @@ import sys
 import time
 from collections.abc import Iterator
 from dataclasses import dataclass, field
-from datetime import UTC, datetime, timedelta, timezone
+from datetime import UTC, date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -32,6 +33,7 @@ from radar.collect.summary import append_meta, partition_dates, partition_stats,
 from radar.collect.writer import PartitionWriter
 from radar.pii import clean_trudvsem_api
 from radar.results import write_result
+from radar.stream.producer import publish_after_collect
 
 log = logging.getLogger("radar.collect.trudvsem")
 
@@ -253,6 +255,7 @@ def main(argv: list[str] | None = None) -> int:
             run["written"],
             run["rejected"],
         )
+        publish_after_collect(SOURCE, date.fromisoformat(run["dt"]))
     log.info("results: %s", summarize())
     return 0
 

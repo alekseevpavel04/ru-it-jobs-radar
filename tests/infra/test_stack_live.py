@@ -21,7 +21,7 @@ pytestmark = pytest.mark.slow
 ROOT = Path(__file__).resolve().parents[2]
 ENV_FILE = Path(os.environ.get("RADAR_ENV_FILE") or ROOT / ".env")
 ON_WINDOWS = os.name == "nt"
-RAW_TOPICS = {"raw.trudvsem", "raw.habr", "raw.telegram", "raw.superjob"}
+RAW_TOPICS = {"raw.trudvsem", "raw.trudvsem_snapshot", "raw.habr", "raw.telegram", "raw.superjob"}
 REFUSED = re.compile(r"Code: (164|497)\.")  # READONLY, ACCESS_DENIED
 
 
