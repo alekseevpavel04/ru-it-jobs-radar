@@ -1,0 +1,474 @@
+# Public Telegram channels collected through t.me/s/<name> for weekly site aggregates only
+# (DECISIONS 10: no teacher, training, gold set or HF). Survey of 2026-10-08; numbers per
+# channel are in results/sources/telegram_channels.json, method in docs/sources.md (Telegram, 1.5).
+#
+# A channel is enabled when its last post is at most 30 days old, at least 15 of its last 50 posts
+# carry a vacancy (rules, and the manual check where one was made), at least 30% of its text posts are
+# in Russian, the topic is IT and it is not a copy of another enabled channel. `exception` records why
+# a channel stays enabled although it fails a criterion.
+#
+# `network` groups channels of one publisher: their posts overlap, so cross-channel dedup is required
+# (the same goes for habr_career and progjob against the Habr Career source).
+
+# Known before 1.5 (audit 1.4)
+
+[[channel]]
+name = "datasciencejobs"
+topic = "data"
+network = ""
+enabled = true
+known_before_1_5 = true
+reason = "DS and ML vacancies, history since 2019"
+
+[[channel]]
+name = "geekjobs"
+topic = "general"
+network = "geekjob"
+enabled = true
+known_before_1_5 = true
+reason = "general IT and digital, part of the geekjob network; history starts 2022-01-10"
+
+[[channel]]
+name = "habr_career"
+topic = "general"
+network = "habr"
+enabled = true
+known_before_1_5 = true
+reason = "Habr Career digests and articles; dedup against the Habr source by vacancy id"
+
+[[channel]]
+name = "foranalysts"
+topic = "analytics"
+network = "geekjob"
+enabled = true
+known_before_1_5 = true
+reason = "analyst vacancies, geekjob network"
+
+[[channel]]
+name = "datajobschannel"
+topic = "data"
+network = ""
+enabled = true
+known_before_1_5 = true
+reason = "data vacancies, history since 2019"
+
+[[channel]]
+name = "llm_jobs"
+topic = "ml"
+network = "data_hr"
+enabled = true
+known_before_1_5 = true
+reason = "LLM vacancies, small; cross-posts with data_hr"
+
+[[channel]]
+name = "nlp_jobs"
+topic = "ml"
+network = ""
+enabled = true
+known_before_1_5 = true
+reason = "NLP vacancies, small and slow"
+
+[[channel]]
+name = "remoteit"
+topic = "remote"
+network = ""
+enabled = true
+known_before_1_5 = true
+exception = "selected before the survey; most posts are in English (international remote), to disable or keep only Russian posts"
+reason = "remote IT vacancies, mostly English"
+
+[[channel]]
+name = "jobforjunior"
+topic = "junior"
+network = "geekjob"
+enabled = true
+known_before_1_5 = true
+reason = "junior vacancies, geekjob network; history starts 2022-01-10"
+
+[[channel]]
+name = "job_python"
+topic = "python"
+network = "job_x"
+enabled = true
+known_before_1_5 = true
+reason = "Python vacancies, history since 2021"
+
+# Added in 1.5: general IT
+
+[[channel]]
+name = "it_vakansii_jobs"
+topic = "general"
+network = "it_vakansii"
+enabled = true
+reason = "general IT and digital vacancies; some ads and resume digests"
+
+[[channel]]
+name = "juniors_rabota_jobs"
+topic = "junior"
+network = "it_vakansii"
+enabled = true
+reason = "junior vacancies and internships; forwards from it_vakansii_jobs"
+
+[[channel]]
+name = "it_interns"
+topic = "junior"
+network = "interns"
+enabled = true
+reason = "internships, many multi-vacancy digests"
+
+[[channel]]
+name = "remotejun"
+topic = "junior"
+network = "interns"
+enabled = true
+reason = "remote junior vacancies (INFLOW); digests overlap with it_interns"
+
+[[channel]]
+name = "getitrussia"
+topic = "general"
+network = ""
+enabled = true
+reason = "general IT vacancies, history since 2017"
+
+[[channel]]
+name = "devs_it"
+topic = "general"
+network = "job_x"
+enabled = true
+reason = "general IT vacancies; overlaps with job_javadevs and job_python"
+
+[[channel]]
+name = "progjob"
+topic = "general"
+network = "habr"
+enabled = true
+reason = "mirror of Habr Career vacancies (every vacancy links career.habr.com); history since 2017 is a Habr backfill, dedup against the Habr source by vacancy id"
+
+[[channel]]
+name = "jc_it"
+topic = "general"
+network = ""
+enabled = true
+reason = "general IT vacancies, history since 2019"
+
+[[channel]]
+name = "jobofferinside"
+topic = "remote"
+network = ""
+enabled = true
+reason = "international remote IT vacancies with Russian summaries"
+
+[[channel]]
+name = "myitjob"
+topic = "junior"
+network = ""
+enabled = true
+reason = "junior IT vacancies"
+
+[[channel]]
+name = "backend_frontend_jobs"
+topic = "general"
+network = "it_vakansii"
+enabled = true
+reason = "developer vacancies"
+
+[[channel]]
+name = "remote_job_it_geeklink"
+topic = "remote"
+network = "geeklink"
+enabled = true
+reason = "remote IT vacancies, slow; some resumes"
+
+[[channel]]
+name = "remotegeekjob"
+topic = "remote"
+network = "geekjob"
+enabled = true
+reason = "remote IT vacancies of the geekjob network, high volume, about half in English"
+
+# Added in 1.5: data, analytics, ML
+
+[[channel]]
+name = "datajob"
+topic = "data"
+network = "proglib"
+enabled = true
+reason = "data vacancies (Proglib), mixed with course promotion"
+
+[[channel]]
+name = "data_hr"
+topic = "data"
+network = "data_hr"
+enabled = true
+reason = "data analytics vacancies"
+
+[[channel]]
+name = "data_secrets_career"
+topic = "data"
+network = ""
+enabled = true
+reason = "DS and ML vacancies mixed with market news"
+
+[[channel]]
+name = "offersanalysis"
+topic = "analytics"
+network = ""
+enabled = true
+reason = "analytics internships and vacancies"
+
+[[channel]]
+name = "datascjobs"
+topic = "data"
+network = ""
+enabled = true
+reason = "data engineering and SQL vacancies, small"
+
+[[channel]]
+name = "de_rabota"
+topic = "data"
+network = "rabota"
+enabled = true
+reason = "data engineer vacancies"
+
+[[channel]]
+name = "dataviz_jobs"
+topic = "analytics"
+network = ""
+enabled = true
+reason = "BI and dataviz vacancies, many multi-vacancy digests"
+
+[[channel]]
+name = "data_engineer_jobs"
+topic = "data"
+network = ""
+enabled = true
+reason = "data engineer vacancies"
+
+[[channel]]
+name = "analytics_jobs"
+topic = "analytics"
+network = ""
+enabled = true
+reason = "business and system analyst vacancies"
+
+[[channel]]
+name = "ai_rabota"
+topic = "ml"
+network = "rabota"
+enabled = true
+reason = "DS and ML vacancies"
+
+[[channel]]
+name = "dsml_jobs"
+topic = "ml"
+network = ""
+enabled = true
+reason = "DS and ML vacancies and internships, small"
+
+# Added in 1.5: by stack and role
+
+[[channel]]
+name = "fordevops"
+topic = "devops"
+network = "geekjob"
+enabled = true
+reason = "DevOps and sysadmin vacancies, geekjob network"
+
+[[channel]]
+name = "forallqa"
+topic = "qa"
+network = "geekjob"
+enabled = true
+reason = "QA vacancies, geekjob network"
+
+[[channel]]
+name = "qajoboffer"
+topic = "qa"
+network = "qa"
+enabled = true
+reason = "QA vacancies; overlaps with jobforqa"
+
+[[channel]]
+name = "jobforqa"
+topic = "qa"
+network = "qa"
+enabled = true
+reason = "QA vacancies mixed with resume-service promotion"
+
+[[channel]]
+name = "qa_testirovshchik_jobs_vakansii"
+topic = "qa"
+network = ""
+enabled = true
+reason = "QA vacancies"
+
+[[channel]]
+name = "jun_qa"
+topic = "qa"
+network = "interns"
+enabled = true
+reason = "junior QA vacancies and internships; overlaps with it_interns"
+
+[[channel]]
+name = "job_react"
+topic = "frontend"
+network = "job_x"
+enabled = true
+reason = "React and JavaScript vacancies"
+
+[[channel]]
+name = "javascript_jobs_feed"
+topic = "frontend"
+network = "feed"
+enabled = true
+reason = "JavaScript vacancies from a jobs chat feed, high volume"
+
+[[channel]]
+name = "forfrontend"
+topic = "frontend"
+network = "geekjob"
+enabled = true
+reason = "frontend vacancies, geekjob network, many in English"
+
+[[channel]]
+name = "job_javadevs"
+topic = "java"
+network = "job_x"
+enabled = true
+reason = "Java vacancies"
+
+[[channel]]
+name = "golangjobsit"
+topic = "go"
+network = ""
+enabled = true
+reason = "Go vacancies"
+
+[[channel]]
+name = "pydevjob"
+topic = "python"
+network = "proglib"
+enabled = true
+reason = "Python vacancies (Proglib), half the posts are course promotion"
+
+[[channel]]
+name = "forpython"
+topic = "python"
+network = "geekjob"
+enabled = true
+reason = "Python vacancies, geekjob network, many in English"
+
+[[channel]]
+name = "pythonpythonjobs"
+topic = "python"
+network = "interns"
+enabled = true
+reason = "Python vacancies and internships; overlaps with it_interns and jun_qa"
+
+[[channel]]
+name = "alljvmjobs"
+topic = "java"
+network = "geekjob"
+enabled = true
+reason = "JVM vacancies, geekjob network"
+
+[[channel]]
+name = "dotnetrujobsfeed"
+topic = "dotnet"
+network = "feed"
+enabled = true
+reason = ".NET vacancies from a jobs chat feed; resumes are filtered out at collection"
+
+[[channel]]
+name = "rabota_golang"
+topic = "go"
+network = "rabota"
+enabled = true
+reason = "Go vacancies"
+
+[[channel]]
+name = "forallmobile"
+topic = "mobile"
+network = "geekjob"
+enabled = true
+reason = "iOS and Android vacancies, geekjob network"
+
+[[channel]]
+name = "v1c_rabota"
+topic = "1c"
+network = "rabota"
+enabled = true
+reason = "1C vacancies"
+
+[[channel]]
+name = "infosec_work"
+topic = "infosec"
+network = ""
+enabled = true
+reason = "information security vacancies"
+
+[[channel]]
+name = "gamedevjob"
+topic = "gamedev"
+network = ""
+enabled = true
+reason = "gamedev vacancies, some resumes"
+
+[[channel]]
+name = "devjobs"
+topic = "gamedev"
+network = ""
+enabled = true
+reason = "gamedev vacancies, forwards from Unity and Unreal channels"
+
+[[channel]]
+name = "product_jobs"
+topic = "product"
+network = ""
+enabled = true
+reason = "product and project manager vacancies"
+
+[[channel]]
+name = "runello_rus_frontend"
+topic = "frontend"
+network = "runello"
+enabled = true
+reason = "frontend vacancies; keeps only about two weeks of posts (older ids are deleted), so no backfill, daily collection only"
+
+# Surveyed in 1.5 and left out
+
+[[channel]]
+name = "morejobs"
+topic = "marketing"
+network = ""
+enabled = false
+reason = "not IT: marketing and PR vacancies and news"
+
+[[channel]]
+name = "it_vac"
+topic = "general"
+network = ""
+enabled = false
+reason = "spam and freelance tasks, almost no vacancies"
+
+[[channel]]
+name = "getanalysts"
+topic = "analytics"
+network = ""
+enabled = false
+reason = "education channel for analysts, no vacancies in the manual check"
+
+[[channel]]
+name = "devops_jobs_feed"
+topic = "devops"
+network = "feed"
+enabled = false
+reason = "mostly resumes, few vacancies"
+
+[[channel]]
+name = "odin1c_rus"
+topic = "1c"
+network = ""
+enabled = false
+reason = "1C programming content and ads, no vacancies in the manual check"
+

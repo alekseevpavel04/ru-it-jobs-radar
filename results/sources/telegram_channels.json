@@ -1,0 +1,8268 @@
+{
+  "source_script": "scripts/telegram_survey/analyze.py",
+  "command": "python scripts/telegram_survey/analyze.py",
+  "commit": "9163ace-dirty",
+  "created_at": "2026-10-08T14:04:15+00:00",
+  "metrics": {
+    "rules_v2_tuning_agreement": {
+      "value": 0.943,
+      "n": 283,
+      "denominator": 300
+    },
+    "rules_v2_tuning_precision": {
+      "value": 0.938,
+      "n": 195,
+      "denominator": 208
+    },
+    "rules_v2_tuning_recall": {
+      "value": 0.98,
+      "n": 195,
+      "denominator": 199
+    },
+    "rules_v2_tuning_multi_agreement": {
+      "value": 0.968,
+      "n": 151,
+      "denominator": 156
+    },
+    "rules_v2_check_agreement": {
+      "value": 0.816,
+      "n": 204,
+      "denominator": 250
+    },
+    "rules_v2_check_precision": {
+      "value": 0.679,
+      "n": 91,
+      "denominator": 134
+    },
+    "rules_v2_check_recall": {
+      "value": 0.968,
+      "n": 91,
+      "denominator": 94
+    },
+    "rules_v2_check_multi_agreement": {
+      "value": 0.968,
+      "n": 91,
+      "denominator": 94
+    },
+    "rules_v2_check_enabled_agreement": {
+      "value": 0.967,
+      "n": 145,
+      "denominator": 150
+    },
+    "rules_v2_check_enabled_precision": {
+      "value": 0.978,
+      "n": 91,
+      "denominator": 93
+    },
+    "rules_v2_check_enabled_recall": {
+      "value": 0.968,
+      "n": 91,
+      "denominator": 94
+    },
+    "rules_v2_check_enabled_multi_agreement": {
+      "value": 0.968,
+      "n": 91,
+      "denominator": 94
+    },
+    "backfill_pages_new": {
+      "value": 11942,
+      "n": null,
+      "denominator": null
+    },
+    "backfill_hours_new": {
+      "value": 11.9,
+      "n": null,
+      "denominator": null
+    },
+    "channels_surveyed": {
+      "value": 63,
+      "n": null,
+      "denominator": null
+    },
+    "channels_enabled": {
+      "value": 58,
+      "n": null,
+      "denominator": null
+    },
+    "channels_enabled_new": {
+      "value": 48,
+      "n": null,
+      "denominator": null
+    },
+    "posts_estimate_enabled": {
+      "value": 355967,
+      "n": null,
+      "denominator": null
+    },
+    "posts_estimate_enabled_new": {
+      "value": 238830,
+      "n": null,
+      "denominator": null
+    },
+    "vacancy_posts_per_week_enabled": {
+      "value": 866,
+      "n": null,
+      "denominator": null
+    },
+    "vacancy_posts_per_week_enabled_new": {
+      "value": 752,
+      "n": null,
+      "denominator": null
+    },
+    "posts_per_week_enabled": {
+      "value": 1006,
+      "n": null,
+      "denominator": null
+    },
+    "vacancy_share_enabled_pooled": {
+      "value": 0.833,
+      "n": 2390,
+      "denominator": 2869
+    },
+    "near_duplicate_share_enabled_pooled": {
+      "value": 0.127,
+      "n": 304,
+      "denominator": 2390
+    },
+    "requests_survey": {
+      "value": 886,
+      "n": null,
+      "denominator": null
+    },
+    "requests_survey_max_per_channel": {
+      "value": 21,
+      "n": null,
+      "denominator": null
+    },
+    "requests_tme_total": {
+      "value": 1012,
+      "n": null,
+      "denominator": null
+    },
+    "candidates_probed_one_page": {
+      "value": 141,
+      "n": null,
+      "denominator": null
+    },
+    "probed_no_preview": {
+      "value": 32,
+      "n": null,
+      "denominator": null
+    },
+    "probed_dead": {
+      "value": 20,
+      "n": null,
+      "denominator": null
+    },
+    "probed_not_it": {
+      "value": 2,
+      "n": null,
+      "denominator": null
+    },
+    "probed_reserve": {
+      "value": 34,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "method": {
+    "sample": "last 50 posts per channel, service messages excluded",
+    "vacancy_rule": "scripts/telegram_survey/classify.py, manual labels in check_labels.csv",
+    "depth": "first and last post, 8 windows of ?before= as strata (deep.py)",
+    "near_duplicate": "word 5-shingles, Jaccard >= 0.5, vacancy posts across samples",
+    "selection": "alive <= 30 days, vacancy share >= 0.3, russian posts >= 0.3 (cyrillic letters >= 0.4), IT topic, no channel repeated on shared dates",
+    "surveyed_on": "2026-10-08"
+  },
+  "channels": {
+    "datasciencejobs": {
+      "title": "Data Science Jobs",
+      "subscribers": {
+        "value": 22300,
+        "shown": "22.3K"
+      },
+      "created": {
+        "value": "2018-07-10"
+      },
+      "first_post": {
+        "value": 4,
+        "date": "2019-11-25"
+      },
+      "second_post": {
+        "value": 6,
+        "date": "2019-11-25"
+      },
+      "last_post": {
+        "value": 3399,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.514
+      },
+      "posts_estimate": {
+        "value": 1747,
+        "method": "strata",
+        "by_window_layout": [
+          1746,
+          1772
+        ]
+      },
+      "requests": {
+        "value": 20
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-06-17",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.86,
+        "n": 43,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.07,
+        "n": 3,
+        "denominator": 43
+      },
+      "vacancy_units_in_sample": {
+        "value": 46
+      },
+      "ad_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 3.1
+      },
+      "vacancy_posts_per_week": {
+        "value": 2.7
+      },
+      "vacancy_units_per_week": {
+        "value": 2.8
+      },
+      "cyrillic_letter_share": {
+        "value": 0.75
+      },
+      "russian_post_share": {
+        "value": 0.88,
+        "n": 44,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 43
+      },
+      "near_duplicate_share": {
+        "value": 0.163,
+        "n": 7,
+        "denominator": 43
+      },
+      "near_duplicate_top": {
+        "value": "ai_rabota 4, datajob 2, datascjobs 1"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "vacancy_share_manual": {
+        "value": 0.86,
+        "n": 43,
+        "denominator": 50
+      },
+      "aligned_duplicate_max": {
+        "value": 0.174,
+        "n": 4,
+        "denominator": 23,
+        "with": "ai_rabota"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "data",
+        "network": "",
+        "reason": "DS and ML vacancies, history since 2019"
+      }
+    },
+    "geekjobs": {
+      "title": "Job in IT&Digital",
+      "subscribers": {
+        "value": 51100,
+        "shown": "51.1K"
+      },
+      "created": {
+        "value": "2016-08-04"
+      },
+      "first_post": {
+        "value": 5087,
+        "date": "2022-01-10"
+      },
+      "second_post": {
+        "value": 5091,
+        "date": "2022-01-10"
+      },
+      "last_post": {
+        "value": 10434,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.97
+      },
+      "posts_estimate": {
+        "value": 5189,
+        "method": "strata",
+        "by_window_layout": [
+          5189
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-18",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.86,
+        "n": 43,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.326,
+        "n": 14,
+        "denominator": 43
+      },
+      "vacancy_units_in_sample": {
+        "value": 82
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 17.6
+      },
+      "vacancy_posts_per_week": {
+        "value": 15.1
+      },
+      "vacancy_units_per_week": {
+        "value": 28.8
+      },
+      "cyrillic_letter_share": {
+        "value": 0.5
+      },
+      "russian_post_share": {
+        "value": 0.388,
+        "n": 19,
+        "denominator": 49
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 43
+      },
+      "near_duplicate_share": {
+        "value": 0.209,
+        "n": 9,
+        "denominator": 43
+      },
+      "near_duplicate_top": {
+        "value": "foranalysts 4, fordevops 3, alljvmjobs 3"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "vacancy_share_manual": {
+        "value": 0.88,
+        "n": 44,
+        "denominator": 50
+      },
+      "aligned_duplicate_max": {
+        "value": 0.118,
+        "n": 4,
+        "denominator": 34,
+        "with": "foranalysts"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "general",
+        "network": "geekjob",
+        "reason": "general IT and digital, part of the geekjob network; history starts 2022-01-10"
+      }
+    },
+    "habr_career": {
+      "title": "Хабр Карьера",
+      "subscribers": {
+        "value": 33400,
+        "shown": "33.4K"
+      },
+      "created": {
+        "value": "2016-01-27"
+      },
+      "first_post": {
+        "value": 24,
+        "date": "2016-01-28"
+      },
+      "second_post": {
+        "value": 25,
+        "date": "2016-01-28"
+      },
+      "last_post": {
+        "value": 76104,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.995
+      },
+      "posts_estimate": {
+        "value": 75678,
+        "method": "strata",
+        "by_window_layout": [
+          75678,
+          75678
+        ]
+      },
+      "requests": {
+        "value": 21
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-29",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.58,
+        "n": 29,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.759,
+        "n": 22,
+        "denominator": 29
+      },
+      "vacancy_units_in_sample": {
+        "value": 139
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.14,
+        "n": 7,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 39.8
+      },
+      "vacancy_posts_per_week": {
+        "value": 23.1
+      },
+      "vacancy_units_per_week": {
+        "value": 110.6
+      },
+      "cyrillic_letter_share": {
+        "value": 0.89
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 43,
+        "denominator": 43
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 1.0,
+        "n": 29,
+        "denominator": 29
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 29
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "general",
+        "network": "habr",
+        "reason": "Habr Career digests and articles; dedup against the Habr source by vacancy id"
+      }
+    },
+    "foranalysts": {
+      "title": "Job for Analysts & Data Scientists",
+      "subscribers": {
+        "value": 37100,
+        "shown": "37.1K"
+      },
+      "created": {
+        "value": "2017-10-10"
+      },
+      "first_post": {
+        "value": 1438,
+        "date": "2020-02-03"
+      },
+      "second_post": {
+        "value": 3811,
+        "date": "2022-01-10"
+      },
+      "last_post": {
+        "value": 10946,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.996
+      },
+      "posts_estimate": {
+        "value": 7109,
+        "method": "strata",
+        "by_window_layout": [
+          7098,
+          7074
+        ]
+      },
+      "requests": {
+        "value": 18
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-23",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.9,
+        "n": 45,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.133,
+        "n": 6,
+        "denominator": 45
+      },
+      "vacancy_units_in_sample": {
+        "value": 56
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 23.1
+      },
+      "vacancy_posts_per_week": {
+        "value": 20.8
+      },
+      "vacancy_units_per_week": {
+        "value": 25.9
+      },
+      "cyrillic_letter_share": {
+        "value": 0.74
+      },
+      "russian_post_share": {
+        "value": 0.78,
+        "n": 39,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 45
+      },
+      "near_duplicate_share": {
+        "value": 0.267,
+        "n": 12,
+        "denominator": 45
+      },
+      "near_duplicate_top": {
+        "value": "forpython 4, geekjobs 4, fordevops 3"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.111,
+        "n": 1,
+        "denominator": 9,
+        "with": "remotegeekjob"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "analytics",
+        "network": "geekjob",
+        "reason": "analyst vacancies, geekjob network"
+      }
+    },
+    "datajobschannel": {
+      "title": "Data jobs feed",
+      "subscribers": {
+        "value": 12400,
+        "shown": "12.4K"
+      },
+      "created": {
+        "value": "2019-01-29"
+      },
+      "first_post": {
+        "value": 2,
+        "date": "2019-01-29"
+      },
+      "second_post": {
+        "value": 3,
+        "date": "2019-01-31"
+      },
+      "last_post": {
+        "value": 3717,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.914
+      },
+      "posts_estimate": {
+        "value": 3395,
+        "method": "strata",
+        "by_window_layout": [
+          3395
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-07-06",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.76,
+        "n": 38,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.105,
+        "n": 4,
+        "denominator": 38
+      },
+      "vacancy_units_in_sample": {
+        "value": 43
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 3.7
+      },
+      "vacancy_posts_per_week": {
+        "value": 2.8
+      },
+      "vacancy_units_per_week": {
+        "value": 3.2
+      },
+      "cyrillic_letter_share": {
+        "value": 0.8
+      },
+      "russian_post_share": {
+        "value": 0.918,
+        "n": 45,
+        "denominator": 49
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "datajobschannel 1"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 38
+      },
+      "near_duplicate_share": {
+        "value": 0.316,
+        "n": 12,
+        "denominator": 38
+      },
+      "near_duplicate_top": {
+        "value": "data_engineer_jobs 4, data_hr 3, datascjobs 3"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.094,
+        "n": 3,
+        "denominator": 32,
+        "with": "data_engineer_jobs"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "data",
+        "network": "",
+        "reason": "data vacancies, history since 2019"
+      }
+    },
+    "llm_jobs": {
+      "title": "LLM Jobs | Вакансии по AI",
+      "subscribers": {
+        "value": 399,
+        "shown": "399"
+      },
+      "created": {
+        "value": "2025-09-02"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2025-09-02"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2025-09-02"
+      },
+      "last_post": {
+        "value": 40,
+        "date": "2026-10-07"
+      },
+      "id_density": {
+        "value": 0.947
+      },
+      "posts_estimate": {
+        "value": 36,
+        "method": "full",
+        "by_window_layout": []
+      },
+      "requests": {
+        "value": 4
+      },
+      "sample_posts": {
+        "value": 36,
+        "from": "2025-09-02",
+        "to": "2026-10-07"
+      },
+      "vacancy_share": {
+        "value": 0.917,
+        "n": 33,
+        "denominator": 36
+      },
+      "multi_share": {
+        "value": 0.061,
+        "n": 2,
+        "denominator": 33
+      },
+      "vacancy_units_in_sample": {
+        "value": 37
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 36
+      },
+      "resume_share": {
+        "value": 0.028,
+        "n": 1,
+        "denominator": 36
+      },
+      "no_text_share": {
+        "value": 0.028,
+        "n": 1,
+        "denominator": 36
+      },
+      "posts_per_week": {
+        "value": 0.6
+      },
+      "vacancy_posts_per_week": {
+        "value": 0.6
+      },
+      "vacancy_units_per_week": {
+        "value": 0.6
+      },
+      "cyrillic_letter_share": {
+        "value": 0.73
+      },
+      "russian_post_share": {
+        "value": 0.914,
+        "n": 32,
+        "denominator": 35
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.056,
+        "n": 2,
+        "denominator": 36
+      },
+      "forwarded_from_top": {
+        "value": "data_hr 2"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 33
+      },
+      "near_duplicate_share": {
+        "value": 0.182,
+        "n": 6,
+        "denominator": 33
+      },
+      "near_duplicate_top": {
+        "value": "data_hr 5, datascjobs 1, golangjobsit 1"
+      },
+      "days_since_last_post": {
+        "value": 1
+      },
+      "aligned_duplicate_max": {
+        "value": 0.8,
+        "n": 4,
+        "denominator": 5,
+        "with": "data_hr"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "ml",
+        "network": "data_hr",
+        "reason": "LLM vacancies, small; cross-posts with data_hr"
+      }
+    },
+    "nlp_jobs": {
+      "title": "NLP jobs",
+      "subscribers": {
+        "value": 2300,
+        "shown": "2.3K"
+      },
+      "created": {
+        "value": "2022-11-09"
+      },
+      "first_post": {
+        "value": 2,
+        "date": "2022-11-09"
+      },
+      "second_post": {
+        "value": 4,
+        "date": "2022-11-10"
+      },
+      "last_post": {
+        "value": 132,
+        "date": "2026-09-23"
+      },
+      "id_density": {
+        "value": 0.901
+      },
+      "posts_estimate": {
+        "value": 118,
+        "method": "full",
+        "by_window_layout": []
+      },
+      "requests": {
+        "value": 9
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2024-03-01",
+        "to": "2026-09-23"
+      },
+      "vacancy_share": {
+        "value": 0.9,
+        "n": 45,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.089,
+        "n": 4,
+        "denominator": 45
+      },
+      "vacancy_units_in_sample": {
+        "value": 50
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 0.4
+      },
+      "vacancy_posts_per_week": {
+        "value": 0.3
+      },
+      "vacancy_units_per_week": {
+        "value": 0.4
+      },
+      "cyrillic_letter_share": {
+        "value": 0.47
+      },
+      "russian_post_share": {
+        "value": 0.58,
+        "n": 29,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.06,
+        "n": 3,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "other 3"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 45
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 45
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 14
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "ml",
+        "network": "",
+        "reason": "NLP vacancies, small and slow"
+      }
+    },
+    "remoteit": {
+      "title": "Remote IT (Inflow)",
+      "subscribers": {
+        "value": 51300,
+        "shown": "51.3K"
+      },
+      "created": {
+        "value": "2017-08-08"
+      },
+      "first_post": {
+        "value": 4,
+        "date": "2017-08-09"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2017-08-09"
+      },
+      "last_post": {
+        "value": 14020,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.783
+      },
+      "posts_estimate": {
+        "value": 10978,
+        "method": "strata",
+        "by_window_layout": [
+          10977,
+          10978
+        ]
+      },
+      "requests": {
+        "value": 20
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-26",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.86,
+        "n": 43,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 43
+      },
+      "vacancy_units_in_sample": {
+        "value": 43
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.06,
+        "n": 3,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 29.0
+      },
+      "vacancy_posts_per_week": {
+        "value": 25.0
+      },
+      "vacancy_units_per_week": {
+        "value": 25.0
+      },
+      "cyrillic_letter_share": {
+        "value": 0.27
+      },
+      "russian_post_share": {
+        "value": 0.128,
+        "n": 6,
+        "denominator": 47
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.04,
+        "n": 2,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "other 2"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 43
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 43
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "remote",
+        "network": "",
+        "reason": "remote IT vacancies, mostly English"
+      }
+    },
+    "jobforjunior": {
+      "title": "Job for Junior",
+      "subscribers": {
+        "value": 85500,
+        "shown": "85.5K"
+      },
+      "created": {
+        "value": "2019-09-13"
+      },
+      "first_post": {
+        "value": 1632,
+        "date": "2022-01-10"
+      },
+      "second_post": {
+        "value": 1633,
+        "date": "2022-01-10"
+      },
+      "last_post": {
+        "value": 8533,
+        "date": "2026-10-07"
+      },
+      "id_density": {
+        "value": 0.986
+      },
+      "posts_estimate": {
+        "value": 6804,
+        "method": "strata",
+        "by_window_layout": [
+          6804
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-16",
+        "to": "2026-10-07"
+      },
+      "vacancy_share": {
+        "value": 0.86,
+        "n": 43,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.047,
+        "n": 2,
+        "denominator": 43
+      },
+      "vacancy_units_in_sample": {
+        "value": 45
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 16.0
+      },
+      "vacancy_posts_per_week": {
+        "value": 13.8
+      },
+      "vacancy_units_per_week": {
+        "value": 14.4
+      },
+      "cyrillic_letter_share": {
+        "value": 0.74
+      },
+      "russian_post_share": {
+        "value": 0.76,
+        "n": 38,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 43
+      },
+      "near_duplicate_share": {
+        "value": 0.233,
+        "n": 10,
+        "denominator": 43
+      },
+      "near_duplicate_top": {
+        "value": "forallqa 6, forpython 3, forfrontend 2"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.167,
+        "n": 1,
+        "denominator": 6,
+        "with": "remotegeekjob"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "junior",
+        "network": "geekjob",
+        "reason": "junior vacancies, geekjob network; history starts 2022-01-10"
+      }
+    },
+    "job_python": {
+      "title": "Python Job | Вакансии | Стажировки",
+      "subscribers": {
+        "value": 23200,
+        "shown": "23.2K"
+      },
+      "created": {
+        "value": "2021-02-11"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2021-02-11"
+      },
+      "second_post": {
+        "value": 4,
+        "date": "2021-02-11"
+      },
+      "last_post": {
+        "value": 8015,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.759
+      },
+      "posts_estimate": {
+        "value": 6083,
+        "method": "strata",
+        "by_window_layout": [
+          6083,
+          6150
+        ]
+      },
+      "requests": {
+        "value": 20
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-02",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.96,
+        "n": 48,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 48
+      },
+      "vacancy_units_in_sample": {
+        "value": 48
+      },
+      "ad_share": {
+        "value": 0.04,
+        "n": 2,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 9.8
+      },
+      "vacancy_posts_per_week": {
+        "value": 9.4
+      },
+      "vacancy_units_per_week": {
+        "value": 9.4
+      },
+      "cyrillic_letter_share": {
+        "value": 0.81
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.042,
+        "n": 2,
+        "denominator": 48
+      },
+      "near_duplicate_share": {
+        "value": 0.146,
+        "n": 7,
+        "denominator": 48
+      },
+      "near_duplicate_top": {
+        "value": "ai_rabota 3, devs_it 3, job_javadevs 2"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.053,
+        "n": 2,
+        "denominator": 38,
+        "with": "devs_it"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "python",
+        "network": "job_x",
+        "reason": "Python vacancies, history since 2021"
+      }
+    },
+    "it_vakansii_jobs": {
+      "title": "СЕТИ — IT & Digital вакансии",
+      "subscribers": {
+        "value": 96600,
+        "shown": "96.6K"
+      },
+      "created": {
+        "value": "2022-02-20"
+      },
+      "first_post": {
+        "value": 2,
+        "date": "2022-02-20"
+      },
+      "second_post": {
+        "value": 50,
+        "date": "2022-03-24"
+      },
+      "last_post": {
+        "value": 3223,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.439
+      },
+      "posts_estimate": {
+        "value": 1413,
+        "method": "strata",
+        "by_window_layout": [
+          1413,
+          1409
+        ]
+      },
+      "requests": {
+        "value": 21
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-04",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.62,
+        "n": 31,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 31
+      },
+      "vacancy_units_in_sample": {
+        "value": 31
+      },
+      "ad_share": {
+        "value": 0.08,
+        "n": 4,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 10.3
+      },
+      "vacancy_posts_per_week": {
+        "value": 6.4
+      },
+      "vacancy_units_per_week": {
+        "value": 6.4
+      },
+      "cyrillic_letter_share": {
+        "value": 0.79
+      },
+      "russian_post_share": {
+        "value": 0.959,
+        "n": 47,
+        "denominator": 49
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 31
+      },
+      "near_duplicate_share": {
+        "value": 0.097,
+        "n": 3,
+        "denominator": 31
+      },
+      "near_duplicate_top": {
+        "value": "juniors_rabota_jobs 2, backend_frontend_jobs 1"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.074,
+        "n": 2,
+        "denominator": 27,
+        "with": "juniors_rabota_jobs"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "general",
+        "network": "it_vakansii",
+        "reason": "general IT and digital vacancies; some ads and resume digests"
+      }
+    },
+    "juniors_rabota_jobs": {
+      "title": "Джуниор Вакансии Стажировки IT",
+      "subscribers": {
+        "value": 68500,
+        "shown": "68.5K"
+      },
+      "created": {
+        "value": "2022-11-26"
+      },
+      "first_post": {
+        "value": 2,
+        "date": "2022-11-26"
+      },
+      "second_post": {
+        "value": 13,
+        "date": "2023-01-18"
+      },
+      "last_post": {
+        "value": 3347,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.76
+      },
+      "posts_estimate": {
+        "value": 2542,
+        "method": "strata",
+        "by_window_layout": [
+          2542,
+          2542
+        ]
+      },
+      "requests": {
+        "value": 17
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-08",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.7,
+        "n": 35,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 35
+      },
+      "vacancy_units_in_sample": {
+        "value": 35
+      },
+      "ad_share": {
+        "value": 0.08,
+        "n": 4,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 11.6
+      },
+      "vacancy_posts_per_week": {
+        "value": 8.1
+      },
+      "vacancy_units_per_week": {
+        "value": 8.1
+      },
+      "cyrillic_letter_share": {
+        "value": 0.92
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 49,
+        "denominator": 49
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.08,
+        "n": 4,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "it_vakansii_jobs 3, other 1"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 35
+      },
+      "near_duplicate_share": {
+        "value": 0.086,
+        "n": 3,
+        "denominator": 35
+      },
+      "near_duplicate_top": {
+        "value": "it_vakansii_jobs 2, backend_frontend_jobs 1"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.057,
+        "n": 2,
+        "denominator": 35,
+        "with": "it_vakansii_jobs"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "junior",
+        "network": "it_vakansii",
+        "reason": "junior vacancies and internships; forwards from it_vakansii_jobs"
+      }
+    },
+    "it_interns": {
+      "title": "IT - стажировки и обучение",
+      "subscribers": {
+        "value": 31800,
+        "shown": "31.8K"
+      },
+      "created": {
+        "value": "2022-08-19"
+      },
+      "first_post": {
+        "value": 2,
+        "date": "2022-08-19"
+      },
+      "second_post": {
+        "value": 6,
+        "date": "2022-08-19"
+      },
+      "last_post": {
+        "value": 2076,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.597
+      },
+      "posts_estimate": {
+        "value": 1238,
+        "method": "strata",
+        "by_window_layout": [
+          1238,
+          1251
+        ]
+      },
+      "requests": {
+        "value": 16
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-22",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.88,
+        "n": 44,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.409,
+        "n": 18,
+        "denominator": 44
+      },
+      "vacancy_units_in_sample": {
+        "value": 79
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 21.7
+      },
+      "vacancy_posts_per_week": {
+        "value": 19.1
+      },
+      "vacancy_units_per_week": {
+        "value": 34.2
+      },
+      "cyrillic_letter_share": {
+        "value": 0.86
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 44
+      },
+      "near_duplicate_share": {
+        "value": 0.273,
+        "n": 12,
+        "denominator": 44
+      },
+      "near_duplicate_top": {
+        "value": "jun_qa 11, pythonpythonjobs 7, remotejun 6"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "vacancy_share_manual": {
+        "value": 0.88,
+        "n": 44,
+        "denominator": 50
+      },
+      "aligned_duplicate_max": {
+        "value": 0.256,
+        "n": 11,
+        "denominator": 43,
+        "with": "jun_qa"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "junior",
+        "network": "interns",
+        "reason": "internships, many multi-vacancy digests"
+      }
+    },
+    "remotejun": {
+      "title": "Remote Junior (INFLOW)",
+      "subscribers": {
+        "value": 26700,
+        "shown": "26.7K"
+      },
+      "created": {
+        "value": "2020-11-04"
+      },
+      "first_post": {
+        "value": 4,
+        "date": "2020-11-04"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2020-11-04"
+      },
+      "last_post": {
+        "value": 5735,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.873
+      },
+      "posts_estimate": {
+        "value": 5005,
+        "method": "strata",
+        "by_window_layout": [
+          5004,
+          5030
+        ]
+      },
+      "requests": {
+        "value": 21
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-26",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.84,
+        "n": 42,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.429,
+        "n": 18,
+        "denominator": 42
+      },
+      "vacancy_units_in_sample": {
+        "value": 81
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.08,
+        "n": 4,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 28.4
+      },
+      "vacancy_posts_per_week": {
+        "value": 23.8
+      },
+      "vacancy_units_per_week": {
+        "value": 45.9
+      },
+      "cyrillic_letter_share": {
+        "value": 0.67
+      },
+      "russian_post_share": {
+        "value": 0.565,
+        "n": 26,
+        "denominator": 46
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.48,
+        "n": 24,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "other 24"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 42
+      },
+      "near_duplicate_share": {
+        "value": 0.19,
+        "n": 8,
+        "denominator": 42
+      },
+      "near_duplicate_top": {
+        "value": "it_interns 5, jun_qa 3, job_react 1"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "vacancy_share_manual": {
+        "value": 0.9,
+        "n": 45,
+        "denominator": 50
+      },
+      "aligned_duplicate_max": {
+        "value": 0.12,
+        "n": 3,
+        "denominator": 25,
+        "with": "jun_qa"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "junior",
+        "network": "interns",
+        "reason": "remote junior vacancies (INFLOW); digests overlap with it_interns"
+      }
+    },
+    "getitrussia": {
+      "title": "Get IT",
+      "subscribers": {
+        "value": 21400,
+        "shown": "21.4K"
+      },
+      "created": {
+        "value": "2017-04-08"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2017-04-10"
+      },
+      "second_post": {
+        "value": 4,
+        "date": "2017-04-10"
+      },
+      "last_post": {
+        "value": 4476,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.813
+      },
+      "posts_estimate": {
+        "value": 3638,
+        "method": "strata",
+        "by_window_layout": [
+          3638,
+          3638
+        ]
+      },
+      "requests": {
+        "value": 18
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-24",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.94,
+        "n": 47,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 47
+      },
+      "vacancy_units_in_sample": {
+        "value": 47
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 24.6
+      },
+      "vacancy_posts_per_week": {
+        "value": 23.2
+      },
+      "vacancy_units_per_week": {
+        "value": 23.2
+      },
+      "cyrillic_letter_share": {
+        "value": 0.75
+      },
+      "russian_post_share": {
+        "value": 0.86,
+        "n": 43,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 47
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 47
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "general",
+        "network": "",
+        "reason": "general IT vacancies, history since 2017"
+      }
+    },
+    "devs_it": {
+      "title": "IT Jobs | Вакансии в IT",
+      "subscribers": {
+        "value": 19000,
+        "shown": "19K"
+      },
+      "created": {
+        "value": "2021-02-04"
+      },
+      "first_post": {
+        "value": 18,
+        "date": "2021-02-11"
+      },
+      "second_post": {
+        "value": 19,
+        "date": "2021-02-11"
+      },
+      "last_post": {
+        "value": 5852,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.727
+      },
+      "posts_estimate": {
+        "value": 4244,
+        "method": "strata",
+        "by_window_layout": [
+          4240,
+          4362
+        ]
+      },
+      "requests": {
+        "value": 21
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-08",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.92,
+        "n": 46,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 46
+      },
+      "vacancy_units_in_sample": {
+        "value": 46
+      },
+      "ad_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.04,
+        "n": 2,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 11.7
+      },
+      "vacancy_posts_per_week": {
+        "value": 10.8
+      },
+      "vacancy_units_per_week": {
+        "value": 10.8
+      },
+      "cyrillic_letter_share": {
+        "value": 0.84
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 48,
+        "denominator": 48
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.087,
+        "n": 4,
+        "denominator": 46
+      },
+      "near_duplicate_share": {
+        "value": 0.239,
+        "n": 11,
+        "denominator": 46
+      },
+      "near_duplicate_top": {
+        "value": "job_javadevs 7, job_python 3, job_react 2"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.109,
+        "n": 5,
+        "denominator": 46,
+        "with": "job_javadevs"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "general",
+        "network": "job_x",
+        "reason": "general IT vacancies; overlaps with job_javadevs and job_python"
+      }
+    },
+    "progjob": {
+      "title": "Работа для программистов",
+      "subscribers": {
+        "value": 15800,
+        "shown": "15.8K"
+      },
+      "created": {
+        "value": "2017-11-10"
+      },
+      "first_post": {
+        "value": 4,
+        "date": "2017-11-13"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2017-11-13"
+      },
+      "last_post": {
+        "value": 65048,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.967
+      },
+      "posts_estimate": {
+        "value": 62894,
+        "method": "strata",
+        "by_window_layout": [
+          62894,
+          62894
+        ]
+      },
+      "requests": {
+        "value": 20
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-10-06",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.86,
+        "n": 43,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 43
+      },
+      "vacancy_units_in_sample": {
+        "value": 43
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.14,
+        "n": 7,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 160.7
+      },
+      "vacancy_posts_per_week": {
+        "value": 138.2
+      },
+      "vacancy_units_per_week": {
+        "value": 138.2
+      },
+      "cyrillic_letter_share": {
+        "value": 0.73
+      },
+      "russian_post_share": {
+        "value": 0.977,
+        "n": 42,
+        "denominator": 43
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 1.0,
+        "n": 43,
+        "denominator": 43
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 43
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "general",
+        "network": "habr",
+        "reason": "mirror of Habr Career vacancies (every vacancy links career.habr.com); history since 2017 is a Habr backfill, dedup against the Habr source by vacancy id"
+      }
+    },
+    "jc_it": {
+      "title": "Jobs Code: IT вакансии",
+      "subscribers": {
+        "value": 15800,
+        "shown": "15.8K"
+      },
+      "created": {
+        "value": "2019-09-23"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2019-09-23"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2019-09-24"
+      },
+      "last_post": {
+        "value": 7243,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.893
+      },
+      "posts_estimate": {
+        "value": 6469,
+        "method": "strata",
+        "by_window_layout": [
+          6469,
+          6445
+        ]
+      },
+      "requests": {
+        "value": 19
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-23",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.86,
+        "n": 43,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 43
+      },
+      "vacancy_units_in_sample": {
+        "value": 43
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.04,
+        "n": 2,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 23.6
+      },
+      "vacancy_posts_per_week": {
+        "value": 20.3
+      },
+      "vacancy_units_per_week": {
+        "value": 20.3
+      },
+      "cyrillic_letter_share": {
+        "value": 0.88
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 48,
+        "denominator": 48
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 43
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 43
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "general",
+        "network": "",
+        "reason": "general IT vacancies, history since 2019"
+      }
+    },
+    "jobofferinside": {
+      "title": "Offer Inside",
+      "subscribers": {
+        "value": 12400,
+        "shown": "12.4K"
+      },
+      "created": {
+        "value": "2024-08-12"
+      },
+      "first_post": {
+        "value": 13,
+        "date": "2024-08-21"
+      },
+      "second_post": {
+        "value": 14,
+        "date": "2024-08-22"
+      },
+      "last_post": {
+        "value": 2610,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.995
+      },
+      "posts_estimate": {
+        "value": 2584,
+        "method": "strata",
+        "by_window_layout": [
+          2584
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-24",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.92,
+        "n": 46,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 46
+      },
+      "vacancy_units_in_sample": {
+        "value": 46
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 24.9
+      },
+      "vacancy_posts_per_week": {
+        "value": 22.9
+      },
+      "vacancy_units_per_week": {
+        "value": 22.9
+      },
+      "cyrillic_letter_share": {
+        "value": 0.76
+      },
+      "russian_post_share": {
+        "value": 0.96,
+        "n": 48,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 46
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 46
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "remote",
+        "network": "",
+        "reason": "international remote IT vacancies with Russian summaries"
+      }
+    },
+    "myitjob": {
+      "title": "IT Стажировки",
+      "subscribers": {
+        "value": 7590,
+        "shown": "7.59K"
+      },
+      "created": {
+        "value": "2022-09-09"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2022-09-09"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2022-09-09"
+      },
+      "last_post": {
+        "value": 4776,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.816
+      },
+      "posts_estimate": {
+        "value": 3895,
+        "method": "strata",
+        "by_window_layout": [
+          3895
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-30",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.88,
+        "n": 44,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 44
+      },
+      "vacancy_units_in_sample": {
+        "value": 44
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.1,
+        "n": 5,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 43.3
+      },
+      "vacancy_posts_per_week": {
+        "value": 38.1
+      },
+      "vacancy_units_per_week": {
+        "value": 38.1
+      },
+      "cyrillic_letter_share": {
+        "value": 0.93
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 45,
+        "denominator": 45
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 44
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 44
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "junior",
+        "network": "",
+        "reason": "junior IT vacancies"
+      }
+    },
+    "backend_frontend_jobs": {
+      "title": "Вакансии для разработчиков",
+      "subscribers": {
+        "value": 10000,
+        "shown": "10K"
+      },
+      "created": {
+        "value": "2023-02-11"
+      },
+      "first_post": {
+        "value": 5,
+        "date": "2023-02-11"
+      },
+      "second_post": {
+        "value": 92,
+        "date": "2023-08-21"
+      },
+      "last_post": {
+        "value": 1007,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.774
+      },
+      "posts_estimate": {
+        "value": 776,
+        "method": "strata",
+        "by_window_layout": [
+          776
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-07-30",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.76,
+        "n": 38,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 38
+      },
+      "vacancy_units_in_sample": {
+        "value": 38
+      },
+      "ad_share": {
+        "value": 0.08,
+        "n": 4,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 5.0
+      },
+      "vacancy_posts_per_week": {
+        "value": 3.8
+      },
+      "vacancy_units_per_week": {
+        "value": 3.8
+      },
+      "cyrillic_letter_share": {
+        "value": 0.84
+      },
+      "russian_post_share": {
+        "value": 0.96,
+        "n": 48,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.04,
+        "n": 2,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "it_vakansii_jobs 2"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 38
+      },
+      "near_duplicate_share": {
+        "value": 0.105,
+        "n": 4,
+        "denominator": 38
+      },
+      "near_duplicate_top": {
+        "value": "job_react 1, job_javadevs 1, devs_it 1"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.05,
+        "n": 1,
+        "denominator": 20,
+        "with": "devs_it"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "general",
+        "network": "it_vakansii",
+        "reason": "developer vacancies"
+      }
+    },
+    "remote_job_it_geeklink": {
+      "title": "Удаленная работа. IT-вакансии на удаленке",
+      "subscribers": {
+        "value": 1830,
+        "shown": "1.83K"
+      },
+      "created": {
+        "value": "2022-10-25"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2022-10-25"
+      },
+      "second_post": {
+        "value": 4,
+        "date": "2022-10-25"
+      },
+      "last_post": {
+        "value": 5670,
+        "date": "2026-10-06"
+      },
+      "id_density": {
+        "value": 1.0
+      },
+      "posts_estimate": {
+        "value": 5668,
+        "method": "strata",
+        "by_window_layout": [
+          5668
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-02-26",
+        "to": "2026-10-06"
+      },
+      "vacancy_share": {
+        "value": 0.74,
+        "n": 37,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.081,
+        "n": 3,
+        "denominator": 37
+      },
+      "vacancy_units_in_sample": {
+        "value": 40
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.2,
+        "n": 10,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 1.6
+      },
+      "vacancy_posts_per_week": {
+        "value": 1.2
+      },
+      "vacancy_units_per_week": {
+        "value": 1.2
+      },
+      "cyrillic_letter_share": {
+        "value": 0.85
+      },
+      "russian_post_share": {
+        "value": 0.98,
+        "n": 49,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.04,
+        "n": 2,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "other 2"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 37
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 37
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 2
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "remote",
+        "network": "geeklink",
+        "reason": "remote IT vacancies, slow; some resumes"
+      }
+    },
+    "remotegeekjob": {
+      "title": "RemoteGeekjob",
+      "subscribers": {
+        "value": 25400,
+        "shown": "25.4K"
+      },
+      "created": {
+        "value": "2020-04-10"
+      },
+      "first_post": {
+        "value": 10711,
+        "date": "2022-01-10"
+      },
+      "second_post": {
+        "value": 10712,
+        "date": "2022-01-10"
+      },
+      "last_post": {
+        "value": 41948,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 1.0
+      },
+      "posts_estimate": {
+        "value": 31238,
+        "method": "strata",
+        "by_window_layout": [
+          31238
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-10-06",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.96,
+        "n": 48,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.188,
+        "n": 9,
+        "denominator": 48
+      },
+      "vacancy_units_in_sample": {
+        "value": 67
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 171.5
+      },
+      "vacancy_posts_per_week": {
+        "value": 164.6
+      },
+      "vacancy_units_per_week": {
+        "value": 229.8
+      },
+      "cyrillic_letter_share": {
+        "value": 0.36
+      },
+      "russian_post_share": {
+        "value": 0.44,
+        "n": 22,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 48
+      },
+      "near_duplicate_share": {
+        "value": 0.292,
+        "n": 14,
+        "denominator": 48
+      },
+      "near_duplicate_top": {
+        "value": "fordevops 5, forfrontend 2, forpython 2"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.075,
+        "n": 3,
+        "denominator": 40,
+        "with": "fordevops"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "remote",
+        "network": "geekjob",
+        "reason": "remote IT vacancies of the geekjob network, high volume, about half in English"
+      }
+    },
+    "datajob": {
+      "title": "Data jobs — вакансии по data science, анализу данных, аналитике, искусственному интеллекту",
+      "subscribers": {
+        "value": 14900,
+        "shown": "14.9K"
+      },
+      "created": {
+        "value": "2018-12-24"
+      },
+      "first_post": {
+        "value": 6,
+        "date": "2019-03-14"
+      },
+      "second_post": {
+        "value": 7,
+        "date": "2019-03-14"
+      },
+      "last_post": {
+        "value": 2789,
+        "date": "2026-10-05"
+      },
+      "id_density": {
+        "value": 0.775
+      },
+      "posts_estimate": {
+        "value": 2157,
+        "method": "strata",
+        "by_window_layout": [
+          2157
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-07-08",
+        "to": "2026-10-05"
+      },
+      "vacancy_share": {
+        "value": 0.52,
+        "n": 26,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 26
+      },
+      "vacancy_units_in_sample": {
+        "value": 26
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 3.8
+      },
+      "vacancy_posts_per_week": {
+        "value": 2.0
+      },
+      "vacancy_units_per_week": {
+        "value": 2.0
+      },
+      "cyrillic_letter_share": {
+        "value": 0.85
+      },
+      "russian_post_share": {
+        "value": 0.96,
+        "n": 48,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.16,
+        "n": 8,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "other 8"
+      },
+      "habr_link_share": {
+        "value": 0.192,
+        "n": 5,
+        "denominator": 26
+      },
+      "near_duplicate_share": {
+        "value": 0.038,
+        "n": 1,
+        "denominator": 26
+      },
+      "near_duplicate_top": {
+        "value": "ai_rabota 1, datasciencejobs 1"
+      },
+      "days_since_last_post": {
+        "value": 3
+      },
+      "vacancy_share_manual": {
+        "value": 0.48,
+        "n": 24,
+        "denominator": 50
+      },
+      "aligned_duplicate_max": {
+        "value": 0.333,
+        "n": 1,
+        "denominator": 3,
+        "with": "ai_rabota"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "data",
+        "network": "proglib",
+        "reason": "data vacancies (Proglib), mixed with course promotion"
+      }
+    },
+    "data_hr": {
+      "title": "Data Analytics Jobs | Вакансии",
+      "subscribers": {
+        "value": 11100,
+        "shown": "11.1K"
+      },
+      "created": {
+        "value": "2020-07-27"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2020-07-27"
+      },
+      "second_post": {
+        "value": 4,
+        "date": "2020-07-29"
+      },
+      "last_post": {
+        "value": 1386,
+        "date": "2026-10-07"
+      },
+      "id_density": {
+        "value": 0.895
+      },
+      "posts_estimate": {
+        "value": 1238,
+        "method": "strata",
+        "by_window_layout": [
+          1238
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-07-02",
+        "to": "2026-10-07"
+      },
+      "vacancy_share": {
+        "value": 0.74,
+        "n": 37,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.108,
+        "n": 4,
+        "denominator": 37
+      },
+      "vacancy_units_in_sample": {
+        "value": 42
+      },
+      "ad_share": {
+        "value": 0.04,
+        "n": 2,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 3.6
+      },
+      "vacancy_posts_per_week": {
+        "value": 2.6
+      },
+      "vacancy_units_per_week": {
+        "value": 3.0
+      },
+      "cyrillic_letter_share": {
+        "value": 0.84
+      },
+      "russian_post_share": {
+        "value": 0.96,
+        "n": 48,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.06,
+        "n": 3,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "llm_jobs 3"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 37
+      },
+      "near_duplicate_share": {
+        "value": 0.324,
+        "n": 12,
+        "denominator": 37
+      },
+      "near_duplicate_top": {
+        "value": "llm_jobs 5, datajobschannel 3, data_engineer_jobs 3"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.111,
+        "n": 4,
+        "denominator": 36,
+        "with": "llm_jobs"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "data",
+        "network": "data_hr",
+        "reason": "data analytics vacancies"
+      }
+    },
+    "data_secrets_career": {
+      "title": "Data Secrets | Карьера",
+      "subscribers": {
+        "value": 7260,
+        "shown": "7.26K"
+      },
+      "created": {
+        "value": "2024-06-03"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2024-06-03"
+      },
+      "second_post": {
+        "value": 4,
+        "date": "2024-06-03"
+      },
+      "last_post": {
+        "value": 2513,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.671
+      },
+      "posts_estimate": {
+        "value": 1685,
+        "method": "strata",
+        "by_window_layout": [
+          1685
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-08",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.64,
+        "n": 32,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 32
+      },
+      "vacancy_units_in_sample": {
+        "value": 32
+      },
+      "ad_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 11.7
+      },
+      "vacancy_posts_per_week": {
+        "value": 7.5
+      },
+      "vacancy_units_per_week": {
+        "value": 7.5
+      },
+      "cyrillic_letter_share": {
+        "value": 0.92
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 32
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 32
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "vacancy_share_manual": {
+        "value": 0.48,
+        "n": 24,
+        "denominator": 50
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "data",
+        "network": "",
+        "reason": "DS and ML vacancies mixed with market news"
+      }
+    },
+    "offersanalysis": {
+      "title": "Аналитика | Стажировки и вакансии by Changellenge >>",
+      "subscribers": {
+        "value": 6540,
+        "shown": "6.54K"
+      },
+      "created": {
+        "value": "2024-10-09"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2024-10-11"
+      },
+      "second_post": {
+        "value": 4,
+        "date": "2024-11-11"
+      },
+      "last_post": {
+        "value": 386,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.977
+      },
+      "posts_estimate": {
+        "value": 375,
+        "method": "strata",
+        "by_window_layout": [
+          375
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-08-14",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.98,
+        "n": 49,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 49
+      },
+      "vacancy_units_in_sample": {
+        "value": 49
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 6.3
+      },
+      "vacancy_posts_per_week": {
+        "value": 6.2
+      },
+      "vacancy_units_per_week": {
+        "value": 6.2
+      },
+      "cyrillic_letter_share": {
+        "value": 0.95
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 49
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 49
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "analytics",
+        "network": "",
+        "reason": "analytics internships and vacancies"
+      }
+    },
+    "datascjobs": {
+      "title": "Data engineer / SQL работа",
+      "subscribers": {
+        "value": 5670,
+        "shown": "5.67K"
+      },
+      "created": {
+        "value": "2024-02-18"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2024-02-18"
+      },
+      "second_post": {
+        "value": 4,
+        "date": "2024-02-18"
+      },
+      "last_post": {
+        "value": 340,
+        "date": "2026-10-06"
+      },
+      "id_density": {
+        "value": 0.731
+      },
+      "posts_estimate": {
+        "value": 247,
+        "method": "strata",
+        "by_window_layout": [
+          247
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2025-11-28",
+        "to": "2026-10-06"
+      },
+      "vacancy_share": {
+        "value": 0.74,
+        "n": 37,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.027,
+        "n": 1,
+        "denominator": 37
+      },
+      "vacancy_units_in_sample": {
+        "value": 38
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 1.1
+      },
+      "vacancy_posts_per_week": {
+        "value": 0.8
+      },
+      "vacancy_units_per_week": {
+        "value": 0.8
+      },
+      "cyrillic_letter_share": {
+        "value": 0.81
+      },
+      "russian_post_share": {
+        "value": 0.98,
+        "n": 49,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.06,
+        "n": 3,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "other 3"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 37
+      },
+      "near_duplicate_share": {
+        "value": 0.243,
+        "n": 9,
+        "denominator": 37
+      },
+      "near_duplicate_top": {
+        "value": "datajobschannel 3, golangjobsit 2, data_hr 2"
+      },
+      "days_since_last_post": {
+        "value": 1
+      },
+      "aligned_duplicate_max": {
+        "value": 0.375,
+        "n": 3,
+        "denominator": 8,
+        "with": "datajobschannel"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "data",
+        "network": "",
+        "reason": "data engineering and SQL vacancies, small"
+      }
+    },
+    "de_rabota": {
+      "title": "Data Engineer Работа Вакансии",
+      "subscribers": {
+        "value": 5050,
+        "shown": "5.05K"
+      },
+      "created": {
+        "value": "2018-01-27"
+      },
+      "first_post": {
+        "value": 4,
+        "date": "2018-01-30"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2023-06-27"
+      },
+      "last_post": {
+        "value": 1440,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.642
+      },
+      "posts_estimate": {
+        "value": 922,
+        "method": "strata",
+        "by_window_layout": [
+          922
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-08-07",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.94,
+        "n": 47,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 47
+      },
+      "vacancy_units_in_sample": {
+        "value": 47
+      },
+      "ad_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.04,
+        "n": 2,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 5.6
+      },
+      "vacancy_posts_per_week": {
+        "value": 5.3
+      },
+      "vacancy_units_per_week": {
+        "value": 5.3
+      },
+      "cyrillic_letter_share": {
+        "value": 0.84
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 48,
+        "denominator": 48
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.064,
+        "n": 3,
+        "denominator": 47
+      },
+      "near_duplicate_share": {
+        "value": 0.043,
+        "n": 2,
+        "denominator": 47
+      },
+      "near_duplicate_top": {
+        "value": "data_hr 1, dsml_jobs 1"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.022,
+        "n": 1,
+        "denominator": 45,
+        "with": "data_hr"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "data",
+        "network": "rabota",
+        "reason": "data engineer vacancies"
+      }
+    },
+    "dataviz_jobs": {
+      "title": "Dataviz jobs",
+      "subscribers": {
+        "value": 3780,
+        "shown": "3.78K"
+      },
+      "created": {
+        "value": "2022-02-15"
+      },
+      "first_post": {
+        "value": 4,
+        "date": "2022-02-15"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2022-02-15"
+      },
+      "last_post": {
+        "value": 2212,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.869
+      },
+      "posts_estimate": {
+        "value": 1920,
+        "method": "strata",
+        "by_window_layout": [
+          1920
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-08-14",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.84,
+        "n": 42,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.405,
+        "n": 17,
+        "denominator": 42
+      },
+      "vacancy_units_in_sample": {
+        "value": 126
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.08,
+        "n": 4,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 6.4
+      },
+      "vacancy_posts_per_week": {
+        "value": 5.3
+      },
+      "vacancy_units_per_week": {
+        "value": 16.0
+      },
+      "cyrillic_letter_share": {
+        "value": 0.55
+      },
+      "russian_post_share": {
+        "value": 0.739,
+        "n": 34,
+        "denominator": 46
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.04,
+        "n": 2,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "other 2"
+      },
+      "habr_link_share": {
+        "value": 0.119,
+        "n": 5,
+        "denominator": 42
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 42
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "analytics",
+        "network": "",
+        "reason": "BI and dataviz vacancies, many multi-vacancy digests"
+      }
+    },
+    "data_engineer_jobs": {
+      "title": "Data Engineer Jobs",
+      "subscribers": {
+        "value": 3690,
+        "shown": "3.69K"
+      },
+      "created": {
+        "value": "2024-01-11"
+      },
+      "first_post": {
+        "value": 5,
+        "date": "2024-01-13"
+      },
+      "second_post": {
+        "value": 6,
+        "date": "2024-01-13"
+      },
+      "last_post": {
+        "value": 783,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.759
+      },
+      "posts_estimate": {
+        "value": 591,
+        "method": "strata",
+        "by_window_layout": [
+          591
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-07-11",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.82,
+        "n": 41,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.049,
+        "n": 2,
+        "denominator": 41
+      },
+      "vacancy_units_in_sample": {
+        "value": 43
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.06,
+        "n": 3,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 3.9
+      },
+      "vacancy_posts_per_week": {
+        "value": 3.2
+      },
+      "vacancy_units_per_week": {
+        "value": 3.4
+      },
+      "cyrillic_letter_share": {
+        "value": 0.56
+      },
+      "russian_post_share": {
+        "value": 0.745,
+        "n": 35,
+        "denominator": 47
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.12,
+        "n": 6,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "other 6"
+      },
+      "habr_link_share": {
+        "value": 0.024,
+        "n": 1,
+        "denominator": 41
+      },
+      "near_duplicate_share": {
+        "value": 0.098,
+        "n": 4,
+        "denominator": 41
+      },
+      "near_duplicate_top": {
+        "value": "data_hr 3, datajobschannel 2, llm_jobs 1"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.077,
+        "n": 3,
+        "denominator": 39,
+        "with": "data_hr"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "data",
+        "network": "",
+        "reason": "data engineer vacancies"
+      }
+    },
+    "analytics_jobs": {
+      "title": "BA & SA Jobs | Работа для бизнес и системных аналитиков",
+      "subscribers": {
+        "value": 3440,
+        "shown": "3.44K"
+      },
+      "created": {
+        "value": "2023-07-21"
+      },
+      "first_post": {
+        "value": 4,
+        "date": "2023-07-26"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2023-07-28"
+      },
+      "last_post": {
+        "value": 896,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.86
+      },
+      "posts_estimate": {
+        "value": 768,
+        "method": "strata",
+        "by_window_layout": [
+          768
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-04-30",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.9,
+        "n": 45,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 45
+      },
+      "vacancy_units_in_sample": {
+        "value": 45
+      },
+      "ad_share": {
+        "value": 0.08,
+        "n": 4,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 2.2
+      },
+      "vacancy_posts_per_week": {
+        "value": 2.0
+      },
+      "vacancy_units_per_week": {
+        "value": 2.0
+      },
+      "cyrillic_letter_share": {
+        "value": 0.74
+      },
+      "russian_post_share": {
+        "value": 0.78,
+        "n": 39,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 45
+      },
+      "near_duplicate_share": {
+        "value": 0.022,
+        "n": 1,
+        "denominator": 45
+      },
+      "near_duplicate_top": {
+        "value": "datasciencejobs 1"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.036,
+        "n": 1,
+        "denominator": 28,
+        "with": "datasciencejobs"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "analytics",
+        "network": "",
+        "reason": "business and system analyst vacancies"
+      }
+    },
+    "ai_rabota": {
+      "title": "AI Работа Вакансии DS / ML",
+      "subscribers": {
+        "value": 3150,
+        "shown": "3.15K"
+      },
+      "created": {
+        "value": "2023-04-26"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2023-04-26"
+      },
+      "second_post": {
+        "value": 4,
+        "date": "2023-04-27"
+      },
+      "last_post": {
+        "value": 1279,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.769
+      },
+      "posts_estimate": {
+        "value": 982,
+        "method": "strata",
+        "by_window_layout": [
+          982
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-08-19",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.96,
+        "n": 48,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.042,
+        "n": 2,
+        "denominator": 48
+      },
+      "vacancy_units_in_sample": {
+        "value": 51
+      },
+      "ad_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 7.0
+      },
+      "vacancy_posts_per_week": {
+        "value": 6.7
+      },
+      "vacancy_units_per_week": {
+        "value": 7.1
+      },
+      "cyrillic_letter_share": {
+        "value": 0.84
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.104,
+        "n": 5,
+        "denominator": 48
+      },
+      "near_duplicate_share": {
+        "value": 0.146,
+        "n": 7,
+        "denominator": 48
+      },
+      "near_duplicate_top": {
+        "value": "job_python 3, datasciencejobs 3, devs_it 1"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.065,
+        "n": 3,
+        "denominator": 46,
+        "with": "datasciencejobs"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "ml",
+        "network": "rabota",
+        "reason": "DS and ML vacancies"
+      }
+    },
+    "dsml_jobs": {
+      "title": "DS&ML Jobs | Работа и стажировки для Data-инженеров",
+      "subscribers": {
+        "value": 1460,
+        "shown": "1.46K"
+      },
+      "created": {
+        "value": "2023-06-11"
+      },
+      "first_post": {
+        "value": 4,
+        "date": "2023-06-12"
+      },
+      "second_post": {
+        "value": 7,
+        "date": "2023-10-08"
+      },
+      "last_post": {
+        "value": 480,
+        "date": "2026-10-05"
+      },
+      "id_density": {
+        "value": 0.969
+      },
+      "posts_estimate": {
+        "value": 462,
+        "method": "strata",
+        "by_window_layout": [
+          462
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2025-12-11",
+        "to": "2026-10-05"
+      },
+      "vacancy_share": {
+        "value": 0.98,
+        "n": 49,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 49
+      },
+      "vacancy_units_in_sample": {
+        "value": 49
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 1.2
+      },
+      "vacancy_posts_per_week": {
+        "value": 1.1
+      },
+      "vacancy_units_per_week": {
+        "value": 1.1
+      },
+      "cyrillic_letter_share": {
+        "value": 0.49
+      },
+      "russian_post_share": {
+        "value": 0.6,
+        "n": 30,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 49
+      },
+      "near_duplicate_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 49
+      },
+      "near_duplicate_top": {
+        "value": "de_rabota 1"
+      },
+      "days_since_last_post": {
+        "value": 3
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "ml",
+        "network": "",
+        "reason": "DS and ML vacancies and internships, small"
+      }
+    },
+    "fordevops": {
+      "title": "Job for Sysadmin & DevOps",
+      "subscribers": {
+        "value": 4950,
+        "shown": "4.95K"
+      },
+      "created": {
+        "value": "2018-04-08"
+      },
+      "first_post": {
+        "value": 1992,
+        "date": "2022-01-10"
+      },
+      "second_post": {
+        "value": 1993,
+        "date": "2022-01-10"
+      },
+      "last_post": {
+        "value": 5418,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.978
+      },
+      "posts_estimate": {
+        "value": 3353,
+        "method": "strata",
+        "by_window_layout": [
+          3353
+        ]
+      },
+      "requests": {
+        "value": 10
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-10",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.88,
+        "n": 44,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.045,
+        "n": 2,
+        "denominator": 44
+      },
+      "vacancy_units_in_sample": {
+        "value": 46
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 12.5
+      },
+      "vacancy_posts_per_week": {
+        "value": 11.0
+      },
+      "vacancy_units_per_week": {
+        "value": 11.5
+      },
+      "cyrillic_letter_share": {
+        "value": 0.55
+      },
+      "russian_post_share": {
+        "value": 0.46,
+        "n": 23,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 44
+      },
+      "near_duplicate_share": {
+        "value": 0.295,
+        "n": 13,
+        "denominator": 44
+      },
+      "near_duplicate_top": {
+        "value": "forfrontend 4, remotegeekjob 4, forallqa 3"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.429,
+        "n": 3,
+        "denominator": 7,
+        "with": "remotegeekjob"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "devops",
+        "network": "geekjob",
+        "reason": "DevOps and sysadmin vacancies, geekjob network"
+      }
+    },
+    "forallqa": {
+      "title": "Job for QA",
+      "subscribers": {
+        "value": 22800,
+        "shown": "22.8K"
+      },
+      "created": {
+        "value": "2018-04-08"
+      },
+      "first_post": {
+        "value": 2395,
+        "date": "2022-01-10"
+      },
+      "second_post": {
+        "value": 2396,
+        "date": "2022-01-10"
+      },
+      "last_post": {
+        "value": 6101,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.87
+      },
+      "posts_estimate": {
+        "value": 3225,
+        "method": "strata",
+        "by_window_layout": [
+          3225
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-04",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.9,
+        "n": 45,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.089,
+        "n": 4,
+        "denominator": 45
+      },
+      "vacancy_units_in_sample": {
+        "value": 50
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 10.3
+      },
+      "vacancy_posts_per_week": {
+        "value": 9.3
+      },
+      "vacancy_units_per_week": {
+        "value": 10.3
+      },
+      "cyrillic_letter_share": {
+        "value": 0.7
+      },
+      "russian_post_share": {
+        "value": 0.7,
+        "n": 35,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 45
+      },
+      "near_duplicate_share": {
+        "value": 0.311,
+        "n": 14,
+        "denominator": 45
+      },
+      "near_duplicate_top": {
+        "value": "jobforjunior 6, forfrontend 4, alljvmjobs 3"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.25,
+        "n": 1,
+        "denominator": 4,
+        "with": "remotegeekjob"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "qa",
+        "network": "geekjob",
+        "reason": "QA vacancies, geekjob network"
+      }
+    },
+    "qajoboffer": {
+      "title": "Работа для тестировщиков. QA",
+      "subscribers": {
+        "value": 20500,
+        "shown": "20.5K"
+      },
+      "created": {
+        "value": "2021-11-12"
+      },
+      "first_post": {
+        "value": 5,
+        "date": "2021-11-12"
+      },
+      "second_post": {
+        "value": 6,
+        "date": "2021-11-12"
+      },
+      "last_post": {
+        "value": 2167,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.636
+      },
+      "posts_estimate": {
+        "value": 1375,
+        "method": "strata",
+        "by_window_layout": [
+          1375
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-10",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.66,
+        "n": 33,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 33
+      },
+      "vacancy_units_in_sample": {
+        "value": 33
+      },
+      "ad_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 12.5
+      },
+      "vacancy_posts_per_week": {
+        "value": 8.3
+      },
+      "vacancy_units_per_week": {
+        "value": 8.3
+      },
+      "cyrillic_letter_share": {
+        "value": 0.71
+      },
+      "russian_post_share": {
+        "value": 0.98,
+        "n": 49,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "other 1"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 33
+      },
+      "near_duplicate_share": {
+        "value": 0.152,
+        "n": 5,
+        "denominator": 33
+      },
+      "near_duplicate_top": {
+        "value": "jobforqa 5"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.161,
+        "n": 5,
+        "denominator": 31,
+        "with": "jobforqa"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "qa",
+        "network": "qa",
+        "reason": "QA vacancies; overlaps with jobforqa"
+      }
+    },
+    "jobforqa": {
+      "title": "QA Вакансии. Работа для тестировщиков. QaRocks",
+      "subscribers": {
+        "value": 15000,
+        "shown": "15K"
+      },
+      "created": {
+        "value": "2023-09-01"
+      },
+      "first_post": {
+        "value": 7,
+        "date": "2023-09-14"
+      },
+      "second_post": {
+        "value": 8,
+        "date": "2023-09-14"
+      },
+      "last_post": {
+        "value": 1546,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.573
+      },
+      "posts_estimate": {
+        "value": 883,
+        "method": "strata",
+        "by_window_layout": [
+          883
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-13",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.76,
+        "n": 38,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 38
+      },
+      "vacancy_units_in_sample": {
+        "value": 38
+      },
+      "ad_share": {
+        "value": 0.06,
+        "n": 3,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 14.1
+      },
+      "vacancy_posts_per_week": {
+        "value": 10.7
+      },
+      "vacancy_units_per_week": {
+        "value": 10.7
+      },
+      "cyrillic_letter_share": {
+        "value": 0.72
+      },
+      "russian_post_share": {
+        "value": 0.9,
+        "n": 45,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.06,
+        "n": 3,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "other 2, qajoboffer 1"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 38
+      },
+      "near_duplicate_share": {
+        "value": 0.132,
+        "n": 5,
+        "denominator": 38
+      },
+      "near_duplicate_top": {
+        "value": "qajoboffer 5"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "vacancy_share_manual": {
+        "value": 0.72,
+        "n": 36,
+        "denominator": 50
+      },
+      "aligned_duplicate_max": {
+        "value": 0.139,
+        "n": 5,
+        "denominator": 36,
+        "with": "qajoboffer"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "qa",
+        "network": "qa",
+        "reason": "QA vacancies mixed with resume-service promotion"
+      }
+    },
+    "qa_testirovshchik_jobs_vakansii": {
+      "title": "QA Jobs | Вакансии",
+      "subscribers": {
+        "value": 13000,
+        "shown": "13K"
+      },
+      "created": {
+        "value": "2023-10-16"
+      },
+      "first_post": {
+        "value": 6,
+        "date": "2024-04-20"
+      },
+      "second_post": {
+        "value": 8,
+        "date": "2024-04-23"
+      },
+      "last_post": {
+        "value": 2383,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.632
+      },
+      "posts_estimate": {
+        "value": 1502,
+        "method": "strata",
+        "by_window_layout": [
+          1502
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-08-24",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.06,
+        "n": 3,
+        "denominator": 50
+      },
+      "vacancy_units_in_sample": {
+        "value": 55
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 7.8
+      },
+      "vacancy_posts_per_week": {
+        "value": 7.8
+      },
+      "vacancy_units_per_week": {
+        "value": 8.5
+      },
+      "cyrillic_letter_share": {
+        "value": 0.85
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "qa",
+        "network": "",
+        "reason": "QA vacancies"
+      }
+    },
+    "jun_qa": {
+      "title": "Ква инженер | QA вакансии и стажировки для тестировщиков",
+      "subscribers": {
+        "value": 6760,
+        "shown": "6.76K"
+      },
+      "created": {
+        "value": "2023-09-04"
+      },
+      "first_post": {
+        "value": 31,
+        "date": "2024-02-04"
+      },
+      "second_post": {
+        "value": 50,
+        "date": "2024-02-18"
+      },
+      "last_post": {
+        "value": 1280,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.739
+      },
+      "posts_estimate": {
+        "value": 924,
+        "method": "strata",
+        "by_window_layout": [
+          924
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-15",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.82,
+        "n": 41,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.317,
+        "n": 13,
+        "denominator": 41
+      },
+      "vacancy_units_in_sample": {
+        "value": 65
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.04,
+        "n": 2,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 15.3
+      },
+      "vacancy_posts_per_week": {
+        "value": 12.5
+      },
+      "vacancy_units_per_week": {
+        "value": 19.9
+      },
+      "cyrillic_letter_share": {
+        "value": 0.83
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 48,
+        "denominator": 48
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 41
+      },
+      "near_duplicate_share": {
+        "value": 0.317,
+        "n": 13,
+        "denominator": 41
+      },
+      "near_duplicate_top": {
+        "value": "it_interns 11, remotejun 5, pythonpythonjobs 3"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.258,
+        "n": 8,
+        "denominator": 31,
+        "with": "it_interns"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "qa",
+        "network": "interns",
+        "reason": "junior QA vacancies and internships; overlaps with it_interns"
+      }
+    },
+    "job_react": {
+      "title": "React Job | JavaScript | Вакансии",
+      "subscribers": {
+        "value": 16500,
+        "shown": "16.5K"
+      },
+      "created": {
+        "value": "2021-02-11"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2021-02-11"
+      },
+      "second_post": {
+        "value": 6,
+        "date": "2021-02-11"
+      },
+      "last_post": {
+        "value": 5845,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.704
+      },
+      "posts_estimate": {
+        "value": 4114,
+        "method": "strata",
+        "by_window_layout": [
+          4114
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-08-29",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "vacancy_units_in_sample": {
+        "value": 50
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 8.7
+      },
+      "vacancy_posts_per_week": {
+        "value": 8.7
+      },
+      "vacancy_units_per_week": {
+        "value": 8.7
+      },
+      "cyrillic_letter_share": {
+        "value": 0.79
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.1,
+        "n": 5,
+        "denominator": 50
+      },
+      "near_duplicate_share": {
+        "value": 0.08,
+        "n": 4,
+        "denominator": 50
+      },
+      "near_duplicate_top": {
+        "value": "job_python 2, devs_it 2, backend_frontend_jobs 1"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.053,
+        "n": 2,
+        "denominator": 38,
+        "with": "devs_it"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "frontend",
+        "network": "job_x",
+        "reason": "React and JavaScript vacancies"
+      }
+    },
+    "javascript_jobs_feed": {
+      "title": "JavaScript Jobs — вакансии и резюме",
+      "subscribers": {
+        "value": 15000,
+        "shown": "15K"
+      },
+      "created": {
+        "value": "2017-07-22"
+      },
+      "first_post": {
+        "value": 5,
+        "date": "2017-07-22"
+      },
+      "second_post": {
+        "value": 7,
+        "date": "2017-07-23"
+      },
+      "last_post": {
+        "value": 43928,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.713
+      },
+      "posts_estimate": {
+        "value": 31325,
+        "method": "strata",
+        "by_window_layout": [
+          31325
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-10-01",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.94,
+        "n": 47,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 47
+      },
+      "vacancy_units_in_sample": {
+        "value": 47
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 47.8
+      },
+      "vacancy_posts_per_week": {
+        "value": 44.9
+      },
+      "vacancy_units_per_week": {
+        "value": 44.9
+      },
+      "cyrillic_letter_share": {
+        "value": 0.76
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 47
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 47
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "frontend",
+        "network": "feed",
+        "reason": "JavaScript vacancies from a jobs chat feed, high volume"
+      }
+    },
+    "forfrontend": {
+      "title": "Job for Frontend (JavaScript + Node.js) Developers",
+      "subscribers": {
+        "value": 13600,
+        "shown": "13.6K"
+      },
+      "created": {
+        "value": "2018-04-08"
+      },
+      "first_post": {
+        "value": 3297,
+        "date": "2022-01-10"
+      },
+      "second_post": {
+        "value": 3298,
+        "date": "2022-01-10"
+      },
+      "last_post": {
+        "value": 7398,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.869
+      },
+      "posts_estimate": {
+        "value": 3564,
+        "method": "strata",
+        "by_window_layout": [
+          3564
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-02",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.88,
+        "n": 44,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.136,
+        "n": 6,
+        "denominator": 44
+      },
+      "vacancy_units_in_sample": {
+        "value": 52
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 9.8
+      },
+      "vacancy_posts_per_week": {
+        "value": 8.6
+      },
+      "vacancy_units_per_week": {
+        "value": 10.2
+      },
+      "cyrillic_letter_share": {
+        "value": 0.52
+      },
+      "russian_post_share": {
+        "value": 0.36,
+        "n": 18,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 44
+      },
+      "near_duplicate_share": {
+        "value": 0.364,
+        "n": 16,
+        "denominator": 44
+      },
+      "near_duplicate_top": {
+        "value": "alljvmjobs 8, forallqa 4, fordevops 4"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.186,
+        "n": 8,
+        "denominator": 43,
+        "with": "alljvmjobs"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "frontend",
+        "network": "geekjob",
+        "reason": "frontend vacancies, geekjob network, many in English"
+      }
+    },
+    "job_javadevs": {
+      "title": "Java Job | Вакансии | Работа",
+      "subscribers": {
+        "value": 14900,
+        "shown": "14.9K"
+      },
+      "created": {
+        "value": "2021-02-11"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2021-02-11"
+      },
+      "second_post": {
+        "value": 4,
+        "date": "2021-02-11"
+      },
+      "last_post": {
+        "value": 6765,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.753
+      },
+      "posts_estimate": {
+        "value": 5091,
+        "method": "strata",
+        "by_window_layout": [
+          5091
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-08-29",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.96,
+        "n": 48,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 48
+      },
+      "vacancy_units_in_sample": {
+        "value": 48
+      },
+      "ad_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 8.8
+      },
+      "vacancy_posts_per_week": {
+        "value": 8.4
+      },
+      "vacancy_units_per_week": {
+        "value": 8.4
+      },
+      "cyrillic_letter_share": {
+        "value": 0.82
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.104,
+        "n": 5,
+        "denominator": 48
+      },
+      "near_duplicate_share": {
+        "value": 0.167,
+        "n": 8,
+        "denominator": 48
+      },
+      "near_duplicate_top": {
+        "value": "devs_it 7, job_python 2, backend_frontend_jobs 1"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.156,
+        "n": 5,
+        "denominator": 32,
+        "with": "devs_it"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "java",
+        "network": "job_x",
+        "reason": "Java vacancies"
+      }
+    },
+    "golangjobsit": {
+      "title": "Golang Jobs",
+      "subscribers": {
+        "value": 14300,
+        "shown": "14.3K"
+      },
+      "created": {
+        "value": "2022-03-08"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2022-03-08"
+      },
+      "second_post": {
+        "value": 4,
+        "date": "2022-03-08"
+      },
+      "last_post": {
+        "value": 1128,
+        "date": "2026-10-06"
+      },
+      "id_density": {
+        "value": 0.64
+      },
+      "posts_estimate": {
+        "value": 721,
+        "method": "strata",
+        "by_window_layout": [
+          721
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-03-24",
+        "to": "2026-10-06"
+      },
+      "vacancy_share": {
+        "value": 0.84,
+        "n": 42,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.024,
+        "n": 1,
+        "denominator": 42
+      },
+      "vacancy_units_in_sample": {
+        "value": 43
+      },
+      "ad_share": {
+        "value": 0.08,
+        "n": 4,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 1.8
+      },
+      "vacancy_posts_per_week": {
+        "value": 1.5
+      },
+      "vacancy_units_per_week": {
+        "value": 1.5
+      },
+      "cyrillic_letter_share": {
+        "value": 0.82
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 42
+      },
+      "near_duplicate_share": {
+        "value": 0.095,
+        "n": 4,
+        "denominator": 42
+      },
+      "near_duplicate_top": {
+        "value": "datascjobs 2, rabota_golang 1, data_hr 1"
+      },
+      "days_since_last_post": {
+        "value": 2
+      },
+      "aligned_duplicate_max": {
+        "value": 0.077,
+        "n": 1,
+        "denominator": 13,
+        "with": "rabota_golang"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "go",
+        "network": "",
+        "reason": "Go vacancies"
+      }
+    },
+    "pydevjob": {
+      "title": "Python jobs — вакансии по питону, Django, Flask",
+      "subscribers": {
+        "value": 9650,
+        "shown": "9.65K"
+      },
+      "created": {
+        "value": "2018-12-23"
+      },
+      "first_post": {
+        "value": 4,
+        "date": "2019-03-12"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2019-03-13"
+      },
+      "last_post": {
+        "value": 2530,
+        "date": "2026-10-02"
+      },
+      "id_density": {
+        "value": 0.877
+      },
+      "posts_estimate": {
+        "value": 2216,
+        "method": "strata",
+        "by_window_layout": [
+          2216
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-07-03",
+        "to": "2026-10-02"
+      },
+      "vacancy_share": {
+        "value": 0.5,
+        "n": 25,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.04,
+        "n": 1,
+        "denominator": 25
+      },
+      "vacancy_units_in_sample": {
+        "value": 26
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 3.6
+      },
+      "vacancy_posts_per_week": {
+        "value": 1.8
+      },
+      "vacancy_units_per_week": {
+        "value": 1.9
+      },
+      "cyrillic_letter_share": {
+        "value": 0.85
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.14,
+        "n": 7,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "other 7"
+      },
+      "habr_link_share": {
+        "value": 0.12,
+        "n": 3,
+        "denominator": 25
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 25
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 6
+      },
+      "vacancy_share_manual": {
+        "value": 0.5,
+        "n": 25,
+        "denominator": 50
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "python",
+        "network": "proglib",
+        "reason": "Python vacancies (Proglib), half the posts are course promotion"
+      }
+    },
+    "forpython": {
+      "title": "Job for Python",
+      "subscribers": {
+        "value": 7430,
+        "shown": "7.43K"
+      },
+      "created": {
+        "value": "2018-05-02"
+      },
+      "first_post": {
+        "value": 2009,
+        "date": "2022-01-10"
+      },
+      "second_post": {
+        "value": 2010,
+        "date": "2022-01-10"
+      },
+      "last_post": {
+        "value": 5269,
+        "date": "2026-10-07"
+      },
+      "id_density": {
+        "value": 0.871
+      },
+      "posts_estimate": {
+        "value": 2839,
+        "method": "strata",
+        "by_window_layout": [
+          2839
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-16",
+        "to": "2026-10-07"
+      },
+      "vacancy_share": {
+        "value": 0.88,
+        "n": 44,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.091,
+        "n": 4,
+        "denominator": 44
+      },
+      "vacancy_units_in_sample": {
+        "value": 49
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 15.9
+      },
+      "vacancy_posts_per_week": {
+        "value": 14.0
+      },
+      "vacancy_units_per_week": {
+        "value": 15.6
+      },
+      "cyrillic_letter_share": {
+        "value": 0.55
+      },
+      "russian_post_share": {
+        "value": 0.46,
+        "n": 23,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 44
+      },
+      "near_duplicate_share": {
+        "value": 0.386,
+        "n": 17,
+        "denominator": 44
+      },
+      "near_duplicate_top": {
+        "value": "alljvmjobs 10, forfrontend 4, foranalysts 4"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.25,
+        "n": 2,
+        "denominator": 8,
+        "with": "remotegeekjob"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "python",
+        "network": "geekjob",
+        "reason": "Python vacancies, geekjob network, many in English"
+      }
+    },
+    "pythonpythonjobs": {
+      "title": "Python — вакансии и стажировки",
+      "subscribers": {
+        "value": 7530,
+        "shown": "7.53K"
+      },
+      "created": {
+        "value": "2023-08-05"
+      },
+      "first_post": {
+        "value": 8,
+        "date": "2023-09-21"
+      },
+      "second_post": {
+        "value": 10,
+        "date": "2023-09-22"
+      },
+      "last_post": {
+        "value": 2686,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.856
+      },
+      "posts_estimate": {
+        "value": 2292,
+        "method": "strata",
+        "by_window_layout": [
+          2292
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-05",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.82,
+        "n": 41,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.146,
+        "n": 6,
+        "denominator": 41
+      },
+      "vacancy_units_in_sample": {
+        "value": 52
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 10.5
+      },
+      "vacancy_posts_per_week": {
+        "value": 8.6
+      },
+      "vacancy_units_per_week": {
+        "value": 11.0
+      },
+      "cyrillic_letter_share": {
+        "value": 0.79
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 41
+      },
+      "near_duplicate_share": {
+        "value": 0.439,
+        "n": 18,
+        "denominator": 41
+      },
+      "near_duplicate_top": {
+        "value": "it_interns 17, jun_qa 16, remotejun 2"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.462,
+        "n": 12,
+        "denominator": 26,
+        "with": "jun_qa"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "python",
+        "network": "interns",
+        "reason": "Python vacancies and internships; overlaps with it_interns and jun_qa"
+      }
+    },
+    "alljvmjobs": {
+      "title": "JVM Jobs",
+      "subscribers": {
+        "value": 6150,
+        "shown": "6.15K"
+      },
+      "created": {
+        "value": "2018-05-02"
+      },
+      "first_post": {
+        "value": 2081,
+        "date": "2022-01-10"
+      },
+      "second_post": {
+        "value": 2082,
+        "date": "2022-01-10"
+      },
+      "last_post": {
+        "value": 4858,
+        "date": "2026-10-07"
+      },
+      "id_density": {
+        "value": 0.844
+      },
+      "posts_estimate": {
+        "value": 2346,
+        "method": "strata",
+        "by_window_layout": [
+          2346
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-02",
+        "to": "2026-10-07"
+      },
+      "vacancy_share": {
+        "value": 0.86,
+        "n": 43,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.116,
+        "n": 5,
+        "denominator": 43
+      },
+      "vacancy_units_in_sample": {
+        "value": 49
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 9.8
+      },
+      "vacancy_posts_per_week": {
+        "value": 8.4
+      },
+      "vacancy_units_per_week": {
+        "value": 9.6
+      },
+      "cyrillic_letter_share": {
+        "value": 0.62
+      },
+      "russian_post_share": {
+        "value": 0.58,
+        "n": 29,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 43
+      },
+      "near_duplicate_share": {
+        "value": 0.419,
+        "n": 18,
+        "denominator": 43
+      },
+      "near_duplicate_top": {
+        "value": "forpython 10, forfrontend 8, forallqa 3"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.435,
+        "n": 10,
+        "denominator": 23,
+        "with": "forpython"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "java",
+        "network": "geekjob",
+        "reason": "JVM vacancies, geekjob network"
+      }
+    },
+    "dotnetrujobsfeed": {
+      "title": "Вакансии .NET (канал)",
+      "subscribers": {
+        "value": 4910,
+        "shown": "4.91K"
+      },
+      "created": {
+        "value": "2019-10-13"
+      },
+      "first_post": {
+        "value": 4,
+        "date": "2019-10-13"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2019-10-13"
+      },
+      "last_post": {
+        "value": 5899,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.941
+      },
+      "posts_estimate": {
+        "value": 5548,
+        "method": "strata",
+        "by_window_layout": [
+          5548
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-08-28",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.44,
+        "n": 22,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.091,
+        "n": 2,
+        "denominator": 22
+      },
+      "vacancy_units_in_sample": {
+        "value": 24
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.56,
+        "n": 28,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 8.5
+      },
+      "vacancy_posts_per_week": {
+        "value": 3.8
+      },
+      "vacancy_units_per_week": {
+        "value": 4.1
+      },
+      "cyrillic_letter_share": {
+        "value": 0.74
+      },
+      "russian_post_share": {
+        "value": 0.98,
+        "n": 49,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 22
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 22
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "dotnet",
+        "network": "feed",
+        "reason": ".NET vacancies from a jobs chat feed; resumes are filtered out at collection"
+      }
+    },
+    "rabota_golang": {
+      "title": "Golang (GO) Работа Вакансии",
+      "subscribers": {
+        "value": 5080,
+        "shown": "5.08K"
+      },
+      "created": {
+        "value": "2017-10-14"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2023-06-19"
+      },
+      "second_post": {
+        "value": 4,
+        "date": "2023-06-26"
+      },
+      "last_post": {
+        "value": 1301,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.863
+      },
+      "posts_estimate": {
+        "value": 1121,
+        "method": "strata",
+        "by_window_layout": [
+          1121
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-08-10",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.98,
+        "n": 49,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 49
+      },
+      "vacancy_units_in_sample": {
+        "value": 49
+      },
+      "ad_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 5.9
+      },
+      "vacancy_posts_per_week": {
+        "value": 5.8
+      },
+      "vacancy_units_per_week": {
+        "value": 5.8
+      },
+      "cyrillic_letter_share": {
+        "value": 0.85
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.082,
+        "n": 4,
+        "denominator": 49
+      },
+      "near_duplicate_share": {
+        "value": 0.082,
+        "n": 4,
+        "denominator": 49
+      },
+      "near_duplicate_top": {
+        "value": "golangjobsit 3, job_javadevs 1"
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.064,
+        "n": 3,
+        "denominator": 47,
+        "with": "golangjobsit"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "go",
+        "network": "rabota",
+        "reason": "Go vacancies"
+      }
+    },
+    "forallmobile": {
+      "title": "Job for Mobile: iOS, Android, React Native",
+      "subscribers": {
+        "value": 6560,
+        "shown": "6.56K"
+      },
+      "created": {
+        "value": "2018-04-08"
+      },
+      "first_post": {
+        "value": 2193,
+        "date": "2022-01-10"
+      },
+      "second_post": {
+        "value": 2194,
+        "date": "2022-01-10"
+      },
+      "last_post": {
+        "value": 4868,
+        "date": "2026-10-07"
+      },
+      "id_density": {
+        "value": 0.77
+      },
+      "posts_estimate": {
+        "value": 2060,
+        "method": "strata",
+        "by_window_layout": [
+          2060
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-08-06",
+        "to": "2026-10-07"
+      },
+      "vacancy_share": {
+        "value": 0.86,
+        "n": 43,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.302,
+        "n": 13,
+        "denominator": 43
+      },
+      "vacancy_units_in_sample": {
+        "value": 57
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 5.6
+      },
+      "vacancy_posts_per_week": {
+        "value": 4.8
+      },
+      "vacancy_units_per_week": {
+        "value": 6.4
+      },
+      "cyrillic_letter_share": {
+        "value": 0.66
+      },
+      "russian_post_share": {
+        "value": 0.56,
+        "n": 28,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 43
+      },
+      "near_duplicate_share": {
+        "value": 0.186,
+        "n": 8,
+        "denominator": 43
+      },
+      "near_duplicate_top": {
+        "value": "forfrontend 4, forallqa 3, alljvmjobs 2"
+      },
+      "days_since_last_post": {
+        "value": 1
+      },
+      "aligned_duplicate_max": {
+        "value": 0.25,
+        "n": 1,
+        "denominator": 4,
+        "with": "remotegeekjob"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "mobile",
+        "network": "geekjob",
+        "reason": "iOS and Android vacancies, geekjob network"
+      }
+    },
+    "v1c_rabota": {
+      "title": "1С Работа Вакансии",
+      "subscribers": {
+        "value": 1460,
+        "shown": "1.46K"
+      },
+      "created": {
+        "value": "2018-01-24"
+      },
+      "first_post": {
+        "value": 4,
+        "date": "2018-01-25"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2018-01-29"
+      },
+      "last_post": {
+        "value": 1267,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.924
+      },
+      "posts_estimate": {
+        "value": 1168,
+        "method": "strata",
+        "by_window_layout": [
+          1168
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-08-06",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "vacancy_units_in_sample": {
+        "value": 53
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 5.5
+      },
+      "vacancy_posts_per_week": {
+        "value": 5.5
+      },
+      "vacancy_units_per_week": {
+        "value": 5.9
+      },
+      "cyrillic_letter_share": {
+        "value": 0.94
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "1c",
+        "network": "rabota",
+        "reason": "1C vacancies"
+      }
+    },
+    "infosec_work": {
+      "title": "Вакансии в ИБ | infosec",
+      "subscribers": {
+        "value": 15900,
+        "shown": "15.9K"
+      },
+      "created": {
+        "value": "2022-10-28"
+      },
+      "first_post": {
+        "value": 4,
+        "date": "2022-10-28"
+      },
+      "second_post": {
+        "value": 9,
+        "date": "2022-10-28"
+      },
+      "last_post": {
+        "value": 4314,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.887
+      },
+      "posts_estimate": {
+        "value": 3823,
+        "method": "strata",
+        "by_window_layout": [
+          3823
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-14",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.94,
+        "n": 47,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.021,
+        "n": 1,
+        "denominator": 47
+      },
+      "vacancy_units_in_sample": {
+        "value": 48
+      },
+      "ad_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 14.4
+      },
+      "vacancy_posts_per_week": {
+        "value": 13.6
+      },
+      "vacancy_units_per_week": {
+        "value": 13.9
+      },
+      "cyrillic_letter_share": {
+        "value": 0.92
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.043,
+        "n": 2,
+        "denominator": 47
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 47
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "infosec",
+        "network": "",
+        "reason": "information security vacancies"
+      }
+    },
+    "gamedevjob": {
+      "title": "Работа в геймдеве 🍖",
+      "subscribers": {
+        "value": 45500,
+        "shown": "45.5K"
+      },
+      "created": {
+        "value": "2017-07-04"
+      },
+      "first_post": {
+        "value": 5,
+        "date": "2017-07-04"
+      },
+      "second_post": {
+        "value": 6,
+        "date": "2017-07-06"
+      },
+      "last_post": {
+        "value": 5082,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.612
+      },
+      "posts_estimate": {
+        "value": 3106,
+        "method": "strata",
+        "by_window_layout": [
+          3106
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-08-28",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.68,
+        "n": 34,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.029,
+        "n": 1,
+        "denominator": 34
+      },
+      "vacancy_units_in_sample": {
+        "value": 35
+      },
+      "ad_share": {
+        "value": 0.02,
+        "n": 1,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.16,
+        "n": 8,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 8.5
+      },
+      "vacancy_posts_per_week": {
+        "value": 5.8
+      },
+      "vacancy_units_per_week": {
+        "value": 5.9
+      },
+      "cyrillic_letter_share": {
+        "value": 0.79
+      },
+      "russian_post_share": {
+        "value": 0.98,
+        "n": 49,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 34
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 34
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "gamedev",
+        "network": "",
+        "reason": "gamedev vacancies, some resumes"
+      }
+    },
+    "devjobs": {
+      "title": "Game Development Jobs",
+      "subscribers": {
+        "value": 44000,
+        "shown": "44K"
+      },
+      "created": {
+        "value": "2017-07-01"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2017-07-01"
+      },
+      "second_post": {
+        "value": 4,
+        "date": "2017-07-01"
+      },
+      "last_post": {
+        "value": 12574,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.888
+      },
+      "posts_estimate": {
+        "value": 11170,
+        "method": "strata",
+        "by_window_layout": [
+          11170
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-07",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.8,
+        "n": 40,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.05,
+        "n": 2,
+        "denominator": 40
+      },
+      "vacancy_units_in_sample": {
+        "value": 42
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.04,
+        "n": 2,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.04,
+        "n": 2,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 11.3
+      },
+      "vacancy_posts_per_week": {
+        "value": 9.0
+      },
+      "vacancy_units_per_week": {
+        "value": 9.5
+      },
+      "cyrillic_letter_share": {
+        "value": 0.87
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 48,
+        "denominator": 48
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.3,
+        "n": 15,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "other 15"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 40
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 40
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "gamedev",
+        "network": "",
+        "reason": "gamedev vacancies, forwards from Unity and Unreal channels"
+      }
+    },
+    "product_jobs": {
+      "title": "Вакансии для продактов и проджектов",
+      "subscribers": {
+        "value": 36200,
+        "shown": "36.2K"
+      },
+      "created": {
+        "value": "2018-10-25"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2018-10-25"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2018-10-26"
+      },
+      "last_post": {
+        "value": 2153,
+        "date": "2026-10-07"
+      },
+      "id_density": {
+        "value": 0.967
+      },
+      "posts_estimate": {
+        "value": 2080,
+        "method": "strata",
+        "by_window_layout": [
+          2080
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-07-30",
+        "to": "2026-10-07"
+      },
+      "vacancy_share": {
+        "value": 0.78,
+        "n": 39,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.026,
+        "n": 1,
+        "denominator": 39
+      },
+      "vacancy_units_in_sample": {
+        "value": 40
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 5.0
+      },
+      "vacancy_posts_per_week": {
+        "value": 3.9
+      },
+      "vacancy_units_per_week": {
+        "value": 4.0
+      },
+      "cyrillic_letter_share": {
+        "value": 0.88
+      },
+      "russian_post_share": {
+        "value": 0.98,
+        "n": 49,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 39
+      },
+      "near_duplicate_share": {
+        "value": 0.051,
+        "n": 2,
+        "denominator": 39
+      },
+      "near_duplicate_top": {
+        "value": "datajobschannel 1, devs_it 1"
+      },
+      "days_since_last_post": {
+        "value": 1
+      },
+      "aligned_duplicate_max": {
+        "value": 0.05,
+        "n": 1,
+        "denominator": 20,
+        "with": "devs_it"
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "product",
+        "network": "",
+        "reason": "product and project manager vacancies"
+      }
+    },
+    "runello_rus_frontend": {
+      "title": "Frontend Job Offers",
+      "subscribers": {
+        "value": 16000,
+        "shown": "16K"
+      },
+      "created": {
+        "value": "2022-03-08"
+      },
+      "first_post": {
+        "value": 4297,
+        "date": "2026-09-25"
+      },
+      "second_post": {
+        "value": 4298,
+        "date": "2026-09-25"
+      },
+      "last_post": {
+        "value": 4329,
+        "date": "2026-10-07"
+      },
+      "id_density": {
+        "value": 1.0
+      },
+      "posts_estimate": {
+        "value": 33,
+        "method": "full",
+        "by_window_layout": []
+      },
+      "requests": {
+        "value": 4
+      },
+      "sample_posts": {
+        "value": 33,
+        "from": "2026-09-25",
+        "to": "2026-10-07"
+      },
+      "vacancy_share": {
+        "value": 0.727,
+        "n": 24,
+        "denominator": 33
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 24
+      },
+      "vacancy_units_in_sample": {
+        "value": 24
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 33
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 33
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 33
+      },
+      "posts_per_week": {
+        "value": 17.3
+      },
+      "vacancy_posts_per_week": {
+        "value": 12.6
+      },
+      "vacancy_units_per_week": {
+        "value": 12.6
+      },
+      "cyrillic_letter_share": {
+        "value": 0.54
+      },
+      "russian_post_share": {
+        "value": 0.818,
+        "n": 27,
+        "denominator": 33
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.182,
+        "n": 6,
+        "denominator": 33
+      },
+      "forwarded_from_top": {
+        "value": "other 6"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 24
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 24
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 1
+      },
+      "aligned_duplicate_max": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 0,
+        "with": ""
+      },
+      "config": {
+        "value": "enabled",
+        "topic": "frontend",
+        "network": "runello",
+        "reason": "frontend vacancies; keeps only about two weeks of posts (older ids are deleted), so no backfill, daily collection only"
+      }
+    },
+    "morejobs": {
+      "title": "Больше джобсов",
+      "subscribers": {
+        "value": 84400,
+        "shown": "84.4K"
+      },
+      "created": {
+        "value": "2018-01-31"
+      },
+      "first_post": {
+        "value": 4,
+        "date": "2018-02-02"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2018-02-02"
+      },
+      "last_post": {
+        "value": 16596,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.878
+      },
+      "posts_estimate": {
+        "value": 14575,
+        "method": "strata",
+        "by_window_layout": [
+          14575,
+          14575
+        ]
+      },
+      "requests": {
+        "value": 19
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-10-01",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.26,
+        "n": 13,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 13
+      },
+      "vacancy_units_in_sample": {
+        "value": 13
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 50.4
+      },
+      "vacancy_posts_per_week": {
+        "value": 13.1
+      },
+      "vacancy_units_per_week": {
+        "value": 13.1
+      },
+      "cyrillic_letter_share": {
+        "value": 0.79
+      },
+      "russian_post_share": {
+        "value": 0.98,
+        "n": 49,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.06,
+        "n": 3,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "other 3"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 13
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 13
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "config": {
+        "value": "disabled",
+        "topic": "marketing",
+        "network": "",
+        "reason": "not IT: marketing and PR vacancies and news"
+      }
+    },
+    "it_vac": {
+      "title": "IT Jobs | вакансии, фриланс",
+      "subscribers": {
+        "value": 8570,
+        "shown": "8.57K"
+      },
+      "created": {
+        "value": "2020-03-23"
+      },
+      "first_post": {
+        "value": 1720,
+        "date": "2021-04-21"
+      },
+      "second_post": {
+        "value": 1721,
+        "date": "2021-04-23"
+      },
+      "last_post": {
+        "value": 5830,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.46
+      },
+      "posts_estimate": {
+        "value": 1893,
+        "method": "strata",
+        "by_window_layout": [
+          1893
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-11",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.12,
+        "n": 6,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 6
+      },
+      "vacancy_units_in_sample": {
+        "value": 6
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 12.9
+      },
+      "vacancy_posts_per_week": {
+        "value": 1.5
+      },
+      "vacancy_units_per_week": {
+        "value": 1.5
+      },
+      "cyrillic_letter_share": {
+        "value": 0.96
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 6
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 6
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "config": {
+        "value": "disabled",
+        "topic": "general",
+        "network": "",
+        "reason": "spam and freelance tasks, almost no vacancies"
+      }
+    },
+    "getanalysts": {
+      "title": "GetAnalyst - Навыки • Системный анализ • Бизнес-анализ",
+      "subscribers": {
+        "value": 22600,
+        "shown": "22.6K"
+      },
+      "created": {
+        "value": "2021-11-27"
+      },
+      "first_post": {
+        "value": 5,
+        "date": "2021-11-29"
+      },
+      "second_post": {
+        "value": 6,
+        "date": "2021-12-03"
+      },
+      "last_post": {
+        "value": 3729,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.374
+      },
+      "posts_estimate": {
+        "value": 1394,
+        "method": "strata",
+        "by_window_layout": [
+          1394
+        ]
+      },
+      "requests": {
+        "value": 15
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-09-02",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.42,
+        "n": 21,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 21
+      },
+      "vacancy_units_in_sample": {
+        "value": 21
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 9.6
+      },
+      "vacancy_posts_per_week": {
+        "value": 4.1
+      },
+      "vacancy_units_per_week": {
+        "value": 4.1
+      },
+      "cyrillic_letter_share": {
+        "value": 0.93
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.08,
+        "n": 4,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": "other 4"
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 21
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 21
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "vacancy_share_manual": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "config": {
+        "value": "disabled",
+        "topic": "analytics",
+        "network": "",
+        "reason": "education channel for analysts, no vacancies in the manual check"
+      }
+    },
+    "devops_jobs_feed": {
+      "title": "Devops Jobs — вакансии и резюме",
+      "subscribers": {
+        "value": 22000,
+        "shown": "22K"
+      },
+      "created": {
+        "value": "2018-05-28"
+      },
+      "first_post": {
+        "value": 5,
+        "date": "2018-05-29"
+      },
+      "second_post": {
+        "value": 6,
+        "date": "2018-05-30"
+      },
+      "last_post": {
+        "value": 23735,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.993
+      },
+      "posts_estimate": {
+        "value": 23562,
+        "method": "strata",
+        "by_window_layout": [
+          23562
+        ]
+      },
+      "requests": {
+        "value": 13
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-10-05",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.16,
+        "n": 8,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 8
+      },
+      "vacancy_units_in_sample": {
+        "value": 8
+      },
+      "ad_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.84,
+        "n": 42,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 118.6
+      },
+      "vacancy_posts_per_week": {
+        "value": 19.0
+      },
+      "vacancy_units_per_week": {
+        "value": 19.0
+      },
+      "cyrillic_letter_share": {
+        "value": 0.69
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 8
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 8
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "vacancy_share_manual": {
+        "value": 0.16,
+        "n": 8,
+        "denominator": 50
+      },
+      "config": {
+        "value": "disabled",
+        "topic": "devops",
+        "network": "feed",
+        "reason": "mostly resumes, few vacancies"
+      }
+    },
+    "odin1c_rus": {
+      "title": "1C программист",
+      "subscribers": {
+        "value": 7830,
+        "shown": "7.83K"
+      },
+      "created": {
+        "value": "2022-05-05"
+      },
+      "first_post": {
+        "value": 3,
+        "date": "2022-05-05"
+      },
+      "second_post": {
+        "value": 5,
+        "date": "2022-05-06"
+      },
+      "last_post": {
+        "value": 2356,
+        "date": "2026-10-08"
+      },
+      "id_density": {
+        "value": 0.074
+      },
+      "posts_estimate": {
+        "value": 175,
+        "method": "strata",
+        "by_window_layout": [
+          175
+        ]
+      },
+      "requests": {
+        "value": 14
+      },
+      "sample_posts": {
+        "value": 50,
+        "from": "2026-06-28",
+        "to": "2026-10-08"
+      },
+      "vacancy_share": {
+        "value": 0.4,
+        "n": 20,
+        "denominator": 50
+      },
+      "multi_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 20
+      },
+      "vacancy_units_in_sample": {
+        "value": 20
+      },
+      "ad_share": {
+        "value": 0.16,
+        "n": 8,
+        "denominator": 50
+      },
+      "resume_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "no_text_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "posts_per_week": {
+        "value": 3.4
+      },
+      "vacancy_posts_per_week": {
+        "value": 1.4
+      },
+      "vacancy_units_per_week": {
+        "value": 1.4
+      },
+      "cyrillic_letter_share": {
+        "value": 0.84
+      },
+      "russian_post_share": {
+        "value": 1.0,
+        "n": 50,
+        "denominator": 50
+      },
+      "forwarded_from_channel_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "forwarded_from_top": {
+        "value": ""
+      },
+      "habr_link_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 20
+      },
+      "near_duplicate_share": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 20
+      },
+      "near_duplicate_top": {
+        "value": ""
+      },
+      "days_since_last_post": {
+        "value": 0
+      },
+      "vacancy_share_manual": {
+        "value": 0.0,
+        "n": 0,
+        "denominator": 50
+      },
+      "config": {
+        "value": "disabled",
+        "topic": "1c",
+        "network": "",
+        "reason": "1C programming content and ads, no vacancies in the manual check"
+      }
+    }
+  },
+  "probed": {
+    "analyst_job": {
+      "status": "dead",
+      "title": "analyst_job",
+      "subscribers": "885",
+      "last_post_date": "2026-05-31"
+    },
+    "analysts_hunter": {
+      "status": "no_preview"
+    },
+    "analytics_career": {
+      "status": "dead",
+      "title": "Карьера аналитика",
+      "subscribers": "2.75K",
+      "last_post_date": "2026-05-12"
+    },
+    "bbkjunior": {
+      "status": "no_preview"
+    },
+    "bitrix_1c_job": {
+      "status": "dead",
+      "title": "Вакансии 1С и Bitrix-разработчиков",
+      "subscribers": "2.81K",
+      "last_post_date": "2026-07-27"
+    },
+    "csharpdevjob": {
+      "status": "reserve",
+      "title": "C# jobs — вакансии по C#, .NET, Unity",
+      "subscribers": "10.3K",
+      "last_post_date": "2026-10-07"
+    },
+    "cybersecjobsguru": {
+      "status": "no_preview"
+    },
+    "datajobs": {
+      "status": "no_preview"
+    },
+    "datamljobs": {
+      "status": "no_preview"
+    },
+    "datasciencework": {
+      "status": "dead",
+      "title": "Data Science Work",
+      "subscribers": "2.76K",
+      "last_post_date": "2025-09-04"
+    },
+    "devops_jobs": {
+      "status": "no_preview"
+    },
+    "devops_vakansii": {
+      "status": "no_preview"
+    },
+    "devopssjob": {
+      "status": "reserve",
+      "title": "Вакансии по DevOps & SRE",
+      "subscribers": "4.49K",
+      "last_post_date": "2026-09-15"
+    },
+    "dnative_job": {
+      "status": "not_it",
+      "title": "Вакансии SMM и Digital",
+      "subscribers": "102K",
+      "last_post_date": "2026-10-08"
+    },
+    "dotnetrujobs": {
+      "status": "no_preview"
+    },
+    "front_end_jobs": {
+      "status": "no_preview"
+    },
+    "frontend_vakansii": {
+      "status": "no_preview"
+    },
+    "gamedev_and_tech_vacancy": {
+      "status": "reserve",
+      "title": "Jobs in GameDev & IT",
+      "subscribers": "10.2K",
+      "last_post_date": "2026-10-08"
+    },
+    "gamedev_unity_unreal_engine_jobs": {
+      "status": "dead",
+      "title": "Вакансии GameDev, Unity и Unreal Engine разработчиков",
+      "subscribers": "2.27K",
+      "last_post_date": "2026-08-07"
+    },
+    "gamedev_vakansii": {
+      "status": "dead",
+      "title": "Переходник",
+      "subscribers": "46",
+      "last_post_date": "2025-07-17"
+    },
+    "gamedevjobs": {
+      "status": "reserve",
+      "title": "Gamedev Jobs (Inflow)",
+      "subscribers": "21.7K",
+      "last_post_date": "2026-10-08"
+    },
+    "gdjobs": {
+      "status": "reserve",
+      "title": "GameDev Career – GDTalents",
+      "subscribers": "16K",
+      "last_post_date": "2026-10-07"
+    },
+    "go_job": {
+      "status": "no_preview"
+    },
+    "godevjob": {
+      "status": "reserve",
+      "title": "Go jobs — вакансии по Go",
+      "subscribers": "11.4K",
+      "last_post_date": "2026-10-07"
+    },
+    "golang_jobs": {
+      "status": "no_preview"
+    },
+    "gollang_jobs": {
+      "status": "reserve",
+      "title": "Golang_Jobs",
+      "subscribers": "1.6K",
+      "last_post_date": "2026-10-07"
+    },
+    "hackdevjob": {
+      "status": "reserve",
+      "title": "InfoSec Jobs — вакансии по информационной безопасности, infosec, pentesting, пентестингу, security engineer, инфобезу, DevSecOps",
+      "subscribers": "3.18K",
+      "last_post_date": "2026-10-05"
+    },
+    "it_sec_jobs": {
+      "status": "no_preview"
+    },
+    "it_vacancy_job": {
+      "status": "dead",
+      "title": "IT ВАКАНСИИ | Работа в IT, программисты, QA",
+      "subscribers": "904",
+      "last_post_date": "2026-02-28"
+    },
+    "it_vacancy_junior_middle": {
+      "status": "no_preview"
+    },
+    "itarchitect_jobs": {
+      "status": "no_preview"
+    },
+    "ithumanwork": {
+      "status": "dead",
+      "title": "ITHumanWork | Карьера в IT и Бизнес анализ",
+      "subscribers": "791",
+      "last_post_date": "2026-08-07"
+    },
+    "itposition": {
+      "status": "reserve",
+      "title": "ITPosition - вакансии, работа для программистов",
+      "subscribers": "712",
+      "last_post_date": "2026-10-07"
+    },
+    "java_c_net_golang_jobs": {
+      "status": "reserve",
+      "title": "Вакансии .Net, Java, C#, C++ и Golang разработчиков",
+      "subscribers": "4.99K",
+      "last_post_date": "2026-10-02"
+    },
+    "java_jobs": {
+      "status": "no_preview"
+    },
+    "java_jobs_ru": {
+      "status": "dead",
+      "title": "Java / Kotlin работа",
+      "subscribers": "199",
+      "last_post_date": "2021-03-06"
+    },
+    "javadevjob": {
+      "status": "reserve",
+      "title": "Java jobs — вакансии для java-разработчиков",
+      "subscribers": "14K",
+      "last_post_date": "2026-10-06"
+    },
+    "javaoffers": {
+      "status": "reserve",
+      "title": "Java Вакансии",
+      "subscribers": "2.27K",
+      "last_post_date": "2026-10-08"
+    },
+    "javascript_jobs": {
+      "status": "no_preview"
+    },
+    "job41c": {
+      "status": "dead",
+      "title": "1С Резюме и вакансии (inflow)",
+      "subscribers": "198",
+      "last_post_date": "2026-05-25"
+    },
+    "job_gamedev": {
+      "status": "reserve",
+      "title": "Работа в Геймдеве Вакансии 3D художники аниматоры gamedev, unity unreal engine программисты, blender, 3dmax, maya, zbrush",
+      "subscribers": "3.55K",
+      "last_post_date": "2026-09-27"
+    },
+    "job_webdev": {
+      "status": "reserve",
+      "title": "Работа — вёрстка и фронтенд",
+      "subscribers": "7.52K",
+      "last_post_date": "2026-10-08"
+    },
+    "jobfeeds": {
+      "status": "reserve",
+      "title": "Работница",
+      "subscribers": "3.4K",
+      "last_post_date": "2026-10-06"
+    },
+    "jobforphp": {
+      "status": "reserve",
+      "title": "Job for PHP",
+      "subscribers": "3.05K",
+      "last_post_date": "2026-10-06"
+    },
+    "jobgeeks": {
+      "status": "no_preview"
+    },
+    "jobgolang": {
+      "status": "reserve",
+      "title": "Вакансии Golang",
+      "subscribers": "3.76K",
+      "last_post_date": "2026-10-07"
+    },
+    "jobs_it": {
+      "status": "no_preview"
+    },
+    "jobs_vacations_it": {
+      "status": "no_preview"
+    },
+    "jobsfordevsandops": {
+      "status": "dead",
+      "title": "Слёрм Карьера — вакансии в IT",
+      "subscribers": "1.89K",
+      "last_post_date": "2024-12-16"
+    },
+    "jsdevjob": {
+      "status": "reserve",
+      "title": "Javascript jobs — вакансии по фронтенду, джаваскрипт, React, Angular, Vue",
+      "subscribers": "9.62K",
+      "last_post_date": "2026-10-02"
+    },
+    "jun_hi_vacancies": {
+      "status": "not_it",
+      "title": "Вакансии дизайнерам",
+      "subscribers": "42.9K",
+      "last_post_date": "2026-10-08"
+    },
+    "junior_vacancies": {
+      "status": "dead",
+      "title": "Вакансии и стажировки для начинающих разработчиков, тестировщиков и аналитиков",
+      "subscribers": "8.2K",
+      "last_post_date": "2025-11-01"
+    },
+    "juniorlinux": {
+      "status": "reserve",
+      "title": "🐧 Linux Junior. Программирование под Linux.",
+      "subscribers": "3.08K",
+      "last_post_date": "2026-10-06"
+    },
+    "kotlin_jobs": {
+      "status": "dead",
+      "title": "Kotlin Jobs",
+      "subscribers": "2.85K",
+      "last_post_date": "2026-05-22"
+    },
+    "machinelearning_jobs": {
+      "status": "no_preview"
+    },
+    "mobile_jobs": {
+      "status": "no_preview"
+    },
+    "mobiledevjob": {
+      "status": "reserve",
+      "title": "Mobile jobs — вакансии для мобильных разработчиков",
+      "subscribers": "5.24K",
+      "last_post_date": "2026-10-02"
+    },
+    "mobiledevjobs": {
+      "status": "reserve",
+      "title": "Mobile Dev Jobs | iOS и Android | Вакансии и резюме",
+      "subscribers": "1.06K",
+      "last_post_date": "2026-10-08"
+    },
+    "myjobit": {
+      "status": "no_preview"
+    },
+    "non_nlp_jobs": {
+      "status": "dead",
+      "title": "Non-NLP jobs",
+      "subscribers": "146",
+      "last_post_date": "2025-05-08"
+    },
+    "php_jobs": {
+      "status": "no_preview"
+    },
+    "phpdevjob": {
+      "status": "reserve",
+      "title": "PHP jobs — вакансии по PHP, Symfony, Laravel",
+      "subscribers": "6.31K",
+      "last_post_date": "2026-10-02"
+    },
+    "phpworkjob": {
+      "status": "no_preview"
+    },
+    "products_jobs": {
+      "status": "no_preview"
+    },
+    "python_django_work": {
+      "status": "no_preview"
+    },
+    "python_jobs": {
+      "status": "no_preview"
+    },
+    "python_vakansii1": {
+      "status": "dead",
+      "title": "‼️ Переходник ‼️",
+      "subscribers": "20",
+      "last_post_date": "2026-08-09"
+    },
+    "qa_jobs": {
+      "status": "no_preview"
+    },
+    "qa_jobs_rabota": {
+      "status": "reserve",
+      "title": "Вакансии QA Engineer/Тестировщикам",
+      "subscribers": "5.59K",
+      "last_post_date": "2026-10-07"
+    },
+    "rabota_v_gamedeve": {
+      "status": "reserve",
+      "title": "Работа в геймдеве (вакансии)",
+      "subscribers": "25.8K",
+      "last_post_date": "2026-10-07"
+    },
+    "rabotafrontend": {
+      "status": "reserve",
+      "title": "FrontEnd Работа",
+      "subscribers": "3.43K",
+      "last_post_date": "2026-10-08"
+    },
+    "rabotaj_razrabotchik": {
+      "status": "reserve",
+      "title": "Frontend Jobs - Вакансии",
+      "subscribers": "5.64K",
+      "last_post_date": "2026-10-08"
+    },
+    "sysadmin_jobs": {
+      "status": "dead",
+      "title": "sysadmin_jobs",
+      "subscribers": "4.46K",
+      "last_post_date": "2026-07-22"
+    },
+    "sysadmin_rabota": {
+      "status": "no_preview"
+    },
+    "unity_jobs": {
+      "status": "dead",
+      "title": "Unity Jobs",
+      "subscribers": "4.73K",
+      "last_post_date": "2026-07-20"
+    },
+    "unityjobs_pub": {
+      "status": "reserve",
+      "title": "Unity Jobs",
+      "subscribers": "11.9K",
+      "last_post_date": "2026-10-08"
+    },
+    "vacancy_qa": {
+      "status": "dead",
+      "title": "Вакансии QA / Тестировщик",
+      "subscribers": "95",
+      "last_post_date": "2026-01-13"
+    },
+    "fordev": {
+      "status": "no_preview"
+    },
+    "forgamedev": {
+      "status": "reserve",
+      "title": "Job for Gamedev",
+      "subscribers": "14.4K",
+      "last_post_date": "2026-10-08"
+    },
+    "forgoandrust": {
+      "status": "reserve",
+      "title": "Job for Go, Rust Developers",
+      "subscribers": "4.45K",
+      "last_post_date": "2026-10-07"
+    },
+    "forwebdev": {
+      "status": "dead",
+      "title": "For Web — фронтенд, дизайн, программирование",
+      "subscribers": "13.1K",
+      "last_post_date": "2025-05-12"
+    },
+    "forcsharp": {
+      "status": "reserve",
+      "title": "Job for C#, .NET",
+      "subscribers": "4.52K",
+      "last_post_date": "2026-10-08"
+    },
+    "forproducts": {
+      "status": "reserve",
+      "title": "Job for Products and Projects",
+      "subscribers": "70K",
+      "last_post_date": "2026-10-08"
+    },
+    "analyst_geeklink": {
+      "status": "reserve",
+      "title": "Вакансии и резюме Аналитиков",
+      "subscribers": "258",
+      "last_post_date": "2026-10-02"
+    },
+    "product_project_hr_geeklink": {
+      "status": "no_preview"
+    },
+    "runello_rus_backend": {
+      "status": "reserve",
+      "title": "Backend Job Offers",
+      "subscribers": "14K",
+      "last_post_date": "2026-10-07"
+    },
+    "ru_pythonjobs": {
+      "status": "dead",
+      "title": "Вакансии для Python-разработчиков / Python Jobs",
+      "subscribers": "9.93K",
+      "last_post_date": "2026-03-25"
+    },
+    "hh_vacancy_product_project": {
+      "status": "reserve",
+      "title": "Работа для продактов и проджектов",
+      "subscribers": "405",
+      "last_post_date": "2026-10-06"
+    }
+  }
+}
