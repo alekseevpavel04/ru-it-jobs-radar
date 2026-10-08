@@ -43,7 +43,7 @@ ssh radar-vps 'tail -n 5 ru-it-jobs-radar/logs/daily/$(date +%F).log'
 
 ```
 ssh radar-vps 'rm -rf ru-it-jobs-radar/src'
-tar cf - --exclude=__pycache__ src scripts/daily_collect.sh pyproject.toml uv.lock README.md | ssh radar-vps 'tar xf - -C ru-it-jobs-radar'
+tar cf - --exclude=__pycache__ src configs scripts/daily_collect.sh pyproject.toml uv.lock README.md | ssh radar-vps 'tar xf - -C ru-it-jobs-radar'
 ssh radar-vps 'cd ru-it-jobs-radar && ~/.local/bin/uv sync --frozen --no-dev'
 ```
 
