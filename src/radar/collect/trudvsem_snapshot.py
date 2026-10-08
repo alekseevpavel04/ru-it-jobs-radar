@@ -8,12 +8,19 @@ changed later) to `data/raw/trudvsem_snapshot/dt=<snapshot date>/`. The XML is d
 its partition is complete. A version whose partition has `_SUCCESS` is skipped, so a rerun
 continues where the last one stopped.
 
+The results file is rebuilt from disk after every snapshot (`--summarize` does only that).
+`--repair DT` appends records missing from a complete partition, from a local XML of the same
+version, without touching what is already written.
+
     RADAR_USER_AGENT='...' python -m radar.collect.trudvsem_snapshot [--limit N]
+    python -m radar.collect.trudvsem_snapshot --summarize
+    python -m radar.collect.trudvsem_snapshot --repair 2026-06-30
 """
 
 import argparse
 import json
 import logging
+import re
 import shutil
 import sys
 import time
@@ -26,13 +33,16 @@ from typing import Any, BinaryIO, Protocol
 
 import httpx
 import psutil
+import pyarrow.parquet as pq
 from lxml import etree
 from pydantic import ValidationError
 
+from radar.collect import setup_logging
 from radar.collect.contracts import TrudvsemSnapshotVacancy
 from radar.collect.envelope import RawRecord, content_hash
+from radar.collect.summary import append_meta, meta_dir, partition_dates, partition_stats, read_meta
 from radar.collect.writer import PartitionWriter, is_complete, partition_dir, raw_root, read_marker
-from radar.config import RESULTS, data_dir, user_agent
+from radar.config import ROOT, data_dir, user_agent
 from radar.pii import clean_trudvsem_snapshot
 from radar.results import write_result
 
@@ -41,6 +51,7 @@ log = logging.getLogger("radar.collect.trudvsem_snapshot")
 SOURCE = "trudvsem_snapshot"
 PASSPORT_URL = "https://opendata.trudvsem.ru/7710538364-vacancy/"
 RESULT_PATH = "collect/trudvsem_snapshots.json"
+LOG_PATH = ROOT / "logs" / "trudvsem_snapshot.log"
 PAUSE_S = 2.0
 BACKOFF_S = (10, 30, 90, 270, 810)
 CHUNK = 1 << 20
@@ -214,25 +225,33 @@ def fetch_versions(client: httpx.Client) -> list[Version]:
 class Download:
     path: Path
     fetched_at: datetime
-    bytes_this_run: int
-    seconds: float
     reused: bool
+    seconds: float | None
+    bytes_transferred: int | None
+    runs: int | None
 
 
 def _fetched_at(stamp: Path) -> datetime:
     return datetime.fromisoformat(stamp.read_text(encoding="utf-8").strip())
 
 
+def _timing(path: Path) -> dict[str, Any] | None:
+    loaded: dict[str, Any] | None = json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
+    return loaded
+
+
 def download(client: httpx.Client, version: Version, tmp_dir: Path) -> Download:
     """Download one version to `tmp_dir`, resuming a partial file; one stream, never parallel.
 
     `fetched_at` is when the first request for this file was sent, kept in a sidecar file so a
-    resumed download keeps it.
+    resumed download keeps it. Transfer time and bytes add up over runs in a second sidecar; a file
+    that came without it (downloaded by other means) has no timing.
     """
     tmp_dir.mkdir(parents=True, exist_ok=True)
     final = tmp_dir / f"data-{version.created}.xml"
     part = final.with_suffix(".xml.part")
     stamp = final.with_suffix(".fetched_at")
+    timing_path = final.with_suffix(".download.json")
     head = client.head(version.url)
     if head.status_code == 404:
         raise GoneError(version.url)
@@ -241,43 +260,57 @@ def download(client: httpx.Client, version: Version, tmp_dir: Path) -> Download:
         raise RuntimeError(f"{version.url}: no Content-Length, cannot resume or verify the download")
     total = int(head.headers["content-length"])
     if final.exists() and final.stat().st_size == total and stamp.exists():
-        return Download(final, _fetched_at(stamp), 0, 0.0, reused=True)
+        timing = _timing(timing_path)
+        if timing is None:
+            return Download(final, _fetched_at(stamp), True, None, None, None)
+        return Download(final, _fetched_at(stamp), True, timing["seconds"], timing["bytes"], timing["runs"])
     free = shutil.disk_usage(tmp_dir).free
     if free < 2 * total:
         raise RuntimeError(f"not enough disk for {final.name}: {free} free, {total} needed twice")
     if not stamp.exists():
         stamp.write_text(datetime.now(UTC).isoformat(), encoding="utf-8")
+    timing = _timing(timing_path) or {"seconds": 0.0, "bytes": 0, "runs": 0}
+    if part.exists() and timing["bytes"] < part.stat().st_size:
+        # Part of the file came from a run that kept no timing: the total time is unknown.
+        timing["seconds"] = None
+    timing["runs"] += 1
     started = time.monotonic()
     fetched = 0
-    for attempt, pause in enumerate((*BACKOFF_S, None)):
-        have = part.stat().st_size if part.exists() else 0
-        if have >= total:
-            break
-        headers = {"Range": f"bytes={have}-"} if have else {}
-        try:
-            with client.stream("GET", version.url, headers=headers) as response:
-                if response.status_code == 404:
-                    raise GoneError(version.url)
-                response.raise_for_status()
-                if response.headers.get("content-encoding", "identity") != "identity":
-                    raise RuntimeError(f"{version.url}: encoded response, byte offsets would not match the file")
-                mode = "ab" if have and response.status_code == 206 else "wb"
-                with part.open(mode) as f:
-                    for chunk in response.iter_bytes(CHUNK):
-                        f.write(chunk)
-                        fetched += len(chunk)
-        except (httpx.TransportError, httpx.HTTPStatusError) as exc:
-            if pause is None:
-                raise
-            log.warning(
-                "download %s broke at %d bytes (%s), retry %d in %ds", final.name, have, exc, attempt + 1, pause
-            )
-            time.sleep(pause)
+    try:
+        for attempt, pause in enumerate((*BACKOFF_S, None)):
+            have = part.stat().st_size if part.exists() else 0
+            if have >= total:
+                break
+            headers = {"Range": f"bytes={have}-"} if have else {}
+            try:
+                with client.stream("GET", version.url, headers=headers) as response:
+                    if response.status_code == 404:
+                        raise GoneError(version.url)
+                    response.raise_for_status()
+                    if response.headers.get("content-encoding", "identity") != "identity":
+                        raise RuntimeError(f"{version.url}: encoded response, byte offsets would not match the file")
+                    mode = "ab" if have and response.status_code == 206 else "wb"
+                    with part.open(mode) as f:
+                        for chunk in response.iter_bytes(CHUNK):
+                            f.write(chunk)
+                            fetched += len(chunk)
+            except (httpx.TransportError, httpx.HTTPStatusError) as exc:
+                if pause is None:
+                    raise
+                log.warning(
+                    "download %s broke at %d bytes (%s), retry %d in %ds", final.name, have, exc, attempt + 1, pause
+                )
+                time.sleep(pause)
+    finally:
+        if timing["seconds"] is not None:
+            timing["seconds"] = round(timing["seconds"] + time.monotonic() - started, 1)
+        timing["bytes"] += fetched
+        timing_path.write_text(json.dumps(timing), encoding="utf-8")
     size = part.stat().st_size
     if size != total:
         raise RuntimeError(f"{final.name}: got {size} bytes, expected {total}")
     part.replace(final)
-    return Download(final, _fetched_at(stamp), fetched, time.monotonic() - started, reused=False)
+    return Download(final, _fetched_at(stamp), False, timing["seconds"], timing["bytes"], timing["runs"])
 
 
 def process_file(path: Path, version: Version, fetched_at: datetime, root: Path | None = None) -> dict[str, Any]:
@@ -345,31 +378,169 @@ def _fill(
     return vacancies, rss_max
 
 
-def _load_summaries() -> dict[str, dict[str, Any]]:
-    path = RESULTS / RESULT_PATH
-    if not path.exists():
+_LOG_DOWNLOAD = re.compile(r"INFO version (\d{8}T\d{6}): download$")
+_LOG_FETCHED = re.compile(r"INFO version (\d{8}T\d{6}): (\d+) bytes in (\d+) s(.*), parse$")
+
+
+def downloads_from_log(log_path: Path) -> dict[str, dict[str, Any]]:
+    """Download timings logged by runs that kept no download records.
+
+    A timing counts only when the transfer was not interrupted: exactly one `download` line for the
+    version before its `bytes in` line, and the file was not reused from an earlier run.
+    """
+    if not log_path.exists():
         return {}
-    return {s["version"]: s for s in json.loads(path.read_text(encoding="utf-8")).get("snapshots", [])}
+    starts: Counter[str] = Counter()
+    found: dict[str, dict[str, Any]] = {}
+    for line in log_path.read_text(encoding="utf-8", errors="replace").splitlines():
+        if m := _LOG_DOWNLOAD.search(line):
+            starts[m.group(1)] += 1
+        elif (m := _LOG_FETCHED.search(line)) and "earlier run" not in m.group(4):
+            version = m.group(1)
+            if starts[version] == 1 and version not in found:
+                found[version] = {"file_bytes": int(m.group(2)), "seconds": int(m.group(3)), "source": "log"}
+            starts[version] = 0
+    return found
 
 
-def _save_summaries(summaries: dict[str, dict[str, Any]]) -> None:
-    done = [s for s in summaries.values() if s.get("status") == "done"]
+def _download_entry(version: str, log_timings: dict[str, dict[str, Any]], root: Path | None) -> dict[str, Any]:
+    recorded = [d for d in read_meta(SOURCE, "downloads", root) if d["version"] == version]
+    if recorded and recorded[-1].get("seconds") is not None:
+        d = recorded[-1]
+        return {"download": {"file_bytes": d["file_bytes"], "seconds": d["seconds"], "source": "collector"}}
+    if version in log_timings:
+        return {"download": log_timings[version], "download_note": "seconds rounded, from the collector log line"}
+    return {
+        "download": None,
+        "download_note": "not measured: the file was resumed across runs, reused, or fetched outside the collector",
+    }
+
+
+def _repair_record(dt: date, root: Path | None) -> dict[str, Any] | None:
+    path = meta_dir(SOURCE, root) / f"repair-dt={dt.isoformat()}.json"
+    loaded: dict[str, Any] | None = json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
+    return loaded
+
+
+def summarize(root: Path | None = None, log_path: Path | None = None) -> Path:
+    """Rebuild `results/collect/trudvsem_snapshots.json` from the partitions on disk."""
+    log_timings = downloads_from_log(log_path or LOG_PATH)
+    snapshots: list[dict[str, Any]] = []
+    for dt in partition_dates(SOURCE, root):
+        stats = partition_stats(SOURCE, dt, root)
+        marker = stats["marker"] or {}
+        entry: dict[str, Any] = {
+            "dt": stats["dt"],
+            "version": marker.get("version"),
+            "complete": stats["complete"],
+            "rows": stats["rows"],
+            "vacancies_in_file": marker.get("vacancies_in_file"),
+            "rejected_not_written": stats["rejected_not_written"],
+            "rejected_ids": stats["rejected_ids"],
+            "parquet_bytes": stats["parquet_bytes"],
+            "pii_removed": stats["pii_removed"],
+            "pii_method": "sum of the pii_removed column",
+            "seconds_parse": marker.get("seconds_parse"),
+            "rss_sampled_max_mb": marker.get("rss_sampled_max_mb"),
+            "control_bytes_dropped": marker.get("control_bytes_dropped"),
+        }
+        repair_record = _repair_record(dt, root)
+        if repair_record is not None:
+            entry["repair"] = repair_record
+            entry["pii_removed"] = repair_record["pii_removed"]
+            entry["pii_method"] = repair_record["pii_method"]
+        if entry["version"]:
+            entry.update(_download_entry(entry["version"], log_timings, root))
+        snapshots.append(entry)
+    done = [e for e in snapshots if e["complete"]]
+    in_files = sum(e["vacancies_in_file"] or 0 for e in done)
+    lost = sum(e["rejected_not_written"] for e in done)
+    timed = [e for e in done if e.get("download")]
     pii_total: Counter[str] = Counter()
-    for s in done:
-        pii_total.update(s.get("pii_removed", {}))
+    for e in done:
+        pii_total.update(e["pii_removed"])
     metrics: dict[str, dict[str, Any]] = {
-        "snapshots_done": {"value": len(done)},
-        "vacancies_total": {"value": sum(s["vacancies_in_file"] for s in done)},
-        "bytes_downloaded_total": {"value": sum(s.get("bytes_downloaded", 0) for s in done)},
-        "parquet_bytes_total": {"value": sum(s.get("parquet_bytes", 0) for s in done)},
+        "snapshots_complete": {"value": len(done)},
+        "rows_total": {"value": sum(e["rows"] for e in done)},
+        "vacancies_in_files_total": {"value": in_files},
+        "rows_lost": {"value": round(lost / in_files, 9) if in_files else 0, "n": lost, "denominator": in_files},
+        "parquet_bytes_total": {"value": sum(e["parquet_bytes"] for e in done)},
+        "downloads_timed": {"value": len(timed), "n": len(timed), "denominator": len(done)},
     }
     metrics.update({f"pii_removed_{k}": {"value": v} for k, v in sorted(pii_total.items())})
-    write_result(
+    return write_result(
         RESULT_PATH,
         metrics,
         source_script="src/radar/collect/trudvsem_snapshot.py",
-        snapshots=sorted(summaries.values(), key=lambda s: s["version"]),
+        method="recomputed from data/raw/trudvsem_snapshot partitions, their markers, rejects logs and _meta",
+        snapshots=snapshots,
+        gone=read_meta(SOURCE, "gone", root),
     )
+
+
+def _local_version(dt: date, tmp_dir: Path, root: Path | None) -> tuple[Version, Path, datetime]:
+    marker = read_marker(SOURCE, dt, root) or {}
+    created = marker.get("version")
+    if not created:
+        raise RuntimeError(f"dt={dt} has no completed partition to repair")
+    path = tmp_dir / f"data-{created}.xml"
+    stamp = path.with_suffix(".fetched_at")
+    if not path.exists() or not stamp.exists():
+        raise RuntimeError(f"no local XML for version {created} in {tmp_dir}")
+    return Version(created, ""), path, _fetched_at(stamp)
+
+
+def repair(dt: date, tmp_dir: Path, root: Path | None = None) -> dict[str, Any]:
+    """Append records missing from a complete partition, using the local XML of the same version.
+
+    Existing parts and the marker are not touched: missing ids go to a new part file. Ids that are
+    present with another content hash are counted, not written. `pii_removed` is recomputed over
+    the whole file with the current cleaner and stored next to the partition.
+    """
+    version, path, fetched_at = _local_version(dt, tmp_dir, root)
+    directory = partition_dir(SOURCE, dt, root)
+    present: dict[str, set[str]] = {}
+    for part in sorted(directory.glob("part-*.parquet")):
+        table = pq.read_table(part, columns=["source_id", "content_hash"])
+        ids = table.column("source_id").to_pylist()
+        for sid, digest in zip(ids, table.column("content_hash").to_pylist(), strict=True):
+            present.setdefault(str(sid), set()).add(str(digest))
+    pii: Counter[str] = Counter()
+    rejected = hash_mismatch = vacancies = 0
+    appended: list[str] = []
+    writer = PartitionWriter(SOURCE, dt, root=root)
+    with path.open("rb") as raw:
+        for item in iter_vacancies(_ControlCharFilter(raw)):
+            vacancies += 1
+            try:
+                record = to_record(item, version, fetched_at)
+            except ValidationError:
+                rejected += 1
+                continue
+            pii.update(record.pii_removed)
+            if record.source_id not in present:
+                writer.add(record)
+                appended.append(record.source_id)
+            elif record.content_hash not in present[record.source_id]:
+                hash_mismatch += 1
+    writer.close(complete=False)
+    result = {
+        "at": datetime.now(UTC).isoformat(timespec="seconds"),
+        "version": version.created,
+        "method": "local XML of the same version reparsed; ids absent from the partition appended as a new part",
+        "vacancies_in_file": vacancies,
+        "rows_appended": len(appended),
+        "appended_ids": appended,
+        "present_with_other_hash": hash_mismatch,
+        "still_rejected": rejected,
+        "pii_removed": dict(sorted(pii.items())),
+        "pii_method": "recomputed over the local XML with the current cleaner; the partition column was written "
+        "by a cleaner that also counted contact entries without a value",
+    }
+    target = meta_dir(SOURCE, root) / f"repair-dt={dt.isoformat()}.json"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(json.dumps(result, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    return result
 
 
 def run(limit: int | None, keep_xml: bool, tmp_dir: Path) -> int:
@@ -382,7 +553,6 @@ def run(limit: int | None, keep_xml: bool, tmp_dir: Path) -> int:
 def _run(client: httpx.Client, limit: int | None, keep_xml: bool, tmp_dir: Path) -> int:
     versions = fetch_versions(client)
     log.info("passport lists %d versions, %s .. %s", len(versions), versions[0].created, versions[-1].created)
-    summaries = _load_summaries()
     processed = 0
     for version in versions:
         if is_complete(SOURCE, version.dt):
@@ -403,27 +573,29 @@ def _run(client: httpx.Client, limit: int | None, keep_xml: bool, tmp_dir: Path)
             dl = download(client, version, tmp_dir)
         except GoneError:
             log.warning("version %s is gone from the server", version.created)
-            summaries[version.created] = {"version": version.created, "dt": version.dt.isoformat(), "status": "gone"}
-            _save_summaries(summaries)
+            append_meta(SOURCE, "gone", {"version": version.created, "at": datetime.now(UTC).isoformat()})
             continue
         log.info(
-            "version %s: %d bytes in %.0f s%s, parse",
+            "version %s: %d bytes in %s s%s, parse",
             version.created,
             dl.path.stat().st_size,
-            dl.seconds,
+            "?" if dl.seconds is None else f"{dl.seconds:.0f}",
             " (file from an earlier run)" if dl.reused else "",
         )
         summary = process_file(dl.path, version, dl.fetched_at)
-        summary.update(
-            status="done",
-            file_bytes=dl.path.stat().st_size,
-            bytes_downloaded=dl.bytes_this_run,
-            seconds_download=round(dl.seconds, 1),
-            reused_local_file=dl.reused,
-            fetched_at=dl.fetched_at.isoformat(),
+        append_meta(
+            SOURCE,
+            "downloads",
+            {
+                "version": version.created,
+                "file_bytes": dl.path.stat().st_size,
+                "seconds": dl.seconds,
+                "bytes_transferred": dl.bytes_transferred,
+                "runs": dl.runs,
+                "fetched_at": dl.fetched_at.isoformat(),
+            },
         )
-        summaries[version.created] = summary
-        _save_summaries(summaries)
+        summarize()
         log.info(
             "version %s: done, %d vacancies, %d written, %d rejected, parquet %d bytes, %.0f s parse",
             version.created,
@@ -434,8 +606,8 @@ def _run(client: httpx.Client, limit: int | None, keep_xml: bool, tmp_dir: Path)
             summary["seconds_parse"],
         )
         if not keep_xml:
-            dl.path.unlink()
-            dl.path.with_suffix(".fetched_at").unlink()
+            for suffix in (".xml", ".fetched_at", ".download.json"):
+                dl.path.with_suffix(suffix).unlink(missing_ok=True)
         processed += 1
     return processed
 
@@ -445,9 +617,23 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--limit", type=int, default=None, help="process at most N versions in this run")
     parser.add_argument("--keep-xml", action="store_true", help="keep the downloaded XML after parsing")
     parser.add_argument("--tmp-dir", type=Path, default=None, help="where XML is downloaded (default data/tmp)")
+    parser.add_argument("--summarize", action="store_true", help="only rebuild the results file from disk")
+    parser.add_argument("--repair", type=date.fromisoformat, metavar="YYYY-MM-DD", help="append missing records")
     args = parser.parse_args(argv)
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", stream=sys.stdout)
+    setup_logging()
     tmp_dir = args.tmp_dir or data_dir() / "tmp" / SOURCE
+    if args.repair:
+        result = repair(args.repair, tmp_dir)
+        log.info(
+            "repair dt=%s: %d appended, %d present with another hash, %d still rejected",
+            args.repair,
+            result["rows_appended"],
+            result["present_with_other_hash"],
+            result["still_rejected"],
+        )
+    if args.repair or args.summarize:
+        log.info("results: %s", summarize())
+        return 0
     log.info("raw root %s, tmp %s", raw_root(), tmp_dir)
     processed = run(args.limit, args.keep_xml, tmp_dir)
     log.info("finished, %d versions processed in this run", processed)

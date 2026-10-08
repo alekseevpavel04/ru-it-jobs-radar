@@ -96,13 +96,25 @@ def test_download_resumes_after_a_break(tmp_path: Path, monkeypatch: pytest.Monk
     client, seen = _server(SNAPSHOT, break_at=1000)
     result = ts.download(client, VERSION, tmp_path)
     assert result.path.read_bytes() == SNAPSHOT
-    assert result.bytes_this_run == len(SNAPSHOT)
+    assert result.bytes_transferred == len(SNAPSHOT)
+    assert result.runs == 1
+    assert result.seconds is not None
     assert [r.headers.get("range") for r in seen if r.method == "GET"] == [None, "bytes=1000-"]
     assert not list(tmp_path.glob("*.part"))
 
     again = ts.download(client, VERSION, tmp_path)
     assert again.reused
     assert again.fetched_at == result.fetched_at
+    assert again.seconds == result.seconds
+
+
+def test_download_of_a_foreign_partial_file_has_no_timing(tmp_path: Path) -> None:
+    (tmp_path / "data-20260630T135247.xml.part").write_bytes(SNAPSHOT[:500])
+    client, seen = _server(SNAPSHOT)
+    result = ts.download(client, VERSION, tmp_path)
+    assert result.path.read_bytes() == SNAPSHOT
+    assert result.seconds is None
+    assert [r.headers.get("range") for r in seen if r.method == "GET"] == ["bytes=500-"]
 
 
 def test_gone_version(tmp_path: Path) -> None:
@@ -114,7 +126,7 @@ def test_gone_version(tmp_path: Path) -> None:
 def test_run_end_to_end(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(ts.time, "sleep", lambda _s: None)
     monkeypatch.setenv("RADAR_DATA_DIR", str(tmp_path / "data"))
-    monkeypatch.setattr(ts, "RESULTS", tmp_path / "results")
+    monkeypatch.setattr(ts, "LOG_PATH", tmp_path / "absent.log")
     monkeypatch.setattr(radar.results, "RESULTS", tmp_path / "results")
     client, _ = _server(SNAPSHOT)
     tmp_dir = tmp_path / "data" / "tmp"
@@ -123,9 +135,16 @@ def test_run_end_to_end(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None
     assert is_complete("trudvsem_snapshot", date(2026, 7, 1), tmp_path / "data" / "raw")
     assert not list(tmp_dir.iterdir())
     result = json.loads((tmp_path / "results" / ts.RESULT_PATH).read_text(encoding="utf-8"))
-    assert result["metrics"]["snapshots_done"]["value"] == 2
+    assert result["metrics"]["snapshots_complete"]["value"] == 2
     assert [s["version"] for s in result["snapshots"]] == ["20260630T135247", "20260701T135325"]
+    first = result["snapshots"][0]
+    assert (first["rows"], first["vacancies_in_file"], first["rejected_not_written"]) == (2, 3, 1)
+    assert first["rejected_ids"] == ["00000000-0000-4000-8000-0000000000a3"]
+    assert first["download"]["source"] == "collector"
+    assert first["pii_removed"]["contact_person"] == 2
 
     assert ts._run(client, limit=None, keep_xml=False, tmp_dir=tmp_dir) == 1
     result = json.loads((tmp_path / "results" / ts.RESULT_PATH).read_text(encoding="utf-8"))
-    assert result["metrics"]["snapshots_done"]["value"] == 3
+    assert result["metrics"]["snapshots_complete"]["value"] == 3
+    assert result["metrics"]["rows_lost"] == {"value": 0.333333333, "n": 3, "denominator": 9}
+    assert result["metrics"]["downloads_timed"] == {"value": 3, "n": 3, "denominator": 3}
