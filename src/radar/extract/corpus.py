@@ -23,8 +23,9 @@ Leak check: every test and dev record is compared with every training-pool recor
 Jaccard than the text clusters; a training-pool group with such a near duplicate is withheld from
 training (split `withheld`), and the check is run again on the result.
 
-Splits are frozen once drawn: `sample` refuses to overwrite them, and a training set built later
-from a grown corpus must drop any record whose group reaches a test, dev or withheld record.
+Splits are frozen once drawn: `sample` refuses to overwrite them. `refresh` (radar.extract.refresh)
+rebuilds the corpus from grown staging around the frozen test and dev rows; a training set takes
+the `train_pool` groups of the split it writes.
 """
 
 import argparse
@@ -200,40 +201,47 @@ def specializations(source: str, payload: Mapping[str, Any]) -> tuple[str, ...]:
     return tuple(str(d["title"]) for d in payload.get("divisions") or () if d.get("title"))
 
 
+def make_record(staged: Mapping[str, Any], raw_row: Mapping[str, Any], entity: str, cluster: str, group: str) -> Record:
+    source, source_id = str(staged["source"]), str(staged["source_id"])
+    payload = json.loads(raw_row["payload"]) if isinstance(raw_row["payload"], str) else raw_row["payload"]
+    specs = specializations(source, payload)
+    title = str(raw_row.get("title") or "")
+    return Record(
+        id=record_id(source, source_id),
+        source=source,
+        source_id=source_id,
+        dt=str(staged["dt"]),
+        content_hash=str(staged["content_hash"]),
+        vacancy_entity_id=entity,
+        text_cluster_id=cluster,
+        group_id=group,
+        title=title,
+        specializations=specs,
+        role_proxy=role_proxy(title, specs),
+        text_chars=text_chars(raw_row.get("text")),
+        input=input_for_record({**raw_row, "payload": payload}),
+    )
+
+
 def build_records(
-    staged: Sequence[Mapping[str, Any]], raw: Mapping[tuple[str, str], Mapping[str, Any]], groups: Mapping[str, str]
+    staged: Sequence[Mapping[str, Any]],
+    raw: Mapping[tuple[str, str], Mapping[str, Any]],
+    group_of: Mapping[str, str],
 ) -> list[Record]:
-    """One record per entity: its latest version among records with enough text."""
-    by_entity: dict[str, list[Mapping[str, Any]]] = defaultdict(list)
+    """One record per entity and group (record id -> group in `group_of`): its latest version among
+    records with enough text. In `build` an entity lies inside one group; `refresh` can split an
+    entity between a frozen gold group and the records that joined it later."""
+    by_key: dict[tuple[str, str], list[Mapping[str, Any]]] = defaultdict(list)
     for r in staged:
         raw_row = raw[(str(r["source"]), str(r["source_id"]))]
         if text_chars(raw_row.get("text")) >= MIN_TEXT_CHARS:
-            by_entity[str(r["vacancy_entity_id"])].append(r)
+            rid = record_id(r["source"], r["source_id"])
+            by_key[(str(r["vacancy_entity_id"]), group_of[rid])].append(r)
     records = []
-    for entity, rows in by_entity.items():
+    for (entity, group), rows in by_key.items():
         r = latest(rows)
-        source, source_id = str(r["source"]), str(r["source_id"])
-        raw_row = raw[(source, source_id)]
-        payload = json.loads(raw_row["payload"]) if isinstance(raw_row["payload"], str) else raw_row["payload"]
-        specs = specializations(source, payload)
-        title = str(raw_row.get("title") or "")
-        records.append(
-            Record(
-                id=record_id(source, source_id),
-                source=source,
-                source_id=source_id,
-                dt=str(r["dt"]),
-                content_hash=str(r["content_hash"]),
-                vacancy_entity_id=entity,
-                text_cluster_id=str(r["text_cluster_id"]),
-                group_id=groups[entity],
-                title=title,
-                specializations=specs,
-                role_proxy=role_proxy(title, specs),
-                text_chars=text_chars(raw_row.get("text")),
-                input=input_for_record({**raw_row, "payload": payload}),
-            )
-        )
+        raw_row = raw[(str(r["source"]), str(r["source_id"]))]
+        records.append(make_record(r, raw_row, entity, str(r["text_cluster_id"]), group))
     return sorted(records, key=lambda rec: rec.id)
 
 
@@ -279,15 +287,23 @@ def read_corpus(path: Path) -> list[Record]:
     ]
 
 
-def cmd_build(_: argparse.Namespace) -> int:
+def load_staged() -> tuple[list[dict[str, Any]], dict[tuple[str, str], dict[str, Any]]]:
+    """The latest staged version of every IT candidate with its entity, and its raw row."""
     from radar.stream.clickhouse import ClickHouse
 
     with ClickHouse() as ch:
         staged = [json.loads(line) for line in ch.query(_LATEST_SQL).splitlines() if line]
         keys = sorted({(r["source"], r["source_id"], r["dt"], r["content_hash"]) for r in staged})
         raw = fetch_raw(ch, keys)
+    return staged, raw
+
+
+def cmd_build(_: argparse.Namespace) -> int:
+    staged, raw = load_staged()
     groups = group_ids((str(r["vacancy_entity_id"]), str(r["text_cluster_id"])) for r in staged)
-    records = build_records(staged, raw, groups)
+    records = build_records(
+        staged, raw, {record_id(r["source"], r["source_id"]): groups[str(r["vacancy_entity_id"])] for r in staged}
+    )
     members = [
         {
             "id": record_id(r["source"], r["source_id"]),
@@ -732,6 +748,79 @@ def cmd_sample(args: argparse.Namespace) -> int:
     return 0
 
 
+S1_DIR = "s1"
+
+
+def cmd_refresh(_: argparse.Namespace) -> int:
+    """See radar.extract.refresh."""
+    from radar.collect.writer import raw_root
+    from radar.extract import refresh as rf
+    from radar.results import write_result
+
+    cfg = load_sample_config()
+    out_corpus, out_gold = corpus_dir(), gold_dir()
+    s1_hashes = json.loads((ROOT / "results" / "gold" / "sample_stats.json").read_text(encoding="utf-8"))["hashes"]
+    s1 = rf.load_s1(out_corpus / S1_DIR, s1_hashes["split_file_sha256"])
+    staged, raw = load_staged()
+    root = raw_root()
+    result = rf.refresh(staged, raw, s1, cfg, lambda source, day, ids: rf.raw_versions(root, source, day, ids))
+    metrics, extra = rf.refresh_stats(result, s1, staged, s1_hashes)
+    failed = [k for k, v in metrics.items() if k.startswith("check.") and v["value"] != "true"]
+    if failed or result.leak_after.neighbours != {s: {} for s in SPLITS}:
+        raise SystemExit(f"refresh checks failed, nothing written: {failed or 'training pool still has neighbours'}")
+
+    write_corpus(result.records, out_corpus / "corpus.parquet")
+    rf.write_members(result.members, out_corpus / "members.parquet")
+    split_path = out_corpus / "split.parquet"
+    rf.write_split(result.rows, split_path)
+    by_id = {r.id: r for r in result.records}
+    for split in SPLITS:
+        rf.write_gold_inputs(out_gold / f"{split}_inputs.jsonl", s1.inputs[split], by_id)
+    extra["hashes"]["split_file_sha256"] = hashlib.sha256(split_path.read_bytes()).hexdigest()
+    path = write_result(
+        "corpus/refresh.json",
+        metrics,
+        source_script="src/radar/extract/refresh.py",
+        min_text_chars=MIN_TEXT_CHARS,
+        leak_jaccard=cfg.leak_jaccard,
+        staging=staging_coverage(),
+        **extra,
+    )
+    log.info(
+        "%d corpus records; train_pool %s, withheld %s; ML/DS/data in train_pool %s; %s",
+        len(result.records),
+        metrics["split.train_pool.corpus_records"]["value"],
+        metrics["split.withheld.corpus_records"]["value"],
+        metrics["decisions10.train_pool.ml_ds_data"],
+        path,
+    )
+    return 0
+
+
+_COVERAGE_SQL = """
+SELECT source, toString(min(dt)) AS first, toString(max(dt)) AS last, uniqExact(dt) AS days,
+       uniqExactIf((source, source_id), is_it_candidate) AS it_candidates,
+       uniqExactIf((source, source_id), is_it_candidate
+                   AND (source, source_id) NOT IN (SELECT source, source_id FROM staging.vacancy_entities))
+           AS it_candidates_without_entity
+FROM staging.stg_vacancies
+WHERE source IN ('trudvsem', 'trudvsem_snapshot', 'habr')
+GROUP BY source
+ORDER BY source
+FORMAT JSONEachRow
+"""
+
+
+def staging_coverage() -> dict[str, dict[str, Any]]:
+    """Days in staging per source, and IT candidates the dedup has not given an entity yet (they
+    are not in the corpus until `radar.dedup` runs again)."""
+    from radar.stream.clickhouse import ClickHouse
+
+    with ClickHouse() as ch:
+        rows = [json.loads(line) for line in ch.query(_COVERAGE_SQL).splitlines() if line]
+    return {r.pop("source"): r for r in rows}
+
+
 def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
     load_dotenv()
@@ -741,6 +830,9 @@ def main(argv: list[str] | None = None) -> int:
     sample = sub.add_parser("sample", help="draw test and dev, write the split and results/gold/sample_stats.json")
     sample.add_argument("--resample", action="store_true", help="redraw unlabeled samples")
     sample.set_defaults(func=cmd_sample)
+    sub.add_parser(
+        "refresh", help="rebuild corpus and gold inputs from current staging, test and dev as in S1"
+    ).set_defaults(func=cmd_refresh)
     args = parser.parse_args(argv)
     return int(args.func(args))
 

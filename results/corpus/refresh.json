@@ -1,0 +1,417 @@
+{
+  "source_script": "src/radar/extract/refresh.py",
+  "command": "python -m radar.extract.corpus refresh",
+  "commit": "240628f-dirty",
+  "created_at": "2026-10-10T16:25:22+00:00",
+  "metrics": {
+    "staged.records": {
+      "value": 25943,
+      "n": null,
+      "denominator": null
+    },
+    "corpus.records": {
+      "value": 0.682,
+      "n": 17694,
+      "denominator": 25943
+    },
+    "corpus.groups": {
+      "value": 14909,
+      "n": null,
+      "denominator": null
+    },
+    "staged.records.trudvsem": {
+      "value": 8480,
+      "n": null,
+      "denominator": null
+    },
+    "corpus.records.trudvsem": {
+      "value": 0.4479,
+      "n": 7926,
+      "denominator": 17694
+    },
+    "staged.records.trudvsem_snapshot": {
+      "value": 16405,
+      "n": null,
+      "denominator": null
+    },
+    "corpus.records.trudvsem_snapshot": {
+      "value": 0.5102,
+      "n": 9028,
+      "denominator": 17694
+    },
+    "staged.records.habr": {
+      "value": 1058,
+      "n": null,
+      "denominator": null
+    },
+    "corpus.records.habr": {
+      "value": 0.0418,
+      "n": 740,
+      "denominator": 17694
+    },
+    "split.test.groups": {
+      "value": 440,
+      "n": null,
+      "denominator": null
+    },
+    "split.test.corpus_records": {
+      "value": 472,
+      "n": null,
+      "denominator": null
+    },
+    "split.dev.groups": {
+      "value": 165,
+      "n": null,
+      "denominator": null
+    },
+    "split.dev.corpus_records": {
+      "value": 173,
+      "n": null,
+      "denominator": null
+    },
+    "split.train_pool.groups": {
+      "value": 14472,
+      "n": null,
+      "denominator": null
+    },
+    "split.train_pool.corpus_records": {
+      "value": 16897,
+      "n": null,
+      "denominator": null
+    },
+    "split.withheld.groups": {
+      "value": 113,
+      "n": null,
+      "denominator": null
+    },
+    "split.withheld.corpus_records": {
+      "value": 152,
+      "n": null,
+      "denominator": null
+    },
+    "split.withheld.groups.s1": {
+      "value": 66,
+      "n": null,
+      "denominator": null
+    },
+    "split.withheld.groups.linked": {
+      "value": 40,
+      "n": null,
+      "denominator": null
+    },
+    "split.withheld.groups.near_duplicate": {
+      "value": 7,
+      "n": null,
+      "denominator": null
+    },
+    "decisions10.train_pool.ml_ds_data": {
+      "value": 0.0091,
+      "n": 154,
+      "denominator": 16897
+    },
+    "decisions10.train_pool.ml_ds_data.trudvsem": {
+      "value": 0.0029,
+      "n": 22,
+      "denominator": 7599
+    },
+    "decisions10.train_pool.ml_ds_data.trudvsem_snapshot": {
+      "value": 0.0088,
+      "n": 76,
+      "denominator": 8651
+    },
+    "decisions10.train_pool.ml_ds_data.habr": {
+      "value": 0.0866,
+      "n": 56,
+      "denominator": 647
+    },
+    "decisions10.train_pool_groups.ml_ds_data": {
+      "value": 0.0096,
+      "n": 136,
+      "denominator": 14191
+    },
+    "role_proxy.train_pool.ml_ds_data": {
+      "value": 0.0091,
+      "n": 154,
+      "denominator": 16897
+    },
+    "role_proxy.train_pool.dev": {
+      "value": 0.2013,
+      "n": 3402,
+      "denominator": 16897
+    },
+    "role_proxy.train_pool.analyst_other": {
+      "value": 0.0336,
+      "n": 567,
+      "denominator": 16897
+    },
+    "role_proxy.train_pool.qa_devops_sys": {
+      "value": 0.2104,
+      "n": 3555,
+      "denominator": 16897
+    },
+    "role_proxy.train_pool.other_it": {
+      "value": 0.0738,
+      "n": 1247,
+      "denominator": 16897
+    },
+    "role_proxy.train_pool.non_it_noise": {
+      "value": 0.4718,
+      "n": 7972,
+      "denominator": 16897
+    },
+    "gold.test.inputs_changed": {
+      "value": 0.0068,
+      "n": 3,
+      "denominator": 440
+    },
+    "gold.test.inputs_changed_pii_only": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "gold.test.inputs_changed_other": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "gold.test.placeholders_added.email": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "gold.test.placeholders_added.inn": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "gold.test.placeholders_added.link": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "gold.test.placeholders_added.name": {
+      "value": 3,
+      "n": null,
+      "denominator": null
+    },
+    "gold.test.placeholders_added.nick": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "gold.test.placeholders_added.ogrn": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "gold.test.placeholders_added.phone": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "gold.test.not_in_staging": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 440
+    },
+    "gold.test.newer_version_in_staging": {
+      "value": 0.2795,
+      "n": 123,
+      "denominator": 440
+    },
+    "gold.test.newer_version_other_text": {
+      "value": 0.0081,
+      "n": 1,
+      "denominator": 123
+    },
+    "leak.test_with_train_neighbour_before": {
+      "value": 0.0091,
+      "n": 4,
+      "denominator": 440
+    },
+    "leak.test_with_train_neighbour": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 440
+    },
+    "gold.dev.inputs_changed": {
+      "value": 0.0061,
+      "n": 1,
+      "denominator": 165
+    },
+    "gold.dev.inputs_changed_pii_only": {
+      "value": 1.0,
+      "n": 1,
+      "denominator": 1
+    },
+    "gold.dev.inputs_changed_other": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1
+    },
+    "gold.dev.placeholders_added.email": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "gold.dev.placeholders_added.inn": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "gold.dev.placeholders_added.link": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "gold.dev.placeholders_added.name": {
+      "value": 1,
+      "n": null,
+      "denominator": null
+    },
+    "gold.dev.placeholders_added.nick": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "gold.dev.placeholders_added.ogrn": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "gold.dev.placeholders_added.phone": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "gold.dev.not_in_staging": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 165
+    },
+    "gold.dev.newer_version_in_staging": {
+      "value": 0.2424,
+      "n": 40,
+      "denominator": 165
+    },
+    "gold.dev.newer_version_other_text": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 40
+    },
+    "leak.dev_with_train_neighbour_before": {
+      "value": 0.0121,
+      "n": 2,
+      "denominator": 165
+    },
+    "leak.dev_with_train_neighbour": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 165
+    },
+    "leak.test_dev_pairs": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "leak.records_in_two_splits": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "leak.gold_groups_joined": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "check.test_ids_equal_s1": {
+      "value": "true",
+      "n": null,
+      "denominator": null
+    },
+    "check.dev_ids_equal_s1": {
+      "value": "true",
+      "n": null,
+      "denominator": null
+    },
+    "check.test_dev_rows_equal_s1": {
+      "value": "true",
+      "n": null,
+      "denominator": null
+    }
+  },
+  "min_text_chars": 40,
+  "leak_jaccard": 0.5,
+  "staging": {
+    "habr": {
+      "first": "2026-10-08",
+      "last": "2026-10-08",
+      "days": 1,
+      "it_candidates": 1058,
+      "it_candidates_without_entity": 0
+    },
+    "trudvsem": {
+      "first": "2026-10-08",
+      "last": "2026-10-08",
+      "days": 1,
+      "it_candidates": 8480,
+      "it_candidates_without_entity": 0
+    },
+    "trudvsem_snapshot": {
+      "first": "2026-06-30",
+      "last": "2026-08-11",
+      "days": 42,
+      "it_candidates": 16405,
+      "it_candidates_without_entity": 0
+    }
+  },
+  "hashes": {
+    "test_ids_sha256": "aece163fd971bb1f65cb1bbb977f87309f2543233c7b894fd8dbbf4bd09b9334",
+    "dev_ids_sha256": "873019f521269ece975ea6791350c4638105fd6fd054b7102144aa8f59a1bbd9",
+    "train_pool_corpus_ids_sha256": "45495517eea31387c86c819fff9f9f589c143bca2780a3b76a6d7bbb44fcc434",
+    "split_content_sha256": "1bd389fa6935e1d3de932c7e47a7a1fb2aa775f946dd4801b5723db486d39cf9",
+    "split_file_sha256": "d24750e7a0d223f2acc649b862a5232dfa435ddffd82001ce0b0e458ffcd0aae"
+  },
+  "s1_hashes": {
+    "test_ids_sha256": "aece163fd971bb1f65cb1bbb977f87309f2543233c7b894fd8dbbf4bd09b9334",
+    "dev_ids_sha256": "873019f521269ece975ea6791350c4638105fd6fd054b7102144aa8f59a1bbd9",
+    "split_file_sha256": "7ec5c9cbca808be8732f2e57388c1157e4398775f0186a4b88d3ab6414ef2c0c"
+  },
+  "gold_inputs_changed_other": {
+    "test": [],
+    "dev": []
+  },
+  "gold_newer_version_other_text": {
+    "test": [
+      "trudvsem_snapshot:5bcf1bd4-6bad-11f1-bb60-875fbe910eb8"
+    ],
+    "dev": []
+  },
+  "leak_neighbours_before": {
+    "test": {
+      "trudvsem:22a83236-bca5-11f1-aa68-7523fb122f6d": [
+        "trudvsem_snapshot:14cbbfe8-8a75-11f1-aeca-c9464de5d4ac",
+        "trudvsem_snapshot:3b1c9390-8caf-11f1-b30a-b76653c82188"
+      ],
+      "trudvsem:4aca5cb4-b369-11f1-825a-1b794c460881": [
+        "trudvsem_snapshot:1aa72494-8ca5-11f1-9df1-973ec0c0a91c"
+      ],
+      "trudvsem_snapshot:52e1e9e0-9908-11ef-b2f8-d549be31d974": [
+        "trudvsem_snapshot:6de0fac2-59dd-11ef-b3aa-25abf1fceba2"
+      ],
+      "trudvsem_snapshot:e971a134-7e8e-11f1-97b7-0d89ec2dfd04": [
+        "trudvsem_snapshot:25782807-8c06-11f1-aeca-c9464de5d4ac"
+      ]
+    },
+    "dev": {
+      "trudvsem:8b3bd074-c2dd-11f1-97a6-15b40067900c": [
+        "trudvsem_snapshot:773ed7f4-8bfd-11f1-ab85-d9422f6fa53b"
+      ],
+      "trudvsem_snapshot:ac6b1294-7c67-11f1-931c-e1ba394dc4af": [
+        "trudvsem_snapshot:6afb7c94-923e-11f1-8d10-9d4d88073c23"
+      ]
+    }
+  },
+  "leak_test_dev_pairs": [],
+  "gold_groups_joined": []
+}

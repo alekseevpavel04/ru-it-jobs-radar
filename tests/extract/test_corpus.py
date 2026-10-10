@@ -103,7 +103,9 @@ def test_build_records_skips_short_text_and_takes_the_latest_version_with_text()
         ("habr", "3"): {"source": "habr", "title": "Data Engineer", "text": None, "payload": "{}"},
     }
     groups = group_ids((r["vacancy_entity_id"], r["text_cluster_id"]) for r in staged)
-    records = build_records(staged, raw, groups)
+    records = build_records(
+        staged, raw, {f"{r['source']}:{r['source_id']}": groups[r["vacancy_entity_id"]] for r in staged}
+    )
     assert [r.id for r in records] == ["trudvsem_snapshot:2"]
     rec = records[0]
     assert rec.group_id == "grp_1"
