@@ -247,12 +247,14 @@ def test_eval_option_selects_the_skill_comparison(tmp_path: Path) -> None:
     from radar.eval import cli
     from radar.eval.metrics import normalize_item
 
-    base = cli.CONFIG.read_text(encoding="utf-8")
-    assert cli.load_config().skill_normalization == "casefold"
+    configured = cli.load_config().skill_normalization
+    base = cli.CONFIG.read_text(encoding="utf-8").replace(f'normalization = "{configured}"', "normalization = {}")
     assert cli.SKILL_NORMALIZERS["casefold"] is normalize_item
     path = tmp_path / "eval.toml"
-    path.write_text(base.replace('normalization = "casefold"', 'normalization = "dictionary"'), encoding="utf-8")
+    path.write_text(base.replace("normalization = {}", 'normalization = "casefold"'), encoding="utf-8")
+    assert cli.SKILL_NORMALIZERS[cli.load_config(path).skill_normalization] is normalize_item
+    path.write_text(base.replace("normalization = {}", 'normalization = "dictionary"'), encoding="utf-8")
     assert cli.SKILL_NORMALIZERS[cli.load_config(path).skill_normalization] is sk.eval_key
-    path.write_text(base.replace('normalization = "casefold"', 'normalization = "fuzzy"'), encoding="utf-8")
+    path.write_text(base.replace("normalization = {}", 'normalization = "fuzzy"'), encoding="utf-8")
     with pytest.raises(ValueError, match="normalization"):
         cli.load_config(path)

@@ -147,9 +147,11 @@ def cmd_candidates(args: argparse.Namespace) -> int:
         "seconds.embedding": {"value": emb_meta["seconds"]},
         "seconds.minhash": {"value": round(minhash_seconds, 1)},
         "seconds.knn": {"value": round(knn_seconds, 1)},
-        "embedding.peak_vram_mib": {"value": emb_meta["peak_vram_mib"]},
         "embedding.truncated_texts": _share(emb_meta["truncated_texts"], emb_meta["texts"]),
     }
+    # Embeddings computed on CPU have no VRAM peak.
+    if emb_meta["peak_vram_mib"] is not None:
+        metrics["embedding.peak_vram_mib"] = {"value": emb_meta["peak_vram_mib"]}
     path = write_result(
         "dedup/candidates.json",
         metrics,
