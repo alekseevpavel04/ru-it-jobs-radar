@@ -1,0 +1,1754 @@
+# Skill dictionary v1: canonical names of the `skills` field, their spellings, and what
+# the annotation guide does not count as a skill. Read by `radar.extract.skills` (normalization of
+# any system's output and of the eval comparison) and by `radar.extract.skill_dictionary` (the
+# search in texts of the rule baseline). The dbt seed `dbt/seeds/skill_dictionary.csv` is v0 and
+# stays as it is until the marts switch.
+#
+# Where the entries come from: the v0 seed (its merged groups split where the gold keeps the parts
+# apart: Ubuntu is not Linux, HDFS is not Hadoop), the skill names of the gold labels on dev and
+# test (names only, as a vocabulary of spellings), and frequent unknown spellings in train_pool texts
+# reviewed by hand (`python -m radar.extract.skill_review`, decisions in [review]).
+#
+# Canonical spelling (docs/annotation_guide.md, skills and cases 21, 25, 35, 48, 53-62, 74): the
+# official product name without vendor prefix (Kafka, not Apache Kafka; Excel, not Microsoft Excel),
+# without version or edition (Python, not Python 3.10; .NET, not .NET Core), 1С with the Cyrillic С,
+# 1С configurations as "1С:<short name>". Spellings that differ only in case, spaces, dots or hyphens
+# need no alias: the lookup ignores them.
+#
+# [skills.<category>]: "Canonical" = [aliases]. An alias is a fixed spelling, matched whole.
+# [patterns]: regexes for inflected Russian spellings, matched whole against the lowercased string
+#   (ё as е) and searched in texts by the baseline.
+# [parents]: a broader skill the marts may roll a name up to (Ubuntu to Linux). Not used in scoring.
+# [non_skills]: what the guide says is not a skill; normalization maps these to None.
+# [search]: what the baseline does not search for in texts (see there).
+# [review]: train_pool candidates looked at and left out.
+
+[skills.language]
+"Python" = ["python3", "питон", "пайтон", "phyton"]
+"Java" = ["джава", "java se", "java ee", "jakarta ee", "java core"]
+"Kotlin" = ["котлин"]
+"Scala" = ["скала"]
+"JavaScript" = ["js", "java script", "джаваскрипт", "ecmascript", "es6", "vanilla js"]
+"TypeScript" = ["тайпскрипт"]
+"Go" = ["golang", "go lang"]
+"Rust" = []
+"C" = ["язык c", "язык си", "ansi c"]
+"C++" = ["cpp", "си++", "с++", "c плюс плюс"]
+"C#" = ["c sharp", "си-шарп", "си шарп", "с#"]
+"PHP" = ["пхп"]
+"Ruby" = []
+"Swift" = []
+"Objective-C" = ["obj-c", "objc"]
+"Dart" = []
+"R" = ["язык r"]
+"SQL" = ["ansi sql", "язык sql", "sql-запросы"]
+"T-SQL" = ["tsql", "transact-sql"]
+"PL/SQL" = ["plsql", "oracle pl/sql"]
+"PL/pgSQL" = ["plpgsql"]
+"Bash" = ["bash-скрипты"]
+"Shell" = ["sh", "shell-скрипты", "shell scripting"]
+"PowerShell" = []
+"CMD" = ["bat-файлы"]
+"Perl" = []
+"Lua" = []
+"Elixir" = []
+"Erlang" = []
+"Haskell" = []
+"Julia" = []
+"MATLAB" = ["матлаб"]
+"Delphi" = ["object pascal"]
+"Visual Basic" = []
+"VBA" = []
+"VB.NET" = []
+"Groovy" = []
+"Solidity" = []
+"Assembler" = ["asm", "ассемблер", "assembly"]
+"Verilog" = ["systemverilog"]
+"VHDL" = []
+"ABAP" = []
+"BSL" = ["встроенный язык 1с"]
+"ST" = ["structured text"]
+"LD" = ["ladder diagram"]
+"FBD" = ["function block diagram"]
+"SAS" = []
+"HTML" = ["html5"]
+"CSS" = ["css3"]
+"SCSS" = []
+"Sass" = []
+"Less" = []
+"XPath" = []
+"XSLT" = []
+"regex" = ["regexp", "регулярные выражения", "regular expressions"]
+"Markdown" = []
+
+[skills.framework]
+"Django" = ["джанго", "django rest framework", "drf"]
+"Flask" = []
+"FastAPI" = []
+"aiohttp" = []
+"Celery" = []
+"SQLAlchemy" = []
+"Pydantic" = []
+"PydanticAI" = ["pydantic ai"]
+"asyncio" = []
+"requests" = []
+"typing" = []
+"datetime" = []
+"os" = []
+"psycopg2" = []
+"sqlite3" = []
+"smbclient" = []
+"Spring" = ["spring framework"]
+"Spring Boot" = ["springboot"]
+"Spring MVC" = []
+"Spring Data" = ["spring data jpa"]
+"Spring Cloud" = []
+"Hibernate" = []
+"JPA" = []
+"Quarkus" = []
+"Ktor" = []
+"JVM" = []
+"NIO" = ["java nio"]
+"Boost" = []
+"STL" = []
+"Qt" = ["qml"]
+"WPF" = []
+".NET" = ["dotnet", ".net core", ".net framework", "net core"]
+"ASP.NET" = ["asp.net core", "asp.net mvc"]
+"ADO.NET" = []
+"Entity Framework" = ["ef core", "entity framework core"]
+"Web API" = ["asp.net web api"]
+"Laravel" = []
+"Symfony" = []
+"Yii" = ["yii2"]
+"Ruby on Rails" = ["rails", "ror"]
+"Node.js" = ["node", "nodejs", "нода"]
+"NestJS" = []
+"Express" = ["express.js", "expressjs"]
+"Gin" = []
+"React" = ["react.js", "reactjs", "реакт"]
+"Vue.js" = ["vue", "vue3", "vuejs"]
+"Nuxt" = ["nuxt.js", "nuxtjs"]
+"Angular" = ["angularjs"]
+"Svelte" = ["sveltekit"]
+"Next.js" = ["nextjs"]
+"Redux" = ["redux toolkit"]
+"MobX" = []
+"jQuery" = []
+"Ext JS" = ["extjs", "sencha ext js"]
+"Tailwind CSS" = ["tailwind", "tailwindcss"]
+"shadcn/ui" = ["shadcn"]
+"Webpack" = []
+"Vite" = []
+"React Native" = []
+"React Navigation" = []
+"Flutter" = ["флаттер"]
+"Shiny" = ["r shiny"]
+"SwiftUI" = []
+"UIKit" = []
+"Jetpack Compose" = []
+"Kotlin Multiplatform" = ["kmp", "kmm"]
+"Electron" = []
+"Unity" = ["юнити"]
+"Unreal Engine" = ["unreal", "ue4", "ue5"]
+"Cocos2d" = ["cocos2d-x"]
+"protobuf" = ["protocol buffers"]
+"RxJava" = []
+"Dagger" = []
+"Firebase" = []
+"Xposed" = []
+
+[skills.database]
+"PostgreSQL" = ["postgres", "postgre", "pg", "постгрес", "postgresql", "постгрес sql"]
+"Postgres Pro" = ["postgrespro"]
+"MySQL" = ["мускул"]
+"MariaDB" = []
+"MS SQL Server" = ["ms sql", "mssql", "sql server", "microsoft sql server", "ms sql server"]
+"Oracle" = ["oracle database", "oracle db", "оракл"]
+"SQLite" = []
+"MongoDB" = ["mongo", "монго"]
+"Redis" = ["редис"]
+"Valkey" = []
+"Memcached" = []
+"ClickHouse" = ["кликхаус", "click house"]
+"Cassandra" = ["apache cassandra"]
+"Elasticsearch" = ["elastic search", "elastic"]
+"OpenSearch" = []
+"Greenplum" = ["гринплам", "arenadata db"]
+"Vertica" = []
+"Teradata" = []
+"Exasol" = []
+"Snowflake" = []
+"BigQuery" = ["google bigquery"]
+"Tarantool" = []
+"Neo4j" = []
+"DynamoDB" = []
+"Firebird" = []
+"InfluxDB" = []
+"DuckDB" = []
+"YTsaurus" = []
+"Impala" = ["apache impala"]
+"Patroni" = []
+"etcd" = []
+"Qdrant" = []
+"Milvus" = []
+"Weaviate" = []
+"Pinecone" = []
+"Chroma" = ["chromadb"]
+"pgvector" = []
+"FAISS" = []
+
+[skills.data]
+"Kafka" = ["кафка", "apache kafka"]
+"Kafka Streams" = []
+"RabbitMQ" = ["rabbit"]
+"ActiveMQ Artemis" = ["activemq", "apache activemq"]
+"NATS" = []
+"Redis Streams" = []
+"Spark" = ["spark sql", "спарк", "apache spark"]
+"PySpark" = []
+"Spark Streaming" = []
+"Hadoop" = ["хадуп", "apache hadoop"]
+"HDFS" = []
+"Hive" = ["apache hive"]
+"YARN" = []
+"MapReduce" = []
+"HUE" = []
+"Sqoop" = ["apache sqoop"]
+"Flume" = ["apache flume"]
+"Ozone" = ["apache ozone"]
+"Cloudera" = []
+"Airflow" = ["apache airflow"]
+"dbt" = []
+"Flink" = ["apache flink"]
+"Trino" = []
+"Presto" = []
+"Iceberg" = ["apache iceberg"]
+"Hudi" = ["apache hudi"]
+"Delta Lake" = []
+"Parquet" = ["apache parquet"]
+"ORC" = []
+"NiFi" = ["apache nifi"]
+"Camel" = ["apache camel"]
+"Debezium" = []
+"CDC" = ["change data capture"]
+"ETL" = []
+"ELT" = []
+"Data Vault" = ["data vault 2.0"]
+"SCD" = ["slowly changing dimensions"]
+"Star schema" = ["схема звезда"]
+"Snowflake schema" = ["схема снежинка"]
+"Data Quality" = ["качество данных"]
+"Data Governance" = []
+"OpenMetadata" = []
+"Arenadata Data Catalog" = []
+"Informatica" = []
+"Informatica PowerCenter" = []
+"IBM DataStage" = ["datastage"]
+"SSIS" = []
+"ODI" = ["oracle data integrator"]
+"SAS Data Integration Studio" = ["sas di"]
+"NR ETL" = []
+"Loginom" = []
+"pandas" = ["пандас"]
+"NumPy" = []
+"Polars" = []
+"Dask" = []
+"Jupyter" = ["jupyter notebook", "jupyterlab", "ipython"]
+"RStudio" = []
+"XML" = []
+"XSD" = []
+"JSON" = []
+"JSON Schema" = []
+"CSV" = []
+"YAML" = []
+
+[skills.ml]
+"scikit-learn" = ["sklearn", "scikit", "scikit learn"]
+"scikit-image" = ["skimage"]
+"SciPy" = []
+"statsmodels" = []
+"PyTorch" = ["torch", "пайторч"]
+"Lightning" = ["pytorch lightning"]
+"TensorFlow" = []
+"Keras" = []
+"JAX" = []
+"XGBoost" = []
+"LightGBM" = ["lgbm"]
+"CatBoost" = ["катбуст"]
+"Prophet" = []
+"DeepAR" = []
+"Random Forest" = ["случайный лес"]
+"CNN" = []
+"RNN" = []
+"LSTM" = []
+"Transformer" = []
+"BERT" = []
+"ruBERT" = []
+"DistilBERT" = []
+"RoBERTa" = []
+"T5" = []
+"CLIP" = []
+"ColBERT" = []
+"BGE" = []
+"GPT" = ["gpt-4", "gpt-4o", "gpt-3.5"]
+"ChatGPT" = ["чатгпт"]
+"Claude" = []
+"Llama" = []
+"Mistral" = []
+"Qwen" = []
+"DeepSeek" = []
+"Falcon" = []
+"GigaChat" = ["гигачат"]
+"YandexGPT" = ["yandex gpt", "яндекс gpt"]
+"Kandinsky" = []
+"Midjourney" = []
+"Stable Diffusion" = []
+"SDXL" = []
+"Flux" = []
+"Nano Banana" = []
+"Perplexity" = []
+"Character.AI" = []
+"Deep Research" = []
+"OpenAI API" = []
+"Hugging Face" = []
+"Transformers" = ["hugging face transformers", "huggingface transformers"]
+"Datasets" = []
+"Diffusers" = []
+"PEFT" = []
+"TRL" = []
+"Unsloth" = []
+"sentence-transformers" = ["sentence transformers", "sbert"]
+"LangChain" = ["лангчейн"]
+"LangGraph" = []
+"LlamaIndex" = ["llama index"]
+"Langfuse" = []
+"Ragas" = []
+"DeepEval" = []
+"TruLens" = []
+"Docling" = []
+"Kreuzberg" = []
+"ComfyUI" = []
+"RAG" = ["retrieval-augmented generation", "retrieval augmented generation"]
+"GraphRAG" = []
+"MCP" = ["model context protocol"]
+"LoRA" = []
+"QLoRA" = []
+"SFT" = []
+"Fine-tuning" = ["finetuning", "fine tuning", "файнтюнинг", "дообучение моделей"]
+"Prompt engineering" = ["промпт-инжиниринг", "промпт инжиниринг", "prompting"]
+"Context engineering" = []
+"LLM-as-a-judge" = ["llm as a judge"]
+"Feature engineering" = []
+"BM25" = []
+"Reciprocal Rank Fusion" = ["rrf"]
+"VAD" = []
+"DDP" = []
+"OpenCV" = []
+"NLTK" = []
+"MLOps" = []
+"MLflow" = []
+"Kubeflow" = []
+"DVC" = []
+"ONNX" = ["onnxruntime", "onnx runtime"]
+"TensorRT" = []
+"Triton" = ["triton inference server"]
+"TorchServe" = []
+"TGI" = ["text generation inference"]
+"vLLM" = []
+"CUDA" = []
+"Kaggle" = []
+"Backtesting" = ["бэктестинг"]
+
+[skills.bi]
+"Excel" = ["эксель", "ms excel", "excel vba"]
+"Power BI" = ["powerbi", "power bi desktop"]
+"Power Query" = []
+"DAX" = []
+"Tableau" = []
+"Superset" = ["apache superset"]
+"Metabase" = []
+"Redash" = []
+"Looker" = []
+"Qlik" = []
+"Looker Studio" = ["google data studio", "data studio"]
+"Qlik Sense" = ["qliksense"]
+"QlikView" = []
+"FineBI" = []
+"DataLens" = ["yandex datalens", "яндекс datalens"]
+"Навигатор BI" = []
+"Oracle BI EE" = ["obiee", "oracle bi"]
+"SAP BusinessObjects" = ["business objects", "sap bo"]
+"Google Analytics" = ["ga4"]
+"Google Tag Manager" = []
+"Яндекс Метрика" = ["yandex metrica", "yandex metrika", "яндекс метрика"]
+"AppMetrica" = []
+"Amplitude" = []
+"matplotlib" = ["pyplot"]
+"seaborn" = []
+"Plotly" = []
+"A/B-тесты" = ["a/b", "a/b-тестирование", "a/b тесты", "a/b testing", "ab testing", "ab-тесты", "аб-тесты", "a/b tests", "a/b-тест"]
+"Cohort analysis" = ["когортный анализ"]
+"RFM" = ["rfm-анализ"]
+"CJM" = ["customer journey map"]
+"ROPO-анализ" = ["ropo"]
+"Switchback" = []
+"CustDev" = ["custdev", "customer development", "кастдев"]
+"Process Mining" = []
+
+[skills.cloud]
+"AWS" = ["amazon web services"]
+"S3" = ["amazon s3"]
+"Athena" = ["amazon athena"]
+"GCP" = ["google cloud", "google cloud platform"]
+"Azure" = ["microsoft azure"]
+"Yandex Cloud" = ["яндекс облако", "яндекс.облако", "yandex.cloud"]
+"VK Cloud" = []
+"Selectel" = ["селектел"]
+"EC2" = ["amazon ec2"]
+"OpenStack" = []
+"OpenNebula" = []
+"EvoStack" = []
+"Platform V" = []
+"Cloud Native" = []
+
+[skills.devops]
+"Docker" = ["докер", "dockerfile"]
+"Docker Compose" = ["docker-compose"]
+"containerd" = []
+"Kubernetes" = ["k8s", "кубернетес", "кубер"]
+"Istio" = []
+"OpenShift" = ["red hat openshift"]
+"K3s" = []
+"Kubespray" = []
+"Kubebuilder" = []
+"Kustomize" = []
+"Karmada" = []
+"Helm" = []
+"Velero" = []
+"Longhorn" = []
+"Calico" = []
+"Flannel" = []
+"CNI" = []
+"Ingress NGINX" = ["ingress-nginx", "nginx ingress"]
+"Terraform" = []
+"Terragrunt" = []
+"Ansible" = []
+"Puppet" = []
+"Chef" = []
+"IaC" = ["infrastructure as code"]
+"CI/CD" = ["ci", "ci cd", "ci-cd", "непрерывная интеграция"]
+"GitLab CI" = ["gitlab ci/cd", "gitlab-ci"]
+"GitHub Actions" = []
+"Jenkins" = []
+"TeamCity" = []
+"Argo CD" = ["argocd"]
+"Flux CD" = ["fluxcd"]
+"GitOps" = []
+"Nexus" = ["sonatype nexus"]
+"Azure DevOps" = ["azure devops server", "tfs", "team foundation server"]
+"DevOps" = []
+"DevSecOps" = []
+"SecOps" = []
+"Prometheus" = []
+"Alertmanager" = []
+"Grafana" = ["графана"]
+"Loki" = []
+"VictoriaMetrics" = []
+"Telegraf" = []
+"Zabbix" = ["заббикс"]
+"Nagios" = []
+"Cacti" = []
+"Munin" = []
+"ELK" = ["elk stack"]
+"Kibana" = []
+"Logstash" = []
+"Filebeat" = []
+"Graylog" = []
+"Observability" = []
+"Nginx" = ["нджинкс"]
+"HAProxy" = []
+"IIS" = ["microsoft iis"]
+"Apache" = ["apache http server", "apache httpd", "apache2", "httpd", "http server"]
+"Kong" = []
+"Consul" = []
+"Vault" = ["hashicorp vault"]
+"Keycloak" = []
+"MinIO" = []
+"Ceph" = []
+"VMware" = []
+"vSphere" = ["vmware vsphere"]
+"ESXi" = ["vmware esxi"]
+"Hyper-V" = []
+"Proxmox" = ["proxmox ve"]
+"Proxmox Backup Server" = []
+"KVM" = []
+"QEMU" = []
+"libvirt" = []
+"oVirt" = []
+"LXC" = []
+"Acronis" = []
+"Veeam" = ["veeam backup", "veeam backup & replication"]
+"zVirt" = []
+"VirtualBox" = []
+"UrBackup" = []
+
+[skills.os]
+"Linux" = ["линукс"]
+"Unix" = []
+"Ubuntu" = []
+"Debian" = []
+"CentOS" = []
+"RHEL" = ["red hat", "red hat linux", "red hat enterprise linux"]
+"Astra Linux" = ["astra", "астра линукс", "астра"]
+"ALT Linux" = ["альт линукс"]
+"BaseAlt" = ["базальт"]
+"RED OS" = ["ред ос", "redos"]
+"МСВС" = []
+"Embedded Linux" = []
+"Windows" = ["виндовс", "ms windows", "microsoft windows"]
+"Windows Server" = []
+"macOS" = ["mac os", "os x"]
+"iOS" = []
+"Android" = ["андроид"]
+"POSIX" = []
+"systemd" = []
+"SELinux" = []
+"AppArmor" = []
+"seccomp" = []
+"namespaces" = []
+"cgroups" = []
+"eBPF" = []
+"netfilter" = []
+"ext4" = []
+"XFS" = []
+"Btrfs" = []
+"Active Directory" = ["ms ad"]
+"ALD Pro" = []
+"Group Policy" = ["gpo", "групповые политики"]
+"LDAP" = []
+"Kerberos" = []
+"Samba" = []
+"WSUS" = []
+"System Center Configuration Manager" = ["sccm", "configuration manager"]
+"SCOM" = []
+"Microsoft Exchange" = ["ms exchange", "exchange server"]
+"Postfix" = []
+"Dovecot" = []
+"FreeBSD" = []
+"iptables" = []
+
+[skills.network]
+"TCP/IP" = []
+"TCP" = []
+"UDP" = []
+"HTTP" = []
+"HTTPS" = []
+"DNS" = []
+"DHCP" = []
+"NTP" = []
+"FTP" = []
+"SMB" = []
+"SMTP" = []
+"SNMP" = []
+"ARP" = []
+"ICMP" = []
+"NAT" = []
+"BGP" = []
+"OSPF" = []
+"EIGRP" = []
+"MPLS" = []
+"STP" = []
+"LACP" = []
+"LLDP" = []
+"VRRP" = []
+"MLAG" = []
+"GRE" = []
+"IPsec" = []
+"VXLAN" = []
+"Geneve" = []
+"OpenFlow" = []
+"Open vSwitch" = ["ovs"]
+"OVN" = []
+"OVSDB" = []
+"ovs-vsctl" = []
+"ovs-ofctl" = []
+"ovs-appctl" = []
+"DPDK" = []
+"GPON" = []
+"Ethernet" = []
+"SSL" = []
+"TLS" = []
+"REST" = ["rest api", "restful"]
+"SOAP" = []
+"gRPC" = []
+"GraphQL" = []
+"WebSocket" = ["websockets", "веб-сокеты", "вебсокеты"]
+"SSE" = ["server-sent events"]
+"FIX" = []
+"Modbus" = ["modbus rtu", "modbus tcp"]
+"Profibus" = []
+"EtherNet/IP" = []
+"CANopen" = []
+"OPC UA" = []
+"OPC DA" = []
+"IEC 60870-5-104" = ["мэк 60870-5-104", "iec 104"]
+"IEC 60870-5-101" = ["мэк 60870-5-101", "iec 101"]
+"syslog" = []
+"Wireshark" = []
+"Nmap" = []
+"curl" = []
+"Cisco" = ["циско"]
+"MikroTik" = ["микротик"]
+"RouterOS" = []
+"Huawei" = []
+"D-Link" = []
+"ZyXEL" = []
+"Ubiquiti UniFi" = ["unifi"]
+"ZeroTier" = []
+"Tailscale" = []
+"Avaya" = []
+"SSH" = []
+"SFTP" = []
+"RDP" = []
+"NFS" = []
+"iSCSI" = []
+"SIP" = []
+"ISUP" = []
+"SCTP" = []
+"Asterisk" = []
+"FreePBX" = []
+"OpenVPN" = []
+"Eltex" = ["элтекс"]
+"QTECH" = []
+"Juniper" = ["juniper networks"]
+"TP-Link" = []
+"SI3000" = []
+
+[skills.security]
+"Pentest" = ["пентест", "penetration testing", "тестирование на проникновение"]
+"Burp Suite" = ["burp"]
+"Metasploit" = []
+"Kali Linux" = ["kali"]
+"Solar Dozor" = []
+"Palo Alto" = ["palo alto networks"]
+"Magisk" = []
+"Frida" = []
+"Ghidra" = []
+"IDA" = ["ida pro"]
+"x64dbg" = []
+"Reverse engineering" = ["реверс-инжиниринг", "reverse-engineering"]
+"Fuzzing" = ["фаззинг"]
+"syzkaller" = []
+"AFL++" = []
+"libFuzzer" = []
+"kAFL" = []
+"SAST" = []
+"DAST" = []
+"SCA" = []
+"SDL" = []
+"SDLC" = []
+"SSDLC" = []
+"SonarQube" = []
+"Coverity" = []
+"CodeQL" = []
+"OWASP" = ["owasp top 10"]
+"MITRE ATT&CK" = ["mitre att&ck", "att&ck"]
+"Threat hunting" = []
+"Threat Intelligence" = ["threat intel"]
+"DFIR" = []
+"Red Team" = []
+"Purple team" = []
+"OAuth" = ["oauth 2.0", "oauth2"]
+"JWT" = []
+"Dallas Lock" = []
+"RBAC" = []
+"MaxPatrol" = []
+"MaxPatrol SIEM" = []
+"MaxPatrol VM" = []
+"PT NAD" = []
+"Positive Technologies" = []
+"KUMA" = []
+"Splunk" = []
+"Suricata" = []
+"RedCheck" = []
+"Сканер-ВС" = []
+"Kaspersky" = ["касперский", "kaspersky security center", "kaspersky security", "kaspersky endpoint", "kaspersky endpoint security"]
+"Dr.Web" = ["drweb", "dr web"]
+"InfoWatch" = []
+"UserGate" = []
+"Ideco NGFW" = ["ideco"]
+"Check Point" = ["checkpoint"]
+"FortiGate" = ["fortinet"]
+"Континент" = ["апкш континент"]
+"ViPNet" = ["випнет", "vipnet coordinator"]
+"ViPNet IDS" = []
+"S-Terra" = []
+"nGate" = []
+"Secret Net" = ["secret net studio"]
+"SafeInspect" = []
+"Solidwall" = []
+"DeviceLock" = []
+"Аладдин" = []
+"КриптоПро" = ["cryptopro", "криптопро csp"]
+
+[skills.testing]
+"Selenium" = ["селениум"]
+"Playwright" = []
+"Cypress" = []
+"Appium" = []
+"pytest" = []
+"PHPUnit" = []
+"JUnit" = []
+"TestNG" = []
+"Mockito" = []
+"Hamcrest" = []
+"Spock" = []
+"Testcontainers" = []
+"WireMock" = []
+"Jest" = []
+"Allure" = []
+"Allure TestOps" = []
+"JMeter" = []
+"Gatling" = []
+"Locust" = []
+"SoapUI" = []
+"Postman" = []
+"Insomnia" = []
+"Cucumber" = []
+"Gherkin" = []
+"BDD" = []
+"UAT" = []
+"Vanessa Automation" = []
+"YAxUnit" = []
+"Valgrind" = []
+"KASAN" = []
+"UBSAN" = []
+"KMSAN" = []
+"KCSAN" = []
+"lockdep" = []
+"Coccinelle" = []
+"sparse" = []
+"Smatch" = []
+"KernelCI" = []
+"LKFT" = []
+"Trinity" = []
+
+[skills.tools]
+"Git" = ["гит"]
+"GitHub" = []
+"GitLab" = []
+"Bitbucket" = []
+"SVN" = ["subversion"]
+"GitFlow" = ["git flow", "git-flow"]
+"GitHub flow" = []
+"Trunk-based development" = []
+"Jira" = ["джира"]
+"Confluence" = []
+"YouTrack" = []
+"Redmine" = []
+"Trello" = []
+"Miro" = []
+"Atlassian" = []
+"Swagger" = ["swagger ui"]
+"OpenAPI" = []
+"PlantUML" = []
+"Doxygen" = []
+"Visual Studio" = []
+"Visual Studio Code" = ["vs code", "vscode"]
+"Cursor" = []
+"PyCharm" = []
+"Eclipse" = []
+"Qt Creator" = []
+"Sublime Text" = []
+"DevTools" = ["chrome devtools"]
+"GCC" = []
+"GDB" = []
+"kgdb" = []
+"CMake" = []
+"Maven" = ["apache maven"]
+"PHPStan" = []
+"Psalm" = []
+"Gradle" = []
+"Keil" = ["keil uvision"]
+"tcpdump" = []
+"draw.io" = ["drawio", "diagrams.net"]
+"Make" = ["makefile"]
+"perf" = []
+"ftrace" = []
+"cProfile" = []
+"Scalene" = []
+"memory_profiler" = []
+"Xdebug" = []
+"XHProf" = []
+"Claude Code" = []
+"Codex" = []
+"OpenClaw" = []
+"Vibe coding" = ["вайб-кодинг", "вайбкодинг"]
+"n8n" = []
+"Telegram" = []
+
+[skills.office]
+"MS Office" = ["microsoft office", "ms office", "офисный пакет ms office"]
+"Word" = ["ms word", "microsoft word"]
+"PowerPoint" = ["ms powerpoint"]
+"Outlook" = ["ms outlook"]
+"Access" = ["ms access", "microsoft access"]
+"Visio" = ["ms visio"]
+"MS Project" = ["microsoft project"]
+"Google Sheets" = ["google таблицы", "гугл таблицы", "google spreadsheets"]
+"Google Docs" = ["google документы", "гугл документы"]
+"LibreOffice" = []
+"Р7-Офис" = ["r7-office"]
+"Primavera" = ["primavera p6"]
+
+[skills.1c]
+"1С" = ["1c", "1с:предприятие", "1c:предприятие", "1с предприятие", "1с:enterprise"]
+"1С:ERP" = ["1с erp", "1с:erp управление предприятием", "1с:erp управление предприятием 2"]
+"1С:ERP УХ" = ["1с:erp.ух", "1с:ух", "1с:управление холдингом", "1с:erp управление холдингом"]
+"1С:ERP WE" = []
+"1С:ЗУП" = ["зуп", "1с:зарплата и управление персоналом", "1с зуп"]
+"1С:ЗКГУ" = ["зкгу", "1с:зарплата и кадры государственного учреждения"]
+"1С:Бухгалтерия" = ["1с:бухгалтерия предприятия", "1с:бп", "1с бухгалтерия", "1с:бгу"]
+"1С:УТ" = ["1с:управление торговлей", "1с ут"]
+"1С:КА" = ["1с:комплексная автоматизация", "1с ка"]
+"1С:УПП" = ["1с:управление производственным предприятием", "упп"]
+"1С:Документооборот" = ["1с:до", "1с документооборот"]
+"1С:Розница" = ["1с розница"]
+"1С:УМФО" = ["умфо"]
+"1С:УСО" = []
+"1С:Консалтинг" = []
+"1С:Альфа-Авто" = []
+"СКД" = ["система компоновки данных"]
+"БСП" = ["библиотека стандартных подсистем"]
+"DirectBank" = []
+
+[skills.platform]
+"1С-Битрикс" = ["bitrix", "битрикс", "1c-bitrix", "1с битрикс", "1с-bitrix", "bitrix framework"]
+"Битрикс24" = ["bitrix24"]
+"SAP" = ["sap erp"]
+"SAP HANA" = ["hana"]
+"S/4HANA" = ["s/4 hana", "sap s/4hana"]
+"SAP HCM" = []
+"SAP FI" = []
+"SAP CO" = []
+"SAP FICO" = ["sap fi/co"]
+"SAP SD" = []
+"SAP MM" = []
+"SAP BW" = []
+"SAP BPC" = []
+"SAP BI-IP" = []
+"Salesforce" = []
+"amoCRM" = ["амоцрм"]
+"WordPress" = []
+"Tilda" = []
+"Moodle" = []
+"SharePoint" = []
+"Camunda" = []
+"Oracle APEX" = []
+"Directum" = []
+"СБИС" = ["sbis", "saby"]
+"Диадок" = ["diadoc"]
+"Честный знак" = []
+"Эвотор" = []
+"Frontol" = []
+"Галактика" = []
+"Парус" = []
+"Босс-кадровик" = []
+"Business Studio" = []
+"ARIS" = []
+"Naumen Service Desk" = []
+"АСУО Service Desk" = []
+"Service Manager" = []
+"OTRS" = []
+"IPS Community Suite" = []
+"SberDocs" = []
+"SberTrack" = []
+"ДБО BSS" = []
+"ASTS" = []
+"СМЭВ" = []
+"ЕИС" = []
+"Госключ" = []
+"ГАС Выборы" = []
+"ГАС Управление" = []
+"АИУС РСЧС" = []
+"Система 112" = []
+"Безопасный город" = []
+"Исполнение бюджета" = []
+"ИС Почтамт" = []
+"WinPost" = []
+"AutoGraph" = []
+"ГЛОНАСС" = []
+"СБП" = ["система быстрых платежей"]
+"DataGo" = []
+"FastGraph" = []
+"SILA Union" = []
+"Uroboros" = []
+"Dallmeier" = []
+"Wildberries" = []
+"Ozon" = []
+"LinkedIn" = []
+"Яндекс Директ" = ["яндекс.директ", "yandex direct"]
+"Гранд-Смета" = ["гранд смета"]
+"Смета" = []
+"Атомсмета" = []
+"А0" = []
+"Plan-R" = []
+"РИНЦ" = []
+"Science Index" = []
+"КД2" = []
+
+[skills.methodology]
+"Agile" = ["аджайл", "эджайл"]
+"Scrum" = ["скрам"]
+"Kanban" = ["канбан"]
+"Waterfall" = ["водопад"]
+"RUP" = []
+"ITIL" = []
+"ITSM" = []
+"COBIT" = []
+"PMBOK" = []
+"PRINCE2" = []
+"OKR" = []
+"ООП" = ["oop", "объектно-ориентированное программирование"]
+"SOLID" = []
+"DDD" = ["domain-driven design", "domain driven design"]
+"Design patterns" = ["паттерны проектирования", "шаблоны проектирования"]
+"GoF" = []
+"Microservices" = ["микросервисы", "микросервисная архитектура", "microservice architecture"]
+"Clean architecture" = ["чистая архитектура"]
+"Event-driven architecture" = []
+"Multi-tier architecture" = ["многоуровневая архитектура"]
+"Lambda-архитектура" = ["lambda architecture", "лямбда-архитектура"]
+"SOA" = []
+"API Gateway" = []
+"Circuit Breaker" = []
+"MVC" = []
+"MVVM" = []
+"SRE" = []
+"C4 model" = ["c4", "модель c4"]
+"UML" = []
+"BPMN" = ["bpmn 2.0"]
+"EPC" = []
+"IDEF" = []
+"IDEF0" = []
+"IDEF3" = []
+"ERD" = ["er-диаграммы", "er diagram"]
+"User story" = ["user stories", "пользовательские истории"]
+"Use case" = ["use cases"]
+"RPA" = []
+"SEO" = []
+"МСФО" = ["ifrs"]
+"Solution Selling" = []
+"Consultative Selling" = []
+"Value Selling" = []
+
+[skills.hardware]
+"ARM" = []
+"ARM Cortex-M" = ["cortex-m"]
+"x86" = ["x86-64", "x86_64"]
+"RISC-V" = []
+"STM32" = []
+"Zynq" = []
+"Texas Instruments" = []
+"C6x" = []
+"C66x" = []
+"SYS/BIOS" = []
+"DaVinci" = []
+"Intel VT-x" = ["vt-x"]
+"AMD-V" = []
+"NVIDIA" = []
+"NVIDIA Container Toolkit" = []
+"MIG" = []
+"MPS" = []
+"PCIe" = ["pci express"]
+"RapidIO" = []
+"AXI" = []
+"USB" = []
+"I2C" = []
+"I2S" = []
+"SPI" = []
+"UART" = []
+"CAN" = ["can-шина"]
+"RS-232" = []
+"RS-485" = []
+"LwIP" = []
+"FreeRTOS" = []
+"U-Boot" = []
+"Device Tree" = []
+"Buildroot" = []
+"Yocto" = []
+"Siemens" = []
+"SIMATIC" = []
+"STEP 7" = ["simatic step 7", "step7"]
+"TIA Portal" = []
+"WinCC" = []
+"CODESYS" = []
+"OMRON" = []
+"MasterSCADA" = []
+"GE iFIX" = ["ifix"]
+"AstraRegul" = []
+"LAD" = []
+"Panasonic" = []
+"HP" = []
+"HP SIM" = []
+"HP IRS" = []
+"NCR" = []
+"Pax" = []
+"Ingenico" = []
+"YADRO" = []
+"FANUC" = []
+"Dell" = []
+"HPE" = []
+"Xilinx" = []
+"Schneider Electric" = ["schneider"]
+"Болид" = []
+"Рубеж" = []
+
+[skills.design]
+"Figma" = ["фигма"]
+"Pixso" = []
+"Axure" = []
+"Photoshop" = ["adobe photoshop", "фотошоп"]
+"Adobe Illustrator" = ["illustrator"]
+"InDesign" = ["adobe indesign"]
+"Adobe Premiere" = ["premiere pro", "adobe premiere pro"]
+"CorelDRAW" = []
+"Canva" = []
+"Blender" = []
+"3ds Max" = ["3dsmax", "3d max"]
+"AutoCAD" = ["автокад"]
+"nanoCAD" = []
+"КОМПАС-3D" = []
+"SOLIDWORKS" = []
+"SprutCAM" = []
+"ArtCAM" = []
+"Mach3" = []
+"NX" = ["siemens nx"]
+"Mathcad" = []
+"Simulink" = []
+"Altium Designer" = ["altium"]
+"DeltaDesign" = []
+"Microwave Office" = []
+"ADS" = []
+"ArcGIS Pro" = ["arcgis"]
+"PowerDesigner" = []
+"SVG" = []
+
+[skills.other]
+"Игромир" = []
+"S4" = []
+"SDI" = []
+"УАТ" = []
+
+[patterns]
+"Python" = ['питон[а-я]*', 'пайтон[а-я]*']
+"JavaScript" = ['джаваскрипт[а-я]*']
+"Go" = ['go-разработ[а-я]*', 'го-разработ[а-я]*']
+"Assembler" = ['ассемблер[а-я]*']
+"PostgreSQL" = ['постгрес[а-я]*', 'postgres(?:ql)?-?[0-9]*']
+"MongoDB" = ['монго[а-я]*']
+"Redis" = ['редис[а-я]*']
+"ClickHouse" = ['кликхаус[а-я]*']
+"Greenplum" = ['гринплам[а-я]*']
+"Kafka" = ['кафк[а-я]*']
+"Spark" = ['спарк[а-я]*']
+"Kubernetes" = ['кубернетес[а-я]*']
+"Docker" = ['докер[а-я]*']
+"Linux" = ['линукс[а-я]*']
+"Windows" = ['виндовс[а-я]*']
+"Excel" = ['эксел[а-я]*', 'excel[а-я]*']
+"Яндекс Метрика" = ['яндекс[. ]?метрик[а-я]*', 'метрик[а-я]* яндекс[а-я]*']
+"A/B-тесты" = ['a/?b[- ]тест[а-я]*', 'аб[- ]тест[а-я]*', 'a/b[- ]testing', 'сплит[- ]тест[а-я]*']
+"Fine-tuning" = ['файн-?тюнинг[а-я]*', 'fine-?tun[a-z]*', 'дообучени[а-я]* (?:моделей|llm|языков[а-я]* моделей|нейросет[а-я]*)']
+"Prompt engineering" = ['промпт[- ]?инжиниринг[а-я]*', 'prompt[- ]engineering']
+"Microservices" = ['микросервис[а-я]*', 'microservices?']
+"Design patterns" = ['паттерн[а-я]* проектировани[а-я]*', 'шаблон[а-я]* проектировани[а-я]*', 'design patterns?']
+"ООП" = ['объектно-ориентированн[а-я]* программировани[а-я]*']
+"WebSocket" = ['веб-?сокет[а-я]*', 'websockets?']
+"Pentest" = ['пентест[а-я]*', 'тестировани[а-я]* на проникновение']
+"Agile" = ['аджайл[а-я]*']
+"Scrum" = ['скрам[а-я]*']
+"Kanban" = ['канбан[а-я]*']
+"Kaspersky" = ['касперск[а-я]*']
+"1С" = ['1[сc]:?\s*предприяти[а-я]*(?:\s*8(?:[.,]\d+)?)?']
+"1С:ERP" = ['1[сc]\s*:\s*erp(?:\s+управление\s+предприятием)?(?:\s*2(?:[.,]\d+)*)?']
+"1С:ERP УХ" = ['1[сc]\s*:\s*(?:erp[ .]?)?(?:ух|управление\s+холдингом)']
+"1С:ЗУП" = ['1[сc]\s*:\s*(?:зуп|зарплат[а-я]* и управлени[а-я]* персонал[а-я]*)(?:\s*(?:корп|3(?:[.,]\d+)*))?']
+"1С:Бухгалтерия" = ['1[сc]\s*:\s*(?:бухгалтери[а-я]*(?:\s+предприяти[а-я]*)?|бп|бгу)(?:\s*(?:корп|3(?:[.,]\d+)*))?']
+"1С:УТ" = ['1[сc]\s*:\s*(?:ут|управлени[а-я]* торговл[а-я]*)(?:\s*1[01](?:[.,]\d+)*)?']
+"1С:КА" = ['1[сc]\s*:\s*(?:ка|комплексн[а-я]* автоматизаци[а-я]*)(?:\s*2(?:[.,]\d+)*)?']
+"1С:УПП" = ['1[сc]\s*:\s*(?:упп|управлени[а-я]* производственн[а-я]* предприяти[а-я]*)']
+"1С:Документооборот" = ['1[сc]\s*:\s*(?:документооборот[а-я]*|до)']
+"1С:Розница" = ['1[сc]\s*:\s*розниц[а-я]*']
+"1С-Битрикс" = ['1[сc]-?\s*битрикс[а-я]*', 'битрикс[а-я]*', 'bitrix']
+"Битрикс24" = ['битрикс\s*24', 'bitrix\s*24']
+"Яндекс Директ" = ['яндекс[. ]?директ[а-я]*']
+"КОМПАС-3D" = ['компас[- ]?3d']
+"Р7-Офис" = ['р7[- ]офис[а-я]*']
+"Selenium" = ['селениум[а-я]*']
+"Figma" = ['фигм[а-я]*']
+"AutoCAD" = ['автокад[а-я]*']
+
+[parents]
+"PySpark" = "Spark"
+"Spark Streaming" = "Spark"
+"Kafka Streams" = "Kafka"
+"HDFS" = "Hadoop"
+"Hive" = "Hadoop"
+"YARN" = "Hadoop"
+"MapReduce" = "Hadoop"
+"Ubuntu" = "Linux"
+"Debian" = "Linux"
+"CentOS" = "Linux"
+"RHEL" = "Linux"
+"Astra Linux" = "Linux"
+"ALT Linux" = "Linux"
+"RED OS" = "Linux"
+"Embedded Linux" = "Linux"
+"Windows Server" = "Windows"
+"Spring Boot" = "Spring"
+"Spring MVC" = "Spring"
+"Spring Data" = "Spring"
+"Spring Cloud" = "Spring"
+"T-SQL" = "SQL"
+"PL/SQL" = "SQL"
+"PL/pgSQL" = "SQL"
+"Postgres Pro" = "PostgreSQL"
+"MariaDB" = "MySQL"
+"Docker Compose" = "Docker"
+"OpenShift" = "Kubernetes"
+"K3s" = "Kubernetes"
+"GitLab CI" = "CI/CD"
+"GitHub Actions" = "CI/CD"
+"Jenkins" = "CI/CD"
+"TeamCity" = "CI/CD"
+"Kibana" = "ELK"
+"Logstash" = "ELK"
+"vSphere" = "VMware"
+"ESXi" = "VMware"
+"Power Query" = "Power BI"
+"DAX" = "Power BI"
+"Qlik Sense" = "Qlik"
+"QlikView" = "Qlik"
+"MaxPatrol SIEM" = "MaxPatrol"
+"MaxPatrol VM" = "MaxPatrol"
+"ViPNet IDS" = "ViPNet"
+"Informatica PowerCenter" = "Informatica"
+"Allure TestOps" = "Allure"
+"ARM Cortex-M" = "ARM"
+"STEP 7" = "SIMATIC"
+"1С:ERP" = "1С"
+"1С:ERP УХ" = "1С"
+"1С:ERP WE" = "1С"
+"1С:ЗУП" = "1С"
+"1С:ЗКГУ" = "1С"
+"1С:Бухгалтерия" = "1С"
+"1С:УТ" = "1С"
+"1С:КА" = "1С"
+"1С:УПП" = "1С"
+"1С:Документооборот" = "1С"
+"1С:Розница" = "1С"
+"1С:УМФО" = "1С"
+"1С:УСО" = "1С"
+"1С:Консалтинг" = "1С"
+"1С:Альфа-Авто" = "1С"
+"SAP HANA" = "SAP"
+"S/4HANA" = "SAP"
+"SAP HCM" = "SAP"
+"SAP FI" = "SAP"
+"SAP CO" = "SAP"
+"SAP FICO" = "SAP"
+"SAP SD" = "SAP"
+"SAP MM" = "SAP"
+"SAP BW" = "SAP"
+"SAP BPC" = "SAP"
+"SAP BI-IP" = "SAP"
+"QLoRA" = "LoRA"
+"LoRA" = "Fine-tuning"
+"SFT" = "Fine-tuning"
+"PEFT" = "Fine-tuning"
+
+[non_skills]
+# Exact names (compared like aliases: case, spaces, dots and hyphens ignored).
+names = [
+    # personal qualities and human languages (guide, skills)
+    "коммуникабельность", "ответственность", "обучаемость", "стрессоустойчивость", "внимательность",
+    "работа в команде", "командная работа", "teamwork", "communication skills", "soft skills",
+    "английский язык", "английский", "english", "немецкий язык", "китайский язык",
+    # general activities, education, computer literacy
+    "разработка по", "программирование", "сопровождение", "тестирование", "ручное тестирование",
+    "manual testing", "автотесты", "автоматизация тестирования", "test automation", "сбор требований",
+    "анализ требований", "управление требованиями", "requirements", "техническое задание", "тз",
+    "техническая документация", "интеграция", "api integration", "интеграции", "api",
+    "владение пк", "уверенный пользователь пк", "пк", "высшее образование", "pre-sale", "presale",
+    "проектирование информационных систем", "администрирование", "отчетность",
+    # fields of knowledge and areas (cases 48, 74)
+    "machine learning", "ml", "машинное обучение", "deep learning", "dl", "глубокое обучение",
+    "data science", "ds", "ai", "ии", "искусственный интеллект", "llm", "nlp", "cv", "computer vision",
+    "компьютерное зрение", "нейронные сети", "нейросети", "neural networks", "big data", "большие данные",
+    "statistics", "статистика", "математическая статистика", "теория вероятностей", "algorithms",
+    "алгоритмы", "структуры данных", "data structures", "multithreading", "многопоточность",
+    "networking", "сети", "virtualization", "виртуализация", "cryptography", "криптография",
+    "embedded", "встраиваемые системы", "system design", "highload", "высоконагруженные системы",
+    "product analytics", "продуктовая аналитика", "gradient boosting", "градиентный бустинг",
+    "recommender systems", "рекомендательные системы", "time series", "временные ряды",
+    "speech recognition", "распознавание речи", "информационная безопасность", "бухгалтерский учет",
+    "большие языковые модели", "large language models", "load testing", "нагрузочное тестирование",
+    # classes of systems, document types, metrics (case 35)
+    "erp", "crm", "scada", "siem", "dlp", "mes", "ecm", "esb", "bi", "dwh", "хранилище данных",
+    "data warehouse", "кхд", "data lake", "datalake", "nosql", "реляционные базы данных", "субд",
+    "векторные базы данных", "vector databases", "brd", "fsd", "srs", "npv", "roi", "kpi",
+    "межсетевой экран", "firewall", "ngfw", "антивирус", "ids", "ips", "waf", "edr", "xdr", "soc",
+    "pki", "скзи", "фсб", "wms", "service desk", "helpdesk", "pam", "lms", "mdm", "saas", "paas", "iaas",
+    "iot", "genai", "l2", "l3", "raid",
+    # general activities found in train_pool review
+    "управление проектами", "ведение переговоров", "управление людьми", "техническая поддержка",
+    "code review", "код-ревью", "системный анализ", "системное администрирование",
+    "администрирование windows", "базы данных", "hard skills", "troubleshooting", "idm",
+    # network technology classes (case 55)
+    "vpn", "vlan", "voip", "qos", "wi-fi", "wifi", "osi", "lan", "wan", "sd-wan",
+    # prompting tricks (case 57)
+    "zero-shot", "few-shot", "cot", "chain-of-thought", "квантизация", "quantization",
+    # numbered standards and scoring systems (cases 48, 53)
+    "cvss", "cwe", "pci dss", "кии", "фстэк",
+]
+# Prefixes of exact names: standards, laws and certificates (cases 48, 53, 58).
+prefixes = [
+    "гост", "iso ", "iso/", "iso-", "152-фз", "44-фз", "223-фз", "187-фз", "ccna", "ccnp", "ccie",
+    "rhcsa", "rhce", "aws certified", "оксм", "окпд",
+]
+# Whole-string regexes on the lowercased name.
+patterns = [
+    '\d+-фз',
+    'английск[а-я]*(?: язык[а-я]*)?(?: (?:a|b|c)[12]| intermediate| upper[- ]intermediate)?',
+    '(?:pre-|upper[- ])?intermediate|[abc][12]',
+]
+
+[search]
+# Canonical spellings the rule baseline does not look for in texts by themselves, because the bare
+# spelling is a letter, an ordinary word or another product's name ("Смета", "Pax", "C" in
+# "c 9:00", "Flux" the CD tool and "Flux" the image model). Their aliases are still searched.
+names_not_searched = [
+    "C", "R", "ST", "LD", "LAD", "os", "Make", "Access", "Word", "sparse", "Trinity", "typing",
+    "datetime", "requests", "namespaces", "perf", "Datasets", "Lightning", "Boost", "Flux", "Pax",
+    "ADS", "MIG", "MPS", "EPC", "T5", "C4 model", "А0", "Смета", "Рубеж", "Болид", "Парус",
+    "Галактика", "Континент", "Telegram", "LinkedIn", "Wildberries", "Ozon", "Игромир", "Transformer",
+    "Service Manager", "УАТ", "S4", "SDI",
+]
+# In an English text these spellings count only when not written in lowercase: "Go" and "REST"
+# are skills, "go" and "the rest" are not.
+english_words = [
+    "go", "rest", "less", "solid", "chef", "node", "gin", "spring", "swift", "rust", "dart", "julia",
+    "ci", "yarn", "hive", "triton", "astra", "arm", "can", "vault", "consul", "kong", "loki", "nexus",
+    "outlook", "express", "spark", "excel", "unity", "fix", "falcon", "vertica", "elastic", "flask",
+    "rabbit", "kali", "cursor",
+]
+
+[review]
+# Settings of `python -m radar.extract.skill_review`. A train_pool spelling is proposed when it is
+# seen in at least `floor` records; `model` and `threshold` come from `select`
+# (results/skills/proposal_models.json): the threshold keeps the nearest-neighbour alias right in at
+# least `min_precision` of the dictionary's own aliases above it.
+floor = 10
+# The model that keeps the most of the dictionary's aliases above its threshold
+# (results/skills/proposal_models.json). e5-large is right more often at top 1, but its cosines are
+# compressed and few aliases clear the bar. On real train_pool candidates most alias proposals were
+# wrong (alias_proposals_accepted in results/skills/normalization.json): read them, never apply them.
+model = "ai-forever/FRIDA"
+threshold = 0.8877
+min_precision = 0.9
+# Candidates read and left out: company and place names, ordinary words, parts of longer names.
+rejected = [
+    "a", "abbott", "accessibility", "acl", "actions", "active", "activity", "ad", "ad-hoc", "adobe",
+    "advanced", "ae", "agile/scrum", "ai/ml", "ald", "alt", "analysis", "analytics", "and",
+    "application", "architect", "architecture", "as", "as code", "asa", "ats", "att", "att ck",
+    "automation", "av", "awards", "b", "b2b", "b2c", "b2g", "backend", "backup", "banking",
+    "bash/python", "basic", "batch", "be", "benefits", "best", "best benefits", "bestbenefits",
+    "big", "bluetooth", "boot", "boxberry", "bpm", "bpmn/uml", "bug", "builder", "business", "by",
+    "c/c++", "cad", "cad/cam", "call", "call-flow", "case", "cases", "cdek", "center", "change",
+    "ck", "clean", "cli", "client", "cloud", "cms", "code", "com", "compose", "computer", "connect",
+    "coordinator", "core", "cpu", "cs-core", "csp", "customer", "d", "d7", "daily", "daily banking",
+    "dallas", "data", "day-off", "db", "delivery", "design", "designer", "desk", "desktop",
+    "developer", "development", "dfs", "dhl", "di", "digital", "directory", "dostavista", "dpd",
+    "drp", "dss", "e", "e-commerce", "e-mail", "e2e", "edr/xdr", "el", "email", "end-to-end",
+    "endpoint", "endpoint security", "engineer", "engineering", "enterprise", "entity", "er", "etc",
+    "etl/elt", "event", "ex", "exchange", "failover", "fintech", "fit", "fmcg", "for", "framework",
+    "frontend", "ftp/sftp/ssh", "fttx", "fullstack", "fw", "gateway", "google", "governance", "gps",
+    "gpu", "group", "gsm", "gui", "handoff", "hard", "hashicorp", "hcm", "headhunter", "help",
+    "hh.ru", "hmi", "hr", "hrm", "html/css", "http/https", "i", "ibm", "ide", "ids/ips", "ieee",
+    "ii", "iii", "in", "incident", "infrastructure", "integration", "internet", "investment", "ip",
+    "ipad", "ips/ids", "iptv", "is", "iso", "it", "itil/itsm", "iv", "jetpack", "jira/confluence",
+    "join", "json/xml", "junior", "k", "kafka/rabbitmq", "kion", "ksc", "l", "l2/l3", "lamoda",
+    "lead", "learning", "legacy", "library", "linux/unix", "linux/windows", "lock", "lovit", "ltv",
+    "m", "mac", "machine", "management", "manager", "map", "max", "microsoft", "microsoft active",
+    "middle", "middleware", "mitre", "mitre att", "mobile", "mq", "ms", "ms active", "mts", "mvp",
+    "n", "name", "nas", "native", "naumen", "net studio", "network", "nist", "nix", "nps", "nta",
+    "o", "oc", "oc linux", "oc windows", "of", "of voice", "office", "okko", "on-premise", "online",
+    "open", "open source", "open-source", "orm", "owasp top", "owner", "p", "p l", "pa", "pci",
+    "pdf", "pe", "performance", "performance review", "phone", "pickpoint", "ping", "pipeline",
+    "planning", "platform", "plc", "plm", "pm", "po", "point", "policy", "pon", "pony-express",
+    "pos", "positive", "power", "pr", "practices", "premium", "primezone", "print", "pro",
+    "product", "product manager", "product owner", "production", "project", "prompt", "proxy", "pt",
+    "push", "qa", "quality", "query", "r d", "raex", "rds", "reader", "red", "replication",
+    "rest/soap", "retail", "retention", "review", "rich", "rim", "rls", "rtu", "s", "san",
+    "sberdata", "schema", "science", "sd", "sdk", "se", "secret", "secure", "security",
+    "security center", "select", "senior", "sense", "sequence", "server", "service", "services",
+    "skillbox", "skills", "sla", "smart", "smm", "smoke", "soft", "software", "source", "spa",
+    "spl", "spl splunk", "ssl/tls", "sso", "ssr", "stack", "storage", "stories", "story",
+    "streaming", "studio", "suite", "support", "system", "systems", "t", "team", "team lead",
+    "tech", "terminal", "testing", "the", "time", "tms", "to", "tone", "tone of", "top", "tree",
+    "ts", "tv", "ui", "ui/ux", "unit", "unix/linux", "use", "user", "utp", "ux", "ux/ui", "v", "ve",
+    "vision", "visual", "vk", "vm", "voice", "vrf", "wds", "web", "wiki", "win", "windows/linux",
+    "workflow", "worldclass", "x", "xdsl", "xml/json", "xp", "yandex", "z",
+    "информационные технологии", "продажи", "разработка под 1с",
+]
+
+# --- generated by `python -m radar.extract.skill_review provenance --write`, do not edit by hand ---
+# Entries whose only evidence is the gold labels: a name of the dev or test labels that the v0
+# dictionary did not search and that the v1 search finds in fewer than 10 of the 15459
+# train_pool records counted by `candidates`.
+# The baseline does not search them; the value says which split's labels named the entry.
+[provenance.gold_only]
+"1С:ERP WE" = "dev"
+"1С:Альфа-Авто" = "dev"
+"1С:Консалтинг" = "test"
+"1С:Розница" = "dev+test"
+"1С:УМФО" = "dev"
+"1С:УСО" = "test"
+"3ds Max" = "test"
+"Access" = "test"
+"Acronis" = "dev+test"
+"ADO.NET" = "dev"
+"Adobe Premiere" = "test"
+"ADS" = "test"
+"AFL++" = "test"
+"Alertmanager" = "test"
+"Allure TestOps" = "test"
+"AMD-V" = "test"
+"Amplitude" = "test"
+"API Gateway" = "test"
+"AppArmor" = "test"
+"ArcGIS Pro" = "test"
+"Arenadata Data Catalog" = "test"
+"ARM Cortex-M" = "test"
+"ARP" = "test"
+"ArtCAM" = "dev"
+"AstraRegul" = "dev"
+"ASTS" = "dev"
+"Athena" = "test"
+"AutoGraph" = "test"
+"Avaya" = "test"
+"AXI" = "test"
+"Axure" = "test"
+"Backtesting" = "test"
+"BaseAlt" = "test"
+"BDD" = "test"
+"BERT" = "dev+test"
+"BGE" = "test"
+"BM25" = "dev"
+"Boost" = "test"
+"BSL" = "dev"
+"Btrfs" = "test"
+"Buildroot" = "dev+test"
+"Business Studio" = "test"
+"C" = "dev+test"
+"C4 model" = "dev+test"
+"C66x" = "test"
+"C6x" = "dev"
+"Cacti" = "dev"
+"Calico" = "test"
+"Canva" = "dev"
+"CDC" = "test"
+"Ceph" = "test"
+"cgroups" = "test"
+"Character.AI" = "test"
+"Circuit Breaker" = "test"
+"Claude" = "dev+test"
+"CLIP" = "dev"
+"Cloud Native" = "test"
+"Cloudera" = "test"
+"CNI" = "dev"
+"CNN" = "dev"
+"COBIT" = "test"
+"Coccinelle" = "test"
+"Cocos2d" = "test"
+"CodeQL" = "test"
+"Codex" = "dev+test"
+"Cohort analysis" = "test"
+"ColBERT" = "test"
+"ComfyUI" = "test"
+"Consul" = "test"
+"Consultative Selling" = "test"
+"containerd" = "test"
+"Context engineering" = "dev"
+"Coverity" = "test"
+"cProfile" = "dev"
+"Cucumber" = "test"
+"curl" = "dev"
+"CustDev" = "test"
+"Dallmeier" = "test"
+"Dask" = "test"
+"Data Governance" = "dev+test"
+"DataGo" = "test"
+"Datasets" = "test"
+"datetime" = "test"
+"DaVinci" = "dev"
+"DDP" = "test"
+"Deep Research" = "dev"
+"DeepAR" = "dev"
+"DeepEval" = "dev"
+"DeltaDesign" = "test"
+"Device Tree" = "dev"
+"DeviceLock" = "test"
+"DFIR" = "dev"
+"Diffusers" = "test"
+"DirectBank" = "dev"
+"DistilBERT" = "test"
+"Docling" = "test"
+"Dovecot" = "dev"
+"Doxygen" = "test"
+"DPDK" = "test"
+"DuckDB" = "test"
+"eBPF" = "test"
+"Eclipse" = "test"
+"EIGRP" = "test"
+"etcd" = "test"
+"EtherNet/IP" = "dev"
+"Event-driven architecture" = "test"
+"EvoStack" = "test"
+"Exasol" = "test"
+"Ext JS" = "test"
+"ext4" = "test"
+"Falcon" = "dev"
+"FastGraph" = "test"
+"Feature engineering" = "test"
+"Filebeat" = "test"
+"FineBI" = "dev+test"
+"FIX" = "dev"
+"Flannel" = "test"
+"Flume" = "test"
+"Flux" = "test"
+"Flux CD" = "test"
+"Frida" = "test"
+"Frontol" = "test"
+"ftrace" = "test"
+"Fuzzing" = "test"
+"GE iFIX" = "dev"
+"Geneve" = "dev"
+"Gherkin" = "test"
+"Ghidra" = "test"
+"GitHub flow" = "test"
+"GoF" = "dev"
+"Google Docs" = "test"
+"Google Sheets" = "dev+test"
+"Google Tag Manager" = "test"
+"GraphRAG" = "test"
+"Graylog" = "test"
+"Hamcrest" = "test"
+"HP IRS" = "test"
+"HP SIM" = "test"
+"Hudi" = "test"
+"HUE" = "dev"
+"I2S" = "test"
+"IBM DataStage" = "dev"
+"ICMP" = "test"
+"IDA" = "test"
+"Ideco NGFW" = "test"
+"IDEF3" = "test"
+"IEC 60870-5-101" = "test"
+"IEC 60870-5-104" = "test"
+"Impala" = "dev+test"
+"InfluxDB" = "test"
+"Informatica" = "dev+test"
+"Informatica PowerCenter" = "test"
+"Ingenico" = "test"
+"Ingress NGINX" = "test"
+"Insomnia" = "test"
+"Intel VT-x" = "test"
+"IPS Community Suite" = "test"
+"JVM" = "test"
+"K3s" = "test"
+"Kafka Streams" = "test"
+"kAFL" = "test"
+"Kaggle" = "dev"
+"Karmada" = "test"
+"KASAN" = "test"
+"KCSAN" = "test"
+"Kerberos" = "test"
+"KernelCI" = "test"
+"kgdb" = "test"
+"KMSAN" = "test"
+"Kong" = "dev"
+"Kreuzberg" = "test"
+"Kubebuilder" = "test"
+"Kubespray" = "test"
+"Kustomize" = "test"
+"LAD" = "test"
+"Lambda-архитектура" = "test"
+"Langfuse" = "dev"
+"LD" = "dev+test"
+"libFuzzer" = "test"
+"libvirt" = "test"
+"Lightning" = "test"
+"LinkedIn" = "test"
+"LKFT" = "test"
+"LLDP" = "dev"
+"LLM-as-a-judge" = "dev"
+"lockdep" = "test"
+"Loginom" = "test"
+"Longhorn" = "test"
+"LoRA" = "dev+test"
+"LSTM" = "dev"
+"LwIP" = "test"
+"LXC" = "test"
+"Mach3" = "dev"
+"Magisk" = "test"
+"Make" = "test"
+"MasterSCADA" = "dev"
+"Mathcad" = "dev"
+"MaxPatrol SIEM" = "dev"
+"MaxPatrol VM" = "dev"
+"memory_profiler" = "dev"
+"Microwave Office" = "test"
+"MIG" = "test"
+"MITRE ATT&CK" = "dev+test"
+"MLAG" = "test"
+"Mockito" = "test"
+"MPS" = "test"
+"Multi-tier architecture" = "test"
+"Munin" = "dev"
+"n8n" = "dev"
+"namespaces" = "test"
+"Nano Banana" = "test"
+"Naumen Service Desk" = "dev"
+"NCR" = "test"
+"netfilter" = "test"
+"nGate" = "test"
+"NIO" = "test"
+"NLTK" = "test"
+"NR ETL" = "dev"
+"NVIDIA" = "test"
+"NVIDIA Container Toolkit" = "test"
+"ODI" = "test"
+"OKR" = "test"
+"OMRON" = "test"
+"OPC DA" = "dev"
+"OPC UA" = "dev"
+"Open vSwitch" = "dev+test"
+"OpenAI API" = "dev+test"
+"OpenClaw" = "test"
+"OpenFlow" = "dev"
+"OpenMetadata" = "dev"
+"OpenNebula" = "test"
+"Oracle APEX" = "dev"
+"Oracle BI EE" = "test"
+"ORC" = "test"
+"os" = "test"
+"OTRS" = "dev"
+"oVirt" = "dev"
+"OVN" = "dev"
+"ovs-appctl" = "dev"
+"ovs-ofctl" = "dev"
+"ovs-vsctl" = "dev"
+"OVSDB" = "dev"
+"Ozon" = "test"
+"Ozone" = "test"
+"Panasonic" = "test"
+"Parquet" = "test"
+"Patroni" = "test"
+"Pax" = "test"
+"PCIe" = "test"
+"PEFT" = "test"
+"perf" = "test"
+"Perplexity" = "test"
+"Pinecone" = "dev"
+"Pixso" = "test"
+"Plan-R" = "test"
+"PlantUML" = "dev+test"
+"Platform V" = "dev"
+"Plotly" = "dev+test"
+"PMBOK" = "test"
+"Positive Technologies" = "dev"
+"POSIX" = "dev"
+"Postgres Pro" = "dev"
+"PowerDesigner" = "test"
+"Primavera" = "test"
+"PRINCE2" = "test"
+"Process Mining" = "test"
+"Prophet" = "dev"
+"protobuf" = "test"
+"Proxmox Backup Server" = "test"
+"psycopg2" = "test"
+"PT NAD" = "dev"
+"Purple team" = "dev"
+"PyCharm" = "test"
+"PydanticAI" = "dev"
+"QLoRA" = "test"
+"Qt Creator" = "test"
+"Ragas" = "dev"
+"Random Forest" = "dev"
+"RapidIO" = "test"
+"RBAC" = "test"
+"React Navigation" = "test"
+"Reciprocal Rank Fusion" = "dev"
+"Red Team" = "dev"
+"Redash" = "test"
+"RedCheck" = "dev"
+"Redis Streams" = "test"
+"regex" = "test"
+"requests" = "test"
+"Reverse engineering" = "test"
+"RFM" = "test"
+"RISC-V" = "test"
+"RNN" = "dev"
+"RoBERTa" = "test"
+"ROPO-анализ" = "test"
+"RouterOS" = "test"
+"ruBERT" = "test"
+"RUP" = "test"
+"S-Terra" = "dev+test"
+"S4" = "dev"
+"SafeInspect" = "test"
+"Samba" = "test"
+"SAP BI-IP" = "test"
+"SAP BPC" = "test"
+"SAP BusinessObjects" = "test"
+"SAP BW" = "test"
+"SAP CO" = "dev"
+"SAP FI" = "dev"
+"SAP FICO" = "dev+test"
+"SAP HCM" = "dev"
+"SAP MM" = "dev+test"
+"SAP SD" = "dev+test"
+"SAS" = "test"
+"SAS Data Integration Studio" = "test"
+"SberDocs" = "dev"
+"SberTrack" = "test"
+"Scalene" = "dev"
+"SCD" = "test"
+"Science Index" = "test"
+"scikit-image" = "test"
+"SciPy" = "dev+test"
+"SCOM" = "test"
+"SDI" = "test"
+"SDL" = "test"
+"SDXL" = "test"
+"seaborn" = "dev"
+"seccomp" = "test"
+"SecOps" = "test"
+"SELinux" = "test"
+"sentence-transformers" = "dev+test"
+"Service Manager" = "dev"
+"SFT" = "dev"
+"shadcn/ui" = "dev"
+"SI3000" = "test"
+"SILA Union" = "test"
+"SIMATIC" = "test"
+"Simulink" = "test"
+"Smatch" = "test"
+"smbclient" = "test"
+"Snowflake schema" = "test"
+"Solidwall" = "test"
+"Solution Selling" = "test"
+"Spark Streaming" = "test"
+"sparse" = "test"
+"Spock" = "test"
+"Spring MVC" = "test"
+"SprutCAM" = "dev"
+"sqlite3" = "test"
+"Sqoop" = "test"
+"SSDLC" = "test"
+"SSE" = "dev"
+"SSIS" = "test"
+"ST" = "dev+test"
+"Stable Diffusion" = "test"
+"Star schema" = "test"
+"statsmodels" = "dev+test"
+"Sublime Text" = "test"
+"Suricata" = "dev"
+"SVG" = "test"
+"Switchback" = "test"
+"SYS/BIOS" = "test"
+"syslog" = "test"
+"systemd" = "test"
+"syzkaller" = "test"
+"T5" = "dev"
+"Tailscale" = "test"
+"Telegraf" = "test"
+"Telegram" = "test"
+"Teradata" = "test"
+"Testcontainers" = "test"
+"Texas Instruments" = "test"
+"TGI" = "test"
+"Threat hunting" = "dev"
+"Threat Intelligence" = "dev"
+"TIA Portal" = "test"
+"TorchServe" = "test"
+"Transformer" = "dev+test"
+"Trello" = "dev"
+"Trinity" = "test"
+"TRL" = "test"
+"TruLens" = "dev"
+"Trunk-based development" = "test"
+"typing" = "dev"
+"U-Boot" = "dev"
+"Ubiquiti UniFi" = "test"
+"UBSAN" = "test"
+"Unsloth" = "test"
+"UrBackup" = "test"
+"Uroboros" = "test"
+"VAD" = "test"
+"Valgrind" = "test"
+"Valkey" = "test"
+"Value Selling" = "test"
+"Vanessa Automation" = "dev"
+"Velero" = "test"
+"Vibe coding" = "test"
+"ViPNet IDS" = "dev"
+"Visual Studio Code" = "dev+test"
+"VRRP" = "test"
+"Wildberries" = "test"
+"WinPost" = "dev"
+"WireMock" = "test"
+"WPF" = "test"
+"x64dbg" = "test"
+"Xdebug" = "test"
+"XFS" = "test"
+"XHProf" = "test"
+"XPath" = "test"
+"Xposed" = "test"
+"XSLT" = "test"
+"YAxUnit" = "dev"
+"Yocto" = "dev+test"
+"YTsaurus" = "test"
+"ZeroTier" = "test"
+"Zynq" = "test"
+"А0" = "test"
+"АИУС РСЧС" = "test"
+"Аладдин" = "dev"
+"АСУО Service Desk" = "dev"
+"Атомсмета" = "test"
+"Болид" = "test"
+"Босс-кадровик" = "dev"
+"Галактика" = "dev"
+"ГАС Выборы" = "test"
+"ГАС Управление" = "dev"
+"Госключ" = "test"
+"Гранд-Смета" = "test"
+"ДБО BSS" = "test"
+"Игромир" = "test"
+"ИС Почтамт" = "dev"
+"Исполнение бюджета" = "test"
+"КД2" = "test"
+"МСВС" = "dev"
+"Навигатор BI" = "test"
+"Парус" = "test"
+"Р7-Офис" = "dev+test"
+"РИНЦ" = "test"
+"Рубеж" = "test"
+"Система 112" = "test"
+"Сканер-ВС" = "test"
+"Смета" = "test"
+"УАТ" = "test"
+"Эвотор" = "dev"

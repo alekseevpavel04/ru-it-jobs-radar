@@ -15,3 +15,8 @@ rel_tol = 0.01
 [macro]
 # Fields averaged into macro_f1 (F1 of each field, equal weight). `lang` is reported but not averaged.
 fields = ["role", "grade", "skills", "salary", "work_format", "cities", "experience_years", "employment_type"]
+
+[skills]
+# How skill names are compared: "casefold" (case and whitespace only) or "dictionary" (spellings of
+# configs/skills.toml mapped to their canonical name first, so "Postgres" counts as "PostgreSQL").
+normalization = "casefold"

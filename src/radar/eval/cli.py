@@ -12,7 +12,7 @@ import argparse
 import re
 import sys
 import tomllib
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
@@ -22,10 +22,12 @@ from radar import config, results
 from radar.config import ROOT, data_dir
 from radar.eval.bootstrap import Interval, bootstrap, paired_bootstrap, resample_weights
 from radar.eval.data import Aligned, align, load_gold, load_predictions, sha256
-from radar.eval.metrics import Stat, score
+from radar.eval.metrics import Stat, normalize_item, score
+from radar.extract.skills import eval_key
 
 CONFIG = ROOT / "configs" / "eval.toml"
 SYSTEM_NAME = re.compile(r"^[a-z0-9][a-z0-9_-]*$")
+SKILL_NORMALIZERS: dict[str, Callable[[str], str]] = {"casefold": normalize_item, "dictionary": eval_key}
 
 
 @dataclass(frozen=True)
@@ -35,6 +37,7 @@ class EvalConfig:
     confidence: float
     salary_rel_tol: float
     macro_fields: tuple[str, ...]
+    skill_normalization: str = "casefold"
 
 
 def load_config(path: Path = CONFIG) -> EvalConfig:
@@ -45,9 +48,12 @@ def load_config(path: Path = CONFIG) -> EvalConfig:
         confidence=float(raw["bootstrap"]["confidence"]),
         salary_rel_tol=float(raw["salary"]["rel_tol"]),
         macro_fields=tuple(raw["macro"]["fields"]),
+        skill_normalization=str(raw.get("skills", {}).get("normalization", "casefold")),
     )
     if cfg.n_resamples < 1000:
         raise ValueError("EXPERIMENTS.md asks for 1000 bootstrap resamples or more")
+    if cfg.skill_normalization not in SKILL_NORMALIZERS:
+        raise ValueError(f"[skills] normalization: one of {sorted(SKILL_NORMALIZERS)}")
     return cfg
 
 
@@ -76,7 +82,13 @@ def metrics_block(stats: Mapping[str, Stat], intervals: Mapping[str, Interval | 
 
 
 def score_aligned(aligned: Aligned, cfg: EvalConfig) -> dict[str, Stat]:
-    return score([g.fields for g in aligned.gold], aligned.parsed, cfg.salary_rel_tol, macro_fields=cfg.macro_fields)
+    return score(
+        [g.fields for g in aligned.gold],
+        aligned.parsed,
+        cfg.salary_rel_tol,
+        macro_fields=cfg.macro_fields,
+        normalize_skill=SKILL_NORMALIZERS[cfg.skill_normalization],
+    )
 
 
 def by_source(aligned: Aligned, cfg: EvalConfig) -> dict[str, dict[str, dict[str, Any]]]:
@@ -157,6 +169,7 @@ def main(argv: list[str] | None = None) -> int:
         "bootstrap": {"n_resamples": cfg.n_resamples, "seed": cfg.seed, "confidence": cfg.confidence},
         "salary_rel_tol": cfg.salary_rel_tol,
         "macro_fields": list(cfg.macro_fields),
+        "skill_normalization": cfg.skill_normalization,
     }
     path = results.write_result(
         f"extract/{args.split}_{args.system}.json",

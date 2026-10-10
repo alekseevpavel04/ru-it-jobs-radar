@@ -1,0 +1,101 @@
+{
+  "source_script": "src/radar/extract/skill_review.py",
+  "command": "python -m radar.extract.skill_review select",
+  "commit": "ac55871-dirty",
+  "created_at": "2026-10-10T14:59:32+00:00",
+  "metrics": {
+    "char-ngrams_top1": {
+      "value": 0.5376,
+      "n": 229,
+      "denominator": 426
+    },
+    "char-ngrams_threshold": {
+      "value": 0.7136,
+      "n": null,
+      "denominator": null
+    },
+    "char-ngrams_aliases_above_threshold": {
+      "value": 0.216,
+      "n": 92,
+      "denominator": 426
+    },
+    "ai-forever__FRIDA_top1": {
+      "value": 0.6901,
+      "n": 294,
+      "denominator": 426
+    },
+    "ai-forever__FRIDA_threshold": {
+      "value": 0.8877,
+      "n": null,
+      "denominator": null
+    },
+    "ai-forever__FRIDA_aliases_above_threshold": {
+      "value": 0.3803,
+      "n": 162,
+      "denominator": 426
+    },
+    "BAAI__bge-m3_top1": {
+      "value": 0.7347,
+      "n": 313,
+      "denominator": 426
+    },
+    "BAAI__bge-m3_threshold": {
+      "value": 0.8127,
+      "n": null,
+      "denominator": null
+    },
+    "BAAI__bge-m3_aliases_above_threshold": {
+      "value": 0.3568,
+      "n": 152,
+      "denominator": 426
+    },
+    "deepvk__USER-bge-m3_top1": {
+      "value": 0.7207,
+      "n": 307,
+      "denominator": 426
+    },
+    "deepvk__USER-bge-m3_threshold": {
+      "value": 0.8169,
+      "n": null,
+      "denominator": null
+    },
+    "deepvk__USER-bge-m3_aliases_above_threshold": {
+      "value": 0.3709,
+      "n": 158,
+      "denominator": 426
+    },
+    "intfloat__multilingual-e5-base_top1": {
+      "value": 0.6784,
+      "n": 289,
+      "denominator": 426
+    },
+    "intfloat__multilingual-e5-base_threshold": {
+      "value": 0.9881,
+      "n": null,
+      "denominator": null
+    },
+    "intfloat__multilingual-e5-base_aliases_above_threshold": {
+      "value": 0.0094,
+      "n": 4,
+      "denominator": 426
+    },
+    "intfloat__multilingual-e5-large_top1": {
+      "value": 0.7653,
+      "n": 326,
+      "denominator": 426
+    },
+    "intfloat__multilingual-e5-large_threshold": {
+      "value": 0.9688,
+      "n": null,
+      "denominator": null
+    },
+    "intfloat__multilingual-e5-large_aliases_above_threshold": {
+      "value": 0.0798,
+      "n": 34,
+      "denominator": 426
+    }
+  },
+  "method": "nearest other spelling of the dictionary for each non-trivial alias; right if it belongs to the same skill",
+  "min_precision": 0.9,
+  "dictionary_sha256": "cca83e1083d5ba4fb16ea0c25124981c1f3d03cdc3d70fd429c0c30b26a85de6"
+}

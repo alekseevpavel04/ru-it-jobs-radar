@@ -120,7 +120,7 @@ def test_skills_split_glued_and_keep_cpp_apart() -> None:
 
 
 def test_skills_longer_match_wins() -> None:
-    assert skills("MS SQL и 1С-Битрикс") == ["MS SQL Server", "Bitrix"]
+    assert skills("MS SQL и 1С-Битрикс") == ["MS SQL Server", "1С-Битрикс"]
 
 
 def test_skills_leave_out_what_the_guide_does_not_count() -> None:

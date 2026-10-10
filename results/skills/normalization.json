@@ -1,0 +1,500 @@
+{
+  "source_script": "src/radar/extract/skill_review.py",
+  "command": "python -m radar.extract.skill_review report",
+  "commit": "ac55871-dirty",
+  "created_at": "2026-10-10T14:59:42+00:00",
+  "metrics": {
+    "dictionary_skills": {
+      "value": 978,
+      "n": null,
+      "denominator": null
+    },
+    "dictionary_aliases": {
+      "value": 516,
+      "n": null,
+      "denominator": null
+    },
+    "dictionary_patterns": {
+      "value": 66,
+      "n": null,
+      "denominator": null
+    },
+    "dictionary_non_skill_names": {
+      "value": 186,
+      "n": null,
+      "denominator": null
+    },
+    "dictionary_gold_only": {
+      "value": 0.4519,
+      "n": 442,
+      "denominator": 978
+    },
+    "dictionary_strict_vocabulary": {
+      "value": 0.5153,
+      "n": 504,
+      "denominator": 978
+    },
+    "dev_mentions": {
+      "value": 842,
+      "n": null,
+      "denominator": null
+    },
+    "dev_coverage_v1": {
+      "value": 1.0,
+      "n": 842,
+      "denominator": 842
+    },
+    "dev_coverage_v1_without_dev_only_entries": {
+      "value": 0.8634,
+      "n": 727,
+      "denominator": 842
+    },
+    "dev_unknown_v1_without_dev_only_entries": {
+      "value": 0.1366,
+      "n": 115,
+      "denominator": 842
+    },
+    "dev_non_skill_v1": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 842
+    },
+    "dev_merged_spellings_v1": {
+      "value": 0.0131,
+      "n": 11,
+      "denominator": 842
+    },
+    "dev_coverage_v0": {
+      "value": 0.652,
+      "n": 549,
+      "denominator": 842
+    },
+    "dev_coverage_v0_own_name": {
+      "value": 0.5368,
+      "n": 452,
+      "denominator": 842
+    },
+    "pool_candidates": {
+      "value": 897,
+      "n": null,
+      "denominator": null
+    },
+    "pool_candidates_resolved": {
+      "value": 0.4705,
+      "n": 422,
+      "denominator": 897
+    },
+    "pool_candidates_non_skill": {
+      "value": 0.087,
+      "n": 78,
+      "denominator": 897
+    },
+    "pool_candidates_rejected": {
+      "value": 0.4426,
+      "n": 397,
+      "denominator": 897
+    },
+    "pool_candidates_unreviewed": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 897
+    },
+    "proposals_resolved_after_review": {
+      "value": 0.1655,
+      "n": 73,
+      "denominator": 441
+    },
+    "alias_proposals_accepted": {
+      "value": 0.1053,
+      "n": 2,
+      "denominator": 19
+    },
+    "v0_casefold_skills_f1": {
+      "value": 0.643064,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.587516,
+      "ci_high": 0.69349
+    },
+    "v0_casefold_skills_precision": {
+      "value": 0.821033,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.774545,
+      "ci_high": 0.863396
+    },
+    "v0_casefold_skills_recall": {
+      "value": 0.528504,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.467871,
+      "ci_high": 0.588239
+    },
+    "v0_casefold_macro_f1": {
+      "value": 0.874232,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.852157,
+      "ci_high": 0.892771
+    },
+    "v0_dictionary_skills_f1": {
+      "value": 0.656046,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.600971,
+      "ci_high": 0.706357
+    },
+    "v0_dictionary_skills_precision": {
+      "value": 0.835793,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.792074,
+      "ci_high": 0.876452
+    },
+    "v0_dictionary_skills_recall": {
+      "value": 0.539928,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.478959,
+      "ci_high": 0.600014
+    },
+    "v0_dictionary_macro_f1": {
+      "value": 0.875855,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.853979,
+      "ci_high": 0.89457
+    },
+    "v1_casefold_skills_f1": {
+      "value": 0.836815,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.80626,
+      "ci_high": 0.867098
+    },
+    "v1_casefold_skills_precision": {
+      "value": 0.928986,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.895929,
+      "ci_high": 0.956401
+    },
+    "v1_casefold_skills_recall": {
+      "value": 0.761283,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.716807,
+      "ci_high": 0.805775
+    },
+    "v1_casefold_macro_f1": {
+      "value": 0.898451,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.877046,
+      "ci_high": 0.916872
+    },
+    "v1_dictionary_skills_f1": {
+      "value": 0.846305,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.81544,
+      "ci_high": 0.875252
+    },
+    "v1_dictionary_skills_precision": {
+      "value": 0.937681,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.907032,
+      "ci_high": 0.962964
+    },
+    "v1_dictionary_skills_recall": {
+      "value": 0.771156,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.726463,
+      "ci_high": 0.815993
+    },
+    "v1_dictionary_macro_f1": {
+      "value": 0.899637,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.878425,
+      "ci_high": 0.917872
+    },
+    "v1_strict_dictionary_skills_f1": {
+      "value": 0.829333,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.797033,
+      "ci_high": 0.860016
+    },
+    "v1_strict_dictionary_skills_precision": {
+      "value": 0.940998,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.908602,
+      "ci_high": 0.968487
+    },
+    "v1_strict_dictionary_skills_recall": {
+      "value": 0.741359,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.694408,
+      "ci_high": 0.786057
+    },
+    "v1_strict_dictionary_macro_f1": {
+      "value": 0.897516,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.876003,
+      "ci_high": 0.915839
+    },
+    "v1_gold_vocabulary_dictionary_skills_f1": {
+      "value": 0.936709,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.919448,
+      "ci_high": 0.950995
+    },
+    "v1_gold_vocabulary_dictionary_skills_precision": {
+      "value": 0.947561,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.921211,
+      "ci_high": 0.968205
+    },
+    "v1_gold_vocabulary_dictionary_skills_recall": {
+      "value": 0.926103,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.900501,
+      "ci_high": 0.947733
+    },
+    "v1_gold_vocabulary_dictionary_macro_f1": {
+      "value": 0.910938,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.889825,
+      "ci_high": 0.929258
+    },
+    "dictionary_v1_minus_v0_casefold_skills_f1": {
+      "value": 0.193751,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.159274,
+      "ci_high": 0.232539
+    },
+    "dictionary_v1_minus_v0_dictionary_skills_f1": {
+      "value": 0.190258,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.153892,
+      "ci_high": 0.23125
+    },
+    "comparison_dictionary_minus_casefold_v0_skills_f1": {
+      "value": 0.012983,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.005421,
+      "ci_high": 0.021416
+    },
+    "comparison_dictionary_minus_casefold_v1_skills_f1": {
+      "value": 0.00949,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.003394,
+      "ci_high": 0.016269
+    },
+    "strict_minus_v0_dictionary_skills_f1": {
+      "value": 0.173287,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.137774,
+      "ci_high": 0.213323
+    },
+    "v1_minus_strict_dictionary_skills_f1": {
+      "value": 0.016971,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.007935,
+      "ci_high": 0.028226
+    },
+    "gold_vocabulary_minus_v1_dictionary_skills_f1": {
+      "value": 0.090404,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.065202,
+      "ci_high": 0.117586
+    }
+  },
+  "split": "dev",
+  "gold_file": "data/gold/dev.jsonl",
+  "gold_sha256": "48bddd3b1f101995d9686ff794c1d22f92bfd7c6209faab74ea6a8350b404b62",
+  "dictionary_sha256": "cca83e1083d5ba4fb16ea0c25124981c1f3d03cdc3d70fd429c0c30b26a85de6",
+  "n_examples": 165,
+  "bootstrap": {
+    "n_resamples": 2000,
+    "seed": 20261008,
+    "confidence": 0.95
+  },
+  "systems": {
+    "v0_casefold": "baseline skills by the v0 seed, names compared by case and whitespace (E1)",
+    "v0_dictionary": "baseline skills by the v0 seed, names compared after v1 normalization",
+    "v1_casefold": "baseline skills by v1 without gold-only entries, compared by case and whitespace",
+    "v1_dictionary": "baseline skills by v1 without gold-only entries, compared after v1 normalization",
+    "v1_strict_dictionary": "v1 searching only entries v0 searched or whose spelling train_pool candidates surfaced on their own, compared after v1 normalization",
+    "v1_gold_vocabulary_dictionary": "v1 searching gold-only entries too: leaks label names, a reference only"
+  },
+  "categories": {
+    "ml": 95,
+    "network": 85,
+    "devops": 79,
+    "framework": 75,
+    "platform": 73,
+    "security": 65,
+    "data": 63,
+    "hardware": 60,
+    "language": 56,
+    "tools": 52,
+    "os": 43,
+    "methodology": 43,
+    "testing": 40,
+    "database": 38,
+    "bi": 34,
+    "design": 28,
+    "1c": 19,
+    "cloud": 14,
+    "office": 12,
+    "other": 4
+  },
+  "gold_only_by_split": {
+    "dev": 109,
+    "test": 301,
+    "dev+test": 32
+  },
+  "dev_unknown_without_dev_only_entries": {
+    "SAP HCM": 2,
+    "n8n": 2,
+    "Ragas": 2,
+    "DeepEval": 2,
+    "Langfuse": 2,
+    "ГАС Управление": 1,
+    "seaborn": 1,
+    "АСУО Service Desk": 1,
+    "EtherNet/IP": 1,
+    "OPC UA": 1,
+    "OPC DA": 1,
+    "MasterSCADA": 1,
+    "GE iFIX": 1,
+    "AstraRegul": 1,
+    "Эвотор": 1,
+    "Naumen Service Desk": 1,
+    "OTRS": 1,
+    "Vanessa Automation": 1,
+    "WinPost": 1,
+    "ИС Почтамт": 1,
+    "Kaggle": 1,
+    "CNN": 1,
+    "RNN": 1,
+    "SprutCAM": 1,
+    "Mathcad": 1,
+    "ArtCAM": 1,
+    "Mach3": 1,
+    "Random Forest": 1,
+    "LSTM": 1,
+    "Prophet": 1,
+    "DeepAR": 1,
+    "oVirt": 1,
+    "1С:ERP WE": 1,
+    "Босс-кадровик": 1,
+    "Галактика": 1,
+    "Cacti": 1,
+    "Munin": 1,
+    "ADO.NET": 1,
+    "GoF": 1,
+    "Canva": 1,
+    "Seaborn": 1,
+    "FIX": 1,
+    "SSE": 1,
+    "ASTS": 1,
+    "SberDocs": 1,
+    "C6x": 1,
+    "DaVinci": 1,
+    "Trello": 1,
+    "HUE": 1,
+    "SFT": 1,
+    "S4": 1,
+    "SAP FI": 1,
+    "SAP CO": 1,
+    "BM25": 1,
+    "typing": 1,
+    "Reciprocal Rank Fusion": 1,
+    "TruLens": 1,
+    "cProfile": 1,
+    "Scalene": 1,
+    "memory_profiler": 1,
+    "Context engineering": 1,
+    "LLM-as-a-judge": 1,
+    "PydanticAI": 1,
+    "NR ETL": 1,
+    "IBM DataStage": 1,
+    "Oracle APEX": 1,
+    "U-Boot": 1,
+    "Device Tree": 1,
+    "OVN": 1,
+    "OVSDB": 1,
+    "OpenFlow": 1,
+    "CNI": 1,
+    "ovs-ofctl": 1,
+    "ovs-vsctl": 1,
+    "ovs-appctl": 1,
+    "Geneve": 1,
+    "1С:Альфа-Авто": 1,
+    "shadcn/ui": 1,
+    "Deep Research": 1,
+    "POSIX": 1,
+    "MaxPatrol SIEM": 1,
+    "PT NAD": 1,
+    "ViPNet IDS": 1,
+    "Suricata": 1,
+    "Threat hunting": 1,
+    "Threat Intelligence": 1,
+    "DFIR": 1,
+    "MaxPatrol VM": 1,
+    "RedCheck": 1,
+    "Purple team": 1,
+    "Red Team": 1,
+    "Postgres Pro": 1,
+    "CLIP": 1,
+    "1С:УМФО": 1,
+    "BSL": 1,
+    "DirectBank": 1,
+    "YAxUnit": 1,
+    "OpenMetadata": 1,
+    "Service Manager": 1,
+    "Positive Technologies": 1,
+    "Аладдин": 1,
+    "LLDP": 1,
+    "Kong": 1,
+    "Dovecot": 1,
+    "T5": 1,
+    "Falcon": 1,
+    "Pinecone": 1,
+    "МСВС": 1,
+    "curl": 1,
+    "Platform V": 1
+  },
+  "dev_merged_spellings": {
+    "SIMATIC STEP 7 -> STEP 7": 1,
+    "Red Hat -> RHEL": 1,
+    ".NET Framework -> .NET": 1,
+    "1С:Комплексная автоматизация -> 1С:КА": 1,
+    "Microsoft Office -> MS Office": 1,
+    "Swagger UI -> Swagger": 1,
+    "VS Code -> Visual Studio Code": 1,
+    "Infrastructure as Code -> IaC": 1,
+    "TFS -> Azure DevOps": 1,
+    "Azure DevOps Server -> Azure DevOps": 1,
+    "Red Hat Linux -> RHEL": 1
+  }
+}
