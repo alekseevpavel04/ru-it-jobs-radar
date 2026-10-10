@@ -1,0 +1,624 @@
+{
+  "source_script": "src/radar/extract/teacher.py",
+  "command": "python -m radar.extract.teacher --probe-report 50",
+  "commit": "7f2bf6b-dirty",
+  "created_at": "2026-10-10T15:19:15+00:00",
+  "metrics": {
+    "qwen_valid_json": {
+      "value": 1.0,
+      "n": 50,
+      "denominator": 50
+    },
+    "qwen_request_errors": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 50
+    },
+    "qwen_repaired_empty_objects": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 50
+    },
+    "qwen_latency_s_median": {
+      "value": 2.97,
+      "n": null,
+      "denominator": null
+    },
+    "qwen_prompt_tokens_mean": {
+      "value": 6035.7,
+      "n": null,
+      "denominator": null
+    },
+    "qwen_completion_tokens_mean": {
+      "value": 92.8,
+      "n": null,
+      "denominator": null
+    },
+    "qwen_completion_tokens_max": {
+      "value": 217,
+      "n": null,
+      "denominator": null
+    },
+    "qwen_train_pool_wall_s_per_record_w3": {
+      "value": 1.152,
+      "n": null,
+      "denominator": null,
+      "records": 50
+    },
+    "qwen_dev_wall_s_per_record_w1": {
+      "value": 2.203,
+      "n": null,
+      "denominator": null,
+      "records": 30
+    },
+    "qwen_dev_wall_s_per_record_w3": {
+      "value": 1.239,
+      "n": null,
+      "denominator": null,
+      "records": 135
+    },
+    "qwen_forecast_train_pool_hours": {
+      "value": 4.9,
+      "n": null,
+      "denominator": null,
+      "unit": "hours",
+      "records": 15459,
+      "s_per_record": 1.152
+    },
+    "yandex_valid_json": {
+      "value": 1.0,
+      "n": 50,
+      "denominator": 50
+    },
+    "yandex_request_errors": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 50
+    },
+    "yandex_repaired_empty_objects": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 50
+    },
+    "yandex_latency_s_median": {
+      "value": 2.64,
+      "n": null,
+      "denominator": null
+    },
+    "yandex_prompt_tokens_mean": {
+      "value": 4472.3,
+      "n": null,
+      "denominator": null
+    },
+    "yandex_completion_tokens_mean": {
+      "value": 92.3,
+      "n": null,
+      "denominator": null
+    },
+    "yandex_completion_tokens_max": {
+      "value": 142,
+      "n": null,
+      "denominator": null
+    },
+    "yandex_train_pool_wall_s_per_record_w3": {
+      "value": 0.986,
+      "n": null,
+      "denominator": null,
+      "records": 50
+    },
+    "yandex_dev_wall_s_per_record_w1": {
+      "value": 1.99,
+      "n": null,
+      "denominator": null,
+      "records": 30
+    },
+    "yandex_dev_wall_s_per_record_w3": {
+      "value": 1.029,
+      "n": null,
+      "denominator": null,
+      "records": 135
+    },
+    "yandex_forecast_train_pool_hours": {
+      "value": 4.2,
+      "n": null,
+      "denominator": null,
+      "unit": "hours",
+      "records": 15459,
+      "s_per_record": 0.986
+    },
+    "agreement_role_exact": {
+      "value": 0.62,
+      "n": 31,
+      "denominator": 50
+    },
+    "agreement_skills_exact": {
+      "value": 0.26,
+      "n": 13,
+      "denominator": 50
+    },
+    "agreement_grade_exact": {
+      "value": 0.88,
+      "n": 44,
+      "denominator": 50
+    },
+    "agreement_work_format_exact": {
+      "value": 0.98,
+      "n": 49,
+      "denominator": 50
+    },
+    "agreement_experience_years_exact": {
+      "value": 0.88,
+      "n": 44,
+      "denominator": 50
+    },
+    "agreement_all_fields_equal": {
+      "value": 0.16,
+      "n": 8,
+      "denominator": 50
+    },
+    "agreement_skills_f1_yandex_vs_qwen": {
+      "value": 0.5527,
+      "n": null,
+      "denominator": null
+    },
+    "agreement_role_f1_yandex_vs_qwen": {
+      "value": 0.62,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "probe": {
+    "n": 50,
+    "ids_sha256": "766629b9564e0138fcb7cb8fbf1ed6a4d995d2e561438d129dd7ef7afd97d74c",
+    "design": "proportional stratified sample of train_pool by source x role proxy, fixed random order (seed of configs/eval.toml)",
+    "strata": {
+      "habr|analyst_other": {
+        "probe": 0,
+        "pool": 78
+      },
+      "habr|dev": {
+        "probe": 1,
+        "pool": 135
+      },
+      "habr|ml_ds_data": {
+        "probe": 0,
+        "pool": 58
+      },
+      "habr|non_it_noise": {
+        "probe": 0,
+        "pool": 85
+      },
+      "habr|other_it": {
+        "probe": 0,
+        "pool": 86
+      },
+      "habr|qa_devops_sys": {
+        "probe": 1,
+        "pool": 202
+      },
+      "trudvsem_snapshot|analyst_other": {
+        "probe": 1,
+        "pool": 213
+      },
+      "trudvsem_snapshot|dev": {
+        "probe": 4,
+        "pool": 1323
+      },
+      "trudvsem_snapshot|ml_ds_data": {
+        "probe": 0,
+        "pool": 51
+      },
+      "trudvsem_snapshot|non_it_noise": {
+        "probe": 10,
+        "pool": 3159
+      },
+      "trudvsem_snapshot|other_it": {
+        "probe": 2,
+        "pool": 663
+      },
+      "trudvsem_snapshot|qa_devops_sys": {
+        "probe": 6,
+        "pool": 1813
+      },
+      "trudvsem|analyst_other": {
+        "probe": 1,
+        "pool": 228
+      },
+      "trudvsem|dev": {
+        "probe": 6,
+        "pool": 1766
+      },
+      "trudvsem|ml_ds_data": {
+        "probe": 0,
+        "pool": 22
+      },
+      "trudvsem|non_it_noise": {
+        "probe": 13,
+        "pool": 3993
+      },
+      "trudvsem|other_it": {
+        "probe": 1,
+        "pool": 372
+      },
+      "trudvsem|qa_devops_sys": {
+        "probe": 4,
+        "pool": 1212
+      }
+    }
+  },
+  "train_pool_records": 15459,
+  "teachers": {
+    "qwen": {
+      "identity": {
+        "model": "Qwen3-8B-Q4_K_M",
+        "prompt_sha256": "5937b5a6fdf2adeb28ed2c8541631ad7cf602fe19efa46fc9e5db06e650f8728",
+        "schema_sha256": "f71af6bb76c28c170911aaa71363fe791142357ef6110d50a53891500a139d12",
+        "request": {
+          "temperature": 0,
+          "max_tokens": 1024,
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      },
+      "timing": {
+        "train_pool": {
+          "3": {
+            "seconds": 1.152,
+            "n_records": 50
+          }
+        },
+        "dev": {
+          "1": {
+            "seconds": 2.203,
+            "n_records": 30
+          },
+          "3": {
+            "seconds": 1.239,
+            "n_records": 135
+          }
+        }
+      }
+    },
+    "yandex": {
+      "identity": {
+        "model": "YandexGPT-5-Lite-8B-instruct-Q4_K_M",
+        "prompt_sha256": "5937b5a6fdf2adeb28ed2c8541631ad7cf602fe19efa46fc9e5db06e650f8728",
+        "schema_sha256": "f71af6bb76c28c170911aaa71363fe791142357ef6110d50a53891500a139d12",
+        "request": {
+          "temperature": 0,
+          "max_tokens": 1024
+        }
+      },
+      "timing": {
+        "train_pool": {
+          "3": {
+            "seconds": 0.986,
+            "n_records": 50
+          }
+        },
+        "dev": {
+          "1": {
+            "seconds": 1.99,
+            "n_records": 30
+          },
+          "3": {
+            "seconds": 1.029,
+            "n_records": 135
+          }
+        }
+      }
+    }
+  },
+  "agreement": {
+    "a": "qwen",
+    "b": "yandex",
+    "records_both_valid": 50,
+    "method": "radar.eval.agreement.compare: exact per field after ordering lists, F1 of b against a; no gold on these records, so agreement is not accuracy",
+    "f1_b_against_a": {
+      "role_f1": 0.62,
+      "role_macro_f1": 0.6053,
+      "grade_f1": 0.75,
+      "work_format_f1": 0.8889,
+      "employment_type_f1": 0.8571,
+      "skills_f1": 0.5527,
+      "cities_f1": 0.972,
+      "salary_f1": 0.9167,
+      "experience_years_f1": 0.8611,
+      "macro_f1": 0.8023
+    },
+    "disagreements": [
+      {
+        "id": "habr:1000167815",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "habr:1000168581",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem:0eee4154-bd98-11f1-a6f7-8fbfcf4a8b82",
+        "fields": [
+          "skills",
+          "work_format",
+          "experience_years"
+        ]
+      },
+      {
+        "id": "trudvsem:0fcd9f78-a51b-11f1-8f65-7f3d797fed49",
+        "fields": [
+          "role",
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem:2002fae4-b757-11f1-a976-fd3d2b53720b",
+        "fields": [
+          "role",
+          "grade"
+        ]
+      },
+      {
+        "id": "trudvsem:2367f306-c177-11f1-aa68-7523fb122f6d",
+        "fields": [
+          "role",
+          "grade",
+          "skills",
+          "experience_years"
+        ]
+      },
+      {
+        "id": "trudvsem:482e5148-918c-11f1-9d62-2f50b9e6b1e0",
+        "fields": [
+          "role",
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem:52f3a758-3a3a-11f1-902f-0f8971411102",
+        "fields": [
+          "role",
+          "skills",
+          "salary"
+        ]
+      },
+      {
+        "id": "trudvsem:6410ed0b-ab45-11f1-9f0e-a574101ccb6b",
+        "fields": [
+          "role",
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem:6c427ce0-b71c-11f1-a9f1-81af42855215",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem:6fd7a7a4-c08a-11f1-95b7-7b433e2e68a9",
+        "fields": [
+          "role"
+        ]
+      },
+      {
+        "id": "trudvsem:749f99d8-efae-11f0-9535-877db9a256ca",
+        "fields": [
+          "role",
+          "cities"
+        ]
+      },
+      {
+        "id": "trudvsem:87f36b58-924d-11f1-b277-2737f6f4cf0b",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem:8a003950-601b-11f1-8c7d-0f19594344d3",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem:9d2c58c5-da54-11ec-ba0a-57fc951f3846",
+        "fields": [
+          "grade",
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem:ab418b98-36eb-11f1-98b8-3554601360ec",
+        "fields": [
+          "skills",
+          "salary"
+        ]
+      },
+      {
+        "id": "trudvsem:b747ed08-5da4-11f1-a733-0758b1506dc0",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem:c4965fc0-4c96-11f0-835f-e7d0d2cf29b1",
+        "fields": [
+          "role",
+          "grade",
+          "skills",
+          "experience_years"
+        ]
+      },
+      {
+        "id": "trudvsem:c83fcf38-7c57-11f1-96a1-71ec6ab38b2c",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem:d0c17e62-27e1-11ed-8afe-93f7cc862eb6",
+        "fields": [
+          "role",
+          "skills",
+          "cities"
+        ]
+      },
+      {
+        "id": "trudvsem:e2958212-8a15-11ef-ac7b-25abf1fceba2",
+        "fields": [
+          "role",
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem:f86232a8-fcc4-11f0-af90-57d5099ce116",
+        "fields": [
+          "role",
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:04fed338-4926-11f1-ad90-476710e07e50",
+        "fields": [
+          "role",
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:26f61683-a455-11ec-bf37-bf2cfe8c828d",
+        "fields": [
+          "role",
+          "skills",
+          "employment_type"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:27b81bb8-5efd-11f1-b27b-17d0e3ce57d4",
+        "fields": [
+          "role",
+          "skills",
+          "salary"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:587beb38-760b-11f1-b101-4d5cee8ba1a8",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:622001f8-47ba-11f1-a599-b56fc54276c6",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:66025aa8-e4b1-11f0-9979-c1b4d62e7e9b",
+        "fields": [
+          "salary",
+          "experience_years"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:66082004-63f2-11f1-b0d8-ebf837d739b4",
+        "fields": [
+          "skills",
+          "experience_years"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:8649df00-80ff-11f1-9007-a3d44d4e1e89",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:97a59a18-f5df-11f0-8628-a3cca5294b78",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:9ef43390-c5d7-11f0-9de4-c1fdc28a2fb6",
+        "fields": [
+          "role",
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:b4ba2448-7e74-11f1-881f-b11bcd9b7b98",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:c4d6f64b-5a58-11f1-80a4-e98cbe7b411b",
+        "fields": [
+          "role",
+          "grade",
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:c5305540-4a0f-11f1-b4bd-353d35c994b0",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:cd7fa96d-80f3-11f1-9f2b-a9dc3ecfdb9f",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:ce65ad34-1964-11f1-8cfe-618bd762e073",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:d5c11ae0-e78e-11f0-b96a-d92b1f162aa8",
+        "fields": [
+          "role",
+          "grade",
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:d6de40e5-2b72-11ee-b08c-9586bb63c653",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:e08c3a88-efb9-11f0-b746-7ffc9083893e",
+        "fields": [
+          "role",
+          "experience_years"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:e33a6298-6f05-11f1-973f-ad582879672a",
+        "fields": [
+          "skills"
+        ]
+      },
+      {
+        "id": "trudvsem_snapshot:f5c034e4-843a-11f1-ac8d-4fe6b4df619d",
+        "fields": [
+          "skills"
+        ]
+      }
+    ]
+  },
+  "forecast_note": "wall seconds per record of the fastest train_pool run times train_pool size; train_pool changes when the corpus is rebuilt",
+  "dev_results": [
+    "results/extract/dev_teacher_qwen.json",
+    "results/extract/dev_teacher_yandex.json"
+  ]
+}

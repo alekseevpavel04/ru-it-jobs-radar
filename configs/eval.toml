@@ -19,4 +19,4 @@ fields = ["role", "grade", "skills", "salary", "work_format", "cities", "experie
 [skills]
 # How skill names are compared: "casefold" (case and whitespace only) or "dictionary" (spellings of
 # configs/skills.toml mapped to their canonical name first, so "Postgres" counts as "PostgreSQL").
-normalization = "casefold"
+normalization = "dictionary"
