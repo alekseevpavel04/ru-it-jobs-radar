@@ -1,23 +1,23 @@
 {
   "source_script": "src/radar/collect/habr.py",
   "command": "python -m radar.collect.habr --summarize",
-  "commit": "6ab4777-dirty",
-  "created_at": "2026-10-08T19:56:50+00:00",
+  "commit": "7254200-dirty",
+  "created_at": "2026-10-10T13:27:30+00:00",
   "metrics": {
     "days": {
-      "value": 1,
+      "value": 2,
       "n": null,
       "denominator": null
     },
     "rows_total": {
-      "value": 1457,
+      "value": 2518,
       "n": null,
       "denominator": null
     },
     "last_run_coverage_of_site_counter": {
-      "value": 0.8584,
-      "n": 1049,
-      "denominator": 1222
+      "value": 0.8591,
+      "n": 1061,
+      "denominator": 1235
     },
     "last_run_cards_fetched": {
       "value": 149,
@@ -25,7 +25,7 @@
       "denominator": null
     },
     "last_run_cards_carried": {
-      "value": 585,
+      "value": 696,
       "n": null,
       "denominator": null
     },
@@ -35,12 +35,12 @@
       "denominator": null
     },
     "last_run_cards_deferred": {
-      "value": 314,
+      "value": 215,
       "n": null,
       "denominator": null
     },
     "last_run_requests": {
-      "value": 242,
+      "value": 243,
       "n": null,
       "denominator": null
     }
@@ -52,13 +52,13 @@
       "rows": 1457,
       "distinct_ids": 1058,
       "rejected_not_written": 0,
-      "parquet_bytes": 1325406,
+      "parquet_bytes": 1325917,
       "pii_removed": {
         "company_code": 5,
         "email": 5,
         "employer_name": 5,
         "nick": 5,
-        "person_name": 3,
+        "person_name": 19,
         "phone": 2
       },
       "runs": [
@@ -579,6 +579,194 @@
           "coverage": {
             "n": 1049,
             "denominator": 1222
+          }
+        }
+      ]
+    },
+    {
+      "dt": "2026-10-09",
+      "rows": 1061,
+      "distinct_ids": 1061,
+      "rejected_not_written": 0,
+      "parquet_bytes": 1205669,
+      "pii_removed": {
+        "company_code": 3,
+        "employer_name": 3,
+        "nick": 2,
+        "person_name": 19
+      },
+      "runs": [
+        {
+          "started_at": "2026-10-09T18:36:12.275716+00:00",
+          "finished_at": "2026-10-09T18:57:32.465484+00:00",
+          "dt": "2026-10-09",
+          "complete": true,
+          "site_counter": 1235,
+          "distinct_listed": 1061,
+          "passes": [
+            {
+              "name": "all_by_date",
+              "counter": 1235,
+              "pages": 20,
+              "items": 1000,
+              "capped": true
+            },
+            {
+              "name": "all_by_salary_desc",
+              "counter": 1235,
+              "pages": 20,
+              "items": 1000,
+              "capped": true
+            },
+            {
+              "name": "all_by_salary_asc",
+              "counter": 1235,
+              "pages": 20,
+              "items": 1000,
+              "capped": true
+            },
+            {
+              "name": "group:Разработка",
+              "counter": 267,
+              "pages": 6,
+              "items": 267,
+              "capped": false
+            },
+            {
+              "name": "group:Тестирование",
+              "counter": 69,
+              "pages": 2,
+              "items": 69,
+              "capped": false
+            },
+            {
+              "name": "group:Аналитика",
+              "counter": 176,
+              "pages": 4,
+              "items": 176,
+              "capped": false
+            },
+            {
+              "name": "group:Дизайн",
+              "counter": 7,
+              "pages": 1,
+              "items": 7,
+              "capped": false
+            },
+            {
+              "name": "group:Менеджмент",
+              "counter": 87,
+              "pages": 2,
+              "items": 87,
+              "capped": false
+            },
+            {
+              "name": "group:Информационная безопасность",
+              "counter": 77,
+              "pages": 2,
+              "items": 77,
+              "capped": false
+            },
+            {
+              "name": "group:Топ-менеджмент",
+              "counter": 11,
+              "pages": 1,
+              "items": 11,
+              "capped": false
+            },
+            {
+              "name": "group:Искусственный интеллект",
+              "counter": 30,
+              "pages": 1,
+              "items": 30,
+              "capped": false
+            },
+            {
+              "name": "group:Поддержка",
+              "counter": 68,
+              "pages": 2,
+              "items": 68,
+              "capped": false
+            },
+            {
+              "name": "group:Производство и строительство",
+              "counter": 5,
+              "pages": 1,
+              "items": 5,
+              "capped": false
+            },
+            {
+              "name": "group:Маркетинг",
+              "counter": 34,
+              "pages": 1,
+              "items": 34,
+              "capped": false
+            },
+            {
+              "name": "group:Администрирование",
+              "counter": 105,
+              "pages": 3,
+              "items": 105,
+              "capped": false
+            },
+            {
+              "name": "group:Контент",
+              "counter": 39,
+              "pages": 1,
+              "items": 39,
+              "capped": false
+            },
+            {
+              "name": "group:Продажи",
+              "counter": 61,
+              "pages": 2,
+              "items": 61,
+              "capped": false
+            },
+            {
+              "name": "group:HR",
+              "counter": 14,
+              "pages": 1,
+              "items": 14,
+              "capped": false
+            },
+            {
+              "name": "group:Офис",
+              "counter": 11,
+              "pages": 1,
+              "items": 11,
+              "capped": false
+            },
+            {
+              "name": "group:Зерокодинг",
+              "counter": 0,
+              "pages": 1,
+              "items": 0,
+              "capped": false
+            }
+          ],
+          "capped_passes": [
+            "all_by_date",
+            "all_by_salary_desc",
+            "all_by_salary_asc"
+          ],
+          "cards": {
+            "fetched": 149,
+            "carried": 696,
+            "gone": 0,
+            "failed": 1,
+            "deferred": 215,
+            "blocked": false
+          },
+          "written": 1061,
+          "duplicates_skipped": 0,
+          "rejected": 0,
+          "requests": 243,
+          "retries": 0,
+          "seconds_in_requests": 201.5,
+          "coverage": {
+            "n": 1061,
+            "denominator": 1235
           }
         }
       ]

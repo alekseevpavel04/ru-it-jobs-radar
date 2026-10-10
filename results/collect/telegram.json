@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/collect/telegram.py",
-  "command": "python -m radar.collect.telegram",
-  "commit": "f707872-dirty",
-  "created_at": "2026-10-08T14:22:51+00:00",
+  "command": "python -m radar.collect.telegram --summarize",
+  "commit": "7254200-dirty",
+  "created_at": "2026-10-10T13:27:41+00:00",
   "metrics": {
     "channels_enabled": {
       "value": 58,
@@ -10,23 +10,23 @@
       "denominator": null
     },
     "posts": {
-      "value": 1157,
+      "value": 134547,
       "n": null,
       "denominator": null
     },
     "vacancy_posts": {
-      "value": 0.8176,
-      "n": 946,
-      "denominator": 1157
+      "value": 0.507,
+      "n": 68211,
+      "denominator": 134547
     },
     "multi_vacancy_posts": {
-      "value": 0.0814,
-      "n": 77,
-      "denominator": 946
+      "value": 0.1124,
+      "n": 7667,
+      "denominator": 68211
     },
     "backfill_channels_reached_start": {
-      "value": 0.0,
-      "n": 0,
+      "value": 0.2632,
+      "n": 15,
       "denominator": 57
     },
     "last_daily_run_requests": {
@@ -52,224 +52,260 @@
   },
   "method": "recomputed from data/raw/telegram partitions (latest version of each post), _meta/runs.jsonl and _meta/state; years by published_at in Moscow time; vacancy posts by rules v2",
   "years": {
+    "2016": {
+      "posts": 6070,
+      "vacancy_posts": 1097
+    },
+    "2017": {
+      "posts": 7551,
+      "vacancy_posts": 1799
+    },
+    "2018": {
+      "posts": 9992,
+      "vacancy_posts": 2551
+    },
+    "2019": {
+      "posts": 10894,
+      "vacancy_posts": 2878
+    },
+    "2020": {
+      "posts": 13767,
+      "vacancy_posts": 3263
+    },
+    "2021": {
+      "posts": 23774,
+      "vacancy_posts": 9492
+    },
+    "2022": {
+      "posts": 12954,
+      "vacancy_posts": 8646
+    },
+    "2023": {
+      "posts": 14092,
+      "vacancy_posts": 10117
+    },
+    "2024": {
+      "posts": 13570,
+      "vacancy_posts": 10386
+    },
     "2025": {
-      "posts": 22,
-      "vacancy_posts": 20
+      "posts": 12271,
+      "vacancy_posts": 10104
     },
     "2026": {
-      "posts": 1135,
-      "vacancy_posts": 926
+      "posts": 9612,
+      "vacancy_posts": 7878
     }
   },
   "channels": {
     "datasciencejobs": {
-      "posts": 20,
-      "vacancy_posts": 14,
-      "multi_vacancy_posts": 1,
-      "first_published": "2026-09-15",
+      "posts": 1902,
+      "vacancy_posts": 1815,
+      "multi_vacancy_posts": 61,
+      "first_published": "2019-11-25",
       "last_published": "2026-10-08",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 95,
+        "posts_written": 1882,
+        "started_at": "2026-10-08T14:24:03+00:00",
+        "reached_start_at": "2026-10-08T14:29:05+00:00"
       }
     },
     "geekjobs": {
-      "posts": 20,
-      "vacancy_posts": 16,
-      "multi_vacancy_posts": 6,
-      "first_published": "2026-09-30",
+      "posts": 5046,
+      "vacancy_posts": 4330,
+      "multi_vacancy_posts": 520,
+      "first_published": "2022-01-10",
       "last_published": "2026-10-08",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 254,
+        "posts_written": 5026,
+        "started_at": "2026-10-08T14:29:05+00:00",
+        "reached_start_at": "2026-10-08T14:42:31+00:00"
       }
     },
     "habr_career": {
-      "posts": 20,
-      "vacancy_posts": 12,
-      "multi_vacancy_posts": 9,
-      "first_published": "2026-10-06",
+      "posts": 75156,
+      "vacancy_posts": 21687,
+      "multi_vacancy_posts": 3760,
+      "first_published": "2016-01-28",
       "last_published": "2026-10-08",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 3783,
+        "posts_written": 75136,
+        "started_at": "2026-10-08T14:42:31+00:00",
+        "reached_start_at": "2026-10-08T18:10:25+00:00"
       }
     },
     "foranalysts": {
-      "posts": 20,
-      "vacancy_posts": 17,
-      "multi_vacancy_posts": 3,
-      "first_published": "2026-09-30",
+      "posts": 6868,
+      "vacancy_posts": 6101,
+      "multi_vacancy_posts": 692,
+      "first_published": "2020-02-03",
       "last_published": "2026-10-08",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 347,
+        "posts_written": 6848,
+        "started_at": "2026-10-08T18:10:25+00:00",
+        "reached_start_at": "2026-10-08T18:28:50+00:00"
       }
     },
     "datajobschannel": {
-      "posts": 19,
-      "vacancy_posts": 15,
-      "multi_vacancy_posts": 2,
-      "first_published": "2026-08-28",
+      "posts": 3355,
+      "vacancy_posts": 3104,
+      "multi_vacancy_posts": 79,
+      "first_published": "2019-01-29",
       "last_published": "2026-10-08",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 170,
+        "posts_written": 3336,
+        "started_at": "2026-10-08T18:28:50+00:00",
+        "reached_start_at": "2026-10-08T18:38:01+00:00"
       }
     },
     "llm_jobs": {
-      "posts": 20,
-      "vacancy_posts": 18,
-      "multi_vacancy_posts": 0,
-      "first_published": "2025-11-14",
+      "posts": 36,
+      "vacancy_posts": 33,
+      "multi_vacancy_posts": 2,
+      "first_published": "2025-09-02",
       "last_published": "2026-10-07",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 1,
+        "posts_written": 16,
+        "started_at": "2026-10-08T18:38:01+00:00",
+        "reached_start_at": "2026-10-08T18:38:04+00:00"
       }
     },
     "nlp_jobs": {
-      "posts": 20,
-      "vacancy_posts": 18,
-      "multi_vacancy_posts": 2,
-      "first_published": "2025-01-13",
+      "posts": 118,
+      "vacancy_posts": 91,
+      "multi_vacancy_posts": 4,
+      "first_published": "2022-11-09",
       "last_published": "2026-09-23",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 6,
+        "posts_written": 98,
+        "started_at": "2026-10-08T18:38:04+00:00",
+        "reached_start_at": "2026-10-08T18:38:24+00:00"
       }
     },
     "remoteit": {
-      "posts": 20,
-      "vacancy_posts": 16,
-      "multi_vacancy_posts": 0,
-      "first_published": "2026-10-05",
+      "posts": 12781,
+      "vacancy_posts": 5587,
+      "multi_vacancy_posts": 21,
+      "first_published": "2017-08-09",
       "last_published": "2026-10-08",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 640,
+        "posts_written": 12761,
+        "started_at": "2026-10-08T18:38:24+00:00",
+        "reached_start_at": "2026-10-08T19:14:28+00:00"
       }
     },
     "jobforjunior": {
-      "posts": 20,
-      "vacancy_posts": 18,
-      "multi_vacancy_posts": 0,
-      "first_published": "2026-10-05",
+      "posts": 6716,
+      "vacancy_posts": 6055,
+      "multi_vacancy_posts": 225,
+      "first_published": "2022-01-10",
       "last_published": "2026-10-07",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 338,
+        "posts_written": 6696,
+        "started_at": "2026-10-08T19:14:28+00:00",
+        "reached_start_at": "2026-10-08T19:32:22+00:00"
       }
     },
     "job_python": {
-      "posts": 20,
-      "vacancy_posts": 18,
-      "multi_vacancy_posts": 0,
-      "first_published": "2026-09-28",
+      "posts": 6308,
+      "vacancy_posts": 5916,
+      "multi_vacancy_posts": 116,
+      "first_published": "2021-02-11",
       "last_published": "2026-10-08",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 320,
+        "posts_written": 6288,
+        "started_at": "2026-10-08T19:32:22+00:00",
+        "reached_start_at": "2026-10-08T19:49:31+00:00"
       }
     },
     "it_vakansii_jobs": {
-      "posts": 20,
-      "vacancy_posts": 16,
-      "multi_vacancy_posts": 0,
-      "first_published": "2026-09-24",
+      "posts": 2294,
+      "vacancy_posts": 1806,
+      "multi_vacancy_posts": 143,
+      "first_published": "2022-02-20",
       "last_published": "2026-10-08",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 122,
+        "posts_written": 2274,
+        "started_at": "2026-10-08T19:49:31+00:00",
+        "reached_start_at": "2026-10-08T19:56:22+00:00"
       }
     },
     "juniors_rabota_jobs": {
-      "posts": 19,
-      "vacancy_posts": 14,
-      "multi_vacancy_posts": 0,
-      "first_published": "2026-09-24",
+      "posts": 2485,
+      "vacancy_posts": 2137,
+      "multi_vacancy_posts": 6,
+      "first_published": "2022-11-26",
       "last_published": "2026-10-08",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 125,
+        "posts_written": 2466,
+        "started_at": "2026-10-08T19:56:22+00:00",
+        "reached_start_at": "2026-10-08T20:03:40+00:00"
       }
     },
     "it_interns": {
-      "posts": 20,
-      "vacancy_posts": 19,
-      "multi_vacancy_posts": 11,
-      "first_published": "2026-10-01",
+      "posts": 1704,
+      "vacancy_posts": 1035,
+      "multi_vacancy_posts": 159,
+      "first_published": "2022-08-19",
       "last_published": "2026-10-08",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 86,
+        "posts_written": 1684,
+        "started_at": "2026-10-08T20:03:40+00:00",
+        "reached_start_at": "2026-10-08T20:08:29+00:00"
       }
     },
     "remotejun": {
-      "posts": 20,
-      "vacancy_posts": 15,
-      "multi_vacancy_posts": 7,
-      "first_published": "2026-10-04",
+      "posts": 4932,
+      "vacancy_posts": 4448,
+      "multi_vacancy_posts": 1790,
+      "first_published": "2020-11-04",
       "last_published": "2026-10-08",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 247,
+        "posts_written": 4912,
+        "started_at": "2026-10-08T20:08:29+00:00",
+        "reached_start_at": "2026-10-08T20:22:00+00:00"
       }
     },
     "getitrussia": {
-      "posts": 20,
-      "vacancy_posts": 18,
-      "multi_vacancy_posts": 0,
-      "first_published": "2026-10-05",
+      "posts": 3987,
+      "vacancy_posts": 3364,
+      "multi_vacancy_posts": 53,
+      "first_published": "2017-04-10",
       "last_published": "2026-10-08",
       "backfill": {
-        "done": null,
-        "pages": null,
-        "posts_written": null,
-        "started_at": null,
-        "reached_start_at": null
+        "done": true,
+        "pages": 202,
+        "posts_written": 3967,
+        "started_at": "2026-10-08T20:22:00+00:00",
+        "reached_start_at": "2026-10-10T13:26:07+00:00"
       }
     },
     "devs_it": {
@@ -919,15 +955,71 @@
       }
     },
     "datajobschannel": {
+      "2019": {
+        "posts": 192,
+        "vacancy_posts": 169
+      },
+      "2020": {
+        "posts": 223,
+        "vacancy_posts": 203
+      },
+      "2021": {
+        "posts": 684,
+        "vacancy_posts": 640
+      },
+      "2022": {
+        "posts": 596,
+        "vacancy_posts": 573
+      },
+      "2023": {
+        "posts": 607,
+        "vacancy_posts": 576
+      },
+      "2024": {
+        "posts": 482,
+        "vacancy_posts": 441
+      },
+      "2025": {
+        "posts": 366,
+        "vacancy_posts": 329
+      },
       "2026": {
-        "posts": 19,
-        "vacancy_posts": 15
+        "posts": 205,
+        "vacancy_posts": 173
       }
     },
     "datasciencejobs": {
+      "2019": {
+        "posts": 23,
+        "vacancy_posts": 16
+      },
+      "2020": {
+        "posts": 234,
+        "vacancy_posts": 224
+      },
+      "2021": {
+        "posts": 325,
+        "vacancy_posts": 308
+      },
+      "2022": {
+        "posts": 251,
+        "vacancy_posts": 241
+      },
+      "2023": {
+        "posts": 270,
+        "vacancy_posts": 259
+      },
+      "2024": {
+        "posts": 332,
+        "vacancy_posts": 324
+      },
+      "2025": {
+        "posts": 309,
+        "vacancy_posts": 297
+      },
       "2026": {
-        "posts": 20,
-        "vacancy_posts": 14
+        "posts": 158,
+        "vacancy_posts": 146
       }
     },
     "datascjobs": {
@@ -985,9 +1077,29 @@
       }
     },
     "foranalysts": {
+      "2020": {
+        "posts": 1,
+        "vacancy_posts": 1
+      },
+      "2022": {
+        "posts": 1244,
+        "vacancy_posts": 1095
+      },
+      "2023": {
+        "posts": 1431,
+        "vacancy_posts": 1263
+      },
+      "2024": {
+        "posts": 1641,
+        "vacancy_posts": 1461
+      },
+      "2025": {
+        "posts": 1619,
+        "vacancy_posts": 1427
+      },
       "2026": {
-        "posts": 20,
-        "vacancy_posts": 17
+        "posts": 932,
+        "vacancy_posts": 854
       }
     },
     "fordevops": {
@@ -1015,15 +1127,67 @@
       }
     },
     "geekjobs": {
+      "2022": {
+        "posts": 1157,
+        "vacancy_posts": 984
+      },
+      "2023": {
+        "posts": 1199,
+        "vacancy_posts": 1027
+      },
+      "2024": {
+        "posts": 1140,
+        "vacancy_posts": 1004
+      },
+      "2025": {
+        "posts": 1002,
+        "vacancy_posts": 859
+      },
       "2026": {
-        "posts": 20,
-        "vacancy_posts": 16
+        "posts": 548,
+        "vacancy_posts": 456
       }
     },
     "getitrussia": {
+      "2017": {
+        "posts": 168,
+        "vacancy_posts": 148
+      },
+      "2018": {
+        "posts": 309,
+        "vacancy_posts": 221
+      },
+      "2019": {
+        "posts": 543,
+        "vacancy_posts": 389
+      },
+      "2020": {
+        "posts": 575,
+        "vacancy_posts": 435
+      },
+      "2021": {
+        "posts": 475,
+        "vacancy_posts": 414
+      },
+      "2022": {
+        "posts": 181,
+        "vacancy_posts": 144
+      },
+      "2023": {
+        "posts": 310,
+        "vacancy_posts": 272
+      },
+      "2024": {
+        "posts": 330,
+        "vacancy_posts": 287
+      },
+      "2025": {
+        "posts": 428,
+        "vacancy_posts": 411
+      },
       "2026": {
-        "posts": 20,
-        "vacancy_posts": 18
+        "posts": 668,
+        "vacancy_posts": 643
       }
     },
     "golangjobsit": {
@@ -1033,9 +1197,49 @@
       }
     },
     "habr_career": {
+      "2016": {
+        "posts": 6070,
+        "vacancy_posts": 1097
+      },
+      "2017": {
+        "posts": 7286,
+        "vacancy_posts": 1600
+      },
+      "2018": {
+        "posts": 8867,
+        "vacancy_posts": 2247
+      },
+      "2019": {
+        "posts": 8960,
+        "vacancy_posts": 2276
+      },
+      "2020": {
+        "posts": 11091,
+        "vacancy_posts": 1971
+      },
+      "2021": {
+        "posts": 19131,
+        "vacancy_posts": 6208
+      },
+      "2022": {
+        "posts": 4062,
+        "vacancy_posts": 1700
+      },
+      "2023": {
+        "posts": 3087,
+        "vacancy_posts": 1259
+      },
+      "2024": {
+        "posts": 2570,
+        "vacancy_posts": 1240
+      },
+      "2025": {
+        "posts": 2398,
+        "vacancy_posts": 1206
+      },
       "2026": {
-        "posts": 20,
-        "vacancy_posts": 12
+        "posts": 1634,
+        "vacancy_posts": 883
       }
     },
     "infosec_work": {
@@ -1045,15 +1249,47 @@
       }
     },
     "it_interns": {
+      "2022": {
+        "posts": 159,
+        "vacancy_posts": 61
+      },
+      "2023": {
+        "posts": 394,
+        "vacancy_posts": 146
+      },
+      "2024": {
+        "posts": 237,
+        "vacancy_posts": 87
+      },
+      "2025": {
+        "posts": 374,
+        "vacancy_posts": 288
+      },
       "2026": {
-        "posts": 20,
-        "vacancy_posts": 19
+        "posts": 540,
+        "vacancy_posts": 453
       }
     },
     "it_vakansii_jobs": {
+      "2022": {
+        "posts": 789,
+        "vacancy_posts": 619
+      },
+      "2023": {
+        "posts": 395,
+        "vacancy_posts": 290
+      },
+      "2024": {
+        "posts": 498,
+        "vacancy_posts": 351
+      },
+      "2025": {
+        "posts": 350,
+        "vacancy_posts": 328
+      },
       "2026": {
-        "posts": 20,
-        "vacancy_posts": 16
+        "posts": 262,
+        "vacancy_posts": 218
       }
     },
     "javascript_jobs_feed": {
@@ -1075,9 +1311,29 @@
       }
     },
     "job_python": {
+      "2021": {
+        "posts": 921,
+        "vacancy_posts": 895
+      },
+      "2022": {
+        "posts": 1134,
+        "vacancy_posts": 998
+      },
+      "2023": {
+        "posts": 1338,
+        "vacancy_posts": 1163
+      },
+      "2024": {
+        "posts": 1086,
+        "vacancy_posts": 1076
+      },
+      "2025": {
+        "posts": 1091,
+        "vacancy_posts": 1064
+      },
       "2026": {
-        "posts": 20,
-        "vacancy_posts": 18
+        "posts": 738,
+        "vacancy_posts": 720
       }
     },
     "job_react": {
@@ -1087,9 +1343,25 @@
       }
     },
     "jobforjunior": {
+      "2022": {
+        "posts": 1401,
+        "vacancy_posts": 1274
+      },
+      "2023": {
+        "posts": 1442,
+        "vacancy_posts": 1282
+      },
+      "2024": {
+        "posts": 1859,
+        "vacancy_posts": 1684
+      },
+      "2025": {
+        "posts": 1324,
+        "vacancy_posts": 1201
+      },
       "2026": {
-        "posts": 20,
-        "vacancy_posts": 18
+        "posts": 690,
+        "vacancy_posts": 614
       }
     },
     "jobforqa": {
@@ -1111,15 +1383,31 @@
       }
     },
     "juniors_rabota_jobs": {
+      "2022": {
+        "posts": 1,
+        "vacancy_posts": 0
+      },
+      "2023": {
+        "posts": 839,
+        "vacancy_posts": 651
+      },
+      "2024": {
+        "posts": 719,
+        "vacancy_posts": 651
+      },
+      "2025": {
+        "posts": 580,
+        "vacancy_posts": 542
+      },
       "2026": {
-        "posts": 19,
-        "vacancy_posts": 14
+        "posts": 346,
+        "vacancy_posts": 293
       }
     },
     "llm_jobs": {
       "2025": {
-        "posts": 4,
-        "vacancy_posts": 4
+        "posts": 20,
+        "vacancy_posts": 19
       },
       "2026": {
         "posts": 16,
@@ -1133,6 +1421,18 @@
       }
     },
     "nlp_jobs": {
+      "2022": {
+        "posts": 13,
+        "vacancy_posts": 8
+      },
+      "2023": {
+        "posts": 46,
+        "vacancy_posts": 34
+      },
+      "2024": {
+        "posts": 39,
+        "vacancy_posts": 31
+      },
       "2025": {
         "posts": 18,
         "vacancy_posts": 16
@@ -1203,15 +1503,75 @@
       }
     },
     "remoteit": {
+      "2017": {
+        "posts": 97,
+        "vacancy_posts": 51
+      },
+      "2018": {
+        "posts": 816,
+        "vacancy_posts": 83
+      },
+      "2019": {
+        "posts": 1176,
+        "vacancy_posts": 28
+      },
+      "2020": {
+        "posts": 1563,
+        "vacancy_posts": 363
+      },
+      "2021": {
+        "posts": 1724,
+        "vacancy_posts": 618
+      },
+      "2022": {
+        "posts": 1597,
+        "vacancy_posts": 645
+      },
+      "2023": {
+        "posts": 1500,
+        "vacancy_posts": 725
+      },
+      "2024": {
+        "posts": 1523,
+        "vacancy_posts": 693
+      },
+      "2025": {
+        "posts": 1519,
+        "vacancy_posts": 1285
+      },
       "2026": {
-        "posts": 20,
-        "vacancy_posts": 16
+        "posts": 1266,
+        "vacancy_posts": 1096
       }
     },
     "remotejun": {
+      "2020": {
+        "posts": 80,
+        "vacancy_posts": 66
+      },
+      "2021": {
+        "posts": 514,
+        "vacancy_posts": 409
+      },
+      "2022": {
+        "posts": 369,
+        "vacancy_posts": 304
+      },
+      "2023": {
+        "posts": 1234,
+        "vacancy_posts": 1170
+      },
+      "2024": {
+        "posts": 1114,
+        "vacancy_posts": 1056
+      },
+      "2025": {
+        "posts": 873,
+        "vacancy_posts": 832
+      },
       "2026": {
-        "posts": 20,
-        "vacancy_posts": 15
+        "posts": 748,
+        "vacancy_posts": 611
       }
     },
     "runello_rus_frontend": {
@@ -1231,16 +1591,30 @@
     {
       "dt": "2026-10-08",
       "complete": true,
-      "rows": 1157,
-      "distinct_ids": 1157,
-      "parquet_bytes": 1284736,
+      "rows": 131579,
+      "distinct_ids": 131579,
+      "parquet_bytes": 29554269,
       "pii_removed": {
-        "email": 135,
-        "inn": 2,
-        "nick": 533,
-        "person_name": 16,
-        "phone": 2,
-        "profile_link": 56
+        "email": 3720,
+        "inn": 28,
+        "nick": 20686,
+        "person_name": 6947,
+        "phone": 397,
+        "profile_link": 997
+      }
+    },
+    {
+      "dt": "2026-10-10",
+      "complete": false,
+      "rows": 2968,
+      "distinct_ids": 2968,
+      "parquet_bytes": 1541213,
+      "pii_removed": {
+        "email": 1069,
+        "nick": 1827,
+        "person_name": 255,
+        "phone": 196,
+        "profile_link": 61
       }
     }
   ]
