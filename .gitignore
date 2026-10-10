@@ -14,7 +14,10 @@ logs/
 .vscode/
 .DS_Store
 
-/data/
+# data stays local; only DVC pointers (data/*.dvc) are versioned, the remote lives in storage/.
+# "?*" instead of "*": DVC's ignore check treats "/data/*" as ignoring data/ itself and never finds the pointers.
+/data/?*
+!/data/*.dvc
 /models/
 mlruns/
 mlartifacts/

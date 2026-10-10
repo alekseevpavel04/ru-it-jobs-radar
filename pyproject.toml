@@ -32,6 +32,9 @@ dev = [
     "ruff==0.16.10",
     "types-psutil==7.2.2.20260906",
 ]
+dvc = [
+    "dvc==3.67.1",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/radar"]

@@ -1,0 +1,6 @@
+outs:
+- md5: 53da5608b4ad1d530c029e0149ebb91d.dir
+  size: 4776346
+  nfiles: 62
+  hash: md5
+  path: gold

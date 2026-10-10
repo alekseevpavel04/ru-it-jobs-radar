@@ -1,0 +1,6 @@
+[core]
+    analytics = false
+    check_update = false
+    remote = local
+['remote "local"']
+    url = ../storage/dvc-remote
