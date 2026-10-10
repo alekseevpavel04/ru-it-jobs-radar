@@ -1,0 +1,6 @@
+outs:
+- md5: 57629f038119bef824974264321da4a5.dir
+  size: 14066679
+  nfiles: 8
+  hash: md5
+  path: teacher
