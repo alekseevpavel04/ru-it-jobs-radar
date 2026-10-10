@@ -244,22 +244,43 @@ def _timing(path: Path) -> dict[str, Any] | None:
     return loaded
 
 
-def _head(client: httpx.Client, url: str) -> httpx.Response:
-    """HEAD with the download's backoff: the server once answered 405 to a HEAD that worked minutes later."""
+def _probe(client: httpx.Client, url: str) -> int:
+    """GET of the first byte; the file size comes from Content-Range."""
+    with client.stream("GET", url, headers={"Range": "bytes=0-0"}) as response:
+        if response.status_code == 404:
+            raise GoneError(url)
+        response.raise_for_status()
+        if response.status_code == 206 and "/" in response.headers.get("content-range", ""):
+            return int(response.headers["content-range"].rsplit("/", 1)[1])
+        if "content-length" in response.headers:
+            return int(response.headers["content-length"])
+    raise RuntimeError(f"{url}: no Content-Range or Content-Length, cannot resume or verify the download")
+
+
+def _size(client: httpx.Client, url: str) -> int:
+    """File size by HEAD, with the download's backoff.
+
+    The server answered 405 to HEAD on some days and to every HEAD since 10.10, while ranged GET kept
+    working, so 405 falls back to a one-byte ranged GET.
+    """
     for attempt, pause in enumerate((*BACKOFF_S, None)):
         try:
             head = client.head(url)
-        except httpx.TransportError as exc:
+            if head.status_code == 405:
+                return _probe(client, url)
+        except (httpx.TransportError, httpx.HTTPStatusError) as exc:
             problem = f"{type(exc).__name__}: {exc}"
         else:
             if head.status_code == 404:
                 raise GoneError(url)
             if head.is_success:
-                return head
+                if "content-length" not in head.headers:
+                    raise RuntimeError(f"{url}: no Content-Length, cannot resume or verify the download")
+                return int(head.headers["content-length"])
             problem = f"HTTP {head.status_code}"
         if pause is None:
-            raise RuntimeError(f"HEAD {url} failed after {attempt + 1} attempts: {problem}")
-        log.warning("HEAD %s: %s, retry %d in %ds", url, problem, attempt + 1, pause)
+            raise RuntimeError(f"size of {url} unknown after {attempt + 1} attempts: {problem}")
+        log.warning("size of %s: %s, retry %d in %ds", url, problem, attempt + 1, pause)
         time.sleep(pause)
     raise AssertionError("unreachable")
 
@@ -276,10 +297,7 @@ def download(client: httpx.Client, version: Version, tmp_dir: Path) -> Download:
     part = final.with_suffix(".xml.part")
     stamp = final.with_suffix(".fetched_at")
     timing_path = final.with_suffix(".download.json")
-    head = _head(client, version.url)
-    if "content-length" not in head.headers:
-        raise RuntimeError(f"{version.url}: no Content-Length, cannot resume or verify the download")
-    total = int(head.headers["content-length"])
+    total = _size(client, version.url)
     if final.exists() and final.stat().st_size == total and stamp.exists():
         timing = _timing(timing_path)
         if timing is None:

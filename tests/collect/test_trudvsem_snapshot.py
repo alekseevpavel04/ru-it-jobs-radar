@@ -182,12 +182,23 @@ def test_since_argument(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None
     assert calls == [(None, date(2026, 10, 9)), (None, None)]
 
 
-def test_head_retries_a_transient_error(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_size_retries_a_transient_error(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(ts, "BACKOFF_S", (0,))
-    answers = iter([405, 200])
+    answers = iter([503, 200])
 
     def handler(request: httpx.Request) -> httpx.Response:
         return httpx.Response(next(answers), headers={"content-length": "10"})
 
     with httpx.Client(transport=httpx.MockTransport(handler)) as client:
-        assert ts._head(client, "https://example.com/data.xml").status_code == 200
+        assert ts._size(client, "https://example.com/data.xml") == 10
+
+
+def test_size_falls_back_to_ranged_get_when_head_is_not_allowed() -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.method == "HEAD":
+            return httpx.Response(405)
+        assert request.headers["range"] == "bytes=0-0"
+        return httpx.Response(206, content=b"<", headers={"content-range": "bytes 0-0/3680182195"})
+
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        assert ts._size(client, "https://example.com/data.xml") == 3680182195
