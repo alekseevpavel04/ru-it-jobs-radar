@@ -38,7 +38,7 @@ lifetimes AS (
         quantileExactInclusive(0.5)(duration_days) AS median_days
     FROM {{ ref('int_vacancy_records') }}
     WHERE role_bucket != 'not_it' AND NOT is_sole_proprietor AND employer_key IS NOT NULL
-        AND is_closed AND NOT coalesce(is_left_censored, true)
+        AND is_closed AND closed_at IS NOT NULL AND NOT coalesce(is_left_censored, true)
     GROUP BY source, employer_key
 ),
 
