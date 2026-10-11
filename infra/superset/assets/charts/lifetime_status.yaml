@@ -1,0 +1,84 @@
+slice_name: Чем закончились вакансии к последнему дню сбора
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: __mart_lifetime
+  viz_type: echarts_timeseries_bar
+  x_axis: source_ru
+  time_grain_sqla: null
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - expressionType: SQL
+    sqlExpression: sum(closed)
+    label: Закрыты в известный день
+    hasCustomLabel: true
+    optionName: metric_89
+  - expressionType: SQL
+    sqlExpression: sum(closed_in_gap)
+    label: Закрыты в пропуск сбора
+    hasCustomLabel: true
+    optionName: metric_90
+  - expressionType: SQL
+    sqlExpression: sum(still_open)
+    label: Ещё открыты
+    hasCustomLabel: true
+    optionName: metric_91
+  groupby: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: level
+    operator: ==
+    operatorId: EQUALS
+    comparator: source
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+    filterOptionName: filter_92
+  order_desc: true
+  row_limit: 10000
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: horizontal
+  x_axis_title_margin: 15
+  y_axis_title_margin: 30
+  y_axis_title_position: Left
+  sort_series_type: sum
+  sort_series_ascending: false
+  color_scheme: supersetColors
+  show_legend: true
+  legendType: plain
+  legendOrientation: top
+  x_axis_time_format: '%d.%m'
+  tooltipTimeFormat: '%d.%m.%Y'
+  y_axis_format: ',d'
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipSortByMetric: true
+  truncateXAxis: true
+  truncateYAxis: false
+  zoomable: false
+  stack: Stack
+  only_total: false
+  show_value: true
+  markerEnabled: false
+  markerSize: 5
+  seriesType: line
+  x_axis_sort: null
+  extra_form_data: {}
+  dashboards: []
+query_context: null
+cache_timeout: null
+uuid: f7546541-f82d-5198-9266-e76fd0d7af39
+version: 1.0.0
+dataset_uuid: 393e6a40-af0e-5421-95b7-5a3ee3403048

@@ -1,0 +1,104 @@
+slice_name: 'Нижняя граница зарплаты по грейдам, ₽ в месяц: Работа в России'
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: __mart_salaries
+  viz_type: echarts_timeseries_bar
+  x_axis: grade_n
+  time_grain_sqla: null
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - expressionType: SQL
+    sqlExpression: max(salary_from_p25)
+    label: 25-й перцентиль
+    hasCustomLabel: true
+    optionName: metric_40
+  - expressionType: SQL
+    sqlExpression: max(salary_from_median)
+    label: Медиана
+    hasCustomLabel: true
+    optionName: metric_41
+  - expressionType: SQL
+    sqlExpression: max(salary_from_p75)
+    label: 75-й перцентиль
+    hasCustomLabel: true
+    optionName: metric_42
+  groupby: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: level
+    operator: ==
+    operatorId: EQUALS
+    comparator: grade
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+    filterOptionName: filter_43
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: source
+    operator: ==
+    operatorId: EQUALS
+    comparator: trudvsem
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+    filterOptionName: filter_44
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: with_from
+    operator: '>='
+    operatorId: GREATER_THAN_OR_EQUAL
+    comparator: 9
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+    filterOptionName: filter_39
+  order_desc: true
+  row_limit: 10000
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: horizontal
+  x_axis_title_margin: 15
+  y_axis_title_margin: 30
+  y_axis_title_position: Left
+  sort_series_type: sum
+  sort_series_ascending: true
+  color_scheme: supersetColors
+  show_legend: true
+  legendType: plain
+  legendOrientation: top
+  x_axis_time_format: '%d.%m'
+  tooltipTimeFormat: '%d.%m.%Y'
+  y_axis_format: $,.0f
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipSortByMetric: true
+  truncateXAxis: true
+  truncateYAxis: false
+  zoomable: false
+  stack: null
+  only_total: true
+  show_value: true
+  markerEnabled: false
+  markerSize: 5
+  seriesType: line
+  x_axis_sort: Медиана
+  extra_form_data: {}
+  dashboards: []
+query_context: null
+cache_timeout: null
+uuid: c3e0042d-6664-5993-9b2a-b9ea9cbb32ac
+version: 1.0.0
+dataset_uuid: 16f3198a-5e20-509b-a6c9-ced677f73bb3

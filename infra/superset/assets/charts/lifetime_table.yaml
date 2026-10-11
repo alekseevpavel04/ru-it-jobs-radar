@@ -1,0 +1,115 @@
+slice_name: 'Время жизни вакансий: все строки витрины'
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: __mart_lifetime
+  viz_type: table
+  query_mode: aggregate
+  groupby:
+  - source_ru
+  - role_group_ru
+  metrics:
+  - expressionType: SQL
+    sqlExpression: max(vacancies)
+    label: Вакансий
+    hasCustomLabel: true
+    optionName: metric_93
+  - expressionType: SQL
+    sqlExpression: max(closed)
+    label: Закрыты
+    hasCustomLabel: true
+    optionName: metric_94
+  - expressionType: SQL
+    sqlExpression: max(still_open)
+    label: Ещё открыты
+    hasCustomLabel: true
+    optionName: metric_95
+  - expressionType: SQL
+    sqlExpression: max(closed_by_repost)
+    label: Закрыты перепубликацией
+    hasCustomLabel: true
+    optionName: metric_96
+  - expressionType: SQL
+    sqlExpression: max(closed_in_quantiles)
+    label: n, в квантилях
+    hasCustomLabel: true
+    optionName: metric_97
+  - expressionType: SQL
+    sqlExpression: max(duration_days_p25)
+    label: 25-й перцентиль, дней
+    hasCustomLabel: true
+    optionName: metric_98
+  - expressionType: SQL
+    sqlExpression: max(duration_days_median)
+    label: Медиана, дней
+    hasCustomLabel: true
+    optionName: metric_99
+  - expressionType: SQL
+    sqlExpression: max(duration_days_p75)
+    label: 75-й перцентиль, дней
+    hasCustomLabel: true
+    optionName: metric_100
+  - expressionType: SQL
+    sqlExpression: max(duration_days_p90)
+    label: 90-й перцентиль, дней
+    hasCustomLabel: true
+    optionName: metric_101
+  - expressionType: SQL
+    sqlExpression: max(window_days)
+    label: Дней в окне сбора
+    hasCustomLabel: true
+    optionName: metric_102
+  all_columns: []
+  percent_metrics: []
+  timeseries_limit_metric:
+    expressionType: SQL
+    sqlExpression: max(vacancies)
+    label: Вакансий
+    hasCustomLabel: true
+    optionName: metric_103
+  order_desc: true
+  adhoc_filters: []
+  row_limit: 100
+  server_page_length: 10
+  server_pagination: false
+  table_timestamp_format: '%d.%m.%Y'
+  show_cell_bars: false
+  color_pn: false
+  allow_rearrange_columns: false
+  include_search: false
+  column_config:
+    Вакансий:
+      d3NumberFormat: ',d'
+    Закрыты:
+      d3NumberFormat: ',d'
+    Ещё открыты:
+      d3NumberFormat: ',d'
+    Закрыты перепубликацией:
+      d3NumberFormat: ',d'
+    n, в квантилях:
+      d3NumberFormat: ',d'
+    25-й перцентиль, дней:
+      d3NumberFormat: ',.1f'
+      showCellBars: false
+    Медиана, дней:
+      d3NumberFormat: ',.1f'
+      showCellBars: false
+    75-й перцентиль, дней:
+      d3NumberFormat: ',.1f'
+      showCellBars: false
+    90-й перцентиль, дней:
+      d3NumberFormat: ',.1f'
+      showCellBars: false
+    Дней в окне сбора:
+      d3NumberFormat: ',d'
+  conditional_formatting: []
+  show_totals: false
+  extra_form_data: {}
+  dashboards: []
+query_context: null
+cache_timeout: null
+uuid: 666f9207-e9cb-55d5-9165-b7e47541b973
+version: 1.0.0
+dataset_uuid: 393e6a40-af0e-5421-95b7-5a3ee3403048

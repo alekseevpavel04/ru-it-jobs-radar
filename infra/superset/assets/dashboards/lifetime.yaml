@@ -1,0 +1,158 @@
+dashboard_title: Время жизни вакансий
+description: null
+css: ''
+slug: radar-lifetime
+certified_by: null
+certification_details: null
+published: true
+uuid: 5ba718d6-9028-55c6-8b39-68258fd85bee
+position:
+  DASHBOARD_VERSION_KEY: v2
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  GRID_ID:
+    children:
+    - ROW-lifetime-1
+    - ROW-lifetime-2
+    - ROW-lifetime-3
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: Время жизни вакансий
+    type: HEADER
+  ROW-lifetime-1:
+    children:
+    - MARKDOWN-lifetime-1-1
+    - CHART-lifetime-period
+    id: ROW-lifetime-1
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  MARKDOWN-lifetime-1-1:
+    children: []
+    id: MARKDOWN-lifetime-1-1
+    meta:
+      code: '**Срез рынка без hh.ru.** Источники: открытые данные портала «Работа в России» (trudvsem), Хабр Карьера
+        и публичные Telegram-каналы. Крупнейшая площадка hh.ru не собирается, поэтому это не весь рынок IT-вакансий
+        России. Источники считаются отдельно и не складываются. Дата обновления: последний собранный день каждого
+        источника в таблице справа.
+
+
+        Вакансия закрыта, когда пропала из источника: из снимков портала на 7 дней, с Хабр Карьеры на 3 полных дня
+        сбора. Квантили считаются только по наблюдавшимся закрытиям вакансий, появившихся после первого дня сбора;
+        ещё открытые не учтены, поэтому квантили смещены к коротким срокам и не являются оценкой выживаемости. Оценка
+        Каплана-Мейера с учётом цензурирования в results/models/survival.json.'
+      height: 30
+      width: 8
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-lifetime-1
+    type: MARKDOWN
+  CHART-lifetime-period:
+    children: []
+    id: CHART-lifetime-period
+    meta:
+      chartId: 0
+      height: 30
+      sliceName: Последний собранный день по источникам
+      uuid: 0953281e-32c0-56a8-9c08-8c4313462e8d
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-lifetime-1
+    type: CHART
+  ROW-lifetime-2:
+    children:
+    - CHART-lifetime-lifetime_quantiles
+    - CHART-lifetime-lifetime_status
+    id: ROW-lifetime-2
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  CHART-lifetime-lifetime_quantiles:
+    children: []
+    id: CHART-lifetime-lifetime_quantiles
+    meta:
+      chartId: 0
+      height: 55
+      sliceName: 'Дней от появления до закрытия по группам ролей: Работа в России, снимки портала'
+      uuid: 86f1ff0a-dead-5542-a5ea-964374b0a6c0
+      width: 7
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-lifetime-2
+    type: CHART
+  CHART-lifetime-lifetime_status:
+    children: []
+    id: CHART-lifetime-lifetime_status
+    meta:
+      chartId: 0
+      height: 55
+      sliceName: Чем закончились вакансии к последнему дню сбора
+      uuid: f7546541-f82d-5198-9266-e76fd0d7af39
+      width: 5
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-lifetime-2
+    type: CHART
+  ROW-lifetime-3:
+    children:
+    - CHART-lifetime-lifetime_table
+    id: ROW-lifetime-3
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  CHART-lifetime-lifetime_table:
+    children: []
+    id: CHART-lifetime-lifetime_table
+    meta:
+      chartId: 0
+      height: 78
+      sliceName: 'Время жизни вакансий: все строки витрины'
+      uuid: 666f9207-e9cb-55d5-9165-b7e47541b973
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-lifetime-3
+    type: CHART
+metadata:
+  color_scheme: supersetColors
+  refresh_frequency: 0
+  expanded_slices: {}
+  label_colors: {}
+  timed_refresh_immune_slices: []
+  cross_filters_enabled: false
+  default_filters: '{}'
+  chart_configuration: {}
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope: []
+  shared_label_colors: []
+  map_label_colors: {}
+  color_scheme_domain: []
+  native_filter_configuration: []
+version: 1.0.0

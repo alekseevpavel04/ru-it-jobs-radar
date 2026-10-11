@@ -1,0 +1,237 @@
+dashboard_title: Зарплаты в IT-вакансиях
+description: null
+css: ''
+slug: radar-salaries
+certified_by: null
+certification_details: null
+published: true
+uuid: 86e1f785-e679-50f0-839a-b7c1378d7870
+position:
+  DASHBOARD_VERSION_KEY: v2
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  GRID_ID:
+    children:
+    - ROW-salaries-1
+    - ROW-salaries-2
+    - ROW-salaries-3
+    - ROW-salaries-4
+    - ROW-salaries-5
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: Зарплаты в IT-вакансиях
+    type: HEADER
+  ROW-salaries-1:
+    children:
+    - MARKDOWN-salaries-1-1
+    - CHART-salaries-period
+    id: ROW-salaries-1
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  MARKDOWN-salaries-1-1:
+    children: []
+    id: MARKDOWN-salaries-1-1
+    meta:
+      code: '**Срез рынка без hh.ru.** Источники: открытые данные портала «Работа в России» (trudvsem), Хабр Карьера
+        и публичные Telegram-каналы. Крупнейшая площадка hh.ru не собирается, поэтому это не весь рынок IT-вакансий
+        России. Источники считаются отдельно и не складываются. Дата обновления: последний собранный день каждого
+        источника в таблице справа.
+
+
+        Нижняя граница вилки в рублях в месяц, как её указал работодатель. n это число вакансий группы с указанной
+        нижней границей; показаны только группы с n от 9. Каждый график берёт один уровень агрегации витрины, медианы
+        посчитаны по вакансиям группы. На Хабр Карьере вакансий с зарплатой пока мало.'
+      height: 30
+      width: 8
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-salaries-1
+    type: MARKDOWN
+  CHART-salaries-period:
+    children: []
+    id: CHART-salaries-period
+    meta:
+      chartId: 0
+      height: 30
+      sliceName: Последний собранный день по источникам
+      uuid: 0953281e-32c0-56a8-9c08-8c4313462e8d
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-salaries-1
+    type: CHART
+  ROW-salaries-2:
+    children:
+    - CHART-salaries-salary_grade_trudvsem
+    - CHART-salaries-salary_grade_habr
+    id: ROW-salaries-2
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  CHART-salaries-salary_grade_trudvsem:
+    children: []
+    id: CHART-salaries-salary_grade_trudvsem
+    meta:
+      chartId: 0
+      height: 60
+      sliceName: 'Нижняя граница зарплаты по грейдам, ₽ в месяц: Работа в России'
+      uuid: c3e0042d-6664-5993-9b2a-b9ea9cbb32ac
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-salaries-2
+    type: CHART
+  CHART-salaries-salary_grade_habr:
+    children: []
+    id: CHART-salaries-salary_grade_habr
+    meta:
+      chartId: 0
+      height: 60
+      sliceName: 'Нижняя граница зарплаты по грейдам, ₽ в месяц: Хабр Карьера'
+      uuid: 2a7a2849-acbd-57e2-a9ca-5e22cf834e7c
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-salaries-2
+    type: CHART
+  ROW-salaries-3:
+    children:
+    - CHART-salaries-salary_group_trudvsem
+    - CHART-salaries-salary_group_habr
+    id: ROW-salaries-3
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  CHART-salaries-salary_group_trudvsem:
+    children: []
+    id: CHART-salaries-salary_group_trudvsem
+    meta:
+      chartId: 0
+      height: 50
+      sliceName: 'Нижняя граница зарплаты по группам ролей, ₽ в месяц: Работа в России'
+      uuid: 809d9790-4ab7-5092-b16f-f16b1af33121
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-salaries-3
+    type: CHART
+  CHART-salaries-salary_group_habr:
+    children: []
+    id: CHART-salaries-salary_group_habr
+    meta:
+      chartId: 0
+      height: 50
+      sliceName: 'Нижняя граница зарплаты по группам ролей, ₽ в месяц: Хабр Карьера'
+      uuid: ae6df188-b7fc-519a-8f2e-f42465589bce
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-salaries-3
+    type: CHART
+  ROW-salaries-4:
+    children:
+    - CHART-salaries-salary_group_grade
+    id: ROW-salaries-4
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  CHART-salaries-salary_group_grade:
+    children: []
+    id: CHART-salaries-salary_group_grade
+    meta:
+      chartId: 0
+      height: 100
+      sliceName: Нижняя граница зарплаты по группам ролей и грейдам, ₽ в месяц, группы с n от 9
+      uuid: 0986cfa7-fbf8-5219-b4d4-a3d42e45e11d
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-salaries-4
+    type: CHART
+  ROW-salaries-5:
+    children:
+    - CHART-salaries-salary_region
+    - MARKDOWN-salaries-5-2
+    id: ROW-salaries-5
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  CHART-salaries-salary_region:
+    children: []
+    id: CHART-salaries-salary_region
+    meta:
+      chartId: 0
+      height: 36
+      sliceName: Нижняя граница зарплаты по регионам, ₽ в месяц, группы с n от 9
+      uuid: d5c6ce08-afb1-5f68-bace-222c2b77757f
+      width: 8
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-salaries-5
+    type: CHART
+  MARKDOWN-salaries-5-2:
+    children: []
+    id: MARKDOWN-salaries-5-2
+    meta:
+      code: 'Регион: «удалённо», если работа удалённая, иначе Москва или Санкт-Петербург (город, не область), иначе
+        другие города, если место указано; иначе «место не указано». Строки регионов одного источника вместе покрывают
+        все его вакансии.'
+      height: 36
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-salaries-5
+    type: MARKDOWN
+metadata:
+  color_scheme: supersetColors
+  refresh_frequency: 0
+  expanded_slices: {}
+  label_colors: {}
+  timed_refresh_immune_slices: []
+  cross_filters_enabled: false
+  default_filters: '{}'
+  chart_configuration: {}
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope: []
+  shared_label_colors: []
+  map_label_colors: {}
+  color_scheme_domain: []
+  native_filter_configuration: []
+version: 1.0.0

@@ -1,0 +1,42 @@
+slice_name: Последний собранный день по источникам
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: __collection_period
+  viz_type: table
+  query_mode: aggregate
+  groupby:
+  - source_ru
+  metrics:
+  - expressionType: SQL
+    sqlExpression: max(period_to)
+    label: Последний собранный день
+    hasCustomLabel: true
+    optionName: metric_2
+  all_columns: []
+  percent_metrics: []
+  timeseries_limit_metric: null
+  order_desc: true
+  adhoc_filters: []
+  row_limit: 100
+  server_page_length: 10
+  server_pagination: false
+  table_timestamp_format: '%d.%m.%Y'
+  show_cell_bars: false
+  color_pn: false
+  allow_rearrange_columns: false
+  include_search: false
+  column_config:
+    Последний собранный день:
+      d3NumberFormat: ',d'
+  conditional_formatting: []
+  show_totals: false
+  extra_form_data: {}
+  dashboards: []
+query_context: null
+cache_timeout: null
+uuid: 0953281e-32c0-56a8-9c08-8c4313462e8d
+version: 1.0.0
+dataset_uuid: eabe95a2-a327-5c23-8bf2-07a798e727fa

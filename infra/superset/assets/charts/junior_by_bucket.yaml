@@ -1,0 +1,62 @@
+slice_name: 20 ролей с наибольшим числом вакансий, открытых начинающим
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: __mart_junior
+  viz_type: table
+  query_mode: aggregate
+  groupby:
+  - source_ru
+  - role_bucket_ru
+  metrics:
+  - expressionType: SQL
+    sqlExpression: sum(open_to_junior)
+    label: Открыты начинающим
+    hasCustomLabel: true
+    optionName: metric_80
+  - expressionType: SQL
+    sqlExpression: sum(vacancies)
+    label: Всего вакансий
+    hasCustomLabel: true
+    optionName: metric_81
+  - expressionType: SQL
+    sqlExpression: sum(open_to_junior) / sum(vacancies)
+    label: Доля
+    hasCustomLabel: true
+    optionName: metric_82
+  all_columns: []
+  percent_metrics: []
+  timeseries_limit_metric:
+    expressionType: SQL
+    sqlExpression: sum(open_to_junior)
+    label: Открыты начинающим
+    hasCustomLabel: true
+    optionName: metric_83
+  order_desc: true
+  adhoc_filters: []
+  row_limit: 20
+  server_page_length: 10
+  server_pagination: false
+  table_timestamp_format: '%d.%m.%Y'
+  show_cell_bars: true
+  color_pn: false
+  allow_rearrange_columns: false
+  include_search: false
+  column_config:
+    Открыты начинающим:
+      d3NumberFormat: ',d'
+    Всего вакансий:
+      d3NumberFormat: ',d'
+    Доля:
+      d3NumberFormat: .1%
+  conditional_formatting: []
+  show_totals: false
+  extra_form_data: {}
+  dashboards: []
+query_context: null
+cache_timeout: null
+uuid: 440657c6-d4c7-50ab-a807-f830cb90791a
+version: 1.0.0
+dataset_uuid: c30d8b63-83d4-514e-a295-0cf9c8f27e86

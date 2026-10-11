@@ -67,6 +67,7 @@ select_profiles() {
 declare -A PROFILE_SECRETS=(
   [orchestration]="AIRFLOW_DB_PASSWORD AIRFLOW_ADMIN_PASSWORD AIRFLOW_JWT_SECRET"
   [mlops]="N8N_OWNER_PASSWORD"
+  [bi]="SUPERSET_SECRET_KEY SUPERSET_ADMIN_PASSWORD"
 )
 
 # Value of a variable: the environment first, then the last assignment in the env file.

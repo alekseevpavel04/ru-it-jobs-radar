@@ -1,0 +1,356 @@
+table_name: mart_salaries
+main_dttm_col: null
+description: 'Зарплаты по источникам на нескольких уровнях агрегации (столбец level). Строки разных уровней не складываются:
+  каждый график фильтрует level явно.'
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: null
+schema: marts
+sql: null
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: 16f3198a-5e20-509b-a6c9-ced677f73bb3
+metrics:
+- metric_name: count
+  verbose_name: Строк
+  metric_type: count
+  expression: count()
+  description: null
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+columns:
+- column_name: source
+  verbose_name: Код источника
+  is_dttm: false
+  is_active: true
+  type: LOWCARDINALITY(STRING)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: level
+  verbose_name: Уровень агрегации
+  is_dttm: false
+  is_active: true
+  type: LOWCARDINALITY(STRING)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: role_group
+  verbose_name: Код группы ролей
+  is_dttm: false
+  is_active: true
+  type: LOWCARDINALITY(STRING)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: role_bucket
+  verbose_name: Код роли
+  is_dttm: false
+  is_active: true
+  type: LOWCARDINALITY(STRING)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: grade
+  verbose_name: Код грейда
+  is_dttm: false
+  is_active: true
+  type: LOWCARDINALITY(STRING)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: region_group
+  verbose_name: Код региона
+  is_dttm: false
+  is_active: true
+  type: LOWCARDINALITY(STRING)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: vacancies
+  verbose_name: Вакансий в группе
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: with_salary_rub
+  verbose_name: С зарплатой в рублях
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: with_salary_other_currency
+  verbose_name: С зарплатой в другой валюте
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: with_from
+  verbose_name: n, с нижней границей
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: with_to
+  verbose_name: n, с верхней границей
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: salary_from_p25
+  verbose_name: Нижняя граница, 25-й перцентиль
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(FLOAT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: salary_from_median
+  verbose_name: Нижняя граница, медиана
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(FLOAT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: salary_from_p75
+  verbose_name: Нижняя граница, 75-й перцентиль
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(FLOAT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: salary_to_p25
+  verbose_name: Верхняя граница, 25-й перцентиль
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(FLOAT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: salary_to_median
+  verbose_name: Верхняя граница, медиана
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(FLOAT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: salary_to_p75
+  verbose_name: Верхняя граница, 75-й перцентиль
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(FLOAT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: period_from
+  verbose_name: Начало периода
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(DATE)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: period_to
+  verbose_name: Конец периода
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(DATE)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: source_ru
+  verbose_name: Источник
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(source, ['trudvsem_snapshot', 'trudvsem', 'habr', 'telegram'], ['Работа в России, снимки
+    портала', 'Работа в России', 'Хабр Карьера', 'Telegram-каналы'], source)
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: role_group_ru
+  verbose_name: Группа ролей
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(role_group, ['dev', 'ml_ds_data', 'analyst', 'qa_devops_sys', 'other_it', 'multi_post',
+    'all'], ['Разработка, включая 1С', 'ML, DS, данные', 'Бизнес- и системный анализ', 'QA, DevOps, админы, ИБ',
+    'Дизайн, управление, прочие IT', 'Несколько вакансий в посте', 'все'], role_group)
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: role_bucket_ru
+  verbose_name: Роль
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(role_bucket, ['ml_ds', 'data_engineering', 'data_analytics', 'developer_1c', 'business_system_analysis',
+    'security', 'devops', 'qa', 'mobile', 'fullstack', 'backend', 'frontend', 'embedded', 'sysadmin_support', 'design',
+    'management', 'software_engineer', 'other_it', 'multi_post'], ['ML и Data Science', 'Инженерия данных', 'Аналитика
+    данных', '1С', 'Бизнес- и системный анализ', 'Информационная безопасность', 'DevOps', 'Тестирование', 'Мобильная
+    разработка', 'Fullstack', 'Backend', 'Frontend', 'Встраиваемые системы', 'Администрирование и поддержка', 'Дизайн',
+    'Управление', 'Программист без уточнения', 'Прочее IT', 'Несколько вакансий в посте'], role_bucket)
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: grade_ru
+  verbose_name: Грейд
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(grade, ['intern', 'junior', 'middle', 'senior', 'lead', 'unknown', 'all'], ['стажёр', 'джуниор',
+    'мидл', 'сеньор', 'лид', 'грейд не указан', 'все'], grade)
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: region_ru
+  verbose_name: Регион
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(region_group, ['moscow', 'spb', 'other', 'remote', 'unknown', 'all'], ['Москва', 'Санкт-Петербург',
+    'другие города', 'удалённо', 'место не указано', 'все'], region_group)
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: grade_n
+  verbose_name: Грейд (n)
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: concat(transform(grade, ['intern', 'junior', 'middle', 'senior', 'lead', 'unknown', 'all'], ['стажёр',
+    'джуниор', 'мидл', 'сеньор', 'лид', 'грейд не указан', 'все'], grade), ', n = ', toString(with_from))
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: role_group_n
+  verbose_name: Группа ролей (n)
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: concat(transform(role_group, ['dev', 'ml_ds_data', 'analyst', 'qa_devops_sys', 'other_it', 'multi_post',
+    'all'], ['Разработка, включая 1С', 'ML, DS, данные', 'Бизнес- и системный анализ', 'QA, DevOps, админы, ИБ',
+    'Дизайн, управление, прочие IT', 'Несколько вакансий в посте', 'все'], role_group), ', n = ', toString(with_from))
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 8c1e81b9-b58f-529d-8530-174250686813

@@ -1,0 +1,274 @@
+table_name: mart_lifetime
+main_dttm_col: null
+description: Сколько IT-вакансий висели до закрытия, по источникам и группам ролей. Квантили описывают только наблюдавшиеся
+  закрытия и не являются оценкой выживаемости.
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: null
+schema: marts
+sql: null
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: 393e6a40-af0e-5421-95b7-5a3ee3403048
+metrics:
+- metric_name: count
+  verbose_name: Строк
+  metric_type: count
+  expression: count()
+  description: null
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+columns:
+- column_name: source
+  verbose_name: Код источника
+  is_dttm: false
+  is_active: true
+  type: LOWCARDINALITY(STRING)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: level
+  verbose_name: Уровень агрегации
+  is_dttm: false
+  is_active: true
+  type: LOWCARDINALITY(STRING)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: role_group
+  verbose_name: Код группы ролей
+  is_dttm: false
+  is_active: true
+  type: LOWCARDINALITY(STRING)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: vacancies
+  verbose_name: Вакансий
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: still_open
+  verbose_name: Ещё открыты
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: closed
+  verbose_name: Закрыты в известный день
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: closed_in_gap
+  verbose_name: Закрыты в пропуск сбора
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: censored
+  verbose_name: Конец не наблюдался
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: left_censored
+  verbose_name: Открыты с первого дня сбора
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: closed_by_repost
+  verbose_name: Закрыты перепубликацией
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: closed_in_quantiles
+  verbose_name: n, в квантилях
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: duration_days_p25
+  verbose_name: Дней, 25-й перцентиль
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(FLOAT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: duration_days_median
+  verbose_name: Дней, медиана
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(FLOAT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: duration_days_p75
+  verbose_name: Дней, 75-й перцентиль
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(FLOAT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: duration_days_p90
+  verbose_name: Дней, 90-й перцентиль
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(FLOAT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: period_from
+  verbose_name: Первый день сбора
+  is_dttm: false
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: period_to
+  verbose_name: Последний день сбора
+  is_dttm: false
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: window_days
+  verbose_name: Дней в окне
+  is_dttm: false
+  is_active: true
+  type: UINT32
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: source_ru
+  verbose_name: Источник
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(source, ['trudvsem_snapshot', 'trudvsem', 'habr', 'telegram'], ['Работа в России, снимки
+    портала', 'Работа в России', 'Хабр Карьера', 'Telegram-каналы'], source)
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: role_group_ru
+  verbose_name: Группа ролей
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(role_group, ['dev', 'ml_ds_data', 'analyst', 'qa_devops_sys', 'other_it', 'multi_post',
+    'all'], ['Разработка, включая 1С', 'ML, DS, данные', 'Бизнес- и системный анализ', 'QA, DevOps, админы, ИБ',
+    'Дизайн, управление, прочие IT', 'Несколько вакансий в посте', 'все'], role_group)
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 8c1e81b9-b58f-529d-8530-174250686813

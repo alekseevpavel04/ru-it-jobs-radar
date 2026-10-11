@@ -1,0 +1,73 @@
+slice_name: '15 самых частых навыков: Хабр Карьера'
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: __skills_by_source
+  viz_type: table
+  query_mode: aggregate
+  groupby:
+  - skill
+  - skill_category_ru
+  metrics:
+  - expressionType: SQL
+    sqlExpression: sum(vacancies_mentioning)
+    label: Вакансий с навыком
+    hasCustomLabel: true
+    optionName: metric_22
+  - expressionType: SQL
+    sqlExpression: max(vacancies_total)
+    label: Всего вакансий
+    hasCustomLabel: true
+    optionName: metric_23
+  - expressionType: SQL
+    sqlExpression: sum(vacancies_mentioning) / max(vacancies_total)
+    label: Доля
+    hasCustomLabel: true
+    optionName: metric_24
+  all_columns: []
+  percent_metrics: []
+  timeseries_limit_metric:
+    expressionType: SQL
+    sqlExpression: sum(vacancies_mentioning)
+    label: Вакансий с навыком
+    hasCustomLabel: true
+    optionName: metric_26
+  order_desc: true
+  adhoc_filters:
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: source
+    operator: ==
+    operatorId: EQUALS
+    comparator: habr
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+    filterOptionName: filter_25
+  row_limit: 15
+  server_page_length: 10
+  server_pagination: false
+  table_timestamp_format: '%d.%m.%Y'
+  show_cell_bars: true
+  color_pn: false
+  allow_rearrange_columns: false
+  include_search: false
+  column_config:
+    Вакансий с навыком:
+      d3NumberFormat: ',d'
+    Всего вакансий:
+      d3NumberFormat: ',d'
+      showCellBars: false
+    Доля:
+      d3NumberFormat: .1%
+  conditional_formatting: []
+  show_totals: false
+  extra_form_data: {}
+  dashboards: []
+query_context: null
+cache_timeout: null
+uuid: 15ff146e-eccd-5282-be76-c970b6eab2f6
+version: 1.0.0
+dataset_uuid: 6ad35dfe-f776-5efa-9519-9922fea96351

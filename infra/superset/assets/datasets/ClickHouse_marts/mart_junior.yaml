@@ -1,0 +1,186 @@
+table_name: mart_junior
+main_dttm_col: null
+description: 'Джуниорский срез по источникам и ролям: грейд стажёр или джуниор, либо опыт не нужен.'
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: null
+schema: marts
+sql: null
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: c30d8b63-83d4-514e-a295-0cf9c8f27e86
+metrics:
+- metric_name: count
+  verbose_name: Строк
+  metric_type: count
+  expression: count()
+  description: null
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+columns:
+- column_name: source
+  verbose_name: Код источника
+  is_dttm: false
+  is_active: true
+  type: LOWCARDINALITY(STRING)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: role_bucket
+  verbose_name: Код роли
+  is_dttm: false
+  is_active: true
+  type: LOWCARDINALITY(STRING)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: vacancies
+  verbose_name: Всего вакансий
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: open_to_junior
+  verbose_name: Открыты начинающим
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: graded_intern
+  verbose_name: Грейд стажёр
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: graded_junior
+  verbose_name: Грейд джуниор
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: no_experience_required
+  verbose_name: Без опыта
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: grade_known
+  verbose_name: Грейд указан
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: experience_field_stated
+  verbose_name: Поле опыта заполнено
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(UINT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: source_ru
+  verbose_name: Источник
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(source, ['trudvsem_snapshot', 'trudvsem', 'habr', 'telegram'], ['Работа в России, снимки
+    портала', 'Работа в России', 'Хабр Карьера', 'Telegram-каналы'], source)
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: role_group_ru
+  verbose_name: Группа ролей
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(transform(role_bucket, ['ml_ds', 'data_engineering', 'data_analytics', 'software_engineer',
+    'backend', 'frontend', 'fullstack', 'mobile', 'embedded', 'developer_1c', 'business_system_analysis', 'qa',
+    'devops', 'sysadmin_support', 'security', 'design', 'management', 'other_it'], ['ml_ds_data', 'ml_ds_data',
+    'ml_ds_data', 'dev', 'dev', 'dev', 'dev', 'dev', 'dev', 'dev', 'analyst', 'qa_devops_sys', 'qa_devops_sys',
+    'qa_devops_sys', 'qa_devops_sys', 'other_it', 'other_it', 'other_it'], role_bucket), ['dev', 'ml_ds_data', 'analyst',
+    'qa_devops_sys', 'other_it', 'multi_post', 'all'], ['Разработка, включая 1С', 'ML, DS, данные', 'Бизнес- и системный
+    анализ', 'QA, DevOps, админы, ИБ', 'Дизайн, управление, прочие IT', 'Несколько вакансий в посте', 'все'], role_bucket)
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: role_bucket_ru
+  verbose_name: Роль
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(role_bucket, ['ml_ds', 'data_engineering', 'data_analytics', 'developer_1c', 'business_system_analysis',
+    'security', 'devops', 'qa', 'mobile', 'fullstack', 'backend', 'frontend', 'embedded', 'sysadmin_support', 'design',
+    'management', 'software_engineer', 'other_it', 'multi_post'], ['ML и Data Science', 'Инженерия данных', 'Аналитика
+    данных', '1С', 'Бизнес- и системный анализ', 'Информационная безопасность', 'DevOps', 'Тестирование', 'Мобильная
+    разработка', 'Fullstack', 'Backend', 'Frontend', 'Встраиваемые системы', 'Администрирование и поддержка', 'Дизайн',
+    'Управление', 'Программист без уточнения', 'Прочее IT', 'Несколько вакансий в посте'], role_bucket)
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 8c1e81b9-b58f-529d-8530-174250686813

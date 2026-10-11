@@ -1,0 +1,157 @@
+dashboard_title: Вакансии для начинающих
+description: null
+css: ''
+slug: radar-junior
+certified_by: null
+certification_details: null
+published: true
+uuid: 9e8b38d7-ae7a-5c7c-8f2c-54235c1e82b2
+position:
+  DASHBOARD_VERSION_KEY: v2
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  GRID_ID:
+    children:
+    - ROW-junior-1
+    - ROW-junior-2
+    - ROW-junior-3
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: Вакансии для начинающих
+    type: HEADER
+  ROW-junior-1:
+    children:
+    - MARKDOWN-junior-1-1
+    - CHART-junior-period
+    id: ROW-junior-1
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  MARKDOWN-junior-1-1:
+    children: []
+    id: MARKDOWN-junior-1-1
+    meta:
+      code: '**Срез рынка без hh.ru.** Источники: открытые данные портала «Работа в России» (trudvsem), Хабр Карьера
+        и публичные Telegram-каналы. Крупнейшая площадка hh.ru не собирается, поэтому это не весь рынок IT-вакансий
+        России. Источники считаются отдельно и не складываются. Дата обновления: последний собранный день каждого
+        источника в таблице справа.
+
+
+        Вакансия открыта начинающим, если её грейд стажёр или джуниор либо опыт не требуется. На «Работе в России»
+        это поле опыта «без опыта», на Хабр Карьере и в Telegram фраза в тексте. Telegram: посты за последние 100
+        дней.'
+      height: 30
+      width: 8
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-junior-1
+    type: MARKDOWN
+  CHART-junior-period:
+    children: []
+    id: CHART-junior-period
+    meta:
+      chartId: 0
+      height: 30
+      sliceName: Последний собранный день по источникам
+      uuid: 0953281e-32c0-56a8-9c08-8c4313462e8d
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-junior-1
+    type: CHART
+  ROW-junior-2:
+    children:
+    - CHART-junior-junior_by_source
+    id: ROW-junior-2
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  CHART-junior-junior_by_source:
+    children: []
+    id: CHART-junior-junior_by_source
+    meta:
+      chartId: 0
+      height: 24
+      sliceName: Вакансии, открытые начинающим, по источникам
+      uuid: d73db9db-c7f2-578f-8712-8f15632a69f1
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-junior-2
+    type: CHART
+  ROW-junior-3:
+    children:
+    - CHART-junior-junior_share_by_group
+    - CHART-junior-junior_by_bucket
+    id: ROW-junior-3
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  CHART-junior-junior_share_by_group:
+    children: []
+    id: CHART-junior-junior_share_by_group
+    meta:
+      chartId: 0
+      height: 88
+      sliceName: Доля вакансий, открытых начинающим, по группам ролей и источникам
+      uuid: e8b17a1e-3836-54f0-bd29-4fa94824a52a
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-junior-3
+    type: CHART
+  CHART-junior-junior_by_bucket:
+    children: []
+    id: CHART-junior-junior_by_bucket
+    meta:
+      chartId: 0
+      height: 88
+      sliceName: 20 ролей с наибольшим числом вакансий, открытых начинающим
+      uuid: 440657c6-d4c7-50ab-a807-f830cb90791a
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-junior-3
+    type: CHART
+metadata:
+  color_scheme: supersetColors
+  refresh_frequency: 0
+  expanded_slices: {}
+  label_colors: {}
+  timed_refresh_immune_slices: []
+  cross_filters_enabled: false
+  default_filters: '{}'
+  chart_configuration: {}
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope: []
+  shared_label_colors: []
+  map_label_colors: {}
+  color_scheme_domain: []
+  native_filter_configuration: []
+version: 1.0.0

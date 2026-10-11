@@ -1,0 +1,144 @@
+table_name: skills_by_source
+main_dttm_col: null
+description: 'Навык x источник за весь период сбора (Telegram: последние 100 дней), знаменатель из mart_junior.'
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: null
+schema: marts
+sql: |
+  SELECT
+      s.source AS source,
+      s.skill AS skill,
+      s.skill_category AS skill_category,
+      sum(s.vacancies_mentioning) AS vacancies_mentioning,
+      any(t.vacancies) AS vacancies_total
+  FROM marts.mart_skills AS s
+  -- mart_skills has rows only for cells with a mention, so the source total comes from mart_junior,
+  -- which counts the same vacancies (Telegram: the same last 100 days) per source and role bucket.
+  INNER JOIN (SELECT source, sum(vacancies) AS vacancies FROM marts.mart_junior GROUP BY source) AS t
+      ON s.source = t.source
+  GROUP BY s.source, s.skill, s.skill_category
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: 6ad35dfe-f776-5efa-9519-9922fea96351
+metrics:
+- metric_name: count
+  verbose_name: Строк
+  metric_type: count
+  expression: count()
+  description: null
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+columns:
+- column_name: source
+  verbose_name: Код источника
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: skill
+  verbose_name: Навык
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: skill_category
+  verbose_name: Код категории
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: vacancies_mentioning
+  verbose_name: Вакансий с навыком
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: vacancies_total
+  verbose_name: Всего вакансий
+  is_dttm: false
+  is_active: true
+  type: UINT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: share
+  verbose_name: Доля
+  is_dttm: false
+  is_active: true
+  type: FLOAT64
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: vacancies_mentioning / vacancies_total
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: source_ru
+  verbose_name: Источник
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(source, ['trudvsem_snapshot', 'trudvsem', 'habr', 'telegram'], ['Работа в России, снимки
+    портала', 'Работа в России', 'Хабр Карьера', 'Telegram-каналы'], source)
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: skill_category_ru
+  verbose_name: Категория
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(skill_category, ['analysis', 'analytics', 'architecture', 'bi', 'cloud', 'data', 'database',
+    'design', 'devops', 'embedded', 'framework', 'frontend', 'gamedev', 'language', 'language_human', 'methodology',
+    'ml', 'mobile', 'network', 'os', 'platform', 'security', 'soft', 'testing', 'tools'], ['анализ', 'аналитика',
+    'архитектура', 'BI', 'облака', 'данные', 'базы данных', 'дизайн', 'DevOps', 'встраиваемые системы', 'фреймворк',
+    'фронтенд', 'геймдев', 'язык программирования', 'иностранный язык', 'методология', 'ML', 'мобильная разработка',
+    'сети', 'ОС', 'платформа', 'безопасность', 'гибкие навыки', 'тестирование', 'инструменты'], skill_category)
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 8c1e81b9-b58f-529d-8530-174250686813

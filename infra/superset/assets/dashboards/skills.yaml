@@ -1,0 +1,187 @@
+dashboard_title: Навыки в IT-вакансиях
+description: null
+css: ''
+slug: radar-skills
+certified_by: null
+certification_details: null
+published: true
+uuid: 77fc068d-7a9c-5aa3-b934-d14fd60b9e73
+position:
+  DASHBOARD_VERSION_KEY: v2
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  GRID_ID:
+    children:
+    - ROW-skills-1
+    - ROW-skills-2
+    - ROW-skills-3
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: Навыки в IT-вакансиях
+    type: HEADER
+  ROW-skills-1:
+    children:
+    - MARKDOWN-skills-1-1
+    - CHART-skills-period
+    id: ROW-skills-1
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  MARKDOWN-skills-1-1:
+    children: []
+    id: MARKDOWN-skills-1-1
+    meta:
+      code: '**Срез рынка без hh.ru.** Источники: открытые данные портала «Работа в России» (trudvsem), Хабр Карьера
+        и публичные Telegram-каналы. Крупнейшая площадка hh.ru не собирается, поэтому это не весь рынок IT-вакансий
+        России. Источники считаются отдельно и не складываются. Дата обновления: последний собранный день каждого
+        источника в таблице справа.
+
+
+        Навык засчитан, если словарь (версия v0) нашёл его в названии, тексте или тегах вакансии. У коротких написаний
+        на английском (go, rest) бывают ложные срабатывания. Доля дана вместе с числом вакансий и знаменателем.'
+      height: 30
+      width: 8
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-skills-1
+    type: MARKDOWN
+  CHART-skills-period:
+    children: []
+    id: CHART-skills-period
+    meta:
+      chartId: 0
+      height: 30
+      sliceName: Последний собранный день по источникам
+      uuid: 0953281e-32c0-56a8-9c08-8c4313462e8d
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-skills-1
+    type: CHART
+  ROW-skills-2:
+    children:
+    - CHART-skills-skills_top_trudvsem
+    - CHART-skills-skills_top_habr
+    - CHART-skills-skills_top_telegram
+    id: ROW-skills-2
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  CHART-skills-skills_top_trudvsem:
+    children: []
+    id: CHART-skills-skills_top_trudvsem
+    meta:
+      chartId: 0
+      height: 88
+      sliceName: '15 самых частых навыков: Работа в России'
+      uuid: dec9c777-9742-58cf-921a-de061a570bf3
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-skills-2
+    type: CHART
+  CHART-skills-skills_top_habr:
+    children: []
+    id: CHART-skills-skills_top_habr
+    meta:
+      chartId: 0
+      height: 88
+      sliceName: '15 самых частых навыков: Хабр Карьера'
+      uuid: 15ff146e-eccd-5282-be76-c970b6eab2f6
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-skills-2
+    type: CHART
+  CHART-skills-skills_top_telegram:
+    children: []
+    id: CHART-skills-skills_top_telegram
+    meta:
+      chartId: 0
+      height: 88
+      sliceName: '15 самых частых навыков: Telegram-каналы, последние 100 дней'
+      uuid: 3723861c-c245-5c4c-b585-9eb090098909
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-skills-2
+    type: CHART
+  ROW-skills-3:
+    children:
+    - CHART-skills-skills_weekly_trudvsem_snapshot
+    - CHART-skills-skills_weekly_telegram
+    id: ROW-skills-3
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  CHART-skills-skills_weekly_trudvsem_snapshot:
+    children: []
+    id: CHART-skills-skills_weekly_trudvsem_snapshot
+    meta:
+      chartId: 0
+      height: 60
+      sliceName: 'Доля вакансий с навыком по неделям, 8 самых частых навыков: Работа в России, снимки портала'
+      uuid: b9baa518-5e5a-5a25-aea3-54f851bbf35c
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-skills-3
+    type: CHART
+  CHART-skills-skills_weekly_telegram:
+    children: []
+    id: CHART-skills-skills_weekly_telegram
+    meta:
+      chartId: 0
+      height: 60
+      sliceName: 'Доля вакансий с навыком по неделям, 6 самых частых навыков, скользящее среднее за 4 недели: Telegram-каналы,
+        52 завершённые недели'
+      uuid: d37b0740-8832-5dd8-95be-3083a66db84d
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-skills-3
+    type: CHART
+metadata:
+  color_scheme: supersetColors
+  refresh_frequency: 0
+  expanded_slices: {}
+  label_colors: {}
+  timed_refresh_immune_slices: []
+  cross_filters_enabled: false
+  default_filters: '{}'
+  chart_configuration: {}
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope: []
+  shared_label_colors: []
+  map_label_colors: {}
+  color_scheme_domain: []
+  native_filter_configuration: []
+version: 1.0.0

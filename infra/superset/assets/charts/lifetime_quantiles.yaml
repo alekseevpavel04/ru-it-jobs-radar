@@ -1,0 +1,99 @@
+slice_name: 'Дней от появления до закрытия по группам ролей: Работа в России, снимки портала'
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: __mart_lifetime
+  viz_type: echarts_timeseries_bar
+  x_axis: role_group_ru
+  time_grain_sqla: null
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - expressionType: SQL
+    sqlExpression: max(duration_days_p25)
+    label: 25-й перцентиль
+    hasCustomLabel: true
+    optionName: metric_84
+  - expressionType: SQL
+    sqlExpression: max(duration_days_median)
+    label: Медиана
+    hasCustomLabel: true
+    optionName: metric_85
+  - expressionType: SQL
+    sqlExpression: max(duration_days_p75)
+    label: 75-й перцентиль
+    hasCustomLabel: true
+    optionName: metric_86
+  - expressionType: SQL
+    sqlExpression: max(duration_days_p90)
+    label: 90-й перцентиль
+    hasCustomLabel: true
+    optionName: metric_87
+  groupby: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: level
+    operator: ==
+    operatorId: EQUALS
+    comparator: group
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+    filterOptionName: filter_88
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: source
+    operator: ==
+    operatorId: EQUALS
+    comparator: trudvsem_snapshot
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+    filterOptionName: filter_1
+  order_desc: true
+  row_limit: 10000
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: horizontal
+  x_axis_title_margin: 15
+  y_axis_title_margin: 30
+  y_axis_title_position: Left
+  sort_series_type: sum
+  sort_series_ascending: true
+  color_scheme: supersetColors
+  show_legend: true
+  legendType: plain
+  legendOrientation: top
+  x_axis_time_format: '%d.%m'
+  tooltipTimeFormat: '%d.%m.%Y'
+  y_axis_format: ',.0f'
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipSortByMetric: true
+  truncateXAxis: true
+  truncateYAxis: false
+  zoomable: false
+  stack: null
+  only_total: true
+  show_value: true
+  markerEnabled: false
+  markerSize: 5
+  seriesType: line
+  x_axis_sort: null
+  extra_form_data: {}
+  dashboards: []
+query_context: null
+cache_timeout: null
+uuid: 86f1ff0a-dead-5542-a5ea-964374b0a6c0
+version: 1.0.0
+dataset_uuid: 393e6a40-af0e-5421-95b7-5a3ee3403048

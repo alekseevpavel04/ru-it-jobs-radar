@@ -1,0 +1,102 @@
+slice_name: 'Доля вакансий с навыком по неделям, 6 самых частых навыков, скользящее среднее за 4 недели: Telegram-каналы,
+  52 завершённые недели'
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_line
+params:
+  datasource: __mart_skills_weekly
+  viz_type: echarts_timeseries_line
+  x_axis: week
+  time_grain_sqla: P1W
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - expressionType: SQL
+    sqlExpression: sum(vacancies_mentioning) / sum(vacancies_in_week)
+    label: Доля вакансий с навыком
+    hasCustomLabel: true
+    optionName: metric_36
+  groupby:
+  - skill
+  adhoc_filters:
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: week
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: source
+    operator: ==
+    operatorId: EQUALS
+    comparator: telegram
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+    filterOptionName: filter_37
+  - expressionType: SQL
+    clause: WHERE
+    sqlExpression: week >= toMonday(today()) - toIntervalWeek(52) AND week < toMonday(today())
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    filterOptionName: filter_32
+  order_desc: true
+  row_limit: 10000
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: vertical
+  x_axis_title_margin: 15
+  y_axis_title_margin: 30
+  y_axis_title_position: Left
+  sort_series_type: sum
+  sort_series_ascending: false
+  color_scheme: supersetColors
+  show_legend: true
+  legendType: plain
+  legendOrientation: top
+  x_axis_time_format: '%b %y'
+  tooltipTimeFormat: '%d.%m.%Y'
+  y_axis_format: .0%
+  y_axis_bounds:
+  - 0
+  - null
+  rich_tooltip: true
+  tooltipSortByMetric: true
+  truncateXAxis: true
+  truncateYAxis: false
+  zoomable: false
+  stack: null
+  only_total: true
+  show_value: false
+  markerEnabled: true
+  markerSize: 4
+  seriesType: line
+  series_limit: 6
+  rolling_type: mean
+  rolling_periods: 4
+  min_periods: 4
+  series_limit_metric:
+    expressionType: SQL
+    sqlExpression: sum(vacancies_mentioning)
+    label: Упоминаний
+    hasCustomLabel: true
+    optionName: metric_38
+  extra_form_data: {}
+  dashboards: []
+query_context: null
+cache_timeout: null
+uuid: d37b0740-8832-5dd8-95be-3083a66db84d
+version: 1.0.0
+dataset_uuid: bf519c33-f7be-5496-8974-6d35faae42e0

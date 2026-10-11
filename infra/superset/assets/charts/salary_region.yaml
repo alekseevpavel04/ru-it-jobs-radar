@@ -1,0 +1,93 @@
+slice_name: Нижняя граница зарплаты по регионам, ₽ в месяц, группы с n от 9
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: __mart_salaries
+  viz_type: table
+  query_mode: aggregate
+  groupby:
+  - source_ru
+  - region_ru
+  metrics:
+  - expressionType: SQL
+    sqlExpression: max(with_from)
+    label: n
+    hasCustomLabel: true
+    optionName: metric_66
+  - expressionType: SQL
+    sqlExpression: max(salary_from_p25)
+    label: 25-й перцентиль
+    hasCustomLabel: true
+    optionName: metric_67
+  - expressionType: SQL
+    sqlExpression: max(salary_from_median)
+    label: Медиана
+    hasCustomLabel: true
+    optionName: metric_68
+  - expressionType: SQL
+    sqlExpression: max(salary_from_p75)
+    label: 75-й перцентиль
+    hasCustomLabel: true
+    optionName: metric_69
+  all_columns: []
+  percent_metrics: []
+  timeseries_limit_metric:
+    expressionType: SQL
+    sqlExpression: max(salary_from_median)
+    label: Медиана
+    hasCustomLabel: true
+    optionName: metric_71
+  order_desc: true
+  adhoc_filters:
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: level
+    operator: ==
+    operatorId: EQUALS
+    comparator: region
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+    filterOptionName: filter_70
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: with_from
+    operator: '>='
+    operatorId: GREATER_THAN_OR_EQUAL
+    comparator: 9
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+    filterOptionName: filter_39
+  row_limit: 100
+  server_page_length: 10
+  server_pagination: false
+  table_timestamp_format: '%d.%m.%Y'
+  show_cell_bars: false
+  color_pn: false
+  allow_rearrange_columns: false
+  include_search: false
+  column_config:
+    n:
+      d3NumberFormat: ',d'
+      showCellBars: false
+    25-й перцентиль:
+      d3NumberFormat: $,.0f
+      showCellBars: false
+    Медиана:
+      d3NumberFormat: $,.0f
+      showCellBars: false
+    75-й перцентиль:
+      d3NumberFormat: $,.0f
+      showCellBars: false
+  conditional_formatting: []
+  show_totals: false
+  extra_form_data: {}
+  dashboards: []
+query_context: null
+cache_timeout: null
+uuid: d5c6ce08-afb1-5f68-bace-222c2b77757f
+version: 1.0.0
+dataset_uuid: 16f3198a-5e20-509b-a6c9-ced677f73bb3

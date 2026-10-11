@@ -408,6 +408,35 @@ services:
       test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:5678/healthz"]
     logging: *logging
 
+  # Superset over the marts. Datasets, charts and dashboards are code in
+  # infra/superset/assets; scripts/superset_import.sh loads them and connects ClickHouse with the
+  # read-only account (marts only), so the service itself needs no ClickHouse credentials and no
+  # dependency on the core profile. Metadata in SQLite on the superset-home volume (superset_config.py).
+  superset:
+    build: ../superset
+    image: radar/superset:6.1.0
+    profiles: [bi]
+    restart: unless-stopped
+    entrypoint: ["bash", "/app/radar/start.sh"]
+    environment:
+      SUPERSET_CONFIG_PATH: /app/radar/superset_config.py
+      SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY:-}
+      SUPERSET_ADMIN_PASSWORD: ${SUPERSET_ADMIN_PASSWORD:-}
+      # One gunicorn worker; its threads serve the parallel chart queries of a dashboard.
+      SERVER_WORKER_AMOUNT: "1"
+    volumes:
+      - superset-home:/app/superset_home
+      - ../superset:/app/radar:ro
+    ports:
+      - 127.0.0.1:8088:8088
+    mem_limit: 2g
+    healthcheck:
+      <<: *healthcheck
+      # Migrations and `superset init` run before the server, about a minute on an empty volume.
+      start_period: 180s
+      test: ["CMD", "curl", "--fail", "--silent", "--output", "/dev/null", "http://127.0.0.1:8088/health"]
+    logging: *logging
+
 volumes:
   clickhouse-data:
   redpanda-data:
@@ -419,3 +448,4 @@ volumes:
   airflow-dbt-target:
   airflow-dbt-logs:
   n8n-data:
+  superset-home:

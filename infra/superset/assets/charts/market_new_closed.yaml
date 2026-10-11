@@ -1,0 +1,106 @@
+slice_name: 'Новые и закрытые вакансии по неделям: Работа в России, снимки портала'
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: __weekly_dynamics
+  viz_type: echarts_timeseries_bar
+  x_axis: week
+  time_grain_sqla: P1W
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - expressionType: SQL
+    sqlExpression: sum(vacancies_new)
+    label: Новые
+    hasCustomLabel: true
+    optionName: metric_7
+  - expressionType: SQL
+    sqlExpression: sum(vacancies_closed)
+    label: Закрытые
+    hasCustomLabel: true
+    optionName: metric_8
+  groupby: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: week
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: source
+    operator: ==
+    operatorId: EQUALS
+    comparator: trudvsem_snapshot
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+    filterOptionName: filter_1
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: is_first_collected_week
+    operator: ==
+    operatorId: EQUALS
+    comparator: 0
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+    filterOptionName: filter_9
+  - expressionType: SIMPLE
+    clause: WHERE
+    subject: is_latest_week
+    operator: ==
+    operatorId: EQUALS
+    comparator: 0
+    isExtra: false
+    isNew: false
+    sqlExpression: null
+    filterOptionName: filter_10
+  order_desc: true
+  row_limit: 10000
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: vertical
+  x_axis_title_margin: 15
+  y_axis_title_margin: 30
+  y_axis_title_position: Left
+  sort_series_type: sum
+  sort_series_ascending: false
+  color_scheme: supersetColors
+  show_legend: true
+  legendType: plain
+  legendOrientation: top
+  x_axis_time_format: '%d.%m'
+  tooltipTimeFormat: '%d.%m.%Y'
+  y_axis_format: ',d'
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipSortByMetric: true
+  truncateXAxis: true
+  truncateYAxis: false
+  zoomable: false
+  stack: null
+  only_total: true
+  show_value: false
+  markerEnabled: true
+  markerSize: 5
+  seriesType: line
+  extra_form_data: {}
+  dashboards: []
+query_context: null
+cache_timeout: null
+uuid: b753f68d-3ec9-59d4-af9e-ca60de6510b4
+version: 1.0.0
+dataset_uuid: 2dce63bf-bc97-510d-90ec-106ff708956d

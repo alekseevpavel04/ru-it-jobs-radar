@@ -1,0 +1,251 @@
+table_name: weekly_dynamics
+main_dttm_col: week
+description: 'Неделя x источник x роль: открытые, новые и закрытые вакансии, посты Telegram (dbt/models/marts/_marts.yml).'
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: null
+schema: marts
+sql: |
+  SELECT
+      *,
+      -- the last week of each source: incomplete, and closures in it are not confirmed yet
+      toUInt8(week = max(week) OVER (PARTITION BY source)) AS is_latest_week
+  FROM marts.mart_weekly_dynamics
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: 2dce63bf-bc97-510d-90ec-106ff708956d
+metrics:
+- metric_name: count
+  verbose_name: Строк
+  metric_type: count
+  expression: count()
+  description: null
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+columns:
+- column_name: is_latest_week
+  verbose_name: Последняя неделя источника
+  is_dttm: false
+  is_active: true
+  type: UINT8
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: week
+  verbose_name: Неделя
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: source
+  verbose_name: Код источника
+  is_dttm: false
+  is_active: true
+  type: LOWCARDINALITY(STRING)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: role_bucket
+  verbose_name: Код роли
+  is_dttm: false
+  is_active: true
+  type: LOWCARDINALITY(STRING)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: days_collected
+  verbose_name: Дней сбора
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(UINT8)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: complete_days
+  verbose_name: Полных дней сбора
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(UINT8)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: is_first_collected_week
+  verbose_name: Первая неделя сбора
+  is_dttm: false
+  is_active: true
+  type: UINT8
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: vacancies_active
+  verbose_name: Открытые вакансии
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(UINT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: vacancies_new
+  verbose_name: Новые вакансии
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(UINT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: vacancies_closed
+  verbose_name: Закрытые вакансии
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(UINT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: telegram_posts
+  verbose_name: Посты с вакансиями
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(UINT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: telegram_posts_before_dedup
+  verbose_name: Посты до удаления дублей
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(UINT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: telegram_channels
+  verbose_name: Каналы с постами роли
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(UINT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: telegram_channels_week
+  verbose_name: Каналы с постами за неделю
+  is_dttm: false
+  is_active: true
+  type: NULLABLE(UINT64)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: source_ru
+  verbose_name: Источник
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(source, ['trudvsem_snapshot', 'trudvsem', 'habr', 'telegram'], ['Работа в России, снимки
+    портала', 'Работа в России', 'Хабр Карьера', 'Telegram-каналы'], source)
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: role_group_ru
+  verbose_name: Группа ролей
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(transform(role_bucket, ['ml_ds', 'data_engineering', 'data_analytics', 'software_engineer',
+    'backend', 'frontend', 'fullstack', 'mobile', 'embedded', 'developer_1c', 'business_system_analysis', 'qa',
+    'devops', 'sysadmin_support', 'security', 'design', 'management', 'other_it'], ['ml_ds_data', 'ml_ds_data',
+    'ml_ds_data', 'dev', 'dev', 'dev', 'dev', 'dev', 'dev', 'dev', 'analyst', 'qa_devops_sys', 'qa_devops_sys',
+    'qa_devops_sys', 'qa_devops_sys', 'other_it', 'other_it', 'other_it'], role_bucket), ['dev', 'ml_ds_data', 'analyst',
+    'qa_devops_sys', 'other_it', 'multi_post', 'all'], ['Разработка, включая 1С', 'ML, DS, данные', 'Бизнес- и системный
+    анализ', 'QA, DevOps, админы, ИБ', 'Дизайн, управление, прочие IT', 'Несколько вакансий в посте', 'все'], role_bucket)
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: role_bucket_ru
+  verbose_name: Роль
+  is_dttm: false
+  is_active: true
+  type: String
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: transform(role_bucket, ['ml_ds', 'data_engineering', 'data_analytics', 'developer_1c', 'business_system_analysis',
+    'security', 'devops', 'qa', 'mobile', 'fullstack', 'backend', 'frontend', 'embedded', 'sysadmin_support', 'design',
+    'management', 'software_engineer', 'other_it', 'multi_post'], ['ML и Data Science', 'Инженерия данных', 'Аналитика
+    данных', '1С', 'Бизнес- и системный анализ', 'Информационная безопасность', 'DevOps', 'Тестирование', 'Мобильная
+    разработка', 'Fullstack', 'Backend', 'Frontend', 'Встраиваемые системы', 'Администрирование и поддержка', 'Дизайн',
+    'Управление', 'Программист без уточнения', 'Прочее IT', 'Несколько вакансий в посте'], role_bucket)
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 8c1e81b9-b58f-529d-8530-174250686813
