@@ -8,12 +8,22 @@ same string every other system reads.
 
 Records come from the corpus joined with the split: train_pool is every corpus record of
 a train_pool group, minus any record listed under a test, dev or withheld group. dev is read from
-data/gold/dev_inputs.jsonl, the inputs the gold set was labeled on (gold labeling only). Test is never
-served here.
+data/gold/dev_inputs.jsonl, the inputs the gold set was labeled on (gold labeling only).
+
+Telegram (radar.extract.telegram_corpus) has its own splits. tg_train_pool is one record per
+train_pool group of data/corpus/telegram/split.parquet, the group's latest post: a group is a
+cross-post or a repost, and labeling every copy spends teacher time on the same text. Its strata
+are channel network x role proxy. tg_dev is data/gold/tg_dev_inputs.jsonl. No test split, S1 or
+Telegram, is ever served here.
+
+A Telegram request asks for one more key, `exclude` (null, "multi_vacancy" or "not_vacancy"): the
+collector's filter lets some lists and non-vacancies through, and the gold set drops them
+(docs/annotation_guide.md rule 6). The key lives only in the teacher's request schema and in the
+row, never in `output`, so VacancyFields and every other system stay on schema version 1.
 
 Output, data/teacher/<teacher>/<split>.jsonl, one line per record:
     {"id", "output", "raw", "valid", "repaired", "seconds", "prompt_tokens", "completion_tokens",
-     "finish_reason", "input_sha256", "error"}
+     "finish_reason", "input_sha256", "error"}, and "exclude" on Telegram splits
 `output` is the validated answer re-serialized (null when the answer broke the schema), `raw` the
 model's text as returned, `repaired` marks a salary or experience object without bounds that became
 null (see `validate`). The sidecar <split>.meta.json holds the prompt and schema sha256, the
@@ -26,7 +36,9 @@ request failed, is labeled again on resume.
     python -m radar.extract.teacher --teacher qwen --split train_pool --limit 50 --workers 3 --resume
     python -m radar.extract.teacher --teacher qwen --split train_pool --workers 3 --resume
     python -m radar.extract.teacher --teacher qwen --split train_pool --limit 3000 --keep-all ml_ds_data --resume
-    python -m radar.extract.teacher --probe-report 50
+    python -m radar.extract.teacher --teacher qwen --split tg_train_pool --limit 6000 --workers 3 --resume
+    python -m radar.extract.teacher --probe-report 50                       # results/teacher/probe.json
+    python -m radar.extract.teacher --probe-report 50 --split tg_train_pool # results/teacher/probe_tg.json
     python -m radar.extract.teacher --agreement        # results/teacher/agreement.json
 """
 
@@ -63,7 +75,11 @@ from radar.results import write_result
 log = logging.getLogger("radar.extract.teacher")
 
 PROMPT = ROOT / "configs" / "teacher_prompt.md"
-SPLITS = ("train_pool", "dev")
+S1_SPLITS = ("train_pool", "dev")
+TG_SPLITS = ("tg_train_pool", "tg_dev")
+SPLITS = (*S1_SPLITS, *TG_SPLITS)
+DEV_OF = {"train_pool": "dev", "tg_train_pool": "tg_dev"}
+EXCLUDE = ("multi_vacancy", "not_vacancy")
 MAX_TOKENS = 1024
 RETRIES = 3
 RETRY_PAUSE_S = 5.0
@@ -126,6 +142,29 @@ def train_pool_items(corpus: Path, seed: int) -> list[Item]:
     return sorted(items, key=lambda i: (permanent_random(seed, i.id), i.id))
 
 
+def tg_train_pool_items(corpus: Path, seed: int, one_per_group: bool = True) -> list[Item]:
+    """Telegram train_pool records, the latest post of each group unless `one_per_group` is off
+    (silver checks membership against every record: a newer repost does not unseat a labeled one)."""
+    split = pq.read_table(corpus / "split.parquet", columns=["split", "member_ids"]).to_pylist()
+    pool = {rid for row in split if row["split"] == "train_pool" for rid in row["member_ids"]}
+    held = {rid for row in split if row["split"] != "train_pool" for rid in row["member_ids"]}
+    columns = ["id", "group_id", "network", "role_proxy", "published_at", "input"]
+    records = [
+        r
+        for r in pq.read_table(corpus / "records.parquet", columns=columns).to_pylist()
+        if r["id"] in pool and r["id"] not in held
+    ]
+    if one_per_group:
+        latest: dict[str, dict[str, Any]] = {}
+        for r in records:
+            cur = latest.get(r["group_id"])
+            if cur is None or (r["published_at"], r["id"]) > (cur["published_at"], cur["id"]):
+                latest[r["group_id"]] = r
+        records = list(latest.values())
+    items = [Item(r["id"], f"{r['network']}|{r['role_proxy']}", r["input"]) for r in records]
+    return sorted(items, key=lambda i: (permanent_random(seed, i.id), i.id))
+
+
 def dev_items(path: Path, seed: int) -> list[Item]:
     rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
     items = [Item(str(r["id"]), str(r["source"]), str(r["input"])) for r in rows]
@@ -152,17 +191,39 @@ def stratified(items: Sequence[Item], n: int, keep_all: Iterable[str] = ()) -> l
     return kept + chosen
 
 
-def select(split: str, limit: int | None, keep_all: Sequence[str], seed: int) -> list[Item]:
+def pool_items(split: str, seed: int) -> list[Item]:
     if split == "train_pool":
-        items = train_pool_items(data_dir() / "corpus", seed)
+        return train_pool_items(data_dir() / "corpus", seed)
+    if split == "tg_train_pool":
+        return tg_train_pool_items(data_dir() / "corpus" / "telegram", seed)
+    raise ValueError(f"{split!r} is not a training pool")
+
+
+def select(split: str, limit: int | None, keep_all: Sequence[str], seed: int) -> list[Item]:
+    if split in DEV_OF:
+        items = pool_items(split, seed)
         return items if limit is None and not keep_all else stratified(items, limit or len(items), keep_all)
-    if split == "dev":
-        items = dev_items(data_dir() / "gold" / "dev_inputs.jsonl", seed)
+    if split in DEV_OF.values():
+        items = dev_items(data_dir() / "gold" / f"{split}_inputs.jsonl", seed)
         return items[:limit] if limit is not None else items
     raise ValueError(f"split {split!r} is not served by the teacher script")
 
 
 # --- requests -----------------------------------------------------------------------------------
+
+
+def asks_exclude(split: str) -> bool:
+    return split in TG_SPLITS
+
+
+def request_schema(split: str) -> dict[str, Any]:
+    """The extraction schema, on Telegram splits with `exclude` as the last required key: generated
+    after the fields, it does not steer them."""
+    schema = json_schema()
+    if asks_exclude(split):
+        schema["properties"]["exclude"] = {"anyOf": [{"enum": list(EXCLUDE), "type": "string"}, {"type": "null"}]}
+        schema["required"] = [*schema["required"], "exclude"]
+    return schema
 
 
 def request_body(teacher: Teacher, system: str, text: str, schema: Mapping[str, Any]) -> dict[str, Any]:
@@ -205,8 +266,39 @@ def validate(raw: str | None) -> tuple[str | None, bool]:
         return None, repaired
 
 
-def failed_row(item: Item, seconds: float | None, error: str) -> dict[str, Any]:
-    return {
+def split_exclude(raw: str | None) -> tuple[str | None, str | None]:
+    """The answer without its `exclude` key, and the key's value. An answer that is not a JSON object
+    goes on as it is for `validate` to reject; a missing key or a value outside EXCLUDE makes the
+    answer invalid (None)."""
+    if raw is None:
+        return None, None
+    try:
+        obj = json.loads(raw)
+    except json.JSONDecodeError:
+        return raw, None
+    if not isinstance(obj, dict):
+        return raw, None
+    value = obj.pop("exclude", "missing")
+    if value is not None and value not in EXCLUDE:
+        return None, None
+    return json.dumps(obj, ensure_ascii=False), value
+
+
+def read_answer(choice: Mapping[str, Any], with_exclude: bool) -> dict[str, Any]:
+    """`output`, `valid`, `repaired` and, when asked, `exclude` of one completion choice."""
+    raw, exclude = choice["message"].get("content"), None
+    if with_exclude:
+        raw, exclude = split_exclude(raw)
+    # a cut answer can still close as valid JSON with fewer skills: not a complete label
+    output, repaired = validate(raw) if choice.get("finish_reason") != "length" else (None, False)
+    answer: dict[str, Any] = {"output": output, "valid": output is not None, "repaired": repaired}
+    if with_exclude:
+        answer["exclude"] = exclude if output is not None else None
+    return answer
+
+
+def failed_row(item: Item, seconds: float | None, error: str, with_exclude: bool) -> dict[str, Any]:
+    row: dict[str, Any] = {
         "id": item.id,
         "output": None,
         "raw": None,
@@ -219,12 +311,20 @@ def failed_row(item: Item, seconds: float | None, error: str) -> dict[str, Any]:
         "input_sha256": sha256_text(item.input),
         "error": error,
     }
+    if with_exclude:
+        row["exclude"] = None
+    return row
+
+
+def wants_exclude(body: Mapping[str, Any]) -> bool:
+    return "exclude" in body["response_format"]["json_schema"]["schema"]["properties"]
 
 
 def label_one(client: httpx.Client, body: dict[str, Any], item: Item, pause_s: float = RETRY_PAUSE_S) -> dict[str, Any]:
     """One record. A 4xx answer (the request itself is wrong for this server) is a failed row at
     once; a 5xx is retried, then written as a failed row. A resumed run tries failed rows again. A
     server that does not answer at all stops the run."""
+    with_exclude = wants_exclude(body)
     for attempt in range(1, RETRIES + 1):
         t0 = time.perf_counter()
         try:
@@ -236,22 +336,21 @@ def label_one(client: httpx.Client, body: dict[str, Any], item: Item, pause_s: f
             if r.status_code < 400:
                 data = r.json()
                 choice = data["choices"][0]
-                raw = choice["message"].get("content")
                 usage = data.get("usage") or {}
-                # a cut answer can still close as valid JSON with fewer skills: not a complete label
-                output, repaired = validate(raw) if choice.get("finish_reason") != "length" else (None, False)
+                answer = read_answer(choice, with_exclude)
                 return {
                     "id": item.id,
-                    "output": output,
-                    "raw": raw,
-                    "valid": output is not None,
-                    "repaired": repaired,
+                    "output": answer["output"],
+                    "raw": choice["message"].get("content"),
+                    "valid": answer["valid"],
+                    "repaired": answer["repaired"],
                     "seconds": seconds,
                     "prompt_tokens": usage.get("prompt_tokens"),
                     "completion_tokens": usage.get("completion_tokens"),
                     "finish_reason": choice.get("finish_reason"),
                     "input_sha256": sha256_text(item.input),
                     "error": None,
+                    **({"exclude": answer["exclude"]} if with_exclude else {}),
                 }
             failure, answered = f"HTTP {r.status_code}: {r.text[:300]}", True
             if r.status_code < 500:
@@ -260,7 +359,7 @@ def label_one(client: httpx.Client, body: dict[str, Any], item: Item, pause_s: f
             log.warning("%s: %s, retry %d of %d", item.id, failure, attempt, RETRIES - 1)
             time.sleep(pause_s * attempt)
     if answered:
-        return failed_row(item, seconds, failure)
+        return failed_row(item, seconds, failure, with_exclude)
     raise ServerError(f"{item.id}: {failure} after {RETRIES} attempts")
 
 
@@ -310,6 +409,7 @@ def run_meta(teacher: Teacher, split: str, prompt_sha: str, schema_sha: str) -> 
         "prompt_sha256": prompt_sha,
         "schema_version": SCHEMA_VERSION,
         "schema_sha256": schema_sha,
+        "asks_exclude": asks_exclude(split),
         "request": {"temperature": 0, "max_tokens": MAX_TOKENS, **teacher.extra_body},
         "runs": [],
     }
@@ -349,7 +449,7 @@ def cmd_label(args: argparse.Namespace) -> int:
     seed = load_config().seed
     items = select(args.split, args.limit, args.keep_all, seed)
     prompt = PROMPT.read_text(encoding="utf-8")
-    schema = json_schema()
+    schema = request_schema(args.split)
     meta = run_meta(teacher, args.split, sha256_text(prompt), sha256_text(json.dumps(schema, sort_keys=True)))
 
     out, meta_file = output_path(teacher.name, args.split), meta_path(teacher.name, args.split)
@@ -437,14 +537,16 @@ def wall_per_record(runs: Sequence[Mapping[str, Any]]) -> dict[int, dict[str, fl
     return {w: {"seconds": round(s / n, 3), "n_records": int(n)} for w, (s, n) in sorted(by_workers.items())}
 
 
-def teacher_probe(name: str, ids: Sequence[str]) -> tuple[dict[str, dict[str, Any]], dict[str, Any], dict[str, Any]]:
-    rows = {r["id"]: r for r in read_rows(output_path(name, "train_pool"))}
+def teacher_probe(
+    name: str, ids: Sequence[str], pool_split: str = "train_pool"
+) -> tuple[dict[str, dict[str, Any]], dict[str, Any], dict[str, Any]]:
+    rows = {r["id"]: r for r in read_rows(output_path(name, pool_split))}
     missing = [i for i in ids if i not in rows]
     if missing:
         raise SystemExit(f"{name}: {len(missing)} probe records not labeled yet, e.g. {missing[0]}")
     probe = [rows[i] for i in ids]
-    meta = json.loads(meta_path(name, "train_pool").read_text(encoding="utf-8"))
-    dev_meta_file = meta_path(name, "dev")
+    meta = json.loads(meta_path(name, pool_split).read_text(encoding="utf-8"))
+    dev_meta_file = meta_path(name, DEV_OF[pool_split])
     dev_meta = json.loads(dev_meta_file.read_text(encoding="utf-8")) if dev_meta_file.exists() else {"runs": []}
     ok = [r for r in probe if r["error"] is None]
     metrics: dict[str, dict[str, Any]] = {
@@ -455,8 +557,12 @@ def teacher_probe(name: str, ids: Sequence[str]) -> tuple[dict[str, dict[str, An
         f"{name}_prompt_tokens_mean": {"value": round(statistics.mean(r["prompt_tokens"] for r in ok), 1)},
         f"{name}_completion_tokens_mean": {"value": round(statistics.mean(r["completion_tokens"] for r in ok), 1)},
         f"{name}_completion_tokens_max": {"value": max(r["completion_tokens"] for r in ok)},
+        f"{name}_finish_length": share(sum(r["finish_reason"] == "length" for r in probe), len(probe)),
     }
-    timing = {"train_pool": wall_per_record(meta["runs"]), "dev": wall_per_record(dev_meta["runs"])}
+    if asks_exclude(pool_split):
+        for value in EXCLUDE:
+            metrics[f"{name}_exclude_{value}"] = share(sum(r.get("exclude") == value for r in probe), len(probe))
+    timing = {pool_split: wall_per_record(meta["runs"]), DEV_OF[pool_split]: wall_per_record(dev_meta["runs"])}
     for split, by_w in timing.items():
         for w, t in by_w.items():
             metrics[f"{name}_{split}_wall_s_per_record_w{w}"] = {"value": t["seconds"], "records": t["n_records"]}
@@ -474,21 +580,27 @@ def forecast(pool_size: int, seconds: float) -> dict[str, Any]:
     }
 
 
-def cmd_probe_report(n: int) -> int:
+PROBE_RESULT = {"train_pool": "teacher/probe.json", "tg_train_pool": "teacher/probe_tg.json"}
+STRATA = {"train_pool": "source x role proxy", "tg_train_pool": "channel network x role proxy, one record per group"}
+
+
+def cmd_probe_report(n: int, pool_split: str = "train_pool") -> int:
+    if pool_split not in DEV_OF:
+        raise SystemExit(f"--probe-report reads a training pool: {sorted(DEV_OF)}, not {pool_split!r}")
     cfg = load_config()
-    pool = train_pool_items(data_dir() / "corpus", cfg.seed)
+    pool = pool_items(pool_split, cfg.seed)
     probe = stratified(pool, n)
     ids = [i.id for i in probe]
     metrics: dict[str, dict[str, Any]] = {}
     details: dict[str, Any] = {}
     outputs: dict[str, dict[str, Any]] = {}
     for name in TEACHERS:
-        m, d, o = teacher_probe(name, ids)
+        m, d, o = teacher_probe(name, ids, pool_split)
         metrics |= m
         details[name] = d
         outputs[name] = o
-        best = min(d["timing"]["train_pool"].values(), key=lambda t: t["seconds"])
-        metrics[f"{name}_forecast_train_pool_hours"] = forecast(len(pool), best["seconds"])
+        best = min(d["timing"][pool_split].values(), key=lambda t: t["seconds"])
+        metrics[f"{name}_forecast_{pool_split}_hours"] = forecast(len(pool), best["seconds"])
 
     agreement = compare(outputs["qwen"], outputs["yandex"], cfg.salary_rel_tol)
     both = agreement["records"]["both"] - agreement["invalid"]["a"] - agreement["invalid"]["b"]
@@ -504,13 +616,14 @@ def cmd_probe_report(n: int) -> int:
     strata = Counter(i.stratum for i in probe)
     pool_strata = Counter(i.stratum for i in pool)
     path = write_result(
-        "teacher/probe.json",
+        PROBE_RESULT[pool_split],
         metrics,
         source_script="src/radar/extract/teacher.py",
         probe={
             "n": len(ids),
+            "split": pool_split,
             "ids_sha256": sha256_text("\n".join(sorted(ids))),
-            "design": "proportional stratified sample of train_pool by source x role proxy, fixed random order "
+            "design": f"proportional stratified sample of {pool_split} by {STRATA[pool_split]}, fixed random order "
             "(seed of configs/eval.toml)",
             "strata": {h: {"probe": strata[h], "pool": pool_strata[h]} for h in sorted(pool_strata)},
         },
@@ -525,9 +638,9 @@ def cmd_probe_report(n: int) -> int:
             "f1_b_against_a": agreement["f1_b_against_a"],
             "disagreements": agreement["disagreements"],
         },
-        forecast_note="wall seconds per record of the fastest train_pool run times train_pool size; "
-        "train_pool changes when the corpus is rebuilt",
-        dev_results=["results/extract/dev_teacher_qwen.json", "results/extract/dev_teacher_yandex.json"],
+        forecast_note=f"wall seconds per record of the fastest {pool_split} run times the pool size; "
+        "the pool changes when the corpus is rebuilt",
+        dev_results=[f"results/extract/{DEV_OF[pool_split]}_teacher_{name}.json" for name in TEACHERS],
     )
     print(path)
     for k, v in metrics.items():
@@ -613,7 +726,7 @@ def cmd_agreement() -> int:
     cfg = load_config()
     metrics: dict[str, dict[str, Any]] = {}
     identity: dict[str, dict[str, Any]] = {}
-    for split in SPLITS:
+    for split in S1_SPLITS:
         rows = [read_rows(output_path(name, split)) for name in PAIR]
         for name, r in zip(PAIR, rows, strict=True):
             if not r:
@@ -650,13 +763,16 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="python -m radar.extract.teacher", description=__doc__.splitlines()[0])
     mode = ap.add_mutually_exclusive_group(required=True)
     mode.add_argument("--teacher", choices=sorted(TEACHERS))
-    mode.add_argument("--probe-report", type=int, metavar="N", help="results/teacher/probe.json from N probe records")
+    mode.add_argument(
+        "--probe-report", type=int, metavar="N", help="results/teacher/probe*.json from N probe records of --split"
+    )
     mode.add_argument("--agreement", action="store_true", help="results/teacher/agreement.json: qwen against yandex")
     ap.add_argument("--split", choices=SPLITS, default="train_pool")
     ap.add_argument(
         "--limit",
         type=int,
-        help="train_pool: proportional stratified sample of N by source x role proxy; dev: first N in a fixed order",
+        help="train_pool, tg_train_pool: proportional stratified sample of N by source (Telegram: channel network) "
+        "x role proxy; dev, tg_dev: first N in a fixed order",
     )
     ap.add_argument("--keep-all", action="append", default=[], metavar="PROXY", help="take every record of this proxy")
     ap.add_argument("--workers", type=int, default=1, help="requests in flight; at most the server's -np slots")
@@ -667,7 +783,7 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
     load_dotenv()
     if args.probe_report:
-        return cmd_probe_report(args.probe_report)
+        return cmd_probe_report(args.probe_report, args.split)
     if args.agreement:
         return cmd_agreement()
     return cmd_label(args)

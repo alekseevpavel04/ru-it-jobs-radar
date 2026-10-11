@@ -4,12 +4,22 @@
 # input), "qwen" or "yandex" (that teacher's answer), "agree" (the teachers' value where
 # both answered and agree, the rules' value otherwise). A field not listed comes from the rules.
 #
-# Compositions are compared on dev only (`dev --composition NAME`); `build` writes the chosen one.
-# Changing `chosen` or a composition changes the training set: record it in docs/EXPERIMENTS.md.
+# Each source family compares its candidates on its own dev split (`dev --family F`): trudvsem_habr
+# on dev, telegram on tg_dev, and chooses one of them. `build` writes every family that has a choice
+# and skips the rest. Candidates are fixed before their dev scores are seen, at most four per family.
+# Changing a choice or a composition changes the training set: record it in docs/EXPERIMENTS.md.
 
+[candidates]
+trudvsem_habr = ["rules", "qwen_role_format", "agree_role_format", "qwen_role"]
+# A post has no header: the rules read salary, cities and experience from free text, where they are
+# weakest, so a teacher may win more fields than on trudvsem and Habr.
+telegram = ["rules", "qwen_role_format", "qwen_all", "agree_all"]
+
+[chosen]
 # Every candidate stays within 0.01 macro F1 of the rules on dev (results/extract/dev_silver_*_vs_regex.json),
 # and a gain below 0.01 does not count (stop rule of EXPERIMENTS.md): the simplest composition wins.
-chosen = "rules"
+trudvsem_habr = "rules"
+# telegram: chosen on tg_dev once its gold exists.
 
 [compositions.rules]
 
@@ -25,3 +35,25 @@ work_format = "agree"
 # Role alone: its dev gain is the larger one, work_format F1 rises while its accuracy drops.
 [compositions.qwen_role]
 role = "qwen"
+
+[compositions.qwen_all]
+role = "qwen"
+grade = "qwen"
+skills = "qwen"
+salary = "qwen"
+work_format = "qwen"
+cities = "qwen"
+experience_years = "qwen"
+employment_type = "qwen"
+lang = "qwen"
+
+[compositions.agree_all]
+role = "agree"
+grade = "agree"
+skills = "agree"
+salary = "agree"
+work_format = "agree"
+cities = "agree"
+experience_years = "agree"
+employment_type = "agree"
+lang = "agree"

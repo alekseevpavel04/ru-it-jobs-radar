@@ -10,7 +10,7 @@ from radar import config, results
 from radar.extract import silver
 from radar.extract.baseline import extract
 from radar.extract.schema import VacancyFields, dump
-from radar.extract.silver import Composition, compose, load_compositions
+from radar.extract.silver import Composition, compose, load_config
 from radar.extract.teacher import sha256_text
 
 FIELDS = {
@@ -35,6 +35,10 @@ def composition(**sources: str) -> Composition:
     return Composition("t", {f: sources.get(f, "rules") for f in VacancyFields.model_fields})
 
 
+def config_text(compositions: str, chosen: str = "a", candidates: str = '["a"]') -> str:
+    return f'[candidates]\ntrudvsem_habr = {candidates}\n[chosen]\ntrudvsem_habr = "{chosen}"\n{compositions}'
+
+
 def write_config(path: Path, text: str) -> Path:
     path.write_text(text, encoding="utf-8")
     return path
@@ -44,32 +48,44 @@ def write_config(path: Path, text: str) -> Path:
 
 
 def test_unlisted_fields_come_from_rules(tmp_path: Path) -> None:
-    cfg = write_config(tmp_path / "s.toml", 'chosen = "a"\n[compositions.a]\nrole = "qwen"\n[compositions.b]\n')
-    chosen, compositions = load_compositions(cfg)
-    assert chosen == "a"
-    assert compositions["a"].sources["role"] == "qwen"
-    assert compositions["a"].sources["skills"] == "rules"
-    assert set(compositions["b"].sources.values()) == {"rules"}
+    text = config_text('[compositions.a]\nrole = "qwen"\n[compositions.b]\n', candidates='["a", "b"]')
+    cfg = load_config(write_config(tmp_path / "s.toml", text))
+    assert cfg.chosen == {"trudvsem_habr": "a"}
+    assert cfg.candidates == {"trudvsem_habr": ["a", "b"]}
+    assert cfg.compositions["a"].sources["role"] == "qwen"
+    assert cfg.compositions["a"].sources["skills"] == "rules"
+    assert set(cfg.compositions["b"].sources.values()) == {"rules"}
+
+
+def test_a_family_may_have_no_choice_yet(tmp_path: Path) -> None:
+    text = config_text("[compositions.a]\n[compositions.b]\n").replace("[chosen]", 'telegram = ["a", "b"]\n[chosen]')
+    cfg = load_config(write_config(tmp_path / "s.toml", text))
+    assert cfg.candidates["telegram"] == ["a", "b"]
+    assert "telegram" not in cfg.chosen
 
 
 @pytest.mark.parametrize(
     ("text", "message"),
     [
-        ('chosen = "a"\n[compositions.a]\nsalary_text = "qwen"\n', "not schema fields"),
-        ('chosen = "a"\n[compositions.a]\nrole = "gpt"\n', "a source is one of"),
-        ('chosen = "b"\n[compositions.a]\n', "not one of"),
-        ('chosen = "A"\n[compositions.A]\n', "lowercase"),
+        (config_text('[compositions.a]\nsalary_text = "qwen"\n'), "not schema fields"),
+        (config_text('[compositions.a]\nrole = "gpt"\n'), "a source is one of"),
+        (config_text("[compositions.a]\n", chosen="b"), "not one of candidates"),
+        (config_text("[compositions.a]\n", candidates='["a", "c"]'), "not in"),
+        (config_text("[compositions.a]\n", candidates='["a", "a", "a", "a", "a"]'), "at most 4"),
+        (config_text("[compositions.A]\n", chosen="A", candidates='["A"]'), "lowercase"),
+        ('[chosen]\nhh = "a"\n[compositions.a]\n', "not a source family"),
     ],
 )
 def test_bad_config_is_refused(tmp_path: Path, text: str, message: str) -> None:
     with pytest.raises(ValueError, match=message):
-        load_compositions(write_config(tmp_path / "s.toml", text))
+        load_config(write_config(tmp_path / "s.toml", text))
 
 
 def test_repository_config_loads() -> None:
-    chosen, compositions = load_compositions()
-    assert chosen in compositions
-    assert len(compositions) <= 4
+    cfg = load_config()
+    assert cfg.chosen["trudvsem_habr"] == "rules"
+    assert set(cfg.candidates) == {"trudvsem_habr", "telegram"}
+    assert all(len(names) <= 4 for names in cfg.candidates.values())
 
 
 # --- composition --------------------------------------------------------------------------------
@@ -173,7 +189,9 @@ def test_build_drops_records_by_reason_and_writes_counts(data: Path, tmp_path: P
     write_jsonl(data / "teacher" / "qwen" / "train_pool.jsonl", qwen)
     write_jsonl(data / "teacher" / "yandex" / "train_pool.jsonl", yandex)
     write_meta(data, "train_pool")
-    cfg = write_config(tmp_path / "s.toml", 'chosen = "y"\n[compositions.y]\nrole = "yandex"\nskills = "agree"\n')
+    cfg = write_config(
+        tmp_path / "s.toml", config_text('[compositions.y]\nrole = "yandex"\nskills = "agree"\n', "y", '["y"]')
+    )
 
     assert silver.main(["--config", str(cfg), "build"]) == 0
 
@@ -184,16 +202,18 @@ def test_build_drops_records_by_reason_and_writes_counts(data: Path, tmp_path: P
     assert label["skills"] == FIELDS["skills"]
     assert label["cities"] == extract(rows[0]["input"]).cities
     doc = json.loads((tmp_path / "results" / "silver" / "build.json").read_text(encoding="utf-8"))
-    m = doc["metrics"]
+    m = {k.removeprefix("trudvsem_habr."): v for k, v in doc["metrics"].items()}
     assert m["records_labeled_by_both"]["value"] == 5
     assert (m["records_written"]["n"], m["records_written"]["denominator"]) == (2, 5)
     assert m["dropped_not_in_train_pool"]["n"] == 1
     assert m["dropped_input_changed"]["n"] == 1
     assert m["dropped_yandex_invalid"]["n"] == 1
     assert m["dropped_qwen_invalid"]["n"] == 0
+    assert "dropped_excluded" not in m
     assert (m["agreed_skills"]["n"], m["agreed_skills"]["denominator"]) == (2, 2)
-    assert doc["sources"]["role"] == "yandex"
-    assert doc["strata"] == {"trudvsem|dev": 2}
+    assert doc["sources"]["trudvsem_habr"]["role"] == "yandex"
+    assert doc["strata"] == {"trudvsem_habr": {"trudvsem|dev": 2}}
+    assert doc["families_not_built"] == ["telegram"]
 
 
 def test_dev_scores_a_composition_against_regex_with_rules_for_a_failed_request(data: Path, tmp_path: Path) -> None:
@@ -208,7 +228,7 @@ def test_dev_scores_a_composition_against_regex_with_rules_for_a_failed_request(
     write_jsonl(data / "teacher" / "yandex" / "dev.jsonl", [teacher_row(f"t:{i}", text(i), FIELDS) for i in range(3)])
     regex = [{"id": f"t:{i}", "output": json.dumps(dump(extract(text(i))), ensure_ascii=False)} for i in range(3)]
     write_jsonl(data / "predictions" / "dev" / "regex.jsonl", regex)
-    cfg = write_config(tmp_path / "s.toml", 'chosen = "q"\n[compositions.q]\nrole = "qwen"\n')
+    cfg = write_config(tmp_path / "s.toml", config_text('[compositions.q]\nrole = "qwen"\n', "q", '["q"]'))
 
     assert silver.main(["--config", str(cfg), "dev"]) == 0
 
@@ -227,6 +247,6 @@ def test_dev_refuses_a_teacher_answer_for_another_input(data: Path, tmp_path: Pa
     write_jsonl(data / "gold" / "dev_inputs.jsonl", [{"id": "t:0", "source": "trudvsem", "input": text(0)}])
     write_jsonl(data / "teacher" / "qwen" / "dev.jsonl", [teacher_row("t:0", "something else", FIELDS)])
     write_jsonl(data / "teacher" / "yandex" / "dev.jsonl", [teacher_row("t:0", text(0), FIELDS)])
-    cfg = write_config(tmp_path / "s.toml", 'chosen = "q"\n[compositions.q]\nrole = "qwen"\n')
+    cfg = write_config(tmp_path / "s.toml", config_text('[compositions.q]\nrole = "qwen"\n', "q", '["q"]'))
     with pytest.raises(SystemExit, match="another input"):
         silver.main(["--config", str(cfg), "dev"])

@@ -16,6 +16,7 @@ from radar.extract.teacher import (
     ServerError,
     label_one,
     request_body,
+    request_schema,
     reusable,
     sha256_text,
     stratified,
@@ -33,6 +34,7 @@ ANSWER = {
     "employment_type": None,
     "lang": "ru",
 }
+BODY = request_body(TEACHERS["qwen"], "rules", "Должность: Программист", request_schema("train_pool"))
 
 
 def completion(content: str, finish_reason: str = "stop") -> dict[str, Any]:
@@ -90,7 +92,7 @@ def test_request_body_switches_qwen_thinking_off_only() -> None:
 
 def test_valid_answer_is_normalized() -> None:
     raw = json.dumps(ANSWER, ensure_ascii=False, indent=2)
-    row = label_one(client(lambda r: httpx.Response(200, json=completion(raw))), {}, item())
+    row = label_one(client(lambda r: httpx.Response(200, json=completion(raw))), BODY, item())
     assert row["valid"] is True
     assert row["raw"] == raw
     assert json.loads(row["output"]) == ANSWER
@@ -101,7 +103,7 @@ def test_valid_answer_is_normalized() -> None:
 
 def test_schema_violation_is_kept_raw_and_invalid() -> None:
     bad = json.dumps({**ANSWER, "experience_years": {"min": 5, "max": 1}})
-    row = label_one(client(lambda r: httpx.Response(200, json=completion(bad))), {}, item())
+    row = label_one(client(lambda r: httpx.Response(200, json=completion(bad))), BODY, item())
     assert row["valid"] is False
     assert row["output"] is None
     assert row["raw"] == bad
@@ -109,7 +111,7 @@ def test_schema_violation_is_kept_raw_and_invalid() -> None:
 
 
 def test_cut_answer_is_invalid_even_if_it_parses() -> None:
-    row = label_one(client(lambda r: httpx.Response(200, json=completion(json.dumps(ANSWER), "length"))), {}, item())
+    row = label_one(client(lambda r: httpx.Response(200, json=completion(json.dumps(ANSWER), "length"))), BODY, item())
     assert row["valid"] is False
     assert row["finish_reason"] == "length"
 
@@ -121,13 +123,13 @@ def test_server_error_is_retried() -> None:
         status = next(statuses)
         return httpx.Response(status, json=completion(json.dumps(ANSWER)) if status == 200 else {"error": "busy"})
 
-    assert label_one(client(handle), {}, item(), pause_s=0)["valid"] is True
+    assert label_one(client(handle), BODY, item(), pause_s=0)["valid"] is True
 
 
 def test_persistent_http_error_becomes_a_failed_row() -> None:
     row = label_one(
         client(lambda r: httpx.Response(500, json={"error": {"message": "Context size has been exceeded."}})),
-        {},
+        BODY,
         item(),
         pause_s=0,
     )
@@ -140,7 +142,7 @@ def test_unreachable_server_stops_the_run() -> None:
         raise httpx.ConnectError("refused")
 
     with pytest.raises(ServerError, match="ConnectError"):
-        label_one(client(handle), {}, item(), pause_s=0)
+        label_one(client(handle), BODY, item(), pause_s=0)
 
 
 # --- selection and resume -----------------------------------------------------------------------
