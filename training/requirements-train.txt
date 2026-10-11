@@ -1,3 +1,4 @@
 # Training venv inside WSL (~/venvs/train, Python 3.12): QLoRA SFT and DPO.
 # Exact resolved set: requirements-train.lock.txt (pip install -r requirements-train.lock.txt).
 unsloth==2026.10.2
+mlflow-skinny==3.17.0
