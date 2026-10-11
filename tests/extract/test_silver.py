@@ -58,7 +58,9 @@ def test_unlisted_fields_come_from_rules(tmp_path: Path) -> None:
 
 
 def test_a_family_may_have_no_choice_yet(tmp_path: Path) -> None:
-    text = config_text("[compositions.a]\n[compositions.b]\n").replace("[chosen]", 'telegram = ["a", "b"]\n[chosen]')
+    text = config_text('[compositions.a]\nrole = "qwen"\n[compositions.b]\n').replace(
+        "[chosen]", 'telegram = ["a", "b"]\n[chosen]'
+    )
     cfg = load_config(write_config(tmp_path / "s.toml", text))
     assert cfg.candidates["telegram"] == ["a", "b"]
     assert "telegram" not in cfg.chosen
@@ -250,3 +252,42 @@ def test_dev_refuses_a_teacher_answer_for_another_input(data: Path, tmp_path: Pa
     cfg = write_config(tmp_path / "s.toml", config_text('[compositions.q]\nrole = "qwen"\n', "q", '["q"]'))
     with pytest.raises(SystemExit, match="another input"):
         silver.main(["--config", str(cfg), "dev"])
+
+
+def test_a_rules_only_family_is_a_sample_of_the_current_pool_without_teachers(data: Path, tmp_path: Path) -> None:
+    corpus = data / "corpus"
+    corpus.mkdir(parents=True)
+    proxies = ["ml_ds_data", "dev", "dev", "dev", "qa", "dev"]
+    records = [
+        {"id": f"t:{i}", "source": "trudvsem", "role_proxy": proxy, "input": text(i)} for i, proxy in enumerate(proxies)
+    ]
+    pq.write_table(pa.Table.from_pylist(records), corpus / "corpus.parquet")
+    split = [
+        {"split": "train_pool", "member_ids": [f"t:{i}" for i in range(5)]},
+        {"split": "dev", "member_ids": ["t:5"]},
+    ]
+    pq.write_table(pa.Table.from_pylist(split), corpus / "split.parquet")
+    text_ = config_text("[compositions.r]\n", "r", '["r"]')
+    cfg = write_config(
+        tmp_path / "s.toml", text_ + '[rules_sample.trudvsem_habr]\nlimit = 3\nkeep_all = ["ml_ds_data"]\n'
+    )
+
+    assert silver.main(["--config", str(cfg), "build"]) == 0
+
+    rows = [json.loads(x) for x in (data / "silver" / "train.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert len(rows) == 3
+    assert "t:0" in {r["id"] for r in rows}
+    assert "t:5" not in {r["id"] for r in rows}
+    for r in rows:
+        assert json.loads(r["output"]) == dump(extract(r["input"]))
+    doc = json.loads((tmp_path / "results" / "silver" / "build.json").read_text(encoding="utf-8"))
+    m = doc["metrics"]
+    assert (m["trudvsem_habr.records_written"]["n"], m["trudvsem_habr.records_written"]["denominator"]) == (3, 5)
+    assert m["trudvsem_habr.kept_all_ml_ds_data"]["n"] == 1
+    assert doc["rules_sample"] == {"trudvsem_habr": {"limit": 3, "keep_all": ["ml_ds_data"]}}
+    assert doc["teachers"] == {}
+
+
+def test_a_chosen_rules_only_composition_needs_a_rules_sample(tmp_path: Path) -> None:
+    with pytest.raises(ValueError, match="rules_sample"):
+        load_config(write_config(tmp_path / "s.toml", config_text("[compositions.a]\n")))

@@ -30,6 +30,8 @@ telegram = ["rules", "qwen_all"]
 [chosen]
 trudvsem_habr = "rules"
 telegram = "qwen_all"
+[rules_sample.trudvsem_habr]
+limit = 10
 [compositions.rules]
 [compositions.qwen_all]
 role = "qwen"
@@ -162,6 +164,7 @@ def test_build_composes_each_family_on_its_own_and_drops_excluded_posts(data: Pa
     assert "trudvsem_habr.dropped_excluded" not in m
     assert doc["compositions"] == {"trudvsem_habr": "rules", "telegram": "qwen_all"}
     assert doc["teachers"]["telegram"]["qwen"]["schema_sha256"] == "tg_train_pool"
+    assert "trudvsem_habr" not in doc["teachers"]
     assert doc["families_not_built"] == []
 
 

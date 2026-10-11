@@ -23,6 +23,9 @@ pool after a corpus rebuild and whose input is the one the teachers saw, drops T
 teacher marked `exclude` (a list of vacancies or not a vacancy, which the gold set drops too), and
 writes data/silver/train.jsonl, one line {"id", "input", "output"} per record, `output` being the
 label as a JSON string (the text the student learns to produce). Counts go to results/silver/build.json.
+A family whose composition takes every field from the rules needs no teacher: its records are drawn
+from the current training pool by `[rules_sample.<family>]` of the config, the way the teacher labeling drew the
+teachers' sample, so they are the current versions of the vacancies after a corpus rebuild.
 
     python -m radar.extract.silver dev                                # trudvsem and Habr candidates
     python -m radar.extract.silver dev --family telegram --composition qwen_role_format
@@ -58,6 +61,7 @@ from radar.extract.teacher import (
     read_rows,
     sha256_text,
     share,
+    stratified,
     tg_train_pool_items,
     train_pool_items,
     write_rows,
@@ -98,8 +102,17 @@ class Composition:
     name: str
     sources: Mapping[str, str]
 
+    def rules_only(self) -> bool:
+        return all(source == "rules" for source in self.sources.values())
+
 
 MAX_CANDIDATES = 4
+
+
+@dataclass(frozen=True)
+class RulesSample:
+    limit: int
+    keep_all: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -107,6 +120,7 @@ class SilverConfig:
     compositions: dict[str, Composition]
     candidates: dict[str, list[str]]  # family -> compositions compared on its dev split
     chosen: dict[str, str]  # family -> composition; a family may have none yet
+    rules_sample: dict[str, RulesSample]  # family -> how a rules-only composition draws its records
 
 
 def load_config(path: Path = CONFIG) -> SilverConfig:
@@ -136,7 +150,17 @@ def load_config(path: Path = CONFIG) -> SilverConfig:
     for family, name in chosen.items():
         if name not in candidates.get(family, []):
             raise ValueError(f"chosen.{family} = {name!r} is not one of candidates.{family}")
-    return SilverConfig(compositions, candidates, chosen)
+    rules_sample = {}
+    for family, table in raw.get("rules_sample", {}).items():
+        if family not in FAMILIES:
+            raise ValueError(f"rules_sample.{family}: not a source family, one of {sorted(FAMILIES)}")
+        rules_sample[family] = RulesSample(int(table["limit"]), tuple(table.get("keep_all", ())))
+    for family, name in chosen.items():
+        if compositions[name].rules_only() and family not in rules_sample:
+            raise ValueError(
+                f"chosen.{family} = {name!r} takes every field from the rules: add [rules_sample.{family}]"
+            )
+    return SilverConfig(compositions, candidates, chosen, rules_sample)
 
 
 @dataclass(frozen=True)
@@ -299,9 +323,30 @@ def build_family(family: Family, composition: Composition, seed: int) -> Built:
     return Built(rows, metrics, {s: strata[s] for s in sorted(strata)}, teachers)
 
 
-def cmd_build(chosen: Mapping[str, str], compositions: Mapping[str, Composition], config: Path) -> int:
+def build_rules_only(family: Family, sample: RulesSample, seed: int) -> Built:
+    pool = family.pool_items(seed)
+    items = stratified(pool, sample.limit, sample.keep_all)
+    strata: Counter[str] = Counter(i.stratum for i in items)
+    rows = [{"id": i.id, "input": i.input, "output": label_line(Composed(extract(i.input)))} for i in items]
+    p = f"{family.name}."
+    metrics: dict[str, dict[str, Any]] = {f"{p}records_written": share(len(rows), len(pool))}
+    for proxy in sample.keep_all:
+        kept = sum(i.stratum.split("|")[-1] == proxy for i in items)
+        metrics[f"{p}kept_all_{proxy}"] = share(kept, len(rows))
+    log.info("%s: %d records drawn from the training pool, labeled by the rules", family.name, len(rows))
+    return Built(rows, metrics, {s: strata[s] for s in sorted(strata)}, {})
+
+
+def cmd_build(cfg: SilverConfig, config: Path) -> int:
     seed = load_eval_config().seed
-    built = {f: build_family(FAMILIES[f], compositions[chosen[f]], seed) for f in FAMILIES if f in chosen}
+    chosen, compositions = cfg.chosen, cfg.compositions
+    built = {
+        f: build_rules_only(FAMILIES[f], cfg.rules_sample[f], seed)
+        if compositions[chosen[f]].rules_only()
+        else build_family(FAMILIES[f], compositions[chosen[f]], seed)
+        for f in FAMILIES
+        if f in chosen
+    }
     if not built:
         raise SystemExit(f"no source family has a chosen composition in {config}")
     not_built = [f for f in FAMILIES if f not in chosen]
@@ -327,7 +372,12 @@ def cmd_build(chosen: Mapping[str, str], compositions: Mapping[str, Composition]
         if config.resolve().is_relative_to(ROOT)
         else str(config),
         config_sha256=hashlib.sha256(config.read_bytes()).hexdigest(),
-        teachers={f: b.teachers for f, b in built.items()},
+        teachers={f: b.teachers for f, b in built.items() if b.teachers},
+        rules_sample={
+            f: {"limit": cfg.rules_sample[f].limit, "keep_all": list(cfg.rules_sample[f].keep_all)}
+            for f in built
+            if compositions[chosen[f]].rules_only()
+        },
         output_file="data/silver/train.jsonl",
         output_sha256=hashlib.sha256(out.read_bytes()).hexdigest(),
         ids_sha256=sha256_text("\n".join(ids)),
@@ -336,7 +386,9 @@ def cmd_build(chosen: Mapping[str, str], compositions: Mapping[str, Composition]
         "it is no longer in its training pool, if its input is not the one the teachers saw, if a teacher "
         "marked a Telegram post exclude (multi_vacancy or not_vacancy), or if a teacher the composition "
         "names for a field has no valid answer; agreed_<field>: records where the teachers agreed on a field "
-        "the composition takes from their agreement (the rest take the rules' value)",
+        "the composition takes from their agreement (the rest take the rules' value); a family whose "
+        "composition is rules only is a stratified sample of its current training pool (rules_sample), "
+        "every field from the regex baseline",
     )
     log.info("%d records -> %s", len(rows), out)
     print(path)
@@ -355,7 +407,7 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
     cfg = load_config(args.config)
     if args.cmd == "build":
-        return cmd_build(cfg.chosen, cfg.compositions, args.config)
+        return cmd_build(cfg, args.config)
     names = args.composition or cfg.candidates.get(args.family, [])
     if not names:
         raise SystemExit(f"{args.config} lists no candidates.{args.family}: name one with --composition")
