@@ -40,6 +40,10 @@ class EvalConfig:
     skill_normalization: str = "casefold"
 
 
+# Gold splits scored once, in the final test: trudvsem and Habr (test) and Telegram posts (tg_test).
+TEST_SPLITS = ("test", "tg_test")
+
+
 def load_config(path: Path = CONFIG) -> EvalConfig:
     raw = tomllib.loads(path.read_text(encoding="utf-8"))
     cfg = EvalConfig(
@@ -129,7 +133,7 @@ def _print_table(title: str, block: Mapping[str, Mapping[str, Any]]) -> None:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="python -m radar.eval", description=__doc__.splitlines()[0])
     ap.add_argument("--system", required=True, help="system name; predictions file name without .jsonl")
-    ap.add_argument("--split", required=True, choices=["dev", "test"])
+    ap.add_argument("--split", required=True, choices=["dev", "test", "tg_dev", "tg_test"])
     ap.add_argument(
         "--compare", help="second system for a paired bootstrap of the difference; its file sits next to --predictions"
     )
@@ -139,11 +143,11 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--final-test", action="store_true", help="the one scoring of the test split")
     args = ap.parse_args(argv)
 
-    if args.split == "test" and not args.final_test:
-        print("refused: the test split is scored once, in the final test, with --final-test", file=sys.stderr)
+    if args.split in TEST_SPLITS and not args.final_test:
+        print("refused: a test split is scored once, in the final test, with --final-test", file=sys.stderr)
         return 2
-    if args.final_test and args.split != "test":
-        print("--final-test only goes with --split test", file=sys.stderr)
+    if args.final_test and args.split not in TEST_SPLITS:
+        print("--final-test only goes with a test split (test, tg_test)", file=sys.stderr)
         return 2
     for name in filter(None, (args.system, args.compare)):
         if not SYSTEM_NAME.match(name):

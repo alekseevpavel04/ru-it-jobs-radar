@@ -567,7 +567,9 @@ def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
     ap = argparse.ArgumentParser(prog="python -m radar.extract.baseline", description=__doc__.splitlines()[0])
     mode = ap.add_mutually_exclusive_group(required=True)
-    mode.add_argument("--split", choices=["dev"], help="predict data/gold/<split>_inputs.jsonl; scored if gold exists")
+    mode.add_argument(
+        "--split", choices=["dev", "tg_dev"], help="predict data/gold/<split>_inputs.jsonl; scored if gold exists"
+    )
     mode.add_argument("--train-sample", type=int, metavar="N", help="validity and fill rates on N train_pool records")
     ap.add_argument("--seed", type=int, help="seed of the train_pool sample; default: the seed of configs/eval.toml")
     args = ap.parse_args(argv)

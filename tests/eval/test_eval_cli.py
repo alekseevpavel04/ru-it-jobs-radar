@@ -63,14 +63,16 @@ def repo(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
     return tmp_path
 
 
-def test_test_split_refused_without_final_test(repo: Path, capsys: pytest.CaptureFixture[str]) -> None:
-    assert cli.main(["--system", "good", "--split", "test"]) == 2
+@pytest.mark.parametrize("split", ["test", "tg_test"])
+def test_test_split_refused_without_final_test(repo: Path, capsys: pytest.CaptureFixture[str], split: str) -> None:
+    assert cli.main(["--system", "good", "--split", split]) == 2
     assert "refused" in capsys.readouterr().err
     assert not (repo / "results").exists()
 
 
-def test_final_test_flag_needs_test_split(repo: Path) -> None:
-    assert cli.main(["--system", "good", "--split", "dev", "--final-test"]) == 2
+@pytest.mark.parametrize("split", ["dev", "tg_dev"])
+def test_final_test_flag_needs_test_split(repo: Path, split: str) -> None:
+    assert cli.main(["--system", "good", "--split", split, "--final-test"]) == 2
     assert not (repo / "results").exists()
 
 
