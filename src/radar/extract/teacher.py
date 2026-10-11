@@ -470,6 +470,9 @@ def cmd_label(args: argparse.Namespace) -> int:
         write_rows(out, [])
         done = set()
 
+    # Written before the first request: a run killed from outside skips `finally`, and --resume needs
+    # the prompt and schema identity of the rows it left.
+    meta_file.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     todo = [i for i in items if i.id not in done]
     log.info("%s on %s: %d selected, %d done, %d to label", teacher.name, args.split, len(items), len(done), len(todo))
     started = datetime.now(UTC)
@@ -528,10 +531,11 @@ def share(n: int, d: int) -> dict[str, Any]:
 
 
 def wall_per_record(runs: Sequence[Mapping[str, Any]]) -> dict[int, dict[str, float]]:
-    """Wall seconds per labeled record by worker count, over runs that labeled something."""
+    """Wall seconds per labeled record by worker count, over runs that labeled something and whose
+    time is known (a run killed from outside has elapsed_s null)."""
     by_workers: dict[int, list[float]] = defaultdict(lambda: [0.0, 0.0])
     for run in runs:
-        if run["n_labeled"]:
+        if run["n_labeled"] and run["elapsed_s"] is not None:
             by_workers[run["workers"]][0] += run["elapsed_s"]
             by_workers[run["workers"]][1] += run["n_labeled"]
     return {w: {"seconds": round(s / n, 3), "n_records": int(n)} for w, (s, n) in sorted(by_workers.items())}

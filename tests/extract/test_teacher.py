@@ -261,6 +261,24 @@ def test_resume_refuses_another_prompt(server: dict[str, Any], tmp_path: Path, m
         teacher.main(["--teacher", "qwen", "--split", "train_pool", "--resume"])
 
 
+def test_the_identity_is_on_disk_before_the_first_request(
+    server: dict[str, Any], tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A run killed from outside never reaches `finally`: --resume still needs the identity."""
+    meta_file = tmp_path / "data" / "teacher" / "qwen" / "train_pool.meta.json"
+    seen: list[dict[str, Any]] = []
+    real = teacher.labeled
+
+    def watched(*args: Any, **kwargs: Any) -> Any:
+        seen.append(json.loads(meta_file.read_text(encoding="utf-8")))
+        yield from real(*args, **kwargs)
+
+    monkeypatch.setattr(teacher, "labeled", watched)
+    assert teacher.main(["--teacher", "qwen", "--split", "train_pool", "--limit", "1"]) == 0
+    assert seen[0]["prompt_sha256"] == sha256_text(teacher.PROMPT.read_text(encoding="utf-8"))
+    assert seen[0]["runs"] == []
+
+
 def test_wrong_model_on_the_server_is_refused(server: dict[str, Any]) -> None:
     server["alias"] = "something-else"
     with pytest.raises(ServerError, match="Qwen3-8B"):
