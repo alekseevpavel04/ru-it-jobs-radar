@@ -35,5 +35,7 @@ dbt/dbt_packages/
 
 # site build outputs; site/src/data (the export) is versioned
 /site/dist/
-/site/src/.observablehq/cache/
+# the npm cache of the site pins the d3 and Plot versions the build resolved; the rest is rebuilt
+/site/src/.observablehq/cache/*
+!/site/src/.observablehq/cache/_npm/
 /site/_trial/

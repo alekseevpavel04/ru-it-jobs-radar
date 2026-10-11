@@ -17,6 +17,8 @@ export default {
   title: "Радар IT-вакансий",
   root: "src",
   lang: "ru",
+  // GitHub Pages serves the project at /ru-it-jobs-radar/; pages link relatively, the 404 page needs the base
+  base: "/ru-it-jobs-radar/",
   pages: [
     {name: "Навыки", path: "/skills"},
     {name: "Зарплаты", path: "/salaries"},

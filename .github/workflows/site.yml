@@ -1,0 +1,68 @@
+name: site
+
+# Builds the public site from the committed export (site/src/data) and deploys it to GitHub Pages.
+# The runner cannot reach ClickHouse: the data are exported locally (python -m radar.site.export)
+# and committed, and this workflow only builds and publishes them.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "src/radar/site/scan_dist.py"
+      - ".github/workflows/site.yml"
+  workflow_dispatch:
+  # Daily rebuild goes together with the daily data commit; until then the site is
+  # rebuilt on a change under site/ or by hand.
+  # schedule:
+  #   - cron: "30 5 * * *"
+
+permissions:
+  contents: read
+
+# One deployment at a time; a newer push waits instead of cancelling a deployment in progress.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          # the version the lock file was made with; its npm (11.19) reads allowScripts
+          node-version: "24.21.0"
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      # Only install scripts approved in package.json (allowScripts: esbuild) run; a new dependency
+      # with an unreviewed install script fails here instead of running.
+      - run: npm ci --strict-allow-scripts
+      # d3 and Plot come from the committed cache (src/.observablehq/cache/_npm), not from a CDN;
+      # the build script turns the Framework usage telemetry off
+      - run: npm run build
+      - name: Check that the build holds aggregates only
+        run: python3 ../src/radar/site/scan_dist.py dist
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: site/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
