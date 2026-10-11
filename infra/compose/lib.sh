@@ -66,19 +66,25 @@ select_profiles() {
 # `:?` on them would stop `up.sh core` as well; they are checked here for the profiles being started.
 declare -A PROFILE_SECRETS=(
   [orchestration]="AIRFLOW_DB_PASSWORD AIRFLOW_ADMIN_PASSWORD AIRFLOW_JWT_SECRET"
+  [mlops]="N8N_OWNER_PASSWORD"
 )
+
+# Value of a variable: the environment first, then the last assignment in the env file.
+env_value() {
+  local name=$1 value=${!1:-}
+  if [ -z "$value" ]; then
+    value=$(sed -n "s/^[[:space:]]*$name=//p" "$RADAR_ENV_FILE" | tail -n 1 | tr -d "\"'[:space:]")
+  fi
+  printf '%s' "$value"
+}
 
 # Exits naming every secret of the selected profiles (PROFILE_ARGS) that is empty both in the
 # environment and in the env file.
 require_profile_secrets() {
-  local i name value missing=()
+  local i name missing=()
   for ((i = 1; i < ${#PROFILE_ARGS[@]}; i += 2)); do
     for name in ${PROFILE_SECRETS[${PROFILE_ARGS[i]}]:-}; do
-      value=${!name:-}
-      if [ -z "$value" ]; then
-        value=$(sed -n "s/^[[:space:]]*$name=//p" "$RADAR_ENV_FILE" | tail -n 1 | tr -d "\"'[:space:]")
-      fi
-      [ -n "$value" ] || missing+=("$name")
+      [ -n "$(env_value "$name")" ] || [[ " ${missing[*]} " == *" $name "* ]] || missing+=("$name")
     done
   done
   if [ ${#missing[@]} -gt 0 ]; then

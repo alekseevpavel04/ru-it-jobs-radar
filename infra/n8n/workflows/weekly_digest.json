@@ -1,0 +1,194 @@
+{
+  "id": "radarWeeklyDigest",
+  "name": "Weekly market digest",
+  "nodes": [
+    {
+      "id": "0b7d6c3e-4f61-4c5e-9a51-1d0f5a7e2c02",
+      "name": "Run by hand",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 0],
+      "parameters": {}
+    },
+    {
+      "id": "0b7d6c3e-4f61-4c5e-9a51-1d0f5a7e2c01",
+      "name": "Every Monday 09:00 MSK",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [0, 200],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * 1"
+            }
+          ]
+        },
+        "misfirePolicy": "coalesce"
+      }
+    },
+    {
+      "id": "0b7d6c3e-4f61-4c5e-9a51-1d0f5a7e2c03",
+      "name": "Week and queries",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [240, 100],
+      "parameters": {
+        "executeOnce": true,
+        "command": "python3 -m radar.site.digest queries"
+      }
+    },
+    {
+      "id": "0b7d6c3e-4f61-4c5e-9a51-1d0f5a7e2c04",
+      "name": "One item per query",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [480, 100],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const plan = JSON.parse($input.first().json.stdout);\nreturn plan.queries.map((q) => ({json: {week: plan.week, name: q.name, sql: q.sql}}));"
+      }
+    },
+    {
+      "id": "0b7d6c3e-4f61-4c5e-9a51-1d0f5a7e2c05",
+      "name": "ClickHouse marts, read-only",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [720, 100],
+      "parameters": {
+        "method": "POST",
+        "url": "http://clickhouse:8123/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "text/plain; charset=utf-8",
+        "body": "={{ $json.sql }}",
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "radarChReadOnly1",
+          "name": "ClickHouse read-only"
+        }
+      }
+    },
+    {
+      "id": "0b7d6c3e-4f61-4c5e-9a51-1d0f5a7e2c06",
+      "name": "Bundle the answers",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [960, 100],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "// The HTTP node answers item by item, so answer i belongs to query i. The response format stays on\n// autodetect: with a raw body n8n 2.41 reads the answer only then (a fixed JSON or text format\n// passes on the unread stream object).\nconst asked = $('One item per query').all();\nconst results = {};\n$input.all().forEach((answer, i) => {\n  results[asked[i].json.name] = answer.json.data;\n});\nreturn [{json: {week: asked[0].json.week, results}}];"
+      }
+    },
+    {
+      "id": "0b7d6c3e-4f61-4c5e-9a51-1d0f5a7e2c07",
+      "name": "Bundle to JSON",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [1200, 100],
+      "parameters": {
+        "operation": "toJson",
+        "mode": "each",
+        "binaryPropertyName": "data",
+        "options": {
+          "fileName": "digest-bundle.json"
+        }
+      }
+    },
+    {
+      "id": "0b7d6c3e-4f61-4c5e-9a51-1d0f5a7e2c08",
+      "name": "Save the bundle",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [1440, 100],
+      "parameters": {
+        "operation": "write",
+        "fileName": "/home/node/.n8n-files/digest-bundle.json",
+        "dataPropertyName": "data",
+        "options": {}
+      }
+    },
+    {
+      "id": "0b7d6c3e-4f61-4c5e-9a51-1d0f5a7e2c09",
+      "name": "Render the digest page",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [1680, 100],
+      "parameters": {
+        "executeOnce": true,
+        "command": "python3 -m radar.site.digest render --bundle /home/node/.n8n-files/digest-bundle.json"
+      }
+    },
+    {
+      "id": "0b7d6c3e-4f61-4c5e-9a51-1d0f5a7e2c10",
+      "name": "Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1920, 100],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "return [{json: JSON.parse($input.first().json.stdout)}];"
+      }
+    },
+    {
+      "id": "0b7d6c3e-4f61-4c5e-9a51-1d0f5a7e2c11",
+      "name": "About",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [400, -200],
+      "parameters": {
+        "width": 1100,
+        "height": 160,
+        "content": "## Weekly market digest\nPython (`radar.site.digest`) names the latest complete ISO week and its SELECTs on `marts.*`; n8n sends them to ClickHouse as the read-only account, bundles the answers and has Python render `site/src/digest/<week>.md`, the issue figures in `data/<week>.json` and the index. Workflow source: `infra/n8n/workflows/weekly_digest.json`, imported by `scripts/n8n_import.sh`."
+      }
+    }
+  ],
+  "connections": {
+    "Every Monday 09:00 MSK": {
+      "main": [[{"node": "Week and queries", "type": "main", "index": 0}]]
+    },
+    "Run by hand": {
+      "main": [[{"node": "Week and queries", "type": "main", "index": 0}]]
+    },
+    "Week and queries": {
+      "main": [[{"node": "One item per query", "type": "main", "index": 0}]]
+    },
+    "One item per query": {
+      "main": [[{"node": "ClickHouse marts, read-only", "type": "main", "index": 0}]]
+    },
+    "ClickHouse marts, read-only": {
+      "main": [[{"node": "Bundle the answers", "type": "main", "index": 0}]]
+    },
+    "Bundle the answers": {
+      "main": [[{"node": "Bundle to JSON", "type": "main", "index": 0}]]
+    },
+    "Bundle to JSON": {
+      "main": [[{"node": "Save the bundle", "type": "main", "index": 0}]]
+    },
+    "Save the bundle": {
+      "main": [[{"node": "Render the digest page", "type": "main", "index": 0}]]
+    },
+    "Render the digest page": {
+      "main": [[{"node": "Summary", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Moscow",
+    "saveManualExecutions": true,
+    "saveDataSuccessExecution": "all",
+    "saveDataErrorExecution": "all"
+  },
+  "pinData": {},
+  "active": false
+}

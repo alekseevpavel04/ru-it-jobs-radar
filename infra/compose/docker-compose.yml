@@ -365,6 +365,49 @@ services:
       test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:9102/metrics"]
     logging: *logging
 
+  # The weekly market digest. The workflow is code in infra/n8n/workflows and gets into
+  # the instance with scripts/n8n_import.sh, which also sets up the owner account and the read-only
+  # ClickHouse credential; it starts this service alone (`up n8n`), not the rest of the profile.
+  n8n:
+    build: ../n8n
+    image: radar/n8n:2.41.3
+    profiles: [mlops]
+    restart: unless-stopped
+    environment:
+      GENERIC_TIMEZONE: Europe/Moscow
+      TZ: Europe/Moscow
+      N8N_HOST: localhost
+      N8N_PORT: "5678"
+      N8N_EDITOR_BASE_URL: http://localhost:5678
+      # Plain HTTP behind 127.0.0.1: a secure-only cookie would never be sent back and login would loop.
+      N8N_SECURE_COOKIE: "false"
+      N8N_DIAGNOSTICS_ENABLED: "false"
+      N8N_VERSION_NOTIFICATIONS_ENABLED: "false"
+      N8N_TEMPLATES_ENABLED: "false"
+      N8N_PERSONALIZATION_ENABLED: "false"
+      # n8n 2 leaves Execute Command out by default; the digest runs the tested Python module with it.
+      NODES_EXCLUDE: '["n8n-nodes-base.localFileTrigger"]'
+      # File nodes may touch this directory only: the bundle of query results lives there for a run.
+      N8N_RESTRICT_FILE_ACCESS_TO: /home/node/.n8n-files
+      EXECUTIONS_DATA_PRUNE: "true"
+      EXECUTIONS_DATA_MAX_AGE: "720"
+      PYTHONPATH: /opt/radar/src
+      PYTHONDONTWRITEBYTECODE: "1"
+    volumes:
+      - n8n-data:/home/node/.n8n
+      - ../../src:/opt/radar/src:ro
+      - ../../site/src/digest:/opt/radar/site/src/digest
+      - ../n8n/workflows:/opt/radar/infra/n8n/workflows:ro
+    tmpfs:
+      - /home/node/.n8n-files:mode=0700,uid=1000,gid=1000
+    ports:
+      - 127.0.0.1:5678:5678
+    mem_limit: 1g
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:5678/healthz"]
+    logging: *logging
+
 volumes:
   clickhouse-data:
   redpanda-data:
@@ -375,3 +418,4 @@ volumes:
   airflow-logs:
   airflow-dbt-target:
   airflow-dbt-logs:
+  n8n-data:
