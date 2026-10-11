@@ -1,0 +1,40 @@
+# Iteration 1 of the 1.7B student: the recipe that trained in the GPU probe
+# (results/env/gpu_smoke.json: Unsloth, NF4, r 16, all linear projections, lr 2e-4), two epochs.
+# A new iteration is a new file or a new name: the run directory and results/sft/train_<name>.json
+# are keyed by it.
+name = "qwen3_1p7b_r16"
+model = "Qwen/Qwen3-1.7B"
+backend = "unsloth"
+
+[data]
+train = "data/sft/train.jsonl"
+val = "data/sft/val.jsonl"
+meta = "data/sft/meta.json"
+
+[lora]
+r = 16
+alpha = 32
+dropout = 0.0
+
+[train]
+max_seq_len = 2048
+epochs = 2
+lr = 2e-4
+# effective batch 16 for both students. At micro-batch 2 the 1.7B peaked at 3 695 MiB on the card
+# (gpu_smoke.json), so micro-batch 4 is tried here; the --probe run checks its peak before training
+batch = 4
+grad_accum = 4
+warmup_ratio = 0.03
+scheduler = "cosine"
+optim = "adamw_8bit"
+seed = 20261008
+logging_steps = 10
+eval_steps = 200
+save_steps = 100
+save_total_limit = 2
+
+[guard]
+vram_margin_mib = 512
+step_time_factor = 3.0
+reference_steps = 5
+patience = 3

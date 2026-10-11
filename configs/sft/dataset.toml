@@ -1,0 +1,20 @@
+# SFT dataset for the Qwen3 students (`python -m radar.train.dataset`).
+# Changing a value changes the training set and the inference input: record it in
+# docs/EXPERIMENTS.md and rebuild before training.
+
+# Qwen3-1.7B and Qwen3-4B ship the same tokenizer.json, so one dataset serves both students.
+tokenizer = "Qwen/Qwen3-1.7B"
+prompt = "configs/student_prompt.md"
+
+# The vacancy text is cut to this many tokens, at a token boundary, here and at inference
+# (radar.train.predict reads the value from the adapter's dataset meta). Header and title come
+# first in the input, so a cut loses the tail of the free text.
+max_input_tokens = 1536
+# Prompt plus answer longer than this is dropped from training rather than cut: a cut answer
+# teaches broken JSON. Training configs must use the same max_seq_len.
+max_seq_len = 2048
+
+# Share of groups (dedup entity and text cluster, or a Telegram repost group) held out for the
+# validation loss; a group never lands on both sides.
+val_share = 0.05
+seed = 20261008
