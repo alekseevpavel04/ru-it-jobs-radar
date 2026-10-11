@@ -25,7 +25,9 @@ of 7.3) and employers post it again. Reposts come from the history (`staging.his
 employer, place, title and text under a new id after the old one closed) and are reported per card.
 A long repost chain is a labeling function that is measured but left out of the vote: the cards it
 fires on are mostly the mass hiring of large employers. So is a salary far above its group: it
-fires on senior roles in the regions far more often than on promises.
+fires on senior roles in the regions far more often than on promises. Pay far below normal and the
+near-duplicate template were tried on the labeled dev half after the first scoring and did not
+help (docs/EXPERIMENTS.md, E6); they are measured, not voted.
 
 Labeling functions return SUSPICIOUS, OK or ABSTAIN per card. They see source fields, the text and
 the history; no model and no GPU. Their patterns were written by reading matches in the whole card
@@ -40,6 +42,9 @@ from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 from numpy.typing import NDArray
+
+from radar.dedup.minhash import exact_jaccard, lsh_pairs
+from radar.dedup.normalize import shingles
 
 ABSTAIN = -1
 OK = 0
@@ -59,10 +64,26 @@ MIN_GROUP_TEXT = 200
 MIN_SALARY_GROUP = 30
 MIN_SALARY_SCALE = 0.2
 SALARY_OUTLIER_Z = 3.0
+# Pay ratio: salary over the 75th percentile of its group, role bucket x region group x required
+# experience band, falling back to region x band, then region. The 75th percentile, not the median,
+# stands for normal pay: in Moscow the lower half of the portal's IT cards is itself full of formal
+# postings (the median for six years and more is 80 000, the 75th percentile 150 000). A card at a
+# third of normal or less is far below; the annotation guide uses the same "three times below".
+PAY_REFERENCE_QUANTILE = 0.75
+PAY_FAR_BELOW = 1 / 3
+EXPERIENCE_BANDS = ((-0.5, 0.5, "0"), (0.5, 2.5, "1-2"), (2.5, 5.5, "3-5"), (5.5, 99.0, "6+"))
 # One text from this many employers, this share of its cards in one region: mass posting. Templates
 # of the portal's job classifier spread over many regions and stay out.
 MASS_EMPLOYERS = 5
 MASS_REGION_SHARE = 0.8
+# The same with near-identical texts: a template is a connected group of texts with word 3-gram
+# Jaccard at or above TEMPLATE_JACCARD (MinHash LSH proposes the pairs, the exact Jaccard decides),
+# so an edited copy stays with its template. Measured on dev (iteration 2 of E6), not in the vote.
+TEMPLATE_EMPLOYERS = 3
+TEMPLATE_SHINGLE = 3
+TEMPLATE_JACCARD = 0.8
+TEMPLATE_NUM_PERM = 128
+TEMPLATE_SEED = 1
 # A chain of this many ids of one vacancy within the history window.
 REPOST_CHAIN = 4
 CONCRETE_SKILLS = 3
@@ -212,6 +233,56 @@ def salary_z(log_salary: pd.Series, groups: list[pd.Series]) -> pd.Series:
     return z
 
 
+def experience_band(years: pd.Series) -> pd.Series:
+    band = pd.Series("na", index=years.index)
+    for lo, hi, name in EXPERIENCE_BANDS:
+        band[(years > lo) & (years <= hi)] = name
+    return band
+
+
+def pay_ratio(salary: pd.Series, groups: list[pd.Series]) -> pd.Series:
+    """Salary over the reference quantile of the finest of `groups` with MIN_SALARY_GROUP salaries."""
+    ratio = pd.Series(np.nan, index=salary.index)
+    present = salary.notna()
+    for keys in groups:
+        by = pd.DataFrame({"v": salary[present], "k": keys[present]}).groupby("k")["v"]
+        stats = pd.DataFrame({"ref": by.quantile(PAY_REFERENCE_QUANTILE), "count": by.size()})
+        usable = stats[stats["count"] >= MIN_SALARY_GROUP]
+        todo = present & ratio.isna() & keys.isin(usable.index)
+        ratio[todo] = salary[todo] / keys[todo].map(usable["ref"])
+    return ratio
+
+
+def template_groups(texts: pd.Series, groups: pd.Series) -> pd.Series:
+    """Connected groups of near-identical texts, labelled by their smallest exact text group.
+
+    Cards without a text group (short texts) keep None.
+    """
+    first = groups.dropna().groupby(groups.dropna()).head(1)
+    docs = [shingles(t, TEMPLATE_SHINGLE) for t in texts[first.index]]
+    keys = first.tolist()
+    pairs = list(lsh_pairs(docs, TEMPLATE_JACCARD, TEMPLATE_NUM_PERM, TEMPLATE_SEED))
+    parent = list(range(len(keys)))
+
+    def find(i: int) -> int:
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    for (i, j), score in zip(pairs, exact_jaccard(docs, pairs), strict=True):
+        if score >= TEMPLATE_JACCARD:
+            ri, rj = find(i), find(j)
+            if ri != rj:
+                parent[max(ri, rj)] = min(ri, rj)
+    root_key = {k: keys[find(i)] for i, k in enumerate(keys)}
+    members: dict[str, list[str]] = {}
+    for k, r in root_key.items():
+        members.setdefault(r, []).append(k)
+    label = {k: min(members[r]) for k, r in root_key.items()}
+    return groups.map(label)
+
+
 def repost_chains(cards: pd.DataFrame) -> pd.Series:
     """Ids in the repost chain of each card (1 when it was never reposted)."""
     parent: dict[str, str] = {}
@@ -243,18 +314,29 @@ def add_context(cards: pd.DataFrame) -> pd.DataFrame:
     out["salary_z"] = salary_z(
         np.log(out["salary_month"]), [out["role_bucket"] + "|" + out["region_group"], out["role_bucket"]]
     )
-    out["text_group"] = [text_group(t) for t in out["text"]]
+    band = experience_band(pd.to_numeric(out["experience_min_years"]).astype(float))
+    out["pay_ratio"] = pay_ratio(
+        out["salary_month"],
+        [
+            out["role_bucket"] + "|" + out["region_group"] + "|" + band,
+            out["region_group"] + "|" + band,
+            out["region_group"],
+        ],
+    )
+    out["text_group"] = pd.Series([text_group(t) for t in out["text"]], index=out.index, dtype=object)
+    out["template_group"] = template_groups(out["text"], out["text_group"])
     place = out["region"].fillna(out["region_group"])
     employer = out["employer_key"].where(out["employer_key"].notna() & ~out["is_sole_proprietor"].astype(bool))
-    grouped = pd.DataFrame({"g": out["text_group"], "e": employer, "r": place}).dropna(subset=["g"])
-    spread = grouped.groupby("g").agg(
-        group_employers=("e", "nunique"),
-        group_region_share=("r", lambda r: float(r.value_counts(normalize=True).iloc[0]) if r.notna().any() else 0.0),
-    )
-    out = out.join(spread, on="text_group")
+    for column, prefix in (("text_group", "group"), ("template_group", "template")):
+        grouped = pd.DataFrame({"g": out[column], "e": employer, "r": place}).dropna(subset=["g"])
+        spread = grouped.groupby("g").agg(
+            employers=("e", "nunique"),
+            region_share=("r", lambda r: float(r.value_counts(normalize=True).iloc[0]) if r.notna().any() else 0.0),
+        )
+        out = out.join(spread.add_prefix(f"{prefix}_"), on=column)
+        out[f"{prefix}_employers"] = out[f"{prefix}_employers"].fillna(0).astype(int)
+        out[f"{prefix}_region_share"] = out[f"{prefix}_region_share"].astype(float).fillna(0.0)
     out["employer_cards"] = employer.map(employer.value_counts()).fillna(0).astype(int)
-    out["group_employers"] = out["group_employers"].fillna(0).astype(int)
-    out["group_region_share"] = out["group_region_share"].astype(float).fillna(0.0)
     out["repost_chain"] = repost_chains(out)
     return out
 
@@ -288,12 +370,22 @@ def _salary_low(c: pd.DataFrame) -> NDArray[np.bool_]:
     return low & ~matches(c["body"], "low_pay_explained")
 
 
+def _pay_far_below(c: pd.DataFrame) -> NDArray[np.bool_]:
+    far = ((c["pay_ratio"] <= PAY_FAR_BELOW) & c["role_bucket"].isin(TECH_ROLES)).to_numpy()
+    return far & ~matches(c["body"], "low_pay_explained")
+
+
 def _no_experience_high_pay(c: pd.DataFrame) -> NDArray[np.bool_]:
     return matches(c["body"], "no_experience") & (c["salary_z"] >= SALARY_OUTLIER_Z - 1).to_numpy()
 
 
 def _mass_text(c: pd.DataFrame) -> NDArray[np.bool_]:
     return ((c["group_employers"] >= MASS_EMPLOYERS) & (c["group_region_share"] >= MASS_REGION_SHARE)).to_numpy()
+
+
+def _mass_template(c: pd.DataFrame) -> NDArray[np.bool_]:
+    many = c["template_employers"] >= TEMPLATE_EMPLOYERS
+    return (many & (c["template_region_share"] >= MASS_REGION_SHARE)).to_numpy()
 
 
 def _repost_chain(c: pd.DataFrame) -> NDArray[np.bool_]:
@@ -365,11 +457,29 @@ LFS: tuple[LabelingFunction, ...] = (
         _salary_low,
     ),
     LabelingFunction(
+        "pay_far_below",
+        SUSPICIOUS,
+        "formal",
+        "technical IT role, salary at most a third of the 75th percentile for its role, experience and region, "
+        "not a trainee or part-time card",
+        _pay_far_below,
+        combine=False,
+    ),
+    LabelingFunction(
         "mass_text",
         SUSPICIOUS,
         "formal",
         f"same text from >= {MASS_EMPLOYERS} employers, >= {MASS_REGION_SHARE} of its cards in one region",
         _mass_text,
+    ),
+    LabelingFunction(
+        "mass_template",
+        SUSPICIOUS,
+        "formal",
+        f"one template (Jaccard >= {TEMPLATE_JACCARD}) from >= {TEMPLATE_EMPLOYERS} employers, "
+        f">= {MASS_REGION_SHARE} of its cards in one region",
+        _mass_template,
+        combine=False,
     ),
     LabelingFunction(
         "formal_note", SUSPICIOUS, "formal", "the card says it is posted for a formality", _keyword("formal_note")

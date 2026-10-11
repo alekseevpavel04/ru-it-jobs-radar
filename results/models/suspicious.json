@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/models/suspicious.py",
   "command": "python -m radar.models.suspicious run",
-  "commit": "70fced2-dirty",
-  "created_at": "2026-10-11T11:40:19+00:00",
+  "commit": "149c8bb-dirty",
+  "created_at": "2026-10-11T11:55:30+00:00",
   "metrics": {
     "cards": {
       "value": 25909,
@@ -125,8 +125,8 @@
       "denominator": 25909
     },
     "lf.title_sales.overlap": {
-      "value": 0.5714,
-      "n": 4,
+      "value": 0.7143,
+      "n": 5,
       "denominator": 7
     },
     "lf.title_sales.conflict": {
@@ -155,8 +155,8 @@
       "denominator": 25909
     },
     "lf.salary_low.overlap": {
-      "value": 0.7619,
-      "n": 16,
+      "value": 0.9524,
+      "n": 20,
       "denominator": 21
     },
     "lf.salary_low.conflict": {
@@ -164,20 +164,50 @@
       "n": 16,
       "denominator": 21
     },
+    "lf.pay_far_below.coverage": {
+      "value": 0.0079,
+      "n": 205,
+      "denominator": 25909
+    },
+    "lf.pay_far_below.overlap": {
+      "value": 0.6439,
+      "n": 132,
+      "denominator": 205
+    },
+    "lf.pay_far_below.conflict": {
+      "value": 0.5805,
+      "n": 119,
+      "denominator": 205
+    },
     "lf.mass_text.coverage": {
       "value": 0.0039,
       "n": 102,
       "denominator": 25909
     },
     "lf.mass_text.overlap": {
-      "value": 0.1863,
-      "n": 19,
+      "value": 1.0,
+      "n": 102,
       "denominator": 102
     },
     "lf.mass_text.conflict": {
       "value": 0.1863,
       "n": 19,
       "denominator": 102
+    },
+    "lf.mass_template.coverage": {
+      "value": 0.006,
+      "n": 156,
+      "denominator": 25909
+    },
+    "lf.mass_template.overlap": {
+      "value": 0.6474,
+      "n": 101,
+      "denominator": 156
+    },
+    "lf.mass_template.conflict": {
+      "value": 0.1154,
+      "n": 18,
+      "denominator": 156
     },
     "lf.formal_note.coverage": {
       "value": 0.0,
@@ -200,8 +230,8 @@
       "denominator": 25909
     },
     "lf.repost_chain.overlap": {
-      "value": 0.8955,
-      "n": 240,
+      "value": 0.9254,
+      "n": 248,
       "denominator": 268
     },
     "lf.repost_chain.conflict": {
@@ -215,13 +245,13 @@
       "denominator": 25909
     },
     "lf.public_sector.overlap": {
-      "value": 0.237,
-      "n": 1483,
+      "value": 0.2437,
+      "n": 1525,
       "denominator": 6258
     },
     "lf.public_sector.conflict": {
-      "value": 0.0043,
-      "n": 27,
+      "value": 0.0128,
+      "n": 80,
       "denominator": 6258
     },
     "lf.large_employer.coverage": {
@@ -230,13 +260,13 @@
       "denominator": 25909
     },
     "lf.large_employer.overlap": {
-      "value": 0.2167,
-      "n": 2173,
+      "value": 0.217,
+      "n": 2176,
       "denominator": 10029
     },
     "lf.large_employer.conflict": {
-      "value": 0.0276,
-      "n": 277,
+      "value": 0.0287,
+      "n": 288,
       "denominator": 10029
     },
     "lf.concrete_requirements.coverage": {
@@ -245,13 +275,13 @@
       "denominator": 25909
     },
     "lf.concrete_requirements.overlap": {
-      "value": 0.3643,
-      "n": 1770,
+      "value": 0.3766,
+      "n": 1830,
       "denominator": 4859
     },
     "lf.concrete_requirements.conflict": {
-      "value": 0.0204,
-      "n": 99,
+      "value": 0.0354,
+      "n": 172,
       "denominator": 4859
     },
     "weak.covered": {
@@ -436,11 +466,25 @@
       "rule": "technical IT role, salary z <= -3.0, not a trainee or part-time card"
     },
     {
+      "name": "pay_far_below",
+      "votes": "suspicious",
+      "category": "formal",
+      "in_weak_label": false,
+      "rule": "technical IT role, salary at most a third of the 75th percentile for its role, experience and region, not a trainee or part-time card"
+    },
+    {
       "name": "mass_text",
       "votes": "suspicious",
       "category": "formal",
       "in_weak_label": true,
       "rule": "same text from >= 5 employers, >= 0.8 of its cards in one region"
+    },
+    {
+      "name": "mass_template",
+      "votes": "suspicious",
+      "category": "formal",
+      "in_weak_label": false,
+      "rule": "one template (Jaccard >= 0.8) from >= 3 employers, >= 0.8 of its cards in one region"
     },
     {
       "name": "formal_note",
@@ -938,6 +982,24 @@
         "sample_flagged": 7,
         "sample_suspicious": 23
       },
+      "lf:pay_far_below": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 6,
+        "sample_suspicious": 23
+      },
       "lf:mass_text": {
         "precision": {
           "value": 1.0,
@@ -956,6 +1018,26 @@
         },
         "sample_tp": 13,
         "sample_flagged": 13,
+        "sample_suspicious": 23
+      },
+      "lf:mass_template": {
+        "precision": {
+          "value": 1.0,
+          "ci_low": 1.0,
+          "ci_high": 1.0
+        },
+        "recall": {
+          "value": 0.0581,
+          "ci_low": 0.0148,
+          "ci_high": 0.5271
+        },
+        "f1": {
+          "value": 0.1098,
+          "ci_low": 0.0291,
+          "ci_high": 0.6904
+        },
+        "sample_tp": 9,
+        "sample_flagged": 9,
         "sample_suspicious": 23
       },
       "lf:formal_note": {
