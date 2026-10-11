@@ -1,53 +1,53 @@
 {
   "source_script": "src/radar/extract/refresh.py",
   "command": "python -m radar.extract.corpus refresh",
-  "commit": "240628f-dirty",
-  "created_at": "2026-10-10T16:25:22+00:00",
+  "commit": "d2feefb",
+  "created_at": "2026-10-11T15:25:02+00:00",
   "metrics": {
     "staged.records": {
-      "value": 25943,
+      "value": 35700,
       "n": null,
       "denominator": null
     },
     "corpus.records": {
-      "value": 0.682,
-      "n": 17694,
-      "denominator": 25943
+      "value": 0.5771,
+      "n": 20601,
+      "denominator": 35700
     },
     "corpus.groups": {
-      "value": 14909,
+      "value": 17190,
       "n": null,
       "denominator": null
     },
     "staged.records.trudvsem": {
-      "value": 8480,
+      "value": 8932,
       "n": null,
       "denominator": null
     },
     "corpus.records.trudvsem": {
-      "value": 0.4479,
-      "n": 7926,
-      "denominator": 17694
+      "value": 0.0366,
+      "n": 755,
+      "denominator": 20601
     },
     "staged.records.trudvsem_snapshot": {
-      "value": 16405,
+      "value": 25670,
       "n": null,
       "denominator": null
     },
     "corpus.records.trudvsem_snapshot": {
-      "value": 0.5102,
-      "n": 9028,
-      "denominator": 17694
+      "value": 0.9144,
+      "n": 18837,
+      "denominator": 20601
     },
     "staged.records.habr": {
-      "value": 1058,
+      "value": 1098,
       "n": null,
       "denominator": null
     },
     "corpus.records.habr": {
-      "value": 0.0418,
-      "n": 740,
-      "denominator": 17694
+      "value": 0.049,
+      "n": 1009,
+      "denominator": 20601
     },
     "split.test.groups": {
       "value": 440,
@@ -70,94 +70,94 @@
       "denominator": null
     },
     "split.train_pool.groups": {
-      "value": 14472,
+      "value": 16366,
       "n": null,
       "denominator": null
     },
     "split.train_pool.corpus_records": {
-      "value": 16897,
+      "value": 19647,
       "n": null,
       "denominator": null
     },
     "split.withheld.groups": {
-      "value": 113,
+      "value": 250,
       "n": null,
       "denominator": null
     },
     "split.withheld.corpus_records": {
-      "value": 152,
+      "value": 309,
       "n": null,
       "denominator": null
     },
     "split.withheld.groups.s1": {
-      "value": 66,
+      "value": 51,
       "n": null,
       "denominator": null
     },
     "split.withheld.groups.linked": {
-      "value": 40,
+      "value": 181,
       "n": null,
       "denominator": null
     },
     "split.withheld.groups.near_duplicate": {
-      "value": 7,
+      "value": 18,
       "n": null,
       "denominator": null
     },
     "decisions10.train_pool.ml_ds_data": {
-      "value": 0.0091,
-      "n": 154,
-      "denominator": 16897
+      "value": 0.011,
+      "n": 217,
+      "denominator": 19647
     },
     "decisions10.train_pool.ml_ds_data.trudvsem": {
-      "value": 0.0029,
-      "n": 22,
-      "denominator": 7599
+      "value": 0.0065,
+      "n": 3,
+      "denominator": 462
     },
     "decisions10.train_pool.ml_ds_data.trudvsem_snapshot": {
-      "value": 0.0088,
-      "n": 76,
-      "denominator": 8651
+      "value": 0.0068,
+      "n": 125,
+      "denominator": 18270
     },
     "decisions10.train_pool.ml_ds_data.habr": {
-      "value": 0.0866,
-      "n": 56,
-      "denominator": 647
+      "value": 0.0973,
+      "n": 89,
+      "denominator": 915
     },
     "decisions10.train_pool_groups.ml_ds_data": {
-      "value": 0.0096,
-      "n": 136,
-      "denominator": 14191
+      "value": 0.0122,
+      "n": 199,
+      "denominator": 16337
     },
     "role_proxy.train_pool.ml_ds_data": {
-      "value": 0.0091,
-      "n": 154,
-      "denominator": 16897
+      "value": 0.011,
+      "n": 217,
+      "denominator": 19647
     },
     "role_proxy.train_pool.dev": {
-      "value": 0.2013,
-      "n": 3402,
-      "denominator": 16897
+      "value": 0.1906,
+      "n": 3744,
+      "denominator": 19647
     },
     "role_proxy.train_pool.analyst_other": {
-      "value": 0.0336,
-      "n": 567,
-      "denominator": 16897
+      "value": 0.0354,
+      "n": 696,
+      "denominator": 19647
     },
     "role_proxy.train_pool.qa_devops_sys": {
-      "value": 0.2104,
-      "n": 3555,
-      "denominator": 16897
+      "value": 0.2171,
+      "n": 4266,
+      "denominator": 19647
     },
     "role_proxy.train_pool.other_it": {
-      "value": 0.0738,
-      "n": 1247,
-      "denominator": 16897
+      "value": 0.0772,
+      "n": 1517,
+      "denominator": 19647
     },
     "role_proxy.train_pool.non_it_noise": {
-      "value": 0.4718,
-      "n": 7972,
-      "denominator": 16897
+      "value": 0.4686,
+      "n": 9207,
+      "denominator": 19647
     },
     "gold.test.inputs_changed": {
       "value": 0.0068,
@@ -215,18 +215,18 @@
       "denominator": 440
     },
     "gold.test.newer_version_in_staging": {
-      "value": 0.2795,
-      "n": 123,
+      "value": 0.475,
+      "n": 209,
       "denominator": 440
     },
     "gold.test.newer_version_other_text": {
-      "value": 0.0081,
+      "value": 0.0048,
       "n": 1,
-      "denominator": 123
+      "denominator": 209
     },
     "leak.test_with_train_neighbour_before": {
-      "value": 0.0091,
-      "n": 4,
+      "value": 0.0227,
+      "n": 10,
       "denominator": 440
     },
     "leak.test_with_train_neighbour": {
@@ -290,18 +290,18 @@
       "denominator": 165
     },
     "gold.dev.newer_version_in_staging": {
-      "value": 0.2424,
-      "n": 40,
+      "value": 0.4545,
+      "n": 75,
       "denominator": 165
     },
     "gold.dev.newer_version_other_text": {
       "value": 0.0,
       "n": 0,
-      "denominator": 40
+      "denominator": 75
     },
     "leak.dev_with_train_neighbour_before": {
-      "value": 0.0121,
-      "n": 2,
+      "value": 0.0242,
+      "n": 4,
       "denominator": 165
     },
     "leak.dev_with_train_neighbour": {
@@ -320,7 +320,7 @@
       "denominator": null
     },
     "leak.gold_groups_joined": {
-      "value": 0,
+      "value": 1,
       "n": null,
       "denominator": null
     },
@@ -345,32 +345,32 @@
   "staging": {
     "habr": {
       "first": "2026-10-08",
-      "last": "2026-10-08",
-      "days": 1,
-      "it_candidates": 1058,
+      "last": "2026-10-10",
+      "days": 3,
+      "it_candidates": 1098,
       "it_candidates_without_entity": 0
     },
     "trudvsem": {
       "first": "2026-10-08",
-      "last": "2026-10-08",
-      "days": 1,
-      "it_candidates": 8480,
+      "last": "2026-10-10",
+      "days": 3,
+      "it_candidates": 8932,
       "it_candidates_without_entity": 0
     },
     "trudvsem_snapshot": {
       "first": "2026-06-30",
-      "last": "2026-08-11",
-      "days": 42,
-      "it_candidates": 16405,
+      "last": "2026-10-10",
+      "days": 103,
+      "it_candidates": 25670,
       "it_candidates_without_entity": 0
     }
   },
   "hashes": {
     "test_ids_sha256": "aece163fd971bb1f65cb1bbb977f87309f2543233c7b894fd8dbbf4bd09b9334",
     "dev_ids_sha256": "873019f521269ece975ea6791350c4638105fd6fd054b7102144aa8f59a1bbd9",
-    "train_pool_corpus_ids_sha256": "45495517eea31387c86c819fff9f9f589c143bca2780a3b76a6d7bbb44fcc434",
-    "split_content_sha256": "1bd389fa6935e1d3de932c7e47a7a1fb2aa775f946dd4801b5723db486d39cf9",
-    "split_file_sha256": "d24750e7a0d223f2acc649b862a5232dfa435ddffd82001ce0b0e458ffcd0aae"
+    "train_pool_corpus_ids_sha256": "9245e2d48eeb7fdea5cbc4523617e7f04ccc7e6cec9f0c1e8de4db76d08c68c9",
+    "split_content_sha256": "08eb2f88b30a7a98914404c50ebe388c66831bdaad69ec1f97ce59c5b6230d21",
+    "split_file_sha256": "ebf12eb89128db1c30a19cc3bbbd73c064230e020f0f7e25a6ce323b97d74a8e"
   },
   "s1_hashes": {
     "test_ids_sha256": "aece163fd971bb1f65cb1bbb977f87309f2543233c7b894fd8dbbf4bd09b9334",
@@ -389,15 +389,36 @@
   },
   "leak_neighbours_before": {
     "test": {
+      "habr:1000168245": [
+        "habr:1000168436"
+      ],
       "trudvsem:22a83236-bca5-11f1-aa68-7523fb122f6d": [
         "trudvsem_snapshot:14cbbfe8-8a75-11f1-aeca-c9464de5d4ac",
-        "trudvsem_snapshot:3b1c9390-8caf-11f1-b30a-b76653c82188"
+        "trudvsem_snapshot:1abf9518-15f5-11f1-929d-45f09e15ba18",
+        "trudvsem_snapshot:3b1c9390-8caf-11f1-b30a-b76653c82188",
+        "trudvsem_snapshot:4887ee3e-3d72-11f1-a4ee-1b38588a033b",
+        "trudvsem_snapshot:918f1548-a113-11f1-be6c-191a6b2a1e33"
       ],
       "trudvsem:4aca5cb4-b369-11f1-825a-1b794c460881": [
         "trudvsem_snapshot:1aa72494-8ca5-11f1-9df1-973ec0c0a91c"
       ],
+      "trudvsem_snapshot:2c731240-7523-11f1-b25d-8f333dbde8a0": [
+        "trudvsem_snapshot:a7630178-9c7b-11f1-9fec-876800c2b0fe"
+      ],
+      "trudvsem_snapshot:2f170f44-64b3-11f1-bf59-0daf2de006e7": [
+        "trudvsem_snapshot:f82d8d24-9d2d-11f1-9af0-a16b730f8190"
+      ],
       "trudvsem_snapshot:52e1e9e0-9908-11ef-b2f8-d549be31d974": [
         "trudvsem_snapshot:6de0fac2-59dd-11ef-b3aa-25abf1fceba2"
+      ],
+      "trudvsem_snapshot:b6773098-7e51-11ef-aa78-bb4c34bddc95": [
+        "trudvsem_snapshot:af619948-a08c-11f0-a18c-bdc82d0d5dcd"
+      ],
+      "trudvsem_snapshot:bea1cfb8-4dde-11f1-9066-512467d01833": [
+        "trudvsem_snapshot:a0636410-f68b-11ef-96ae-d549be31d974"
+      ],
+      "trudvsem_snapshot:c24a589e-832b-11f0-a6ed-bdc82d0d5dcd": [
+        "trudvsem_snapshot:d53d12e0-ad04-11f1-84d6-0b35eb1e307b"
       ],
       "trudvsem_snapshot:e971a134-7e8e-11f1-97b7-0d89ec2dfd04": [
         "trudvsem_snapshot:25782807-8c06-11f1-aeca-c9464de5d4ac"
@@ -407,11 +428,22 @@
       "trudvsem:8b3bd074-c2dd-11f1-97a6-15b40067900c": [
         "trudvsem_snapshot:773ed7f4-8bfd-11f1-ab85-d9422f6fa53b"
       ],
+      "trudvsem_snapshot:61955888-6271-11f1-875d-37533a592c34": [
+        "trudvsem_snapshot:8b1c29d8-2384-11f1-8d48-d52d8860c0e6"
+      ],
+      "trudvsem_snapshot:6aea5fd2-7549-11ec-b378-bf2cfe8c828d": [
+        "trudvsem_snapshot:eb187e25-47f3-11ee-8853-0d972cff014f"
+      ],
       "trudvsem_snapshot:ac6b1294-7c67-11f1-931c-e1ba394dc4af": [
-        "trudvsem_snapshot:6afb7c94-923e-11f1-8d10-9d4d88073c23"
+        "trudvsem_snapshot:8f126784-9f89-11f1-b411-0341f01fe067"
       ]
     }
   },
   "leak_test_dev_pairs": [],
-  "gold_groups_joined": []
+  "gold_groups_joined": [
+    [
+      "grp_7641b26e3186",
+      "grp_8d1e6907a1ed"
+    ]
+  ]
 }
