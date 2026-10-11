@@ -1,0 +1,36 @@
+@import url("observablehq:default.css");
+@import url("observablehq:theme-air.css");
+
+:root {
+  --serif: var(--sans-serif);
+}
+
+.radar-header {
+  font: 13px/1.45 var(--sans-serif);
+  color: var(--theme-foreground-muted);
+  max-width: 960px;
+}
+
+#observablehq-footer nav a[rel="prev"]::before {
+  content: "Назад";
+}
+
+#observablehq-footer nav a[rel="next"]::before {
+  content: "Дальше";
+}
+
+.card h2 {
+  font-size: 14px;
+}
+
+.card .big {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.note-small {
+  font-size: 13px;
+  color: var(--theme-foreground-muted);
+  max-width: 720px;
+}

@@ -32,3 +32,8 @@ unsloth_compiled_cache/
 dbt/target/
 dbt/logs/
 dbt/dbt_packages/
+
+# site build outputs; site/src/data (the export) is versioned
+/site/dist/
+/site/src/.observablehq/cache/
+/site/_trial/

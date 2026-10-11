@@ -1,0 +1,227 @@
+{
+  "source_script": "src/radar/site/bi_trial.py",
+  "command": "python -m radar.site.bi_trial",
+  "commit": "c748000-dirty",
+  "created_at": "2026-10-11T10:56:06+00:00",
+  "metrics": {
+    "evidence_install_seconds": {
+      "value": 56.0,
+      "n": null,
+      "denominator": null
+    },
+    "evidence_packages_installed": {
+      "value": 873,
+      "n": null,
+      "denominator": null
+    },
+    "evidence_node_modules_bytes": {
+      "value": 586789477,
+      "n": null,
+      "denominator": null
+    },
+    "evidence_audit_high_or_critical": {
+      "value": 22,
+      "n": null,
+      "denominator": null
+    },
+    "evidence_audit_total": {
+      "value": 41,
+      "n": null,
+      "denominator": null
+    },
+    "evidence_release_used": {
+      "value": "40.1.8",
+      "n": null,
+      "denominator": null
+    },
+    "evidence_release_used_date": {
+      "value": "2026-02-06",
+      "n": null,
+      "denominator": null
+    },
+    "evidence_latest_release_date": {
+      "value": "2026-02-06",
+      "n": null,
+      "denominator": null
+    },
+    "evidence_build_seconds_cold": {
+      "value": 110.5,
+      "n": null,
+      "denominator": null
+    },
+    "evidence_build_seconds_warm": {
+      "value": 75.5,
+      "n": null,
+      "denominator": null
+    },
+    "evidence_output_bytes": {
+      "value": 98012616,
+      "n": null,
+      "denominator": null
+    },
+    "evidence_output_files": {
+      "value": 143,
+      "n": null,
+      "denominator": null
+    },
+    "evidence_largest_output_file": {
+      "value": "duckdb-mvp.BP0pRkMH.wasm",
+      "n": null,
+      "denominator": null
+    },
+    "evidence_largest_output_file_bytes": {
+      "value": 39362651,
+      "n": null,
+      "denominator": null
+    },
+    "evidence_page_status": {
+      "value": 200,
+      "n": null,
+      "denominator": null
+    },
+    "evidence_page_bytes_transferred": {
+      "value": 12218621,
+      "n": null,
+      "denominator": null
+    },
+    "evidence_page_load_ms": {
+      "value": 10780,
+      "n": null,
+      "denominator": null
+    },
+    "evidence_external_hosts_at_runtime": {
+      "value": "extensions.duckdb.org",
+      "n": null,
+      "denominator": null
+    },
+    "evidence_page_errors": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "evidence_number_as_rendered": {
+      "value": "4,861",
+      "n": null,
+      "denominator": null
+    },
+    "evidence_number_grouped_ru": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "observable_install_seconds": {
+      "value": 9.9,
+      "n": null,
+      "denominator": null
+    },
+    "observable_packages_installed": {
+      "value": 312,
+      "n": null,
+      "denominator": null
+    },
+    "observable_node_modules_bytes": {
+      "value": 73505993,
+      "n": null,
+      "denominator": null
+    },
+    "observable_audit_high_or_critical": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "observable_audit_total": {
+      "value": 6,
+      "n": null,
+      "denominator": null
+    },
+    "observable_release_used": {
+      "value": "1.13.4",
+      "n": null,
+      "denominator": null
+    },
+    "observable_release_used_date": {
+      "value": "2026-03-02",
+      "n": null,
+      "denominator": null
+    },
+    "observable_latest_release_date": {
+      "value": "2026-03-02",
+      "n": null,
+      "denominator": null
+    },
+    "observable_build_seconds_cold": {
+      "value": 33.3,
+      "n": null,
+      "denominator": null
+    },
+    "observable_build_seconds_warm": {
+      "value": 5.0,
+      "n": null,
+      "denominator": null
+    },
+    "observable_output_bytes": {
+      "value": 622935,
+      "n": null,
+      "denominator": null
+    },
+    "observable_output_files": {
+      "value": 45,
+      "n": null,
+      "denominator": null
+    },
+    "observable_largest_output_file": {
+      "value": "93ce672e.js",
+      "n": null,
+      "denominator": null
+    },
+    "observable_largest_output_file_bytes": {
+      "value": 204135,
+      "n": null,
+      "denominator": null
+    },
+    "observable_external_hosts_with_default_theme": {
+      "value": "fonts.googleapis.com,fonts.gstatic.com",
+      "n": null,
+      "denominator": null
+    },
+    "observable_page_status": {
+      "value": 200,
+      "n": null,
+      "denominator": null
+    },
+    "observable_page_bytes_transferred": {
+      "value": 622935,
+      "n": null,
+      "denominator": null
+    },
+    "observable_page_load_ms": {
+      "value": 594,
+      "n": null,
+      "denominator": null
+    },
+    "observable_external_hosts_at_runtime": {
+      "value": "none",
+      "n": null,
+      "denominator": null
+    },
+    "observable_page_errors": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "observable_number_as_rendered": {
+      "value": "4 861",
+      "n": null,
+      "denominator": null
+    },
+    "observable_number_grouped_ru": {
+      "value": 1,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "mart": "marts.mart_weekly_dynamics",
+  "csv_rows": 216,
+  "choice": "observable_framework",
+  "status": "proposal"
+}

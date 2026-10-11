@@ -1,0 +1,89 @@
+{
+  "source_script": "src/radar/site/export.py",
+  "command": "python -m radar.site.export",
+  "commit": "c748000-dirty",
+  "created_at": "2026-10-11T10:57:36+00:00",
+  "metrics": {
+    "bytes_meta": {
+      "value": 796,
+      "n": null,
+      "denominator": null
+    },
+    "rows_weekly_vacancies": {
+      "value": 252,
+      "n": null,
+      "denominator": null
+    },
+    "bytes_weekly_vacancies": {
+      "value": 44303,
+      "n": null,
+      "denominator": null
+    },
+    "rows_weekly_telegram": {
+      "value": 1753,
+      "n": null,
+      "denominator": null
+    },
+    "bytes_weekly_telegram": {
+      "value": 169818,
+      "n": null,
+      "denominator": null
+    },
+    "rows_skills": {
+      "value": 736,
+      "n": null,
+      "denominator": null
+    },
+    "bytes_skills": {
+      "value": 80661,
+      "n": null,
+      "denominator": null
+    },
+    "rows_skills_by_role": {
+      "value": 2509,
+      "n": null,
+      "denominator": null
+    },
+    "bytes_skills_by_role": {
+      "value": 349906,
+      "n": null,
+      "denominator": null
+    },
+    "rows_work_format": {
+      "value": 198,
+      "n": null,
+      "denominator": null
+    },
+    "bytes_work_format": {
+      "value": 22279,
+      "n": null,
+      "denominator": null
+    },
+    "rows_junior": {
+      "value": 55,
+      "n": null,
+      "denominator": null
+    },
+    "bytes_junior": {
+      "value": 10752,
+      "n": null,
+      "denominator": null
+    },
+    "rows_salaries": {
+      "value": 475,
+      "n": null,
+      "denominator": null
+    },
+    "bytes_salaries": {
+      "value": 152306,
+      "n": null,
+      "denominator": null
+    },
+    "data_through": {
+      "value": "2026-10-10",
+      "n": null,
+      "denominator": null
+    }
+  },
+  "out": "site/src/data"
+}

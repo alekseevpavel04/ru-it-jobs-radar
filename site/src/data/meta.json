@@ -1,0 +1,33 @@
+{
+  "exported_at": "2026-10-11T10:57:35Z",
+  "commit": "c748000-dirty",
+  "data_through": "2026-10-10",
+  "periods": {
+    "habr": {
+      "period_from": "2026-10-08",
+      "period_to": "2026-10-10"
+    },
+    "telegram": {
+      "period_from": "2026-07-01",
+      "period_to": "2026-10-08"
+    },
+    "trudvsem": {
+      "period_from": "2026-06-30",
+      "period_to": "2026-10-10"
+    }
+  },
+  "snapshot_first_week": "2026-06-29",
+  "snapshot_last_week": "2026-10-05",
+  "telegram_first_week_shown": "2024-10-14",
+  "telegram_weeks_shown": 104,
+  "skill_min_mentions": 3,
+  "files": {
+    "weekly_vacancies.json": 252,
+    "weekly_telegram.json": 1753,
+    "skills.json": 736,
+    "skills_by_role.json": 2509,
+    "work_format.json": 198,
+    "junior.json": 55,
+    "salaries.json": 475
+  }
+}
