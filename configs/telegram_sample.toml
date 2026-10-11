@@ -1,0 +1,55 @@
+# Telegram extraction records and their gold samples (`python -m radar.extract.telegram_corpus sample`).
+# The seed is the one of configs/eval.toml. Changing anything here redraws test and dev: `sample`
+# refuses once they exist, and a redraw is a new line in docs/EXPERIMENTS.md.
+
+[records]
+# Characters of the post left after links, hashtags, @names and PII placeholders are cut. Below 100
+# a post is a title and a link ("Middle/Senior DevOps https://u.habr.com/..."): the vacancy is on the
+# other side of the link, so there is no free text to extract from (most habr_career and remoteit
+# posts, `channels` in results/corpus/telegram.json). Cards of the geekjob network start at about 120
+# and name role, company, city, format and often salary.
+min_content_chars = 100
+
+[groups]
+# Cross-posts and reposts: the same text after the cut above, word 3-shingles at the Jaccard of the
+# dedup text clusters (configs/dedup.toml [text_cluster]). Lower values join different roles of one
+# company, whose description fills most of a short card.
+jaccard = 0.8
+
+# Groups per role-proxy bucket. ML, DS and data are oversampled as in S1 (configs/gold_sample.toml);
+# non_it_noise holds posts whose title and hashtags name no IT role (sales, marketing, HR, posts that
+# open with a greeting), an answer the extractor must also give.
+[test]
+ml_ds_data = 45
+dev = 30
+qa_devops_sys = 15
+analyst_other = 15
+other_it = 20
+non_it_noise = 15
+
+[dev]
+ml_ds_data = 19
+dev = 13
+qa_devops_sys = 7
+analyst_other = 6
+other_it = 9
+non_it_noise = 6
+
+[allocation]
+# Inside a bucket, groups are spread over channel networks (one publisher, see
+# configs/telegram_channels.toml) in proportion to N_h ** power, none above max_share of its groups:
+# one network (geekjob) holds most posts, and an extractor must handle the formats of the others.
+power = 0.5
+max_share = 0.6
+
+[leak]
+# As in S1: gold records against every training-pool record over the extractor input; a pool group
+# with a neighbour is withheld. The same threshold keeps test and dev apart and links Telegram posts
+# to records of the trudvsem and Habr corpus.
+jaccard = 0.5
+shingle_k = 3
+num_perm = 128
+
+[check]
+# Train-pool records the regex baseline runs on to show it accepts Telegram inputs (not scored).
+baseline_pool_sample = 1000
