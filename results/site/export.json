@@ -1,11 +1,16 @@
 {
   "source_script": "src/radar/site/export.py",
   "command": "python -m radar.site.export",
-  "commit": "c748000-dirty",
-  "created_at": "2026-10-11T10:57:36+00:00",
+  "commit": "0542fff-dirty",
+  "created_at": "2026-10-11T11:14:53+00:00",
   "metrics": {
     "bytes_meta": {
-      "value": 796,
+      "value": 883,
+      "n": null,
+      "denominator": null
+    },
+    "bytes_lifetime": {
+      "value": 10546,
       "n": null,
       "denominator": null
     },
@@ -46,6 +51,16 @@
     },
     "bytes_skills_by_role": {
       "value": 349906,
+      "n": null,
+      "denominator": null
+    },
+    "rows_skills_junior": {
+      "value": 411,
+      "n": null,
+      "denominator": null
+    },
+    "bytes_skills_junior": {
+      "value": 47715,
       "n": null,
       "denominator": null
     },

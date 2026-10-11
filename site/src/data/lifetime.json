@@ -1,0 +1,369 @@
+{
+  "source_file": "results/models/survival.json",
+  "source_script": "src/radar/models/survival.py",
+  "commit": "a002729-dirty",
+  "created_at": "2026-10-11T10:48:46+00:00",
+  "window_from": "2026-06-30",
+  "window_to": "2026-09-10",
+  "event": "no open sighting on 7 consecutive collected snapshot days; closed on the first of them",
+  "grace_days": 7,
+  "medians": [
+    {
+      "group": "experience",
+      "level": "1-2",
+      "cohort": "incident",
+      "median_days": 33.0,
+      "low": 31.0,
+      "high": 40.0,
+      "subjects": 1733,
+      "events": 683
+    },
+    {
+      "group": "experience",
+      "level": "3-5",
+      "cohort": "incident",
+      "median_days": 39.0,
+      "low": 32.0,
+      "high": 58.0,
+      "subjects": 1256,
+      "events": 432
+    },
+    {
+      "group": "experience",
+      "level": "6+",
+      "cohort": "incident",
+      "median_days": 58.0,
+      "low": 32.0,
+      "high": null,
+      "subjects": 155,
+      "events": 46
+    },
+    {
+      "group": "experience",
+      "level": "none",
+      "cohort": "incident",
+      "median_days": 31.0,
+      "low": 31.0,
+      "high": 32.0,
+      "subjects": 1128,
+      "events": 489
+    },
+    {
+      "group": "experience",
+      "level": "1-2",
+      "cohort": "prevalent",
+      "median_days": 34.0,
+      "low": 32.0,
+      "high": 36.0,
+      "subjects": 3815,
+      "events": 1846
+    },
+    {
+      "group": "experience",
+      "level": "3-5",
+      "cohort": "prevalent",
+      "median_days": 32.0,
+      "low": 31.0,
+      "high": 34.0,
+      "subjects": 2821,
+      "events": 1245
+    },
+    {
+      "group": "experience",
+      "level": "6+",
+      "cohort": "prevalent",
+      "median_days": 55.0,
+      "low": 34.0,
+      "high": 63.0,
+      "subjects": 350,
+      "events": 152
+    },
+    {
+      "group": "experience",
+      "level": "none",
+      "cohort": "prevalent",
+      "median_days": 32.0,
+      "low": 31.0,
+      "high": 32.0,
+      "subjects": 2559,
+      "events": 1352
+    },
+    {
+      "group": "overall",
+      "level": "all",
+      "cohort": "incident",
+      "median_days": 32.0,
+      "low": 31.0,
+      "high": 36.0,
+      "subjects": 4279,
+      "events": 1657
+    },
+    {
+      "group": "overall",
+      "level": "all",
+      "cohort": "prevalent",
+      "median_days": 32.0,
+      "low": 32.0,
+      "high": 33.0,
+      "subjects": 9560,
+      "events": 4606
+    },
+    {
+      "group": "region",
+      "level": "moscow",
+      "cohort": "incident",
+      "median_days": 31.0,
+      "low": 30.0,
+      "high": 31.0,
+      "subjects": 660,
+      "events": 285
+    },
+    {
+      "group": "region",
+      "level": "other",
+      "cohort": "incident",
+      "median_days": 38.0,
+      "low": 33.0,
+      "high": 43.0,
+      "subjects": 3000,
+      "events": 1111
+    },
+    {
+      "group": "region",
+      "level": "remote",
+      "cohort": "incident",
+      "median_days": 31.0,
+      "low": 31.0,
+      "high": 31.0,
+      "subjects": 258,
+      "events": 134
+    },
+    {
+      "group": "region",
+      "level": "spb",
+      "cohort": "incident",
+      "median_days": 32.0,
+      "low": 31.0,
+      "high": 37.0,
+      "subjects": 361,
+      "events": 127
+    },
+    {
+      "group": "region",
+      "level": "moscow",
+      "cohort": "prevalent",
+      "median_days": 31.0,
+      "low": 29.0,
+      "high": 31.0,
+      "subjects": 1253,
+      "events": 678
+    },
+    {
+      "group": "region",
+      "level": "other",
+      "cohort": "prevalent",
+      "median_days": 35.0,
+      "low": 33.0,
+      "high": 39.0,
+      "subjects": 7087,
+      "events": 3300
+    },
+    {
+      "group": "region",
+      "level": "remote",
+      "cohort": "prevalent",
+      "median_days": 31.0,
+      "low": 31.0,
+      "high": 32.0,
+      "subjects": 525,
+      "events": 289
+    },
+    {
+      "group": "region",
+      "level": "spb",
+      "cohort": "prevalent",
+      "median_days": 31.0,
+      "low": 31.0,
+      "high": 33.0,
+      "subjects": 694,
+      "events": 339
+    },
+    {
+      "group": "role",
+      "level": "analyst",
+      "cohort": "incident",
+      "median_days": 30.0,
+      "low": 30.0,
+      "high": 31.0,
+      "subjects": 165,
+      "events": 75
+    },
+    {
+      "group": "role",
+      "level": "dev",
+      "cohort": "incident",
+      "median_days": 49.0,
+      "low": 40.0,
+      "high": 55.0,
+      "subjects": 1406,
+      "events": 506
+    },
+    {
+      "group": "role",
+      "level": "ml_ds_data",
+      "cohort": "incident",
+      "median_days": 29.0,
+      "low": 19.0,
+      "high": 31.0,
+      "subjects": 127,
+      "events": 65
+    },
+    {
+      "group": "role",
+      "level": "other_it",
+      "cohort": "incident",
+      "median_days": 31.0,
+      "low": 31.0,
+      "high": 31.0,
+      "subjects": 917,
+      "events": 378
+    },
+    {
+      "group": "role",
+      "level": "qa_devops_sys",
+      "cohort": "incident",
+      "median_days": 33.0,
+      "low": 31.0,
+      "high": 39.0,
+      "subjects": 1664,
+      "events": 633
+    },
+    {
+      "group": "role",
+      "level": "analyst",
+      "cohort": "prevalent",
+      "median_days": 31.0,
+      "low": 26.0,
+      "high": 31.0,
+      "subjects": 312,
+      "events": 177
+    },
+    {
+      "group": "role",
+      "level": "dev",
+      "cohort": "prevalent",
+      "median_days": 39.0,
+      "low": 33.0,
+      "high": 45.0,
+      "subjects": 3693,
+      "events": 1639
+    },
+    {
+      "group": "role",
+      "level": "ml_ds_data",
+      "cohort": "prevalent",
+      "median_days": 23.0,
+      "low": 19.0,
+      "high": 27.0,
+      "subjects": 199,
+      "events": 125
+    },
+    {
+      "group": "role",
+      "level": "other_it",
+      "cohort": "prevalent",
+      "median_days": 31.0,
+      "low": 31.0,
+      "high": 32.0,
+      "subjects": 1758,
+      "events": 895
+    },
+    {
+      "group": "role",
+      "level": "qa_devops_sys",
+      "cohort": "prevalent",
+      "median_days": 34.0,
+      "low": 32.0,
+      "high": 39.0,
+      "subjects": 3598,
+      "events": 1770
+    },
+    {
+      "group": "salary",
+      "level": "given",
+      "cohort": "incident",
+      "median_days": 35.0,
+      "low": 32.0,
+      "high": 39.0,
+      "subjects": 4112,
+      "events": 1556
+    },
+    {
+      "group": "salary",
+      "level": "not_given",
+      "cohort": "incident",
+      "median_days": 16.0,
+      "low": 14.0,
+      "high": 20.0,
+      "subjects": 167,
+      "events": 101
+    },
+    {
+      "group": "salary",
+      "level": "given",
+      "cohort": "prevalent",
+      "median_days": 33.0,
+      "low": 32.0,
+      "high": 34.0,
+      "subjects": 9331,
+      "events": 4450
+    },
+    {
+      "group": "salary",
+      "level": "not_given",
+      "cohort": "prevalent",
+      "median_days": null,
+      "low": null,
+      "high": null,
+      "subjects": 229,
+      "events": 156
+    }
+  ],
+  "overall_curve": [
+    {
+      "day": 7,
+      "survival": 0.9159,
+      "at_risk": 3009
+    },
+    {
+      "day": 14,
+      "survival": 0.8604,
+      "at_risk": 2812
+    },
+    {
+      "day": 30,
+      "survival": 0.6948,
+      "at_risk": 2302
+    },
+    {
+      "day": 60,
+      "survival": 0.3246,
+      "at_risk": 1164
+    },
+    {
+      "day": 90,
+      "survival": 0.2195,
+      "at_risk": 1046
+    }
+  ],
+  "limits": [
+    "Закрытие здесь это исчезновение вакансии из ежедневной выгрузки портала, а не найм. Вакансию снимают и по другим причинам, и по выгрузке их не различить.",
+    "Во всех группах закрытия резко учащаются на 30-32 день с даты создания (ступенька на графиках). Похоже на срок публикации портала, но правилами портала это не проверено. Медиана около месяца во многих группах попадает на эту ступеньку и говорит скорее о том, продлевают ли вакансию, чем о скорости найма.",
+    "Только trudvsem (портал службы занятости). Большинство вакансий в выборке из регионов вне Москвы и Петербурга; насколько состав работодателей и ролей отличается от hh.ru и Хабра, не измерялось, поэтому на рынок в целом выводы не переносятся. Хабр и срез API собираются с 08.10 и в анализ пока не входят.",
+    "IT-фильтр снимка широкий, роль определяется правилом по названию, вакансии вне IT исключены. Вакансия, которая после смены названия вышла из фильтра, читается как закрытая.",
+    "Дата создания у портала не меняется и не бывает позже первого появления, но у части новых вакансий она раньше первого появления в выгрузке больше чем на неделю, причина не установлена. Поэтому рядом приведена когорта новых вакансий со временем от первого появления.",
+    "Несколько работодателей публикуют сотни вакансий. Интервалы отношений рисков учитывают это (кластеры по работодателю), у каждого отношения указано, сколько вакансий группы дают три её крупнейших работодателя, и рядом та же модель без трёх крупнейших работодателей выборки.",
+    "Признаки взяты из последней записи вакансии. Отношения рисков описывают связь, а не влияние: роль, регион, опыт и зарплата связаны с работодателем и между собой.",
+    "Окно наблюдения заканчивается на первом пропуске в календаре снимков длиннее одного дня. Пока бэкфилл не закрыл пропуск, дни после него не используются."
+  ]
+}

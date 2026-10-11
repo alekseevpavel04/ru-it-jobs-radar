@@ -5,7 +5,7 @@
   "scripts": {
     "build": "observable build",
     "dev": "observable preview",
-    "shots": "node scripts/shoot.mjs --dir dist --out ../logs/site/shots --pages index,skills,methodology --base /ru-it-jobs-radar/"
+    "shots": "node scripts/shoot.mjs --dir dist --out ../logs/site/shots --pages index,skills,salaries,junior,lifetime,methodology --base /ru-it-jobs-radar/"
   },
   "devDependencies": {
     "@observablehq/framework": "1.13.4",

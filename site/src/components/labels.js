@@ -110,3 +110,51 @@ export const dateLong = (d) =>
 export const dateShort = (d) =>
   (typeof d === "string" ? day(d) : d).toLocaleDateString("ru-RU", {day: "numeric", month: "short", timeZone: "UTC"});
 export const monthTick = (d) => d.toLocaleDateString("ru-RU", {month: "short", year: "2-digit", timeZone: "UTC"});
+
+export const GRADE = {
+  intern: "стажёр",
+  junior: "джуниор",
+  middle: "мидл",
+  senior: "сеньор",
+  lead: "лид",
+  unknown: "грейд не указан"
+};
+export const GRADE_ORDER = ["intern", "junior", "middle", "senior", "lead", "unknown"];
+
+// region_group of mart_salaries: remote wins over the city when the work format is remote.
+export const REGION = {
+  moscow: "Москва",
+  spb: "Санкт-Петербург",
+  other: "другие города",
+  remote: "удалённо",
+  unknown: "место не указано"
+};
+export const REGION_ORDER = ["moscow", "spb", "other", "remote", "unknown"];
+
+// Groups and levels of the lifetime model (src/radar/models/survival.py, LABELS_RU there).
+export const LIFETIME = {
+  overall: "все IT-вакансии",
+  role: "Роль",
+  experience: "Требуемый опыт",
+  salary: "Зарплата в объявлении",
+  region: "Регион",
+  all: "все",
+  dev: "разработка, включая 1С",
+  ml_ds_data: "ML, DS, данные",
+  analyst: "бизнес- и системный анализ",
+  qa_devops_sys: "QA, DevOps, админы, ИБ",
+  other_it: "дизайн, управление, прочие IT",
+  none: "без опыта",
+  "1-2": "1-2 года",
+  "3-5": "3-5 лет",
+  "6+": "6 лет и больше",
+  given: "указана",
+  not_given: "не указана",
+  moscow: "Москва",
+  spb: "Санкт-Петербург",
+  other: "другие регионы",
+  remote: "удалённо"
+};
+
+const money = new Intl.NumberFormat("ru-RU", {maximumFractionDigits: 0});
+export const rub = (x) => (x === null || x === undefined ? "" : `${money.format(x)} ₽`);

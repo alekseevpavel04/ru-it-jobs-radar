@@ -10,16 +10,22 @@ from radar.config import ROOT
 from radar.site import export
 from radar.site.export import (
     Junior,
+    Lifetime,
     Meta,
     Salary,
     SkillByRole,
+    SkillJunior,
     SkillTotal,
     WeeklyTelegram,
     WeeklyVacancies,
     WorkFormat,
     build,
+    lifetime,
+    median_ci_coverage,
     render,
+    salary_min_n,
     skills,
+    skills_junior,
     weekly_telegram,
     write,
 )
@@ -29,6 +35,7 @@ ROW_MODELS: dict[str, type[BaseModel]] = {
     "weekly_telegram.json": WeeklyTelegram,
     "skills.json": SkillTotal,
     "skills_by_role.json": SkillByRole,
+    "skills_junior.json": SkillJunior,
     "work_format.json": WorkFormat,
     "junior.json": Junior,
     "salaries.json": Salary,
@@ -71,9 +78,9 @@ def junior_row(source: str, bucket: str, vacancies: int) -> dict[str, Any]:
         "source": source,
         "role_bucket": bucket,
         "vacancies": vacancies,
-        "open_to_junior": 0,
-        "graded_intern": 0,
-        "graded_junior": 0,
+        "open_to_junior": 5,
+        "graded_intern": 1,
+        "graded_junior": 4,
         "no_experience_required": 0,
         "grade_known": 0,
         "experience_field_stated": None,
@@ -136,8 +143,53 @@ def marts() -> dict[str, list[dict[str, Any]]]:
     }
 
 
+def median_metric(
+    value: float | str, low: float | None, high: float | None, subjects: int, events: int
+) -> dict[str, Any]:
+    return {
+        "value": value,
+        "n": None,
+        "denominator": None,
+        "low": low,
+        "high": high,
+        "subjects": subjects,
+        "events": events,
+    }
+
+
+SURVIVAL: dict[str, Any] = {
+    "source_script": "src/radar/models/survival.py",
+    "command": "python -m radar.models.survival",
+    "commit": "a002729",
+    "created_at": "2026-10-11T10:48:46+00:00",
+    "definitions": {"event": "no open sighting on 7 consecutive collected snapshot days; closed on the first of them"},
+    "window": {"first_dt": "2026-06-30", "last_dt": "2026-09-10"},
+    "limits_ru": ["Закрытие это исчезновение из выгрузки, а не найм."],
+    "metrics": {
+        "median_days_overall": {
+            **median_metric(32.0, 32.0, 33.0, 9560, 4606),
+            "at_risk": {"0": 1475, "7": 3009, "30": 2302},
+            "survival": {"7": 0.9159, "30": 0.6948},
+        },
+        "median_days_incident_from_first_sighting": median_metric(32.0, 31.0, 36.0, 4279, 1657),
+        "median_days_grace_14": median_metric(41.0, 36.0, 44.0, 9560, 3822),
+        "median_days_role_ml_ds_data": median_metric(23.0, 19.0, 27.0, 199, 125),
+        "median_days_incident_experience_6+": median_metric(58.0, 32.0, None, 155, 46),
+        "median_days_salary_not_given": {
+            "value": "not estimable",
+            "n": None,
+            "denominator": None,
+            "reason": "a risk set empties",
+            "subjects": 229,
+            "events": 156,
+        },
+        "hr_role=ml_ds_data": {"value": 1.99, "n": None, "denominator": None, "low": 1.4, "high": 2.8},
+    },
+}
+
+
 def built(marts: dict[str, list[dict[str, Any]]]) -> dict[str, Any]:
-    return build(marts, datetime(2026, 10, 11, 9, 0, tzinfo=UTC), "abc1234")
+    return build(marts, SURVIVAL, datetime(2026, 10, 11, 9, 0, tzinfo=UTC), "abc1234")
 
 
 def test_weekly_vacancies_leave_telegram_out_and_sort(marts: dict[str, list[dict[str, Any]]]) -> None:
@@ -186,7 +238,7 @@ def test_meta_dates_and_counts(marts: dict[str, list[dict[str, Any]]]) -> None:
     assert meta.snapshot_first_week == date(2026, 6, 29)
     assert meta.snapshot_last_week == date(2026, 7, 6)
     assert meta.telegram_weeks_shown == 2
-    assert meta.files == {name: len(rows) for name, rows in docs.items() if name != "meta.json"}
+    assert meta.files == {name: len(rows) for name, rows in docs.items() if name not in ("meta.json", "lifetime.json")}
     assert set(meta.periods) == {"trudvsem", "telegram"}
 
 
@@ -216,6 +268,7 @@ def test_exported_fields_are_aggregates_only() -> None:
         "skills_by_role.json": {
             *("source", "role_bucket", "skill", "category", "vacancies_mentioning", "vacancies_in_bucket"),
         },
+        "skills_junior.json": {"source", "skill", "category", "vacancies_mentioning", "vacancies_graded_junior"},
         "work_format.json": {"source", "role_bucket", "work_format", "vacancies", "vacancies_in_bucket"},
         "junior.json": {
             *("source", "role_bucket", "vacancies", "open_to_junior", "graded_intern", "graded_junior"),
@@ -246,6 +299,7 @@ SITE_DATA = ROOT / "site" / "src" / "data"
 def test_committed_site_data_matches_the_contract() -> None:
     meta = Meta.model_validate_json((SITE_DATA / "meta.json").read_text(encoding="utf-8"))
     assert set(meta.files) == set(ROW_MODELS)
+    Lifetime.model_validate_json((SITE_DATA / "lifetime.json").read_text(encoding="utf-8"))
     for name, model in ROW_MODELS.items():
         rows = json.loads((SITE_DATA / name).read_text(encoding="utf-8"))
         assert len(rows) == meta.files[name], name
@@ -258,3 +312,50 @@ def test_site_texts_have_no_long_dash() -> None:
     files += (ROOT / "site" / "src" / "components").rglob("*.js")
     offenders = [p.name for p in files if "—" in p.read_text(encoding="utf-8")]
     assert offenders == []
+
+
+def test_junior_skills_count_intern_and_junior_grades_over_their_own_base(
+    marts: dict[str, list[dict[str, Any]]],
+) -> None:
+    rows = skills_junior(marts["mart_skills"], marts["mart_junior"])
+    assert [(r.source, r.skill, r.vacancies_mentioning, r.vacancies_graded_junior) for r in rows] == [
+        ("trudvsem", "Python", 4, 15),
+    ]
+    with pytest.raises(ValueError, match="junior-graded"):
+        skills_junior(
+            marts["mart_skills"], [{**r, "graded_intern": 0, "graded_junior": 1} for r in marts["mart_junior"]]
+        )
+
+
+def test_salary_cells_below_nine_have_no_median_interval_inside_their_range() -> None:
+    assert salary_min_n() == 9
+    assert median_ci_coverage(8) < 0.95 <= median_ci_coverage(9)
+    assert round(median_ci_coverage(9), 4) == 0.9609
+
+
+def test_lifetime_takes_medians_with_counts_and_skips_other_metrics() -> None:
+    doc = lifetime(SURVIVAL, "results/models/survival.json")
+    found = {(m.group, m.level, m.cohort): m for m in doc.medians}
+    assert set(found) == {
+        ("overall", "all", "prevalent"),
+        ("overall", "all", "incident"),
+        ("role", "ml_ds_data", "prevalent"),
+        ("experience", "6+", "incident"),
+        ("salary", "not_given", "prevalent"),
+    }
+    assert (found["overall", "all", "prevalent"].median_days, found["overall", "all", "prevalent"].events) == (
+        32.0,
+        4606,
+    )
+    assert found["experience", "6+", "incident"].high is None
+    not_estimable = found["salary", "not_given", "prevalent"]
+    assert (not_estimable.median_days, not_estimable.subjects) == (None, 229)
+    assert doc.grace_days == 7
+    assert [(p.day, p.at_risk) for p in doc.overall_curve] == [(7, 3009), (30, 2302)]
+    assert doc.source_file == "results/models/survival.json"
+
+
+def test_lifetime_needs_the_closure_rule() -> None:
+    broken = {**SURVIVAL, "definitions": {"event": "closed when gone"}}
+    with pytest.raises(ValueError, match="grace"):
+        lifetime(broken, "results/models/survival.json")

@@ -5,12 +5,15 @@
 Reads only marts.* and writes only aggregates: counts per week, source, role bucket, skill, format
 and salary cell, each with its denominator. No vacancy row of any source, no title, text or link
 leaves ClickHouse here; every row model forbids fields it does not declare, and tests pin the field
-lists. Rerunnable: the files are rewritten whole, rows in a fixed order, so a daily rerun changes
-only what the data changed. Also writes results/site/export.json (rows and bytes per file).
+lists. The one input besides the marts is results/models/survival.json (vacancy lifetimes, task
+7.3), copied as medians with intervals and counts, with its path and provenance. Rerunnable: the
+files are rewritten whole, rows in a fixed order, so a daily rerun changes only what the data
+changed. Also writes results/site/export.json (rows and bytes per file).
 """
 
 import argparse
 import json
+import re
 import sys
 from collections import defaultdict
 from collections.abc import Iterable, Mapping
@@ -20,11 +23,16 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict
 
-from radar.config import ROOT, load_dotenv
+from radar.config import RESULTS, ROOT, load_dotenv
 from radar.results import git_commit, write_result
 from radar.stream.clickhouse import ClickHouse
 
 OUT = ROOT / "site" / "src" / "data"
+SURVIVAL = RESULTS / "models" / "survival.json"
+JUNIOR_GRADES = ("intern", "junior")
+# The site shows a salary quantile of a cell only when the cell is large enough for its median to
+# say something; see salary_min_n.
+MEDIAN_CI_LEVEL = 0.95
 # Telegram history reaches back years, as far as each channel goes; the site plots two years of it.
 TELEGRAM_WEEKS = 104
 # A skill of a role bucket mentioned fewer times than this is left out of skills_by_role (noise and
@@ -114,6 +122,45 @@ class Salary(Row):
     salary_to_p75: int | None
 
 
+class SkillJunior(Row):
+    source: Family
+    skill: str
+    category: str
+    vacancies_mentioning: int
+    vacancies_graded_junior: int
+
+
+class LifetimeMedian(Row):
+    group: Literal["overall", "role", "experience", "salary", "region"]
+    level: str
+    cohort: Literal["prevalent", "incident"]
+    median_days: float | None
+    low: float | None
+    high: float | None
+    subjects: int
+    events: int
+
+
+class SurvivalPoint(Row):
+    day: int
+    survival: float
+    at_risk: int
+
+
+class Lifetime(Row):
+    source_file: str
+    source_script: str
+    commit: str
+    created_at: str
+    window_from: date
+    window_to: date
+    event: str
+    grace_days: int
+    medians: list[LifetimeMedian]
+    overall_curve: list[SurvivalPoint]
+    limits: list[str]
+
+
 class Period(Row):
     period_from: date
     period_to: date
@@ -129,6 +176,8 @@ class Meta(Row):
     telegram_first_week_shown: date
     telegram_weeks_shown: int
     skill_min_mentions: int
+    salary_min_n: int
+    salary_min_n_coverage: float
     files: dict[str, int]
 
 
@@ -273,6 +322,110 @@ def skills(
     return totals, roles
 
 
+def skills_junior(rows: Iterable[dict[str, Any]], junior: Iterable[dict[str, Any]]) -> list[SkillJunior]:
+    """Skills of the vacancies graded intern or junior, per source.
+
+    The base is graded_intern + graded_junior of mart_junior (the same units as mart_skills). The
+    "no experience required" part of the junior slice has no skill rows: mart_skills is split by
+    grade, not by experience.
+    """
+    base: dict[str, int] = defaultdict(int)
+    for r in junior:
+        base[r["source"]] += r["graded_intern"] + r["graded_junior"]
+    mentions: dict[tuple[str, str], int] = defaultdict(int)
+    category: dict[str, str] = {}
+    for r in rows:
+        if r["grade"] in JUNIOR_GRADES:
+            mentions[r["source"], r["skill"]] += r["vacancies_mentioning"]
+            category[r["skill"]] = r["skill_category"]
+    out = []
+    for (source, skill), n in mentions.items():
+        if n > base[source]:
+            raise ValueError(f"{source} {skill}: {n} mentions of {base[source]} junior-graded vacancies")
+        out.append(
+            SkillJunior(
+                source=source,
+                skill=skill,
+                category=category[skill],
+                vacancies_mentioning=n,
+                vacancies_graded_junior=base[source],
+            )
+        )
+    return sorted(out, key=lambda r: (r.source, -r.vacancies_mentioning, r.skill))
+
+
+def median_ci_coverage(n: int) -> float:
+    """Coverage of [x(2), x(n-1)] as an interval for the median of n values (binomial, p = 1/2)."""
+    return 1 - (1 + n) / (1 << (n - 1))
+
+
+def salary_min_n(level: float = MEDIAN_CI_LEVEL) -> int:
+    """Smallest cell whose 95% distribution-free interval for the median drops the min and the max.
+
+    Below it the only 95% interval the order statistics give is the whole range of the cell (and
+    below 6 not even that), so its median says next to nothing about the cell.
+    """
+    n = 3
+    while median_ci_coverage(n) < level:
+        n += 1
+    return n
+
+
+_MEDIAN_KEY = re.compile(
+    r"^median_days_(?P<incident>incident_)?(?P<group>role|experience|salary|region)_(?P<level>.+)$"
+)
+_GRACE = re.compile(r"no open sighting on (?P<days>\d+) consecutive")
+_OVERALL = {"median_days_overall": "prevalent", "median_days_incident_from_first_sighting": "incident"}
+
+
+def lifetime(doc: Mapping[str, Any], source_file: str) -> Lifetime:
+    """Kaplan-Meier medians of results/models/survival.json, as computed there, with their counts."""
+    medians = []
+    for key, m in doc["metrics"].items():
+        found = _MEDIAN_KEY.match(key)
+        if key in _OVERALL:
+            group, level, cohort = "overall", "all", _OVERALL[key]
+        elif found:
+            group, level = found["group"], found["level"]
+            cohort = "incident" if found["incident"] else "prevalent"
+        else:
+            continue
+        estimable = isinstance(m["value"], int | float)
+        medians.append(
+            LifetimeMedian(
+                group=group,
+                level=level,
+                cohort=cohort,
+                median_days=m["value"] if estimable else None,
+                low=m.get("low") if estimable else None,
+                high=m.get("high") if estimable else None,
+                subjects=m["subjects"],
+                events=m["events"],
+            )
+        )
+    grace = _GRACE.search(doc["definitions"]["event"])
+    if grace is None:
+        raise ValueError(f"no grace days in the event definition: {doc['definitions']['event']}")
+    overall = doc["metrics"]["median_days_overall"]
+    curve = [
+        SurvivalPoint(day=int(day), survival=s, at_risk=overall["at_risk"][day])
+        for day, s in overall["survival"].items()
+    ]
+    return Lifetime(
+        source_file=source_file,
+        source_script=doc["source_script"],
+        commit=doc["commit"],
+        created_at=doc["created_at"],
+        window_from=doc["window"]["first_dt"],
+        window_to=doc["window"]["last_dt"],
+        event=doc["definitions"]["event"],
+        grace_days=int(grace["days"]),
+        medians=sorted(medians, key=lambda m: (m.group, m.cohort, m.level)),
+        overall_curve=sorted(curve, key=lambda p: p.day),
+        limits=doc["limits_ru"],
+    )
+
+
 def periods(skill_rows: Iterable[dict[str, Any]]) -> dict[str, Period]:
     found: dict[str, Period] = {}
     for r in skill_rows:
@@ -280,8 +433,8 @@ def periods(skill_rows: Iterable[dict[str, Any]]) -> dict[str, Period]:
     return dict(sorted(found.items()))
 
 
-def build(marts: MartRows, exported_at: datetime, commit: str) -> dict[str, Any]:
-    """File name -> rows (or Meta for meta.json), all from the mart rows given."""
+def build(marts: MartRows, survival: Mapping[str, Any], exported_at: datetime, commit: str) -> dict[str, Any]:
+    """File name -> rows (or one document for meta.json and lifetime.json)."""
     weekly = marts["mart_weekly_dynamics"]
     sizes = bucket_sizes(marts["mart_junior"])
     skill_totals, skill_roles = skills(marts["mart_skills"], sizes)
@@ -290,6 +443,7 @@ def build(marts: MartRows, exported_at: datetime, commit: str) -> dict[str, Any]
         "weekly_telegram.json": weekly_telegram(weekly),
         "skills.json": skill_totals,
         "skills_by_role.json": skill_roles,
+        "skills_junior.json": skills_junior(marts["mart_skills"], marts["mart_junior"]),
         "work_format.json": sorted(
             (WorkFormat(**r) for r in marts["mart_work_format"]),
             key=lambda r: (r.source, r.role_bucket, r.work_format),
@@ -313,9 +467,15 @@ def build(marts: MartRows, exported_at: datetime, commit: str) -> dict[str, Any]
         telegram_first_week_shown=min(telegram_weeks),
         telegram_weeks_shown=len(set(telegram_weeks)),
         skill_min_mentions=SKILL_MIN_MENTIONS,
+        salary_min_n=salary_min_n(),
+        salary_min_n_coverage=round(median_ci_coverage(salary_min_n()), 4),
         files={name: len(rows) for name, rows in files.items()},
     )
-    return {"meta.json": meta, **files}
+    return {
+        "meta.json": meta,
+        "lifetime.json": lifetime(survival, SURVIVAL.relative_to(ROOT).as_posix()),
+        **files,
+    }
 
 
 def render(content: Any) -> str:
@@ -344,7 +504,8 @@ def main() -> int:
     load_dotenv()
     with ClickHouse() as ch:
         marts = fetch_marts(ch)
-    docs = build(marts, datetime.now(UTC).replace(microsecond=0), git_commit())
+    survival = json.loads(SURVIVAL.read_text(encoding="utf-8"))
+    docs = build(marts, survival, datetime.now(UTC).replace(microsecond=0), git_commit())
     sizes = write(docs, args.out)
     meta: Meta = docs["meta.json"]
     metrics: dict[str, dict[str, Any]] = {}
