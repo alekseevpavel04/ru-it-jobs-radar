@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any
 
 from radar.config import data_dir
-from radar.eval.agreement import SPLITS, field_values, load_pass, parse
+from radar.eval.agreement import SPLITS, excluded, field_values, load_pass, parse
 from radar.extract.schema import VacancyFields
 from radar.results import write_result
 
@@ -114,21 +114,35 @@ def build(gold: Path) -> dict[str, Any]:
     adjudicated = load_adjudicated(gold / "adjudicated")
     report: dict[str, Any] = {}
     for split in SPLITS:
-        inputs = [json.loads(x) for x in (gold / f"{split}_inputs.jsonl").read_text(encoding="utf-8").splitlines() if x]
         a, b = load_pass(gold / "pass_a", split), load_pass(gold / "pass_b", split)
+        if not a or not b:
+            continue
+        inputs = [json.loads(x) for x in (gold / f"{split}_inputs.jsonl").read_text(encoding="utf-8").splitlines() if x]
         counts: Counter[str] = Counter()
         changes: Counter[str] = Counter()
         lines = []
         for record in inputs:
             rid = record["id"]
-            fa, fb = parse(a[rid]["output"]), parse(b[rid]["output"])
             if rid in adjudicated:
-                fields = parse(adjudicated[rid]["output"])
-                provenance = "adjudicated"
-            elif fa is not None and fb is not None and field_values(fa) == field_values(fb):
-                fields, provenance = fa, "agreed"
+                row, provenance = adjudicated[rid], "adjudicated"
+            elif excluded(a[rid]) is not None and excluded(a[rid]) == excluded(b[rid]):
+                row, provenance = a[rid], "agreed"
             else:
-                raise ValueError(f"{split}/{rid}: passes disagree and there is no adjudicated label")
+                fa, fb = parse(a[rid]["output"]), parse(b[rid]["output"])
+                if (
+                    fa is None
+                    or fb is None
+                    or field_values(fa) != field_values(fb)
+                    or excluded(a[rid]) != excluded(b[rid])
+                ):
+                    raise ValueError(f"{split}/{rid}: passes disagree and there is no adjudicated label")
+                row, provenance = a[rid], "agreed"
+            reason = excluded(row)
+            if reason is not None:
+                # Rule 6: a Telegram post that is not one vacancy leaves the gold set and is counted.
+                counts[f"excluded_{reason}"] += 1
+                continue
+            fields = parse(row["output"])
             if fields is None:
                 raise ValueError(f"{split}/{rid}: adjudicated output is not valid against the schema")
             before = list(fields.skills)
@@ -149,7 +163,7 @@ def build(gold: Path) -> dict[str, Any]:
                 )
             )
         (gold / f"{split}.jsonl").write_text("\n".join(lines) + "\n", encoding="utf-8")
-        report[split] = {"records": len(lines), **counts, "skill_changes": dict(changes)}
+        report[split] = {"records": len(lines), "sampled": len(inputs), **counts, "skill_changes": dict(changes)}
     return report
 
 
@@ -162,6 +176,12 @@ def main(argv: list[str] | None = None) -> int:
             "value": round(r.get("adjudicated", 0) / r["records"], 4),
             "n": r.get("adjudicated", 0),
             "denominator": r["records"],
+        }
+        excluded_n = sum(v for k, v in r.items() if k.startswith("excluded_"))
+        metrics[f"{split}_excluded"] = {
+            "value": round(excluded_n / r["sampled"], 4),
+            "n": excluded_n,
+            "denominator": r["sampled"],
         }
         metrics[f"{split}_skills_changed_by_rules"] = {
             "value": round(r.get("skills_changed_by_rules", 0) / r["records"], 4),

@@ -26,7 +26,8 @@ from radar.extract.schema import VacancyFields
 from radar.results import write_result
 
 FIELDS = tuple(VacancyFields.model_fields)
-SPLITS = ("test", "dev")
+SPLITS = ("test", "dev", "tg_test", "tg_dev")
+EXCLUDE = "exclude:"
 
 
 def load_pass(directory: Path, split: str) -> dict[str, dict[str, Any]]:
@@ -46,6 +47,14 @@ def parse(output: Any) -> VacancyFields | None:
         return None
 
 
+def excluded(row: dict[str, Any]) -> str | None:
+    """The reason a pass left a Telegram post out of the gold set (rule 6 of the guide), from its notes."""
+    notes = (row.get("notes") or "").strip()
+    if not notes.startswith(EXCLUDE):
+        return None
+    return notes[len(EXCLUDE) :].split()[0].strip(" ,;.") if notes[len(EXCLUDE) :].strip() else "unspecified"
+
+
 def canonical(value: Any) -> Any:
     """A field value in a form where order of list items and case do not matter."""
     if isinstance(value, list):
@@ -59,12 +68,24 @@ def field_values(fields: VacancyFields) -> dict[str, Any]:
 
 
 def compare(a: dict[str, dict[str, Any]], b: dict[str, dict[str, Any]], salary_rel_tol: float) -> dict[str, Any]:
+    """Posts a pass left out by rule 6 are compared by their exclusion only: their fields are empty
+    and need not be valid. A post one pass left out and the other labeled is a disagreement."""
     ids = sorted(set(a) & set(b))
-    parsed_a = [parse(a[i]["output"]) for i in ids]
-    parsed_b = [parse(b[i]["output"]) for i in ids]
-    both = [(i, x, y) for i, x, y in zip(ids, parsed_a, parsed_b, strict=True) if x is not None and y is not None]
-    exact = dict.fromkeys(FIELDS, 0)
     disagreements = []
+    labeled = []
+    excluded_by_both = 0
+    for i in ids:
+        ea, eb = excluded(a[i]), excluded(b[i])
+        if ea is None and eb is None:
+            labeled.append(i)
+        elif ea == eb:
+            excluded_by_both += 1
+        else:
+            disagreements.append({"id": i, "fields": ["exclude"]})
+    parsed_a = [parse(a[i]["output"]) for i in labeled]
+    parsed_b = [parse(b[i]["output"]) for i in labeled]
+    both = [(i, x, y) for i, x, y in zip(labeled, parsed_a, parsed_b, strict=True) if x is not None and y is not None]
+    exact = dict.fromkeys(FIELDS, 0)
     for record_id, x, y in both:
         va, vb = field_values(x), field_values(y)
         differing = [f for f in FIELDS if va[f] != vb[f]]
@@ -75,11 +96,14 @@ def compare(a: dict[str, dict[str, Any]], b: dict[str, dict[str, Any]], salary_r
     stats = score([x for _, x, _ in both], [y for _, _, y in both], salary_rel_tol)
     f1 = {k: round(s.value(), 4) for k, s in stats.items() if k.endswith("_f1") or k == "macro_f1"}
     n = len(both)
+    exclusion_differs = sum(1 for d in disagreements if d["fields"] == ["exclude"])
     return {
         "records": {"a": len(a), "b": len(b), "both": len(ids)},
         "invalid": {"a": parsed_a.count(None), "b": parsed_b.count(None)},
         "exact": {f: {"n": exact[f], "denominator": n} for f in FIELDS},
-        "all_fields_equal": {"n": n - len(disagreements), "denominator": n},
+        "all_fields_equal": {"n": n - (len(disagreements) - exclusion_differs), "denominator": n},
+        "excluded_by_both": {"n": excluded_by_both, "denominator": len(ids)},
+        "exclusion_differs": {"n": exclusion_differs, "denominator": len(ids)},
         "f1_b_against_a": f1,
         "disagreements": disagreements,
     }
@@ -95,7 +119,11 @@ def main(argv: list[str] | None = None) -> int:
     splits: dict[str, Any] = {}
     metrics: dict[str, dict[str, Any]] = {}
     for split in SPLITS:
-        result = compare(load_pass(args.a, split), load_pass(args.b, split), cfg.salary_rel_tol)
+        pass_a, pass_b = load_pass(args.a, split), load_pass(args.b, split)
+        if not pass_a or not pass_b:
+            print(f"{split}: no labeling passes yet, skipped")
+            continue
+        result = compare(pass_a, pass_b, cfg.salary_rel_tol)
         disagreements = result.pop("disagreements")
         out = gold / f"disagreements_{split}.jsonl"
         out.write_text("".join(json.dumps(d, ensure_ascii=False) + "\n" for d in disagreements), encoding="utf-8")
