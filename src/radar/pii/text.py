@@ -3,7 +3,8 @@
 The same patterns drive both `clean_text` and `scan_text`, so a scan after cleaning must come back
 empty; the structured checks in `radar.pii.records` are what make the scanner more than a mirror.
 Names are caught where the shape is reliable: a patronymic, initials, a contact label, or a first
-name from `first_names.csv` next to a surname-shaped word, alone on its line or in a signature line.
+name from `first_names.csv` next to a surname-shaped word, alone on its line, in a signature line or
+right after "ищет" (a recruiter credit).
 """
 
 import csv
@@ -153,8 +154,26 @@ _NOT_SURNAMES = _NOT_NAMES | {
     "Contact",
     "Contacts",
     "Telegram",
+    "Data",
+    "Дата",
+    "Spark",
+    "Python",
+    "Scientist",
+    "Разработчика",
 }
 _EDGES = re.compile(r"^[\W\d_]+|[\W\d_]+$")
+# A recruiter credit, "Ищет Дарья Остапенко, её пост на LinkedIn": after the verb a first name is a person
+# whatever the surname looks like ("Остапенко", "Ли", or an initial), which the shape rules miss.
+_GAP = r"[ \t\xa0]"
+_SEEKER = re.compile(
+    rf"(?<![\w-])(?i:ищет){_GAP}*[:\-–]?{_GAP}*"
+    r"(?P<first>[А-ЯЁ][а-яё]+|[A-Z][a-z]+)"
+    rf"{_GAP}+(?P<last>[А-ЯЁ][а-яё]+(?:-[А-ЯЁ][а-яё]+)?|[A-Z][a-z]+(?:-[A-Z][a-z]+)?|[А-ЯЁA-Z]\.?)(?![\w-])"
+)
+# The rest of that credit line; with it any first name counts, listed or not ("Айгерим", "Alesia").
+_CREDIT_TAIL = re.compile(
+    rf"{_GAP}*[.,]{{1,2}}{_GAP}*(?:подробности{_GAP}+в{_GAP}+)?(?:её|ее|его)(?:/(?:её|ее|его))?{_GAP}+пост"
+)
 
 
 @dataclass(frozen=True)
@@ -162,7 +181,7 @@ class Finding:
     kind: str
     start: int
     end: int
-    rule: str = ""  # for person_name found by first name: full_name, name_line or signature
+    rule: str = ""  # for person_name found by first name: full_name, name_line, signature or seeker
 
 
 def _same_script(a: str, b: str) -> bool:
@@ -241,6 +260,17 @@ def _person_names(text: str, context: list[tuple[int, int]]) -> Iterator[tuple[s
                 i = j + 1
 
 
+def _seekers(text: str) -> Iterator[tuple[int, int]]:
+    for m in _SEEKER.finditer(text):
+        first, last = m.group("first"), m.group("last")
+        if not _same_script(first, last) or first in _NOT_SURNAMES or last.rstrip(".") in _NOT_SURNAMES:
+            continue
+        # "ищет Julia Kotlin" is a stack; Latin names that are also tools are left to the signature rule.
+        listed = first in _FIRST_NAMES and not (_FIRST_NAMES[first] and first.isascii())
+        if listed or _CREDIT_TAIL.match(text, m.end()):
+            yield m.start("first"), m.end("last")
+
+
 def _keep_profile(match: re.Match[str], keep: frozenset[str]) -> bool:
     host = match.group("host").lower()
     parts = [p for p in match.group("path").split("/") if p]
@@ -302,6 +332,9 @@ def _spans(text: str, keep: frozenset[str]) -> list[Finding]:
         name = m.group("name")
         if name.split()[0] not in _NOT_NAMES:
             add("person_name", m.start("name"), m.end("name"))
+    if "щет" in text or "ЩЕТ" in text:
+        for start, end in _seekers(text):
+            add("person_name", start, end, "seeker")
     contacts = [(f.start, f.end) for f in found if f.kind != "person_name"]
     for rule, start, end in _person_names(text, contacts):
         add("person_name", start, end, rule)

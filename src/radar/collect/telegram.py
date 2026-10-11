@@ -19,7 +19,11 @@ the channel's first post; its cursor is saved per channel in `_meta/state/` afte
 broken run resumes where it stopped (pages read since the last flush are read again, their keys are
 skipped). Both modes hold one lock, so t.me sees a single stream of requests, PAUSE_S apart.
 
+A run killed hard leaves its partition without `_SUCCESS`; `--close-partition` marks it complete
+once the saved cursors show that no run will store its posts again (see `close_partition`).
+
     RADAR_USER_AGENT='...' python -m radar.collect.telegram [--backfill] [--channel NAME] [--summarize]
+    python -m radar.collect.telegram --close-partition YYYY-MM-DD
 """
 
 import argparse
@@ -36,6 +40,7 @@ from pathlib import Path
 from typing import Any
 
 import pyarrow as pa
+import pyarrow.compute as pc
 import pyarrow.parquet as pq
 from pydantic import ValidationError
 
@@ -46,7 +51,7 @@ from radar.collect.lock import AlreadyRunning, single_instance
 from radar.collect.summary import append_meta, meta_dir, partition_dates, partition_stats, read_meta
 from radar.collect.telegram_page import Page, Post, job_links, page_url, parse, post_url
 from radar.collect.telegram_rules import RULES_VERSION, classify
-from radar.collect.writer import PartitionWriter, raw_root
+from radar.collect.writer import SUCCESS, PartitionWriter, partition_dir, raw_root
 from radar.config import ROOT
 from radar.pii import DEFAULT_KEEP_HANDLES, clean_text
 from radar.results import write_result
@@ -67,6 +72,8 @@ FLUSH_PAGES = 50
 # Stored hashes of the newest posts per channel: an edit is noticed while the post is this fresh.
 RECENT_IDS = 200
 MAX_FAILED_IN_ROW = 3
+# A part this fresh may belong to a run that is still going.
+CLOSE_MIN_AGE = timedelta(minutes=30)
 # Payload fields that change while the post does not, or that the rules derive from it.
 VOLATILE = ("views", "edited", "rule_kind", "vacancies_in_post", "rules_version")
 
@@ -346,6 +353,74 @@ def collect(fetcher: Fetcher, channels: list[str], backfill: bool = False, root:
     return entry
 
 
+class PartitionNotClosable(RuntimeError):
+    pass
+
+
+def _behind_cursor(channel: str, post_id: int, root: Path | None) -> bool:
+    """Whether a resumed run skips this post: daily reads above `last_id`, backfill below `before`."""
+    daily = read_state("daily", channel, root)
+    first_seen, last_id = daily.get("first_seen_id"), daily.get("last_id")
+    if first_seen is not None and post_id >= first_seen:
+        return last_id is not None and post_id <= last_id
+    before = read_state("backfill", channel, root).get("before")
+    return before is not None and post_id >= before
+
+
+def close_partition(dt: date, root: Path | None = None, now: datetime | None = None) -> dict[str, Any]:
+    """Write `_SUCCESS` for the partition of a run that was killed before it could.
+
+    A hard kill (out of memory) leaves the flushed parts and no marker, so the partition is never
+    published or rewritten. The parts are kept as they are; the marker goes in only when no run will
+    store their posts again: each post sits behind its channel's saved cursor (cursors are written
+    after the parts they point past, see `Run.commit`), the partition holds no key twice, and no
+    part is younger than 30 minutes or the day is still today. The marker says the run was
+    interrupted and gives only what the parts show; requests and timings of the run are not known.
+    """
+    now = now or datetime.now(UTC)
+    directory = partition_dir(SOURCE, dt, root)
+    parts = sorted(directory.glob("part-*.parquet"))
+    if (directory / SUCCESS).exists():
+        raise PartitionNotClosable(f"{directory} already has {SUCCESS}")
+    if not parts:
+        raise PartitionNotClosable(f"{directory} has no parts")
+    if dt >= now.astimezone(MSK).date():
+        raise PartitionNotClosable(f"dt={dt} is today in Moscow; a run may still be writing it")
+    if list(directory.glob(".*.tmp")):
+        raise PartitionNotClosable(f"{directory} holds a temporary file of an unfinished write")
+    if any(datetime.fromtimestamp(p.stat().st_mtime, UTC) > now - CLOSE_MIN_AGE for p in parts):
+        raise PartitionNotClosable(f"{directory} has a part modified in the last 30 minutes")
+    table = pa.concat_tables(pq.read_table(p, columns=["source_id", "content_hash", "fetched_at"]) for p in parts)
+    ids = [str(i) for i in table.column("source_id").to_pylist()]
+    keys = set(zip(ids, table.column("content_hash").to_pylist(), strict=True))
+    if len(keys) != len(ids):
+        raise PartitionNotClosable(f"{directory} holds {len(ids) - len(keys)} repeated keys")
+    by_channel: Counter[str] = Counter()
+    ahead: Counter[str] = Counter()
+    for source_id in ids:
+        channel, post_id = source_id.rsplit("/", 1)
+        by_channel[channel] += 1
+        ahead[channel] += not _behind_cursor(channel, int(post_id), root)
+    if +ahead:
+        raise PartitionNotClosable(f"posts a resumed run would store again, by channel: {dict(+ahead)}")
+    fetched = table.column("fetched_at")
+    marker = {
+        "closed_at": now.isoformat(timespec="seconds"),
+        "interrupted": True,
+        "rows_in_partition": len(ids),
+        "distinct_ids": len(set(ids)),
+        "first_fetched_at": pc.min(fetched).as_py().isoformat(),
+        "last_fetched_at": pc.max(fetched).as_py().isoformat(),
+        "run_ids": sorted({p.name[len("part-") :].rsplit("-", 1)[0] for p in parts}),
+        "rows_by_channel": dict(sorted(by_channel.items())),
+    }
+    tmp = directory / f".{SUCCESS}.tmp"
+    tmp.write_text(json.dumps(marker, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    os.replace(tmp, directory / SUCCESS)
+    append_meta(SOURCE, "closed_partitions", {"dt": dt.isoformat(), **marker}, root)
+    return marker
+
+
 def _latest_versions(root: Path | None) -> dict[str, dict[str, Any]]:
     """Per post, its latest stored version: an edited post counts once, as it reads now."""
     columns = ["source_id", "fetched_at", "published_at", "is_vacancy", "multi_vacancy"]
@@ -470,8 +545,23 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--backfill", action="store_true", help="walk channels back to their first post")
     parser.add_argument("--channel", help="one channel from configs/telegram_channels.toml")
     parser.add_argument("--summarize", action="store_true", help="only rebuild the results files from disk")
+    parser.add_argument(
+        "--close-partition",
+        type=date.fromisoformat,
+        metavar="YYYY-MM-DD",
+        help="write _SUCCESS for the partition of a killed run, if no run will store its posts again",
+    )
     args = parser.parse_args(argv)
     setup_logging()
+    if args.close_partition is not None:
+        try:
+            marker = close_partition(args.close_partition)
+        except PartitionNotClosable as exc:
+            log.error("dt=%s stays open: %s", args.close_partition, exc)
+            return 1
+        print(json.dumps(marker, ensure_ascii=False, indent=1))
+        log.info("next: python -m radar.pii.rewrite --source telegram, then radar.stream.replay for this dt")
+        return 0
     status = 0
     if not args.summarize:
         channels = enabled_channels()

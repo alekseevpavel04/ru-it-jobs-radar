@@ -1,6 +1,7 @@
 {{ config(
     materialized='incremental_by_day',
     raw_source='trudvsem_snapshot',
+    skip_unchanged_days=true,
     engine='MergeTree()',
     partition_by='dt',
     order_by='source_id',

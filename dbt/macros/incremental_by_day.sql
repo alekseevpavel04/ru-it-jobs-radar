@@ -9,10 +9,18 @@
     got a raw row after the newest row already staged (a new day, a replay, the late part of a
     snapshot still streaming in), with an hour of overlap for blocks that commit out of order.
 
+    With skip_unchanged_days=true a model that keeps exactly one row per raw key of its day
+    (source_id, content_hash) skips the days whose key set is already staged: a replay or a
+    redelivery of the same rows, and the days the hour of overlap brings back. The key sets are
+    compared by count and a 64-bit XOR of cityHash64(source_id, content_hash), raw read with FINAL,
+    about 0.5 s a snapshot day against 22 s for building it. A day whose raw holds two versions of
+    one source_id never matches and is rebuilt every time, as before.
+
     How: the model selects one day where it says `dt = {{ staging_day() }}`; each day is inserted
     into a scratch table and swapped in with REPLACE PARTITION, so readers never see a day half
     built, and a day that vanished from raw is emptied. A full refresh builds a new table and
-    exchanges it atomically; a change of the model's columns needs one (--full-refresh). -#}
+    exchanges it atomically; a change of the model's columns needs one (--full-refresh), and so does
+    a change of its logic when skip_unchanged_days is on, since unchanged days are not rebuilt. -#}
 
 {% macro staging_day() -%}
     toDate('__staging_day__')
@@ -50,6 +58,31 @@
     ORDER BY 1
   {% endset %}
   {% set days = run_query(days_query).columns[0].values() if execute else [] %}
+  {% if days and not rebuild and config.get('skip_unchanged_days', false) %}
+    {% set day_list %}{% for day in days %}'{{ day }}'{{ ',' if not loop.last }}{% endfor %}{% endset %}
+    {% set changed_query %}
+      SELECT toString(r.dt)
+      FROM (
+          SELECT dt, count() AS n, groupBitXor(cityHash64(source_id, content_hash)) AS x
+          FROM {{ raw_relation }} FINAL
+          WHERE source = '{{ raw_source }}' AND dt IN ({{ day_list }})
+          GROUP BY dt
+      ) AS r
+      LEFT JOIN (
+          SELECT dt, count() AS n, groupBitXor(cityHash64(source_id, content_hash)) AS x
+          FROM {{ target_relation }}
+          WHERE dt IN ({{ day_list }})
+          GROUP BY dt
+      ) AS t ON r.dt = t.dt
+      WHERE r.n != t.n OR r.x != t.x
+      ORDER BY 1
+      SETTINGS join_use_nulls = 0, max_threads = 2
+    {% endset %}
+    {% set changed = run_query(changed_query).columns[0].values() %}
+    {{ log(this.identifier ~ ': ' ~ (days | length - changed | length) ~ ' of ' ~ days | length
+           ~ ' day(s) with new rows already staged, skipped', info=True) }}
+    {% set days = changed %}
+  {% endif %}
   {{ log(this.identifier ~ ': ' ~ days | length ~ ' day(s) to build', info=True) }}
 
   {% for day in days %}

@@ -1,7 +1,7 @@
 import html
 import json
 from collections import Counter
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -252,3 +252,54 @@ def test_killed_daily_run_rereads_without_duplicates(tmp_path: Path) -> None:
     run = telegram.collect(fetcher, [CHANNEL, "geekjobs"], root=tmp_path)
     assert run["written"] == 20 and run["per_channel"][CHANNEL]["written"] == 0
     assert len(rows(tmp_path)) == len({r["source_id"] for r in rows(tmp_path)}) == 40
+
+
+def _killed_backfill(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, interrupt_at: int | None) -> Path:
+    """A daily run and a backfill whose partition lost its marker, as after a hard kill."""
+    monkeypatch.setattr(telegram, "FLUSH_PAGES", 2)
+    ids = range(1, 301)
+    telegram.collect(Channel(CHANNEL, ids).fetcher(), [CHANNEL], root=tmp_path)
+    site = Channel(CHANNEL, ids)
+
+    def handle(request: httpx.Request) -> httpx.Response:
+        if len(site.requests) == interrupt_at:
+            raise KeyboardInterrupt
+        return site.handle(request)
+
+    fetcher = Fetcher(httpx.Client(transport=httpx.MockTransport(handle)), pause_s=0, backoff_s=())
+    if interrupt_at is None:
+        telegram.collect(fetcher, [CHANNEL], backfill=True, root=tmp_path)
+    else:
+        with pytest.raises(KeyboardInterrupt):
+            telegram.collect(fetcher, [CHANNEL], backfill=True, root=tmp_path)
+    directory = next(tmp_path.glob("telegram/dt=*"))
+    (directory / telegram.SUCCESS).unlink(missing_ok=True)
+    return directory
+
+
+def test_close_partition_of_a_killed_run(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    directory = _killed_backfill(tmp_path, monkeypatch, interrupt_at=None)
+    dt = date.fromisoformat(directory.name.removeprefix("dt="))
+    with pytest.raises(telegram.PartitionNotClosable, match="today"):
+        telegram.close_partition(dt, tmp_path, now=datetime.now(UTC))
+    tomorrow = datetime.now(UTC) + timedelta(days=1)
+    marker = telegram.close_partition(dt, tmp_path, now=tomorrow)
+    stored = rows(tmp_path)
+    assert marker["interrupted"] is True
+    assert marker["rows_in_partition"] == marker["distinct_ids"] == len(stored)
+    assert marker["rows_by_channel"] == {CHANNEL: len(stored)}
+    assert json.loads((directory / telegram.SUCCESS).read_text(encoding="utf-8")) == marker
+    with pytest.raises(telegram.PartitionNotClosable, match="already"):
+        telegram.close_partition(dt, tmp_path, now=tomorrow)
+
+
+def test_partition_with_posts_past_the_cursor_stays_open(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    # The daily page and two backfill pages are committed; the next page reaches the parts on the way
+    # out but not the cursor, so a resumed run on another day would store it again.
+    directory = _killed_backfill(tmp_path, monkeypatch, interrupt_at=3)
+    dt = date.fromisoformat(directory.name.removeprefix("dt="))
+    cursor = telegram.read_state("backfill", CHANNEL, tmp_path)["before"]
+    assert min(int(r["source_id"].rsplit("/", 1)[1]) for r in rows(tmp_path)) < cursor
+    with pytest.raises(telegram.PartitionNotClosable, match=CHANNEL):
+        telegram.close_partition(dt, tmp_path, now=datetime.now(UTC) + timedelta(days=1))
+    assert not (directory / telegram.SUCCESS).exists()

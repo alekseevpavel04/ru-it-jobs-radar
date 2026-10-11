@@ -45,10 +45,21 @@ sequenced AS (
     WINDOW w AS (PARTITION BY source, source_id ORDER BY dt ROWS BETWEEN CURRENT ROW AND 1 FOLLOWING)
 ),
 
--- Rows in a closed state (deleted, unpublished, archived) are not sightings of an open vacancy;
--- they only close the one seen before them, as of the first complete day it was not seen open.
--- Otherwise the vacancy closes when it is missing for the source's number of complete days, as of
--- the first of them (hist_calendar).
+-- Rows in a closed state (deleted, unpublished, archived) are not sightings of an open vacancy.
+open_sightings AS (
+    SELECT
+        *,
+        leadInFrame(toNullable(dt)) OVER w AS next_open_dt
+    FROM sequenced
+    WHERE NOT is_closed_state
+    WINDOW w AS (PARTITION BY source, source_id ORDER BY dt ROWS BETWEEN CURRENT ROW AND 1 FOLLOWING)
+),
+
+-- Seen open again by closure_confirmed_dt (within the source's number of complete days, the grace
+-- window of the snapshot): the same open vacancy, whatever happened in between. Otherwise a closed
+-- state closes it as of the first complete day it was not seen open, and absence as of the first of
+-- the missing complete days (hist_calendar). A closure dated more than history_max_step_days after
+-- the last open sighting fell in days without a complete collection: closed_in_gap, date unknown.
 active AS (
     SELECT
         source,
@@ -56,14 +67,17 @@ active AS (
         dt,
         digest,
         multiIf(
+            next_open_dt IS NOT NULL AND (closure_confirmed_dt IS NULL OR next_open_dt <= closure_confirmed_dt),
+            NULL,
             coalesce(next_is_closed_state, false),
             least(assumeNotNull(next_dt), ifNull(next_complete_dt, assumeNotNull(next_dt))),
-            closure_confirmed_dt IS NOT NULL AND (next_dt IS NULL OR next_dt > closure_confirmed_dt),
+            closure_confirmed_dt IS NOT NULL,
             next_complete_dt,
             NULL
-        ) AS closed_at
-    FROM sequenced
-    WHERE NOT is_closed_state
+        ) AS closed_at,
+        closed_at IS NOT NULL AND dateDiff('day', dt, assumeNotNull(closed_at)) > {{ history_max_step_days() }}
+            AS closed_in_gap
+    FROM open_sightings
 ),
 
 marked AS (
@@ -82,6 +96,7 @@ reasoned AS (
         source_id,
         dt,
         closed_at,
+        closed_in_gap,
         multiIf(seq = 1, 'new', prev_closed_at IS NOT NULL, 'reopened', digest != prev_digest, 'changed', '')
             AS change_reason
     FROM marked
@@ -106,7 +121,8 @@ spans AS (
         max(dt) AS last_seen,
         toUInt32(count()) AS days_seen,
         argMin(change_reason, dt) AS change_reason,
-        argMax(tuple(closed_at), dt).1 AS closed_at
+        argMax(tuple(closed_at), dt).1 AS closed_at,
+        argMax(closed_in_gap, dt) AS closed_in_gap
     FROM numbered
     GROUP BY source, source_id, version_no
 ),
@@ -122,6 +138,7 @@ versions AS (
         s.days_seen AS days_seen,
         s.change_reason AS change_reason,
         s.closed_at AS closed_at,
+        s.closed_in_gap AS closed_in_gap,
         {%- for name in attributes %}
         o.{{ name }} AS {{ name }}{{ ',' if not loop.last }}
         {%- endfor %}
@@ -163,6 +180,7 @@ SELECT
     CAST(change_reason AS LowCardinality(String)) AS change_reason,
     CAST(multiIf(closed_at IS NOT NULL, 'closed', next_valid_from IS NOT NULL, 'changed', NULL)
         AS Nullable(String)) AS ended_by,
+    CAST(closed_in_gap AS Bool) AS closed_in_gap,
     if(version_no > 1 AND empty(named_changes) AND content_hash != prev.1, ['other'], named_changes)
         AS changed_fields,
     last_seen,

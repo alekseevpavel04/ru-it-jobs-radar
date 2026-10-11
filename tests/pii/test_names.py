@@ -20,7 +20,7 @@ from radar.pii import DEFAULT_KEEP_HANDLES, clean_text, scan_record, scan_text
         ("Анна Ким, рекрутер", "[name], рекрутер", "signature"),
         ("Контакт: [nick] (Анна)", "Контакт: [nick] ([name])", "signature"),
         ("Отклики сюда: [phone], Анна", "Отклики сюда: [phone], [name]", "signature"),
-        ("Ищет Анна Ким, [nick]", "Ищет [name], [nick]", "signature"),
+        ("Ищет Анна Ким, [nick]", "Ищет [name], [nick]", "seeker"),
         ("Maria Ivanova, Talent Acquisition", "[name], Talent Acquisition", "signature"),
         ("Alexey Smirnov, recruiter", "[name], recruiter", "signature"),
         ("Расскажет Иван Петров, основатель сообщества.", "Расскажет [name], основатель сообщества.", "full_name"),
@@ -45,6 +45,52 @@ def test_self_introduction() -> None:
     cleaned, counts = clean_text("Привет! Меня зовут Анна, я HR в компании.")
     assert cleaned == "Привет! Меня зовут [name], я HR в компании."
     assert counts == {"person_name": 1}
+
+
+@pytest.mark.parametrize(
+    ("text", "expected"),
+    [
+        # Surnames the shape rules do not know, in the credit line one channel puts under every post.
+        ("Ищет Дарья Остапенко, её\xa0пост на\xa0LinkedIn.", "Ищет [name], её\xa0пост на\xa0LinkedIn."),
+        ("Ищет Олег Ли, его пост.", "Ищет [name], его пост."),
+        ("Ищет Анна Смирнова", "Ищет [name]"),
+        ("Ищет: Мария Шульц", "Ищет: [name]"),
+        ("Вакансия в финтех, ищет Кира Пак.", "Вакансия в финтех, ищет [name]."),
+        ("Ищет Елена К., её пост на LinkedIn.", "Ищет [name], её пост на LinkedIn."),
+        ("Ищет Ольга Римская-Корсак", "Ищет [name]"),
+        ("Ищет Ivan Petrov, his post", "Ищет [name], his post"),
+        # First names outside first_names.csv count with the rest of the credit line.
+        ("Ищет Айгерим Сапарова, её\xa0пост на\xa0LinkedIn.", "Ищет [name], её\xa0пост на\xa0LinkedIn."),
+        ("Ищет Нурдаулет Б., его пост.", "Ищет [name], его пост."),
+        ("Ищет Alesia Mazur, подробности в её посте на LinkedIn.", "Ищет [name], подробности в её посте на LinkedIn."),
+    ],
+)
+def test_recruiter_credit_after_the_verb(text: str, expected: str) -> None:
+    cleaned, counts = clean_text(text)
+    assert cleaned == expected
+    assert counts == {"person_name": 1}
+    assert [f.rule for f in scan_text(text)] == ["seeker"]
+    assert scan_text(cleaned) == []
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Компания ищет Python-разработчика",
+        "Команда ищет Senior Data Scientist",
+        "Банк ищет Владимира в отдел",
+        "Ищет Анна",
+        "Яндекс ищет Julia Developer",
+        "ищет Julia Kotlin",
+        "Разыщет Анна Остапенко",
+        "Ищет Айгерим Сапарова",
+        "Ищет Senior Python, его пост на LinkedIn.",
+        "Ищет Data Scientist, её пост на LinkedIn.",
+    ],
+)
+def test_the_verb_alone_does_not_make_a_name(text: str) -> None:
+    findings = [f for f in scan_text(text) if f.rule == "seeker"]
+    assert findings == []
 
 
 @pytest.mark.parametrize(

@@ -12,8 +12,13 @@
 {#- How many consecutive complete days a vacancy has to be missing before it counts as closed;
     the closing day is then the first of them. NULL: absence never closes it.
 
-    trudvsem_snapshot, 1: every snapshot is the full set of the portal, so one complete snapshot
-    without the vacancy means it was closed or hidden.
+    trudvsem_snapshot, var history_grace_days (default 7): every snapshot is the full set of the
+    portal, but the portal hides open vacancies for a few days and shows them again. Of the
+    closures that one missing snapshot would call on 2026-06-30..09-10, 2 692 of 7 139 came back;
+    with 7 days 897 of 4 794 (grace in results/models/survival.json). A vacancy back within the
+    window is the same open vacancy, one version, and the survival analysis (7.3) uses the same
+    rule, so its lifetimes and these agree. The price is that a closure is confirmed 7 complete days
+    later; until then the vacancy is open and censored at its last sighting.
     habr, 3: the list returned 1 050 of the 1 227 vacancies of the site counter (2026-10-08,
     last_run_coverage_of_site_counter in results/collect/habr.json), so a
     vacancy can miss a day while still open. If that miss were independent from day to day with
@@ -23,7 +28,22 @@
     trudvsem (API), NULL: the daily run asks for records modified since the last run, so absence
     says nothing; the API has no status or deleted field either. -#}
 {% macro history_absent_days_to_close(source_expr) -%}
-    multiIf({{ source_expr }} = 'trudvsem_snapshot', 1, {{ source_expr }} = 'habr', 3, NULL)
+    multiIf({{ source_expr }} = 'trudvsem_snapshot', {{ history_grace_days() }}, {{ source_expr }} = 'habr', 3, NULL)
+{%- endmacro %}
+
+{% macro history_grace_days() -%}
+    {{ var('history_grace_days', 7) }}
+{%- endmacro %}
+
+
+{#- Days without a complete collection are unknown, not evidence. A vacancy last seen on dt whose
+    first complete day without it comes more than this many days later disappeared somewhere in
+    between: the history does not date that closure. It still ends the vacancy (it is gone), but
+    hist_vacancy_lifetime has no closed_at for it and censors it at its last sighting. 2, as
+    MAX_STEP_DAYS in radar.models.survival: one missing day dates a closure at most a day late; the
+    snapshot hole 2026-09-10..10-09 would otherwise close every vacancy that left in it on 10-09. -#}
+{% macro history_max_step_days() -%}
+    {{ var('history_max_step_days', 2) }}
 {%- endmacro %}
 
 

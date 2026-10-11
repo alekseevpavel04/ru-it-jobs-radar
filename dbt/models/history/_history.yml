@@ -61,31 +61,45 @@ models:
       Collected days per source and what absence after each of them means. A day is complete when
       it has at least 0.9 of the source's median rows per day (a day still streaming in or a run cut
       short is not evidence of closures). A vacancy last seen on dt and not seen again by
-      closure_confirmed_dt is closed as of next_complete_dt.
+      closure_confirmed_dt is closed as of next_complete_dt. Calendar days without a complete
+      collection are unknown: when more than history_max_step_days - 1 of them (default 1) follow
+      dt, a closure after dt is known to have happened but not when (next_complete_after_gap).
+      One row per collected day; uncollected days have no row, unknown_days_after counts them.
     columns:
       - name: is_complete
         description: n_rows is at least 0.9 of median_rows.
         data_tests: [not_null]
       - name: absent_days_to_close
         description: >
-          Consecutive complete days a vacancy has to be missing to count as closed: 1 for the
-          snapshot (a full dump), 3 for Habr (the list misses about 14% of open vacancies on a
-          day), NULL for the API (an incremental slice, absence means nothing).
+          Consecutive complete days a vacancy has to be missing to count as closed: the grace
+          window history_grace_days (dbt var, default 7) for the snapshot, whose portal hides open
+          vacancies for a few days; 3 for Habr (the list misses about 14% of open vacancies on a
+          day); NULL for the API (an incremental slice, absence means nothing). Reasons in
+          macros/history.sql.
       - name: next_complete_dt
         description: First complete day after dt.
       - name: closure_confirmed_dt
         description: The absent_days_to_close-th complete day after dt; NULL when there are not enough days yet.
+      - name: unknown_days_after
+        description: Calendar days between dt and next_complete_dt without a complete collection (not collected, or too few rows); NULL without a later complete day.
+      - name: next_complete_after_gap
+        description: >
+          unknown_days_after is at least history_max_step_days (dbt var, default 2, as
+          MAX_STEP_DAYS of radar.models.survival). A vacancy last seen on dt that closes is then
+          closed_in_gap: gone by next_complete_dt, date unknown. On the snapshot this is the hole
+          2026-09-10..10-09.
 
   - name: hist_vacancy_scd2
     description: >
       SCD2 versions of a vacancy within its source. A new version starts when the vacancy first
       appears, when its content_hash changes, or when it is seen again after it closed. valid_to is
       exclusive: the day the next version was first seen, or the day it closed; NULL for the version
-      valid now. Closure per source: snapshot, the first complete snapshot without it, or the first
-      day its record is deleted or unpublished; Habr, missing three consecutive complete days (as of
-      the first) or archived; API, never by absence. Snapshot vacancies also vanish for a few days
-      and come back (around weekends in July 2026); each return is a reopened version, and
-      closures_reopened in results/dbt/history.json says how often a closure was not final. Join
+      valid now. Closure per source: snapshot, missing (or deleted or unpublished) on
+      history_grace_days consecutive complete snapshots (dbt var, default 7), as of the first of
+      them; Habr, missing three consecutive complete days (as of the first) or archived; API, never
+      by absence. A vacancy seen open again within that window is the same open vacancy and keeps
+      its version; seen again later, it opens a reopened version. A closure across days without a
+      complete collection (hist_calendar.next_complete_after_gap) is closed_in_gap. Join
       (source, source_id) to the dedup mapping for vacancy_entity_id.
     data_tests:
       - unique_combination:
@@ -125,6 +139,12 @@ models:
           - accepted_values:
               arguments:
                 values: [changed, closed]
+      - name: closed_in_gap
+        description: >
+          The version closed more than history_max_step_days after its last open sighting, in days
+          without a complete collection: it was gone by valid_to, which is the first day known
+          closed, but the day it closed is not known.
+        data_tests: [not_null]
       - name: changed_fields
         description: >
           Fields that differ from the previous version, of title, employer_name, salary_from,
@@ -163,9 +183,10 @@ models:
   - name: hist_vacancy_lifetime
     description: >
       One row per vacancy within its source, for survival analysis (7.3) and the site.
-      duration_days is closed_at - first_seen for a closed vacancy, last_seen + 1 - first_seen for
-      an open one (right-censored at its last sighting). A reopened vacancy is one subject from its
-      first sighting to its final closure.
+      duration_days is closed_at - first_seen for a closure with a known date, last_seen + 1 -
+      first_seen for a censored one (still open, or closed_in_gap). A reopened vacancy is one
+      subject from its first sighting to its final closure; a return within the grace window is
+      not a reopening (hist_vacancy_scd2).
     data_tests:
       - unique_combination:
           arguments:
@@ -175,9 +196,15 @@ models:
         description: The vacancy has no current version (hist_vacancy_scd2).
         data_tests: [not_null]
       - name: closed_at
-        description: First day the vacancy was no longer open (its final closure); NULL while open.
+        description: First day the vacancy was no longer open (its final closure); NULL while open and for closed_in_gap.
+      - name: closed_in_gap
+        description: >
+          Closed, but in days without a complete collection, so the day is unknown (the last version
+          is closed_in_gap in hist_vacancy_scd2). is_closed and is_censored are both true; a
+          lifetime statistic over observed closures has to leave these out (closed_at IS NULL).
+        data_tests: [not_null]
       - name: is_censored
-        description: The end was not observed (still open, or an API vacancy, whose closure is never observed).
+        description: The end was not observed (still open, an API vacancy, whose closure is never observed, or closed_in_gap).
         data_tests: [not_null]
       - name: is_left_censored
         description: First seen on the source's first collected day, so it was posted earlier; published_at is the source's date.
@@ -198,6 +225,9 @@ unit_tests:
   - name: hist_calendar_complete_days
     description: A day with too few rows is not complete; closure dates step over it. Habr needs three days.
     model: hist_calendar
+    overrides:
+      vars:
+        history_grace_days: 1
     given:
       - input: ref('hist_observations')
         rows:
@@ -229,6 +259,65 @@ unit_tests:
         - {source: habr, dt: 2026-10-04, is_complete: true, next_complete_dt: null, closure_confirmed_dt: null}
         - {source: trudvsem, dt: 2026-10-01, is_complete: true, next_complete_dt: 2026-10-02, closure_confirmed_dt: null}
         - {source: trudvsem, dt: 2026-10-02, is_complete: true, next_complete_dt: null, closure_confirmed_dt: null}
+
+  # Snapshot days 07-01..07-09, then 07-25 after a hole of 15 days; 07-03 has too few rows.
+  - name: hist_calendar_grace_and_gaps
+    description: The snapshot closes after the default grace of 7 complete days; days without a complete collection are unknown.
+    model: hist_calendar
+    given:
+      - input: ref('hist_observations')
+        rows:
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-01}
+          - {source: trudvsem_snapshot, source_id: b, dt: 2026-07-01}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-02}
+          - {source: trudvsem_snapshot, source_id: b, dt: 2026-07-02}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-03}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-04}
+          - {source: trudvsem_snapshot, source_id: b, dt: 2026-07-04}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-05}
+          - {source: trudvsem_snapshot, source_id: b, dt: 2026-07-05}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-06}
+          - {source: trudvsem_snapshot, source_id: b, dt: 2026-07-06}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-07}
+          - {source: trudvsem_snapshot, source_id: b, dt: 2026-07-07}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-08}
+          - {source: trudvsem_snapshot, source_id: b, dt: 2026-07-08}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-09}
+          - {source: trudvsem_snapshot, source_id: b, dt: 2026-07-09}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-25}
+          - {source: trudvsem_snapshot, source_id: b, dt: 2026-07-25}
+    expect:
+      rows:
+        - {source: trudvsem_snapshot, dt: 2026-07-01, absent_days_to_close: 7, next_complete_dt: 2026-07-02, closure_confirmed_dt: 2026-07-09, unknown_days_after: 0, next_complete_after_gap: false}
+        - {source: trudvsem_snapshot, dt: 2026-07-02, absent_days_to_close: 7, next_complete_dt: 2026-07-04, closure_confirmed_dt: 2026-07-25, unknown_days_after: 1, next_complete_after_gap: false}
+        - {source: trudvsem_snapshot, dt: 2026-07-03, absent_days_to_close: 7, next_complete_dt: 2026-07-04, closure_confirmed_dt: 2026-07-25, unknown_days_after: 0, next_complete_after_gap: false}
+        - {source: trudvsem_snapshot, dt: 2026-07-04, absent_days_to_close: 7, next_complete_dt: 2026-07-05, closure_confirmed_dt: null, unknown_days_after: 0, next_complete_after_gap: false}
+        - {source: trudvsem_snapshot, dt: 2026-07-05, absent_days_to_close: 7, next_complete_dt: 2026-07-06, closure_confirmed_dt: null, unknown_days_after: 0, next_complete_after_gap: false}
+        - {source: trudvsem_snapshot, dt: 2026-07-06, absent_days_to_close: 7, next_complete_dt: 2026-07-07, closure_confirmed_dt: null, unknown_days_after: 0, next_complete_after_gap: false}
+        - {source: trudvsem_snapshot, dt: 2026-07-07, absent_days_to_close: 7, next_complete_dt: 2026-07-08, closure_confirmed_dt: null, unknown_days_after: 0, next_complete_after_gap: false}
+        - {source: trudvsem_snapshot, dt: 2026-07-08, absent_days_to_close: 7, next_complete_dt: 2026-07-09, closure_confirmed_dt: null, unknown_days_after: 0, next_complete_after_gap: false}
+        - {source: trudvsem_snapshot, dt: 2026-07-09, absent_days_to_close: 7, next_complete_dt: 2026-07-25, closure_confirmed_dt: null, unknown_days_after: 15, next_complete_after_gap: true}
+        - {source: trudvsem_snapshot, dt: 2026-07-25, absent_days_to_close: 7, next_complete_dt: null, closure_confirmed_dt: null, unknown_days_after: null, next_complete_after_gap: null}
+
+  - name: hist_calendar_grace_var
+    description: history_grace_days sets the snapshot's closure window.
+    model: hist_calendar
+    overrides:
+      vars:
+        history_grace_days: 3
+    given:
+      - input: ref('hist_observations')
+        rows:
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-01}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-02}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-03}
+          - {source: trudvsem_snapshot, source_id: a, dt: 2026-07-04}
+    expect:
+      rows:
+        - {source: trudvsem_snapshot, dt: 2026-07-01, absent_days_to_close: 3, closure_confirmed_dt: 2026-07-04}
+        - {source: trudvsem_snapshot, dt: 2026-07-02, absent_days_to_close: 3, closure_confirmed_dt: null}
+        - {source: trudvsem_snapshot, dt: 2026-07-03, absent_days_to_close: 3, closure_confirmed_dt: null}
+        - {source: trudvsem_snapshot, dt: 2026-07-04, absent_days_to_close: 3, closure_confirmed_dt: null}
 
   # Snapshot days 07-01..07-08 with 07-05 incomplete; Habr days 10-01..10-06; API days 10-01, 10-09.
   #   s_change    salary changes on 07-03, absent on the incomplete 07-05: two versions, no closure
@@ -311,6 +400,54 @@ unit_tests:
         - {source: habr, source_id: h_text, version_no: 2, valid_from: 2026-10-02, valid_to: 2026-10-03, is_current: false, change_reason: changed, ended_by: closed, changed_fields: "['text_hash']", last_seen: 2026-10-02, days_seen: 1}
         - {source: trudvsem, source_id: t_api, version_no: 1, valid_from: 2026-10-01, valid_to: null, is_current: true, change_reason: new, ended_by: null, changed_fields: "[]", last_seen: 2026-10-09, days_seen: 2}
 
+  # Snapshot days 07-01..07-05, a hole, 07-20..07-22; the calendar is that of a grace of 2 days.
+  #   g_back       missing 07-03 only, back 07-04 and after the hole: one open version
+  #   g_gone       missing 07-03 and 07-04: closed 07-03
+  #   hidden_back  unpublished on 07-02, open again 07-03, then gone: one version, closed 07-04
+  #   gap_back     last seen 07-05, back 07-21 after the hole and one missing day: one open version
+  #   gap_gone     last seen 07-05, missing 07-20 and 07-21: closed in the gap, first known 07-20
+  - name: hist_vacancy_scd2_grace_and_gaps
+    description: A return within the grace window keeps the version; a closure across a hole is closed_in_gap.
+    model: hist_vacancy_scd2
+    given:
+      - input: ref('hist_observations')
+        rows:
+          - {source: trudvsem_snapshot, source_id: g_back, dt: 2026-07-01, content_hash: b1}
+          - {source: trudvsem_snapshot, source_id: g_back, dt: 2026-07-02, content_hash: b1}
+          - {source: trudvsem_snapshot, source_id: g_back, dt: 2026-07-04, content_hash: b1}
+          - {source: trudvsem_snapshot, source_id: g_back, dt: 2026-07-05, content_hash: b1}
+          - {source: trudvsem_snapshot, source_id: g_back, dt: 2026-07-20, content_hash: b1}
+          - {source: trudvsem_snapshot, source_id: g_back, dt: 2026-07-21, content_hash: b1}
+          - {source: trudvsem_snapshot, source_id: g_back, dt: 2026-07-22, content_hash: b1}
+          - {source: trudvsem_snapshot, source_id: g_gone, dt: 2026-07-01, content_hash: o1}
+          - {source: trudvsem_snapshot, source_id: g_gone, dt: 2026-07-02, content_hash: o1}
+          - {source: trudvsem_snapshot, source_id: hidden_back, dt: 2026-07-01, content_hash: u1}
+          - {source: trudvsem_snapshot, source_id: hidden_back, dt: 2026-07-02, content_hash: u2, is_closed_state: true}
+          - {source: trudvsem_snapshot, source_id: hidden_back, dt: 2026-07-03, content_hash: u1}
+          - {source: trudvsem_snapshot, source_id: gap_back, dt: 2026-07-04, content_hash: k1}
+          - {source: trudvsem_snapshot, source_id: gap_back, dt: 2026-07-05, content_hash: k1}
+          - {source: trudvsem_snapshot, source_id: gap_back, dt: 2026-07-21, content_hash: k1}
+          - {source: trudvsem_snapshot, source_id: gap_back, dt: 2026-07-22, content_hash: k1}
+          - {source: trudvsem_snapshot, source_id: gap_gone, dt: 2026-07-04, content_hash: z1}
+          - {source: trudvsem_snapshot, source_id: gap_gone, dt: 2026-07-05, content_hash: z1}
+      - input: ref('hist_calendar')
+        rows:
+          - {source: trudvsem_snapshot, dt: 2026-07-01, next_complete_dt: 2026-07-02, closure_confirmed_dt: 2026-07-03}
+          - {source: trudvsem_snapshot, dt: 2026-07-02, next_complete_dt: 2026-07-03, closure_confirmed_dt: 2026-07-04}
+          - {source: trudvsem_snapshot, dt: 2026-07-03, next_complete_dt: 2026-07-04, closure_confirmed_dt: 2026-07-05}
+          - {source: trudvsem_snapshot, dt: 2026-07-04, next_complete_dt: 2026-07-05, closure_confirmed_dt: 2026-07-20}
+          - {source: trudvsem_snapshot, dt: 2026-07-05, next_complete_dt: 2026-07-20, closure_confirmed_dt: 2026-07-21}
+          - {source: trudvsem_snapshot, dt: 2026-07-20, next_complete_dt: 2026-07-21, closure_confirmed_dt: 2026-07-22}
+          - {source: trudvsem_snapshot, dt: 2026-07-21, next_complete_dt: 2026-07-22, closure_confirmed_dt: null}
+          - {source: trudvsem_snapshot, dt: 2026-07-22, next_complete_dt: null, closure_confirmed_dt: null}
+    expect:
+      rows:
+        - {source: trudvsem_snapshot, source_id: g_back, version_no: 1, valid_from: 2026-07-01, valid_to: null, is_current: true, change_reason: new, ended_by: null, closed_in_gap: false, last_seen: 2026-07-22, days_seen: 7}
+        - {source: trudvsem_snapshot, source_id: g_gone, version_no: 1, valid_from: 2026-07-01, valid_to: 2026-07-03, is_current: false, change_reason: new, ended_by: closed, closed_in_gap: false, last_seen: 2026-07-02, days_seen: 2}
+        - {source: trudvsem_snapshot, source_id: hidden_back, version_no: 1, valid_from: 2026-07-01, valid_to: 2026-07-04, is_current: false, change_reason: new, ended_by: closed, closed_in_gap: false, last_seen: 2026-07-03, days_seen: 2}
+        - {source: trudvsem_snapshot, source_id: gap_back, version_no: 1, valid_from: 2026-07-04, valid_to: null, is_current: true, change_reason: new, ended_by: null, closed_in_gap: false, last_seen: 2026-07-22, days_seen: 4}
+        - {source: trudvsem_snapshot, source_id: gap_gone, version_no: 1, valid_from: 2026-07-04, valid_to: 2026-07-20, is_current: false, change_reason: new, ended_by: closed, closed_in_gap: true, last_seen: 2026-07-05, days_seen: 2}
+
   # Pairs with distinct text so that only the intended ones match.
   #   old_a -> new_a      gap 2: a repost
   #   old_b -> new_b      another region: no pair
@@ -344,17 +481,18 @@ unit_tests:
         - {source: trudvsem_snapshot, old_source_id: old_e2, new_source_id: new_e, old_closed_at: 2026-07-05, new_first_seen: 2026-07-06, gap_days: 1, is_repost: true}
 
   - name: hist_vacancy_lifetime_censoring
-    description: Closed, open, left-censored, API and reposted vacancies.
+    description: Closed, open, left-censored, API, reposted and closed-in-a-gap vacancies.
     model: hist_vacancy_lifetime
     given:
       - input: ref('hist_vacancy_scd2')
         rows:
-          - {source: trudvsem_snapshot, source_id: l_open, version_no: 1, valid_from: 2026-07-01, is_current: true, last_seen: 2026-07-08, change_reason: new, changed_fields: "[]"}
-          - {source: trudvsem_snapshot, source_id: l_closed, version_no: 1, valid_from: 2026-07-02, valid_to: 2026-07-03, is_current: false, last_seen: 2026-07-02, change_reason: new, changed_fields: "[]", salary_from: 100000}
-          - {source: trudvsem_snapshot, source_id: l_closed, version_no: 2, valid_from: 2026-07-03, valid_to: 2026-07-05, is_current: false, last_seen: 2026-07-04, change_reason: changed, changed_fields: "['salary_from']", salary_from: 120000}
-          - {source: trudvsem_snapshot, source_id: l_old, version_no: 1, valid_from: 2026-07-02, valid_to: 2026-07-04, is_current: false, last_seen: 2026-07-03, change_reason: new, changed_fields: "[]"}
-          - {source: trudvsem_snapshot, source_id: l_new, version_no: 1, valid_from: 2026-07-05, is_current: true, last_seen: 2026-07-08, change_reason: new, changed_fields: "[]"}
-          - {source: trudvsem, source_id: l_api, version_no: 1, valid_from: 2026-10-01, is_current: true, last_seen: 2026-10-09, change_reason: new, changed_fields: "[]"}
+          - {source: trudvsem_snapshot, source_id: l_open, version_no: 1, valid_from: 2026-07-01, is_current: true, last_seen: 2026-07-08, closed_in_gap: false, change_reason: new, changed_fields: "[]"}
+          - {source: trudvsem_snapshot, source_id: l_closed, version_no: 1, valid_from: 2026-07-02, valid_to: 2026-07-03, is_current: false, last_seen: 2026-07-02, closed_in_gap: false, change_reason: new, changed_fields: "[]", salary_from: 100000}
+          - {source: trudvsem_snapshot, source_id: l_closed, version_no: 2, valid_from: 2026-07-03, valid_to: 2026-07-05, is_current: false, last_seen: 2026-07-04, closed_in_gap: false, change_reason: changed, changed_fields: "['salary_from']", salary_from: 120000}
+          - {source: trudvsem_snapshot, source_id: l_old, version_no: 1, valid_from: 2026-07-02, valid_to: 2026-07-04, is_current: false, last_seen: 2026-07-03, closed_in_gap: false, change_reason: new, changed_fields: "[]"}
+          - {source: trudvsem_snapshot, source_id: l_new, version_no: 1, valid_from: 2026-07-05, is_current: true, last_seen: 2026-07-08, closed_in_gap: false, change_reason: new, changed_fields: "[]"}
+          - {source: trudvsem, source_id: l_api, version_no: 1, valid_from: 2026-10-01, is_current: true, last_seen: 2026-10-09, closed_in_gap: false, change_reason: new, changed_fields: "[]"}
+          - {source: trudvsem_snapshot, source_id: l_gap, version_no: 1, valid_from: 2026-07-02, valid_to: 2026-07-20, is_current: false, last_seen: 2026-07-05, closed_in_gap: true, change_reason: new, changed_fields: "[]"}
       - input: ref('hist_calendar')
         rows:
           - {source: trudvsem_snapshot, dt: 2026-07-01}
@@ -366,8 +504,9 @@ unit_tests:
           - {source: trudvsem_snapshot, old_source_id: l_closed, new_source_id: l_far, is_repost: false}
     expect:
       rows:
-        - {source: trudvsem_snapshot, source_id: l_open, first_seen: 2026-07-01, last_seen: 2026-07-08, is_closed: false, closed_at: null, is_censored: true, is_left_censored: true, duration_days: 8, absent_days_to_close: 1, n_versions: 1, n_salary_changes: 0, salary_from_first: null, salary_from_last: null, repost_of_source_id: null, reposted_as_source_id: null, closed_by_repost: false}
-        - {source: trudvsem_snapshot, source_id: l_closed, first_seen: 2026-07-02, last_seen: 2026-07-04, is_closed: true, closed_at: 2026-07-05, is_censored: false, is_left_censored: false, duration_days: 3, absent_days_to_close: 1, n_versions: 2, n_salary_changes: 1, salary_from_first: 100000, salary_from_last: 120000, repost_of_source_id: null, reposted_as_source_id: null, closed_by_repost: false}
-        - {source: trudvsem_snapshot, source_id: l_old, first_seen: 2026-07-02, last_seen: 2026-07-03, is_closed: true, closed_at: 2026-07-04, is_censored: false, is_left_censored: false, duration_days: 2, absent_days_to_close: 1, n_versions: 1, n_salary_changes: 0, salary_from_first: null, salary_from_last: null, repost_of_source_id: null, reposted_as_source_id: l_new, closed_by_repost: true}
-        - {source: trudvsem_snapshot, source_id: l_new, first_seen: 2026-07-05, last_seen: 2026-07-08, is_closed: false, closed_at: null, is_censored: true, is_left_censored: false, duration_days: 4, absent_days_to_close: 1, n_versions: 1, n_salary_changes: 0, salary_from_first: null, salary_from_last: null, repost_of_source_id: l_old, reposted_as_source_id: null, closed_by_repost: false}
-        - {source: trudvsem, source_id: l_api, first_seen: 2026-10-01, last_seen: 2026-10-09, is_closed: false, closed_at: null, is_censored: true, is_left_censored: true, duration_days: 9, absent_days_to_close: null, n_versions: 1, n_salary_changes: 0, salary_from_first: null, salary_from_last: null, repost_of_source_id: null, reposted_as_source_id: null, closed_by_repost: false}
+        - {source: trudvsem_snapshot, source_id: l_open, first_seen: 2026-07-01, last_seen: 2026-07-08, is_closed: false, closed_in_gap: false, closed_at: null, is_censored: true, is_left_censored: true, duration_days: 8, absent_days_to_close: 7, n_versions: 1, n_salary_changes: 0, salary_from_first: null, salary_from_last: null, repost_of_source_id: null, reposted_as_source_id: null, closed_by_repost: false}
+        - {source: trudvsem_snapshot, source_id: l_closed, first_seen: 2026-07-02, last_seen: 2026-07-04, is_closed: true, closed_in_gap: false, closed_at: 2026-07-05, is_censored: false, is_left_censored: false, duration_days: 3, absent_days_to_close: 7, n_versions: 2, n_salary_changes: 1, salary_from_first: 100000, salary_from_last: 120000, repost_of_source_id: null, reposted_as_source_id: null, closed_by_repost: false}
+        - {source: trudvsem_snapshot, source_id: l_old, first_seen: 2026-07-02, last_seen: 2026-07-03, is_closed: true, closed_in_gap: false, closed_at: 2026-07-04, is_censored: false, is_left_censored: false, duration_days: 2, absent_days_to_close: 7, n_versions: 1, n_salary_changes: 0, salary_from_first: null, salary_from_last: null, repost_of_source_id: null, reposted_as_source_id: l_new, closed_by_repost: true}
+        - {source: trudvsem_snapshot, source_id: l_new, first_seen: 2026-07-05, last_seen: 2026-07-08, is_closed: false, closed_in_gap: false, closed_at: null, is_censored: true, is_left_censored: false, duration_days: 4, absent_days_to_close: 7, n_versions: 1, n_salary_changes: 0, salary_from_first: null, salary_from_last: null, repost_of_source_id: l_old, reposted_as_source_id: null, closed_by_repost: false}
+        - {source: trudvsem_snapshot, source_id: l_gap, first_seen: 2026-07-02, last_seen: 2026-07-05, is_closed: true, closed_in_gap: true, closed_at: null, is_censored: true, is_left_censored: false, duration_days: 4, absent_days_to_close: 7, n_versions: 1, n_salary_changes: 0, salary_from_first: null, salary_from_last: null, repost_of_source_id: null, reposted_as_source_id: null, closed_by_repost: false}
+        - {source: trudvsem, source_id: l_api, first_seen: 2026-10-01, last_seen: 2026-10-09, is_closed: false, closed_in_gap: false, closed_at: null, is_censored: true, is_left_censored: true, duration_days: 9, absent_days_to_close: null, n_versions: 1, n_salary_changes: 0, salary_from_first: null, salary_from_last: null, repost_of_source_id: null, reposted_as_source_id: null, closed_by_repost: false}

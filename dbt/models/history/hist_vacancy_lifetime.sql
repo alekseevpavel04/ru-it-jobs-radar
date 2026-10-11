@@ -6,9 +6,10 @@
 ) }}
 
 -- One row per vacancy within its source: how long it was seen and whether its end was observed.
--- Survival models need the two censorings right: is_censored (still open, or a source where absence
--- never closes) and is_left_censored (already open on the first collected day, so first_seen is not
--- its start; published_at is the source's own date).
+-- Survival models need the two censorings right: is_censored (still open, a source where absence
+-- never closes, or a closure that fell in days without a complete collection, so its date is not
+-- known) and is_left_censored (already open on the first collected day, so first_seen is not its
+-- start; published_at is the source's own date). A censored vacancy counts to its last sighting.
 WITH bounds AS (
     SELECT source, min(dt) AS first_collected_dt
     FROM {{ ref('hist_calendar') }}
@@ -23,6 +24,7 @@ per_vacancy AS (
         max(last_seen) AS last_seen,
         countIf(is_current) = 0 AS is_closed,
         argMax(tuple(valid_to), version_no).1 AS last_valid_to,
+        argMax(closed_in_gap, version_no) AS last_closed_in_gap,
         toUInt32(count()) AS n_versions,
         toUInt32(countIf(change_reason = 'reopened')) AS n_reopened,
         toUInt32(countIf(hasAny(changed_fields, ['salary_from', 'salary_to', 'salary_currency_code'])))
@@ -46,11 +48,12 @@ SELECT
     v.first_seen AS first_seen,
     v.last_seen AS last_seen,
     v.is_closed AS is_closed,
-    if(v.is_closed, v.last_valid_to, NULL) AS closed_at,
-    NOT v.is_closed AS is_censored,
+    v.is_closed AND v.last_closed_in_gap AS closed_in_gap,
+    if(v.is_closed AND NOT v.last_closed_in_gap, v.last_valid_to, NULL) AS closed_at,
+    NOT v.is_closed OR v.last_closed_in_gap AS is_censored,
     v.first_seen = b.first_collected_dt AS is_left_censored,
     toUInt32(if(
-        v.is_closed,
+        v.is_closed AND NOT v.last_closed_in_gap,
         dateDiff('day', v.first_seen, assumeNotNull(v.last_valid_to)),
         dateDiff('day', v.first_seen, v.last_seen) + 1
     )) AS duration_days,
