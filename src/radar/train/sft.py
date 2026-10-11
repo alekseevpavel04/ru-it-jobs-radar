@@ -246,7 +246,9 @@ def main(argv: list[str] | None = None) -> int:
     sft_args = SFTConfig(
         output_dir=str(out),
         per_device_train_batch_size=t.batch,
-        per_device_eval_batch_size=t.batch,
+        # eval keeps full-vocabulary logits (about 152k per token): at the train micro-batch of 4 the
+        # 1.7B run reserved 8 786 MiB there, past the card, while training steps stayed at 3 344 MiB
+        per_device_eval_batch_size=1,
         gradient_accumulation_steps=t.grad_accum,
         num_train_epochs=1 if args.probe else t.epochs,
         max_steps=args.max_steps or (DRY_RUN_STEPS if args.dry_run else -1),

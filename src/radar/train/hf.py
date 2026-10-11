@@ -115,6 +115,8 @@ def load_for_inference(adapter: Path | None, model: str | None, backend: str, ma
             max_seq_length=max_seq_len,
             load_in_4bit=True,
             dtype=torch.bfloat16,
+            # as in training: without it unsloth swaps the base for its own 4-bit repo, absent offline
+            use_exact_model_name=True,
         )
         FastLanguageModel.for_inference(llm)
     else:
