@@ -2,7 +2,7 @@
 
 On trudvsem and Habr salary, city and experience come from structured source fields, and the regex
 baseline matches the teachers (EXPERIMENTS E4, E5). A Telegram post is free text only, so this is
-where an extractor is tested on text. Telegram returns to the training corpus under DECISIONS 10.
+where an extractor is tested on text. Telegram is part of the training corpus (DECISIONS 10).
 
 Records: one per post, its latest stored version, read from complete raw partitions only (`_SUCCESS`;
 the backfill keeps writing others). A record is a post the collector's rules call a vacancy

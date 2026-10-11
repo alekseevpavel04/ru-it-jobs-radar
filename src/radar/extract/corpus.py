@@ -4,8 +4,8 @@ Corpus: what the teachers label (6.1) and the students learn from. One record pe
 (`staging.vacancy_entities`), the entity's latest version, over the IT candidates of the trudvsem
 API and snapshots and over Habr. A record whose free text is shorter than MIN_TEXT_CHARS is not a
 corpus record: the extractor would see a title and a header only (Habr cards not read yet), so
-there is nothing to learn from or label beyond the source's own fields. Telegram never enters
-(DECISIONS 10).
+there is nothing to learn from or label beyond the source's own fields. Telegram posts form their own
+corpus (radar.extract.telegram_corpus).
 
 Groups: connected components over both `vacancy_entity_id` and `text_cluster_id`, computed over
 every staged record, not only corpus records. The text cluster ignores place, so one template

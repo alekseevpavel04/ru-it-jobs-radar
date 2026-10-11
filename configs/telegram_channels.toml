@@ -1,5 +1,5 @@
-# Public Telegram channels collected through t.me/s/<name> for weekly site aggregates only
-# (DECISIONS 10: no teacher, training, gold set or HF). Survey of 2026-10-08; numbers per
+# Public Telegram channels collected through t.me/s/<name> for weekly site aggregates and the
+# extraction corpus (DECISIONS 10; texts are never published). Survey of 2026-10-08; numbers per
 # channel are in results/sources/telegram_channels.json, method in docs/sources.md (Telegram, 1.5).
 #
 # A channel is enabled when its last post is at most 30 days old, at least 15 of its last 50 posts

@@ -1,7 +1,7 @@
-"""Telegram collector: public channels through `t.me/s/<channel>`, for weekly site aggregates only.
+"""Telegram collector: public channels through `t.me/s/<channel>`, for weekly site aggregates and the
+extraction corpus (DECISIONS 10).
 
-DECISIONS 10: posts stay in the local raw layer, never published, and go to no teacher, training,
-gold set, HF or LLM. Personal data is cut before writing (DECISIONS 3): phones, emails, people's
+Posts stay in the local raw layer and are never published (DECISIONS 2). Personal data is cut before writing (DECISIONS 3): phones, emails, people's
 @names and t.me links to people; the channels of configs/telegram_channels.toml keep their names.
 Each post is classified by rules v2 (radar.collect.telegram_rules) on its raw text and links; only
 the verdict, the cleaned text and the hosts of job-board links are stored.

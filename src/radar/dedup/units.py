@@ -3,8 +3,8 @@
 trudvsem rows, API and snapshot alike, count where is_it_candidate holds, the same filter that
 feeds the extraction corpus; Habr is an IT site and is taken whole. The API slice is not all IT:
 on 2026-10-08 its non-IT rows were mass postings (loaders, bank clerks) whose clusters of hundreds
-of identical texts would swamp the pair counts. Telegram is not a staging source and never enters
-(DECISIONS 10).
+of identical texts would swamp the pair counts. Telegram posts are not dedup units here:
+radar.extract.telegram_corpus groups them itself.
 
 The API and the snapshots are the same portal and share vacancy ids. Records with one id in both
 form one group before any text comparison: the group is represented by its latest record, and the
