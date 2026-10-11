@@ -1,0 +1,747 @@
+{
+  "source_script": "src/radar/models/suspicious.py",
+  "command": "python -m radar.models.suspicious run",
+  "commit": "65ee508-dirty",
+  "created_at": "2026-10-11T11:28:36+00:00",
+  "metrics": {
+    "cards": {
+      "value": 25909,
+      "n": null,
+      "denominator": null
+    },
+    "records": {
+      "value": 34762,
+      "n": null,
+      "denominator": null
+    },
+    "lf.course_pay.coverage": {
+      "value": 0.0,
+      "n": 1,
+      "denominator": 25909
+    },
+    "lf.course_pay.overlap": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1
+    },
+    "lf.course_pay.conflict": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1
+    },
+    "lf.training_then_job.coverage": {
+      "value": 0.0001,
+      "n": 3,
+      "denominator": 25909
+    },
+    "lf.training_then_job.overlap": {
+      "value": 0.6667,
+      "n": 2,
+      "denominator": 3
+    },
+    "lf.training_then_job.conflict": {
+      "value": 0.6667,
+      "n": 2,
+      "denominator": 3
+    },
+    "lf.income_bait.coverage": {
+      "value": 0.0,
+      "n": 1,
+      "denominator": 25909
+    },
+    "lf.income_bait.overlap": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1
+    },
+    "lf.income_bait.conflict": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1
+    },
+    "lf.unlimited_income.coverage": {
+      "value": 0.0001,
+      "n": 2,
+      "denominator": 25909
+    },
+    "lf.unlimited_income.overlap": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    },
+    "lf.unlimited_income.conflict": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    },
+    "lf.no_experience_high_pay.coverage": {
+      "value": 0.001,
+      "n": 26,
+      "denominator": 25909
+    },
+    "lf.no_experience_high_pay.overlap": {
+      "value": 1.0,
+      "n": 26,
+      "denominator": 26
+    },
+    "lf.no_experience_high_pay.conflict": {
+      "value": 1.0,
+      "n": 26,
+      "denominator": 26
+    },
+    "lf.sole_remote_no_experience.coverage": {
+      "value": 0.0003,
+      "n": 8,
+      "denominator": 25909
+    },
+    "lf.sole_remote_no_experience.overlap": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 8
+    },
+    "lf.sole_remote_no_experience.conflict": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 8
+    },
+    "lf.salary_high.coverage": {
+      "value": 0.003,
+      "n": 78,
+      "denominator": 25909
+    },
+    "lf.salary_high.overlap": {
+      "value": 0.859,
+      "n": 67,
+      "denominator": 78
+    },
+    "lf.salary_high.conflict": {
+      "value": 0.859,
+      "n": 67,
+      "denominator": 78
+    },
+    "lf.title_sales.coverage": {
+      "value": 0.0003,
+      "n": 7,
+      "denominator": 25909
+    },
+    "lf.title_sales.overlap": {
+      "value": 0.5714,
+      "n": 4,
+      "denominator": 7
+    },
+    "lf.title_sales.conflict": {
+      "value": 0.5714,
+      "n": 4,
+      "denominator": 7
+    },
+    "lf.grey.coverage": {
+      "value": 0.0,
+      "n": 1,
+      "denominator": 25909
+    },
+    "lf.grey.overlap": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1
+    },
+    "lf.grey.conflict": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1
+    },
+    "lf.salary_low.coverage": {
+      "value": 0.0008,
+      "n": 21,
+      "denominator": 25909
+    },
+    "lf.salary_low.overlap": {
+      "value": 0.7619,
+      "n": 16,
+      "denominator": 21
+    },
+    "lf.salary_low.conflict": {
+      "value": 0.7619,
+      "n": 16,
+      "denominator": 21
+    },
+    "lf.mass_text.coverage": {
+      "value": 0.0039,
+      "n": 102,
+      "denominator": 25909
+    },
+    "lf.mass_text.overlap": {
+      "value": 0.1863,
+      "n": 19,
+      "denominator": 102
+    },
+    "lf.mass_text.conflict": {
+      "value": 0.1863,
+      "n": 19,
+      "denominator": 102
+    },
+    "lf.formal_note.coverage": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 25909
+    },
+    "lf.formal_note.overlap": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 0
+    },
+    "lf.formal_note.conflict": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 0
+    },
+    "lf.repost_chain.coverage": {
+      "value": 0.0103,
+      "n": 268,
+      "denominator": 25909
+    },
+    "lf.repost_chain.overlap": {
+      "value": 0.8955,
+      "n": 240,
+      "denominator": 268
+    },
+    "lf.repost_chain.conflict": {
+      "value": 0.8955,
+      "n": 240,
+      "denominator": 268
+    },
+    "lf.public_sector.coverage": {
+      "value": 0.2415,
+      "n": 6258,
+      "denominator": 25909
+    },
+    "lf.public_sector.overlap": {
+      "value": 0.237,
+      "n": 1483,
+      "denominator": 6258
+    },
+    "lf.public_sector.conflict": {
+      "value": 0.0043,
+      "n": 27,
+      "denominator": 6258
+    },
+    "lf.large_employer.coverage": {
+      "value": 0.3871,
+      "n": 10029,
+      "denominator": 25909
+    },
+    "lf.large_employer.overlap": {
+      "value": 0.2167,
+      "n": 2173,
+      "denominator": 10029
+    },
+    "lf.large_employer.conflict": {
+      "value": 0.0276,
+      "n": 277,
+      "denominator": 10029
+    },
+    "lf.concrete_requirements.coverage": {
+      "value": 0.1875,
+      "n": 4859,
+      "denominator": 25909
+    },
+    "lf.concrete_requirements.overlap": {
+      "value": 0.3643,
+      "n": 1770,
+      "denominator": 4859
+    },
+    "lf.concrete_requirements.conflict": {
+      "value": 0.0204,
+      "n": 99,
+      "denominator": 4859
+    },
+    "weak.covered": {
+      "value": 0.7201,
+      "n": 18658,
+      "denominator": 25909
+    },
+    "weak.any_suspicious_vote": {
+      "value": 0.0066,
+      "n": 172,
+      "denominator": 25909
+    },
+    "weak.any_ok_vote": {
+      "value": 0.7161,
+      "n": 18554,
+      "denominator": 25909
+    },
+    "weak.conflicted": {
+      "value": 0.0026,
+      "n": 68,
+      "denominator": 25909
+    },
+    "weak.majority_suspicious": {
+      "value": 0.004,
+      "n": 104,
+      "denominator": 25909
+    },
+    "weak.majority_ok": {
+      "value": 0.7136,
+      "n": 18488,
+      "denominator": 25909
+    },
+    "weak.majority_tie_or_none": {
+      "value": 0.2824,
+      "n": 7317,
+      "denominator": 25909
+    },
+    "weak.training_suspicious": {
+      "value": 0.004,
+      "n": 104,
+      "denominator": 25843
+    },
+    "label_model.suspicious": {
+      "value": 0.2415,
+      "n": 6258,
+      "denominator": 25909
+    },
+    "label_model.prior": {
+      "value": 0.237,
+      "n": null,
+      "denominator": null
+    },
+    "label_model.agrees_with_majority": {
+      "value": 0.6582,
+      "n": 12237,
+      "denominator": 18592
+    },
+    "classifier.flagged": {
+      "value": 0.005,
+      "n": 130,
+      "denominator": 25909
+    },
+    "classifier.flagged_without_suspicious_vote": {
+      "value": 0.001,
+      "n": 26,
+      "denominator": 25737
+    },
+    "classifier.cv_auc_vs_weak_labels": {
+      "value": 0.9793,
+      "n": null,
+      "denominator": null
+    },
+    "classifier.cv_agrees_with_weak_labels": {
+      "value": 0.9951,
+      "n": 25716,
+      "denominator": 25843
+    },
+    "classifier.cv_recovers_weak_positives": {
+      "value": 0.7115,
+      "n": 74,
+      "denominator": 104
+    },
+    "reposts.cards_reposting_a_closed_card": {
+      "value": 0.0799,
+      "n": 1976,
+      "denominator": 24732
+    },
+    "reposts.cards_in_long_chain": {
+      "value": 0.0108,
+      "n": 268,
+      "denominator": 24732
+    }
+  },
+  "limits_ru": [
+    "Метки слабые: их дают правила, а не люди. Согласие классификатора с ними показывает, что он их выучил, а не что он прав. Точность и полнота считаются только по выборке с предразметкой LLM и ручной проверкой.",
+    "Подозрительность судится по карточке. Цель публикации (например, формальная вакансия ради разрешения на найм) по карточке не устанавливается, поэтому вид formal описывает признаки, а не намерение.",
+    "Перевыкладка определяется по истории снимков trudvsem (окно с 30.06); у Хабра и среза API истории закрытий пока нет. Перевыкладка сама по себе не подозрительна: карточка портала истекает примерно через 30 дней.",
+    "Название работодателя-ИП вырезано при чистке персональных данных, поэтому «нет работодателя» здесь артефакт конвейера и функцией разметки не служит.",
+    "Выборка заморожена на дату создания; веса страт относятся к совокупности карточек на эту дату."
+  ],
+  "data": {
+    "habr": {
+      "cards": 1098,
+      "first_seen": "2026-10-08",
+      "last_seen": "2026-10-10"
+    },
+    "trudvsem": {
+      "cards": 24811,
+      "first_seen": "2026-06-30",
+      "last_seen": "2026-10-10"
+    }
+  },
+  "labeling_functions": [
+    {
+      "name": "course_pay",
+      "votes": "suspicious",
+      "category": "course",
+      "in_weak_label": true,
+      "rule": "the candidate pays for training"
+    },
+    {
+      "name": "training_then_job",
+      "votes": "suspicious",
+      "category": "course",
+      "in_weak_label": true,
+      "rule": "training with employment promised after it"
+    },
+    {
+      "name": "income_bait",
+      "votes": "suspicious",
+      "category": "bait",
+      "in_weak_label": true,
+      "rule": "passive income, MLM, traffic arbitrage, no investment"
+    },
+    {
+      "name": "unlimited_income",
+      "votes": "suspicious",
+      "category": "bait",
+      "in_weak_label": true,
+      "rule": "income without a ceiling"
+    },
+    {
+      "name": "no_experience_high_pay",
+      "votes": "suspicious",
+      "category": "bait",
+      "in_weak_label": true,
+      "rule": "the text says no experience is needed, salary z >= 2.0"
+    },
+    {
+      "name": "sole_remote_no_experience",
+      "votes": "suspicious",
+      "category": "bait",
+      "in_weak_label": true,
+      "rule": "sole proprietor, remote, the text says no experience is needed"
+    },
+    {
+      "name": "salary_high",
+      "votes": "suspicious",
+      "category": "bait",
+      "in_weak_label": false,
+      "rule": "salary z >= 3.0"
+    },
+    {
+      "name": "title_sales",
+      "votes": "suspicious",
+      "category": "bait",
+      "in_weak_label": true,
+      "rule": "technical IT role by title, cold calls or a sales plan"
+    },
+    {
+      "name": "grey",
+      "votes": "suspicious",
+      "category": "grey",
+      "in_weak_label": true,
+      "rule": "no contract, envelope, cash, bank card, invented experience"
+    },
+    {
+      "name": "salary_low",
+      "votes": "suspicious",
+      "category": "formal",
+      "in_weak_label": true,
+      "rule": "technical IT role, salary z <= -3.0, not a trainee or part-time card"
+    },
+    {
+      "name": "mass_text",
+      "votes": "suspicious",
+      "category": "formal",
+      "in_weak_label": true,
+      "rule": "same text from >= 5 employers, >= 0.8 of its cards in one region"
+    },
+    {
+      "name": "formal_note",
+      "votes": "suspicious",
+      "category": "formal",
+      "in_weak_label": true,
+      "rule": "the card says it is posted for a formality"
+    },
+    {
+      "name": "repost_chain",
+      "votes": "suspicious",
+      "category": null,
+      "in_weak_label": false,
+      "rule": ">= 4 ids of one vacancy in the history"
+    },
+    {
+      "name": "public_sector",
+      "votes": "ok",
+      "category": null,
+      "in_weak_label": true,
+      "rule": "state or municipal institution"
+    },
+    {
+      "name": "large_employer",
+      "votes": "ok",
+      "category": null,
+      "in_weak_label": true,
+      "rule": ">= 50 cards of the employer in the window"
+    },
+    {
+      "name": "concrete_requirements",
+      "votes": "ok",
+      "category": null,
+      "in_weak_label": true,
+      "rule": "a year of experience or more (or a stated middle+ grade) and >= 3 dictionary skills"
+    }
+  ],
+  "weak_label": "majority vote of the functions in_weak_label; a card without votes is OK, a tie is left out of training",
+  "label_model": {
+    "kind": "Dawid-Skene, two classes, EM from the majority vote, Dirichlet pseudo-count 1; a candidate scored on dev, not the training label",
+    "iterations": 967,
+    "converged": true,
+    "p_vote_given_class": {
+      "course_pay": {
+        "suspicious_vote": [
+          0.0001,
+          0.0002
+        ],
+        "ok_vote": [
+          0.0001,
+          0.0002
+        ]
+      },
+      "training_then_job": {
+        "suspicious_vote": [
+          0.0002,
+          0.0002
+        ],
+        "ok_vote": [
+          0.0001,
+          0.0002
+        ]
+      },
+      "income_bait": {
+        "suspicious_vote": [
+          0.0001,
+          0.0002
+        ],
+        "ok_vote": [
+          0.0001,
+          0.0002
+        ]
+      },
+      "unlimited_income": {
+        "suspicious_vote": [
+          0.0002,
+          0.0002
+        ],
+        "ok_vote": [
+          0.0001,
+          0.0002
+        ]
+      },
+      "no_experience_high_pay": {
+        "suspicious_vote": [
+          0.0014,
+          0.0002
+        ],
+        "ok_vote": [
+          0.0001,
+          0.0002
+        ]
+      },
+      "sole_remote_no_experience": {
+        "suspicious_vote": [
+          0.0005,
+          0.0002
+        ],
+        "ok_vote": [
+          0.0001,
+          0.0002
+        ]
+      },
+      "title_sales": {
+        "suspicious_vote": [
+          0.0004,
+          0.0002
+        ],
+        "ok_vote": [
+          0.0001,
+          0.0002
+        ]
+      },
+      "grey": {
+        "suspicious_vote": [
+          0.0001,
+          0.0002
+        ],
+        "ok_vote": [
+          0.0001,
+          0.0002
+        ]
+      },
+      "salary_low": {
+        "suspicious_vote": [
+          0.0007,
+          0.0016
+        ],
+        "ok_vote": [
+          0.0001,
+          0.0002
+        ]
+      },
+      "mass_text": {
+        "suspicious_vote": [
+          0.0052,
+          0.0002
+        ],
+        "ok_vote": [
+          0.0001,
+          0.0002
+        ]
+      },
+      "formal_note": {
+        "suspicious_vote": [
+          0.0001,
+          0.0002
+        ],
+        "ok_vote": [
+          0.0001,
+          0.0002
+        ]
+      },
+      "public_sector": {
+        "suspicious_vote": [
+          0.0001,
+          0.0002
+        ],
+        "ok_vote": [
+          0.0071,
+          0.9962
+        ]
+      },
+      "large_employer": {
+        "suspicious_vote": [
+          0.0001,
+          0.0002
+        ],
+        "ok_vote": [
+          0.4653,
+          0.1352
+        ]
+      },
+      "concrete_requirements": {
+        "suspicious_vote": [
+          0.0001,
+          0.0002
+        ],
+        "ok_vote": [
+          0.2132,
+          0.105
+        ]
+      }
+    }
+  },
+  "classifier": {
+    "kind": "logistic regression, liblinear, C=1, class_weight balanced; TF-IDF word 1-2 grams (min_df 3, up to 100k features, sublinear tf) of title and text plus 11 scaled numeric features",
+    "threshold": 0.5,
+    "cv": "5 folds grouped by text group",
+    "top_features": {
+      "suspicious": [
+        "аналитик бизнес",
+        "процессов обязанности",
+        "образовательных услуг",
+        "исполнительность требования",
+        "оконченное",
+        "процессов",
+        "аналитик",
+        "коммуникация",
+        "продаж",
+        "#group_region_share",
+        "оркестрацией",
+        "специальности информационные",
+        "сервисов проведение",
+        "несоответствий",
+        "мониторингов"
+      ],
+      "ok": [
+        "обеспечения",
+        "программного",
+        "средства проектирования",
+        "программных",
+        "методы средства",
+        "программного обеспечения",
+        "#skills",
+        "проектирования",
+        "проектирования программного",
+        "архитектуры программного",
+        "программных интерфейсов",
+        "интерфейсов",
+        "#salary_z",
+        "оборудования",
+        "#employer_cards"
+      ]
+    }
+  },
+  "sample": {
+    "seed": 20261008,
+    "created_at": "2026-10-11T11:21:08+00:00",
+    "data_last_seen": "2026-10-10",
+    "inputs_sha256": {
+      "dev": "71448ccab7fd72bfa50648d14580bb3ac1d0942315f21fc75e54892d24563833",
+      "test": "d7769241cb5edee7aa3f7078f57b3a69ffb6ef567397e06d2616fd00bfc57f08"
+    },
+    "splits": {
+      "dev": {
+        "population_cards": 13626,
+        "population": {
+          "lf:course_pay": 1,
+          "lf:grey": 1,
+          "lf:mass_text": 28,
+          "lf:no_experience_high_pay": 15,
+          "lf:repost_chain": 501,
+          "lf:salary_high": 30,
+          "lf:salary_low": 7,
+          "lf:sole_remote_no_experience": 2,
+          "lf:title_sales": 2,
+          "lf:training_then_job": 3,
+          "lf:unlimited_income": 1,
+          "model_only": 14,
+          "rest": 13021
+        },
+        "allocation": {
+          "lf:course_pay": 1,
+          "lf:grey": 1,
+          "lf:mass_text": 13,
+          "lf:no_experience_high_pay": 13,
+          "lf:repost_chain": 14,
+          "lf:salary_high": 13,
+          "lf:salary_low": 7,
+          "lf:sole_remote_no_experience": 2,
+          "lf:title_sales": 2,
+          "lf:training_then_job": 3,
+          "lf:unlimited_income": 1,
+          "model_only": 14,
+          "rest": 66
+        },
+        "cards_sha256": "cb21b0eacf0b27338ec99b5dd1ee039f132708b75a1126bb91bd4b3fd354e62c",
+        "items": 150
+      },
+      "test": {
+        "population_cards": 12283,
+        "population": {
+          "lf:income_bait": 1,
+          "lf:mass_text": 74,
+          "lf:no_experience_high_pay": 11,
+          "lf:repost_chain": 196,
+          "lf:salary_high": 45,
+          "lf:salary_low": 14,
+          "lf:sole_remote_no_experience": 6,
+          "lf:title_sales": 5,
+          "lf:unlimited_income": 1,
+          "model_only": 12,
+          "rest": 11918
+        },
+        "allocation": {
+          "lf:income_bait": 1,
+          "lf:mass_text": 12,
+          "lf:no_experience_high_pay": 11,
+          "lf:repost_chain": 12,
+          "lf:salary_high": 11,
+          "lf:salary_low": 11,
+          "lf:sole_remote_no_experience": 6,
+          "lf:title_sales": 5,
+          "lf:unlimited_income": 1,
+          "model_only": 12,
+          "rest": 68
+        },
+        "cards_sha256": "56a8e1ea475352e9823901678bf71cb99f82ab653026100f1f4e22d8649b2fe7",
+        "items": 150
+      }
+    }
+  }
+}
