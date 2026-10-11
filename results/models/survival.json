@@ -1,0 +1,1420 @@
+{
+  "source_script": "src/radar/models/survival.py",
+  "command": "python -m radar.models.survival",
+  "commit": "a002729-dirty",
+  "created_at": "2026-10-11T10:48:46+00:00",
+  "metrics": {
+    "window_days": {
+      "value": 73,
+      "n": null,
+      "denominator": null,
+      "first_dt": "2026-06-30",
+      "last_dt": "2026-09-10"
+    },
+    "collected_days_after_window": {
+      "value": 2,
+      "n": null,
+      "denominator": null
+    },
+    "entities_seen": {
+      "value": 18574,
+      "n": null,
+      "denominator": null
+    },
+    "it_subjects": {
+      "value": 0.5147,
+      "n": 9560,
+      "denominator": 18574
+    },
+    "not_it_excluded": {
+      "value": 0.4853,
+      "n": 9014,
+      "denominator": 18574
+    },
+    "no_role_bucket": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 18574
+    },
+    "closed": {
+      "value": 0.4818,
+      "n": 4606,
+      "denominator": 9560
+    },
+    "prevalent": {
+      "value": 0.5524,
+      "n": 5281,
+      "denominator": 9560
+    },
+    "late_return": {
+      "value": 0.1882,
+      "n": 867,
+      "denominator": 4606
+    },
+    "closed_at_age_30_32": {
+      "value": 0.1537,
+      "n": 708,
+      "denominator": 4606
+    },
+    "entry_after_creation_over_7_days_incident": {
+      "value": 0.2265,
+      "n": 969,
+      "denominator": 4279
+    },
+    "closure_came_back_grace_1": {
+      "value": 0.3771,
+      "n": 2692,
+      "denominator": 7139
+    },
+    "median_days_grace_1": {
+      "value": 31.0,
+      "n": null,
+      "denominator": null,
+      "low": 31.0,
+      "high": 31.0,
+      "subjects": 9560,
+      "events": 6170,
+      "at_risk": {
+        "0": 1475,
+        "7": 3004,
+        "14": 2803,
+        "30": 2277,
+        "60": 929,
+        "90": 857
+      },
+      "survival": {
+        "7": 0.8981,
+        "14": 0.8314,
+        "30": 0.6481,
+        "60": 0.2093,
+        "90": 0.1114
+      }
+    },
+    "closure_came_back_grace_3": {
+      "value": 0.2951,
+      "n": 1784,
+      "denominator": 6045
+    },
+    "median_days_grace_3": {
+      "value": 31.0,
+      "n": null,
+      "denominator": null,
+      "low": 31.0,
+      "high": 31.0,
+      "subjects": 9560,
+      "events": 5524,
+      "at_risk": {
+        "0": 1475,
+        "7": 3008,
+        "14": 2810,
+        "30": 2290,
+        "60": 1042,
+        "90": 957
+      },
+      "survival": {
+        "7": 0.9082,
+        "14": 0.8436,
+        "30": 0.6667,
+        "60": 0.2573,
+        "90": 0.1548
+      }
+    },
+    "closure_came_back_grace_7": {
+      "value": 0.1871,
+      "n": 897,
+      "denominator": 4794
+    },
+    "median_days_grace_7": {
+      "value": 32.0,
+      "n": null,
+      "denominator": null,
+      "low": 32.0,
+      "high": 33.0,
+      "subjects": 9560,
+      "events": 4606,
+      "at_risk": {
+        "0": 1475,
+        "7": 3009,
+        "14": 2812,
+        "30": 2302,
+        "60": 1164,
+        "90": 1046
+      },
+      "survival": {
+        "7": 0.9159,
+        "14": 0.8604,
+        "30": 0.6948,
+        "60": 0.3246,
+        "90": 0.2195
+      }
+    },
+    "closure_came_back_grace_14": {
+      "value": 0.1351,
+      "n": 523,
+      "denominator": 3870
+    },
+    "median_days_grace_14": {
+      "value": 41.0,
+      "n": null,
+      "denominator": null,
+      "low": 36.0,
+      "high": 44.0,
+      "subjects": 9560,
+      "events": 3822,
+      "at_risk": {
+        "0": 1475,
+        "7": 3012,
+        "14": 2820,
+        "30": 2320,
+        "60": 1245,
+        "90": 1086
+      },
+      "survival": {
+        "7": 0.93,
+        "14": 0.8864,
+        "30": 0.7376,
+        "60": 0.3975,
+        "90": 0.2903
+      }
+    },
+    "median_days_overall": {
+      "value": 32.0,
+      "n": null,
+      "denominator": null,
+      "low": 32.0,
+      "high": 33.0,
+      "subjects": 9560,
+      "events": 4606,
+      "at_risk": {
+        "0": 1475,
+        "7": 3009,
+        "14": 2812,
+        "30": 2302,
+        "60": 1164,
+        "90": 1046
+      },
+      "survival": {
+        "7": 0.9159,
+        "14": 0.8604,
+        "30": 0.6948,
+        "60": 0.3246,
+        "90": 0.2195
+      }
+    },
+    "median_days_incident_from_first_sighting": {
+      "value": 32.0,
+      "n": null,
+      "denominator": null,
+      "low": 31.0,
+      "high": 36.0,
+      "subjects": 4279,
+      "events": 1657,
+      "at_risk": {
+        "0": 4279,
+        "7": 3448,
+        "14": 2909,
+        "30": 1565,
+        "60": 331,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.9187,
+        "14": 0.8706,
+        "30": 0.6572,
+        "60": 0.377,
+        "90": 0.3609
+      }
+    },
+    "unknown_role": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 9560
+    },
+    "median_days_role_dev": {
+      "value": 39.0,
+      "n": null,
+      "denominator": null,
+      "low": 33.0,
+      "high": 45.0,
+      "subjects": 3693,
+      "events": 1639,
+      "at_risk": {
+        "0": 453,
+        "7": 957,
+        "14": 931,
+        "30": 827,
+        "60": 490,
+        "90": 439
+      },
+      "survival": {
+        "7": 0.9188,
+        "14": 0.8735,
+        "30": 0.7398,
+        "60": 0.3907,
+        "90": 0.2761
+      }
+    },
+    "median_days_incident_role_dev": {
+      "value": 49.0,
+      "n": null,
+      "denominator": null,
+      "low": 40.0,
+      "high": 55.0,
+      "subjects": 1406,
+      "events": 506,
+      "at_risk": {
+        "0": 1406,
+        "7": 1153,
+        "14": 1001,
+        "30": 593,
+        "60": 168,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.9245,
+        "14": 0.8922,
+        "30": 0.7119,
+        "60": 0.4397,
+        "90": 0.428
+      }
+    },
+    "median_days_role_ml_ds_data": {
+      "value": 23.0,
+      "n": null,
+      "denominator": null,
+      "low": 19.0,
+      "high": 27.0,
+      "subjects": 199,
+      "events": 125,
+      "at_risk": {
+        "0": 48,
+        "7": 93,
+        "14": 89,
+        "30": 42,
+        "60": 16,
+        "90": 11
+      },
+      "survival": {
+        "7": 0.7614,
+        "14": 0.6708,
+        "30": 0.3197,
+        "60": 0.1249,
+        "90": 0.0886
+      }
+    },
+    "median_days_incident_role_ml_ds_data": {
+      "value": 29.0,
+      "n": null,
+      "denominator": null,
+      "low": 19.0,
+      "high": 31.0,
+      "subjects": 127,
+      "events": 65,
+      "at_risk": {
+        "0": 127,
+        "7": 86,
+        "14": 70,
+        "30": 22,
+        "60": 2,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.7872,
+        "14": 0.6917,
+        "30": 0.4321,
+        "60": 0.1821,
+        "90": 0.1821
+      }
+    },
+    "median_days_role_analyst": {
+      "value": 31.0,
+      "n": null,
+      "denominator": null,
+      "low": 26.0,
+      "high": 31.0,
+      "subjects": 312,
+      "events": 177,
+      "at_risk": {
+        "0": 55,
+        "7": 113,
+        "14": 99,
+        "30": 66,
+        "60": 24,
+        "90": 32
+      },
+      "survival": {
+        "7": 0.899,
+        "14": 0.8183,
+        "30": 0.5068,
+        "60": 0.1375,
+        "90": 0.0801
+      }
+    },
+    "median_days_incident_role_analyst": {
+      "value": 30.0,
+      "n": null,
+      "denominator": null,
+      "low": 30.0,
+      "high": 31.0,
+      "subjects": 165,
+      "events": 75,
+      "at_risk": {
+        "0": 165,
+        "7": 120,
+        "14": 95,
+        "30": 36,
+        "60": 5,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.879,
+        "14": 0.8088,
+        "30": 0.4865,
+        "60": 0.2128,
+        "90": 0.2128
+      }
+    },
+    "median_days_role_qa_devops_sys": {
+      "value": 34.0,
+      "n": null,
+      "denominator": null,
+      "low": 32.0,
+      "high": 39.0,
+      "subjects": 3598,
+      "events": 1770,
+      "at_risk": {
+        "0": 579,
+        "7": 1158,
+        "14": 1066,
+        "30": 913,
+        "60": 452,
+        "90": 403
+      },
+      "survival": {
+        "7": 0.9349,
+        "14": 0.8741,
+        "30": 0.7346,
+        "60": 0.3401,
+        "90": 0.2269
+      }
+    },
+    "median_days_incident_role_qa_devops_sys": {
+      "value": 33.0,
+      "n": null,
+      "denominator": null,
+      "low": 31.0,
+      "high": 39.0,
+      "subjects": 1664,
+      "events": 633,
+      "at_risk": {
+        "0": 1664,
+        "7": 1345,
+        "14": 1125,
+        "30": 621,
+        "60": 115,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.9314,
+        "14": 0.877,
+        "30": 0.6661,
+        "60": 0.3779,
+        "90": 0.3588
+      }
+    },
+    "median_days_role_other_it": {
+      "value": 31.0,
+      "n": null,
+      "denominator": null,
+      "low": 31.0,
+      "high": 32.0,
+      "subjects": 1758,
+      "events": 895,
+      "at_risk": {
+        "0": 340,
+        "7": 688,
+        "14": 627,
+        "30": 454,
+        "60": 182,
+        "90": 161
+      },
+      "survival": {
+        "7": 0.9059,
+        "14": 0.8552,
+        "30": 0.6556,
+        "60": 0.2602,
+        "90": 0.164
+      }
+    },
+    "median_days_incident_role_other_it": {
+      "value": 31.0,
+      "n": null,
+      "denominator": null,
+      "low": 31.0,
+      "high": 31.0,
+      "subjects": 917,
+      "events": 378,
+      "at_risk": {
+        "0": 917,
+        "7": 744,
+        "14": 618,
+        "30": 293,
+        "60": 41,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.9119,
+        "14": 0.8609,
+        "30": 0.6121,
+        "60": 0.3159,
+        "90": 0.2851
+      }
+    },
+    "unknown_experience": {
+      "value": 0.0016,
+      "n": 15,
+      "denominator": 9560
+    },
+    "median_days_experience_none": {
+      "value": 32.0,
+      "n": null,
+      "denominator": null,
+      "low": 31.0,
+      "high": 32.0,
+      "subjects": 2559,
+      "events": 1352,
+      "at_risk": {
+        "0": 441,
+        "7": 769,
+        "14": 721,
+        "30": 571,
+        "60": 266,
+        "90": 212
+      },
+      "survival": {
+        "7": 0.9099,
+        "14": 0.8509,
+        "30": 0.6598,
+        "60": 0.283,
+        "90": 0.1594
+      }
+    },
+    "median_days_incident_experience_none": {
+      "value": 31.0,
+      "n": null,
+      "denominator": null,
+      "low": 31.0,
+      "high": 32.0,
+      "subjects": 1128,
+      "events": 489,
+      "at_risk": {
+        "0": 1128,
+        "7": 901,
+        "14": 738,
+        "30": 393,
+        "60": 75,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.8919,
+        "14": 0.8428,
+        "30": 0.6162,
+        "60": 0.3056,
+        "90": 0.2957
+      }
+    },
+    "median_days_experience_1-2": {
+      "value": 34.0,
+      "n": null,
+      "denominator": null,
+      "low": 32.0,
+      "high": 36.0,
+      "subjects": 3815,
+      "events": 1846,
+      "at_risk": {
+        "0": 566,
+        "7": 1172,
+        "14": 1099,
+        "30": 1012,
+        "60": 488,
+        "90": 443
+      },
+      "survival": {
+        "7": 0.9135,
+        "14": 0.8638,
+        "30": 0.751,
+        "60": 0.3253,
+        "90": 0.2241
+      }
+    },
+    "median_days_incident_experience_1-2": {
+      "value": 33.0,
+      "n": null,
+      "denominator": null,
+      "low": 31.0,
+      "high": 40.0,
+      "subjects": 1733,
+      "events": 683,
+      "at_risk": {
+        "0": 1733,
+        "7": 1395,
+        "14": 1194,
+        "30": 700,
+        "60": 146,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.9278,
+        "14": 0.8828,
+        "30": 0.6922,
+        "60": 0.3723,
+        "90": 0.3535
+      }
+    },
+    "median_days_experience_3-5": {
+      "value": 32.0,
+      "n": null,
+      "denominator": null,
+      "low": 31.0,
+      "high": 34.0,
+      "subjects": 2821,
+      "events": 1245,
+      "at_risk": {
+        "0": 418,
+        "7": 957,
+        "14": 876,
+        "30": 614,
+        "60": 352,
+        "90": 333
+      },
+      "survival": {
+        "7": 0.9222,
+        "14": 0.8613,
+        "30": 0.6384,
+        "60": 0.3482,
+        "90": 0.2515
+      }
+    },
+    "median_days_incident_experience_3-5": {
+      "value": 39.0,
+      "n": null,
+      "denominator": null,
+      "low": 32.0,
+      "high": 58.0,
+      "subjects": 1256,
+      "events": 432,
+      "at_risk": {
+        "0": 1256,
+        "7": 1026,
+        "14": 864,
+        "30": 400,
+        "60": 98,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.93,
+        "14": 0.8762,
+        "30": 0.6314,
+        "60": 0.4473,
+        "90": 0.4275
+      }
+    },
+    "median_days_experience_6+": {
+      "value": 55.0,
+      "n": null,
+      "denominator": null,
+      "low": 34.0,
+      "high": 63.0,
+      "subjects": 350,
+      "events": 152,
+      "at_risk": {
+        "0": 50,
+        "7": 110,
+        "14": 115,
+        "30": 104,
+        "60": 58,
+        "90": 56
+      },
+      "survival": {
+        "7": 0.94,
+        "14": 0.8893,
+        "30": 0.7858,
+        "60": 0.4429,
+        "90": 0.3579
+      }
+    },
+    "median_days_incident_experience_6+": {
+      "value": 58.0,
+      "n": null,
+      "denominator": null,
+      "low": 32.0,
+      "high": null,
+      "subjects": 155,
+      "events": 46,
+      "at_risk": {
+        "0": 155,
+        "7": 123,
+        "14": 110,
+        "30": 71,
+        "60": 12,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.9435,
+        "14": 0.9127,
+        "30": 0.7917,
+        "60": 0.4728,
+        "90": 0.4728
+      }
+    },
+    "unknown_salary": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 9560
+    },
+    "median_days_salary_given": {
+      "value": 33.0,
+      "n": null,
+      "denominator": null,
+      "low": 32.0,
+      "high": 34.0,
+      "subjects": 9331,
+      "events": 4450,
+      "at_risk": {
+        "0": 1414,
+        "7": 2906,
+        "14": 2733,
+        "30": 2293,
+        "60": 1162,
+        "90": 1043
+      },
+      "survival": {
+        "7": 0.9177,
+        "14": 0.8656,
+        "30": 0.7125,
+        "60": 0.3333,
+        "90": 0.2256
+      }
+    },
+    "median_days_incident_salary_given": {
+      "value": 35.0,
+      "n": null,
+      "denominator": null,
+      "low": 32.0,
+      "high": 39.0,
+      "subjects": 4112,
+      "events": 1556,
+      "at_risk": {
+        "0": 4112,
+        "7": 3354,
+        "14": 2846,
+        "30": 1563,
+        "60": 331,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.9289,
+        "14": 0.883,
+        "30": 0.6741,
+        "60": 0.3869,
+        "90": 0.3704
+      }
+    },
+    "median_days_salary_not_given": {
+      "value": "not estimable",
+      "n": null,
+      "denominator": null,
+      "reason": "a risk set empties after the last early entry",
+      "subjects": 229,
+      "events": 156,
+      "at_risk": {
+        "0": 61,
+        "7": 103,
+        "14": 79,
+        "30": 9,
+        "60": 2,
+        "90": 3
+      }
+    },
+    "median_days_incident_salary_not_given": {
+      "value": 16.0,
+      "n": null,
+      "denominator": null,
+      "low": 14.0,
+      "high": 20.0,
+      "subjects": 167,
+      "events": 101,
+      "at_risk": {
+        "0": 167,
+        "7": 94,
+        "14": 63,
+        "30": 2,
+        "60": 0,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.666,
+        "14": 0.5574,
+        "30": 0.1385,
+        "60": 0.0693,
+        "90": 0.0693
+      }
+    },
+    "unknown_region": {
+      "value": 0.0001,
+      "n": 1,
+      "denominator": 9560
+    },
+    "median_days_region_moscow": {
+      "value": 31.0,
+      "n": null,
+      "denominator": null,
+      "low": 29.0,
+      "high": 31.0,
+      "subjects": 1253,
+      "events": 678,
+      "at_risk": {
+        "0": 183,
+        "7": 464,
+        "14": 440,
+        "30": 273,
+        "60": 138,
+        "90": 126
+      },
+      "survival": {
+        "7": 0.8999,
+        "14": 0.8301,
+        "30": 0.5164,
+        "60": 0.2289,
+        "90": 0.1494
+      }
+    },
+    "median_days_incident_region_moscow": {
+      "value": 31.0,
+      "n": null,
+      "denominator": null,
+      "low": 30.0,
+      "high": 31.0,
+      "subjects": 660,
+      "events": 285,
+      "at_risk": {
+        "0": 660,
+        "7": 490,
+        "14": 417,
+        "30": 176,
+        "60": 38,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.8806,
+        "14": 0.8082,
+        "30": 0.5255,
+        "60": 0.3146,
+        "90": 0.3146
+      }
+    },
+    "median_days_region_spb": {
+      "value": 31.0,
+      "n": null,
+      "denominator": null,
+      "low": 31.0,
+      "high": 33.0,
+      "subjects": 694,
+      "events": 339,
+      "at_risk": {
+        "0": 87,
+        "7": 280,
+        "14": 273,
+        "30": 153,
+        "60": 65,
+        "90": 72
+      },
+      "survival": {
+        "7": 0.891,
+        "14": 0.8499,
+        "30": 0.6723,
+        "60": 0.2414,
+        "90": 0.1705
+      }
+    },
+    "median_days_incident_region_spb": {
+      "value": 32.0,
+      "n": null,
+      "denominator": null,
+      "low": 31.0,
+      "high": 37.0,
+      "subjects": 361,
+      "events": 127,
+      "at_risk": {
+        "0": 361,
+        "7": 305,
+        "14": 264,
+        "30": 81,
+        "60": 12,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.9029,
+        "14": 0.8814,
+        "30": 0.5773,
+        "60": 0.2947,
+        "90": 0.2947
+      }
+    },
+    "median_days_region_other": {
+      "value": 35.0,
+      "n": null,
+      "denominator": null,
+      "low": 33.0,
+      "high": 39.0,
+      "subjects": 7087,
+      "events": 3300,
+      "at_risk": {
+        "0": 1116,
+        "7": 2058,
+        "14": 1892,
+        "30": 1696,
+        "60": 888,
+        "90": 803
+      },
+      "survival": {
+        "7": 0.9229,
+        "14": 0.8697,
+        "30": 0.7366,
+        "60": 0.3619,
+        "90": 0.246
+      }
+    },
+    "median_days_incident_region_other": {
+      "value": 38.0,
+      "n": null,
+      "denominator": null,
+      "low": 33.0,
+      "high": 43.0,
+      "subjects": 3000,
+      "events": 1111,
+      "at_risk": {
+        "0": 3000,
+        "7": 2440,
+        "14": 2042,
+        "30": 1205,
+        "60": 264,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.931,
+        "14": 0.8843,
+        "30": 0.6971,
+        "60": 0.4087,
+        "90": 0.3868
+      }
+    },
+    "median_days_region_remote": {
+      "value": 31.0,
+      "n": null,
+      "denominator": null,
+      "low": 31.0,
+      "high": 32.0,
+      "subjects": 525,
+      "events": 289,
+      "at_risk": {
+        "0": 89,
+        "7": 207,
+        "14": 207,
+        "30": 180,
+        "60": 73,
+        "90": 45
+      },
+      "survival": {
+        "7": 0.8948,
+        "14": 0.8303,
+        "30": 0.6913,
+        "60": 0.2563,
+        "90": 0.1614
+      }
+    },
+    "median_days_incident_region_remote": {
+      "value": 31.0,
+      "n": null,
+      "denominator": null,
+      "low": 31.0,
+      "high": 31.0,
+      "subjects": 258,
+      "events": 134,
+      "at_risk": {
+        "0": 258,
+        "7": 213,
+        "14": 186,
+        "30": 103,
+        "60": 17,
+        "90": 0
+      },
+      "survival": {
+        "7": 0.8967,
+        "14": 0.8531,
+        "30": 0.6033,
+        "60": 0.2636,
+        "90": 0.2636
+      }
+    },
+    "cox_subjects": {
+      "value": 0.9983,
+      "n": 9544,
+      "denominator": 9560
+    },
+    "cox_events": {
+      "value": 0.4815,
+      "n": 4595,
+      "denominator": 9544
+    },
+    "cox_clusters": {
+      "value": 5689,
+      "n": null,
+      "denominator": null
+    },
+    "hr_role=ml_ds_data": {
+      "value": 1.99,
+      "n": null,
+      "denominator": null,
+      "low": 1.3969,
+      "high": 2.8348,
+      "p": 0.0001381664740670095,
+      "se_robust": 0.1805,
+      "se_model": 0.0969,
+      "subjects": 199,
+      "events": 125,
+      "employers": 66,
+      "top3_employer_subjects": 118
+    },
+    "hr_role=analyst": {
+      "value": 1.6663,
+      "n": null,
+      "denominator": null,
+      "low": 1.3996,
+      "high": 1.9838,
+      "p": 9.58422274929988e-09,
+      "se_robust": 0.089,
+      "se_model": 0.0809,
+      "subjects": 312,
+      "events": 177,
+      "employers": 168,
+      "top3_employer_subjects": 76
+    },
+    "hr_role=qa_devops_sys": {
+      "value": 1.1623,
+      "n": null,
+      "denominator": null,
+      "low": 1.0821,
+      "high": 1.2486,
+      "p": 3.778085846372271e-05,
+      "se_robust": 0.0365,
+      "se_model": 0.0347,
+      "subjects": 3592,
+      "events": 1767,
+      "employers": 2544,
+      "top3_employer_subjects": 280
+    },
+    "hr_role=other_it": {
+      "value": 1.2946,
+      "n": null,
+      "denominator": null,
+      "low": 1.1521,
+      "high": 1.4547,
+      "p": 1.4199370059008502e-05,
+      "se_robust": 0.0595,
+      "se_model": 0.0424,
+      "subjects": 1755,
+      "events": 892,
+      "employers": 997,
+      "top3_employer_subjects": 316
+    },
+    "hr_experience=none": {
+      "value": 1.1659,
+      "n": null,
+      "denominator": null,
+      "low": 1.0647,
+      "high": 1.2769,
+      "p": 0.0009278695177371637,
+      "se_robust": 0.0464,
+      "se_model": 0.0361,
+      "subjects": 2559,
+      "events": 1352,
+      "employers": 1828,
+      "top3_employer_subjects": 397
+    },
+    "hr_experience=3-5": {
+      "value": 0.8328,
+      "n": null,
+      "denominator": null,
+      "low": 0.6748,
+      "high": 1.0278,
+      "p": 0.08823329193055092,
+      "se_robust": 0.1073,
+      "se_model": 0.0382,
+      "subjects": 2821,
+      "events": 1245,
+      "employers": 1570,
+      "top3_employer_subjects": 512
+    },
+    "hr_experience=6+": {
+      "value": 0.7694,
+      "n": null,
+      "denominator": null,
+      "low": 0.6307,
+      "high": 0.9387,
+      "p": 0.00978362538807271,
+      "se_robust": 0.1015,
+      "se_model": 0.0859,
+      "subjects": 350,
+      "events": 152,
+      "employers": 238,
+      "top3_employer_subjects": 26
+    },
+    "hr_salary=not_given": {
+      "value": 3.5193,
+      "n": null,
+      "denominator": null,
+      "low": 2.0636,
+      "high": 6.0017,
+      "p": 3.836578543171471e-06,
+      "se_robust": 0.2723,
+      "se_model": 0.0894,
+      "subjects": 225,
+      "events": 152,
+      "employers": 6,
+      "top3_employer_subjects": 222
+    },
+    "hr_region=moscow": {
+      "value": 1.293,
+      "n": null,
+      "denominator": null,
+      "low": 1.0882,
+      "high": 1.5364,
+      "p": 0.0034918726257788467,
+      "se_robust": 0.088,
+      "se_model": 0.0461,
+      "subjects": 1251,
+      "events": 676,
+      "employers": 504,
+      "top3_employer_subjects": 445
+    },
+    "hr_region=spb": {
+      "value": 1.2106,
+      "n": null,
+      "denominator": null,
+      "low": 1.0001,
+      "high": 1.4654,
+      "p": 0.04982240609097563,
+      "se_robust": 0.0974,
+      "se_model": 0.0582,
+      "subjects": 693,
+      "events": 338,
+      "employers": 217,
+      "top3_employer_subjects": 190
+    },
+    "hr_region=remote": {
+      "value": 1.1849,
+      "n": null,
+      "denominator": null,
+      "low": 1.0238,
+      "high": 1.3713,
+      "p": 0.022887181054700077,
+      "se_robust": 0.0745,
+      "se_model": 0.0625,
+      "subjects": 525,
+      "events": 289,
+      "employers": 338,
+      "top3_employer_subjects": 78
+    },
+    "ph_violations": {
+      "value": 0,
+      "n": null,
+      "denominator": null,
+      "tested": 11,
+      "names": []
+    },
+    "cox_subjects_without_top3_employers": {
+      "value": 0.9041,
+      "n": 8629,
+      "denominator": 9544
+    },
+    "hr_without_top3_employers_role=ml_ds_data": {
+      "value": 1.9709,
+      "n": null,
+      "denominator": null,
+      "low": 1.4899,
+      "high": 2.6072,
+      "p": 2.0069565293289433e-06,
+      "se_robust": 0.1428,
+      "se_model": 0.1445,
+      "subjects": 90,
+      "events": 51,
+      "employers": 63,
+      "top3_employer_subjects": 21
+    },
+    "hr_without_top3_employers_role=analyst": {
+      "value": 1.6442,
+      "n": null,
+      "denominator": null,
+      "low": 1.318,
+      "high": 2.0511,
+      "p": 1.0483505212972605e-05,
+      "se_robust": 0.1128,
+      "se_model": 0.0942,
+      "subjects": 240,
+      "events": 125,
+      "employers": 165,
+      "top3_employer_subjects": 23
+    },
+    "hr_without_top3_employers_role=qa_devops_sys": {
+      "value": 1.1779,
+      "n": null,
+      "denominator": null,
+      "low": 1.0924,
+      "high": 1.2701,
+      "p": 2.0741027471930313e-05,
+      "se_robust": 0.0385,
+      "se_model": 0.0363,
+      "subjects": 3312,
+      "events": 1594,
+      "employers": 2541,
+      "top3_employer_subjects": 72
+    },
+    "hr_without_top3_employers_role=other_it": {
+      "value": 1.2487,
+      "n": null,
+      "denominator": null,
+      "low": 1.1136,
+      "high": 1.4002,
+      "p": 0.00014340373864842564,
+      "se_robust": 0.0584,
+      "se_model": 0.0461,
+      "subjects": 1469,
+      "events": 703,
+      "employers": 994,
+      "top3_employer_subjects": 107
+    },
+    "hr_without_top3_employers_experience=none": {
+      "value": 1.1105,
+      "n": null,
+      "denominator": null,
+      "low": 1.0231,
+      "high": 1.2055,
+      "p": 0.012201992187303178,
+      "se_robust": 0.0418,
+      "se_model": 0.039,
+      "subjects": 2164,
+      "events": 1090,
+      "employers": 1825,
+      "top3_employer_subjects": 65
+    },
+    "hr_without_top3_employers_experience=3-5": {
+      "value": 0.7307,
+      "n": null,
+      "denominator": null,
+      "low": 0.6655,
+      "high": 0.8024,
+      "p": 4.841362181791271e-11,
+      "se_robust": 0.0477,
+      "se_model": 0.0415,
+      "subjects": 2380,
+      "events": 953,
+      "employers": 1567,
+      "top3_employer_subjects": 104
+    },
+    "hr_without_top3_employers_experience=6+": {
+      "value": 0.7848,
+      "n": null,
+      "denominator": null,
+      "low": 0.643,
+      "high": 0.9579,
+      "p": 0.01720074262006259,
+      "se_robust": 0.1017,
+      "se_model": 0.0873,
+      "subjects": 345,
+      "events": 149,
+      "employers": 237,
+      "top3_employer_subjects": 26
+    },
+    "hr_without_top3_employers_salary=not_given": {
+      "value": 1.971,
+      "n": null,
+      "denominator": null,
+      "low": 0.2961,
+      "high": 13.1207,
+      "p": 0.4829438989163545,
+      "se_robust": 0.9672,
+      "se_model": 1.0021,
+      "subjects": 3,
+      "events": 1,
+      "employers": 3,
+      "top3_employer_subjects": 3
+    },
+    "hr_without_top3_employers_region=moscow": {
+      "value": 1.1037,
+      "n": null,
+      "denominator": null,
+      "low": 0.9608,
+      "high": 1.2679,
+      "p": 0.1630866593735287,
+      "se_robust": 0.0708,
+      "se_model": 0.0579,
+      "subjects": 806,
+      "events": 370,
+      "employers": 501,
+      "top3_employer_subjects": 47
+    },
+    "hr_without_top3_employers_region=spb": {
+      "value": 1.2534,
+      "n": null,
+      "denominator": null,
+      "low": 1.0071,
+      "high": 1.5599,
+      "p": 0.043019133600238464,
+      "se_robust": 0.1116,
+      "se_model": 0.0664,
+      "subjects": 582,
+      "events": 259,
+      "employers": 214,
+      "top3_employer_subjects": 155
+    },
+    "hr_without_top3_employers_region=remote": {
+      "value": 1.1755,
+      "n": null,
+      "denominator": null,
+      "low": 1.0065,
+      "high": 1.3729,
+      "p": 0.04111440663850503,
+      "se_robust": 0.0792,
+      "se_model": 0.069,
+      "subjects": 447,
+      "events": 236,
+      "employers": 335,
+      "top3_employer_subjects": 24
+    }
+  },
+  "definitions": {
+    "subject": "dedup entity (vacancy_entity_id, else the portal id) with an open trudvsem snapshot sighting, IT roles only (marts role_bucket not not_it)",
+    "event": "no open sighting on 7 consecutive collected snapshot days; closed on the first of them",
+    "time_origin": "creation date at the source (published_at, earliest over the entity's records)",
+    "entry": "first sighting (left truncation): prevalent vacancies enter at their age on the first day",
+    "right_censoring": "closure not confirmed by the end of the window; censored the day after the last sighting",
+    "late_return": "back after the grace window: closed on its first missing day, the return is not followed",
+    "window": "collected complete days up to the first step longer than 2 days between them",
+    "km_ci": "Greenwood, exponential (lifelines), 95%",
+    "cox": "lifelines CoxPHFitter with delayed entry (Efron ties); sandwich covariance clustered by employer (INN, else the entity) from score residuals with delayed entry, computed in this module",
+    "ph_test": "scaled Schoenfeld residuals against rank of time; violated at p < 0.01"
+  },
+  "limits_ru": [
+    "Закрытие здесь это исчезновение вакансии из ежедневной выгрузки портала, а не найм. Вакансию снимают и по другим причинам, и по выгрузке их не различить.",
+    "Во всех группах закрытия резко учащаются на 30-32 день с даты создания (ступенька на графиках). Похоже на срок публикации портала, но правилами портала это не проверено. Медиана около месяца во многих группах попадает на эту ступеньку и говорит скорее о том, продлевают ли вакансию, чем о скорости найма.",
+    "Только trudvsem (портал службы занятости). Большинство вакансий в выборке из регионов вне Москвы и Петербурга; насколько состав работодателей и ролей отличается от hh.ru и Хабра, не измерялось, поэтому на рынок в целом выводы не переносятся. Хабр и срез API собираются с 08.10 и в анализ пока не входят.",
+    "IT-фильтр снимка широкий, роль определяется правилом по названию, вакансии вне IT исключены. Вакансия, которая после смены названия вышла из фильтра, читается как закрытая.",
+    "Дата создания у портала не меняется и не бывает позже первого появления, но у части новых вакансий она раньше первого появления в выгрузке больше чем на неделю, причина не установлена. Поэтому рядом приведена когорта новых вакансий со временем от первого появления.",
+    "Несколько работодателей публикуют сотни вакансий. Интервалы отношений рисков учитывают это (кластеры по работодателю), у каждого отношения указано, сколько вакансий группы дают три её крупнейших работодателя, и рядом та же модель без трёх крупнейших работодателей выборки.",
+    "Признаки взяты из последней записи вакансии. Отношения рисков описывают связь, а не влияние: роль, регион, опыт и зарплата связаны с работодателем и между собой.",
+    "Окно наблюдения заканчивается на первом пропуске в календаре снимков длиннее одного дня. Пока бэкфилл не закрыл пропуск, дни после него не используются."
+  ],
+  "figures": [
+    "models/figures/survival_role.png",
+    "models/figures/survival_experience.png",
+    "models/figures/survival_salary.png",
+    "models/figures/survival_region.png"
+  ],
+  "ph_test": {
+    "role=ml_ds_data": {
+      "statistic": 0.283,
+      "p": 0.5950256716431912
+    },
+    "role=analyst": {
+      "statistic": 1.449,
+      "p": 0.22876572763835218
+    },
+    "role=qa_devops_sys": {
+      "statistic": 2.581,
+      "p": 0.10814830024827869
+    },
+    "role=other_it": {
+      "statistic": 0.065,
+      "p": 0.7990221764553083
+    },
+    "experience=none": {
+      "statistic": 0.165,
+      "p": 0.6842497165008813
+    },
+    "experience=3-5": {
+      "statistic": 1.628,
+      "p": 0.20200175205785065
+    },
+    "experience=6+": {
+      "statistic": 2.257,
+      "p": 0.13298942119851676
+    },
+    "salary=not_given": {
+      "statistic": 0.984,
+      "p": 0.3212430616721926
+    },
+    "region=moscow": {
+      "statistic": 2.471,
+      "p": 0.11598530438883262
+    },
+    "region=spb": {
+      "statistic": 0.0,
+      "p": 0.983540964124092
+    },
+    "region=remote": {
+      "statistic": 0.691,
+      "p": 0.4057498765130408
+    }
+  },
+  "piecewise_split_day": null,
+  "grace": {
+    "by_grace": {
+      "1": {
+        "came_back": 2692,
+        "closures": 7139
+      },
+      "3": {
+        "came_back": 1784,
+        "closures": 6045
+      },
+      "7": {
+        "came_back": 897,
+        "closures": 4794
+      },
+      "14": {
+        "came_back": 523,
+        "closures": 3870
+      }
+    },
+    "returned_runs": 2692,
+    "returned_run_days": {
+      "1": 485,
+      "2": 423,
+      "3": 332,
+      "4": 305,
+      "5": 150,
+      "6": 100,
+      "7": 67,
+      "8": 61,
+      "9": 62,
+      "10": 54,
+      "11": 36,
+      "12": 61,
+      "13": 33,
+      "14": 29,
+      ">14": 494
+    }
+  },
+  "window": {
+    "first_dt": "2026-06-30",
+    "last_dt": "2026-09-10",
+    "holes": [
+      [
+        "2026-09-10",
+        "2026-10-09"
+      ]
+    ],
+    "collected_days_after_window": 2
+  }
+}
