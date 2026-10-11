@@ -1,0 +1,257 @@
+{
+  "source_script": "src/radar/train/dataset.py",
+  "command": "python -m radar.train.dataset",
+  "commit": "b3fd795-dirty",
+  "created_at": "2026-10-11T20:31:06+00:00",
+  "metrics": {
+    "silver_records": {
+      "value": 11447,
+      "n": null,
+      "denominator": null
+    },
+    "train_examples": {
+      "value": 0.9509,
+      "n": 10885,
+      "denominator": 11447
+    },
+    "val_examples": {
+      "value": 0.0491,
+      "n": 562,
+      "denominator": 11447
+    },
+    "dropped_too_long": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 11447
+    },
+    "dropped_not_in_train_pool": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 11447
+    },
+    "truncated_inputs": {
+      "value": 0.0015,
+      "n": 17,
+      "denominator": 11447
+    },
+    "train_groups": {
+      "value": 10115,
+      "n": null,
+      "denominator": null
+    },
+    "val_groups": {
+      "value": 555,
+      "n": null,
+      "denominator": null
+    },
+    "train_sequence_tokens": {
+      "value": 7737764,
+      "n": null,
+      "denominator": null
+    },
+    "trudvsem_habr.train_examples": {
+      "value": 5719,
+      "n": null,
+      "denominator": null
+    },
+    "trudvsem_habr.train_truncated": {
+      "value": 0.0026,
+      "n": 15,
+      "denominator": 5719
+    },
+    "trudvsem_habr.val_examples": {
+      "value": 281,
+      "n": null,
+      "denominator": null
+    },
+    "trudvsem_habr.val_truncated": {
+      "value": 0.0071,
+      "n": 2,
+      "denominator": 281
+    },
+    "telegram.train_examples": {
+      "value": 5166,
+      "n": null,
+      "denominator": null
+    },
+    "telegram.train_truncated": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 5166
+    },
+    "telegram.val_examples": {
+      "value": 281,
+      "n": null,
+      "denominator": null
+    },
+    "telegram.val_truncated": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 281
+    }
+  },
+  "config_file": "configs/sft/dataset.toml",
+  "config_sha256": "6885e61807b4c53df504cc1b36c351779fcf49c1e9dc966fba3d7afcf1d432be",
+  "prompt_file": "configs/student_prompt.md",
+  "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+  "tokenizer": "Qwen/Qwen3-1.7B",
+  "max_input_tokens": 1536,
+  "max_seq_len": 2048,
+  "silver_file": "data/silver/train.jsonl",
+  "silver_sha256": "3cdbdc0c64849654d56f3fa139fbf4ea8f3f9b35e71d7a50591b3e36eb79c7e4",
+  "train_sha256": "e8a27b553c6f55a903ecd2a3179c609457ccf07caa56d21322600df399f51324",
+  "val_sha256": "266184de763ef034f1b07b5fe8e4328b298fd370e3bc786a8fd212f9b6c6ef2d",
+  "dropped_too_long_ids": [],
+  "dropped_not_in_train_pool_ids": [],
+  "by_source": {
+    "train": {
+      "habr": 313,
+      "telegram": 5166,
+      "trudvsem": 132,
+      "trudvsem_snapshot": 5274
+    },
+    "val": {
+      "habr": 21,
+      "telegram": 281,
+      "trudvsem": 8,
+      "trudvsem_snapshot": 252
+    }
+  },
+  "by_role_proxy": {
+    "train": {
+      "telegram|analyst_other": 314,
+      "telegram|dev": 2559,
+      "telegram|ml_ds_data": 514,
+      "telegram|non_it_noise": 539,
+      "telegram|other_it": 421,
+      "telegram|qa_devops_sys": 819,
+      "trudvsem_habr|analyst_other": 195,
+      "trudvsem_habr|dev": 1048,
+      "trudvsem_habr|ml_ds_data": 205,
+      "trudvsem_habr|non_it_noise": 2634,
+      "trudvsem_habr|other_it": 430,
+      "trudvsem_habr|qa_devops_sys": 1207
+    },
+    "val": {
+      "telegram|analyst_other": 14,
+      "telegram|dev": 143,
+      "telegram|ml_ds_data": 18,
+      "telegram|non_it_noise": 38,
+      "telegram|other_it": 21,
+      "telegram|qa_devops_sys": 47,
+      "trudvsem_habr|analyst_other": 13,
+      "trudvsem_habr|dev": 66,
+      "trudvsem_habr|ml_ds_data": 12,
+      "trudvsem_habr|non_it_noise": 106,
+      "trudvsem_habr|other_it": 22,
+      "trudvsem_habr|qa_devops_sys": 62
+    }
+  },
+  "by_label_role": {
+    "train": {
+      "backend": 1218,
+      "business_analyst": 196,
+      "data_analyst": 238,
+      "data_engineer": 214,
+      "data_scientist": 101,
+      "designer": 250,
+      "developer_1c": 245,
+      "devops": 181,
+      "embedded": 51,
+      "frontend": 640,
+      "fullstack": 192,
+      "manager": 472,
+      "ml_engineer": 158,
+      "mlops": 14,
+      "mobile": 244,
+      "non_it": 2999,
+      "other_it": 403,
+      "qa": 470,
+      "security": 547,
+      "software_engineer": 771,
+      "support": 272,
+      "sysadmin": 748,
+      "system_analyst": 261
+    },
+    "val": {
+      "backend": 74,
+      "business_analyst": 12,
+      "data_analyst": 10,
+      "data_engineer": 9,
+      "data_scientist": 6,
+      "designer": 18,
+      "developer_1c": 17,
+      "devops": 13,
+      "embedded": 5,
+      "frontend": 26,
+      "fullstack": 9,
+      "manager": 30,
+      "ml_engineer": 6,
+      "mlops": 1,
+      "mobile": 17,
+      "non_it": 128,
+      "other_it": 16,
+      "qa": 29,
+      "security": 25,
+      "software_engineer": 49,
+      "support": 19,
+      "sysadmin": 32,
+      "system_analyst": 11
+    }
+  },
+  "tokens": {
+    "trudvsem_habr": {
+      "input_before_cap": {
+        "p50": 363,
+        "p90": 757,
+        "p99": 1235,
+        "max": 2367
+      },
+      "prompt": {
+        "p50": 663,
+        "p90": 1057,
+        "p99": 1535,
+        "max": 1836
+      },
+      "completion": {
+        "p50": 80,
+        "p90": 96,
+        "p99": 129,
+        "max": 186
+      },
+      "sequence": {
+        "p50": 747,
+        "p90": 1144,
+        "p99": 1612,
+        "max": 2013
+      }
+    },
+    "telegram": {
+      "input_before_cap": {
+        "p50": 163,
+        "p90": 557,
+        "p99": 974,
+        "max": 1360
+      },
+      "prompt": {
+        "p50": 463,
+        "p90": 857,
+        "p99": 1274,
+        "max": 1660
+      },
+      "completion": {
+        "p50": 65,
+        "p90": 98,
+        "p99": 129,
+        "max": 199
+      },
+      "sequence": {
+        "p50": 533,
+        "p90": 943,
+        "p99": 1348,
+        "max": 1778
+      }
+    }
+  },
+  "method": "silver labels per source family (results/silver/build.json); input cut to max_input_tokens tokens at a token boundary; an example over max_seq_len tokens with its answer dropped; train and val split by group with a seeded hash, val_share of groups; token lengths with the tokenizer above, nearest-rank quantiles; truncated_inputs over written examples"
+}

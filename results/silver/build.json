@@ -1,88 +1,347 @@
 {
   "source_script": "src/radar/extract/silver.py",
   "command": "python -m radar.extract.silver build",
-  "commit": "abcdb64-dirty",
-  "created_at": "2026-10-11T09:24:26+00:00",
+  "commit": "b3fd795-dirty",
+  "created_at": "2026-10-11T20:30:21+00:00",
   "metrics": {
-    "records_labeled_by_both": {
-      "value": 6001,
+    "records_written": {
+      "value": 11447,
       "n": null,
       "denominator": null
     },
-    "records_written": {
-      "value": 0.9998,
+    "trudvsem_habr.records_written": {
+      "value": 0.3054,
       "n": 6000,
-      "denominator": 6001
+      "denominator": 19647
     },
-    "dropped_not_in_train_pool": {
-      "value": 0.0002,
-      "n": 1,
-      "denominator": 6001
+    "trudvsem_habr.kept_all_ml_ds_data": {
+      "value": 0.0362,
+      "n": 217,
+      "denominator": 6000
     },
-    "dropped_input_changed": {
+    "telegram.records_labeled_by_both": {
+      "value": 6000,
+      "n": null,
+      "denominator": null
+    },
+    "telegram.records_written": {
+      "value": 0.9078,
+      "n": 5447,
+      "denominator": 6000
+    },
+    "telegram.dropped_not_in_train_pool": {
       "value": 0.0,
       "n": 0,
-      "denominator": 6001
+      "denominator": 6000
     },
-    "dropped_qwen_invalid": {
+    "telegram.dropped_input_changed": {
       "value": 0.0,
       "n": 0,
-      "denominator": 6001
+      "denominator": 6000
     },
-    "dropped_yandex_invalid": {
+    "telegram.dropped_excluded": {
+      "value": 0.0922,
+      "n": 553,
+      "denominator": 6000
+    },
+    "telegram.dropped_qwen_invalid": {
       "value": 0.0,
       "n": 0,
-      "denominator": 6001
+      "denominator": 6000
+    },
+    "telegram.dropped_yandex_invalid": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 6000
+    },
+    "telegram.agreed_role": {
+      "value": 0.7951,
+      "n": 4331,
+      "denominator": 5447
+    },
+    "telegram.agreed_grade": {
+      "value": 0.7808,
+      "n": 4253,
+      "denominator": 5447
+    },
+    "telegram.agreed_skills": {
+      "value": 0.3892,
+      "n": 2120,
+      "denominator": 5447
+    },
+    "telegram.agreed_salary": {
+      "value": 0.884,
+      "n": 4815,
+      "denominator": 5447
+    },
+    "telegram.agreed_work_format": {
+      "value": 0.9165,
+      "n": 4992,
+      "denominator": 5447
+    },
+    "telegram.agreed_cities": {
+      "value": 0.8871,
+      "n": 4832,
+      "denominator": 5447
+    },
+    "telegram.agreed_experience_years": {
+      "value": 0.9102,
+      "n": 4958,
+      "denominator": 5447
+    },
+    "telegram.agreed_employment_type": {
+      "value": 0.9266,
+      "n": 5047,
+      "denominator": 5447
+    },
+    "telegram.agreed_lang": {
+      "value": 0.9525,
+      "n": 5188,
+      "denominator": 5447
+    },
+    "telegram.excluded_by_qwen": {
+      "value": 0.09,
+      "n": 540,
+      "denominator": 6000
+    },
+    "telegram.excluded_by_yandex": {
+      "value": 0.0223,
+      "n": 134,
+      "denominator": 6000
     }
   },
-  "composition": "rules",
-  "sources": {
-    "role": "rules",
-    "grade": "rules",
-    "skills": "rules",
-    "salary": "rules",
-    "work_format": "rules",
-    "cities": "rules",
-    "experience_years": "rules",
-    "employment_type": "rules",
-    "lang": "rules"
+  "compositions": {
+    "trudvsem_habr": "rules",
+    "telegram": "agree_all"
   },
-  "config_file": "configs/silver.toml",
-  "config_sha256": "221f7b0a52f12d505deb5347145daf40892ec3bb44db909bf9ca4b6f4c215004",
-  "teachers": {
-    "qwen": {
-      "model": "Qwen3-8B-Q4_K_M",
-      "prompt_sha256": "5937b5a6fdf2adeb28ed2c8541631ad7cf602fe19efa46fc9e5db06e650f8728",
-      "schema_sha256": "f71af6bb76c28c170911aaa71363fe791142357ef6110d50a53891500a139d12"
+  "sources": {
+    "trudvsem_habr": {
+      "role": "rules",
+      "grade": "rules",
+      "skills": "rules",
+      "salary": "rules",
+      "work_format": "rules",
+      "cities": "rules",
+      "experience_years": "rules",
+      "employment_type": "rules",
+      "lang": "rules"
     },
-    "yandex": {
-      "model": "YandexGPT-5-Lite-8B-instruct-Q4_K_M",
-      "prompt_sha256": "5937b5a6fdf2adeb28ed2c8541631ad7cf602fe19efa46fc9e5db06e650f8728",
-      "schema_sha256": "f71af6bb76c28c170911aaa71363fe791142357ef6110d50a53891500a139d12"
+    "telegram": {
+      "role": "agree",
+      "grade": "agree",
+      "skills": "agree",
+      "salary": "agree",
+      "work_format": "agree",
+      "cities": "agree",
+      "experience_years": "agree",
+      "employment_type": "agree",
+      "lang": "agree"
+    }
+  },
+  "families_not_built": [],
+  "config_file": "configs/silver.toml",
+  "config_sha256": "1ee437c308f3c9207191b8d931bf859c3f664b12304a99005993da0420cb8eef",
+  "teachers": {
+    "telegram": {
+      "qwen": {
+        "model": "Qwen3-8B-Q4_K_M",
+        "prompt_sha256": "a41ddbf4b47b6172b5be5e12876c718d84614d9db72efe5ab243ec8afd687a62",
+        "schema_sha256": "fd1e39e240e6de5a57ce16aca32a728bac53be93338885994c4911caafa21196"
+      },
+      "yandex": {
+        "model": "YandexGPT-5-Lite-8B-instruct-Q4_K_M",
+        "prompt_sha256": "a41ddbf4b47b6172b5be5e12876c718d84614d9db72efe5ab243ec8afd687a62",
+        "schema_sha256": "fd1e39e240e6de5a57ce16aca32a728bac53be93338885994c4911caafa21196"
+      }
+    }
+  },
+  "rules_sample": {
+    "trudvsem_habr": {
+      "limit": 6000,
+      "keep_all": [
+        "ml_ds_data"
+      ]
     }
   },
   "output_file": "data/silver/train.jsonl",
-  "output_sha256": "d3863bc78eb9756e14b862da8abf0f6ab3bdcdc82374d2848ce4598913719c10",
-  "ids_sha256": "99ecae715bdf270148ce46f26120c93554cb259e7fc4c4f8594cae3830ece43b",
+  "output_sha256": "3cdbdc0c64849654d56f3fa139fbf4ea8f3f9b35e71d7a50591b3e36eb79c7e4",
+  "ids_sha256": "1df7ceb7bf68227581644087b382387d6ec7c8b6a635a8b2ca4a8588c7ca3dbf",
   "strata": {
-    "habr|analyst_other": 28,
-    "habr|dev": 47,
-    "habr|ml_ds_data": 56,
-    "habr|non_it_noise": 29,
-    "habr|other_it": 29,
-    "habr|qa_devops_sys": 73,
-    "trudvsem_snapshot|analyst_other": 90,
-    "trudvsem_snapshot|dev": 524,
-    "trudvsem_snapshot|ml_ds_data": 76,
-    "trudvsem_snapshot|non_it_noise": 1359,
-    "trudvsem_snapshot|other_it": 276,
-    "trudvsem_snapshot|qa_devops_sys": 745,
-    "trudvsem|analyst_other": 80,
-    "trudvsem|dev": 617,
-    "trudvsem|ml_ds_data": 22,
-    "trudvsem|non_it_noise": 1396,
-    "trudvsem|other_it": 130,
-    "trudvsem|qa_devops_sys": 423
+    "trudvsem_habr": {
+      "habr|analyst_other": 31,
+      "habr|dev": 60,
+      "habr|ml_ds_data": 89,
+      "habr|non_it_noise": 32,
+      "habr|other_it": 36,
+      "habr|qa_devops_sys": 86,
+      "trudvsem_snapshot|analyst_other": 171,
+      "trudvsem_snapshot|dev": 1022,
+      "trudvsem_snapshot|ml_ds_data": 125,
+      "trudvsem_snapshot|non_it_noise": 2636,
+      "trudvsem_snapshot|other_it": 411,
+      "trudvsem_snapshot|qa_devops_sys": 1161,
+      "trudvsem|analyst_other": 6,
+      "trudvsem|dev": 32,
+      "trudvsem|ml_ds_data": 3,
+      "trudvsem|non_it_noise": 72,
+      "trudvsem|other_it": 5,
+      "trudvsem|qa_devops_sys": 22
+    },
+    "telegram": {
+      "analytics_jobs|analyst_other": 20,
+      "analytics_jobs|ml_ds_data": 2,
+      "data_engineer_jobs|dev": 1,
+      "data_engineer_jobs|ml_ds_data": 11,
+      "data_engineer_jobs|non_it_noise": 1,
+      "data_hr|analyst_other": 8,
+      "data_hr|dev": 1,
+      "data_hr|ml_ds_data": 14,
+      "data_hr|non_it_noise": 1,
+      "data_hr|other_it": 1,
+      "data_hr|qa_devops_sys": 1,
+      "data_secrets_career|analyst_other": 1,
+      "data_secrets_career|dev": 1,
+      "data_secrets_career|ml_ds_data": 29,
+      "data_secrets_career|non_it_noise": 1,
+      "data_secrets_career|other_it": 1,
+      "datajobschannel|analyst_other": 4,
+      "datajobschannel|dev": 4,
+      "datajobschannel|ml_ds_data": 49,
+      "datajobschannel|non_it_noise": 6,
+      "datajobschannel|other_it": 2,
+      "datajobschannel|qa_devops_sys": 3,
+      "datasciencejobs|analyst_other": 3,
+      "datasciencejobs|dev": 4,
+      "datasciencejobs|ml_ds_data": 41,
+      "datasciencejobs|non_it_noise": 3,
+      "datasciencejobs|other_it": 1,
+      "datasciencejobs|qa_devops_sys": 1,
+      "datascjobs|analyst_other": 2,
+      "datascjobs|dev": 1,
+      "datascjobs|ml_ds_data": 4,
+      "datascjobs|qa_devops_sys": 1,
+      "dataviz_jobs|analyst_other": 1,
+      "dataviz_jobs|dev": 3,
+      "dataviz_jobs|ml_ds_data": 5,
+      "dataviz_jobs|non_it_noise": 3,
+      "dataviz_jobs|other_it": 1,
+      "devjobs|analyst_other": 2,
+      "devjobs|dev": 125,
+      "devjobs|ml_ds_data": 2,
+      "devjobs|non_it_noise": 35,
+      "devjobs|other_it": 31,
+      "devjobs|qa_devops_sys": 6,
+      "dsml_jobs|analyst_other": 1,
+      "dsml_jobs|dev": 1,
+      "dsml_jobs|ml_ds_data": 12,
+      "dsml_jobs|non_it_noise": 1,
+      "feed|analyst_other": 1,
+      "feed|dev": 406,
+      "feed|ml_ds_data": 2,
+      "feed|non_it_noise": 16,
+      "feed|other_it": 2,
+      "feed|qa_devops_sys": 3,
+      "gamedevjob|analyst_other": 1,
+      "gamedevjob|dev": 26,
+      "gamedevjob|ml_ds_data": 1,
+      "gamedevjob|non_it_noise": 19,
+      "gamedevjob|other_it": 15,
+      "gamedevjob|qa_devops_sys": 3,
+      "geekjob|analyst_other": 70,
+      "geekjob|dev": 345,
+      "geekjob|ml_ds_data": 75,
+      "geekjob|non_it_noise": 224,
+      "geekjob|other_it": 131,
+      "geekjob|qa_devops_sys": 144,
+      "geeklink|analyst_other": 16,
+      "geeklink|dev": 68,
+      "geeklink|ml_ds_data": 6,
+      "geeklink|non_it_noise": 38,
+      "geeklink|other_it": 12,
+      "geeklink|qa_devops_sys": 19,
+      "getitrussia|analyst_other": 4,
+      "getitrussia|dev": 56,
+      "getitrussia|ml_ds_data": 2,
+      "getitrussia|non_it_noise": 5,
+      "getitrussia|other_it": 4,
+      "getitrussia|qa_devops_sys": 12,
+      "golangjobsit|dev": 16,
+      "golangjobsit|qa_devops_sys": 1,
+      "habr|analyst_other": 150,
+      "habr|dev": 1030,
+      "habr|ml_ds_data": 126,
+      "habr|non_it_noise": 149,
+      "habr|other_it": 153,
+      "habr|qa_devops_sys": 396,
+      "infosec_work|analyst_other": 5,
+      "infosec_work|dev": 1,
+      "infosec_work|ml_ds_data": 2,
+      "infosec_work|non_it_noise": 3,
+      "infosec_work|other_it": 1,
+      "infosec_work|qa_devops_sys": 88,
+      "interns|analyst_other": 6,
+      "interns|dev": 60,
+      "interns|ml_ds_data": 11,
+      "interns|non_it_noise": 4,
+      "interns|other_it": 7,
+      "interns|qa_devops_sys": 24,
+      "it_vakansii|analyst_other": 4,
+      "it_vakansii|dev": 24,
+      "it_vakansii|ml_ds_data": 3,
+      "it_vakansii|non_it_noise": 13,
+      "it_vakansii|other_it": 6,
+      "it_vakansii|qa_devops_sys": 3,
+      "jc_it|analyst_other": 1,
+      "jc_it|dev": 22,
+      "jc_it|ml_ds_data": 1,
+      "jc_it|non_it_noise": 13,
+      "jc_it|other_it": 3,
+      "jc_it|qa_devops_sys": 5,
+      "job_x|analyst_other": 5,
+      "job_x|dev": 375,
+      "job_x|ml_ds_data": 24,
+      "job_x|non_it_noise": 7,
+      "job_x|other_it": 6,
+      "job_x|qa_devops_sys": 43,
+      "jobofferinside|analyst_other": 4,
+      "jobofferinside|dev": 15,
+      "jobofferinside|ml_ds_data": 14,
+      "jobofferinside|non_it_noise": 10,
+      "jobofferinside|other_it": 17,
+      "jobofferinside|qa_devops_sys": 6,
+      "myitjob|analyst_other": 6,
+      "myitjob|dev": 27,
+      "myitjob|ml_ds_data": 6,
+      "myitjob|non_it_noise": 5,
+      "myitjob|other_it": 4,
+      "myitjob|qa_devops_sys": 10,
+      "nlp_jobs|ml_ds_data": 2,
+      "offersanalysis|analyst_other": 3,
+      "offersanalysis|ml_ds_data": 3,
+      "offersanalysis|non_it_noise": 1,
+      "product_jobs|analyst_other": 1,
+      "product_jobs|dev": 1,
+      "product_jobs|ml_ds_data": 2,
+      "product_jobs|non_it_noise": 14,
+      "product_jobs|other_it": 41,
+      "proglib|analyst_other": 5,
+      "proglib|dev": 44,
+      "proglib|ml_ds_data": 44,
+      "proglib|qa_devops_sys": 1,
+      "qa_testirovshchik_jobs_vakansii|qa_devops_sys": 41,
+      "qa|non_it_noise": 1,
+      "qa|qa_devops_sys": 52,
+      "rabota|analyst_other": 4,
+      "rabota|dev": 41,
+      "rabota|ml_ds_data": 38,
+      "rabota|non_it_noise": 4,
+      "rabota|other_it": 3,
+      "rabota|qa_devops_sys": 2,
+      "remoteit|dev": 3,
+      "remoteit|ml_ds_data": 1,
+      "remoteit|qa_devops_sys": 1,
+      "runello|dev": 1
+    }
   },
-  "method": "records labeled by both teachers; a record leaves the set if it is no longer in train_pool, if its input is not the one the teachers saw, or if a teacher the composition names for a field has no valid answer; agreed_<field>: records where the teachers agreed on a field the composition takes from their agreement (the rest take the rules' value)"
+  "method": "per source family, records labeled by both teachers; a record leaves the set if it is no longer in its training pool, if its input is not the one the teachers saw, if a teacher marked a Telegram post exclude (multi_vacancy or not_vacancy), or if a teacher the composition names for a field has no valid answer; agreed_<field>: records where the teachers agreed on a field the composition takes from their agreement (the rest take the rules' value); a family whose composition is rules only is a stratified sample of its current training pool (rules_sample), every field from the regex baseline"
 }
