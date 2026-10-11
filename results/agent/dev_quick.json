@@ -1,0 +1,285 @@
+{
+  "source_script": "src/radar/agent/__main__.py",
+  "command": "python -m radar.agent eval --split dev --quick",
+  "commit": "0542fff-dirty",
+  "created_at": "2026-10-11T11:14:24+00:00",
+  "metrics": {
+    "execution_accuracy": {
+      "value": 0.7222,
+      "n": 13,
+      "denominator": 18
+    },
+    "valid_sql": {
+      "value": 1.0,
+      "n": 18,
+      "denominator": 18
+    },
+    "repaired": {
+      "value": 0.0556,
+      "n": 1,
+      "denominator": 18
+    },
+    "refused_or_blocked_safe_questions": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 18
+    },
+    "seconds_per_question": {
+      "value": 1.1,
+      "n": null,
+      "denominator": null
+    },
+    "accuracy_compare": {
+      "value": 1.0,
+      "n": 2,
+      "denominator": 2
+    },
+    "accuracy_count": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 2
+    },
+    "accuracy_employer": {
+      "value": 1.0,
+      "n": 2,
+      "denominator": 2
+    },
+    "accuracy_junior": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    },
+    "accuracy_lifetime": {
+      "value": 1.0,
+      "n": 2,
+      "denominator": 2
+    },
+    "accuracy_salary": {
+      "value": 1.0,
+      "n": 2,
+      "denominator": 2
+    },
+    "accuracy_share": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    },
+    "accuracy_skill": {
+      "value": 1.0,
+      "n": 2,
+      "denominator": 2
+    },
+    "accuracy_trend": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    }
+  },
+  "split": "dev",
+  "quick": true,
+  "model": "Qwen3-8B-Q4_K_M",
+  "llm_base_url": "http://localhost:8080/v1",
+  "prompt_sha256": "b07875b05a55a974c9738be081f7a7b60ee1c13fff5f59cd25863ae5e7c4e75a",
+  "snapshot": "0738ce75948a5ed8",
+  "items": [
+    {
+      "id": "count_04",
+      "kind": "count",
+      "status": "answered",
+      "correct": false,
+      "attempts": 1,
+      "seconds": 1.13,
+      "sql": "SELECT telegram_posts FROM agent_snapshot.mart_weekly_dynamics WHERE source = 'telegram' AND week = (SELECT max(week) FROM agent_snapshot.mart_weekly_dynamics WHERE source = 'telegram') LIMIT 1000",
+      "rows": 18,
+      "error": null
+    },
+    {
+      "id": "count_12",
+      "kind": "count",
+      "status": "answered",
+      "correct": false,
+      "attempts": 1,
+      "seconds": 0.9,
+      "sql": "SELECT vacancies_active FROM agent_snapshot.mart_weekly_dynamics WHERE source = 'habr' AND week = (SELECT max(week) FROM agent_snapshot.mart_weekly_dynamics WHERE source = 'habr') LIMIT 1000",
+      "rows": 18,
+      "error": null
+    },
+    {
+      "id": "share_02",
+      "kind": "share",
+      "status": "answered",
+      "correct": true,
+      "attempts": 1,
+      "seconds": 1.85,
+      "sql": "SELECT (SUM(CASE WHEN work_format = 'hybrid' THEN vacancies ELSE 0 END) * 1.0) / SUM(vacancies) AS share, SUM(CASE WHEN work_format = 'hybrid' THEN vacancies ELSE 0 END) AS hybrid_vacancies, SUM(vacancies) AS total_vacancies FROM agent_snapshot.mart_work_format WHERE source = 'habr' AND role_bucket = 'backend' LIMIT 1000",
+      "rows": 1,
+      "error": null
+    },
+    {
+      "id": "share_08",
+      "kind": "share",
+      "status": "answered",
+      "correct": false,
+      "attempts": 2,
+      "seconds": 1.64,
+      "sql": "SELECT (with_salary_rub / vacancies) AS share, with_salary_rub, vacancies FROM agent_snapshot.mart_salaries WHERE source = 'habr' LIMIT 1000",
+      "rows": 235,
+      "error": null
+    },
+    {
+      "id": "salary_01",
+      "kind": "salary",
+      "status": "answered",
+      "correct": true,
+      "attempts": 1,
+      "seconds": 1.06,
+      "sql": "SELECT salary_from_median FROM agent_snapshot.mart_salaries WHERE source = 'habr' AND role_bucket = 'backend' AND grade = 'senior' AND region_group = 'remote' LIMIT 1000",
+      "rows": 1,
+      "error": null
+    },
+    {
+      "id": "salary_08",
+      "kind": "salary",
+      "status": "answered",
+      "correct": true,
+      "attempts": 1,
+      "seconds": 1.26,
+      "sql": "SELECT SUM(mart_salaries.with_salary_rub) AS rub_salary_count FROM agent_snapshot.mart_salaries WHERE mart_salaries.source = 'trudvsem' AND mart_salaries.role_bucket = 'backend' AND mart_salaries.vacancies > 0 LIMIT 1000",
+      "rows": 1,
+      "error": null
+    },
+    {
+      "id": "skill_07",
+      "kind": "skill",
+      "status": "answered",
+      "correct": true,
+      "attempts": 1,
+      "seconds": 0.6,
+      "sql": "SELECT COUNT(DISTINCT skill) AS unique_skills_count FROM agent_snapshot.mart_skills WHERE source = 'habr' LIMIT 1000",
+      "rows": 1,
+      "error": null
+    },
+    {
+      "id": "skill_10",
+      "kind": "skill",
+      "status": "answered",
+      "correct": true,
+      "attempts": 1,
+      "seconds": 1.79,
+      "sql": "SELECT SUM(mart_skills.vacancies_mentioning) AS total_junior_vacancies_with_sql FROM agent_snapshot.mart_skills JOIN agent_snapshot.mart_junior ON mart_skills.source = mart_junior.source AND mart_skills.role_bucket = mart_junior.role_bucket AND mart_skills.grade = 'junior' WHERE mart_skills.skill = 'SQL' AND mart_skills.source = 'habr' LIMIT 1000",
+      "rows": 1,
+      "error": null
+    },
+    {
+      "id": "trend_06",
+      "kind": "trend",
+      "status": "answered",
+      "correct": true,
+      "attempts": 1,
+      "seconds": 0.92,
+      "sql": "SELECT telegram_channels FROM agent_snapshot.mart_weekly_dynamics WHERE week = '2026-09-21' AND source = 'telegram' AND role_bucket = 'ml_ds' LIMIT 1000",
+      "rows": 1,
+      "error": null
+    },
+    {
+      "id": "trend_14",
+      "kind": "trend",
+      "status": "answered",
+      "correct": false,
+      "attempts": 1,
+      "seconds": 0.54,
+      "sql": "SELECT COUNT(*) FROM agent_snapshot.mart_weekly_dynamics WHERE source = 'trudvsem_snapshot' LIMIT 1000",
+      "rows": 1,
+      "error": null
+    },
+    {
+      "id": "junior_09",
+      "kind": "junior",
+      "status": "answered",
+      "correct": true,
+      "attempts": 1,
+      "seconds": 0.98,
+      "sql": "SELECT role_bucket, (open_to_junior * 1.0 / vacancies) AS share FROM agent_snapshot.mart_junior WHERE source = 'habr' ORDER BY share DESC LIMIT 1",
+      "rows": 1,
+      "error": null
+    },
+    {
+      "id": "junior_11",
+      "kind": "junior",
+      "status": "answered",
+      "correct": false,
+      "attempts": 1,
+      "seconds": 1.18,
+      "sql": "SELECT SUM(no_experience_required) + SUM(graded_intern) + SUM(graded_junior) AS total_with_experience_filled FROM agent_snapshot.mart_junior WHERE source = 'trudvsem' AND role_bucket = 'ml_ds' LIMIT 1000",
+      "rows": 1,
+      "error": null
+    },
+    {
+      "id": "employer_04",
+      "kind": "employer",
+      "status": "answered",
+      "correct": true,
+      "attempts": 1,
+      "seconds": 0.75,
+      "sql": "SELECT it_vacancies_seen FROM agent_snapshot.mart_employers WHERE source = 'trudvsem' AND employer_name ILIKE '%Сбербанк%' LIMIT 1000",
+      "rows": 1,
+      "error": null
+    },
+    {
+      "id": "employer_09",
+      "kind": "employer",
+      "status": "answered",
+      "correct": true,
+      "attempts": 1,
+      "seconds": 1.87,
+      "sql": "SELECT (SUM(mart_employers.open_it_vacancies) * 1.0) / SUM(mart_employers.it_vacancies_seen) AS share, SUM(mart_employers.open_it_vacancies) AS open_vacancies, SUM(mart_employers.it_vacancies_seen) AS total_vacancies FROM agent_snapshot.mart_employers WHERE source = 'trudvsem' AND employer_name ILIKE '%Сбербанк%' LIMIT 1000",
+      "rows": 1,
+      "error": null
+    },
+    {
+      "id": "lifetime_05",
+      "kind": "lifetime",
+      "status": "answered",
+      "correct": true,
+      "attempts": 1,
+      "seconds": 0.86,
+      "sql": "SELECT lifetime_median_days FROM agent_snapshot.mart_employers WHERE source = 'trudvsem' AND employer_name ILIKE '%Гринатом%' LIMIT 1000",
+      "rows": 1,
+      "error": null
+    },
+    {
+      "id": "lifetime_10",
+      "kind": "lifetime",
+      "status": "answered",
+      "correct": true,
+      "attempts": 1,
+      "seconds": 0.76,
+      "sql": "SELECT COUNT(DISTINCT employer_key) FROM agent_snapshot.mart_employers WHERE source = 'habr' AND NOT (lifetime_median_days IS NULL) LIMIT 1000",
+      "rows": 1,
+      "error": null
+    },
+    {
+      "id": "compare_10",
+      "kind": "compare",
+      "status": "answered",
+      "correct": true,
+      "attempts": 1,
+      "seconds": 0.93,
+      "sql": "SELECT role_bucket, vacancies FROM agent_snapshot.mart_junior WHERE source = 'telegram' AND NOT (role_bucket IN ('multi_post')) ORDER BY vacancies DESC LIMIT 3",
+      "rows": 3,
+      "error": null
+    },
+    {
+      "id": "compare_13",
+      "kind": "compare",
+      "status": "answered",
+      "correct": true,
+      "attempts": 1,
+      "seconds": 0.73,
+      "sql": "SELECT role_bucket, open_to_junior FROM agent_snapshot.mart_junior WHERE source = 'habr' LIMIT 1000",
+      "rows": 18,
+      "error": null
+    }
+  ],
+  "unsafe": []
+}

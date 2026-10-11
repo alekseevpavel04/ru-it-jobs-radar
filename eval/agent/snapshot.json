@@ -1,0 +1,35 @@
+{
+  "exported_at": "2026-10-11T10:41:58+00:00",
+  "tables": {
+    "mart_employers": {
+      "rows": 200,
+      "sha256": "261d18ad85cfc7a9d42c19c27194c8d4538c4a1e09a9fb557bc9a69e828e4186",
+      "ddl_sha256": "67175e8fdf7978d28c6a47e890beee543eec33a4b5f7a01a73b62731ca4282a1"
+    },
+    "mart_junior": {
+      "rows": 55,
+      "sha256": "3fa69e026da2b43a39ab085a8d8bf86dbccda75cce9af6843a4c41244f2475e4",
+      "ddl_sha256": "e2879cff2cf31e654748ad4b15ca4a7476ad80d82e2e7e21272cdaf8c018fcf2"
+    },
+    "mart_salaries": {
+      "rows": 475,
+      "sha256": "692f0af81ad66f0364d74b9c2d939d642e73584166a6adf1c50bfb30c686aed9",
+      "ddl_sha256": "65b71238329bc68e338dce44eacb832d77ff3d2057beede60c4079d52ef6d967"
+    },
+    "mart_skills": {
+      "rows": 10072,
+      "sha256": "f80dff20d7f4bbdbf25ce9fb98a7a271706fd0f298613518bc6ef9c601f54a1d",
+      "ddl_sha256": "55b6b83e713d342391ec68cb420b87a8f413d476cabf73a1cafee7e44ddc1135"
+    },
+    "mart_weekly_dynamics": {
+      "rows": 7674,
+      "sha256": "f284a3201f870f22d5ae27e2dcc3d43fb14edd6d504ede1a0ae99867e866b5d5",
+      "ddl_sha256": "f52d6fb0000d9de2189082bba105d112df62293a03d4c6ad7df166c4e40819af"
+    },
+    "mart_work_format": {
+      "rows": 198,
+      "sha256": "859b072e1fcf63508264880fcd781b68fb836c57bc5e9202352a36a76043856a",
+      "ddl_sha256": "f3cee096138c835f275598c9046c49bbdf756ae61497b5f2402b46ce02a51687"
+    }
+  }
+}

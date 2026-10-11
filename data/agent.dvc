@@ -1,0 +1,6 @@
+outs:
+- md5: bb07bf505175235bbc721cdbdae0feee.dir
+  size: 97157
+  nfiles: 13
+  hash: md5
+  path: agent
