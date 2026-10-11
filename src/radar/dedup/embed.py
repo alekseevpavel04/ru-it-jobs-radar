@@ -1,6 +1,10 @@
 """e5 embeddings of the dedup units, run inside WSL with the training venv (torch lives there).
 
-    wsl -d radar --cd <repo> env PYTHONPATH=src ~/venvs/train/bin/python -m radar.dedup.embed
+    wsl -d radar --cd <repo> env HF_HOME=/mnt/d/VScode_projects/assets/huggingface HF_HUB_OFFLINE=1 \
+        PYTHONPATH=src ~/venvs/train/bin/python -m radar.dedup.embed
+
+HF_HOME has to be passed: the distro does not set it, and without it the model is looked up in an
+empty cache and the run fails.
 
 e5 is asked with the `query: ` prefix on both sides: its model card prescribes it for symmetric
 similarity, which comparing two vacancies is. Mean pooling over tokens and L2 norm, as in the card.
