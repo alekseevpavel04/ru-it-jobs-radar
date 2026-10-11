@@ -24,6 +24,7 @@ export default {
     {name: "Зарплаты", path: "/salaries"},
     {name: "Джуниорский срез", path: "/junior"},
     {name: "Время жизни вакансии", path: "/lifetime"},
+    {name: "Недельные выпуски", path: "/digest/"},
     {name: "Методика и ограничения", path: "/methodology"}
   ],
   header: `<div class="radar-header">Срез рынка по открытым источникам: «Работа в России», Хабр Карьера, публичные
