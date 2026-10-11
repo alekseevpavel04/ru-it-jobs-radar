@@ -1,36 +1,36 @@
 {
   "source_script": "dbt/report.py",
   "command": "python dbt/report.py",
-  "commit": "3aea5fa-dirty",
-  "created_at": "2026-10-08T16:07:56+00:00",
+  "commit": "018064b-dirty",
+  "created_at": "2026-10-11T15:22:51+00:00",
   "metrics": {
     "models_ok": {
       "value": 1.0,
-      "n": 19,
-      "denominator": 19
+      "n": 16,
+      "denominator": 16
     },
     "seeds_ok": {
-      "value": 1.0,
-      "n": 3,
-      "denominator": 3
+      "value": 0,
+      "n": 0,
+      "denominator": 0
     },
     "tests_passed": {
       "value": 1.0,
-      "n": 158,
-      "denominator": 158
+      "n": 108,
+      "denominator": 108
     },
     "tests_warned": {
       "value": 0,
       "n": 0,
-      "denominator": 158
+      "denominator": 108
     },
     "tests_failed": {
       "value": 0,
       "n": 0,
-      "denominator": 158
+      "denominator": 108
     },
     "build_seconds": {
-      "value": 399.3,
+      "value": 64.7,
       "n": null,
       "denominator": null
     },
@@ -63,32 +63,32 @@
       "checked_at": "2026-10-08T16:07:50.541180Z"
     },
     "rows_stg_trudvsem_api_trudvsem": {
-      "value": 11632,
+      "value": 13621,
       "n": null,
       "denominator": null
     },
     "rows_stg_trudvsem_snapshot_trudvsem_snapshot": {
-      "value": 11991726,
+      "value": 54008337,
       "n": null,
       "denominator": null
     },
     "rows_stg_habr_habr": {
-      "value": 1037,
+      "value": 3179,
       "n": null,
       "denominator": null
     },
     "rows_stg_vacancies_habr": {
-      "value": 1037,
+      "value": 3179,
       "n": null,
       "denominator": null
     },
     "rows_stg_vacancies_trudvsem": {
-      "value": 11632,
+      "value": 13621,
       "n": null,
       "denominator": null
     },
     "rows_stg_vacancies_trudvsem_snapshot": {
-      "value": 11991726,
+      "value": 54008337,
       "n": null,
       "denominator": null
     },
@@ -202,19 +202,444 @@
       "n": 9453,
       "denominator": 537987
     },
+    "it_candidates_trudvsem_snapshot_2026-07-22": {
+      "value": 0.0175,
+      "n": 9510,
+      "denominator": 544968
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-23": {
+      "value": 0.0175,
+      "n": 9445,
+      "denominator": 540758
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-24": {
+      "value": 0.0174,
+      "n": 9404,
+      "denominator": 540717
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-25": {
+      "value": 0.0174,
+      "n": 9280,
+      "denominator": 531822
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-26": {
+      "value": 0.0176,
+      "n": 9151,
+      "denominator": 521375
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-27": {
+      "value": 0.0173,
+      "n": 9096,
+      "denominator": 524413
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-28": {
+      "value": 0.0174,
+      "n": 9286,
+      "denominator": 533499
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-29": {
+      "value": 0.0173,
+      "n": 9366,
+      "denominator": 542580
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-30": {
+      "value": 0.0174,
+      "n": 9412,
+      "denominator": 539683
+    },
+    "it_candidates_trudvsem_snapshot_2026-07-31": {
+      "value": 0.0176,
+      "n": 9436,
+      "denominator": 537516
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-01": {
+      "value": 0.0175,
+      "n": 9110,
+      "denominator": 522059
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-02": {
+      "value": 0.0173,
+      "n": 8737,
+      "denominator": 504295
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-03": {
+      "value": 0.0171,
+      "n": 8913,
+      "denominator": 521464
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-04": {
+      "value": 0.017,
+      "n": 8919,
+      "denominator": 524361
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-05": {
+      "value": 0.0171,
+      "n": 9144,
+      "denominator": 534669
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-06": {
+      "value": 0.0174,
+      "n": 9247,
+      "denominator": 532334
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-07": {
+      "value": 0.0176,
+      "n": 9346,
+      "denominator": 531057
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-08": {
+      "value": 0.0176,
+      "n": 9234,
+      "denominator": 524136
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-09": {
+      "value": 0.0176,
+      "n": 9032,
+      "denominator": 514197
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-10": {
+      "value": 0.0174,
+      "n": 9035,
+      "denominator": 519307
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-11": {
+      "value": 0.0174,
+      "n": 9272,
+      "denominator": 532731
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-12": {
+      "value": 0.0175,
+      "n": 9437,
+      "denominator": 538791
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-13": {
+      "value": 0.0175,
+      "n": 9401,
+      "denominator": 537193
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-14": {
+      "value": 0.0176,
+      "n": 9438,
+      "denominator": 535200
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-15": {
+      "value": 0.0177,
+      "n": 9367,
+      "denominator": 529163
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-16": {
+      "value": 0.0178,
+      "n": 9248,
+      "denominator": 520880
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-17": {
+      "value": 0.0176,
+      "n": 9202,
+      "denominator": 523247
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-18": {
+      "value": 0.0175,
+      "n": 9343,
+      "denominator": 532622
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-19": {
+      "value": 0.0177,
+      "n": 9505,
+      "denominator": 537417
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-20": {
+      "value": 0.018,
+      "n": 9607,
+      "denominator": 533722
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-21": {
+      "value": 0.018,
+      "n": 9574,
+      "denominator": 531554
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-22": {
+      "value": 0.0182,
+      "n": 9516,
+      "denominator": 523499
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-23": {
+      "value": 0.0183,
+      "n": 9387,
+      "denominator": 513907
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-24": {
+      "value": 0.0181,
+      "n": 9311,
+      "denominator": 513863
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-25": {
+      "value": 0.0182,
+      "n": 9554,
+      "denominator": 526203
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-26": {
+      "value": 0.0182,
+      "n": 9707,
+      "denominator": 533066
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-27": {
+      "value": 0.0183,
+      "n": 9713,
+      "denominator": 529500
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-28": {
+      "value": 0.0184,
+      "n": 9732,
+      "denominator": 527879
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-29": {
+      "value": 0.0185,
+      "n": 9653,
+      "denominator": 520467
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-30": {
+      "value": 0.0186,
+      "n": 9506,
+      "denominator": 510587
+    },
+    "it_candidates_trudvsem_snapshot_2026-08-31": {
+      "value": 0.0183,
+      "n": 9369,
+      "denominator": 512717
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-01": {
+      "value": 0.0183,
+      "n": 9565,
+      "denominator": 521692
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-02": {
+      "value": 0.0184,
+      "n": 9759,
+      "denominator": 529455
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-03": {
+      "value": 0.0185,
+      "n": 9659,
+      "denominator": 522208
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-04": {
+      "value": 0.0185,
+      "n": 9642,
+      "denominator": 520205
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-05": {
+      "value": 0.0185,
+      "n": 9441,
+      "denominator": 511514
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-06": {
+      "value": 0.0184,
+      "n": 9221,
+      "denominator": 500381
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-07": {
+      "value": 0.0182,
+      "n": 9212,
+      "denominator": 505037
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-08": {
+      "value": 0.0184,
+      "n": 9494,
+      "denominator": 517202
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-09": {
+      "value": 0.0186,
+      "n": 9771,
+      "denominator": 526477
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-10": {
+      "value": 0.0187,
+      "n": 9769,
+      "denominator": 522303
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-11": {
+      "value": 0.0189,
+      "n": 9864,
+      "denominator": 521147
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-12": {
+      "value": 0.019,
+      "n": 9812,
+      "denominator": 515137
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-13": {
+      "value": 0.0191,
+      "n": 9698,
+      "denominator": 507661
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-14": {
+      "value": 0.019,
+      "n": 9682,
+      "denominator": 510227
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-15": {
+      "value": 0.0189,
+      "n": 9836,
+      "denominator": 520152
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-16": {
+      "value": 0.0189,
+      "n": 9962,
+      "denominator": 525701
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-17": {
+      "value": 0.0191,
+      "n": 9963,
+      "denominator": 522710
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-18": {
+      "value": 0.0191,
+      "n": 9902,
+      "denominator": 518546
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-19": {
+      "value": 0.019,
+      "n": 9749,
+      "denominator": 512976
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-20": {
+      "value": 0.0191,
+      "n": 9649,
+      "denominator": 506058
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-21": {
+      "value": 0.019,
+      "n": 9677,
+      "denominator": 508334
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-22": {
+      "value": 0.0189,
+      "n": 9788,
+      "denominator": 517183
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-23": {
+      "value": 0.0191,
+      "n": 9906,
+      "denominator": 519638
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-24": {
+      "value": 0.0191,
+      "n": 9837,
+      "denominator": 516139
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-25": {
+      "value": 0.0192,
+      "n": 9823,
+      "denominator": 511909
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-26": {
+      "value": 0.0192,
+      "n": 9709,
+      "denominator": 505550
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-27": {
+      "value": 0.0193,
+      "n": 9530,
+      "denominator": 494808
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-28": {
+      "value": 0.0192,
+      "n": 9519,
+      "denominator": 496155
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-29": {
+      "value": 0.019,
+      "n": 9620,
+      "denominator": 507022
+    },
+    "it_candidates_trudvsem_snapshot_2026-09-30": {
+      "value": 0.0189,
+      "n": 9739,
+      "denominator": 514244
+    },
+    "it_candidates_trudvsem_snapshot_2026-10-01": {
+      "value": 0.0191,
+      "n": 9715,
+      "denominator": 508891
+    },
+    "it_candidates_trudvsem_snapshot_2026-10-02": {
+      "value": 0.0191,
+      "n": 9661,
+      "denominator": 504796
+    },
+    "it_candidates_trudvsem_snapshot_2026-10-03": {
+      "value": 0.0191,
+      "n": 9453,
+      "denominator": 494396
+    },
+    "it_candidates_trudvsem_snapshot_2026-10-04": {
+      "value": 0.0191,
+      "n": 9193,
+      "denominator": 480166
+    },
+    "it_candidates_trudvsem_snapshot_2026-10-05": {
+      "value": 0.0192,
+      "n": 9232,
+      "denominator": 481267
+    },
+    "it_candidates_trudvsem_snapshot_2026-10-06": {
+      "value": 0.0192,
+      "n": 9436,
+      "denominator": 490495
+    },
+    "it_candidates_trudvsem_snapshot_2026-10-07": {
+      "value": 0.0194,
+      "n": 9680,
+      "denominator": 499817
+    },
+    "it_candidates_trudvsem_snapshot_2026-10-08": {
+      "value": 0.0194,
+      "n": 9627,
+      "denominator": 496419
+    },
+    "it_candidates_trudvsem_snapshot_2026-10-09": {
+      "value": 0.0196,
+      "n": 9706,
+      "denominator": 495389
+    },
+    "it_candidates_trudvsem_snapshot_2026-10-10": {
+      "value": 0.0197,
+      "n": 9600,
+      "denominator": 487786
+    },
     "it_candidates_trudvsem_api_2026-10-08": {
       "value": 0.729,
       "n": 8480,
       "denominator": 11632
     },
+    "it_candidates_trudvsem_api_2026-10-09": {
+      "value": 0.7635,
+      "n": 1143,
+      "denominator": 1497
+    },
+    "it_candidates_trudvsem_api_2026-10-10": {
+      "value": 0.6565,
+      "n": 323,
+      "denominator": 492
+    },
     "habr_future_date_posted_2026-10-08": {
-      "value": 0.0041,
-      "n": 2,
-      "denominator": 487
+      "value": 0.0038,
+      "n": 3,
+      "denominator": 786
+    },
+    "habr_future_date_posted_2026-10-09": {
+      "value": 0.0033,
+      "n": 3,
+      "denominator": 916
+    },
+    "habr_future_date_posted_2026-10-10": {
+      "value": 0.0028,
+      "n": 3,
+      "denominator": 1059
     }
   },
   "dbt_version": "1.12.5",
-  "build_finished_at": "2026-10-08T16:05:45.589777Z",
+  "build_finished_at": "2026-10-11T15:20:07.799605Z",
   "notes": {
     "it_candidates": "wide IT filter is_it_candidate, not measured against labels yet",
     "habr_future_date_posted": "cards whose datePosted is later than the fetch, of cards read that day"

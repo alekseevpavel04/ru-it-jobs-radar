@@ -1,96 +1,96 @@
 {
   "source_script": "src/radar/collect/trudvsem_snapshot.py",
   "command": "python -m radar.collect.trudvsem_snapshot",
-  "commit": "1573070-dirty",
-  "created_at": "2026-10-11T14:00:54+00:00",
+  "commit": "d5c0aa3-dirty",
+  "created_at": "2026-10-11T14:31:59+00:00",
   "metrics": {
     "snapshots_complete": {
-      "value": 100,
+      "value": 103,
       "n": null,
       "denominator": null
     },
     "rows_total": {
-      "value": 52521606,
+      "value": 54008337,
       "n": null,
       "denominator": null
     },
     "vacancies_in_files_total": {
-      "value": 52521607,
+      "value": 54008338,
       "n": null,
       "denominator": null
     },
     "rows_lost": {
       "value": 1.9e-08,
       "n": 1,
-      "denominator": 52521607
+      "denominator": 54008338
     },
     "parquet_bytes_total": {
-      "value": 37219071843,
+      "value": 38280097773,
       "n": null,
       "denominator": null
     },
     "downloads_timed": {
-      "value": 98,
-      "n": 98,
-      "denominator": 100
+      "value": 101,
+      "n": 101,
+      "denominator": 103
     },
     "pii_removed_address": {
-      "value": 1358830,
+      "value": 1398862,
       "n": null,
       "denominator": null
     },
     "pii_removed_company_code": {
-      "value": 1358830,
+      "value": 1398862,
       "n": null,
       "denominator": null
     },
     "pii_removed_contact_other": {
-      "value": 674996,
+      "value": 693003,
       "n": null,
       "denominator": null
     },
     "pii_removed_contact_person": {
-      "value": 52520309,
+      "value": 54007004,
       "n": null,
       "denominator": null
     },
     "pii_removed_email": {
-      "value": 91298974,
+      "value": 93889690,
       "n": null,
       "denominator": null
     },
     "pii_removed_employer_name": {
-      "value": 1346310,
+      "value": 1385989,
       "n": null,
       "denominator": null
     },
     "pii_removed_inn": {
-      "value": 1358489,
+      "value": 1398509,
       "n": null,
       "denominator": null
     },
     "pii_removed_nick": {
-      "value": 102898,
+      "value": 105725,
       "n": null,
       "denominator": null
     },
     "pii_removed_ogrn": {
-      "value": 1344495,
+      "value": 1384120,
       "n": null,
       "denominator": null
     },
     "pii_removed_person_name": {
-      "value": 1456121,
+      "value": 1497408,
       "n": null,
       "denominator": null
     },
     "pii_removed_phone": {
-      "value": 57538829,
+      "value": 59195444,
       "n": null,
       "denominator": null
     },
     "pii_removed_profile_link": {
-      "value": 56256,
+      "value": 57855,
       "n": null,
       "denominator": null
     }
@@ -3363,6 +3363,105 @@
       "download": {
         "file_bytes": 3321748460,
         "seconds": 96.9,
+        "source": "collector"
+      }
+    },
+    {
+      "dt": "2026-10-06",
+      "version": "20261006T135132",
+      "complete": true,
+      "rows": 490495,
+      "vacancies_in_file": 490495,
+      "rejected_not_written": 0,
+      "rejected_ids": [],
+      "parquet_bytes": 349910381,
+      "pii_removed": {
+        "address": 13203,
+        "company_code": 13203,
+        "contact_other": 5926,
+        "contact_person": 490483,
+        "email": 854238,
+        "employer_name": 13085,
+        "inn": 13199,
+        "nick": 928,
+        "ogrn": 13066,
+        "person_name": 13655,
+        "phone": 544949,
+        "profile_link": 533
+      },
+      "pii_method": "sum of the pii_removed column",
+      "seconds_parse": 447.3,
+      "rss_sampled_max_mb": 936,
+      "control_bytes_dropped": 11,
+      "download": {
+        "file_bytes": 3385400702,
+        "seconds": 104.6,
+        "source": "collector"
+      }
+    },
+    {
+      "dt": "2026-10-07",
+      "version": "20261007T135128",
+      "complete": true,
+      "rows": 499817,
+      "vacancies_in_file": 499817,
+      "rejected_not_written": 0,
+      "rejected_ids": [],
+      "parquet_bytes": 356565954,
+      "pii_removed": {
+        "address": 13407,
+        "company_code": 13407,
+        "contact_other": 6049,
+        "contact_person": 499805,
+        "email": 870676,
+        "employer_name": 13289,
+        "inn": 13403,
+        "nick": 952,
+        "ogrn": 13269,
+        "person_name": 13867,
+        "phone": 556821,
+        "profile_link": 534
+      },
+      "pii_method": "sum of the pii_removed column",
+      "seconds_parse": 486.0,
+      "rss_sampled_max_mb": 948,
+      "control_bytes_dropped": 11,
+      "download": {
+        "file_bytes": 3452230266,
+        "seconds": 169.3,
+        "source": "collector"
+      }
+    },
+    {
+      "dt": "2026-10-08",
+      "version": "20261008T135207",
+      "complete": true,
+      "rows": 496419,
+      "vacancies_in_file": 496419,
+      "rejected_not_written": 0,
+      "rejected_ids": [],
+      "parquet_bytes": 354549595,
+      "pii_removed": {
+        "address": 13422,
+        "company_code": 13422,
+        "contact_other": 6032,
+        "contact_person": 496407,
+        "email": 865802,
+        "employer_name": 13305,
+        "inn": 13418,
+        "nick": 947,
+        "ogrn": 13290,
+        "person_name": 13765,
+        "phone": 554845,
+        "profile_link": 532
+      },
+      "pii_method": "sum of the pii_removed column",
+      "seconds_parse": 358.4,
+      "rss_sampled_max_mb": 1001,
+      "control_bytes_dropped": 26,
+      "download": {
+        "file_bytes": 3428895538,
+        "seconds": 106.9,
         "source": "collector"
       }
     },

@@ -1,26 +1,26 @@
 {
   "source_script": "dbt/report.py",
   "command": "python dbt/report.py",
-  "commit": "3aea5fa-dirty",
-  "created_at": "2026-10-08T16:07:55+00:00",
+  "commit": "018064b-dirty",
+  "created_at": "2026-10-11T15:22:51+00:00",
   "metrics": {
     "rows_mart_weekly_dynamics": {
-      "value": 246,
+      "value": 9092,
       "n": null,
       "denominator": null
     },
     "rows_mart_salaries": {
-      "value": 429,
+      "value": 791,
       "n": null,
       "denominator": null
     },
     "rows_mart_skills": {
-      "value": 7507,
+      "value": 12256,
       "n": null,
       "denominator": null
     },
     "rows_mart_work_format": {
-      "value": 191,
+      "value": 199,
       "n": null,
       "denominator": null
     },
@@ -34,178 +34,188 @@
       "n": null,
       "denominator": null
     },
+    "rows_mart_skills_weekly": {
+      "value": 83146,
+      "n": null,
+      "denominator": null
+    },
+    "rows_mart_lifetime": {
+      "value": 12,
+      "n": null,
+      "denominator": null
+    },
     "it_records_habr": {
-      "value": 1037,
+      "value": 1098,
       "n": null,
       "denominator": null
     },
     "records_with_dedup_entity_habr": {
       "value": 1.0,
-      "n": 1037,
-      "denominator": 1037
+      "n": 1098,
+      "denominator": 1098
     },
     "it_records_trudvsem": {
-      "value": 8480,
+      "value": 8932,
       "n": null,
       "denominator": null
     },
     "records_with_dedup_entity_trudvsem": {
       "value": 1.0,
-      "n": 8480,
-      "denominator": 8480
+      "n": 8932,
+      "denominator": 8932
     },
     "it_records_trudvsem_snapshot": {
-      "value": 13234,
+      "value": 25670,
       "n": null,
       "denominator": null
     },
     "records_with_dedup_entity_trudvsem_snapshot": {
       "value": 1.0,
-      "n": 13234,
-      "denominator": 13234
+      "n": 25670,
+      "denominator": 25670
     },
     "vacancies_habr": {
-      "value": 1009,
+      "value": 1028,
       "n": null,
       "denominator": null
     },
     "not_it_titles_left_out_habr": {
-      "value": 0.1744,
-      "n": 176,
-      "denominator": 1009
+      "value": 0.1732,
+      "n": 178,
+      "denominator": 1028
     },
     "sole_proprietor_left_out_of_employers_habr": {
       "value": 0.0012,
       "n": 1,
-      "denominator": 833
+      "denominator": 850
     },
     "vacancies_trudvsem": {
-      "value": 15477,
+      "value": 19422,
       "n": null,
       "denominator": null
     },
     "not_it_titles_left_out_trudvsem": {
-      "value": 0.4638,
-      "n": 7179,
-      "denominator": 15477
+      "value": 0.4665,
+      "n": 9060,
+      "denominator": 19422
     },
     "sole_proprietor_left_out_of_employers_trudvsem": {
-      "value": 0.0262,
-      "n": 217,
-      "denominator": 8298
+      "value": 0.0242,
+      "n": 251,
+      "denominator": 10362
     },
     "vacancies_in_api_and_snapshot_counted_once": {
-      "value": 0.2794,
-      "n": 4324,
-      "denominator": 15477
+      "value": 0.4271,
+      "n": 8295,
+      "denominator": 19422
     },
     "telegram_vacancy_posts": {
-      "value": 946,
+      "value": 266110,
       "n": null,
       "denominator": null
     },
     "telegram_not_it_posts_left_out": {
-      "value": 0.0803,
-      "n": 76,
-      "denominator": 946
+      "value": 0.0765,
+      "n": 20364,
+      "denominator": 266110
     },
     "telegram_week_copies_removed": {
-      "value": 0.0349,
-      "n": 33,
-      "denominator": 946
+      "value": 0.0767,
+      "n": 20419,
+      "denominator": 266110
     },
     "telegram_posts_after_network_week_dedup": {
-      "value": 0.9693,
-      "n": 917,
-      "denominator": 946
+      "value": 0.9354,
+      "n": 248923,
+      "denominator": 266110
     },
     "telegram_posts_after_week_dedup": {
-      "value": 0.9651,
-      "n": 913,
-      "denominator": 946
+      "value": 0.9233,
+      "n": 245691,
+      "denominator": 266110
     },
     "ml_ds_data_share_latest_week_trudvsem_snapshot": {
-      "value": 0.0101,
-      "n": 53,
-      "denominator": 5259,
-      "week": "2026-07-20",
-      "days_collected": 2
+      "value": 0.0142,
+      "n": 74,
+      "denominator": 5197,
+      "week": "2026-10-05",
+      "days_collected": 6
     },
     "ml_ds_share_latest_week_trudvsem_snapshot": {
-      "value": 0.003,
-      "n": 16,
-      "denominator": 5259,
-      "week": "2026-07-20",
-      "days_collected": 2
+      "value": 0.0038,
+      "n": 20,
+      "denominator": 5197,
+      "week": "2026-10-05",
+      "days_collected": 6
     },
     "ml_ds_data_share_latest_week_trudvsem": {
-      "value": 0.0151,
-      "n": 59,
-      "denominator": 3913,
+      "value": 0.0161,
+      "n": 66,
+      "denominator": 4098,
       "week": "2026-10-05",
-      "days_collected": 1
+      "days_collected": 3
     },
     "ml_ds_share_latest_week_trudvsem": {
       "value": 0.0041,
-      "n": 16,
-      "denominator": 3913,
+      "n": 17,
+      "denominator": 4098,
       "week": "2026-10-05",
-      "days_collected": 1
+      "days_collected": 3
     },
     "ml_ds_data_share_latest_week_habr": {
-      "value": 0.1334,
-      "n": 111,
-      "denominator": 832,
+      "value": 0.1274,
+      "n": 108,
+      "denominator": 848,
       "week": "2026-10-05",
-      "days_collected": 1
+      "days_collected": 3
     },
     "ml_ds_share_latest_week_habr": {
-      "value": 0.0601,
-      "n": 50,
-      "denominator": 832,
+      "value": 0.0613,
+      "n": 52,
+      "denominator": 848,
       "week": "2026-10-05",
-      "days_collected": 1
+      "days_collected": 3
     },
     "telegram_posts_latest_full_week": {
-      "value": 0.9841,
-      "n": 248,
-      "denominator": 252,
+      "value": 0.9633,
+      "n": 551,
+      "denominator": 572,
       "week": "2026-09-28"
     },
     "salary_stated_rub_habr": {
-      "value": 0.1525,
-      "n": 127,
-      "denominator": 833
+      "value": 0.1424,
+      "n": 121,
+      "denominator": 850
     },
     "salary_other_currency_habr": {
-      "value": 0.0036,
-      "n": 3,
-      "denominator": 833
+      "value": 0.0059,
+      "n": 5,
+      "denominator": 850
     },
     "salary_stated_rub_trudvsem": {
-      "value": 0.9811,
-      "n": 8141,
-      "denominator": 8298
+      "value": 0.9772,
+      "n": 10126,
+      "denominator": 10362
     },
     "salary_other_currency_trudvsem": {
       "value": 0.0,
       "n": 0,
-      "denominator": 8298
+      "denominator": 10362
     },
     "salary_from_below_10000_rub_habr": {
       "value": 0.0,
       "n": 0,
-      "denominator": 82
+      "denominator": 89
     },
     "salary_from_below_10000_rub_trudvsem": {
       "value": 0.0015,
-      "n": 12,
-      "denominator": 8125
+      "n": 15,
+      "denominator": 10093
     },
     "open_to_junior_data_analytics_habr": {
-      "value": 0.0333,
+      "value": 0.04,
       "n": 1,
-      "denominator": 30
+      "denominator": 25
     },
     "open_to_junior_data_engineering_habr": {
       "value": 0.0968,
@@ -213,129 +223,129 @@
       "denominator": 31
     },
     "open_to_junior_ml_ds_habr": {
-      "value": 0.04,
+      "value": 0.0385,
       "n": 2,
-      "denominator": 50
+      "denominator": 52
     },
     "open_to_junior_data_analytics_telegram": {
-      "value": 0.0286,
-      "n": 1,
-      "denominator": 35
+      "value": 0.1794,
+      "n": 54,
+      "denominator": 301
     },
     "open_to_junior_data_engineering_telegram": {
-      "value": 0.0682,
-      "n": 3,
-      "denominator": 44
+      "value": 0.1561,
+      "n": 42,
+      "denominator": 269
     },
     "open_to_junior_ml_ds_telegram": {
-      "value": 0.1111,
-      "n": 10,
-      "denominator": 90
+      "value": 0.1727,
+      "n": 100,
+      "denominator": 579
     },
     "open_to_junior_data_analytics_trudvsem": {
-      "value": 0.225,
-      "n": 18,
-      "denominator": 80
+      "value": 0.188,
+      "n": 22,
+      "denominator": 117
     },
     "open_to_junior_data_engineering_trudvsem": {
-      "value": 0.25,
-      "n": 7,
-      "denominator": 28
+      "value": 0.3077,
+      "n": 12,
+      "denominator": 39
     },
     "open_to_junior_ml_ds_trudvsem": {
-      "value": 0.2683,
-      "n": 11,
-      "denominator": 41
+      "value": 0.2545,
+      "n": 14,
+      "denominator": 55
     },
     "open_to_junior_all_it_habr": {
-      "value": 0.078,
-      "n": 65,
-      "denominator": 833
+      "value": 0.0847,
+      "n": 72,
+      "denominator": 850
     },
     "open_to_junior_all_it_telegram": {
-      "value": 0.1213,
-      "n": 87,
-      "denominator": 717
+      "value": 0.1741,
+      "n": 1266,
+      "denominator": 7271
     },
     "open_to_junior_all_it_trudvsem": {
-      "value": 0.2737,
-      "n": 2271,
-      "denominator": 8298
+      "value": 0.2729,
+      "n": 2828,
+      "denominator": 10362
     },
     "remote_habr": {
-      "value": 0.4034,
-      "n": 336,
-      "denominator": 833
+      "value": 0.3612,
+      "n": 307,
+      "denominator": 850
     },
     "hybrid_habr": {
-      "value": 0.1465,
-      "n": 122,
-      "denominator": 833
+      "value": 0.26,
+      "n": 221,
+      "denominator": 850
     },
     "work_format_unknown_habr": {
       "value": 0.0,
       "n": 0,
-      "denominator": 833
+      "denominator": 850
     },
     "remote_telegram": {
-      "value": 0.5774,
-      "n": 414,
-      "denominator": 717
+      "value": 0.5229,
+      "n": 3802,
+      "denominator": 7271
     },
     "hybrid_telegram": {
-      "value": 0.2162,
-      "n": 155,
-      "denominator": 717
+      "value": 0.1957,
+      "n": 1423,
+      "denominator": 7271
     },
     "work_format_unknown_telegram": {
-      "value": 0.1464,
-      "n": 105,
-      "denominator": 717
+      "value": 0.2188,
+      "n": 1591,
+      "denominator": 7271
     },
     "remote_trudvsem": {
-      "value": 0.0556,
-      "n": 461,
-      "denominator": 8298
+      "value": 0.0564,
+      "n": 584,
+      "denominator": 10362
     },
     "hybrid_trudvsem": {
-      "value": 0.0223,
-      "n": 185,
-      "denominator": 8298
+      "value": 0.0269,
+      "n": 279,
+      "denominator": 10362
     },
     "work_format_unknown_trudvsem": {
-      "value": 0.8712,
-      "n": 7229,
-      "denominator": 8298
+      "value": 0.8618,
+      "n": 8930,
+      "denominator": 10362
     },
     "ml_ds_mentioning_python_habr": {
-      "value": 0.8,
-      "n": 40,
-      "denominator": 50
+      "value": 0.9038,
+      "n": 47,
+      "denominator": 52
     },
     "ml_ds_mentioning_sql_habr": {
-      "value": 0.38,
-      "n": 19,
-      "denominator": 50
+      "value": 0.5192,
+      "n": 27,
+      "denominator": 52
     },
     "ml_ds_mentioning_python_telegram": {
-      "value": 0.6444,
-      "n": 58,
-      "denominator": 90
+      "value": 0.4473,
+      "n": 259,
+      "denominator": 579
     },
     "ml_ds_mentioning_sql_telegram": {
-      "value": 0.2556,
-      "n": 23,
-      "denominator": 90
+      "value": 0.2021,
+      "n": 117,
+      "denominator": 579
     },
     "ml_ds_mentioning_python_trudvsem": {
-      "value": 0.8049,
-      "n": 33,
-      "denominator": 41
+      "value": 0.8182,
+      "n": 45,
+      "denominator": 55
     },
     "ml_ds_mentioning_sql_trudvsem": {
-      "value": 0.4878,
-      "n": 20,
-      "denominator": 41
+      "value": 0.4727,
+      "n": 26,
+      "denominator": 55
     },
     "employers_with_lifetime_habr": {
       "value": 0.0,
@@ -343,84 +353,79 @@
       "denominator": 100
     },
     "employers_with_lifetime_trudvsem": {
-      "value": 0.07,
-      "n": 7,
+      "value": 0.38,
+      "n": 38,
       "denominator": 100
     },
-    "build_seconds_skill_dictionary": {
-      "value": 0.13,
-      "n": null,
-      "denominator": null
-    },
-    "build_seconds_telegram_channels": {
-      "value": 0.11,
-      "n": null,
-      "denominator": null
-    },
-    "build_seconds_stg_telegram": {
-      "value": 0.39,
-      "n": null,
-      "denominator": null
-    },
     "build_seconds_int_vacancy_records": {
-      "value": 9.59,
+      "value": 44.2,
       "n": null,
       "denominator": null
     },
     "build_seconds_int_vacancy_entities": {
-      "value": 0.32,
-      "n": null,
-      "denominator": null
-    },
-    "build_seconds_mart_junior": {
-      "value": 0.3,
-      "n": null,
-      "denominator": null
-    },
-    "build_seconds_mart_employers": {
-      "value": 0.32,
-      "n": null,
-      "denominator": null
-    },
-    "build_seconds_mart_salaries": {
-      "value": 0.28,
-      "n": null,
-      "denominator": null
-    },
-    "build_seconds_mart_skills": {
-      "value": 0.28,
-      "n": null,
-      "denominator": null
-    },
-    "build_seconds_mart_work_format": {
       "value": 0.29,
       "n": null,
       "denominator": null
     },
+    "build_seconds_mart_lifetime": {
+      "value": 0.38,
+      "n": null,
+      "denominator": null
+    },
+    "build_seconds_mart_employers": {
+      "value": 0.29,
+      "n": null,
+      "denominator": null
+    },
+    "build_seconds_mart_junior": {
+      "value": 0.31,
+      "n": null,
+      "denominator": null
+    },
+    "build_seconds_mart_salaries": {
+      "value": 0.3,
+      "n": null,
+      "denominator": null
+    },
+    "build_seconds_mart_skills": {
+      "value": 0.3,
+      "n": null,
+      "denominator": null
+    },
+    "build_seconds_mart_skills_weekly": {
+      "value": 0.72,
+      "n": null,
+      "denominator": null
+    },
     "build_seconds_mart_weekly_dynamics": {
-      "value": 0.46,
+      "value": 0.76,
+      "n": null,
+      "denominator": null
+    },
+    "build_seconds_mart_work_format": {
+      "value": 0.28,
       "n": null,
       "denominator": null
     },
     "build_seconds_total": {
-      "value": 12.5,
+      "value": 47.8,
       "n": null,
       "denominator": null
     },
     "peak_memory_mib_int_vacancy_entities": {
-      "value": 20.0,
+      "value": 28.3,
       "n": null,
       "denominator": null,
       "statements": 1
     },
     "peak_memory_mib_int_vacancy_records": {
-      "value": 114.3,
+      "value": 780.4,
       "n": null,
       "denominator": null,
       "statements": 1
     },
     "peak_memory_mib_mart_employers": {
-      "value": 7.1,
+      "value": 10.6,
       "n": null,
       "denominator": null,
       "statements": 1
@@ -431,20 +436,32 @@
       "denominator": null,
       "statements": 1
     },
+    "peak_memory_mib_mart_lifetime": {
+      "value": 12.2,
+      "n": null,
+      "denominator": null,
+      "statements": 1
+    },
     "peak_memory_mib_mart_salaries": {
-      "value": 5.1,
+      "value": 6.3,
       "n": null,
       "denominator": null,
       "statements": 1
     },
     "peak_memory_mib_mart_skills": {
-      "value": 16.0,
+      "value": 18.0,
+      "n": null,
+      "denominator": null,
+      "statements": 1
+    },
+    "peak_memory_mib_mart_skills_weekly": {
+      "value": 96.2,
       "n": null,
       "denominator": null,
       "statements": 1
     },
     "peak_memory_mib_mart_weekly_dynamics": {
-      "value": 29.9,
+      "value": 52.1,
       "n": null,
       "denominator": null,
       "statements": 1
@@ -454,16 +471,10 @@
       "n": null,
       "denominator": null,
       "statements": 1
-    },
-    "peak_memory_mib_stg_telegram": {
-      "value": 33.6,
-      "n": null,
-      "denominator": null,
-      "statements": 1
     }
   },
   "dbt_version": "1.12.5",
-  "build_finished_at": "2026-10-08T16:05:45.589777Z",
+  "build_finished_at": "2026-10-11T15:20:07.799605Z",
   "notes": {
     "rules": "role bucket, grade, work format, region group, skill dictionary: dbt/macros/marts.sql",
     "vacancies": "dedup entities within a source family (trudvsem = API and snapshots), latest record",
