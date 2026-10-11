@@ -1,10 +1,10 @@
 {
   "source_file": "results/models/survival.json",
   "source_script": "src/radar/models/survival.py",
-  "commit": "a002729-dirty",
-  "created_at": "2026-10-11T10:48:46+00:00",
+  "commit": "018064b-dirty",
+  "created_at": "2026-10-11T15:23:08+00:00",
   "window_from": "2026-06-30",
-  "window_to": "2026-09-10",
+  "window_to": "2026-10-10",
   "event": "no open sighting on 7 consecutive collected snapshot days; closed on the first of them",
   "grace_days": 7,
   "medians": [
@@ -12,31 +12,31 @@
       "group": "experience",
       "level": "1-2",
       "cohort": "incident",
-      "median_days": 33.0,
+      "median_days": 31.0,
       "low": 31.0,
-      "high": 40.0,
-      "subjects": 1733,
-      "events": 683
+      "high": 34.0,
+      "subjects": 2098,
+      "events": 1140
     },
     {
       "group": "experience",
       "level": "3-5",
       "cohort": "incident",
-      "median_days": 39.0,
-      "low": 32.0,
-      "high": 58.0,
-      "subjects": 1256,
-      "events": 432
+      "median_days": 31.0,
+      "low": 31.0,
+      "high": 35.0,
+      "subjects": 1450,
+      "events": 770
     },
     {
       "group": "experience",
       "level": "6+",
       "cohort": "incident",
-      "median_days": 58.0,
+      "median_days": 55.0,
       "low": 32.0,
-      "high": null,
-      "subjects": 155,
-      "events": 46
+      "high": 80.0,
+      "subjects": 187,
+      "events": 81
     },
     {
       "group": "experience",
@@ -44,69 +44,69 @@
       "cohort": "incident",
       "median_days": 31.0,
       "low": 31.0,
-      "high": 32.0,
-      "subjects": 1128,
-      "events": 489
+      "high": 31.0,
+      "subjects": 1335,
+      "events": 801
     },
     {
       "group": "experience",
       "level": "1-2",
       "cohort": "prevalent",
-      "median_days": 34.0,
+      "median_days": 33.0,
       "low": 32.0,
-      "high": 36.0,
-      "subjects": 3815,
-      "events": 1846
+      "high": 35.0,
+      "subjects": 4180,
+      "events": 2454
     },
     {
       "group": "experience",
       "level": "3-5",
       "cohort": "prevalent",
-      "median_days": 32.0,
+      "median_days": 31.0,
       "low": 31.0,
-      "high": 34.0,
-      "subjects": 2821,
-      "events": 1245
+      "high": 32.0,
+      "subjects": 3017,
+      "events": 1714
     },
     {
       "group": "experience",
       "level": "6+",
       "cohort": "prevalent",
-      "median_days": 55.0,
-      "low": 34.0,
+      "median_days": 50.0,
+      "low": 33.0,
       "high": 63.0,
-      "subjects": 350,
-      "events": 152
+      "subjects": 383,
+      "events": 205
     },
     {
       "group": "experience",
       "level": "none",
       "cohort": "prevalent",
-      "median_days": 32.0,
+      "median_days": 31.0,
       "low": 31.0,
-      "high": 32.0,
-      "subjects": 2559,
-      "events": 1352
+      "high": 31.0,
+      "subjects": 2755,
+      "events": 1773
     },
     {
       "group": "overall",
       "level": "all",
       "cohort": "incident",
-      "median_days": 32.0,
+      "median_days": 31.0,
       "low": 31.0,
-      "high": 36.0,
-      "subjects": 4279,
-      "events": 1657
+      "high": 31.0,
+      "subjects": 5077,
+      "events": 2799
     },
     {
       "group": "overall",
       "level": "all",
       "cohort": "prevalent",
       "median_days": 32.0,
-      "low": 32.0,
-      "high": 33.0,
-      "subjects": 9560,
-      "events": 4606
+      "low": 31.0,
+      "high": 32.0,
+      "subjects": 10350,
+      "events": 6158
     },
     {
       "group": "region",
@@ -115,18 +115,18 @@
       "median_days": 31.0,
       "low": 30.0,
       "high": 31.0,
-      "subjects": 660,
-      "events": 285
+      "subjects": 808,
+      "events": 444
     },
     {
       "group": "region",
       "level": "other",
       "cohort": "incident",
-      "median_days": 38.0,
-      "low": 33.0,
-      "high": 43.0,
-      "subjects": 3000,
-      "events": 1111
+      "median_days": 33.0,
+      "low": 31.0,
+      "high": 37.0,
+      "subjects": 3515,
+      "events": 1875
     },
     {
       "group": "region",
@@ -135,38 +135,38 @@
       "median_days": 31.0,
       "low": 31.0,
       "high": 31.0,
-      "subjects": 258,
-      "events": 134
+      "subjects": 313,
+      "events": 199
     },
     {
       "group": "region",
       "level": "spb",
       "cohort": "incident",
-      "median_days": 32.0,
-      "low": 31.0,
-      "high": 37.0,
-      "subjects": 361,
-      "events": 127
+      "median_days": 30.0,
+      "low": 30.0,
+      "high": 31.0,
+      "subjects": 441,
+      "events": 281
     },
     {
       "group": "region",
       "level": "moscow",
       "cohort": "prevalent",
       "median_days": 31.0,
-      "low": 29.0,
+      "low": 31.0,
       "high": 31.0,
-      "subjects": 1253,
-      "events": 678
+      "subjects": 1402,
+      "events": 889
     },
     {
       "group": "region",
       "level": "other",
       "cohort": "prevalent",
-      "median_days": 35.0,
-      "low": 33.0,
-      "high": 39.0,
-      "subjects": 7087,
-      "events": 3300
+      "median_days": 34.0,
+      "low": 32.0,
+      "high": 36.0,
+      "subjects": 7590,
+      "events": 4382
     },
     {
       "group": "region",
@@ -175,8 +175,8 @@
       "median_days": 31.0,
       "low": 31.0,
       "high": 32.0,
-      "subjects": 525,
-      "events": 289
+      "subjects": 583,
+      "events": 371
     },
     {
       "group": "region",
@@ -184,9 +184,9 @@
       "cohort": "prevalent",
       "median_days": 31.0,
       "low": 31.0,
-      "high": 33.0,
-      "subjects": 694,
-      "events": 339
+      "high": 31.0,
+      "subjects": 774,
+      "events": 516
     },
     {
       "group": "role",
@@ -195,28 +195,28 @@
       "median_days": 30.0,
       "low": 30.0,
       "high": 31.0,
-      "subjects": 165,
-      "events": 75
+      "subjects": 209,
+      "events": 129
     },
     {
       "group": "role",
       "level": "dev",
       "cohort": "incident",
-      "median_days": 49.0,
-      "low": 40.0,
-      "high": 55.0,
-      "subjects": 1406,
-      "events": 506
+      "median_days": 38.0,
+      "low": 33.0,
+      "high": 44.0,
+      "subjects": 1666,
+      "events": 850
     },
     {
       "group": "role",
       "level": "ml_ds_data",
       "cohort": "incident",
-      "median_days": 29.0,
-      "low": 19.0,
+      "median_days": 30.0,
+      "low": 21.0,
       "high": 31.0,
-      "subjects": 127,
-      "events": 65
+      "subjects": 139,
+      "events": 89
     },
     {
       "group": "role",
@@ -225,48 +225,48 @@
       "median_days": 31.0,
       "low": 31.0,
       "high": 31.0,
-      "subjects": 917,
-      "events": 378
+      "subjects": 1053,
+      "events": 628
     },
     {
       "group": "role",
       "level": "qa_devops_sys",
       "cohort": "incident",
-      "median_days": 33.0,
+      "median_days": 31.0,
       "low": 31.0,
-      "high": 39.0,
-      "subjects": 1664,
-      "events": 633
+      "high": 34.0,
+      "subjects": 2010,
+      "events": 1103
     },
     {
       "group": "role",
       "level": "analyst",
       "cohort": "prevalent",
       "median_days": 31.0,
-      "low": 26.0,
+      "low": 28.0,
       "high": 31.0,
-      "subjects": 312,
-      "events": 177
+      "subjects": 355,
+      "events": 238
     },
     {
       "group": "role",
       "level": "dev",
       "cohort": "prevalent",
-      "median_days": 39.0,
+      "median_days": 36.0,
       "low": 33.0,
-      "high": 45.0,
-      "subjects": 3693,
-      "events": 1639
+      "high": 42.0,
+      "subjects": 3950,
+      "events": 2160
     },
     {
       "group": "role",
       "level": "ml_ds_data",
       "cohort": "prevalent",
-      "median_days": 23.0,
-      "low": 19.0,
-      "high": 27.0,
-      "subjects": 199,
-      "events": 125
+      "median_days": 26.0,
+      "low": 20.0,
+      "high": 29.0,
+      "subjects": 211,
+      "events": 152
     },
     {
       "group": "role",
@@ -274,49 +274,49 @@
       "cohort": "prevalent",
       "median_days": 31.0,
       "low": 31.0,
-      "high": 32.0,
-      "subjects": 1758,
-      "events": 895
+      "high": 31.0,
+      "subjects": 1894,
+      "events": 1210
     },
     {
       "group": "role",
       "level": "qa_devops_sys",
       "cohort": "prevalent",
-      "median_days": 34.0,
+      "median_days": 32.0,
       "low": 32.0,
-      "high": 39.0,
-      "subjects": 3598,
-      "events": 1770
+      "high": 35.0,
+      "subjects": 3940,
+      "events": 2398
     },
     {
       "group": "salary",
       "level": "given",
       "cohort": "incident",
-      "median_days": 35.0,
-      "low": 32.0,
-      "high": 39.0,
-      "subjects": 4112,
-      "events": 1556
+      "median_days": 31.0,
+      "low": 31.0,
+      "high": 32.0,
+      "subjects": 4902,
+      "events": 2669
     },
     {
       "group": "salary",
       "level": "not_given",
       "cohort": "incident",
       "median_days": 16.0,
-      "low": 14.0,
+      "low": 13.0,
       "high": 20.0,
-      "subjects": 167,
-      "events": 101
+      "subjects": 175,
+      "events": 130
     },
     {
       "group": "salary",
       "level": "given",
       "cohort": "prevalent",
-      "median_days": 33.0,
+      "median_days": 32.0,
       "low": 32.0,
-      "high": 34.0,
-      "subjects": 9331,
-      "events": 4450
+      "high": 33.0,
+      "subjects": 10115,
+      "events": 5972
     },
     {
       "group": "salary",
@@ -325,35 +325,35 @@
       "median_days": null,
       "low": null,
       "high": null,
-      "subjects": 229,
-      "events": 156
+      "subjects": 235,
+      "events": 186
     }
   ],
   "overall_curve": [
     {
       "day": 7,
-      "survival": 0.9159,
-      "at_risk": 3009
+      "survival": 0.9192,
+      "at_risk": 3766
     },
     {
       "day": 14,
-      "survival": 0.8604,
-      "at_risk": 2812
+      "survival": 0.8532,
+      "at_risk": 3585
     },
     {
       "day": 30,
-      "survival": 0.6948,
-      "at_risk": 2302
+      "survival": 0.6868,
+      "at_risk": 3093
     },
     {
       "day": 60,
-      "survival": 0.3246,
-      "at_risk": 1164
+      "survival": 0.3126,
+      "at_risk": 1512
     },
     {
       "day": 90,
-      "survival": 0.2195,
-      "at_risk": 1046
+      "survival": 0.2095,
+      "at_risk": 1328
     }
   ],
   "limits": [

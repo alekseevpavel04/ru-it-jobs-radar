@@ -1,6 +1,6 @@
 {
-  "exported_at": "2026-10-11T12:50:50Z",
-  "commit": "8ce8f10-dirty",
+  "exported_at": "2026-10-11T15:25:22Z",
+  "commit": "ee368d2",
   "data_through": "2026-10-10",
   "periods": {
     "habr": {
@@ -24,14 +24,14 @@
   "salary_min_n": 9,
   "salary_min_n_coverage": 0.9609,
   "files": {
-    "weekly_vacancies.json": 270,
-    "weekly_telegram.json": 1934,
-    "skills.json": 745,
-    "skills_by_role.json": 2745,
-    "skills_junior.json": 428,
+    "weekly_vacancies.json": 306,
+    "weekly_telegram.json": 1936,
+    "skills.json": 749,
+    "skills_by_role.json": 3118,
+    "skills_junior.json": 444,
     "work_format.json": 199,
     "junior.json": 55,
-    "salaries.json": 790,
+    "salaries.json": 791,
     "lifetime_observed.json": 12
   }
 }
