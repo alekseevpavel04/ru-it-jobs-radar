@@ -11,6 +11,7 @@ from radar.site import export
 from radar.site.export import (
     Junior,
     Lifetime,
+    LifetimeObserved,
     Meta,
     Salary,
     SkillByRole,
@@ -39,6 +40,7 @@ ROW_MODELS: dict[str, type[BaseModel]] = {
     "work_format.json": WorkFormat,
     "junior.json": Junior,
     "salaries.json": Salary,
+    "lifetime_observed.json": LifetimeObserved,
 }
 
 
@@ -57,6 +59,7 @@ def weekly_row(week: str, source: str, bucket: str, **counts: int | None) -> dic
         "telegram_posts": None if vacancy else counts.get("posts"),
         "telegram_posts_before_dedup": None if vacancy else counts.get("before"),
         "telegram_channels": None if vacancy else counts.get("channels"),
+        "telegram_channels_week": None if vacancy else counts.get("channels_week", counts.get("channels")),
     }
 
 
@@ -124,6 +127,8 @@ def marts() -> dict[str, list[dict[str, Any]]]:
         "mart_salaries": [
             {
                 "source": "habr",
+                "level": "cell",
+                "role_group": "ml_ds_data",
                 "role_bucket": "ml_ds",
                 "grade": "senior",
                 "region_group": "remote",
@@ -138,6 +143,28 @@ def marts() -> dict[str, list[dict[str, Any]]]:
                 "salary_to_p25": None,
                 "salary_to_median": None,
                 "salary_to_p75": None,
+            }
+        ],
+        "mart_lifetime": [
+            {
+                "source": "trudvsem_snapshot",
+                "level": "source",
+                "role_group": "all",
+                "vacancies": 120,
+                "still_open": 60,
+                "closed": 60,
+                "closed_in_gap": 0,
+                "censored": 60,
+                "left_censored": 50,
+                "closed_by_repost": 5,
+                "closed_in_quantiles": 30,
+                "duration_days_p25": 11.0,
+                "duration_days_median": 28.0,
+                "duration_days_p75": 31.0,
+                "duration_days_p90": 45.8,
+                "period_from": "2026-06-30",
+                "period_to": "2026-10-10",
+                "window_days": 103,
             }
         ],
     }
@@ -263,7 +290,7 @@ def test_exported_fields_are_aggregates_only() -> None:
             *("week", "source", "role_bucket", "days_collected", "complete_days", "first_collected_week"),
             *("active", "new", "closed"),
         },
-        "weekly_telegram.json": {"week", "role_bucket", "posts", "posts_before_dedup", "channels"},
+        "weekly_telegram.json": {"week", "role_bucket", "posts", "posts_before_dedup", "channels", "channels_week"},
         "skills.json": {"source", "skill", "category", "vacancies_mentioning", "vacancies_total"},
         "skills_by_role.json": {
             *("source", "role_bucket", "skill", "category", "vacancies_mentioning", "vacancies_in_bucket"),
@@ -275,9 +302,14 @@ def test_exported_fields_are_aggregates_only() -> None:
             *("no_experience_required", "grade_known", "experience_field_stated"),
         },
         "salaries.json": {
-            *("source", "role_bucket", "grade", "region_group", "vacancies", "with_salary_rub"),
-            *("with_salary_other_currency", "with_from", "with_to"),
+            *("source", "level", "role_group", "role_bucket", "grade", "region_group", "vacancies"),
+            *("with_salary_rub", "with_salary_other_currency", "with_from", "with_to"),
             *quantiles,
+        },
+        "lifetime_observed.json": {
+            *("source", "level", "role_group", "vacancies", "still_open", "closed", "closed_in_gap", "censored"),
+            *("left_censored", "closed_by_repost", "closed_in_quantiles", "period_from", "period_to", "window_days"),
+            *(f"duration_days_{q}" for q in ("p25", "median", "p75", "p90")),
         },
     }
 
@@ -359,3 +391,19 @@ def test_lifetime_needs_the_closure_rule() -> None:
     broken = {**SURVIVAL, "definitions": {"event": "closed when gone"}}
     with pytest.raises(ValueError, match="grace"):
         lifetime(broken, "results/models/survival.json")
+
+
+def test_salary_rows_keep_their_level(marts: dict[str, list[dict[str, Any]]]) -> None:
+    group = {**marts["mart_salaries"][0], "level": "group", "role_bucket": "all", "grade": "all", "region_group": "all"}
+    rows = built({**marts, "mart_salaries": [*marts["mart_salaries"], group]})["salaries.json"]
+    assert [(r.level, r.role_group, r.role_bucket) for r in rows] == [
+        ("cell", "ml_ds_data", "ml_ds"),
+        ("group", "ml_ds_data", "all"),
+    ]
+    with pytest.raises(ValidationError):
+        Salary(**{**group, "level": "everything"})
+
+
+def test_observed_lifetime_passes_through(marts: dict[str, list[dict[str, Any]]]) -> None:
+    (row,) = built(marts)["lifetime_observed.json"]
+    assert (row.closed_in_quantiles, row.duration_days_median, row.window_days) == (30, 28.0, 103)

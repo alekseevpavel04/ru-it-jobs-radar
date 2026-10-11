@@ -6,7 +6,7 @@ toc: true
 # IT-вакансии в открытых источниках
 
 ```js
-import {ROLE, ROLE_GROUP, ROLE_GROUP_ORDER, SOURCE, int, pct, share, day, dateLong, dateShort, monthTick} from "./components/labels.js";
+import {ROLE, ROLE_GROUP, ROLE_GROUP_ORDER, SOURCE, int, pct, share, day, dateLong, dateShort, monthTick, ofChannels} from "./components/labels.js";
 
 const meta = FileAttachment("data/meta.json").json();
 const weeklyRows = FileAttachment("data/weekly_vacancies.json").json();
@@ -51,8 +51,8 @@ const telegramWeeks = d3
     (v) => ({
       posts: d3.sum(v, (d) => d.posts),
       before: d3.sum(v, (d) => d.posts_before_dedup),
-      // channels are counted per role bucket and cannot be summed; the largest bucket's count is a floor
-      channelsAtLeast: d3.max(v, (d) => d.channels)
+      // channels that carried any vacancy post of the week, every bucket together (the same on each row)
+      channels: v[0].channels_week
     }),
     (d) => d.week
   )
@@ -64,8 +64,8 @@ const telegramLast13 = telegramComplete.slice(-13);
 // Channel coverage of the last weeks against the half year before them: a rise in posts that comes
 // with more channels is the sample growing, and the page says so.
 const telegramEarlier = telegramComplete.slice(-30, -4);
-const earlierChannels = d3.max(telegramEarlier, (w) => w.channelsAtLeast);
-const widerWeeks = telegramLast4.filter((w) => w.channelsAtLeast > earlierChannels);
+const earlierChannels = d3.max(telegramEarlier, (w) => w.channels);
+const widerWeeks = telegramLast4.filter((w) => w.channels > earlierChannels);
 const coverageGrew = widerWeeks.length > 0;
 ```
 
@@ -258,7 +258,22 @@ Plot.plot({
     Plot.lineY(telegramComplete, {x: "date", y: "before", stroke: () => "все копии"}),
     Plot.lineY(telegramComplete, {x: "date", y: "posts", stroke: () => "после удаления повторов"}),
     Plot.dot(widerWeeks, {x: "date", y: "posts", r: 5, stroke: "#4269d0", fill: "white"}),
-    Plot.tip(telegramComplete, Plot.pointerX({x: "date", y: "posts", title: (d) => `неделя с ${dateLong(d.week)}\n${int(d.posts)} постов (всех копий ${int(d.before)})\nканалов не меньше ${d.channelsAtLeast}`})),
+    Plot.tip(telegramComplete, Plot.pointerX({x: "date", y: "posts", title: (d) => `неделя с ${dateLong(d.week)}\n${int(d.posts)} постов (всех копий ${int(d.before)})\nканалов ${d.channels}`})),
+    Plot.ruleY([0])
+  ]
+})
+```
+
+```js
+Plot.plot({
+  width,
+  height: 120,
+  marginLeft: 50,
+  x: {type: "utc", label: null, tickFormat: monthTick},
+  y: {grid: true, label: "каналов с постами", tickFormat: int, ticks: 3},
+  marks: [
+    Plot.lineY(telegramComplete, {x: "date", y: "channels", stroke: "#606060"}),
+    Plot.dot(widerWeeks, {x: "date", y: "channels", r: 4, stroke: "#606060", fill: "white"}),
     Plot.ruleY([0])
   ]
 })
@@ -266,7 +281,7 @@ Plot.plot({
 
 <div class="note-small">
 
-Посты с вакансиями из публичных каналов за ${meta.telegram_weeks_shown} недель с ${dateLong(meta.telegram_first_week_shown)}; неполная последняя неделя не показана. Пост не равен вакансии: один пост может содержать несколько вакансий, одна вакансия выходит в нескольких каналах (повтор текста в ту же неделю считается один раз). Ряд зависит от того, сколько каналов попадает в неделю. ${coverageGrew ? `Отмеченные точки: ${widerWeeks.map((w) => `на неделе с ${dateShort(w.week)} посты одной роли пришли из ${w.channelsAtLeast} каналов`).join(", ")}, а за ${telegramEarlier.length} недель до этого не больше чем из ${earlierChannels}. Рост в такие недели говорит об охвате выборки, а не о росте рынка.` : "Это сигнал активности сообществ, а не объём рынка."}
+Посты с вакансиями из публичных каналов за ${meta.telegram_weeks_shown} недель с ${dateLong(meta.telegram_first_week_shown)}; неполная последняя неделя не показана. Пост не равен вакансии: один пост может содержать несколько вакансий, одна вакансия выходит в нескольких каналах (повтор текста в ту же неделю считается один раз). Ряд зависит от того, сколько каналов попадает в неделю. ${coverageGrew ? `Отмеченные точки: ${widerWeeks.map((w) => `на неделе с ${dateShort(w.week)} посты пришли из ${ofChannels(w.channels)}`).join(", ")}, а в ${telegramEarlier.length} неделях до этого не больше чем из ${ofChannels(earlierChannels)}. Рост в такие недели говорит об охвате выборки, а не о росте рынка.` : "Это сигнал активности сообществ, а не объём рынка."}
 
 </div>
 </div>

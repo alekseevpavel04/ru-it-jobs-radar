@@ -9,9 +9,10 @@ latest complete week, sends each to ClickHouse as the read-only account, saves t
 bundle and calls `render`. `run` does the same from the host without n8n. Both paths use the standard
 library only up to the HTTP call: inside the n8n container there is a bare CPython and no venv.
 
-Only aggregates of marts.* are read and written (DECISIONS 2). Week over week works for what the marts
-split by week (vacancies, Telegram posts). Skills and salaries are period aggregates, so every issue
-keeps its own figures in data/<week>.json and the next issue compares its figures with them.
+Only aggregates of marts.* are read and written (DECISIONS 2). Vacancies, Telegram posts and skills
+are compared week over week from the marts (mart_weekly_dynamics, mart_skills_weekly). Salaries are a
+period aggregate (mart_salaries, role group and source levels), so every issue keeps its own figures in
+data/<week>.json and the next issue compares its salaries with them.
 """
 
 import argparse
@@ -35,17 +36,17 @@ MSK = timezone(timedelta(hours=3), "MSK")
 # The API slice of trudvsem is a daily feed of modified records, not the open stock, so the digest
 # follows the full portal snapshots and Habr (mart_weekly_dynamics description).
 VACANCY_SOURCES = ("trudvsem_snapshot", "habr")
-FAMILIES = ("trudvsem", "habr", "telegram")
+SKILL_SOURCES = ("trudvsem_snapshot", "habr", "telegram")
+SALARY_SOURCES = ("trudvsem", "habr")
 TOP_SKILLS = 5
 # Below this base a relative change ("+1200 %" from 1 to 13) says nothing; the counts stay.
 CHANGE_MIN_BASE = 20
 TOP_MOVERS = 3
-# A skill moves in the digest only when both issues count at least this many mentions of it.
+# A skill moves in the digest only when both weeks count at least this many mentions of it.
 MOVER_MIN_MENTIONS = 20
 # Same rule as radar.site.export.salary_min_n() (the smallest cell whose 95% interval for the median
 # drops the min and the max); a test pins the two together, export itself needs pydantic.
 SALARY_MIN_N = 9
-TOP_SALARY_CELLS = 5
 
 # Russian names of the mart codes, as on the site (site/src/components/labels.js; a test keeps them equal).
 ROLE = {
@@ -89,6 +90,14 @@ ROLE_GROUP = {
     "design": "Дизайн и прочее IT",
     "other_it": "Дизайн и прочее IT",
     "multi_post": "Несколько вакансий в посте",
+}
+# Role groups of mart_salaries (seed role_groups), as MART_GROUP on the site.
+MART_GROUP = {
+    "dev": "Разработка, включая 1С",
+    "ml_ds_data": "ML, DS, данные",
+    "analyst": "Бизнес- и системный анализ",
+    "qa_devops_sys": "QA, DevOps, админы, ИБ",
+    "other_it": "Дизайн, управление, прочие IT",
 }
 GRADE = {
     "intern": "стажёр",
@@ -158,7 +167,7 @@ def queries(monday: date) -> dict[str, str]:
         "weekly": (
             "SELECT toString(week) AS week, source, role_bucket, days_collected, complete_days, "
             "is_first_collected_week, vacancies_active, vacancies_new, vacancies_closed, telegram_posts, "
-            "telegram_posts_before_dedup FROM marts.mart_weekly_dynamics "
+            "telegram_posts_before_dedup, telegram_channels_week FROM marts.mart_weekly_dynamics "
             f"WHERE week IN ('{previous}', '{current}') AND source IN ('trudvsem_snapshot', 'habr', 'telegram') "
             "ORDER BY source, week, role_bucket FORMAT JSON"
         ),
@@ -167,23 +176,21 @@ def queries(monday: date) -> dict[str, str]:
             f"WHERE week <= '{current}' GROUP BY source ORDER BY source FORMAT JSON"
         ),
         "skills": (
-            "SELECT source, skill, any(skill_category) AS category, sum(vacancies_mentioning) AS mentioning "
-            "FROM marts.mart_skills GROUP BY source, skill ORDER BY source, skill FORMAT JSON"
+            "SELECT toString(week) AS week, source, skill, vacancies_mentioning, vacancies_in_week "
+            f"FROM marts.mart_skills_weekly WHERE week IN ('{previous}', '{current}') "
+            "AND source IN ('trudvsem_snapshot', 'habr', 'telegram') ORDER BY source, week, skill FORMAT JSON"
         ),
-        # mart_skills carries cell sizes only on rows of a mentioned skill; mart_junior counts the same
-        # units for every bucket (see radar.site.export.bucket_sizes).
-        "skill_base": (
-            "SELECT source, sum(vacancies) AS vacancies FROM marts.mart_junior GROUP BY source ORDER BY source "
-            "FORMAT JSON"
-        ),
+        # the newest Telegram post day, to say when the week is not fully collected
         "periods": (
             "SELECT source, toString(min(period_from)) AS period_from, toString(max(period_to)) AS period_to "
             "FROM marts.mart_skills GROUP BY source ORDER BY source FORMAT JSON"
         ),
+        # one row per role group and one for the whole source; never the cells, which would count every
+        # vacancy once per level
         "salaries": (
-            "SELECT source, role_bucket, grade, region_group, with_from, salary_from_median, with_to, "
-            "salary_to_median FROM marts.mart_salaries ORDER BY source, role_bucket, grade, region_group "
-            "FORMAT JSON"
+            "SELECT source, level, role_group, vacancies, with_salary_rub, with_from, salary_from_median, with_to, "
+            "salary_to_median FROM marts.mart_salaries WHERE level IN ('group', 'source') "
+            "ORDER BY source, level, role_group FORMAT JSON"
         ),
     }
 
@@ -219,6 +226,7 @@ class VacancySection:
 class TelegramWeek:
     posts: int
     posts_before_dedup: int
+    channels: int
     groups: dict[str, int]
 
 
@@ -230,18 +238,23 @@ class TelegramSection:
 
 
 @dataclass(frozen=True)
-class SkillFamily:
-    period_from: str
-    period_to: str
+class SkillWeek:
     base: int
     mentions: dict[str, int]
 
 
 @dataclass(frozen=True)
-class SalaryCell:
-    role_bucket: str
-    grade: str
-    region_group: str
+class SkillSection:
+    source: str
+    current: SkillWeek | None
+    previous: SkillWeek | None
+
+
+@dataclass(frozen=True)
+class SalaryGroup:
+    role_group: str
+    vacancies: int
+    with_salary_rub: int
     with_from: int
     from_median: int | None
     with_to: int
@@ -257,11 +270,11 @@ class Issue:
     generated_by: str
     vacancies: list[VacancySection]
     telegram: TelegramSection
-    skills: dict[str, SkillFamily]
-    salaries: dict[str, list[SalaryCell]]
+    skills: list[SkillSection]
+    salaries: dict[str, list[SalaryGroup]]
+    salary_periods: dict[str, dict[str, str]]
     compared_with: str | None = None
-    skills_previous: dict[str, SkillFamily] = field(default_factory=dict)
-    salaries_previous: dict[str, list[SalaryCell]] = field(default_factory=dict)
+    salaries_previous: dict[str, list[SalaryGroup]] = field(default_factory=dict)
 
 
 def as_int(value: Any) -> int | None:
@@ -321,6 +334,8 @@ def telegram_week(rows: list[Mapping[str, Any]]) -> TelegramWeek | None:
     return TelegramWeek(
         posts=sum(need_int(r["telegram_posts"]) for r in rows),
         posts_before_dedup=sum(need_int(r["telegram_posts_before_dedup"]) for r in rows),
+        # the same channel count on every row of the week: channels with any post, buckets together
+        channels=need_int(rows[0]["telegram_channels_week"]),
         groups=dict(sorted(groups.items())),
     )
 
@@ -349,41 +364,40 @@ def build(
     ]
 
     periods = {r["source"]: r for r in results["periods"]}
-    base = {r["source"]: need_int(r["vacancies"]) for r in results["skill_base"]}
-    mentions: dict[str, dict[str, int]] = defaultdict(dict)
-    for r in results["skills"]:
-        mentions[r["source"]][r["skill"]] = need_int(r["mentioning"])
-    skills = {}
-    for family in FAMILIES:
-        if family not in periods:
-            continue
-        family_mentions = dict(sorted(mentions[family].items()))
-        over = [s for s, n in family_mentions.items() if n > base.get(family, 0)]
-        if over:
-            raise ValueError(f"{family}: mentions above the base of {base.get(family, 0)} for {over[:5]}")
-        skills[family] = SkillFamily(
-            period_from=periods[family]["period_from"],
-            period_to=periods[family]["period_to"],
-            base=base.get(family, 0),
-            mentions=family_mentions,
-        )
 
-    salaries: dict[str, list[SalaryCell]] = {}
-    for family in ("trudvsem", "habr"):
-        cells = [
-            SalaryCell(
-                role_bucket=r["role_bucket"],
-                grade=r["grade"],
-                region_group=r["region_group"],
+    def skill_week(source: str, week: str) -> SkillWeek | None:
+        found = [r for r in results["skills"] if r["source"] == source and r["week"] == week]
+        if not found:
+            return None
+        base = need_int(found[0]["vacancies_in_week"])
+        mentions = {r["skill"]: need_int(r["vacancies_mentioning"]) for r in found}
+        over = sorted(s for s, n in mentions.items() if n > base)
+        if over:
+            raise ValueError(f"{source} {week}: mentions above the base of {base} for {over[:5]}")
+        return SkillWeek(base=base, mentions=dict(sorted(mentions.items())))
+
+    skills = [
+        SkillSection(source=s, current=skill_week(s, current_day), previous=skill_week(s, previous_day))
+        for s in SKILL_SOURCES
+    ]
+
+    salaries: dict[str, list[SalaryGroup]] = {}
+    for family in SALARY_SOURCES:
+        groups = [
+            SalaryGroup(
+                role_group=r["role_group"] if r["level"] == "group" else "all",
+                vacancies=need_int(r["vacancies"]),
+                with_salary_rub=need_int(r["with_salary_rub"]),
                 with_from=need_int(r["with_from"]),
                 from_median=as_int(r["salary_from_median"]),
                 with_to=need_int(r["with_to"]),
                 to_median=as_int(r["salary_to_median"]),
             )
             for r in results["salaries"]
-            if r["source"] == family and need_int(r["with_from"]) >= SALARY_MIN_N
+            if r["source"] == family and r["level"] in ("group", "source")
         ]
-        salaries[family] = sorted(cells, key=lambda c: (-c.with_from, c.role_bucket, c.grade, c.region_group))
+        order = [*MART_GROUP, "all"]
+        salaries[family] = sorted(groups, key=lambda g: order.index(g.role_group))
 
     issue = Issue(
         week=week_label(monday),
@@ -399,21 +413,27 @@ def build(
         ),
         skills=skills,
         salaries=salaries,
+        salary_periods={
+            family: {"period_from": periods[family]["period_from"], "period_to": periods[family]["period_to"]}
+            for family in SALARY_SOURCES
+            if family in periods
+        },
     )
     if previous is None:
         return issue
     return replace(
         issue,
         compared_with=str(previous["week"]),
-        skills_previous={family: SkillFamily(**doc) for family, doc in previous["skills"].items()},
-        salaries_previous={family: [SalaryCell(**c) for c in cells] for family, cells in previous["salaries"].items()},
+        salaries_previous={
+            family: [SalaryGroup(**g) for g in groups] for family, groups in previous["salaries"].items()
+        },
     )
 
 
 def figures(issue: Issue) -> dict[str, Any]:
     """What data/<week>.json keeps: the issue's own figures, not the previous issue's it was compared with."""
     doc = asdict(issue)
-    del doc["skills_previous"], doc["salaries_previous"]
+    del doc["salaries_previous"]
     return doc
 
 
@@ -446,6 +466,11 @@ def change(current: int, previous: int) -> str:
 
 def points(delta: float) -> str:
     return f"{_sign(delta)}{abs(delta) * 100:.1f}".replace(".", ",") + f"{NBSP}п.{NBSP}п."
+
+
+def of_channels(n: int) -> str:
+    """'из N каналов' agrees with N: из 51 канала, из 47 каналов."""
+    return f"{num(n)} {'канала' if n % 10 == 1 and n % 100 != 11 else 'каналов'}"
 
 
 def rub(x: int | None) -> str:
@@ -522,10 +547,12 @@ def render_telegram(section: TelegramSection, week_end: str) -> list[str]:
         return [*lines, "Постов за эту неделю в витрине нет.", ""]
     text = (
         f"Постов с вакансиями {num(cur.posts)}: это {share(cur.posts, cur.posts_before_dedup)} "
-        "опубликованных, остальные повторяли уже учтённый текст."
+        f"опубликованных, остальные повторяли уже учтённый текст. Посты пришли из {of_channels(cur.channels)}."
     )
     if prev is not None:
-        text += f" Неделей раньше {num(prev.posts)}: {change(cur.posts, prev.posts)}."
+        text += f" Неделей раньше {num(prev.posts)} из {of_channels(prev.channels)}: {change(cur.posts, prev.posts)}."
+        if cur.channels != prev.channels:
+            text += " Число каналов в неделе изменилось, поэтому изменение постов говорит и об охвате выборки."
     text += " Считаются посты, а не вакансии: в одном посте их бывает несколько."
     if section.newest_post_day is not None and section.newest_post_day < week_end:
         text += f" Неделя собрана не полностью: последний пост в витрине от {day_text(section.newest_post_day)}."
@@ -541,8 +568,8 @@ def render_telegram(section: TelegramSection, week_end: str) -> list[str]:
     return [*lines, *_table(head, rows), ""]
 
 
-def movers(now: SkillFamily, before: SkillFamily) -> list[tuple[str, float]]:
-    """Skills whose share moved since the previous issue, largest moves first, up then down."""
+def movers(now: SkillWeek, before: SkillWeek) -> list[tuple[str, float]]:
+    """Skills whose share of the week's vacancies moved since the week before, largest first, up then down."""
     if not now.base or not before.base:
         return []
     moved = []
@@ -558,43 +585,40 @@ def movers(now: SkillFamily, before: SkillFamily) -> list[tuple[str, float]]:
 
 
 def render_skills(issue: Issue) -> list[str]:
+    days = {v.source: v.current.days_collected for v in issue.vacancies if v.current is not None}
     lines = [
         "## Навыки",
         "",
-        "Доля вакансий, где навык упомянут в заголовке, тексте или тегах, за весь период сбора источника; "
-        "у Telegram доля постов за последние 100 дней. По неделям витрина навыков не делится, поэтому "
-        "движение навыков считается к прошлому выпуску.",
+        "Доля вакансий недели, где навык упомянут в заголовке, тексте или тегах (у Telegram доля постов "
+        f"недели), и сдвиг к прошлой неделе для навыков, упомянутых хотя бы {MOVER_MIN_MENTIONS} раз в обе "
+        "недели. Неделя из немногих собранных дней даёт меньшую базу, но доли остаются сравнимыми.",
         "",
     ]
-    for family, s in issue.skills.items():
-        top = sorted(s.mentions.items(), key=lambda kv: (-kv[1], kv[0]))[:TOP_SKILLS]
-        listed = ", ".join(f"{skill} {share(n, s.base)}" for skill, n in top)
-        unit = "постов" if family == "telegram" else "вакансий"
-        lines.append(f"- {SOURCE[family]}, {span(s.period_from, s.period_to)}, {unit} {num(s.base)}: {listed}.")
-    lines.append("")
-    if issue.compared_with is None:
-        return [
-            *lines,
-            "Сравнения с прошлым выпуском нет: это первый выпуск. Его доли сохранены в "
-            f"`site/src/digest/data/{issue.week}.json`, следующий выпуск сравнит с ними.",
-            "",
-        ]
-    lines += [
-        f"Движение к выпуску {issue.compared_with}, навыки с {MOVER_MIN_MENTIONS} упоминаниями и больше в обоих:",
-        "",
-    ]
-    for family, s in issue.skills.items():
-        before = issue.skills_previous.get(family)
-        moved = movers(s, before) if before is not None else []
-        if before is None or not moved:
-            lines.append(f"- {SOURCE[family]}: заметных сдвигов нет.")
+    for section in issue.skills:
+        cur, prev = section.current, section.previous
+        name = SOURCE[section.source]
+        if cur is None:
+            lines.append(f"- {name}: за эту неделю данных нет.")
             continue
-        parts = [
-            f"{skill} {points(delta)} (было {share(before.mentions[skill], before.base)}, "
-            f"стало {share(s.mentions[skill], s.base)})"
-            for skill, delta in moved
-        ]
-        lines.append(f"- {SOURCE[family]}: " + "; ".join(parts) + ".")
+        unit = "постов" if section.source == "telegram" else "вакансий"
+        top = sorted(cur.mentions.items(), key=lambda kv: (-kv[1], kv[0]))[:TOP_SKILLS]
+        listed = ", ".join(f"{skill} {share(n, cur.base)}" for skill, n in top)
+        collected = f", дней сбора {days[section.source]}" if section.source in days else ""
+        text = f"- {name}, {unit} недели {num(cur.base)}{collected}: {listed}."
+        if prev is None:
+            text += " Прошлой недели в витрине нет, сдвигов не считаем."
+        else:
+            moved = movers(cur, prev)
+            if moved:
+                parts = [
+                    f"{skill} {points(delta)} (было {share(prev.mentions[skill], prev.base)}, "
+                    f"стало {share(cur.mentions[skill], cur.base)})"
+                    for skill, delta in moved
+                ]
+                text += " Сдвиги к прошлой неделе: " + "; ".join(parts) + "."
+            else:
+                text += " Заметных сдвигов к прошлой неделе нет."
+        lines.append(text)
     return [*lines, ""]
 
 
@@ -602,42 +626,44 @@ def render_salaries(issue: Issue) -> list[str]:
     lines = [
         "## Зарплаты",
         "",
-        "Медианы границ вилки в рублях в месяц, как их указывают работодатели, за весь период сбора. В выпуск "
-        f"попадают ячейки (роль, грейд, регион), где нижнюю границу назвали хотя бы {SALARY_MIN_N} вакансий, "
-        f"показаны {TOP_SALARY_CELLS} самых больших; n рядом с медианой это число вакансий с этой границей.",
+        "Медианы границ вилки в рублях в месяц, как их указывают работодатели, по всем вакансиям группы ролей "
+        "за весь период сбора; медиана посчитана в витрине по вакансиям группы. Граница показана, если её "
+        f"назвали хотя бы {SALARY_MIN_N} вакансий; n рядом с медианой это число вакансий с этой границей.",
         "",
     ]
-    for family, cells in issue.salaries.items():
-        if not cells:
-            lines += [
-                f"{SOURCE[family]}: ни одна ячейка пока не набрала {SALARY_MIN_N} вакансий с нижней границей.",
-                "",
-            ]
-            continue
-        before = {(c.role_bucket, c.grade, c.region_group): c for c in issue.salaries_previous.get(family, [])}
-        head = ["Роль", "Грейд", "Регион", "Медиана «от»", "n", "Медиана «до»", "n"]
+    for family, groups in issue.salaries.items():
+        period = issue.salary_periods.get(family)
+        title = f"{SOURCE[family]}, {span(period['period_from'], period['period_to'])}" if period else SOURCE[family]
+        before = {g.role_group: g for g in issue.salaries_previous.get(family, [])}
+        head = ["Группа ролей", "С суммой", "Медиана «от»", "n", "Медиана «до»", "n"]
         if issue.compared_with is not None:
             head.append(f"«От» к {issue.compared_with}")
         rows = []
-        for c in cells[:TOP_SALARY_CELLS]:
+        for g in groups:
             row = [
-                ROLE[c.role_bucket],
-                GRADE[c.grade],
-                REGION[c.region_group],
-                rub(c.from_median),
-                num(c.with_from),
-                rub(c.to_median),
-                num(c.with_to),
+                "Все IT-вакансии" if g.role_group == "all" else MART_GROUP[g.role_group],
+                share(g.with_salary_rub, g.vacancies),
+                rub(g.from_median) if g.with_from >= SALARY_MIN_N else "мало данных",
+                num(g.with_from),
+                rub(g.to_median) if g.with_to >= SALARY_MIN_N else "мало данных",
+                num(g.with_to),
             ]
             if issue.compared_with is not None:
-                old = before.get((c.role_bucket, c.grade, c.region_group))
-                if old is None or old.from_median is None or c.from_median is None:
-                    row.append("ячейки не было")
-                else:
-                    delta = c.from_median - old.from_median
+                old = before.get(g.role_group)
+                comparable = old is not None and min(old.with_from, g.with_from) >= SALARY_MIN_N
+                if comparable and old is not None and old.from_median is not None and g.from_median is not None:
+                    delta = g.from_median - old.from_median
                     row.append(f"{_sign(delta)}{rub(abs(delta))}")
+                else:
+                    row.append("нет сравнения")
             rows.append(row)
-        lines += [f"{SOURCE[family]}:", "", *_table(head, rows, text_columns=3), ""]
+        lines += [f"{title}:", "", *_table(head, rows), ""]
+    if issue.compared_with is None:
+        lines += [
+            "Сравнения зарплат с прошлым выпуском нет: это первый выпуск. Его медианы сохранены в "
+            f"`site/src/digest/data/{issue.week}.json`, следующий выпуск сравнит с ними.",
+            "",
+        ]
     return lines
 
 
@@ -666,7 +692,7 @@ def render(issue: Issue) -> str:
         "---",
         "",
         f"Числа выпуска лежат в репозитории в `site/src/digest/data/{issue.week}.json`. Источник: витрины "
-        "mart_weekly_dynamics, mart_skills, mart_junior и mart_salaries. Выпуск собирает сценарий n8n "
+        "mart_weekly_dynamics, mart_skills_weekly, mart_skills и mart_salaries. Выпуск собирает сценарий n8n "
         f"`{WORKFLOW}` по понедельникам в 09:00 по Москве.",
         "",
     ]

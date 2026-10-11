@@ -17,6 +17,7 @@ ROW_MODELS = {
     "work_format": export.WorkFormat,
     "junior": export.Junior,
     "salaries": export.Salary,
+    "lifetime_observed": export.LifetimeObserved,
 }
 
 

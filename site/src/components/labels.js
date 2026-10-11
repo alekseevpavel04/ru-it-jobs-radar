@@ -131,6 +131,17 @@ export const REGION = {
 };
 export const REGION_ORDER = ["moscow", "spb", "other", "remote", "unknown"];
 
+// Role groups of the marts (seed role_groups: salary totals, lifetime) and of the survival model; coarser
+// than ROLE_GROUP above, which only colours the weekly chart.
+export const MART_GROUP = {
+  dev: "Разработка, включая 1С",
+  ml_ds_data: "ML, DS, данные",
+  analyst: "Бизнес- и системный анализ",
+  qa_devops_sys: "QA, DevOps, админы, ИБ",
+  other_it: "Дизайн, управление, прочие IT"
+};
+export const MART_GROUP_ORDER = ["dev", "ml_ds_data", "analyst", "qa_devops_sys", "other_it"];
+
 // Groups and levels of the lifetime model (src/radar/models/survival.py, LABELS_RU there).
 export const LIFETIME = {
   overall: "все IT-вакансии",
@@ -158,3 +169,6 @@ export const LIFETIME = {
 
 const money = new Intl.NumberFormat("ru-RU", {maximumFractionDigits: 0});
 export const rub = (x) => (x === null || x === undefined ? "" : `${money.format(x)} ₽`);
+
+// "из N каналов" agrees with N: из 51 канала, из 47 каналов.
+export const ofChannels = (n) => `${int(n)} ${n % 10 === 1 && n % 100 !== 11 ? "канала" : "каналов"}`;

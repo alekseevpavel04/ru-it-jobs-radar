@@ -25,6 +25,13 @@ from radar.site.digest import (
 )
 
 W40 = date(2026, 9, 28)
+
+
+def plain(text: str) -> str:
+    """The page with ordinary spaces where numbers carry non-breaking ones."""
+    return text.replace(" ", " ")
+
+
 W39 = date(2026, 9, 21)
 NOW = datetime(2026, 10, 11, 12, 0, tzinfo=UTC)
 
@@ -42,6 +49,7 @@ def weekly_row(week: date, source: str, bucket: str, **counts: Any) -> dict[str,
         "vacancies_closed": None,
         "telegram_posts": None,
         "telegram_posts_before_dedup": None,
+        "telegram_channels_week": None,
     }
     row.update(counts)
     return row
@@ -61,8 +69,48 @@ def snapshot(week: date, bucket: str, active: int, new: int, closed: int) -> dic
     )
 
 
-def telegram(week: date, bucket: str, posts: int, before: int) -> dict[str, Any]:
-    return weekly_row(week, "telegram", bucket, telegram_posts=str(posts), telegram_posts_before_dedup=str(before))
+def telegram(week: date, bucket: str, posts: int, before: int, channels: int = 30) -> dict[str, Any]:
+    return weekly_row(
+        week,
+        "telegram",
+        bucket,
+        telegram_posts=str(posts),
+        telegram_posts_before_dedup=str(before),
+        telegram_channels_week=str(channels),
+    )
+
+
+def skill_rows(
+    week: date, counts: dict[str, int], base: int, source: str = "trudvsem_snapshot"
+) -> list[dict[str, Any]]:
+    return [
+        {
+            "week": week.isoformat(),
+            "source": source,
+            "skill": skill,
+            "vacancies_mentioning": str(n),
+            "vacancies_in_week": str(base),
+        }
+        for skill, n in counts.items()
+    ]
+
+
+def salary_row(
+    source: str, level: str, group: str, n_from: int, from_median: float | None, **rest: Any
+) -> dict[str, Any]:
+    row: dict[str, Any] = {
+        "source": source,
+        "level": level,
+        "role_group": group,
+        "vacancies": "500",
+        "with_salary_rub": "450",
+        "with_from": str(n_from),
+        "salary_from_median": from_median,
+        "with_to": str(n_from),
+        "salary_to_median": None if from_median is None else from_median + 50000,
+    }
+    row.update(rest)
+    return row
 
 
 def results(skill_counts: dict[str, int] | None = None, base: int = 1000) -> dict[str, list[dict[str, Any]]]:
@@ -87,45 +135,29 @@ def results(skill_counts: dict[str, int] | None = None, base: int = 1000) -> dic
             ),
             telegram(W39, "backend", 100, 110),
             telegram(W39, "security", 1, 1),
-            telegram(W40, "backend", 120, 130),
-            telegram(W40, "security", 13, 14),
-            telegram(W40, "multi_post", 30, 30),
+            telegram(W40, "backend", 120, 130, channels=41),
+            telegram(W40, "security", 13, 14, channels=41),
+            telegram(W40, "multi_post", 30, 30, channels=41),
         ],
         "last_week": [
             {"source": "habr", "last_week": W40.isoformat()},
             {"source": "telegram", "last_week": W40.isoformat()},
             {"source": "trudvsem_snapshot", "last_week": W40.isoformat()},
         ],
+        # W39 shares: Python 28.0%, SQL 26.0%, Docker 1.5%; W40 from the arguments over `base`
         "skills": [
-            {"source": "trudvsem", "skill": skill, "category": "language", "mentioning": str(n)}
-            for skill, n in skill_counts.items()
+            *skill_rows(W39, {"Python": 280, "SQL": 260, "Docker": 15}, 1000),
+            *skill_rows(W40, skill_counts, base),
         ],
-        "skill_base": [{"source": "trudvsem", "vacancies": str(base)}],
         "periods": [
             {"source": "trudvsem", "period_from": "2026-06-30", "period_to": "2026-10-04"},
             {"source": "telegram", "period_from": "2026-07-01", "period_to": "2026-10-08"},
         ],
         "salaries": [
-            {
-                "source": "trudvsem",
-                "role_bucket": "backend",
-                "grade": "middle",
-                "region_group": "moscow",
-                "with_from": "40",
-                "salary_from_median": 150000.0,
-                "with_to": "30",
-                "salary_to_median": 200000.0,
-            },
-            {
-                "source": "trudvsem",
-                "role_bucket": "qa",
-                "grade": "junior",
-                "region_group": "other",
-                "with_from": "8",
-                "salary_from_median": 60000.0,
-                "with_to": "4",
-                "salary_to_median": None,
-            },
+            salary_row("trudvsem", "group", "dev", 40, 150000.0),
+            salary_row("trudvsem", "group", "ml_ds_data", 8, 60000.0),
+            salary_row("trudvsem", "source", "all", 48, 140000.0),
+            salary_row("habr", "source", "all", 3, None),
         ],
     }
 
@@ -144,11 +176,14 @@ def test_iso_week_labels_across_the_year_boundary() -> None:
 
 def test_queries_read_only_the_marts_of_the_week() -> None:
     sqls = queries(W40)
-    assert set(sqls) == {"weekly", "last_week", "skills", "skill_base", "periods", "salaries"}
+    assert set(sqls) == {"weekly", "last_week", "skills", "periods", "salaries"}
     for sql in sqls.values():
         assert re.findall(r"\bFROM\s+(\w+)\.", sql) == ["marts"]
         assert sql.endswith("FORMAT JSON")
     assert "'2026-09-21', '2026-09-28'" in sqls["weekly"]
+    assert "FROM marts.mart_skills_weekly WHERE week IN ('2026-09-21', '2026-09-28')" in sqls["skills"]
+    # cells and the other levels of mart_salaries would count every vacancy once per level
+    assert "WHERE level IN ('group', 'source')" in sqls["salaries"]
 
 
 def test_build_sums_buckets_into_role_groups() -> None:
@@ -164,9 +199,17 @@ def test_build_sums_buckets_into_role_groups() -> None:
     assert issue.telegram.current.groups["Несколько вакансий в посте"] == 30
 
 
-def test_salaries_keep_cells_from_the_threshold_only() -> None:
-    cells = build(W40, results(), NOW).salaries["trudvsem"]
-    assert [(c.role_bucket, c.from_median, c.to_median) for c in cells] == [("backend", 150000, 200000)]
+def test_salaries_are_the_group_and_source_rows() -> None:
+    groups = build(W40, results(), NOW).salaries
+    assert [(g.role_group, g.with_from, g.from_median) for g in groups["trudvsem"]] == [
+        ("dev", 40, 150000),
+        ("ml_ds_data", 8, 60000),
+        ("all", 48, 140000),
+    ]
+    page = render(build(W40, results(), NOW))
+    # below the threshold the median is not printed, its n is
+    assert "| ML, DS, данные | 450 из 500 (90,0 %) | мало данных | 8 | мало данных | 8 |" in plain(page)
+    assert "| Разработка, включая 1С | 450 из 500 (90,0 %) | 150 000 ₽ | 40 | 200 000 ₽ | 40 |" in plain(page)
 
 
 def test_salary_threshold_is_the_site_rule() -> None:
@@ -176,6 +219,16 @@ def test_salary_threshold_is_the_site_rule() -> None:
 def test_mentions_above_the_base_stop_the_issue() -> None:
     with pytest.raises(ValueError, match="above the base"):
         build(W40, results({"Python": 1200}, base=1000), NOW)
+
+
+def test_skills_move_week_over_week_from_the_weekly_mart() -> None:
+    page = render(build(W40, results({"Python": 360, "SQL": 250, "Docker": 15}, base=1100), NOW))
+    # Python 28.0% -> 32.7%, SQL 26.0% -> 22.7%; Docker (15 mentions) stays under the floor of a mover.
+    assert "Python +4,7 п. п. (было 280 из 1 000 (28,0 %), стало 360 из 1 100 (32,7 %))" in plain(page)
+    assert "SQL -3,3 п. п." in plain(page)
+    assert "Docker" not in page.split("Сдвиги к прошлой неделе")[1].split("\n")[0]
+    assert "- «Работа в России», снимки портала, вакансий недели 1 100, дней сбора 7:" in plain(page)
+    assert "- Хабр Карьера: за эту неделю данных нет." in plain(page)
 
 
 def test_change_prints_a_percent_only_from_a_base_that_carries_it() -> None:
@@ -193,11 +246,13 @@ def test_page_text() -> None:
     assert "Новых 140 из 1 290 (10,9 %)." in page
     assert "| Разработка | 1 080 | 1 000 | +80 (+8,0 %) | 115 | 81 |" in page
     assert "это первая неделя сбора, вакансии первого дня в новые не входят" in page
-    assert "Постов с вакансиями 163: это 163 из 174 (93,7 %) опубликованных" in page
+    assert "Постов с вакансиями 163: это 163 из 174 (93,7 %) опубликованных" in plain(page)
+    assert "Посты пришли из 41 канала. Неделей раньше 101 из 30 каналов" in plain(page)
+    assert "Число каналов в неделе изменилось" in plain(page)
     assert "| Информационная безопасность | 13 | 1 | +12 |" in page
-    assert "Python 300 из 1 000 (30,0 %)" in page
-    assert "Сравнения с прошлым выпуском нет" in page
-    assert "Хабр Карьера: ни одна ячейка пока не набрала 9 вакансий" in page
+    assert "Python 300 из 1 000 (30,0 %)" in plain(page)
+    assert "Сравнения зарплат с прошлым выпуском нет" in page
+    assert "| Все IT-вакансии | 450 из 500 (90,0 %) | мало данных | 3 | мало данных | 3 |" in plain(page)
     assert "—" not in page and "–" not in page
     assert "None" not in page
 
@@ -210,9 +265,9 @@ def test_a_week_without_data_names_the_last_one() -> None:
     assert "За эту неделю данных нет. Последняя неделя с данными началась 7 сентября 2026." in page
 
 
-def test_next_issue_compares_skills_and_salaries_with_the_previous(tmp_path: Path) -> None:
+def test_next_issue_compares_salaries_with_the_previous(tmp_path: Path) -> None:
     write(build(W40, results(), NOW), tmp_path)
-    after = results({"Python": 360, "SQL": 250, "Docker": 15}, base=1100)
+    after = results()
     after["salaries"][0]["salary_from_median"] = 155000.0
     w41 = date(2026, 10, 5)
     previous = previous_issue(tmp_path, week_label(w41))
@@ -221,12 +276,10 @@ def test_next_issue_compares_skills_and_salaries_with_the_previous(tmp_path: Pat
     issue = build(w41, after, NOW, previous)
     assert issue.compared_with == "2026-W40"
     page = render(issue)
-    # Python 30.0% -> 32.7%, SQL 25.0% -> 22.7%; Docker (15 mentions) stays under the floor of a mover.
-    assert "Python +2,7 п. п. (было 300 из 1 000 (30,0 %), стало 360 из 1 100" in page
-    assert "SQL -2,3 п. п." in page
-    assert "Docker" not in page.split("Движение к выпуску")[1]
-    assert "| +5 000 ₽ |" in page
-    assert "skills_previous" not in figures(issue)
+    assert "| +5 000 ₽ |" in plain(page)
+    # a group under the threshold in either issue is not compared
+    assert "| мало данных | 8 | нет сравнения |" in plain(page)
+    assert "salaries_previous" not in figures(issue)
 
 
 def test_index_lists_issues_newest_first() -> None:
@@ -272,6 +325,7 @@ def test_labels_are_the_site_labels() -> None:
     assert _js_object(source, "ROLE_GROUP") == digest.ROLE_GROUP
     assert _js_object(source, "GRADE") == digest.GRADE
     assert _js_object(source, "REGION") == digest.REGION
+    assert _js_object(source, "MART_GROUP") == digest.MART_GROUP
 
 
 def test_workflow_calls_the_module_and_is_wired() -> None:

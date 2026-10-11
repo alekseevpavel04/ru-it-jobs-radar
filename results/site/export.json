@@ -1,11 +1,11 @@
 {
   "source_script": "src/radar/site/export.py",
   "command": "python -m radar.site.export",
-  "commit": "0542fff-dirty",
-  "created_at": "2026-10-11T11:14:53+00:00",
+  "commit": "8ce8f10-dirty",
+  "created_at": "2026-10-11T12:50:50+00:00",
   "metrics": {
     "bytes_meta": {
-      "value": 883,
+      "value": 917,
       "n": null,
       "denominator": null
     },
@@ -15,62 +15,62 @@
       "denominator": null
     },
     "rows_weekly_vacancies": {
-      "value": 252,
+      "value": 270,
       "n": null,
       "denominator": null
     },
     "bytes_weekly_vacancies": {
-      "value": 44303,
+      "value": 47478,
       "n": null,
       "denominator": null
     },
     "rows_weekly_telegram": {
-      "value": 1753,
+      "value": 1934,
       "n": null,
       "denominator": null
     },
     "bytes_weekly_telegram": {
-      "value": 169818,
+      "value": 226521,
       "n": null,
       "denominator": null
     },
     "rows_skills": {
-      "value": 736,
+      "value": 745,
       "n": null,
       "denominator": null
     },
     "bytes_skills": {
-      "value": 80661,
+      "value": 81702,
       "n": null,
       "denominator": null
     },
     "rows_skills_by_role": {
-      "value": 2509,
+      "value": 2745,
       "n": null,
       "denominator": null
     },
     "bytes_skills_by_role": {
-      "value": 349906,
+      "value": 383244,
       "n": null,
       "denominator": null
     },
     "rows_skills_junior": {
-      "value": 411,
+      "value": 428,
       "n": null,
       "denominator": null
     },
     "bytes_skills_junior": {
-      "value": 47715,
+      "value": 49889,
       "n": null,
       "denominator": null
     },
     "rows_work_format": {
-      "value": 198,
+      "value": 199,
       "n": null,
       "denominator": null
     },
     "bytes_work_format": {
-      "value": 22279,
+      "value": 22455,
       "n": null,
       "denominator": null
     },
@@ -80,17 +80,27 @@
       "denominator": null
     },
     "bytes_junior": {
-      "value": 10752,
+      "value": 10793,
       "n": null,
       "denominator": null
     },
     "rows_salaries": {
-      "value": 475,
+      "value": 790,
       "n": null,
       "denominator": null
     },
     "bytes_salaries": {
-      "value": 152306,
+      "value": 285404,
+      "n": null,
+      "denominator": null
+    },
+    "rows_lifetime_observed": {
+      "value": 12,
+      "n": null,
+      "denominator": null
+    },
+    "bytes_lifetime_observed": {
+      "value": 4595,
       "n": null,
       "denominator": null
     },

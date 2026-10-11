@@ -6,16 +6,20 @@ toc: true
 # Сколько вакансия остаётся открытой
 
 ```js
-import {LIFETIME, SOURCE, int, pct, dateLong} from "./components/labels.js";
+import {LIFETIME, MART_GROUP, MART_GROUP_ORDER, SOURCE, int, pct, share, dateLong} from "./components/labels.js";
 
 const life = FileAttachment("data/lifetime.json").json();
+const observed = FileAttachment("data/lifetime_observed.json").json();
 ```
 
-<div class="card">
+На странице два разных числа, и они отвечают на разные вопросы.
 
-**Страница в работе.** Витрины со сроками жизни по всем источникам пока нет; здесь медианы из модели выживаемости, посчитанной по ежедневным снимкам портала «Работа в России». Файл расчёта: <code>${life.source_file}</code>, расчёт от ${dateLong(life.created_at.slice(0, 10))}.
+- **Оценка выживаемости** (модель проекта, файл <code>${life.source_file}</code>, расчёт от ${dateLong(life.created_at.slice(0, 10))}): сколько вакансия живёт, с учётом тех, что к концу наблюдения ещё открыты. Это ответ на вопрос «сколько обычно висит вакансия».
+- **Наблюдаемые закрытия** (витрина mart_lifetime): сроки только тех вакансий, закрытие которых попало в окно сбора. Долгие вакансии успевают закрыться реже, поэтому эти сроки короче настоящих; они показывают, как распределены уже случившиеся закрытия.
 
-</div>
+Оба расчёта сейчас стоят на ежедневных снимках портала «Работа в России»: Хабр Карьера собирается слишком недолго.
+
+## Оценка выживаемости
 
 ```js
 const overall = life.medians.find((m) => m.group === "overall" && m.cohort === "prevalent");
@@ -38,7 +42,7 @@ const interval = (m) =>
   </div>
 </div>
 
-## Медианы по группам
+### Медианы по группам
 
 ```js
 const cohort = view(
@@ -102,7 +106,61 @@ Plot.plot({
 
 </div>
 
+## Наблюдаемые закрытия
+
+```js
+const obsSources = [...new Set(observed.map((d) => d.source))];
+const obsSnap = observed.filter((d) => d.source === "trudvsem_snapshot");
+const obsTotal = obsSnap.find((d) => d.level === "source");
+const obsGroups = obsSnap
+  .filter((d) => d.level === "group")
+  .sort((a, b) => MART_GROUP_ORDER.indexOf(a.role_group) - MART_GROUP_ORDER.indexOf(b.role_group))
+  .map((d) => ({...d, label: MART_GROUP[d.role_group]}));
+const obsRows = [{...obsTotal, label: "все IT-вакансии"}, ...obsGroups];
+const obsShown = obsRows.filter((d) => d.duration_days_median !== null);
+const habrObs = observed.find((d) => d.source === "habr" && d.level === "source");
+```
+
+<div class="card">
+
+${SOURCE.trudvsem_snapshot}, сбор с ${dateLong(obsTotal.period_from)} по ${dateLong(obsTotal.period_to)} (${int(obsTotal.window_days)} дн.). Сроки от первого появления в снимке до закрытия. В расчёт попали ${share(obsTotal.closed_in_quantiles, obsTotal.vacancies)} вакансий: не входят ещё открытые (${int(obsTotal.still_open)}), открытые уже в первый день сбора, когда начало неизвестно (${int(obsTotal.left_censored)}, пересекаются с остальными), и закрытые перепубликацией под новым номером (${int(obsTotal.closed_by_repost)}). Точка: медиана, отрезок: от 25-го до 75-го процентиля, риска: 90-й процентиль. Вакансия здесь это номер объявления у источника, а не сущность после дедупликации, как в модели.
+
+```js
+Plot.plot({
+  width,
+  height: obsShown.length * 30 + 50,
+  marginLeft: width < 600 ? 170 : 230,
+  marginRight: width < 600 ? 10 : 110,
+  x: {grid: true, label: "дней до закрытия", domain: [0, d3.max(obsShown, (d) => d.duration_days_p90) * 1.1]},
+  y: {label: null, domain: obsShown.map((d) => d.label)},
+  marks: [
+    Plot.link(obsShown, {y1: "label", y2: "label", x1: "duration_days_p25", x2: "duration_days_p75", stroke: "#efb118", strokeWidth: 3}),
+    Plot.tickX(obsShown, {y: "label", x: "duration_days_p90", stroke: "#efb118"}),
+    Plot.dot(obsShown, {
+      y: "label",
+      x: "duration_days_median",
+      fill: "#efb118",
+      r: 4,
+      title: (d) =>
+        `${d.label}
+медиана ${int(d.duration_days_median)} дн., квартили ${int(d.duration_days_p25)} и ${int(d.duration_days_p75)}, 90-й процентиль ${int(d.duration_days_p90)}
+закрытий в расчёте ${int(d.closed_in_quantiles)} из ${int(d.vacancies)} вакансий`,
+      tip: true
+    }),
+    width < 600
+      ? null
+      : Plot.text(obsShown, {y: "label", text: (d) => `n ${int(d.closed_in_quantiles)} из ${int(d.vacancies)}`, frameAnchor: "right", dx: 105})
+  ]
+})
+```
+
+${habrObs ? `${SOURCE.habr}: собрано ${int(habrObs.window_days)} дн., из ${int(habrObs.vacancies)} вакансий закрылись ${int(habrObs.closed)}, сроки пока не считаются.` : ""}
+
+</div>
+
 ## Ограничения расчёта
+
+Ограничения модели выживаемости, как их записал расчёт:
 
 ${html`<ul>${life.limits.map((t) => html`<li>${t}</li>`)}</ul>`}
 

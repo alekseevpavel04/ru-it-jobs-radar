@@ -65,6 +65,7 @@ class WeeklyTelegram(Row):
     posts: int
     posts_before_dedup: int
     channels: int
+    channels_week: int
 
 
 class SkillTotal(Row):
@@ -104,8 +105,19 @@ class Junior(Row):
     experience_field_stated: int | None
 
 
+SalaryLevel = Literal["cell", "bucket_grade", "bucket", "group_grade", "group", "grade", "region", "source"]
+
+
 class Salary(Row):
+    """One row of mart_salaries at one level; a dimension the level does not split by reads 'all'.
+
+    Rows of one level cover every vacancy of the source once: counts add up within a level only, and
+    quantiles of a group are the mart's own, never combined from cells.
+    """
+
     source: Literal["trudvsem", "habr"]
+    level: SalaryLevel
+    role_group: str
     role_bucket: str
     grade: str
     region_group: str
@@ -161,6 +173,29 @@ class Lifetime(Row):
     limits: list[str]
 
 
+class LifetimeObserved(Row):
+    """mart_lifetime: durations of the closures observed in the collection window, not survival-corrected."""
+
+    source: Literal["trudvsem_snapshot", "habr"]
+    level: Literal["group", "source"]
+    role_group: str
+    vacancies: int
+    still_open: int
+    closed: int
+    closed_in_gap: int
+    censored: int
+    left_censored: int
+    closed_by_repost: int
+    closed_in_quantiles: int
+    duration_days_p25: float | None
+    duration_days_median: float | None
+    duration_days_p75: float | None
+    duration_days_p90: float | None
+    period_from: date
+    period_to: date
+    window_days: int
+
+
 class Period(Row):
     period_from: date
     period_to: date
@@ -195,6 +230,7 @@ MART_COLUMNS: dict[str, tuple[str, ...]] = {
         "telegram_posts",
         "telegram_posts_before_dedup",
         "telegram_channels",
+        "telegram_channels_week",
     ),
     "mart_skills": (
         "source",
@@ -209,6 +245,7 @@ MART_COLUMNS: dict[str, tuple[str, ...]] = {
     "mart_work_format": ("source", "role_bucket", "work_format", "vacancies", "vacancies_in_bucket"),
     "mart_junior": tuple(Junior.model_fields),
     "mart_salaries": tuple(Salary.model_fields),
+    "mart_lifetime": tuple(LifetimeObserved.model_fields),
 }
 
 MartRows = Mapping[str, list[dict[str, Any]]]
@@ -257,6 +294,7 @@ def weekly_telegram(rows: Iterable[dict[str, Any]], weeks: int = TELEGRAM_WEEKS)
             posts=r["telegram_posts"],
             posts_before_dedup=r["telegram_posts_before_dedup"],
             channels=r["telegram_channels"],
+            channels_week=r["telegram_channels_week"],
         )
         for r in posts
         if date.fromisoformat(r["week"]) >= first
@@ -451,7 +489,11 @@ def build(marts: MartRows, survival: Mapping[str, Any], exported_at: datetime, c
         "junior.json": sorted((Junior(**r) for r in marts["mart_junior"]), key=lambda r: (r.source, r.role_bucket)),
         "salaries.json": sorted(
             (Salary(**r) for r in marts["mart_salaries"]),
-            key=lambda r: (r.source, r.role_bucket, r.grade, r.region_group),
+            key=lambda r: (r.source, r.level, r.role_group, r.role_bucket, r.grade, r.region_group),
+        ),
+        "lifetime_observed.json": sorted(
+            (LifetimeObserved(**r) for r in marts["mart_lifetime"]),
+            key=lambda r: (r.source, r.level, r.role_group),
         ),
     }
     snapshot_weeks = [r.week for r in files["weekly_vacancies.json"] if r.source == "trudvsem_snapshot"]

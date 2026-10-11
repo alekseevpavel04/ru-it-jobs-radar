@@ -1,18 +1,19 @@
 ---
 title: Джуниорский срез
-toc: true
+toc: false
 ---
 
 # Вакансии для начинающих
 
 ```js
 import {ROLE, SOURCE, CATEGORY, GRADE, REGION, REGION_ORDER, int, pct, share, rub, dateLong} from "./components/labels.js";
+import {shownBounds, rangePlot} from "./components/salary.js";
 
 const meta = FileAttachment("data/meta.json").json();
 const junior = FileAttachment("data/junior.json").json();
 const skillsJunior = FileAttachment("data/skills_junior.json").json();
 const skillsAll = FileAttachment("data/skills.json").json();
-const cells = FileAttachment("data/salaries.json").json();
+const salaries = FileAttachment("data/salaries.json").json();
 ```
 
 ```js
@@ -137,27 +138,37 @@ base === 0
 ### Зарплаты
 
 ```js
+// Rows of one level of mart_salaries cover every vacancy of the source once; sums stay within a level.
+const at = (level) => salaries.filter((d) => d.level === level);
+const cells = at("cell");
 const juniorCells = cells.filter((d) => JUNIOR_GRADES.includes(d.grade));
+const juniorGrades = at("grade").filter((d) => JUNIOR_GRADES.includes(d.grade));
 const salaryRows = ["trudvsem", "habr"].map((s) => {
-  const j = juniorCells.filter((d) => d.source === s);
-  const all = cells.filter((d) => d.source === s);
-  return {s, jn: sum(j, "with_salary_rub"), jof: sum(j, "vacancies"), an: sum(all, "with_salary_rub"), aof: sum(all, "vacancies")};
+  const j = juniorGrades.filter((d) => d.source === s);
+  const [all] = at("source").filter((d) => d.source === s);
+  return {s, jn: sum(j, "with_salary_rub"), jof: sum(j, "vacancies"), an: all.with_salary_rub, aof: all.vacancies};
 });
-const juniorShown = juniorCells
-  .filter((d) => d.with_from >= minN || d.with_to >= minN)
-  .map((d) => ({
-    ...d,
-    label: `${SOURCE[d.source]} · ${ROLE[d.role_bucket]} · ${GRADE[d.grade]} · ${REGION[d.region_group]}`,
-    from: d.with_from >= minN ? d.salary_from_median : null,
-    to: d.with_to >= minN ? d.salary_to_median : null
-  }))
-  .sort((a, b) => b.with_salary_rub - a.with_salary_rub);
+const gradeShown = shownBounds(juniorGrades, minN, (d) => `${SOURCE[d.source]} · ${GRADE[d.grade]}`);
+const gradeHidden = juniorGrades.filter((d) => d.with_from < minN && d.with_to < minN);
+const juniorShown = shownBounds(juniorCells, minN, (d) => `${SOURCE[d.source]} · ${ROLE[d.role_bucket]} · ${GRADE[d.grade]} · ${REGION[d.region_group]}`).sort(
+  (a, b) => b.with_salary_rub - a.with_salary_rub
+);
 const juniorHidden = juniorCells.filter((d) => d.with_from < minN && d.with_to < minN);
 ```
 
 Доля вакансий с суммой в рублях. ${salaryRows.map((r) => `${SOURCE[r.s]}: ${share(r.jn, r.jof)} у стажёров и джуниоров, ${share(r.an, r.aof)} у всех вакансий`).join(". ")}.
 
-Вилки показаны только для ячеек, где границу указали хотя бы ${minN} вакансий (почему так, на странице «Зарплаты»). Таких ячеек стажёров и джуниоров ${int(juniorShown.length)}; ещё ${int(juniorHidden.length)} ячеек с ${int(sum(juniorHidden, "with_salary_rub"))} вакансиями с суммой слишком малы. Это вилка из объявления, а не выплаченная зарплата.
+<div class="card">
+
+Медианы вилки по грейду, посчитанные в витрине по всем вакансиям грейда источника. Граница показана, если её указали хотя бы ${minN} вакансий (почему так, на странице «Зарплаты»)${gradeHidden.length ? `; не набрали: ${gradeHidden.map((d) => `${SOURCE[d.source]}, ${GRADE[d.grade]} (${int(d.with_salary_rub)} с суммой)`).join("; ")}` : ""}. Это вилка из объявления, а не выплаченная зарплата.
+
+```js
+gradeShown.length === 0 ? html`` : rangePlot(gradeShown, {width, labelWidth: 230})
+```
+
+</div>
+
+По ячейкам (роль, грейд, регион) с тем же порогом: таких ячеек стажёров и джуниоров ${int(juniorShown.length)}; ещё ${int(juniorHidden.length)} ячеек с ${int(sum(juniorHidden, "with_salary_rub"))} вакансиями с суммой слишком малы.
 
 ```js
 Inputs.table(

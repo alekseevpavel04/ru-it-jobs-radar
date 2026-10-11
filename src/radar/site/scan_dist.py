@@ -35,7 +35,7 @@ ROW_FILES: dict[str, frozenset[str]] = {
             "closed",
         }
     ),
-    "weekly_telegram": frozenset({"week", "role_bucket", "posts", "posts_before_dedup", "channels"}),
+    "weekly_telegram": frozenset({"week", "role_bucket", "posts", "posts_before_dedup", "channels", "channels_week"}),
     "skills": frozenset({"source", "skill", "category", "vacancies_mentioning", "vacancies_total"}),
     "skills_by_role": frozenset(
         {"source", "role_bucket", "skill", "category", "vacancies_mentioning", "vacancies_in_bucket"}
@@ -58,6 +58,8 @@ ROW_FILES: dict[str, frozenset[str]] = {
     "salaries": frozenset(
         {
             "source",
+            "level",
+            "role_group",
             "role_bucket",
             "grade",
             "region_group",
@@ -70,6 +72,25 @@ ROW_FILES: dict[str, frozenset[str]] = {
         | {f"salary_{b}_{q}" for b in ("from", "to") for q in ("p25", "median", "p75")}
     ),
 }
+ROW_FILES["lifetime_observed"] = frozenset(
+    {
+        "source",
+        "level",
+        "role_group",
+        "vacancies",
+        "still_open",
+        "closed",
+        "closed_in_gap",
+        "censored",
+        "left_censored",
+        "closed_by_repost",
+        "closed_in_quantiles",
+        "period_from",
+        "period_to",
+        "window_days",
+    }
+    | {f"duration_days_{q}" for q in ("p25", "median", "p75", "p90")}
+)
 DOCUMENT_FILES = frozenset({"meta", "lifetime"})
 ALLOWED = {**ROW_FILES, **{name: frozenset() for name in DOCUMENT_FILES}}
 
