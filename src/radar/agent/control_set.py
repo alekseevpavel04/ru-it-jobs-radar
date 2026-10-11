@@ -21,7 +21,8 @@ from typing import Any, Literal
 from pydantic import BaseModel
 
 from radar.agent.clickhouse import ReadOnlyClickHouse
-from radar.agent.snapshot import SNAPSHOT_DATABASE, pin_id, pinned
+from radar.agent.profiles import frozen
+from radar.agent.snapshot import pin_id, pinned
 from radar.agent.sqlcheck import check
 from radar.config import ROOT
 
@@ -97,10 +98,11 @@ def build(ro: ReadOnlyClickHouse, spec: Spec) -> list[Item]:
     if len(set(ids)) != len(ids):
         raise ValueError("question ids repeat")
     snapshot = pin_id(pinned())
+    profile = frozen()
     splits = assign_splits(spec.questions, spec.seed, spec.dev_share)
     items = []
     for q in spec.questions:
-        result = ro.run(check(q.sql, database=SNAPSHOT_DATABASE).sql)
+        result = ro.run(check(q.sql, database=profile.database, tables=profile.tables).sql)
         if not result.rows:
             raise ValueError(f"{q.id}: the reference query returns no rows")
         split, quick = splits[q.id]

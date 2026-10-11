@@ -1,6 +1,8 @@
--- Read-only account of the analyst agent. Applied by scripts/apply_agent_user.py, which
--- substitutes {ro_user} and {ro_password} from CLICKHOUSE_RO_USER and CLICKHOUSE_RO_PASSWORD after
--- checking their alphabet: CREATE USER takes no query parameters. Every statement is idempotent.
+-- Read-only account of the analyst agent, its only definition. Two callers apply it with
+-- the full-rights account: infra/clickhouse/init.sh on every `up` (the clickhouse-init service) and
+-- scripts/apply_agent_user.py from the host. Both substitute {ro_user} and {ro_password} from
+-- CLICKHOUSE_RO_USER and CLICKHOUSE_RO_PASSWORD after checking their alphabet, since CREATE USER
+-- takes no query parameters. Every statement is idempotent, so either may run any number of times.
 --
 -- readonly = 1 forbids writes, DDL and changing any setting from the query, the URL or a SETTINGS
 -- clause, so the limits below hold for whatever SQL reaches the server. The agent checks the same

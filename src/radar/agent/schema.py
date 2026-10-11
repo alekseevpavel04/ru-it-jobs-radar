@@ -10,7 +10,7 @@ from typing import Any
 
 import yaml
 
-from radar.agent.sqlcheck import DATABASE, TABLES
+from radar.agent.sqlcheck import DATABASE
 from radar.config import ROOT
 
 MARTS_YML = ROOT / "dbt" / "models" / "marts" / "_marts.yml"
@@ -28,12 +28,13 @@ def _clean(text: str) -> str:
 
 
 def schema_context(types: dict[str, list[tuple[str, str]]], path: Path = MARTS_YML) -> str:
+    """One block per table of `types` (name to DESCRIBE columns), described by the yml at `path`."""
     models = {m["name"]: m for m in yaml.safe_load(path.read_text(encoding="utf-8"))["models"]}
-    missing = TABLES - models.keys()
+    missing = types.keys() - models.keys()
     if missing:
         raise ValueError(f"{path} does not describe {sorted(missing)}")
     blocks = []
-    for name in sorted(TABLES):
+    for name in sorted(types):
         model = models[name]
         documented = {c["name"]: c for c in model.get("columns", [])}
         lines = [f"TABLE {DATABASE}.{name}: {_clean(model['description'])}"]

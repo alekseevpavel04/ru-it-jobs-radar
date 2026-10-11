@@ -21,6 +21,8 @@ from radar.agent.clickhouse import (
 )
 from radar.agent.compare import results_match
 from radar.agent.control_set import load
+from radar.agent.evaluate import system_prompt
+from radar.agent.profiles import frozen, live
 from radar.agent.snapshot import SNAPSHOT_DATABASE
 from radar.agent.sqlcheck import check
 from radar.config import load_dotenv
@@ -107,3 +109,11 @@ def test_reference_answers_recompute_on_the_snapshot(ro: ReadOnlyClickHouse) -> 
     for item in load():
         result = ro.run(check(item.sql, database=SNAPSHOT_DATABASE).sql)
         assert results_match(item.answer.rows, result.rows) and len(result.rows) == len(item.answer.rows), item.id
+
+
+def test_both_profiles_describe_tables_that_exist(ro: ReadOnlyClickHouse) -> None:
+    for profile in (live(), frozen()):
+        prompt = system_prompt(ro, profile)
+        for name in profile.tables:
+            assert f"TABLE marts.{name}:" in prompt, (profile.name, name)
+        assert ro.run(f"SELECT count() FROM {profile.database}.mart_salaries").rows[0][0] > 0

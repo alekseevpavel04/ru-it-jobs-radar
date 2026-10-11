@@ -22,6 +22,8 @@ TABLES = frozenset(
         "mart_work_format",
         "mart_employers",
         "mart_junior",
+        "mart_lifetime",
+        "mart_skills_weekly",
     }
 )
 MAX_ROWS = 1000
@@ -54,7 +56,7 @@ def _function_name(node: exp.Func) -> str:
     return node.sql_name().lower()
 
 
-def _check_tables(tree: exp.Query) -> list[exp.Table]:
+def _check_tables(tree: exp.Query, allowed: frozenset[str]) -> list[exp.Table]:
     ctes = {cte.alias_or_name for cte in tree.find_all(exp.CTE)}
     tables = []
     for table in tree.find_all(exp.Table):
@@ -66,8 +68,8 @@ def _check_tables(tree: exp.Query) -> list[exp.Table]:
             continue
         if table.db and table.db != DATABASE:
             raise Blocked(f"only {DATABASE}.* tables may be read, not {table.db}.{table.name}")
-        if table.name not in TABLES:
-            raise Blocked(f"unknown table {table.name}; allowed: {', '.join(sorted(TABLES))}")
+        if table.name not in allowed:
+            raise Blocked(f"unknown table {table.name}; allowed: {', '.join(sorted(allowed))}")
         tables.append(table)
     if not tables:
         raise Blocked("the query reads no mart table")
@@ -106,8 +108,13 @@ def _bound_rows(tree: exp.Query, max_rows: int) -> exp.Query:
     return exp.select("*").from_(tree.subquery("bounded")).limit(max_rows)
 
 
-def check(sql: str, database: str = DATABASE, max_rows: int = MAX_ROWS) -> CheckedQuery:
-    """Check `sql` against the whitelist; render it to run against `database` (the frozen snapshot in eval)."""
+def check(
+    sql: str, database: str = DATABASE, max_rows: int = MAX_ROWS, tables: frozenset[str] = TABLES
+) -> CheckedQuery:
+    """Check `sql` against the whitelist `tables`; render it to run against `database`.
+
+    The evaluation passes the snapshot database and its own, older table list (radar.agent.profiles).
+    """
     text = sql.strip().rstrip(";").strip()
     if not text:
         raise Unparsable("empty query")
@@ -121,9 +128,9 @@ def check(sql: str, database: str = DATABASE, max_rows: int = MAX_ROWS) -> Check
     if not isinstance(tree, exp.Query):
         raise Blocked(f"only SELECT is allowed, got {tree.key.upper()}")
     _check_clauses(tree)
-    tables = _check_tables(tree)
-    names = tuple(sorted({t.name for t in tables}))
-    for table in tables:
+    found = _check_tables(tree, tables)
+    names = tuple(sorted({t.name for t in found}))
+    for table in found:
         table.set("db", exp.to_identifier(database))
     bounded = _bound_rows(tree, max_rows)
     return CheckedQuery(bounded.sql(dialect="clickhouse"), names)

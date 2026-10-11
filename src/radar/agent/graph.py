@@ -16,7 +16,7 @@ from langgraph.graph import END, START, StateGraph
 from radar.agent import prompts
 from radar.agent.clickhouse import SERVER_REFUSALS, QueryError, Result
 from radar.agent.llm import Chat
-from radar.agent.sqlcheck import DATABASE, Blocked, Unparsable, check
+from radar.agent.sqlcheck import DATABASE, TABLES, Blocked, Unparsable, check
 
 MAX_ATTEMPTS = 2  # the first query and one repair
 ANSWER_ROWS = 30
@@ -70,12 +70,14 @@ class Agent:
         system_prompt: str,
         database: str = DATABASE,
         compose_answer: bool = True,
+        tables: frozenset[str] = TABLES,
     ) -> None:
         self.chat = chat
         self.run_sql = run_sql
         self.system_prompt = system_prompt
         self.database = database
         self.compose_answer = compose_answer
+        self.tables = tables
         self.graph = self._build()
 
     def _build(self) -> Any:
@@ -105,7 +107,7 @@ class Agent:
 
     def _check(self, state: State) -> State:
         try:
-            checked = check(state["sql"], database=self.database)
+            checked = check(state["sql"], database=self.database, tables=self.tables)
         except Blocked as e:
             return {
                 "status": "blocked",

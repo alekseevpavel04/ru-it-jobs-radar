@@ -19,7 +19,8 @@ from radar.agent import control_set, snapshot
 from radar.agent.clickhouse import ReadOnlyClickHouse
 from radar.agent.evaluate import make_agent, prompt_sha256, score_item, score_unsafe, summarize
 from radar.agent.llm import MODEL, LocalChat
-from radar.agent.sqlcheck import DATABASE
+from radar.agent.profiles import frozen, live
+from radar.agent.schema import MARTS_YML
 from radar.config import ROOT, load_dotenv, require
 from radar.eval.cli import log_test_run
 from radar.results import write_result
@@ -32,7 +33,7 @@ def cmd_ask(args: argparse.Namespace) -> int:
     ro = ReadOnlyClickHouse()
     chat = LocalChat()
     chat.check_model()
-    answer = make_agent(chat, ro, DATABASE, compose_answer=True).ask(args.question)
+    answer = make_agent(chat, ro, live(), compose_answer=True).ask(args.question)
     print(answer.answer)
     print(f"\n[{answer.status}, attempts {answer.attempts}]")
     if answer.sql:
@@ -53,6 +54,7 @@ def cmd_snapshot(args: argparse.Namespace) -> int:
             manifest = snapshot.export(ch, snapshot.snapshot_dir())
             snapshot.PIN.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(snapshot.snapshot_dir() / "manifest.json", snapshot.PIN)
+            shutil.copyfile(MARTS_YML, snapshot.SNAPSHOT_YML)
             print(json.dumps({n: t["rows"] for n, t in manifest["tables"].items()}))
         else:
             loaded = snapshot.load(ch, snapshot.snapshot_dir(), snapshot.pinned())
@@ -91,7 +93,8 @@ def cmd_eval(args: argparse.Namespace) -> int:
 
     chat = LocalChat()
     chat.check_model()
-    agent = make_agent(chat, ReadOnlyClickHouse(), snapshot.SNAPSHOT_DATABASE, compose_answer=args.with_answers)
+    profile = frozen()
+    agent = make_agent(chat, ReadOnlyClickHouse(), profile, compose_answer=args.with_answers)
     scored = []
     for n, item in enumerate(items, 1):
         scored.append(score_item(agent, item))
@@ -109,7 +112,8 @@ def cmd_eval(args: argparse.Namespace) -> int:
         quick=args.quick,
         model=MODEL,
         llm_base_url=require("LLM_BASE_URL"),
-        prompt_sha256=prompt_sha256(),
+        profile=profile.name,
+        prompt_sha256=prompt_sha256(profile),
         snapshot=snapshot.pin_id(pin),
         items=scored,
         unsafe=unsafe,

@@ -16,18 +16,20 @@ from radar.agent.compare import results_match
 from radar.agent.control_set import Item, Unsafe
 from radar.agent.graph import Agent, Answer
 from radar.agent.llm import Chat
+from radar.agent.profiles import Profile
 from radar.agent.schema import schema_context
-from radar.agent.sqlcheck import TABLES
 
 
-def system_prompt(ro: ReadOnlyClickHouse, database: str) -> str:
-    types = {name: ro.describe(f"{database}.{name}") for name in sorted(TABLES)}
-    skills = [str(row[0]) for row in ro.run(f"SELECT DISTINCT skill FROM {database}.mart_skills ORDER BY skill").rows]
-    return prompts.SQL_SYSTEM.format(schema=schema_context(types), skills=", ".join(skills))
+def system_prompt(ro: ReadOnlyClickHouse, profile: Profile) -> str:
+    db = profile.database
+    types = {name: ro.describe(f"{db}.{name}") for name in sorted(profile.tables)}
+    skills = [str(row[0]) for row in ro.run(f"SELECT DISTINCT skill FROM {db}.mart_skills ORDER BY skill").rows]
+    return profile.sql_system.format(schema=schema_context(types, profile.yml), skills=", ".join(skills))
 
 
-def make_agent(chat: Chat, ro: ReadOnlyClickHouse, database: str, compose_answer: bool) -> Agent:
-    return Agent(chat, ro.run, system_prompt(ro, database), database=database, compose_answer=compose_answer)
+def make_agent(chat: Chat, ro: ReadOnlyClickHouse, profile: Profile, compose_answer: bool) -> Agent:
+    prompt = system_prompt(ro, profile)
+    return Agent(chat, ro.run, prompt, profile.database, compose_answer, profile.tables)
 
 
 def _share(n: int, d: int) -> dict[str, Any]:
@@ -83,6 +85,6 @@ def summarize(scored: list[dict[str, Any]], unsafe: list[dict[str, Any]]) -> dic
     return metrics
 
 
-def prompt_sha256() -> str:
-    text = prompts.SQL_SYSTEM + prompts.SQL_REPAIR + prompts.ANSWER_SYSTEM + prompts.ANSWER_USER
+def prompt_sha256(profile: Profile) -> str:
+    text = profile.sql_system + prompts.SQL_REPAIR + prompts.ANSWER_SYSTEM + prompts.ANSWER_USER
     return hashlib.sha256(text.encode("utf-8")).hexdigest()

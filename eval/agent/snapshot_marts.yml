@@ -1,0 +1,381 @@
+version: 2
+
+# Marts: what the site, the API and the analyst agent read; the read-only account sees
+# only the marts database. Built on source fields and rules (macros/marts.sql) until the extracted
+# fields of 6.7 replace the rules for trudvsem and Habr; Telegram stays on rules (DECISIONS 10).
+#
+# Common to all of them:
+# - A vacancy is a dedup entity within its source family (int_vacancy_entities): trudvsem (the API
+#   and the daily snapshots, one portal sharing ids) or habr. A vacancy seen in the API and in a
+#   snapshot, or posted twice, counts once, with the fields of its latest record.
+# - Titles without any IT role (role bucket not_it: postmen and bank clerks that the wide trudvsem
+#   IT filter lets in, sales and copywriting on Habr) are left out of every mart; how many is in
+#   results/dbt/marts.json.
+# - Every count comes with its denominator in the same row, so "N of M" can be printed.
+# - Telegram counts posts, not vacancies, after the weekly cross-post dedup; its text and title
+#   lines are never stored here (DECISIONS 2).
+
+models:
+  - name: mart_weekly_dynamics
+    description: >
+      Week x source x role bucket. trudvsem_snapshot, trudvsem (API) and habr count vacancies
+      (dedup entities within the source): active = seen open on at least one collected day of the
+      week; new = first seen that week, never on the source's first collected day (everything open
+      then is already there, is_first_collected_week marks the week); closed = closure confirmed by
+      the history that week (hist_vacancy_lifetime: 1 complete snapshot missing, 3 complete Habr days
+      missing; the API never closes, so NULL there). Telegram rows count vacancy posts of the week
+      they were published, in their own columns, never added to vacancies. Rows of one week and
+      source add up across buckets. The sources are separate instruments: the snapshot is the full
+      portal, the API a daily slice of modified records, so their series are not added together.
+    data_tests:
+      - has_rows
+      - unique_combination:
+          arguments:
+            columns: [source, week, role_bucket]
+    columns:
+      - name: week
+        description: Monday of the week (Moscow time for Telegram posts, the collected day otherwise).
+        data_tests: [not_null]
+      - name: source
+        description: trudvsem_snapshot, trudvsem (API), habr or telegram.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [trudvsem_snapshot, trudvsem, habr, telegram]
+      - name: role_bucket
+        description: &role_bucket >
+          Role bucket by the title rule (macros/marts.sql, role_buckets; Telegram: first line, then
+          hashtags, then the head of the post; multi_post for a post with several vacancies).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: &buckets [ml_ds, data_engineering, data_analytics, developer_1c, business_system_analysis,
+                  security, devops, qa, mobile, fullstack, backend, frontend, embedded, sysadmin_support, design,
+                  management, software_engineer, other_it, multi_post]
+      - name: days_collected
+        description: Days of the source collected in the week; NULL for Telegram.
+      - name: complete_days
+        description: Of them, days with at least 0.9 of the source's median rows (hist_calendar).
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: days_collected
+      - name: is_first_collected_week
+        description: The week holds the source's first collected day; vacancies_new there counts only later days.
+      - name: vacancies_active
+        description: Vacancies seen open on at least one collected day of the week; NULL for Telegram.
+      - name: vacancies_new
+        description: Vacancies first seen in the week, not on the source's first collected day; NULL for Telegram.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies_active
+      - name: vacancies_closed
+        description: Vacancies whose closure fell in the week; NULL for the API and Telegram.
+      - name: telegram_posts
+        description: >
+          Telegram vacancy posts published in the week after dedup: a text seen again in the same week
+          (any channel, links, @names and hashtags aside) counts once. NULL for the other sources.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: telegram_posts_before_dedup
+      - name: telegram_posts_before_dedup
+        description: Telegram vacancy posts published in the week, every copy counted.
+      - name: telegram_channels
+        description: Channels that carried those posts.
+
+  - name: mart_salaries
+    description: >
+      Salaries as stated: source family x role bucket x grade x region group, over every vacancy of the
+      collection period (period_from..period_to). Amounts are RUB per month as the sources state them
+      (both publish monthly salaries and have no period field; nothing is converted); a vacancy in
+      another currency is counted in with_salary_other_currency and left out of the quantiles. Habr's
+      own estimate (predictedSalary) is not used. trudvsem rows mix the API and the snapshots (one
+      portal, one entity per vacancy); Habr rows stay separate. Quantiles (linear interpolation) are
+      NULL when fewer than 5 vacancies state that bound. On trudvsem salary_to often equals
+      salary_from (the portal's form), which keeps it as stated.
+    data_tests:
+      - has_rows
+      - unique_combination:
+          arguments:
+            columns: [source, role_bucket, grade, region_group]
+    columns:
+      - name: source
+        description: trudvsem (API and snapshots) or habr.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [trudvsem, habr]
+      - name: role_bucket
+        description: *role_bucket
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: *buckets
+      - name: grade
+        description: &grade >
+          intern, junior, middle, senior, lead or unknown. Habr: the qualification the employer states,
+          else the title rule; trudvsem: the title rule, else intern for «Стажировка» employment;
+          Telegram: first line and hashtags. In a title naming several grades the lowest wins;
+          ведущий and главный read as senior, руководитель and начальник as lead.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: &grades [intern, junior, middle, senior, lead, unknown]
+      - name: region_group
+        description: >
+          remote when the work format is remote, else moscow or spb (the city, not the oblast: trudvsem
+          region, Habr city list), else other when any place is stated, else unknown.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [moscow, spb, other, remote, unknown]
+      - name: vacancies
+        description: Vacancies in the cell, the denominator of every count of the row.
+      - name: with_salary_rub
+        description: Vacancies stating a RUB amount (from, to or both).
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies
+      - name: with_salary_other_currency
+        description: Vacancies stating an amount in another currency.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies
+      - name: with_from
+        description: Vacancies stating a RUB lower bound, the base of the salary_from quantiles.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: with_salary_rub
+      - name: with_to
+        description: Vacancies stating a RUB upper bound, the base of the salary_to quantiles.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: with_salary_rub
+      - name: salary_from_p25
+        description: 25th percentile of the stated lower bound, RUB per month.
+      - name: salary_from_median
+        description: Median of the stated lower bound, RUB per month.
+      - name: salary_from_p75
+        description: 75th percentile of the stated lower bound, RUB per month.
+      - name: salary_to_p25
+        description: 25th percentile of the stated upper bound, RUB per month.
+      - name: salary_to_median
+        description: Median of the stated upper bound, RUB per month.
+      - name: salary_to_p75
+        description: 75th percentile of the stated upper bound, RUB per month.
+      - name: period_from
+        description: &period_from First day a vacancy of the source family was seen; the period the row covers.
+      - name: period_to
+        description: &period_to Last collected day of the source family in that period.
+
+  - name: mart_skills
+    description: >
+      Skill x role bucket x grade per source: vacancies (Telegram: posts) whose title, text or skill
+      tags (trudvsem skills, Habr skill tags) mention the skill by the v0 dictionary (seed
+      skill_dictionary), of the vacancies in that bucket and grade (vacancies_in_cell). Only skills
+      with a mention get a row. A vacancy has one bucket and one grade, so a skill's rows add up
+      across grades and buckets within a source; across sources they would count a vacancy posted on
+      both twice. Telegram covers the posts of the last 100 days before its newest post.
+    data_tests:
+      - has_rows
+      - unique_combination:
+          arguments:
+            columns: [source, role_bucket, grade, skill]
+    columns:
+      - name: source
+        description: trudvsem (API and snapshots), habr or telegram.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: &sources3 [trudvsem, habr, telegram]
+      - name: role_bucket
+        description: *role_bucket
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: *buckets
+      - name: grade
+        description: *grade
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: *grades
+      - name: skill
+        description: Canonical skill name of the dictionary.
+        data_tests: [not_null]
+      - name: skill_category
+        description: Category of the skill in the dictionary (language, framework, database, ml, ...).
+      - name: vacancies_mentioning
+        description: Vacancies (posts) of the cell that mention the skill.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies_in_cell
+      - name: vacancies_in_cell
+        description: All vacancies (posts) of the source, bucket and grade, mentioning anything or not.
+      - name: period_from
+        description: *period_from
+      - name: period_to
+        description: *period_to
+
+  - name: mart_work_format
+    description: >
+      Work format x role bucket x source, of the vacancies (Telegram: posts of the last 100 days) in
+      that bucket. hybrid only from the text; remote from a source field (trudvsem remote employment,
+      Habr remoteWork) or a remote phrase; office from an office phrase, or on Habr when remote work is
+      not allowed and a city is named; anything else unknown, never office by default. On trudvsem
+      unknown is most of it: the portal has a remote flag and nothing for office or hybrid.
+    data_tests:
+      - has_rows
+      - unique_combination:
+          arguments:
+            columns: [source, role_bucket, work_format]
+    columns:
+      - name: source
+        description: trudvsem (API and snapshots), habr or telegram.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: *sources3
+      - name: role_bucket
+        description: *role_bucket
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: *buckets
+      - name: work_format
+        description: office, hybrid, remote or unknown.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [office, hybrid, remote, unknown]
+      - name: vacancies
+        description: Vacancies (posts) of the bucket in this format.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies_in_bucket
+      - name: vacancies_in_bucket
+        description: All vacancies (posts) of the source and bucket, the denominator.
+
+  - name: mart_employers
+    description: >
+      Top 100 employers per source family by open IT vacancies: trudvsem by INN, Habr by company id.
+      Open = not closed and seen within 7 days of the family's latest collected day (as_of), so July
+      snapshot vacancies never seen again are not counted as open in October. Sole proprietors are
+      left out: their name is personal data (DECISIONS 3), the raw cleaner has replaced it with «ИП»
+      and removed the INN, so they have no key; their count is in results/dbt/marts.json. Lifetime is
+      the median duration_days of the employer's IT vacancies (per source vacancy) whose closure was
+      observed and whose start was not before the first collected day, printed from 3 of them.
+    data_tests:
+      - has_rows
+      - unique_combination:
+          arguments:
+            columns: [source, employer_key]
+      - unique_combination:
+          arguments:
+            columns: [source, employer_rank]
+    columns:
+      - name: source
+        description: trudvsem (API and snapshots) or habr.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [trudvsem, habr]
+      - name: employer_rank
+        description: 1 for the most open IT vacancies; ties by vacancies seen, then by key.
+        data_tests: [not_null]
+      - name: employer_key
+        description: INN (trudvsem) or Habr company id.
+        data_tests: [not_null]
+      - name: employer_key_kind
+        description: inn or habr_company_id.
+      - name: employer_name
+        description: >
+          Employer name of the latest record; never a sole proprietor (singular test
+          assert_marts_consistent).
+        data_tests: [not_null]
+      - name: open_it_vacancies
+        description: IT vacancies open as of as_of.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: it_vacancies_seen
+      - name: it_vacancies_seen
+        description: IT vacancies of the employer seen in the whole collection period.
+      - name: lifetime_closed_vacancies
+        description: Closed IT vacancies with an observed start, the base of lifetime_median_days.
+      - name: lifetime_median_days
+        description: Median days from first sighting to closure; NULL below 3 closed vacancies.
+      - name: as_of
+        description: Latest collected day of the source family.
+
+  - name: mart_junior
+    description: >
+      The junior slice per source and role bucket: vacancies open to a beginner, graded intern or
+      junior or stating that no experience is needed (trudvsem: required experience 0 years, the
+      portal's «без опыта»; Habr and Telegram, which have no such field: a phrase of the text). Each
+      count has vacancies of the row as its denominator. Telegram covers the posts of the last 100
+      days.
+    data_tests:
+      - has_rows
+      - unique_combination:
+          arguments:
+            columns: [source, role_bucket]
+    columns:
+      - name: source
+        description: trudvsem (API and snapshots), habr or telegram.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: *sources3
+      - name: role_bucket
+        description: *role_bucket
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: *buckets
+      - name: vacancies
+        description: Vacancies (posts) of the source and bucket, the denominator of the row.
+      - name: open_to_junior
+        description: Graded intern or junior, or no experience required.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies
+      - name: graded_intern
+        description: Graded intern.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: open_to_junior
+      - name: graded_junior
+        description: Graded junior.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: open_to_junior
+      - name: no_experience_required
+        description: No experience required (field on trudvsem, a text phrase elsewhere).
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: open_to_junior
+      - name: grade_known
+        description: Vacancies with any grade (not unknown); the junior share among graded vacancies uses it.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies
+      - name: experience_field_stated
+        description: trudvsem vacancies with the experience field filled; NULL where the source has no such field.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies

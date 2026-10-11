@@ -1,7 +1,8 @@
 """The frozen copy of the marts the control set is scored on.
 
 `export` writes every mart to `data/agent/snapshot/` (Parquet and its CREATE TABLE) with a manifest of
-row counts and sha256; `eval/agent/snapshot.json` pins that manifest in git. `load` restores the files
+row counts and sha256; `eval/agent/snapshot.json` pins that manifest in git and
+`eval/agent/snapshot_marts.yml` keeps the mart descriptions of that day. `load` restores the files
 into the `agent_snapshot` database, which the read-only account may read, after checking the hashes
 against the pin. The answers of the control set are computed there and the agent's SQL is scored
 there, so the numbers stay fixed while the live marts grow.
@@ -19,6 +20,8 @@ from radar.stream.clickhouse import ClickHouse, ClickHouseError
 
 SNAPSHOT_DATABASE = "agent_snapshot"
 PIN = ROOT / "eval" / "agent" / "snapshot.json"
+# The _marts.yml of the export day: the schema description the evaluation gives the agent.
+SNAPSHOT_YML = ROOT / "eval" / "agent" / "snapshot_marts.yml"
 
 
 def snapshot_dir() -> Path:
