@@ -1,163 +1,163 @@
 {
   "source_script": "src/radar/extract/telegram_corpus.py",
   "command": "python -m radar.extract.telegram_corpus sample --resample",
-  "commit": "c748000-dirty",
-  "created_at": "2026-10-11T10:57:25+00:00",
+  "commit": "f13e529-dirty",
+  "created_at": "2026-10-11T14:22:03+00:00",
   "metrics": {
     "raw.rows_read": {
-      "value": 131579,
+      "value": 363204,
       "n": null,
       "denominator": null
     },
     "posts.read": {
-      "value": 131579,
+      "value": 363204,
       "n": null,
       "denominator": null
     },
     "posts.vacancy": {
-      "value": 0.5003,
-      "n": 65829,
-      "denominator": 131579
+      "value": 0.7327,
+      "n": 266110,
+      "denominator": 363204
     },
     "posts.multi_vacancy": {
-      "value": 0.1159,
-      "n": 7627,
-      "denominator": 65829
+      "value": 0.0509,
+      "n": 13547,
+      "denominator": 266110
     },
     "posts.single_vacancy": {
-      "value": 0.8841,
-      "n": 58202,
-      "denominator": 65829
+      "value": 0.9491,
+      "n": 252563,
+      "denominator": 266110
     },
     "posts.link_stub": {
-      "value": 0.3443,
-      "n": 20041,
-      "denominator": 58202
+      "value": 0.107,
+      "n": 27028,
+      "denominator": 252563
     },
     "records": {
-      "value": 0.5206,
-      "n": 34273,
-      "denominator": 65829
+      "value": 0.8252,
+      "n": 219586,
+      "denominator": 266110
     },
     "dropped.not_vacancy.ad": {
-      "value": 0.0014,
-      "n": 178,
-      "denominator": 131579
+      "value": 0.0011,
+      "n": 414,
+      "denominator": 363204
     },
     "dropped.not_vacancy.article": {
-      "value": 0.0192,
-      "n": 2528,
-      "denominator": 131579
+      "value": 0.0079,
+      "n": 2887,
+      "denominator": 363204
     },
     "dropped.not_vacancy.course": {
-      "value": 0.0244,
-      "n": 3211,
-      "denominator": 131579
+      "value": 0.0141,
+      "n": 5110,
+      "denominator": 363204
     },
     "dropped.not_vacancy.no_text": {
-      "value": 0.008,
-      "n": 1054,
-      "denominator": 131579
+      "value": 0.0042,
+      "n": 1511,
+      "denominator": 363204
     },
     "dropped.not_vacancy.other": {
-      "value": 0.4462,
-      "n": 58711,
-      "denominator": 131579
+      "value": 0.2052,
+      "n": 74514,
+      "denominator": 363204
     },
     "dropped.not_vacancy.resume": {
-      "value": 0.0005,
-      "n": 68,
-      "denominator": 131579
+      "value": 0.0349,
+      "n": 12658,
+      "denominator": 363204
     },
     "dropped.not_vacancy": {
-      "value": 0.4997,
-      "n": 65750,
-      "denominator": 131579
+      "value": 0.2673,
+      "n": 97094,
+      "denominator": 363204
     },
     "dropped.multi_vacancy": {
-      "value": 0.058,
-      "n": 7627,
-      "denominator": 131579
+      "value": 0.0373,
+      "n": 13547,
+      "denominator": 363204
     },
     "dropped.digest": {
-      "value": 0.0295,
-      "n": 3888,
-      "denominator": 131579
+      "value": 0.0164,
+      "n": 5949,
+      "denominator": 363204
     },
     "dropped.link_stub": {
-      "value": 0.1523,
-      "n": 20041,
-      "denominator": 131579
+      "value": 0.0744,
+      "n": 27028,
+      "denominator": 363204
     },
     "groups": {
-      "value": 28565,
+      "value": 168004,
       "n": null,
       "denominator": null
     },
     "groups.multi_record": {
-      "value": 0.1232,
-      "n": 3519,
-      "denominator": 28565
+      "value": 0.1698,
+      "n": 28529,
+      "denominator": 168004
     },
     "groups.cross_channel": {
-      "value": 0.0517,
-      "n": 1478,
-      "denominator": 28565
+      "value": 0.0936,
+      "n": 15717,
+      "denominator": 168004
     },
     "groups.largest": {
-      "value": 85,
+      "value": 200,
       "n": null,
       "denominator": null
     },
     "groups.edges.same_text": {
-      "value": 3723,
+      "value": 35890,
       "n": null,
       "denominator": null
     },
     "groups.edges.same_link": {
-      "value": 15,
+      "value": 1965,
       "n": null,
       "denominator": null
     },
     "groups.edges.near_text": {
-      "value": 18105,
+      "value": 182005,
       "n": null,
       "denominator": null
     },
     "lang.records.ru": {
-      "value": 0.9126,
-      "n": 31276,
-      "denominator": 34273
+      "value": 0.9406,
+      "n": 206540,
+      "denominator": 219586
     },
     "lang.records.en": {
-      "value": 0.0874,
-      "n": 2994,
-      "denominator": 34273
+      "value": 0.0594,
+      "n": 13035,
+      "denominator": 219586
     },
     "lang.records.other": {
       "value": 0.0001,
-      "n": 3,
-      "denominator": 34273
+      "n": 11,
+      "denominator": 219586
     },
     "pii_suspect.recruiter_name.records": {
-      "value": 0.0337,
-      "n": 1154,
-      "denominator": 34273
+      "value": 0.0065,
+      "n": 1421,
+      "denominator": 219586
     },
     "s1.records_linked": {
-      "value": 0.0016,
-      "n": 55,
-      "denominator": 34273
+      "value": 0.0037,
+      "n": 821,
+      "denominator": 219586
     },
     "s1.records_linked.by_habr_id": {
-      "value": 0.0006,
-      "n": 22,
-      "denominator": 34273
+      "value": 0.0032,
+      "n": 705,
+      "denominator": 219586
     },
     "s1.records_linked.by_text": {
-      "value": 0.001,
-      "n": 33,
-      "denominator": 34273
+      "value": 0.0006,
+      "n": 130,
+      "denominator": 219586
     },
     "frame.blocked_groups.fixtures": {
       "value": 8,
@@ -165,7 +165,7 @@
       "denominator": null
     },
     "frame.blocked_groups.s1_linked": {
-      "value": 45,
+      "value": 710,
       "n": null,
       "denominator": null
     },
@@ -175,7 +175,7 @@
       "denominator": null
     },
     "split.test.records": {
-      "value": 162,
+      "value": 183,
       "n": null,
       "denominator": null
     },
@@ -185,27 +185,27 @@
       "denominator": null
     },
     "split.dev.records": {
-      "value": 66,
+      "value": 77,
       "n": null,
       "denominator": null
     },
     "split.train_pool.groups": {
-      "value": 28300,
+      "value": 167663,
       "n": null,
       "denominator": null
     },
     "split.train_pool.records": {
-      "value": 33947,
+      "value": 219149,
       "n": null,
       "denominator": null
     },
     "split.withheld.groups": {
-      "value": 65,
+      "value": 141,
       "n": null,
       "denominator": null
     },
     "split.withheld.records": {
-      "value": 98,
+      "value": 177,
       "n": null,
       "denominator": null
     },
@@ -215,12 +215,12 @@
       "denominator": null
     },
     "split.withheld.groups.s1_gold": {
-      "value": 10,
+      "value": 80,
       "n": null,
       "denominator": null
     },
     "split.withheld.groups.near_duplicate": {
-      "value": 55,
+      "value": 61,
       "n": null,
       "denominator": null
     },
@@ -255,13 +255,13 @@
       "denominator": 140
     },
     "test.lang.ru": {
-      "value": 0.9357,
-      "n": 131,
+      "value": 0.9429,
+      "n": 132,
       "denominator": 140
     },
     "test.lang.en": {
-      "value": 0.0643,
-      "n": 9,
+      "value": 0.0571,
+      "n": 8,
       "denominator": 140
     },
     "test.lang.other": {
@@ -270,23 +270,23 @@
       "denominator": 140
     },
     "test.networks": {
-      "value": 28,
+      "value": 30,
       "n": null,
       "denominator": null
     },
     "test.channels": {
-      "value": 33,
+      "value": 46,
       "n": null,
       "denominator": null
     },
     "test.pii_suspect.recruiter_name": {
-      "value": 0.0286,
-      "n": 4,
+      "value": 0.0071,
+      "n": 1,
       "denominator": 140
     },
     "leak.test_with_train_neighbour_drawn": {
-      "value": 0.1857,
-      "n": 26,
+      "value": 0.1714,
+      "n": 24,
       "denominator": 140
     },
     "leak.test_with_train_neighbour": {
@@ -330,13 +330,13 @@
       "denominator": 60
     },
     "dev.lang.ru": {
-      "value": 0.9167,
-      "n": 55,
+      "value": 0.9667,
+      "n": 58,
       "denominator": 60
     },
     "dev.lang.en": {
-      "value": 0.0833,
-      "n": 5,
+      "value": 0.0333,
+      "n": 2,
       "denominator": 60
     },
     "dev.lang.other": {
@@ -345,12 +345,12 @@
       "denominator": 60
     },
     "dev.networks": {
-      "value": 11,
+      "value": 27,
       "n": null,
       "denominator": null
     },
     "dev.channels": {
-      "value": 15,
+      "value": 34,
       "n": null,
       "denominator": null
     },
@@ -360,8 +360,8 @@
       "denominator": 60
     },
     "leak.dev_with_train_neighbour_drawn": {
-      "value": 0.2,
-      "n": 12,
+      "value": 0.1833,
+      "n": 11,
       "denominator": 60
     },
     "leak.dev_with_train_neighbour": {
@@ -390,49 +390,49 @@
       "denominator": null
     },
     "decisions10.train_pool.ml_ds_data": {
-      "value": 0.2461,
-      "n": 8353,
-      "denominator": 33947
+      "value": 0.101,
+      "n": 22140,
+      "denominator": 219149
     },
     "decisions10.train_pool_groups.ml_ds_data": {
-      "value": 0.2368,
-      "n": 6702,
-      "denominator": 28300
+      "value": 0.0971,
+      "n": 16274,
+      "denominator": 167663
     },
     "role_proxy.train_pool.ml_ds_data": {
-      "value": 0.2461,
-      "n": 8353,
-      "denominator": 33947
+      "value": 0.101,
+      "n": 22140,
+      "denominator": 219149
     },
     "role_proxy.train_pool.dev": {
-      "value": 0.2857,
-      "n": 9697,
-      "denominator": 33947
+      "value": 0.495,
+      "n": 108469,
+      "denominator": 219149
     },
     "role_proxy.train_pool.analyst_other": {
-      "value": 0.1124,
-      "n": 3815,
-      "denominator": 33947
+      "value": 0.0602,
+      "n": 13201,
+      "denominator": 219149
     },
     "role_proxy.train_pool.qa_devops_sys": {
-      "value": 0.0877,
-      "n": 2978,
-      "denominator": 33947
+      "value": 0.1503,
+      "n": 32937,
+      "denominator": 219149
     },
     "role_proxy.train_pool.other_it": {
-      "value": 0.0906,
-      "n": 3075,
-      "denominator": 33947
+      "value": 0.0758,
+      "n": 16614,
+      "denominator": 219149
     },
     "role_proxy.train_pool.non_it_noise": {
-      "value": 0.1776,
-      "n": 6029,
-      "denominator": 33947
+      "value": 0.1177,
+      "n": 25788,
+      "denominator": 219149
     },
     "train_pool.linked_to_s1_train_pool": {
-      "value": 0.0013,
-      "n": 44,
-      "denominator": 33947
+      "value": 0.0033,
+      "n": 730,
+      "denominator": 219149
     },
     "baseline_check.dev.schema_valid": {
       "value": 1.0,
@@ -473,88 +473,87 @@
     "baseline_pool_sample": 1000
   },
   "partitions_used": [
-    "2026-10-08"
+    "2026-10-08",
+    "2026-10-10",
+    "2026-10-11"
   ],
-  "partitions_skipped_incomplete_rows": {
-    "2026-10-10": 125394,
-    "2026-10-11": 35833
-  },
+  "partitions_skipped_incomplete_rows": {},
   "published_range": [
     "2016-11-04",
     "2026-10-08"
   ],
   "channels": {
     "ai_rabota": {
-      "posts": 20,
-      "vacancy_posts": 18,
-      "not_vacancy": 2,
-      "multi_vacancy": 1,
+      "posts": 1114,
+      "vacancy_posts": 1049,
+      "not_vacancy": 65,
+      "multi_vacancy": 14,
       "digest": 0,
       "link_stub": 0,
-      "records": 17
+      "records": 1035
     },
     "alljvmjobs": {
-      "posts": 20,
-      "vacancy_posts": 17,
-      "not_vacancy": 3,
-      "multi_vacancy": 2,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 15
+      "posts": 2643,
+      "vacancy_posts": 2280,
+      "not_vacancy": 363,
+      "multi_vacancy": 154,
+      "digest": 7,
+      "link_stub": 54,
+      "records": 2065
     },
     "analytics_jobs": {
-      "posts": 20,
-      "vacancy_posts": 18,
-      "not_vacancy": 2,
-      "multi_vacancy": 0,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 18
+      "posts": 837,
+      "vacancy_posts": 808,
+      "not_vacancy": 29,
+      "multi_vacancy": 24,
+      "digest": 10,
+      "link_stub": 18,
+      "records": 756
     },
     "backend_frontend_jobs": {
-      "posts": 20,
-      "vacancy_posts": 15,
-      "not_vacancy": 5,
-      "multi_vacancy": 0,
-      "digest": 0,
+      "posts": 774,
+      "vacancy_posts": 718,
+      "not_vacancy": 56,
+      "multi_vacancy": 3,
+      "digest": 44,
       "link_stub": 0,
-      "records": 15
+      "records": 671
     },
     "data_engineer_jobs": {
-      "posts": 20,
-      "vacancy_posts": 17,
-      "not_vacancy": 3,
-      "multi_vacancy": 1,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 16
+      "posts": 672,
+      "vacancy_posts": 489,
+      "not_vacancy": 183,
+      "multi_vacancy": 21,
+      "digest": 3,
+      "link_stub": 25,
+      "records": 440
     },
     "data_hr": {
-      "posts": 20,
-      "vacancy_posts": 12,
-      "not_vacancy": 8,
-      "multi_vacancy": 0,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 12
+      "posts": 1250,
+      "vacancy_posts": 1078,
+      "not_vacancy": 172,
+      "multi_vacancy": 31,
+      "digest": 12,
+      "link_stub": 1,
+      "records": 1034
     },
     "data_secrets_career": {
-      "posts": 19,
-      "vacancy_posts": 12,
-      "not_vacancy": 7,
+      "posts": 1972,
+      "vacancy_posts": 1231,
+      "not_vacancy": 741,
       "multi_vacancy": 0,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 12
+      "digest": 168,
+      "link_stub": 14,
+      "records": 1049
     },
     "datajob": {
-      "posts": 20,
-      "vacancy_posts": 11,
-      "not_vacancy": 9,
-      "multi_vacancy": 0,
+      "posts": 2207,
+      "vacancy_posts": 1952,
+      "not_vacancy": 255,
+      "multi_vacancy": 151,
       "digest": 0,
-      "link_stub": 0,
-      "records": 11
+      "link_stub": 344,
+      "records": 1457
     },
     "datajobschannel": {
       "posts": 3355,
@@ -575,85 +574,85 @@
       "records": 1747
     },
     "datascjobs": {
-      "posts": 20,
-      "vacancy_posts": 14,
-      "not_vacancy": 6,
-      "multi_vacancy": 0,
+      "posts": 303,
+      "vacancy_posts": 274,
+      "not_vacancy": 29,
+      "multi_vacancy": 5,
       "digest": 0,
       "link_stub": 0,
-      "records": 14
+      "records": 269
     },
     "dataviz_jobs": {
-      "posts": 20,
-      "vacancy_posts": 18,
-      "not_vacancy": 2,
-      "multi_vacancy": 7,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 11
+      "posts": 2099,
+      "vacancy_posts": 951,
+      "not_vacancy": 1148,
+      "multi_vacancy": 69,
+      "digest": 19,
+      "link_stub": 258,
+      "records": 605
     },
     "de_rabota": {
-      "posts": 20,
-      "vacancy_posts": 18,
-      "not_vacancy": 2,
-      "multi_vacancy": 0,
+      "posts": 952,
+      "vacancy_posts": 900,
+      "not_vacancy": 52,
+      "multi_vacancy": 10,
       "digest": 0,
       "link_stub": 0,
-      "records": 18
+      "records": 890
     },
     "devjobs": {
-      "posts": 20,
-      "vacancy_posts": 17,
-      "not_vacancy": 3,
-      "multi_vacancy": 0,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 17
+      "posts": 10690,
+      "vacancy_posts": 8334,
+      "not_vacancy": 2356,
+      "multi_vacancy": 185,
+      "digest": 130,
+      "link_stub": 12,
+      "records": 8007
     },
     "devs_it": {
-      "posts": 16,
-      "vacancy_posts": 13,
-      "not_vacancy": 3,
-      "multi_vacancy": 0,
-      "digest": 0,
+      "posts": 4215,
+      "vacancy_posts": 4021,
+      "not_vacancy": 194,
+      "multi_vacancy": 118,
+      "digest": 135,
       "link_stub": 0,
-      "records": 13
+      "records": 3768
     },
     "dotnetrujobsfeed": {
-      "posts": 20,
-      "vacancy_posts": 9,
-      "not_vacancy": 11,
-      "multi_vacancy": 0,
-      "digest": 1,
-      "link_stub": 0,
-      "records": 8
+      "posts": 5074,
+      "vacancy_posts": 4409,
+      "not_vacancy": 665,
+      "multi_vacancy": 77,
+      "digest": 20,
+      "link_stub": 1,
+      "records": 4311
     },
     "dsml_jobs": {
-      "posts": 20,
-      "vacancy_posts": 19,
-      "not_vacancy": 1,
-      "multi_vacancy": 0,
-      "digest": 0,
-      "link_stub": 2,
-      "records": 17
+      "posts": 459,
+      "vacancy_posts": 452,
+      "not_vacancy": 7,
+      "multi_vacancy": 2,
+      "digest": 1,
+      "link_stub": 14,
+      "records": 435
     },
     "forallmobile": {
-      "posts": 20,
-      "vacancy_posts": 15,
-      "not_vacancy": 5,
-      "multi_vacancy": 2,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 13
+      "posts": 2543,
+      "vacancy_posts": 2154,
+      "not_vacancy": 389,
+      "multi_vacancy": 228,
+      "digest": 9,
+      "link_stub": 36,
+      "records": 1881
     },
     "forallqa": {
-      "posts": 20,
-      "vacancy_posts": 17,
-      "not_vacancy": 3,
-      "multi_vacancy": 2,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 15
+      "posts": 3567,
+      "vacancy_posts": 3147,
+      "not_vacancy": 420,
+      "multi_vacancy": 193,
+      "digest": 7,
+      "link_stub": 54,
+      "records": 2893
     },
     "foranalysts": {
       "posts": 6868,
@@ -661,44 +660,44 @@
       "not_vacancy": 767,
       "multi_vacancy": 692,
       "digest": 33,
-      "link_stub": 156,
-      "records": 5220
+      "link_stub": 166,
+      "records": 5210
     },
     "fordevops": {
-      "posts": 20,
-      "vacancy_posts": 18,
-      "not_vacancy": 2,
-      "multi_vacancy": 2,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 16
+      "posts": 3298,
+      "vacancy_posts": 2833,
+      "not_vacancy": 465,
+      "multi_vacancy": 157,
+      "digest": 13,
+      "link_stub": 73,
+      "records": 2590
     },
     "forfrontend": {
-      "posts": 20,
-      "vacancy_posts": 16,
-      "not_vacancy": 4,
-      "multi_vacancy": 1,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 15
+      "posts": 3947,
+      "vacancy_posts": 3467,
+      "not_vacancy": 480,
+      "multi_vacancy": 245,
+      "digest": 10,
+      "link_stub": 31,
+      "records": 3181
     },
     "forpython": {
-      "posts": 20,
-      "vacancy_posts": 17,
-      "not_vacancy": 3,
-      "multi_vacancy": 1,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 16
+      "posts": 3131,
+      "vacancy_posts": 2730,
+      "not_vacancy": 401,
+      "multi_vacancy": 176,
+      "digest": 11,
+      "link_stub": 35,
+      "records": 2508
     },
     "gamedevjob": {
-      "posts": 19,
-      "vacancy_posts": 13,
-      "not_vacancy": 6,
-      "multi_vacancy": 0,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 13
+      "posts": 3743,
+      "vacancy_posts": 2751,
+      "not_vacancy": 992,
+      "multi_vacancy": 80,
+      "digest": 45,
+      "link_stub": 2,
+      "records": 2624
     },
     "geekjobs": {
       "posts": 5046,
@@ -706,26 +705,26 @@
       "not_vacancy": 716,
       "multi_vacancy": 520,
       "digest": 49,
-      "link_stub": 10,
-      "records": 3751
+      "link_stub": 12,
+      "records": 3749
     },
     "getitrussia": {
-      "posts": 1019,
-      "vacancy_posts": 982,
-      "not_vacancy": 37,
-      "multi_vacancy": 13,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 969
+      "posts": 3987,
+      "vacancy_posts": 3364,
+      "not_vacancy": 623,
+      "multi_vacancy": 53,
+      "digest": 42,
+      "link_stub": 11,
+      "records": 3258
     },
     "golangjobsit": {
-      "posts": 20,
-      "vacancy_posts": 13,
-      "not_vacancy": 7,
-      "multi_vacancy": 1,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 12
+      "posts": 765,
+      "vacancy_posts": 647,
+      "not_vacancy": 118,
+      "multi_vacancy": 10,
+      "digest": 5,
+      "link_stub": 19,
+      "records": 613
     },
     "habr_career": {
       "posts": 75156,
@@ -737,13 +736,13 @@
       "records": 1332
     },
     "infosec_work": {
-      "posts": 20,
-      "vacancy_posts": 17,
-      "not_vacancy": 3,
-      "multi_vacancy": 0,
-      "digest": 0,
+      "posts": 3872,
+      "vacancy_posts": 3685,
+      "not_vacancy": 187,
+      "multi_vacancy": 149,
+      "digest": 6,
       "link_stub": 0,
-      "records": 17
+      "records": 3530
     },
     "it_interns": {
       "posts": 1704,
@@ -764,31 +763,31 @@
       "records": 1131
     },
     "javascript_jobs_feed": {
-      "posts": 20,
-      "vacancy_posts": 20,
-      "not_vacancy": 0,
-      "multi_vacancy": 0,
-      "digest": 1,
-      "link_stub": 0,
-      "records": 19
+      "posts": 34176,
+      "vacancy_posts": 21575,
+      "not_vacancy": 12601,
+      "multi_vacancy": 181,
+      "digest": 289,
+      "link_stub": 2264,
+      "records": 18841
     },
     "jc_it": {
-      "posts": 20,
-      "vacancy_posts": 14,
-      "not_vacancy": 6,
+      "posts": 6214,
+      "vacancy_posts": 5061,
+      "not_vacancy": 1153,
       "multi_vacancy": 0,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 14
+      "digest": 3,
+      "link_stub": 2881,
+      "records": 2177
     },
     "job_javadevs": {
-      "posts": 20,
-      "vacancy_posts": 18,
-      "not_vacancy": 2,
-      "multi_vacancy": 0,
-      "digest": 0,
+      "posts": 5132,
+      "vacancy_posts": 4796,
+      "not_vacancy": 336,
+      "multi_vacancy": 72,
+      "digest": 151,
       "link_stub": 0,
-      "records": 18
+      "records": 4573
     },
     "job_python": {
       "posts": 6308,
@@ -800,13 +799,13 @@
       "records": 5663
     },
     "job_react": {
-      "posts": 20,
-      "vacancy_posts": 20,
-      "not_vacancy": 0,
-      "multi_vacancy": 0,
-      "digest": 0,
+      "posts": 4309,
+      "vacancy_posts": 4105,
+      "not_vacancy": 204,
+      "multi_vacancy": 53,
+      "digest": 160,
       "link_stub": 0,
-      "records": 20
+      "records": 3892
     },
     "jobforjunior": {
       "posts": 6716,
@@ -814,35 +813,35 @@
       "not_vacancy": 661,
       "multi_vacancy": 225,
       "digest": 41,
-      "link_stub": 15,
-      "records": 5774
+      "link_stub": 16,
+      "records": 5773
     },
     "jobforqa": {
-      "posts": 17,
-      "vacancy_posts": 15,
-      "not_vacancy": 2,
-      "multi_vacancy": 0,
-      "digest": 0,
-      "link_stub": 2,
-      "records": 13
+      "posts": 1000,
+      "vacancy_posts": 842,
+      "not_vacancy": 158,
+      "multi_vacancy": 39,
+      "digest": 29,
+      "link_stub": 79,
+      "records": 695
     },
     "jobofferinside": {
-      "posts": 20,
-      "vacancy_posts": 19,
-      "not_vacancy": 1,
-      "multi_vacancy": 0,
-      "digest": 1,
+      "posts": 2525,
+      "vacancy_posts": 2155,
+      "not_vacancy": 370,
+      "multi_vacancy": 26,
+      "digest": 22,
       "link_stub": 0,
-      "records": 18
+      "records": 2107
     },
     "jun_qa": {
-      "posts": 20,
-      "vacancy_posts": 19,
-      "not_vacancy": 1,
-      "multi_vacancy": 8,
-      "digest": 1,
+      "posts": 1017,
+      "vacancy_posts": 860,
+      "not_vacancy": 157,
+      "multi_vacancy": 298,
+      "digest": 81,
       "link_stub": 0,
-      "records": 10
+      "records": 481
     },
     "juniors_rabota_jobs": {
       "posts": 2485,
@@ -863,13 +862,13 @@
       "records": 31
     },
     "myitjob": {
-      "posts": 16,
-      "vacancy_posts": 11,
-      "not_vacancy": 5,
-      "multi_vacancy": 0,
-      "digest": 0,
+      "posts": 3838,
+      "vacancy_posts": 2752,
+      "not_vacancy": 1086,
+      "multi_vacancy": 48,
+      "digest": 14,
       "link_stub": 0,
-      "records": 11
+      "records": 2690
     },
     "nlp_jobs": {
       "posts": 118,
@@ -881,94 +880,94 @@
       "records": 85
     },
     "offersanalysis": {
-      "posts": 20,
-      "vacancy_posts": 19,
-      "not_vacancy": 1,
+      "posts": 377,
+      "vacancy_posts": 316,
+      "not_vacancy": 61,
       "multi_vacancy": 0,
-      "digest": 4,
+      "digest": 44,
       "link_stub": 0,
-      "records": 15
+      "records": 272
     },
     "product_jobs": {
-      "posts": 20,
-      "vacancy_posts": 17,
-      "not_vacancy": 3,
-      "multi_vacancy": 0,
-      "digest": 0,
+      "posts": 2057,
+      "vacancy_posts": 1919,
+      "not_vacancy": 138,
+      "multi_vacancy": 55,
+      "digest": 33,
       "link_stub": 0,
-      "records": 17
+      "records": 1831
     },
     "progjob": {
-      "posts": 20,
-      "vacancy_posts": 18,
-      "not_vacancy": 2,
-      "multi_vacancy": 0,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 18
+      "posts": 62391,
+      "vacancy_posts": 61928,
+      "not_vacancy": 463,
+      "multi_vacancy": 235,
+      "digest": 37,
+      "link_stub": 10,
+      "records": 61646
     },
     "pydevjob": {
-      "posts": 20,
-      "vacancy_posts": 13,
-      "not_vacancy": 7,
-      "multi_vacancy": 1,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 12
+      "posts": 2226,
+      "vacancy_posts": 1972,
+      "not_vacancy": 254,
+      "multi_vacancy": 97,
+      "digest": 1,
+      "link_stub": 327,
+      "records": 1547
     },
     "pythonpythonjobs": {
-      "posts": 20,
-      "vacancy_posts": 19,
-      "not_vacancy": 1,
-      "multi_vacancy": 3,
-      "digest": 5,
-      "link_stub": 0,
-      "records": 11
+      "posts": 2465,
+      "vacancy_posts": 1642,
+      "not_vacancy": 823,
+      "multi_vacancy": 148,
+      "digest": 170,
+      "link_stub": 1,
+      "records": 1323
     },
     "qa_testirovshchik_jobs_vakansii": {
-      "posts": 20,
-      "vacancy_posts": 20,
-      "not_vacancy": 0,
-      "multi_vacancy": 2,
+      "posts": 1431,
+      "vacancy_posts": 1391,
+      "not_vacancy": 40,
+      "multi_vacancy": 86,
       "digest": 0,
       "link_stub": 0,
-      "records": 18
+      "records": 1305
     },
     "qajoboffer": {
-      "posts": 20,
-      "vacancy_posts": 12,
-      "not_vacancy": 8,
-      "multi_vacancy": 0,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 12
+      "posts": 1342,
+      "vacancy_posts": 1182,
+      "not_vacancy": 160,
+      "multi_vacancy": 4,
+      "digest": 32,
+      "link_stub": 198,
+      "records": 948
     },
     "rabota_golang": {
-      "posts": 19,
-      "vacancy_posts": 18,
-      "not_vacancy": 1,
-      "multi_vacancy": 0,
-      "digest": 0,
+      "posts": 1085,
+      "vacancy_posts": 1016,
+      "not_vacancy": 69,
+      "multi_vacancy": 5,
+      "digest": 1,
       "link_stub": 0,
-      "records": 18
+      "records": 1010
     },
     "remote_job_it_geeklink": {
-      "posts": 20,
-      "vacancy_posts": 13,
-      "not_vacancy": 7,
-      "multi_vacancy": 0,
-      "digest": 0,
+      "posts": 5660,
+      "vacancy_posts": 5336,
+      "not_vacancy": 324,
+      "multi_vacancy": 133,
+      "digest": 130,
       "link_stub": 0,
-      "records": 13
+      "records": 5073
     },
     "remotegeekjob": {
-      "posts": 20,
-      "vacancy_posts": 19,
-      "not_vacancy": 1,
-      "multi_vacancy": 1,
-      "digest": 0,
-      "link_stub": 0,
-      "records": 18
+      "posts": 30951,
+      "vacancy_posts": 28284,
+      "not_vacancy": 2667,
+      "multi_vacancy": 2319,
+      "digest": 175,
+      "link_stub": 216,
+      "records": 25574
     },
     "remoteit": {
       "posts": 12781,
@@ -998,144 +997,178 @@
       "records": 24
     },
     "v1c_rabota": {
-      "posts": 20,
-      "vacancy_posts": 20,
-      "not_vacancy": 0,
-      "multi_vacancy": 1,
-      "digest": 0,
+      "posts": 1160,
+      "vacancy_posts": 1085,
+      "not_vacancy": 75,
+      "multi_vacancy": 15,
+      "digest": 5,
       "link_stub": 0,
-      "records": 19
+      "records": 1065
     }
   },
   "train_pool_channels": {
-    "jobforjunior": 5730,
-    "job_python": 5621,
-    "foranalysts": 5191,
-    "geekjobs": 3737,
-    "datajobschannel": 2951,
-    "juniors_rabota_jobs": 2115,
-    "remotejun": 1879,
-    "datasciencejobs": 1720,
-    "habr_career": 1315,
-    "it_vakansii_jobs": 1123,
-    "getitrussia": 955,
-    "it_interns": 573,
-    "remoteit": 307,
-    "nlp_jobs": 83,
+    "progjob": 61512,
+    "remotegeekjob": 25545,
+    "javascript_jobs_feed": 18822,
+    "devjobs": 7994,
+    "jobforjunior": 5772,
+    "job_python": 5651,
+    "foranalysts": 5197,
+    "remote_job_it_geeklink": 5064,
+    "job_javadevs": 4572,
+    "dotnetrujobsfeed": 4305,
+    "job_react": 3889,
+    "devs_it": 3761,
+    "geekjobs": 3744,
+    "infosec_work": 3523,
+    "getitrussia": 3251,
+    "forfrontend": 3179,
+    "datajobschannel": 2984,
+    "forallqa": 2888,
+    "myitjob": 2681,
+    "gamedevjob": 2616,
+    "fordevops": 2587,
+    "forpython": 2503,
+    "jc_it": 2166,
+    "juniors_rabota_jobs": 2125,
+    "jobofferinside": 2099,
+    "alljvmjobs": 2062,
+    "remotejun": 1894,
+    "forallmobile": 1881,
+    "product_jobs": 1827,
+    "datasciencejobs": 1738,
+    "pydevjob": 1542,
+    "datajob": 1452,
+    "habr_career": 1332,
+    "pythonpythonjobs": 1321,
+    "qa_testirovshchik_jobs_vakansii": 1304,
+    "it_vakansii_jobs": 1127,
+    "v1c_rabota": 1062,
+    "data_secrets_career": 1044,
+    "data_hr": 1028,
+    "ai_rabota": 1025,
+    "rabota_golang": 1007,
+    "qajoboffer": 947,
+    "de_rabota": 884,
+    "analytics_jobs": 754,
+    "jobforqa": 694,
+    "backend_frontend_jobs": 668,
+    "golangjobsit": 612,
+    "dataviz_jobs": 600,
+    "it_interns": 576,
+    "jun_qa": 480,
+    "data_engineer_jobs": 438,
+    "dsml_jobs": 432,
+    "remoteit": 313,
+    "offersanalysis": 270,
+    "datascjobs": 267,
+    "nlp_jobs": 84,
     "llm_jobs": 30,
-    "runello_rus_frontend": 23,
-    "job_react": 20,
-    "javascript_jobs_feed": 18,
-    "job_javadevs": 18,
-    "remotegeekjob": 18,
-    "ai_rabota": 17,
-    "devjobs": 17,
-    "qa_testirovshchik_jobs_vakansii": 17,
-    "rabota_golang": 17,
-    "v1c_rabota": 17,
-    "dsml_jobs": 16,
-    "fordevops": 16,
-    "forpython": 16,
-    "infosec_work": 16,
-    "jobofferinside": 16,
-    "product_jobs": 16,
-    "alljvmjobs": 15,
-    "analytics_jobs": 15,
-    "data_engineer_jobs": 15,
-    "de_rabota": 15,
-    "forallqa": 15,
-    "forfrontend": 15,
-    "progjob": 15,
-    "backend_frontend_jobs": 14,
-    "jc_it": 14,
-    "offersanalysis": 14,
-    "datascjobs": 13,
-    "devs_it": 13,
-    "forallmobile": 13,
-    "jobforqa": 13,
-    "remote_job_it_geeklink": 13,
-    "gamedevjob": 12,
-    "golangjobsit": 12,
-    "data_secrets_career": 11,
-    "myitjob": 11,
-    "pydevjob": 11,
-    "pythonpythonjobs": 11,
-    "qajoboffer": 11,
-    "data_hr": 10,
-    "datajob": 10,
-    "dataviz_jobs": 10,
-    "jun_qa": 10,
-    "dotnetrujobsfeed": 8
+    "runello_rus_frontend": 24
   },
   "gold_channels": {
     "test": {
-      "job_python": 16,
-      "jobforjunior": 13,
-      "datajobschannel": 12,
-      "foranalysts": 12,
-      "datasciencejobs": 11,
-      "geekjobs": 10,
-      "remotejun": 10,
-      "habr_career": 9,
-      "juniors_rabota_jobs": 8,
+      "progjob": 21,
+      "remotegeekjob": 10,
+      "datajobschannel": 7,
+      "javascript_jobs_feed": 7,
       "getitrussia": 6,
-      "it_vakansii_jobs": 5,
-      "it_interns": 3,
+      "devjobs": 6,
+      "remote_job_it_geeklink": 6,
+      "jc_it": 5,
+      "gamedevjob": 4,
+      "job_python": 4,
+      "data_secrets_career": 3,
+      "datajob": 3,
+      "datasciencejobs": 3,
+      "foranalysts": 3,
+      "infosec_work": 3,
+      "jobofferinside": 3,
+      "juniors_rabota_jobs": 3,
+      "remotejun": 3,
+      "myitjob": 3,
       "analytics_jobs": 2,
-      "jobofferinside": 2,
-      "remoteit": 2,
+      "backend_frontend_jobs": 2,
+      "data_hr": 2,
+      "dataviz_jobs": 2,
+      "de_rabota": 2,
+      "devs_it": 2,
+      "job_react": 2,
+      "forpython": 2,
+      "product_jobs": 2,
       "v1c_rabota": 2,
+      "ai_rabota": 1,
+      "alljvmjobs": 1,
       "data_engineer_jobs": 1,
-      "data_secrets_career": 1,
-      "datajob": 1,
       "datascjobs": 1,
-      "dataviz_jobs": 1,
+      "dotnetrujobsfeed": 1,
       "dsml_jobs": 1,
-      "gamedevjob": 1,
-      "infosec_work": 1,
-      "javascript_jobs_feed": 1,
-      "llm_jobs": 1,
+      "forfrontend": 1,
+      "geekjobs": 1,
+      "golangjobsit": 1,
+      "it_interns": 1,
+      "it_vakansii_jobs": 1,
+      "jun_qa": 1,
       "nlp_jobs": 1,
       "offersanalysis": 1,
-      "product_jobs": 1,
       "pydevjob": 1,
-      "qa_testirovshchik_jobs_vakansii": 1,
-      "qajoboffer": 1,
-      "runello_rus_frontend": 1
+      "pythonpythonjobs": 1,
+      "qajoboffer": 1
     },
     "dev": {
-      "jobforjunior": 10,
-      "datajobschannel": 7,
-      "job_python": 6,
-      "remotejun": 6,
-      "datasciencejobs": 5,
-      "habr_career": 5,
-      "remoteit": 4,
-      "foranalysts": 4,
-      "juniors_rabota_jobs": 4,
-      "it_vakansii_jobs": 3,
-      "getitrussia": 2,
-      "de_rabota": 1,
+      "progjob": 9,
+      "remotegeekjob": 6,
+      "jobofferinside": 5,
+      "myitjob": 4,
+      "datajob": 2,
+      "devjobs": 2,
+      "it_vakansii_jobs": 2,
+      "job_python": 2,
+      "product_jobs": 2,
+      "remote_job_it_geeklink": 2,
+      "ai_rabota": 1,
+      "data_engineer_jobs": 1,
+      "data_hr": 1,
+      "data_secrets_career": 1,
+      "datajobschannel": 1,
+      "datasciencejobs": 1,
+      "remoteit": 1,
+      "dataviz_jobs": 1,
+      "dotnetrujobsfeed": 1,
+      "dsml_jobs": 1,
+      "foranalysts": 1,
+      "gamedevjob": 1,
       "geekjobs": 1,
+      "getitrussia": 1,
+      "infosec_work": 1,
       "it_interns": 1,
-      "nlp_jobs": 1
+      "job_javadevs": 1,
+      "job_react": 1,
+      "jobforqa": 1,
+      "offersanalysis": 1,
+      "pydevjob": 1,
+      "pythonpythonjobs": 1,
+      "qa_testirovshchik_jobs_vakansii": 1,
+      "rabota_golang": 1
     }
   },
   "hashes": {
-    "test_ids_sha256": "97d2411364cd0a56de29985602a06eaaf620d8a0c1cfa88358672a9b45248e9d",
-    "dev_ids_sha256": "2b6cf77c5caf5eb1facd8fa2db338493abbf3de45aceda2d1778e0e35730f27d",
-    "train_pool_ids_sha256": "8b8d2600f88afda0edeea559b969ce1874fd7a2a5a2c9ec7d4e0b02a6aae6151",
-    "split_content_sha256": "1c18f27971d02a03907ddf2650feb64256fb95dc4bab5c4d546959313bf37ecd"
+    "test_ids_sha256": "d7490248d5d625b95f5b3435bfa3e5d87774a8f60afee880204584127439cf63",
+    "dev_ids_sha256": "113248e3e08064a4e1f186879332e83674f434c69c8b3f10e2ede30aac7013c1",
+    "train_pool_ids_sha256": "e1a070895fbdaa3be80e9eae27f732401ca2e034d02dbc3543c3e8d1ff437117",
+    "split_content_sha256": "0b1d1cd2b25880eab684dab607cfa227a4ffb6fcc0c67e544c89de6a385fe089"
   },
   "frozen": {
-    "test_ids_sha256": "97d2411364cd0a56de29985602a06eaaf620d8a0c1cfa88358672a9b45248e9d",
-    "dev_ids_sha256": "2b6cf77c5caf5eb1facd8fa2db338493abbf3de45aceda2d1778e0e35730f27d",
-    "split_content_sha256": "1c18f27971d02a03907ddf2650feb64256fb95dc4bab5c4d546959313bf37ecd",
-    "split_file_sha256": "9acd16f332686cdaed66822ba92dadd796a4200d98d4c17c45d91a59a8e05cf0",
-    "test_inputs_sha256": "1eee49ac5d3167b7b5787a3d8d0887bc0bf4b6ab5a81a8344a63850519a2add3",
-    "dev_inputs_sha256": "c4a817b50d3eae6bc5f3a6070f47d12976dd2b306bef9ed27c67529ad9a53e55",
+    "test_ids_sha256": "d7490248d5d625b95f5b3435bfa3e5d87774a8f60afee880204584127439cf63",
+    "dev_ids_sha256": "113248e3e08064a4e1f186879332e83674f434c69c8b3f10e2ede30aac7013c1",
+    "split_content_sha256": "0b1d1cd2b25880eab684dab607cfa227a4ffb6fcc0c67e544c89de6a385fe089",
+    "split_file_sha256": "f0c11d9146220826e12ca1459456798c6c2647298c362c860b995b13b6194846",
+    "test_inputs_sha256": "8c486d7d2165adfe7451b17ad7980a32ecc2df0f532fd24efc72b7089ee81a48",
+    "dev_inputs_sha256": "a14fb856973a57e447feb0026dfe3db583784e31762339c19932f22d15daaf41",
     "drawn_from_partitions": [
-      "2026-10-08"
+      "2026-10-08",
+      "2026-10-10",
+      "2026-10-11"
     ]
   },
   "baseline_invalid": {
@@ -1144,170 +1177,151 @@
   },
   "leak_neighbours_drawn": {
     "test": {
-      "telegram:analytics_jobs/890": [
-        "telegram:analytics_jobs/896"
-      ],
-      "telegram:data_engineer_jobs/769": [
-        "telegram:data_hr/1380"
-      ],
-      "telegram:datajobschannel/2301": [
-        "telegram:datajobschannel/2086",
-        "telegram:datajobschannel/2157",
-        "telegram:datajobschannel/2186",
-        "telegram:datajobschannel/2251",
-        "telegram:datajobschannel/2334",
-        "telegram:datajobschannel/2779",
-        "telegram:datajobschannel/2785",
-        "telegram:datajobschannel/2833",
-        "telegram:datajobschannel/2839",
-        "telegram:datajobschannel/2849",
-        "telegram:datajobschannel/2854",
-        "telegram:datajobschannel/2884",
-        "telegram:datajobschannel/2907",
-        "telegram:datajobschannel/2925",
-        "telegram:datajobschannel/2932",
-        "telegram:datajobschannel/3110",
-        "telegram:datajobschannel/3208"
+      "telegram:datajobschannel/1028": [
+        "telegram:datajobschannel/1199"
       ],
       "telegram:datajobschannel/2890": [
         "telegram:datajobschannel/2912"
       ],
-      "telegram:datajobschannel/339": [
-        "telegram:datajobschannel/316",
-        "telegram:datasciencejobs/128",
-        "telegram:datasciencejobs/187"
-      ],
-      "telegram:datasciencejobs/154": [
-        "telegram:datasciencejobs/179"
-      ],
       "telegram:datasciencejobs/160": [
         "telegram:datajobschannel/330"
       ],
-      "telegram:datasciencejobs/347": [
-        "telegram:datasciencejobs/376"
+      "telegram:datascjobs/215": [
+        "telegram:datajobschannel/3212"
       ],
-      "telegram:foranalysts/5104": [
-        "telegram:foranalysts/4945"
+      "telegram:devjobs/11222": [
+        "telegram:datajobschannel/3105",
+        "telegram:datascjobs/184"
+      ],
+      "telegram:devjobs/9276": [
+        "telegram:devjobs/8865"
+      ],
+      "telegram:dotnetrujobsfeed/1868": [
+        "telegram:dotnetrujobsfeed/1921",
+        "telegram:dotnetrujobsfeed/2007"
+      ],
+      "telegram:dsml_jobs/290": [
+        "telegram:dsml_jobs/297"
+      ],
+      "telegram:remotegeekjob/13215": [
+        "telegram:remotegeekjob/13408",
+        "telegram:remotegeekjob/18350",
+        "telegram:remotegeekjob/22631"
       ],
       "telegram:foranalysts/8323": [
-        "telegram:foranalysts/9234"
+        "telegram:foranalysts/9234",
+        "telegram:fordevops/4410",
+        "telegram:forpython/4670"
+      ],
+      "telegram:forpython/4419": [
+        "telegram:forpython/4344",
+        "telegram:remotegeekjob/35803"
+      ],
+      "telegram:forpython/5028": [
+        "telegram:foranalysts/10490"
+      ],
+      "telegram:gamedevjob/4456": [
+        "telegram:gamedevjob/3475"
+      ],
+      "telegram:remotegeekjob/14913": [
+        "telegram:foranalysts/4584"
+      ],
+      "telegram:geekjobs/8055": [
+        "telegram:remotegeekjob/27610"
+      ],
+      "telegram:javascript_jobs_feed/3357": [
+        "telegram:javascript_jobs_feed/2094",
+        "telegram:javascript_jobs_feed/2548",
+        "telegram:javascript_jobs_feed/2850",
+        "telegram:javascript_jobs_feed/3732",
+        "telegram:javascript_jobs_feed/4245",
+        "telegram:javascript_jobs_feed/4978"
+      ],
+      "telegram:jc_it/7203": [
+        "telegram:jc_it/7048",
+        "telegram:jc_it/7173"
+      ],
+      "telegram:product_jobs/1835": [
+        "telegram:data_hr/1147",
+        "telegram:llm_jobs/13"
+      ],
+      "telegram:progjob/35705": [
+        "telegram:datajobschannel/1775",
+        "telegram:datasciencejobs/1185",
+        "telegram:datasciencejobs/1225",
+        "telegram:devjobs/8194",
+        "telegram:progjob/35838"
+      ],
+      "telegram:progjob/45504": [
+        "telegram:progjob/34667",
+        "telegram:progjob/44555",
+        "telegram:progjob/45876",
+        "telegram:progjob/48114",
+        "telegram:progjob/58227"
+      ],
+      "telegram:v1c_rabota/1111": [
+        "telegram:progjob/62190"
+      ],
+      "telegram:pydevjob/1668": [
+        "telegram:pydevjob/1369"
+      ],
+      "telegram:remotegeekjob/22264": [
+        "telegram:foranalysts/5763",
+        "telegram:geekjobs/7041",
+        "telegram:remotegeekjob/21092"
+      ],
+      "telegram:remotejun/148": [
+        "telegram:remotejun/185"
+      ]
+    },
+    "dev": {
+      "telegram:remotegeekjob/34982": [
+        "telegram:alljvmjobs/4133",
+        "telegram:forfrontend/6830",
+        "telegram:remotegeekjob/34463",
+        "telegram:remotegeekjob/37900"
+      ],
+      "telegram:data_secrets_career/316": [
+        "telegram:data_secrets_career/304"
+      ],
+      "telegram:devjobs/7718": [
+        "telegram:devjobs/7619"
       ],
       "telegram:foranalysts/9642": [
-        "telegram:foranalysts/9372"
-      ],
-      "telegram:jobforjunior/7740": [
-        "telegram:foranalysts/9412",
-        "telegram:foranalysts/9506",
-        "telegram:foranalysts/9716",
-        "telegram:jobforjunior/6143",
-        "telegram:jobforjunior/6205",
-        "telegram:jobforjunior/6300",
-        "telegram:jobforjunior/6611",
-        "telegram:jobforjunior/7442",
-        "telegram:jobforjunior/7459",
-        "telegram:jobforjunior/7511",
-        "telegram:jobforjunior/7650",
-        "telegram:jobforjunior/7651"
-      ],
-      "telegram:geekjobs/5795": [
-        "telegram:foranalysts/4584"
+        "telegram:forallqa/5372",
+        "telegram:forallqa/5484",
+        "telegram:foranalysts/9372",
+        "telegram:fordevops/4753",
+        "telegram:fordevops/4860"
       ],
       "telegram:geekjobs/5933": [
         "telegram:foranalysts/4706",
         "telegram:geekjobs/5939"
       ],
-      "telegram:geekjobs/8347": [
-        "telegram:foranalysts/7524"
+      "telegram:progjob/45724": [
+        "telegram:progjob/31661",
+        "telegram:progjob/37295",
+        "telegram:progjob/42294",
+        "telegram:progjob/46521",
+        "telegram:progjob/47431",
+        "telegram:progjob/48035"
       ],
-      "telegram:getitrussia/3793": [
-        "telegram:getitrussia/3813",
-        "telegram:getitrussia/3840"
+      "telegram:progjob/4647": [
+        "telegram:progjob/2833"
       ],
-      "telegram:job_python/2592": [
-        "telegram:job_python/1832",
-        "telegram:job_python/1970",
-        "telegram:job_python/2219",
-        "telegram:job_python/2359",
-        "telegram:job_python/2985"
+      "telegram:progjob/7168": [
+        "telegram:progjob/8769"
       ],
-      "telegram:job_python/3075": [
-        "telegram:job_python/3606"
+      "telegram:pydevjob/1538": [
+        "telegram:pydevjob/1743",
+        "telegram:pydevjob/1786"
       ],
-      "telegram:job_python/4796": [
-        "telegram:job_python/4018",
-        "telegram:job_python/4178",
-        "telegram:job_python/4257"
+      "telegram:remotegeekjob/14578": [
+        "telegram:remotegeekjob/15891",
+        "telegram:remotegeekjob/16170"
       ],
-      "telegram:jobforjunior/1771": [
-        "telegram:jobforjunior/1764"
-      ],
-      "telegram:jobforjunior/2562": [
-        "telegram:jobforjunior/2589"
-      ],
-      "telegram:jobforjunior/5077": [
-        "telegram:jobforjunior/5173",
-        "telegram:jobforjunior/5836"
-      ],
-      "telegram:jobforjunior/6374": [
-        "telegram:geekjobs/9393"
-      ],
-      "telegram:jobforjunior/7291": [
-        "telegram:geekjobs/9373"
-      ],
-      "telegram:remotejun/148": [
-        "telegram:remotejun/185"
-      ],
-      "telegram:remotejun/748": [
-        "telegram:remotejun/713"
-      ]
-    },
-    "dev": {
-      "telegram:datajobschannel/3445": [
-        "telegram:datajobschannel/3219"
-      ],
-      "telegram:datasciencejobs/2698": [
-        "telegram:datasciencejobs/2559",
-        "telegram:datasciencejobs/2776",
-        "telegram:datasciencejobs/2842"
-      ],
-      "telegram:foranalysts/8259": [
-        "telegram:foranalysts/7330",
-        "telegram:foranalysts/7619"
-      ],
-      "telegram:getitrussia/3409": [
-        "telegram:getitrussia/3412",
-        "telegram:getitrussia/3453"
-      ],
-      "telegram:getitrussia/3524": [
-        "telegram:datasciencejobs/2822"
-      ],
-      "telegram:habr_career/54443": [
-        "telegram:habr_career/50359",
-        "telegram:habr_career/60287"
-      ],
-      "telegram:job_python/1953": [
-        "telegram:job_python/1404",
-        "telegram:job_python/1678"
-      ],
-      "telegram:job_python/7001": [
-        "telegram:datasciencejobs/3008",
-        "telegram:job_python/6904"
-      ],
-      "telegram:jobforjunior/4975": [
-        "telegram:jobforjunior/4974"
-      ],
-      "telegram:jobforjunior/7003": [
-        "telegram:jobforjunior/7105"
-      ],
-      "telegram:jobforjunior/7354": [
-        "telegram:jobforjunior/6890",
-        "telegram:jobforjunior/7011",
-        "telegram:jobforjunior/7144",
-        "telegram:jobforjunior/8145",
-        "telegram:jobforjunior/8229"
-      ],
-      "telegram:remoteit/4391": [
-        "telegram:remoteit/4664"
+      "telegram:remotegeekjob/16870": [
+        "telegram:remotegeekjob/16888"
       ]
     }
   },
@@ -1315,7 +1329,7 @@
   "gold_groups_joined": [],
   "stage": "sample",
   "draw": {
-    "frame_groups": 28512,
+    "frame_groups": 167286,
     "skipped_near_gold": 0,
     "shortfall": {
       "test": {},
@@ -1325,651 +1339,867 @@
   "strata": [
     {
       "stratum": "analytics_jobs|analyst_other",
-      "frame_groups": 11,
+      "frame_groups": 654,
       "test": 1,
+      "dev": 0
+    },
+    {
+      "stratum": "analytics_jobs|dev",
+      "frame_groups": 1,
+      "test": 0,
       "dev": 0
     },
     {
       "stratum": "analytics_jobs|ml_ds_data",
-      "frame_groups": 4,
+      "frame_groups": 43,
       "test": 1,
       "dev": 0
     },
     {
+      "stratum": "analytics_jobs|non_it_noise",
+      "frame_groups": 13,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "analytics_jobs|other_it",
+      "frame_groups": 6,
+      "test": 0,
+      "dev": 0
+    },
+    {
       "stratum": "analytics_jobs|qa_devops_sys",
-      "frame_groups": 1,
+      "frame_groups": 8,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "data_engineer_jobs|analyst_other",
+      "frame_groups": 2,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "data_engineer_jobs|dev",
+      "frame_groups": 15,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "data_engineer_jobs|ml_ds_data",
-      "frame_groups": 13,
+      "frame_groups": 322,
       "test": 1,
-      "dev": 0
+      "dev": 1
     },
     {
       "stratum": "data_engineer_jobs|non_it_noise",
-      "frame_groups": 1,
+      "frame_groups": 39,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "data_engineer_jobs|other_it",
+      "frame_groups": 2,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "data_engineer_jobs|qa_devops_sys",
-      "frame_groups": 1,
+      "frame_groups": 8,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "data_hr|analyst_other",
-      "frame_groups": 1,
-      "test": 0,
+      "frame_groups": 262,
+      "test": 1,
       "dev": 0
     },
     {
       "stratum": "data_hr|dev",
-      "frame_groups": 1,
+      "frame_groups": 25,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "data_hr|ml_ds_data",
-      "frame_groups": 25,
+      "frame_groups": 432,
       "test": 1,
-      "dev": 0
+      "dev": 1
     },
     {
       "stratum": "data_hr|non_it_noise",
-      "frame_groups": 1,
+      "frame_groups": 35,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "data_hr|other_it",
-      "frame_groups": 1,
+      "frame_groups": 16,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "data_hr|qa_devops_sys",
+      "frame_groups": 14,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "data_secrets_career|analyst_other",
+      "frame_groups": 35,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "data_secrets_career|dev",
+      "frame_groups": 23,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "data_secrets_career|ml_ds_data",
-      "frame_groups": 9,
+      "frame_groups": 830,
+      "test": 2,
+      "dev": 1
+    },
+    {
+      "stratum": "data_secrets_career|non_it_noise",
+      "frame_groups": 107,
       "test": 1,
       "dev": 0
     },
     {
-      "stratum": "data_secrets_career|non_it_noise",
+      "stratum": "data_secrets_career|other_it",
+      "frame_groups": 24,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "data_secrets_career|qa_devops_sys",
       "frame_groups": 3,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "datajobschannel|analyst_other",
-      "frame_groups": 188,
+      "frame_groups": 154,
       "test": 1,
-      "dev": 1
+      "dev": 0
     },
     {
       "stratum": "datajobschannel|dev",
-      "frame_groups": 130,
+      "frame_groups": 120,
       "test": 1,
-      "dev": 1
+      "dev": 0
     },
     {
       "stratum": "datajobschannel|ml_ds_data",
-      "frame_groups": 1563,
-      "test": 7,
-      "dev": 3
+      "frame_groups": 1419,
+      "test": 3,
+      "dev": 1
     },
     {
       "stratum": "datajobschannel|non_it_noise",
-      "frame_groups": 189,
+      "frame_groups": 180,
       "test": 1,
-      "dev": 1
+      "dev": 0
     },
     {
       "stratum": "datajobschannel|other_it",
-      "frame_groups": 64,
+      "frame_groups": 54,
       "test": 1,
-      "dev": 1
+      "dev": 0
     },
     {
       "stratum": "datajobschannel|qa_devops_sys",
-      "frame_groups": 92,
-      "test": 1,
+      "frame_groups": 80,
+      "test": 0,
       "dev": 0
     },
     {
       "stratum": "datasciencejobs|analyst_other",
-      "frame_groups": 91,
-      "test": 1,
-      "dev": 1
+      "frame_groups": 83,
+      "test": 0,
+      "dev": 0
     },
     {
       "stratum": "datasciencejobs|dev",
-      "frame_groups": 112,
-      "test": 1,
-      "dev": 1
+      "frame_groups": 106,
+      "test": 0,
+      "dev": 0
     },
     {
       "stratum": "datasciencejobs|ml_ds_data",
-      "frame_groups": 1219,
-      "test": 6,
-      "dev": 3
+      "frame_groups": 1164,
+      "test": 3,
+      "dev": 1
     },
     {
       "stratum": "datasciencejobs|non_it_noise",
-      "frame_groups": 81,
-      "test": 1,
+      "frame_groups": 77,
+      "test": 0,
       "dev": 0
     },
     {
       "stratum": "datasciencejobs|other_it",
-      "frame_groups": 34,
-      "test": 1,
+      "frame_groups": 33,
+      "test": 0,
       "dev": 0
     },
     {
       "stratum": "datasciencejobs|qa_devops_sys",
-      "frame_groups": 24,
-      "test": 1,
+      "frame_groups": 23,
+      "test": 0,
       "dev": 0
     },
     {
       "stratum": "datascjobs|analyst_other",
-      "frame_groups": 3,
+      "frame_groups": 45,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "datascjobs|dev",
-      "frame_groups": 1,
+      "frame_groups": 16,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "datascjobs|ml_ds_data",
-      "frame_groups": 9,
+      "frame_groups": 118,
       "test": 1,
       "dev": 0
     },
     {
+      "stratum": "datascjobs|non_it_noise",
+      "frame_groups": 5,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "datascjobs|other_it",
+      "frame_groups": 2,
+      "test": 0,
+      "dev": 0
+    },
+    {
       "stratum": "datascjobs|qa_devops_sys",
-      "frame_groups": 1,
+      "frame_groups": 24,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "dataviz_jobs|analyst_other",
-      "frame_groups": 2,
-      "test": 0,
+      "frame_groups": 105,
+      "test": 1,
       "dev": 0
     },
     {
       "stratum": "dataviz_jobs|dev",
-      "frame_groups": 1,
+      "frame_groups": 110,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "dataviz_jobs|ml_ds_data",
-      "frame_groups": 5,
+      "frame_groups": 227,
       "test": 1,
-      "dev": 0
+      "dev": 1
     },
     {
       "stratum": "dataviz_jobs|non_it_noise",
-      "frame_groups": 2,
+      "frame_groups": 99,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "dataviz_jobs|other_it",
+      "frame_groups": 41,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "dataviz_jobs|qa_devops_sys",
-      "frame_groups": 1,
+      "frame_groups": 3,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "devjobs|analyst_other",
+      "frame_groups": 59,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "devjobs|dev",
-      "frame_groups": 5,
-      "test": 0,
-      "dev": 0
+      "frame_groups": 3762,
+      "test": 2,
+      "dev": 1
     },
     {
       "stratum": "devjobs|ml_ds_data",
-      "frame_groups": 1,
-      "test": 0,
+      "frame_groups": 49,
+      "test": 1,
       "dev": 0
     },
     {
       "stratum": "devjobs|non_it_noise",
-      "frame_groups": 6,
-      "test": 0,
+      "frame_groups": 1200,
+      "test": 1,
       "dev": 0
     },
     {
       "stratum": "devjobs|other_it",
-      "frame_groups": 4,
-      "test": 0,
+      "frame_groups": 855,
+      "test": 1,
+      "dev": 1
+    },
+    {
+      "stratum": "devjobs|qa_devops_sys",
+      "frame_groups": 174,
+      "test": 1,
       "dev": 0
     },
     {
       "stratum": "dsml_jobs|analyst_other",
-      "frame_groups": 1,
+      "frame_groups": 21,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "dsml_jobs|dev",
-      "frame_groups": 1,
+      "frame_groups": 15,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "dsml_jobs|ml_ds_data",
-      "frame_groups": 11,
+      "frame_groups": 354,
       "test": 1,
-      "dev": 0
+      "dev": 1
     },
     {
       "stratum": "dsml_jobs|non_it_noise",
-      "frame_groups": 3,
+      "frame_groups": 33,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "dsml_jobs|other_it",
+      "frame_groups": 5,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "dsml_jobs|qa_devops_sys",
+      "frame_groups": 2,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "feed|analyst_other",
+      "frame_groups": 20,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "feed|dev",
-      "frame_groups": 27,
+      "frame_groups": 11924,
+      "test": 4,
+      "dev": 1
+    },
+    {
+      "stratum": "feed|ml_ds_data",
+      "frame_groups": 64,
       "test": 1,
+      "dev": 0
+    },
+    {
+      "stratum": "feed|non_it_noise",
+      "frame_groups": 454,
+      "test": 1,
+      "dev": 0
+    },
+    {
+      "stratum": "feed|other_it",
+      "frame_groups": 61,
+      "test": 1,
+      "dev": 0
+    },
+    {
+      "stratum": "feed|qa_devops_sys",
+      "frame_groups": 122,
+      "test": 1,
+      "dev": 0
+    },
+    {
+      "stratum": "gamedevjob|analyst_other",
+      "frame_groups": 30,
+      "test": 0,
       "dev": 0
     },
     {
       "stratum": "gamedevjob|dev",
-      "frame_groups": 1,
-      "test": 0,
-      "dev": 0
-    },
-    {
-      "stratum": "gamedevjob|non_it_noise",
-      "frame_groups": 6,
-      "test": 0,
-      "dev": 0
-    },
-    {
-      "stratum": "gamedevjob|other_it",
-      "frame_groups": 5,
+      "frame_groups": 771,
       "test": 1,
       "dev": 0
     },
     {
+      "stratum": "gamedevjob|ml_ds_data",
+      "frame_groups": 22,
+      "test": 1,
+      "dev": 0
+    },
+    {
+      "stratum": "gamedevjob|non_it_noise",
+      "frame_groups": 602,
+      "test": 1,
+      "dev": 0
+    },
+    {
+      "stratum": "gamedevjob|other_it",
+      "frame_groups": 463,
+      "test": 1,
+      "dev": 1
+    },
+    {
       "stratum": "gamedevjob|qa_devops_sys",
-      "frame_groups": 1,
+      "frame_groups": 94,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "geekjob|analyst_other",
-      "frame_groups": 2483,
-      "test": 6,
-      "dev": 2
+      "frame_groups": 2405,
+      "test": 2,
+      "dev": 1
     },
     {
       "stratum": "geekjob|dev",
-      "frame_groups": 1524,
-      "test": 5,
-      "dev": 2
+      "frame_groups": 11606,
+      "test": 4,
+      "dev": 1
     },
     {
       "stratum": "geekjob|ml_ds_data",
-      "frame_groups": 2661,
-      "test": 10,
-      "dev": 4
-    },
-    {
-      "stratum": "geekjob|non_it_noise",
-      "frame_groups": 3497,
-      "test": 5,
+      "frame_groups": 3008,
+      "test": 4,
       "dev": 2
     },
     {
-      "stratum": "geekjob|other_it",
-      "frame_groups": 1669,
-      "test": 6,
-      "dev": 3
+      "stratum": "geekjob|non_it_noise",
+      "frame_groups": 9331,
+      "test": 3,
+      "dev": 1
     },
     {
-      "stratum": "geekjob|qa_devops_sys",
-      "frame_groups": 972,
+      "stratum": "geekjob|other_it",
+      "frame_groups": 4695,
       "test": 3,
       "dev": 2
     },
     {
+      "stratum": "geekjob|qa_devops_sys",
+      "frame_groups": 5437,
+      "test": 2,
+      "dev": 1
+    },
+    {
       "stratum": "geeklink|analyst_other",
-      "frame_groups": 3,
-      "test": 0,
+      "frame_groups": 441,
+      "test": 1,
       "dev": 0
     },
     {
       "stratum": "geeklink|dev",
-      "frame_groups": 1,
-      "test": 0,
-      "dev": 0
+      "frame_groups": 1890,
+      "test": 1,
+      "dev": 1
     },
     {
       "stratum": "geeklink|ml_ds_data",
-      "frame_groups": 1,
-      "test": 0,
-      "dev": 0
+      "frame_groups": 197,
+      "test": 1,
+      "dev": 1
     },
     {
       "stratum": "geeklink|non_it_noise",
-      "frame_groups": 7,
-      "test": 0,
+      "frame_groups": 1094,
+      "test": 1,
       "dev": 0
     },
     {
       "stratum": "geeklink|other_it",
-      "frame_groups": 1,
-      "test": 0,
+      "frame_groups": 384,
+      "test": 1,
+      "dev": 0
+    },
+    {
+      "stratum": "geeklink|qa_devops_sys",
+      "frame_groups": 540,
+      "test": 1,
       "dev": 0
     },
     {
       "stratum": "getitrussia|analyst_other",
-      "frame_groups": 42,
+      "frame_groups": 113,
       "test": 1,
       "dev": 0
     },
     {
       "stratum": "getitrussia|dev",
-      "frame_groups": 177,
+      "frame_groups": 1585,
       "test": 1,
       "dev": 1
     },
     {
       "stratum": "getitrussia|ml_ds_data",
-      "frame_groups": 35,
+      "frame_groups": 105,
       "test": 1,
-      "dev": 1
+      "dev": 0
     },
     {
       "stratum": "getitrussia|non_it_noise",
-      "frame_groups": 39,
+      "frame_groups": 147,
       "test": 1,
       "dev": 0
     },
     {
       "stratum": "getitrussia|other_it",
-      "frame_groups": 30,
+      "frame_groups": 128,
       "test": 1,
       "dev": 0
     },
     {
       "stratum": "getitrussia|qa_devops_sys",
-      "frame_groups": 95,
+      "frame_groups": 363,
       "test": 1,
       "dev": 0
     },
     {
-      "stratum": "golangjobsit|dev",
-      "frame_groups": 8,
+      "stratum": "golangjobsit|analyst_other",
+      "frame_groups": 2,
       "test": 0,
       "dev": 0
     },
     {
+      "stratum": "golangjobsit|dev",
+      "frame_groups": 453,
+      "test": 1,
+      "dev": 0
+    },
+    {
       "stratum": "golangjobsit|ml_ds_data",
-      "frame_groups": 1,
+      "frame_groups": 7,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "golangjobsit|non_it_noise",
+      "frame_groups": 7,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "golangjobsit|other_it",
-      "frame_groups": 1,
+      "frame_groups": 8,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "golangjobsit|qa_devops_sys",
+      "frame_groups": 29,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "habr|analyst_other",
-      "frame_groups": 48,
-      "test": 1,
-      "dev": 0
-    },
-    {
-      "stratum": "habr|dev",
-      "frame_groups": 630,
+      "frame_groups": 4192,
       "test": 3,
       "dev": 1
     },
     {
+      "stratum": "habr|dev",
+      "frame_groups": 29126,
+      "test": 5,
+      "dev": 2
+    },
+    {
       "stratum": "habr|ml_ds_data",
-      "frame_groups": 55,
-      "test": 1,
-      "dev": 1
+      "frame_groups": 3506,
+      "test": 5,
+      "dev": 2
     },
     {
       "stratum": "habr|non_it_noise",
-      "frame_groups": 235,
-      "test": 1,
-      "dev": 1
-    },
-    {
-      "stratum": "habr|other_it",
-      "frame_groups": 175,
+      "frame_groups": 4292,
       "test": 2,
       "dev": 1
     },
     {
+      "stratum": "habr|other_it",
+      "frame_groups": 4391,
+      "test": 3,
+      "dev": 2
+    },
+    {
       "stratum": "habr|qa_devops_sys",
-      "frame_groups": 145,
-      "test": 1,
+      "frame_groups": 11046,
+      "test": 3,
       "dev": 1
     },
     {
+      "stratum": "infosec_work|analyst_other",
+      "frame_groups": 137,
+      "test": 1,
+      "dev": 0
+    },
+    {
       "stratum": "infosec_work|dev",
-      "frame_groups": 1,
+      "frame_groups": 15,
       "test": 0,
       "dev": 0
     },
     {
+      "stratum": "infosec_work|ml_ds_data",
+      "frame_groups": 44,
+      "test": 1,
+      "dev": 0
+    },
+    {
       "stratum": "infosec_work|non_it_noise",
-      "frame_groups": 4,
+      "frame_groups": 83,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "infosec_work|other_it",
-      "frame_groups": 1,
+      "frame_groups": 26,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "infosec_work|qa_devops_sys",
-      "frame_groups": 11,
-      "test": 1,
-      "dev": 0
-    },
-    {
-      "stratum": "interns|analyst_other",
-      "frame_groups": 162,
+      "frame_groups": 2445,
       "test": 1,
       "dev": 1
     },
     {
+      "stratum": "interns|analyst_other",
+      "frame_groups": 176,
+      "test": 1,
+      "dev": 0
+    },
+    {
       "stratum": "interns|dev",
-      "frame_groups": 1088,
-      "test": 4,
-      "dev": 2
+      "frame_groups": 1882,
+      "test": 1,
+      "dev": 1
     },
     {
       "stratum": "interns|ml_ds_data",
-      "frame_groups": 285,
-      "test": 3,
+      "frame_groups": 398,
+      "test": 1,
       "dev": 1
     },
     {
       "stratum": "interns|non_it_noise",
-      "frame_groups": 183,
+      "frame_groups": 206,
       "test": 1,
-      "dev": 1
+      "dev": 0
     },
     {
       "stratum": "interns|other_it",
-      "frame_groups": 189,
-      "test": 2,
-      "dev": 1
+      "frame_groups": 197,
+      "test": 1,
+      "dev": 0
     },
     {
       "stratum": "interns|qa_devops_sys",
-      "frame_groups": 405,
-      "test": 2,
-      "dev": 1
+      "frame_groups": 835,
+      "test": 1,
+      "dev": 0
     },
     {
       "stratum": "it_vakansii|analyst_other",
-      "frame_groups": 153,
+      "frame_groups": 151,
       "test": 1,
-      "dev": 1
+      "dev": 0
     },
     {
       "stratum": "it_vakansii|dev",
-      "frame_groups": 578,
-      "test": 3,
+      "frame_groups": 1127,
+      "test": 1,
       "dev": 1
     },
     {
       "stratum": "it_vakansii|ml_ds_data",
-      "frame_groups": 144,
-      "test": 2,
-      "dev": 1
+      "frame_groups": 162,
+      "test": 1,
+      "dev": 0
     },
     {
       "stratum": "it_vakansii|non_it_noise",
-      "frame_groups": 1069,
-      "test": 3,
-      "dev": 1
+      "frame_groups": 1087,
+      "test": 1,
+      "dev": 0
     },
     {
       "stratum": "it_vakansii|other_it",
-      "frame_groups": 557,
-      "test": 3,
-      "dev": 2
-    },
-    {
-      "stratum": "it_vakansii|qa_devops_sys",
-      "frame_groups": 237,
+      "frame_groups": 561,
       "test": 1,
       "dev": 1
     },
     {
-      "stratum": "jc_it|dev",
-      "frame_groups": 5,
+      "stratum": "it_vakansii|qa_devops_sys",
+      "frame_groups": 240,
+      "test": 1,
+      "dev": 0
+    },
+    {
+      "stratum": "jc_it|analyst_other",
+      "frame_groups": 38,
       "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "jc_it|dev",
+      "frame_groups": 614,
+      "test": 1,
+      "dev": 0
+    },
+    {
+      "stratum": "jc_it|ml_ds_data",
+      "frame_groups": 28,
+      "test": 1,
       "dev": 0
     },
     {
       "stratum": "jc_it|non_it_noise",
-      "frame_groups": 1,
-      "test": 0,
+      "frame_groups": 365,
+      "test": 1,
+      "dev": 0
+    },
+    {
+      "stratum": "jc_it|other_it",
+      "frame_groups": 81,
+      "test": 1,
       "dev": 0
     },
     {
       "stratum": "jc_it|qa_devops_sys",
-      "frame_groups": 2,
-      "test": 0,
+      "frame_groups": 132,
+      "test": 1,
       "dev": 0
     },
     {
       "stratum": "job_x|analyst_other",
-      "frame_groups": 48,
+      "frame_groups": 141,
       "test": 1,
       "dev": 0
     },
     {
       "stratum": "job_x|dev",
-      "frame_groups": 3300,
-      "test": 7,
-      "dev": 3
-    },
-    {
-      "stratum": "job_x|ml_ds_data",
-      "frame_groups": 594,
-      "test": 4,
+      "frame_groups": 10522,
+      "test": 3,
       "dev": 2
     },
     {
+      "stratum": "job_x|ml_ds_data",
+      "frame_groups": 659,
+      "test": 2,
+      "dev": 1
+    },
+    {
       "stratum": "job_x|non_it_noise",
-      "frame_groups": 68,
-      "test": 1,
-      "dev": 0
+      "frame_groups": 197,
+      "test": 0,
+      "dev": 1
     },
     {
       "stratum": "job_x|other_it",
-      "frame_groups": 27,
+      "frame_groups": 155,
       "test": 1,
       "dev": 0
     },
     {
       "stratum": "job_x|qa_devops_sys",
-      "frame_groups": 373,
-      "test": 2,
+      "frame_groups": 1210,
+      "test": 1,
+      "dev": 0
+    },
+    {
+      "stratum": "jobofferinside|analyst_other",
+      "frame_groups": 120,
+      "test": 0,
       "dev": 1
     },
     {
       "stratum": "jobofferinside|dev",
-      "frame_groups": 5,
-      "test": 0,
+      "frame_groups": 426,
+      "test": 1,
       "dev": 0
     },
     {
       "stratum": "jobofferinside|ml_ds_data",
-      "frame_groups": 4,
+      "frame_groups": 401,
       "test": 1,
-      "dev": 0
+      "dev": 1
+    },
+    {
+      "stratum": "jobofferinside|non_it_noise",
+      "frame_groups": 407,
+      "test": 0,
+      "dev": 1
     },
     {
       "stratum": "jobofferinside|other_it",
-      "frame_groups": 5,
+      "frame_groups": 542,
       "test": 1,
-      "dev": 0
+      "dev": 1
     },
     {
       "stratum": "jobofferinside|qa_devops_sys",
-      "frame_groups": 4,
+      "frame_groups": 170,
       "test": 0,
-      "dev": 0
+      "dev": 1
     },
     {
       "stratum": "myitjob|analyst_other",
-      "frame_groups": 2,
+      "frame_groups": 348,
       "test": 0,
-      "dev": 0
+      "dev": 1
     },
     {
       "stratum": "myitjob|dev",
-      "frame_groups": 2,
-      "test": 0,
+      "frame_groups": 954,
+      "test": 1,
       "dev": 0
     },
     {
       "stratum": "myitjob|ml_ds_data",
-      "frame_groups": 2,
-      "test": 0,
-      "dev": 0
+      "frame_groups": 172,
+      "test": 1,
+      "dev": 1
     },
     {
       "stratum": "myitjob|non_it_noise",
-      "frame_groups": 1,
+      "frame_groups": 126,
       "test": 0,
-      "dev": 0
+      "dev": 1
     },
     {
       "stratum": "myitjob|other_it",
-      "frame_groups": 1,
-      "test": 0,
+      "frame_groups": 133,
+      "test": 1,
       "dev": 0
     },
     {
       "stratum": "myitjob|qa_devops_sys",
-      "frame_groups": 3,
+      "frame_groups": 405,
       "test": 0,
-      "dev": 0
+      "dev": 1
     },
     {
       "stratum": "nlp_jobs|analyst_other",
@@ -1981,7 +2211,7 @@
       "stratum": "nlp_jobs|ml_ds_data",
       "frame_groups": 64,
       "test": 1,
-      "dev": 1
+      "dev": 0
     },
     {
       "stratum": "nlp_jobs|non_it_noise",
@@ -1997,158 +2227,248 @@
     },
     {
       "stratum": "offersanalysis|analyst_other",
-      "frame_groups": 6,
+      "frame_groups": 130,
+      "test": 0,
+      "dev": 1
+    },
+    {
+      "stratum": "offersanalysis|dev",
+      "frame_groups": 3,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "offersanalysis|ml_ds_data",
-      "frame_groups": 5,
+      "frame_groups": 88,
       "test": 1,
       "dev": 0
     },
     {
       "stratum": "offersanalysis|non_it_noise",
-      "frame_groups": 3,
+      "frame_groups": 41,
       "test": 0,
       "dev": 0
     },
     {
       "stratum": "offersanalysis|other_it",
-      "frame_groups": 1,
-      "test": 0,
-      "dev": 0
-    },
-    {
-      "stratum": "product_jobs|non_it_noise",
-      "frame_groups": 6,
-      "test": 0,
-      "dev": 0
-    },
-    {
-      "stratum": "product_jobs|other_it",
-      "frame_groups": 11,
-      "test": 1,
-      "dev": 0
-    },
-    {
-      "stratum": "proglib|dev",
-      "frame_groups": 13,
-      "test": 1,
-      "dev": 0
-    },
-    {
-      "stratum": "proglib|ml_ds_data",
-      "frame_groups": 9,
-      "test": 1,
-      "dev": 0
-    },
-    {
-      "stratum": "qa_testirovshchik_jobs_vakansii|ml_ds_data",
-      "frame_groups": 1,
-      "test": 0,
-      "dev": 0
-    },
-    {
-      "stratum": "qa_testirovshchik_jobs_vakansii|qa_devops_sys",
-      "frame_groups": 17,
-      "test": 1,
-      "dev": 0
-    },
-    {
-      "stratum": "qa|ml_ds_data",
-      "frame_groups": 1,
-      "test": 0,
-      "dev": 0
-    },
-    {
-      "stratum": "qa|non_it_noise",
-      "frame_groups": 3,
-      "test": 0,
-      "dev": 0
-    },
-    {
-      "stratum": "qa|qa_devops_sys",
-      "frame_groups": 21,
-      "test": 1,
-      "dev": 0
-    },
-    {
-      "stratum": "rabota|analyst_other",
-      "frame_groups": 8,
-      "test": 1,
-      "dev": 0
-    },
-    {
-      "stratum": "rabota|dev",
-      "frame_groups": 23,
-      "test": 1,
-      "dev": 0
-    },
-    {
-      "stratum": "rabota|ml_ds_data",
-      "frame_groups": 24,
-      "test": 0,
-      "dev": 1
-    },
-    {
-      "stratum": "rabota|non_it_noise",
-      "frame_groups": 4,
-      "test": 0,
-      "dev": 0
-    },
-    {
-      "stratum": "rabota|other_it",
-      "frame_groups": 1,
-      "test": 0,
-      "dev": 0
-    },
-    {
-      "stratum": "rabota|qa_devops_sys",
-      "frame_groups": 2,
-      "test": 0,
-      "dev": 0
-    },
-    {
-      "stratum": "remoteit|analyst_other",
       "frame_groups": 5,
       "test": 0,
       "dev": 0
     },
     {
-      "stratum": "remoteit|dev",
-      "frame_groups": 102,
+      "stratum": "offersanalysis|qa_devops_sys",
+      "frame_groups": 4,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "product_jobs|analyst_other",
+      "frame_groups": 33,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "product_jobs|dev",
+      "frame_groups": 15,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "product_jobs|ml_ds_data",
+      "frame_groups": 59,
+      "test": 1,
+      "dev": 0
+    },
+    {
+      "stratum": "product_jobs|non_it_noise",
+      "frame_groups": 398,
+      "test": 0,
+      "dev": 1
+    },
+    {
+      "stratum": "product_jobs|other_it",
+      "frame_groups": 1187,
       "test": 1,
       "dev": 1
     },
     {
-      "stratum": "remoteit|ml_ds_data",
+      "stratum": "product_jobs|qa_devops_sys",
+      "frame_groups": 7,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "proglib|analyst_other",
+      "frame_groups": 132,
+      "test": 0,
+      "dev": 1
+    },
+    {
+      "stratum": "proglib|dev",
+      "frame_groups": 1308,
+      "test": 1,
+      "dev": 1
+    },
+    {
+      "stratum": "proglib|ml_ds_data",
+      "frame_groups": 1236,
+      "test": 3,
+      "dev": 1
+    },
+    {
+      "stratum": "proglib|non_it_noise",
       "frame_groups": 26,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "proglib|other_it",
+      "frame_groups": 8,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "proglib|qa_devops_sys",
+      "frame_groups": 18,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "qa_testirovshchik_jobs_vakansii|analyst_other",
+      "frame_groups": 1,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "qa_testirovshchik_jobs_vakansii|dev",
+      "frame_groups": 8,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "qa_testirovshchik_jobs_vakansii|ml_ds_data",
+      "frame_groups": 6,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "qa_testirovshchik_jobs_vakansii|non_it_noise",
+      "frame_groups": 22,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "qa_testirovshchik_jobs_vakansii|qa_devops_sys",
+      "frame_groups": 1163,
+      "test": 0,
+      "dev": 1
+    },
+    {
+      "stratum": "qa|dev",
+      "frame_groups": 6,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "qa|ml_ds_data",
+      "frame_groups": 8,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "qa|non_it_noise",
+      "frame_groups": 17,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "qa|other_it",
+      "frame_groups": 5,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "qa|qa_devops_sys",
+      "frame_groups": 1465,
+      "test": 1,
+      "dev": 1
+    },
+    {
+      "stratum": "rabota|analyst_other",
+      "frame_groups": 98,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "rabota|dev",
+      "frame_groups": 1145,
+      "test": 1,
+      "dev": 1
+    },
+    {
+      "stratum": "rabota|ml_ds_data",
+      "frame_groups": 1056,
+      "test": 3,
+      "dev": 1
+    },
+    {
+      "stratum": "rabota|non_it_noise",
+      "frame_groups": 107,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "rabota|other_it",
+      "frame_groups": 70,
+      "test": 1,
+      "dev": 0
+    },
+    {
+      "stratum": "rabota|qa_devops_sys",
+      "frame_groups": 68,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "remoteit|analyst_other",
+      "frame_groups": 4,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "remoteit|dev",
+      "frame_groups": 97,
+      "test": 0,
+      "dev": 0
+    },
+    {
+      "stratum": "remoteit|ml_ds_data",
+      "frame_groups": 24,
       "test": 0,
       "dev": 1
     },
     {
       "stratum": "remoteit|non_it_noise",
-      "frame_groups": 34,
-      "test": 1,
+      "frame_groups": 31,
+      "test": 0,
       "dev": 0
     },
     {
       "stratum": "remoteit|other_it",
-      "frame_groups": 32,
+      "frame_groups": 31,
       "test": 0,
-      "dev": 1
+      "dev": 0
     },
     {
       "stratum": "remoteit|qa_devops_sys",
-      "frame_groups": 47,
+      "frame_groups": 45,
       "test": 0,
-      "dev": 1
+      "dev": 0
     },
     {
       "stratum": "runello|dev",
       "frame_groups": 24,
-      "test": 1,
+      "test": 0,
       "dev": 0
     }
   ]
