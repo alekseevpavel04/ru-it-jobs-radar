@@ -30,9 +30,11 @@ MARTS = (
     "mart_work_format",
     "mart_employers",
     "mart_junior",
+    "mart_skills_weekly",
+    "mart_lifetime",
 )
 # Models and seeds of the marts, for their build time and memory.
-MART_MODELS = ("stg_telegram", "int_vacancy_", "mart_", "skill_dictionary", "telegram_channels")
+MART_MODELS = ("stg_telegram", "int_vacancy_", "mart_", "skill_dictionary", "telegram_channels", "role_groups")
 IT_DATA = ("ml_ds", "data_engineering", "data_analytics")
 
 
@@ -297,7 +299,7 @@ def marts_metrics(ch: ClickHouse) -> dict[str, dict[str, Any]]:
     for source, salary, total, other in rows(
         ch,
         "SELECT source, sum(with_salary_rub), sum(vacancies), sum(with_salary_other_currency) "
-        "FROM marts.mart_salaries GROUP BY source ORDER BY source",
+        "FROM marts.mart_salaries WHERE level = 'source' GROUP BY source ORDER BY source",
     ):
         out[f"salary_stated_rub_{source}"] = share(int(salary), int(total))
         out[f"salary_other_currency_{source}"] = share(int(other), int(total))

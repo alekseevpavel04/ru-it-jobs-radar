@@ -12,6 +12,9 @@ models:
       with is_it_candidate, all of Habr. The entity is vacancy_entity_id of staging.vacancy_entities;
       a record the dedup has not seen yet (staged after its last run) gets
       "<family>:<source_id>", keyed by the portal so that its API and snapshot records still meet.
+      It reads hist_snapshot_days and hist_vacancy_lifetime, so dbt builds it after them in any run
+      that selects both; a run that rebuilds history alone leaves it stale, which is why history is
+      rebuilt with the selector history_and_marts (dbt/selectors.yml) or a full build.
     data_tests:
       - unique_combination:
           arguments:
@@ -50,6 +53,8 @@ models:
         description: Already open on the source's first collected day.
       - name: title
         description: Job title.
+      - name: url
+        description: Link to the vacancy at the source.
       - name: employer_key
         description: INN (trudvsem) or Habr company id; NULL for a sole proprietor.
       - name: employer_name
@@ -62,6 +67,8 @@ models:
         description: Upper bound as stated.
       - name: salary_currency_code
         description: ISO code of the stated currency.
+      - name: salary_text
+        description: Salary as the source prints it.
       - name: role_bucket
         description: Role bucket of the title (macros/marts.sql, role_buckets); not_it when no IT role.
       - name: grade
@@ -72,6 +79,10 @@ models:
         description: office, hybrid, remote or unknown (macros/marts.sql, work_format).
       - name: region_group
         description: moscow, spb, other, remote or unknown.
+      - name: region
+        description: trudvsem region (subject of the federation); NULL on Habr.
+      - name: cities
+        description: Habr city list; empty on trudvsem.
       - name: experience_min_years
         description: Required years of experience (trudvsem).
       - name: no_experience

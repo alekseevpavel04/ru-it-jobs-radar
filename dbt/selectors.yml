@@ -1,0 +1,11 @@
+selectors:
+  - name: history_and_marts
+    description: >
+      The history models and everything built on them: int_vacancy_records and int_vacancy_entities
+      (which read hist_snapshot_days and hist_vacancy_lifetime), the marts and their tests. A partial
+      rebuild of history (a backfill of snapshot days) runs this, so the intermediate models and the
+      marts never lag behind hist_*: scripts/dbt.sh build --selector history_and_marts
+    definition:
+      method: path
+      value: models/history
+      children: true

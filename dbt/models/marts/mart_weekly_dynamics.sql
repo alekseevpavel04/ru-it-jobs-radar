@@ -100,6 +100,15 @@ telegram_cells AS (
     FROM {{ ref('stg_telegram') }}
     WHERE role_bucket != 'not_it'
     GROUP BY week, role_bucket
+),
+
+-- Channels per week over all buckets: a channel carrying posts of several buckets counts once, so
+-- the coverage of a week is not the sum of telegram_channels over its rows.
+telegram_weeks AS (
+    SELECT published_week AS week, uniqExact(channel) AS channels
+    FROM {{ ref('stg_telegram') }}
+    WHERE role_bucket != 'not_it'
+    GROUP BY week
 )
 
 SELECT
@@ -115,7 +124,8 @@ SELECT
     CAST(if(c.absent_days_to_close IS NULL, NULL, v.closed_n) AS Nullable(UInt64)) AS vacancies_closed,
     CAST(NULL AS Nullable(UInt64)) AS telegram_posts,
     CAST(NULL AS Nullable(UInt64)) AS telegram_posts_before_dedup,
-    CAST(NULL AS Nullable(UInt64)) AS telegram_channels
+    CAST(NULL AS Nullable(UInt64)) AS telegram_channels,
+    CAST(NULL AS Nullable(UInt64)) AS telegram_channels_week
 FROM vacancy_cells AS v
 INNER JOIN calendar AS c ON v.source = c.source AND v.week = c.week
 INNER JOIN first_days AS f ON v.source = f.source
@@ -123,16 +133,18 @@ INNER JOIN first_days AS f ON v.source = f.source
 UNION ALL
 
 SELECT
-    week,
+    t.week,
     CAST('telegram' AS LowCardinality(String)),
-    CAST(role_bucket AS LowCardinality(String)),
+    CAST(t.role_bucket AS LowCardinality(String)),
     CAST(NULL AS Nullable(UInt8)),
     CAST(NULL AS Nullable(UInt8)),
     false,
     CAST(NULL AS Nullable(UInt64)),
     CAST(NULL AS Nullable(UInt64)),
     CAST(NULL AS Nullable(UInt64)),
-    CAST(posts AS Nullable(UInt64)),
-    CAST(posts_before_dedup AS Nullable(UInt64)),
-    CAST(channels AS Nullable(UInt64))
-FROM telegram_cells
+    CAST(t.posts AS Nullable(UInt64)),
+    CAST(t.posts_before_dedup AS Nullable(UInt64)),
+    CAST(t.channels AS Nullable(UInt64)),
+    CAST(w.channels AS Nullable(UInt64))
+FROM telegram_cells AS t
+INNER JOIN telegram_weeks AS w ON t.week = w.week

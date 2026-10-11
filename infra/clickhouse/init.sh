@@ -6,7 +6,7 @@ set -euo pipefail
 : "${CLICKHOUSE_USER:?}" "${CLICKHOUSE_PASSWORD:?}" "${CLICKHOUSE_RO_USER:?}" "${CLICKHOUSE_RO_PASSWORD:?}"
 
 # Both values are spliced into SQL text (CREATE USER takes no query parameters), so their alphabet
-# is restricted instead of escaped.
+# is restricted instead of escaped; radar.agent.access checks the same alphabet.
 if [[ ! $CLICKHOUSE_RO_USER =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]]; then
   echo "CLICKHOUSE_RO_USER must be a plain identifier (letters, digits, underscore)" >&2
   exit 1
@@ -20,35 +20,31 @@ if [[ $CLICKHOUSE_RO_USER == "$CLICKHOUSE_USER" ]]; then
   exit 1
 fi
 
-clickhouse-client --host "${CLICKHOUSE_HOST:-clickhouse}" --user "$CLICKHOUSE_USER" \
-  --password "$CLICKHOUSE_PASSWORD" --multiquery <<SQL
+here=$(dirname "$0")
+client() {
+  clickhouse-client --host "${CLICKHOUSE_HOST:-clickhouse}" --user "$CLICKHOUSE_USER" \
+    --password "$CLICKHOUSE_PASSWORD" --multiquery
+}
+
+client <<SQL
 CREATE DATABASE IF NOT EXISTS raw;
 CREATE DATABASE IF NOT EXISTS staging;
 CREATE DATABASE IF NOT EXISTS marts;
-
--- readonly = 2 still lets HTTP clients send per-query settings, but forbids writes and DDL.
--- CONST keeps the account from lifting it; the limits bound the cost of a runaway generated query.
-CREATE SETTINGS PROFILE OR REPLACE agent_readonly SETTINGS
-    readonly = 2 CONST,
-    allow_ddl = 0 CONST,
-    max_execution_time = 30,
-    max_memory_usage = 2000000000;
-
-CREATE USER IF NOT EXISTS ${CLICKHOUSE_RO_USER};
-ALTER USER ${CLICKHOUSE_RO_USER} IDENTIFIED WITH sha256_password BY '${CLICKHOUSE_RO_PASSWORD}'
-    SETTINGS PROFILE 'agent_readonly';
-REVOKE ALL ON *.* FROM ${CLICKHOUSE_RO_USER};
-GRANT SELECT ON marts.* TO ${CLICKHOUSE_RO_USER};
 SQL
+echo "databases raw, staging, marts"
 
-echo "databases raw, staging, marts; ${CLICKHOUSE_RO_USER} can SELECT on marts only"
+# The account itself (profile, password, grants) has one definition, agent/readonly_user.sql, which
+# scripts/apply_agent_user.py applies from the host as well. | cannot occur in either value, and
+# neither can & or \, the other characters sed treats specially in a replacement.
+sed -e "s|{ro_user}|${CLICKHOUSE_RO_USER}|g" -e "s|{ro_password}|${CLICKHOUSE_RO_PASSWORD}|g" \
+  "$here/agent/readonly_user.sql" | client
+echo "applied agent/readonly_user.sql: ${CLICKHOUSE_RO_USER} can SELECT on marts and agent_snapshot only"
 
 # Tables of the layers: numbered DDL files next to this script, every statement idempotent. They are
 # applied only when the directory is mounted (not just this file); `python -m radar.stream.clickhouse`
 # applies the same files from the host.
 shopt -s nullglob
-for ddl in "$(dirname "$0")"/*.sql; do
-  clickhouse-client --host "${CLICKHOUSE_HOST:-clickhouse}" --user "$CLICKHOUSE_USER" \
-    --password "$CLICKHOUSE_PASSWORD" --multiquery <"$ddl"
+for ddl in "$here"/*.sql; do
+  client <"$ddl"
   echo "applied $(basename "$ddl")"
 done

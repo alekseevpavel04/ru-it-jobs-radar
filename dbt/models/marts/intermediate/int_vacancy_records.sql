@@ -26,10 +26,10 @@ snapshot_latest AS (
 
 records AS (
     SELECT
-        source, source_id, dt, title, text, employer_name,
+        source, source_id, dt, title, text, url, employer_name,
         employer_inn AS employer_key,
         region, CAST([] AS Array(String)) AS cities,
-        salary_from, salary_to, salary_currency_code,
+        salary_text, salary_from, salary_to, salary_currency_code,
         employment, CAST(NULL AS Nullable(Bool)) AS remote_work,
         experience_min_years, CAST(NULL AS Nullable(String)) AS stated_grade, skills
     FROM {{ ref('stg_trudvsem_api') }}
@@ -40,10 +40,10 @@ records AS (
     UNION ALL
 
     SELECT
-        source, source_id, dt, title, text, employer_name,
+        source, source_id, dt, title, text, url, employer_name,
         employer_inn AS employer_key,
         region, CAST([] AS Array(String)) AS cities,
-        salary_from, salary_to, salary_currency_code,
+        salary_text, salary_from, salary_to, salary_currency_code,
         employment, CAST(NULL AS Nullable(Bool)) AS remote_work,
         experience_min_years, CAST(NULL AS Nullable(String)) AS stated_grade, skills
     FROM {{ ref('stg_trudvsem_snapshot') }}
@@ -52,10 +52,10 @@ records AS (
     UNION ALL
 
     SELECT
-        source, source_id, dt, title, text, employer_name,
+        source, source_id, dt, title, text, url, employer_name,
         CAST(toString(employer_id) AS Nullable(String)) AS employer_key,
         CAST(NULL AS Nullable(String)) AS region, cities,
-        salary_from, salary_to, salary_currency_code,
+        salary_text, salary_from, salary_to, salary_currency_code,
         employment, remote_work,
         CAST(NULL AS Nullable(UInt8)) AS experience_min_years, grade AS stated_grade, skills
     FROM {{ ref('stg_habr') }}
@@ -111,12 +111,14 @@ SELECT
     l.duration_days AS duration_days,
     l.is_left_censored AS is_left_censored,
     d.title AS title,
+    d.url AS url,
     if(d.is_sole_proprietor, NULL, d.employer_key) AS employer_key,
     if(d.is_sole_proprietor, 'ИП', d.employer_name) AS employer_name,
     d.is_sole_proprietor AS is_sole_proprietor,
     d.salary_from AS salary_from,
     d.salary_to AS salary_to,
     d.salary_currency_code AS salary_currency_code,
+    d.salary_text AS salary_text,
     {{ role_bucket('d.title_rule') }} AS role_bucket,
     multiIf(
         d.stated_grade IS NOT NULL, d.stated_grade,
@@ -132,6 +134,8 @@ SELECT
         "d.region = 'Город Санкт-Петербург' OR has(d.cities, 'Санкт-Петербург')",
         'd.region IS NOT NULL OR notEmpty(d.cities)'
     ) }} AS region_group,
+    d.region AS region,
+    d.cities AS cities,
     d.experience_min_years AS experience_min_years,
     if(d.source = 'habr', {{ no_experience_text('d.body_rule') }}, d.experience_min_years = 0) AS no_experience,
     {{ skills_found('d.body_rule') }} AS skills

@@ -146,10 +146,25 @@ def test_topic_init_creates_spec_topics() -> None:
     assert set(loop.group(1).split()) == RAW_TOPICS
 
 
-def test_clickhouse_init_creates_layers_and_select_only_grant() -> None:
-    script = (ROOT / "infra" / "clickhouse" / "init.sh").read_text(encoding="utf-8")
+def test_clickhouse_init_creates_layers_and_applies_the_agent_account_file() -> None:
+    init_dir = ROOT / "infra" / "clickhouse"
+    script = (init_dir / "init.sh").read_text(encoding="utf-8")
     created = set(re.findall(r"CREATE DATABASE IF NOT EXISTS (\w+);", script))
     assert created == {"raw", "staging", "marts"}
-    grants = re.findall(r"^GRANT .+$", script, flags=re.MULTILINE)
-    assert grants == ["GRANT SELECT ON marts.* TO ${CLICKHOUSE_RO_USER};"]
-    assert "readonly = 2 CONST" in script
+    # One definition of the read-only account: init.sh must not keep a second, diverging copy.
+    account_sql = r"^\s*(GRANT|REVOKE|CREATE SETTINGS PROFILE|CREATE USER|ALTER USER)\b"
+    assert not re.findall(account_sql, script, flags=re.MULTILINE)
+    assert '"$here/agent/readonly_user.sql" | client' in script
+    assert "../clickhouse:/init:ro" in SERVICES["clickhouse-init"]["volumes"]
+
+    # Render the file the way the sed call of init.sh does and check what reaches the server.
+    substitutions = re.findall(r'-e "s\|(\{ro_\w+\})\|\$\{(\w+)\}\|g"', script)
+    sql = (init_dir / "agent" / "readonly_user.sql").read_text(encoding="utf-8")
+    assert {placeholder for placeholder, _ in substitutions} == set(re.findall(r"\{ro_\w+\}", sql))
+    values = {"CLICKHOUSE_RO_USER": "agent_ro", "CLICKHOUSE_RO_PASSWORD": "s3cret/pass="}
+    for placeholder, var in substitutions:
+        sql = sql.replace(placeholder, values[var])
+    grants = re.findall(r"^GRANT .+$", sql, flags=re.MULTILINE)
+    assert grants == ["GRANT SELECT ON marts.* TO agent_ro;", "GRANT SELECT ON agent_snapshot.* TO agent_ro;"]
+    assert "REVOKE ALL ON *.* FROM agent_ro;" in sql
+    assert re.search(r"^\s+readonly = 1,$", sql, flags=re.MULTILINE)

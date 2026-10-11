@@ -25,8 +25,32 @@ seeds:
         description: >
           Spellings separated by |, lowercase with ё written as е; each is an RE2 fragment matched
           between non-word characters (macro skill_dictionary_constant), so + and . are written as
-          [+] and [.], and [а-я]* takes Russian endings.
+          [+] and [.], and [а-я]* takes Russian endings. No negated class (Hyperscan shortlists by the
+          bare synonyms and gets those wrong) and no | inside a group (radar.extract.skill_dictionary
+          splits on every |). Words that are mostly something else are left out or bound to a
+          context: «нода» (a cluster node), cv (a résumé), any «интеграци*» (only integration of
+          systems and services), any mention of «ТЗ» (only writing one).
         data_tests: [not_null]
+
+  - name: role_groups
+    description: >
+      Role buckets of the marts (macros/marts.sql, role_buckets) in five groups, the groups of the
+      survival analysis (radar.models.survival ROLE_GROUPS, the gold-sample role proxy), kept equal to
+      it by tests/dbt. The salary and lifetime marts total their rows by these groups.
+    config:
+      column_types:
+        role_bucket: String
+        role_group: String
+    columns:
+      - name: role_bucket
+        description: Role bucket; every bucket except not_it and multi_post.
+        data_tests: [unique, not_null]
+      - name: role_group
+        description: ml_ds_data, dev, analyst, qa_devops_sys or other_it.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [ml_ds_data, dev, analyst, qa_devops_sys, other_it]
 
   - name: telegram_channels
     description: >

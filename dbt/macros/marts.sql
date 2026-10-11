@@ -245,14 +245,21 @@
 {%- endmacro %}
 
 
-{#- The skill dictionary (seed skill_dictionary) as one constant: (skill, pattern) sorted by skill.
-    A synonym is an RE2 fragment matched between non-word characters, where + and # count as word
-    characters so that c, c++ and c# stay apart. Hyperscan matches all patterns in one pass. -#}
+{#- The skill dictionary (seed skill_dictionary) as one constant: (skill, pattern, prefilter) sorted by
+    skill. A synonym is an RE2 fragment matched between non-word characters, where + and # count as
+    word characters so that c, c++ and c# stay apart.
+    The word boundaries are negated classes that mix Cyrillic and Latin ranges, and Hyperscan
+    (multiMatch*, ClickHouse 26.8) gets those wrong: '[^a-zа-я0-9_+#]нода' matches inside
+    «законодательства», which made Node.js 690 of 10 506 snapshot vacancies instead of 34. So
+    Hyperscan only shortlists the skills by their bare synonyms (positive classes, which it handles),
+    and RE2 (match) decides with the boundaries. The seed keeps negated classes out of the synonyms,
+    so the shortlist stays a superset; assert_skills_found_matches_re2 checks it on real texts. -#}
 {% macro skill_dictionary_constant() -%}
     (
         SELECT arraySort(groupArray((
             skill,
-            concat('(^|[^a-zа-я0-9_+#])(', synonyms, ')([^a-zа-я0-9_+#]|$)')
+            concat('(^|[^a-zа-я0-9_+#])(', synonyms, ')([^a-zа-я0-9_+#]|$)'),
+            concat('(', synonyms, ')')
         )))
         FROM {{ ref('skill_dictionary') }}
     )
@@ -260,7 +267,16 @@
 
 
 {% macro skills_found(text) -%}
-    arraySort(arrayDistinct(arrayMap(i -> skill_dict[i].1, multiMatchAllIndices({{ text }}, skill_dict.2))))
+    arraySort(arrayMap(i -> skill_dict[i].1, arrayFilter(
+        i -> match({{ text }}, skill_dict[i].2),
+        arrayDistinct(multiMatchAllIndices({{ text }}, arrayMap(p -> p.3, skill_dict)))
+    )))
+{%- endmacro %}
+
+
+{#- The same skills by RE2 alone, pattern by pattern: the reference the test above compares with. -#}
+{% macro skills_found_re2(text) -%}
+    arrayMap(p -> p.1, arrayFilter(p -> match({{ text }}, p.2), skill_dict))
 {%- endmacro %}
 
 
@@ -295,4 +311,10 @@
 {#- A median lifetime is printed for an employer from this many closed vacancies. -#}
 {% macro lifetime_min_closed() -%}
     3
+{%- endmacro %}
+
+
+{#- Quantiles of a lifetime row (mart_lifetime) are printed only from this many closures. -#}
+{% macro lifetime_min_n() -%}
+    5
 {%- endmacro %}

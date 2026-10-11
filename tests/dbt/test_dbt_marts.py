@@ -16,12 +16,16 @@ import pytest
 ROOT = Path(__file__).resolve().parents[2]
 MARTS = {
     "mart_weekly_dynamics": ["source", "week", "role_bucket"],
-    "mart_salaries": ["source", "role_bucket", "grade", "region_group"],
+    "mart_salaries": ["source", "level", "role_group", "role_bucket", "grade", "region_group"],
     "mart_skills": ["source", "role_bucket", "grade", "skill"],
     "mart_work_format": ["source", "role_bucket", "work_format"],
     "mart_employers": ["source", "employer_key"],
     "mart_junior": ["source", "role_bucket"],
+    "mart_skills_weekly": ["source", "week", "skill"],
+    "mart_lifetime": ["source", "level", "role_group"],
 }
+# Marts without a role bucket column: per employer, per week and skill, per role group.
+WITHOUT_BUCKET = {"mart_employers", "mart_skills_weekly", "mart_lifetime"}
 SEEDS = ROOT / "dbt" / "seeds"
 
 
@@ -48,6 +52,14 @@ def test_marts_land_in_marts_and_their_inputs_in_staging(manifest: dict[str, Any
     assert _models(manifest)["stg_telegram"]["schema"] == "staging"
 
 
+def test_history_selector_rebuilds_the_intermediate_models_and_marts_with_it(manifest: dict[str, Any]) -> None:
+    # int_vacancy_records reads hist_*; a history-only rebuild would leave it and the marts stale
+    selector = manifest["selectors"]["history_and_marts"]["definition"]
+    assert selector == {"method": "path", "value": "models/history", "children": True}
+    parents = _models(manifest)["int_vacancy_records"]["depends_on"]["nodes"]
+    assert {"model.radar.hist_vacancy_lifetime", "model.radar.hist_snapshot_days"} <= set(parents)
+
+
 def test_every_mart_is_non_empty_and_has_its_grain_tested(manifest: dict[str, Any]) -> None:
     non_empty = {n["attached_node"].rsplit(".", 1)[-1] for n in _tests(manifest, "has_rows")}
     assert set(MARTS) <= non_empty
@@ -71,12 +83,15 @@ def test_counts_never_exceed_their_denominators(manifest: dict[str, Any]) -> Non
         ("mart_junior", "open_to_junior"),
         ("mart_employers", "open_it_vacancies"),
         ("mart_weekly_dynamics", "telegram_posts"),
+        ("mart_weekly_dynamics", "telegram_channels"),
+        ("mart_skills_weekly", "vacancies_mentioning"),
+        ("mart_lifetime", "closed_in_quantiles"),
     ]:
         assert pair in checked, pair
     singular = {
         n["name"] for n in manifest["nodes"].values() if n["resource_type"] == "test" and "test_metadata" not in n
     }
-    assert "assert_marts_consistent" in singular
+    assert {"assert_marts_consistent", "assert_skills_found_matches_re2"} <= singular
 
 
 def _buckets_in_macros() -> list[str]:
@@ -97,9 +112,35 @@ def test_bucket_values_tested_on_marts_are_those_the_rules_produce(manifest: dic
         if n["test_metadata"]["kwargs"]["column_name"] == "role_bucket"
         and n["attached_node"].rsplit(".", 1)[-1] in MARTS
     ]
-    assert {n["attached_node"].rsplit(".", 1)[-1] for n in tested} == set(MARTS) - {"mart_employers"}
+    assert {n["attached_node"].rsplit(".", 1)[-1] for n in tested} == set(MARTS) - WITHOUT_BUCKET
     for node in tested:
-        assert set(node["test_metadata"]["kwargs"]["values"]) == expected
+        # the salary totals mark a level that does not split by bucket with 'all'; no Telegram there
+        if node["attached_node"].endswith(".mart_salaries"):
+            assert set(node["test_metadata"]["kwargs"]["values"]) == expected - {"multi_post"} | {"all"}
+        else:
+            assert set(node["test_metadata"]["kwargs"]["values"]) == expected
+
+
+def test_role_groups_cover_every_bucket_as_the_survival_analysis_groups_them() -> None:
+    from radar.models.survival import ROLE_GROUPS
+
+    with (SEEDS / "role_groups.csv").open(encoding="utf-8", newline="") as f:
+        seed = {r["role_bucket"]: r["role_group"] for r in csv.DictReader(f)}
+    assert seed == ROLE_GROUPS
+    assert set(seed) == {b for b in _buckets_in_macros() if b != "not_it"}
+
+
+def test_salary_levels_are_one_grouping_set_each() -> None:
+    sql = (ROOT / "dbt" / "models" / "marts" / "mart_salaries.sql").read_text(encoding="utf-8")
+    block = sql[sql.index("{%- set levels = [") : sql.index("] %}")]
+    levels = re.findall(r"\('(\w+)', \[([^\]]*)\]\)", block)
+    names = [name for name, _ in levels]
+    assert names[0] == "cell" and names[-1] == "source" and len(set(names)) == len(names)
+    keys = [frozenset(re.findall(r"'(\w+)'", k)) for _, k in levels]
+    # the level of a row is read from which dimensions are NULL, so no two sets may share a key set
+    assert len(set(keys)) == len(keys)
+    # role_bucket implies its role_group, so a set with the bucket carries the group too
+    assert all("role_group" in k for k in keys if "role_bucket" in k)
 
 
 def test_telegram_channels_seed_matches_the_config() -> None:
@@ -127,6 +168,11 @@ def test_skill_dictionary_is_v0_sized_and_well_formed(dictionary: list[dict[str,
         # matched against lowercased text with ё folded to е
         assert synonyms == synonyms.lower() and "ё" not in synonyms, row
         re.compile(f"(?:{synonyms})")
+        for piece in synonyms.split("|"):
+            # radar.extract.skill_dictionary.load_v0 splits on every |, so a group must not hold one
+            re.compile(piece)
+            # Hyperscan shortlists by the bare synonyms; it mishandles negated classes (macros/marts.sql)
+            assert "[^" not in piece, row
 
 
 def _matches(dictionary: list[dict[str, str]], text: str) -> set[str]:
@@ -145,3 +191,26 @@ def test_dictionary_tells_close_spellings_apart(dictionary: list[dict[str, str]]
     assert {"C++", "C#", "Java", "PostgreSQL", "MS SQL Server", "SQL", "Python"} <= found
     assert "JavaScript" not in found
     assert "Python" not in _matches(dictionary, "pythonista")
+
+
+@pytest.mark.parametrize(
+    ("text", "skill", "expected"),
+    [
+        ("знание трудового законодательства", "Node.js", False),
+        ("управление мастер-нодами кластера", "Node.js", False),
+        ("multi-node обучение моделей", "Node.js", False),
+        ("опыт на node.js и nodejs", "Node.js", True),
+        ("please send your cv to the recruiter", "Computer vision", False),
+        ("cv-инженер, opencv", "Computer vision", True),
+        ("интеграционное тестирование", "API integration", False),
+        ("интеграция ии в повседневную работу", "API integration", False),
+        ("интеграция с внешними системами через http-сервисы", "API integration", True),
+        ("работа с api, json", "API integration", True),
+        ("доработка функционала по тз", "Requirements", False),
+        ("в соответствии с требованиями технического задания", "Requirements", False),
+        ("написание технических заданий разработчикам", "Requirements", True),
+        ("опыт подготовки тз", "Requirements", True),
+    ],
+)
+def test_narrowed_synonyms(dictionary: list[dict[str, str]], text: str, skill: str, expected: bool) -> None:
+    assert (skill in _matches(dictionary, text)) is expected

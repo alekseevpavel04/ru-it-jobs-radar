@@ -55,7 +55,7 @@ Laravel,framework,laravel
 Symfony,framework,symfony
 Yii,framework,yii|yii2
 Ruby on Rails,framework,rails|ruby on rails|ror
-Node.js,framework,node[.]?js|node|нода
+Node.js,framework,node[.]? ?js
 NestJS,framework,nestjs|nest[.]js
 Express,framework,express[.]?js
 Gin,framework,gin
@@ -161,7 +161,7 @@ LangChain,ml,langchain|langgraph|llamaindex
 Prompt engineering,ml,prompt engineering|промпт[а-я]*|prompting
 Fine-tuning,ml,fine-?tuning|файнтюн[а-я]*|дообучени[а-я]*|lora|qlora|peft
 NLP,ml,nlp|natural language processing|обработк[а-я]* естественн[а-я]* язык[а-я]*
-Computer vision,ml,computer vision|компьютерн[а-я]* зрени[а-я]*|cv|opencv
+Computer vision,ml,computer vision|компьютерн[а-я]* зрени[а-я]*|opencv|cv[- ]инженер[а-я]*|cv[- ]engineer[a-z]*|cv[- ]разработчик[а-я]*|cv[- ]задач[а-я]*|cv[- ]модел[а-я]*
 Recommender systems,ml,рекомендательн[а-я]* систем[а-я]*|recommender systems?|recsys
 Time series,ml,временн[а-я]* ряд[а-я]*|time series|прогнозировани[а-я]*|forecasting
 MLOps,ml,mlops
@@ -230,7 +230,7 @@ JMeter,testing,jmeter|gatling|locust|нагрузочн[а-я]* тестиров
 Manual testing,testing,ручн[а-я]* тестировани[а-я]*|manual testing|тест[- ]кейс[а-я]*|test cases?|чек[- ]лист[а-я]*
 Test automation,testing,автотест[а-я]*|автоматизаци[а-я]* тестировани[а-я]*|test automation
 Microservices,architecture,микросервис[а-я]*|microservices?
-System design,architecture,system design|высоконагруженн[а-я]*|highload|high load|архитектур[а-я]* (систем|приложени|по)[а-я]*
+System design,architecture,system design|высоконагруженн[а-я]*|highload|high load|архитектур[а-я]* систем[а-я]*|архитектур[а-я]* приложени[а-я]*|архитектур[а-я]* по
 OOP,architecture,ооп|oop|объектно-ориентированн[а-я]*
 SOLID,architecture,solid
 Design patterns,architecture,паттерн[а-я]* проектировани[а-я]*|design patterns?|gof
@@ -240,8 +240,8 @@ Algorithms,architecture,алгоритм[а-я]*|algorithms?|структур[а
 Multithreading,architecture,многопоточн[а-я]*|multithreading|concurrency|конкурентност[а-я]*
 UML,analysis,uml
 BPMN,analysis,bpmn|epc|idef0
-Requirements,analysis,сбор[а-я]* требовани[а-я]*|бизнес-требовани[а-я]*|функциональн[а-я]* требовани[а-я]*|техническ[а-я]* задани[а-я]*|тз|user stor(y|ies)|use case[s]?|srs|brd
-API integration,analysis,интеграци[а-я]*|integrations?|esb|api
+Requirements,analysis,сбор[а-я]* требовани[а-я]*|бизнес-требовани[а-я]*|функциональн[а-я]* требовани[а-я]*|составл[а-я]* техническ[а-я]* задани[а-я]*|составл[а-я]* тз|написа[а-я]* техническ[а-я]* задани[а-я]*|написа[а-я]* тз|писа[а-я]* техническ[а-я]* задани[а-я]*|писа[а-я]* тз|разработ[а-я]* техническ[а-я]* задани[а-я]*|разработ[а-я]* тз|разрабатыва[а-я]* техническ[а-я]* задани[а-я]*|разрабатыва[а-я]* тз|подготов[а-я]* техническ[а-я]* задани[а-я]*|подготов[а-я]* тз|подготавл[а-я]* техническ[а-я]* задани[а-я]*|подготавл[а-я]* тз|формирова[а-я]* техническ[а-я]* задани[а-я]*|формирова[а-я]* тз|оформл[а-я]* техническ[а-я]* задани[а-я]*|оформл[а-я]* тз|user story|user stories|use cases?|srs|brd
+API integration,analysis,api|esb|api[- ]интеграци[а-я]*|интеграци[а-я]* со?( [а-я-]+)?( [а-я-]+)? систем[а-я]*|интеграци[а-я]* со?( [а-я-]+)?( [а-я-]+)? сервис[а-я]*|интеграци[а-я]* со?( [а-я-]+)?( [а-я-]+)? приложени[а-я]*|интеграци[а-я]* со?( [а-я-]+)?( [а-я-]+)? платформ[а-я]*|интеграци[а-я]* между( [а-я-]+)?( [а-я-]+)? систем[а-я]*|интеграци[а-я]* информационн[а-я]* систем[а-я]*|системн[а-я]* интеграци[а-я]*|интеграционн[а-я]* решени[а-я]*|интеграционн[а-я]* платформ[а-я]*|интеграционн[а-я]* сервис[а-я]*|интеграционн[а-я]* шин[а-я]*|интеграционн[а-я]* взаимодейств[а-я]*|обмен[а-я]* данными между( [а-я-]+)?( [а-я-]+)? систем[а-я]*|api integrations?|integrations? with|system integrations?
 XML/JSON,analysis,xml|xsd|json|yaml
 Agile,methodology,agile|аджайл
 Scrum,methodology,scrum|скрам

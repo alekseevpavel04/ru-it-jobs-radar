@@ -83,12 +83,24 @@ models:
       - name: telegram_posts_before_dedup
         description: Telegram vacancy posts published in the week, every copy counted.
       - name: telegram_channels
-        description: Channels that carried those posts.
+        description: Channels that carried the posts of the row's bucket; not additive across buckets.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: telegram_channels_week
+      - name: telegram_channels_week
+        description: >
+          Channels that carried any IT vacancy post of the week, all buckets together (a channel
+          counts once); the same value on every Telegram row of the week. NULL for the other sources.
 
   - name: mart_salaries
     description: >
-      Salaries as stated: source family x role bucket x grade x region group, over every vacancy of the
-      collection period (period_from..period_to). Amounts are RUB per month as the sources state them
+      Salaries as stated per source family, over every vacancy of the collection period
+      (period_from..period_to), at several levels (column level, GROUPING SETS): cell = role bucket x
+      grade x region group; bucket_grade, bucket, group_grade, group (role group of seed role_groups),
+      grade, region and source totals, each computed over the vacancies of the group, not from cell
+      medians. A dimension a level does not split by reads 'all'. The rows of one level cover every
+      vacancy of the source once, so a sum over rows is taken within one level only. Amounts are RUB per month as the sources state them
       (both publish monthly salaries and have no period field; nothing is converted); a vacancy in
       another currency is counted in with_salary_other_currency and left out of the quantiles. Habr's
       own estimate (predictedSalary) is not used. trudvsem rows mix the API and the snapshots (one
@@ -99,7 +111,7 @@ models:
       - has_rows
       - unique_combination:
           arguments:
-            columns: [source, role_bucket, grade, region_group]
+            columns: [source, level, role_group, role_bucket, grade, region_group]
     columns:
       - name: source
         description: trudvsem (API and snapshots) or habr.
@@ -107,12 +119,30 @@ models:
           - accepted_values:
               arguments:
                 values: [trudvsem, habr]
-      - name: role_bucket
-        description: *role_bucket
+      - name: level
+        description: >
+          What the row totals: cell (bucket x grade x region), bucket_grade, bucket, group_grade,
+          group, grade, region or source.
         data_tests:
           - accepted_values:
               arguments:
-                values: *buckets
+                values: [cell, bucket_grade, bucket, group_grade, group, grade, region, source]
+      - name: role_group
+        description: &role_group >
+          Role group of the bucket (seed role_groups: ml_ds_data, dev, analyst, qa_devops_sys,
+          other_it, the groups of the survival analysis); all on levels that do not split by role.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [ml_ds_data, dev, analyst, qa_devops_sys, other_it, all]
+      - name: role_bucket
+        description: Role bucket (see mart_weekly_dynamics); all on levels that do not split by bucket.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [ml_ds, data_engineering, data_analytics, developer_1c, business_system_analysis,
+                  security, devops, qa, mobile, fullstack, backend, frontend, embedded, sysadmin_support, design,
+                  management, software_engineer, other_it, all]
       - name: grade
         description: &grade >
           intern, junior, middle, senior, lead or unknown. Habr: the qualification the employer states,
@@ -122,17 +152,18 @@ models:
         data_tests:
           - accepted_values:
               arguments:
-                values: &grades [intern, junior, middle, senior, lead, unknown]
+                values: [intern, junior, middle, senior, lead, unknown, all]
       - name: region_group
         description: >
           remote when the work format is remote, else moscow or spb (the city, not the oblast: trudvsem
-          region, Habr city list), else other when any place is stated, else unknown.
+          region, Habr city list), else other when any place is stated, else unknown; all on levels
+          that do not split by region.
         data_tests:
           - accepted_values:
               arguments:
-                values: [moscow, spb, other, remote, unknown]
+                values: [moscow, spb, other, remote, unknown, all]
       - name: vacancies
-        description: Vacancies in the cell, the denominator of every count of the row.
+        description: Vacancies in the row's group, the denominator of every count of the row.
       - name: with_salary_rub
         description: Vacancies stating a RUB amount (from, to or both).
         data_tests:
@@ -205,7 +236,7 @@ models:
         data_tests:
           - accepted_values:
               arguments:
-                values: *grades
+                values: &grades [intern, junior, middle, senior, lead, unknown]
       - name: skill
         description: Canonical skill name of the dictionary.
         data_tests: [not_null]
@@ -379,3 +410,142 @@ models:
           - not_above:
               arguments:
                 denominator: vacancies
+
+  - name: mart_skills_weekly
+    description: >
+      Skill x ISO week (its Monday) x source, for the weekly digest: vacancies of the week (Telegram:
+      posts) that mention the skill by the dictionary (seed skill_dictionary), of all of the week's
+      units of the source (vacancies_in_week). The units are those of mart_weekly_dynamics:
+      trudvsem_snapshot, trudvsem (API) and habr count dedup entities seen open on a collected day of
+      the week, with the skills of the entity's latest record; Telegram counts the vacancy posts
+      published that week after the cross-post dedup. IT roles only; only skills with a mention get a
+      row. A week of the snapshot backfill may hold few collected days (mart_weekly_dynamics
+      days_collected).
+    data_tests:
+      - has_rows
+      - unique_combination:
+          arguments:
+            columns: [source, week, skill]
+    columns:
+      - name: week
+        description: Monday of the ISO week (Moscow time for Telegram posts, the collected day otherwise).
+        data_tests: [not_null]
+      - name: source
+        description: trudvsem_snapshot, trudvsem (API), habr or telegram.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [trudvsem_snapshot, trudvsem, habr, telegram]
+      - name: skill
+        description: Canonical skill name of the dictionary.
+        data_tests: [not_null]
+      - name: skill_category
+        description: Category of the skill in the dictionary.
+      - name: vacancies_mentioning
+        description: Vacancies (posts) of the week that mention the skill.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies_in_week
+      - name: vacancies_in_week
+        description: >
+          All vacancies (posts) of the source in the week, mentioning anything or not; equals the sum of
+          vacancies_active (Telegram: telegram_posts) over the week's rows of mart_weekly_dynamics.
+
+  - name: mart_lifetime
+    description: >
+      How long IT vacancies stayed up, per source and role group (level group) and per source (level
+      source), from hist_vacancy_lifetime, one row per source vacancy (a repost under a new id is
+      another vacancy here; the survival analysis follows dedup entities instead). Only the sources
+      whose absence closes a vacancy: trudvsem_snapshot and habr. The duration quantiles describe the
+      closures observed in the collection window and nothing more: they leave out vacancies still
+      open, closed in a gap of the collection, open on the first collected day (start unknown) and
+      closed by a repost, and long lifetimes have had less time to end, so they lean short and are not
+      a survival estimate. The Kaplan-Meier and Cox estimates that account for censoring are in
+      results/models/survival.json.
+    data_tests:
+      - has_rows
+      - unique_combination:
+          arguments:
+            columns: [source, level, role_group]
+    columns:
+      - name: source
+        description: trudvsem_snapshot or habr.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [trudvsem_snapshot, habr]
+      - name: level
+        description: group (one role group) or source (all of the source).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [group, source]
+      - name: role_group
+        description: *role_group
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [ml_ds_data, dev, analyst, qa_devops_sys, other_it, all]
+      - name: vacancies
+        description: IT vacancies of the source (and group) in the history, the denominator of every count of the row.
+      - name: still_open
+        description: Not closed by the end of the history.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies
+      - name: closed
+        description: Closed on a known day (closed_at).
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies
+      - name: closed_in_gap
+        description: Closed in days without a complete collection, so the day is unknown.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies
+      - name: censored
+        description: End not observed, still_open + closed_in_gap (is_censored).
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies
+      - name: left_censored
+        description: Already open on the source's first collected day, open or closed; their start is unknown.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies
+      - name: closed_by_repost
+        description: Of the closed, those a repost under a new id replaced (hist_reposts).
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: closed
+      - name: closed_in_quantiles
+        description: >
+          Closed on a known day, first seen after the first collected day and not replaced by a repost:
+          the n of the duration quantiles.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: closed
+      - name: duration_days_p25
+        description: &lifetime_q >
+          Quantile (linear interpolation) of days from first sighting to closure over
+          closed_in_quantiles; NULL below 5 of them. Not survival-corrected (see the model description).
+      - name: duration_days_median
+        description: *lifetime_q
+      - name: duration_days_p75
+        description: *lifetime_q
+      - name: duration_days_p90
+        description: *lifetime_q
+      - name: period_from
+        description: First collected day of the source (hist_calendar).
+      - name: period_to
+        description: Last collected day of the source.
+      - name: window_days
+        description: Days from period_from to period_to inclusive; no observed duration can exceed it.
