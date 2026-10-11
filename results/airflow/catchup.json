@@ -1,0 +1,3905 @@
+{
+  "source_script": "airflow/run_report.py",
+  "command": "python airflow/run_report.py radar_collect:backfill__2026-08-08T00:00:00+00:00 radar_collect:backfill__2026-08-09T00:00:00+00:00 radar_collect:backfill__2026-08-10T00:00:00+00:00 radar_collect:backfill__2026-08-11T00:00:00+00:00 radar_collect:backfill__2026-08-12T00:00:00+00:00 radar_collect:backfill__2026-08-13T00:00:00+00:00 radar_collect:backfill__2026-08-14T00:00:00+00:00 radar_collect:backfill__2026-08-15T00:00:00+00:00 radar_collect:backfill__2026-08-16T00:00:00+00:00 radar_collect:backfill__2026-08-17T00:00:00+00:00 radar_collect:backfill__2026-08-18T00:00:00+00:00 radar_collect:backfill__2026-08-19T00:00:00+00:00 radar_collect:backfill__2026-08-20T00:00:00+00:00 radar_collect:backfill__2026-08-21T00:00:00+00:00 radar_collect:backfill__2026-08-22T00:00:00+00:00 radar_collect:backfill__2026-08-23T00:00:00+00:00 radar_collect:backfill__2026-08-24T00:00:00+00:00 radar_collect:backfill__2026-08-25T00:00:00+00:00 radar_collect:backfill__2026-08-26T00:00:00+00:00 radar_collect:backfill__2026-08-27T00:00:00+00:00 radar_collect:backfill__2026-08-28T00:00:00+00:00 radar_collect:backfill__2026-08-29T00:00:00+00:00 radar_collect:backfill__2026-08-30T00:00:00+00:00 radar_collect:backfill__2026-08-31T00:00:00+00:00 radar_collect:backfill__2026-09-01T00:00:00+00:00 radar_collect:backfill__2026-09-02T00:00:00+00:00 radar_collect:backfill__2026-09-03T00:00:00+00:00 radar_collect:backfill__2026-09-04T00:00:00+00:00 radar_collect:backfill__2026-09-05T00:00:00+00:00 radar_collect:backfill__2026-09-06T00:00:00+00:00 radar_collect:backfill__2026-09-07T00:00:00+00:00 radar_collect:backfill__2026-09-08T00:00:00+00:00 radar_collect:backfill__2026-09-09T00:00:00+00:00 radar_collect:backfill__2026-09-10T00:00:00+00:00 radar_collect:backfill__2026-09-11T00:00:00+00:00 radar_collect:backfill__2026-09-12T00:00:00+00:00 radar_collect:backfill__2026-09-13T00:00:00+00:00 radar_collect:backfill__2026-09-14T00:00:00+00:00 radar_collect:backfill__2026-09-15T00:00:00+00:00 radar_collect:backfill__2026-09-16T00:00:00+00:00 radar_collect:backfill__2026-09-17T00:00:00+00:00 radar_collect:backfill__2026-09-18T00:00:00+00:00 radar_collect:backfill__2026-09-19T00:00:00+00:00 radar_collect:backfill__2026-09-20T00:00:00+00:00 radar_collect:backfill__2026-09-21T00:00:00+00:00 radar_collect:backfill__2026-09-22T00:00:00+00:00 radar_collect:backfill__2026-09-23T00:00:00+00:00 radar_collect:backfill__2026-09-24T00:00:00+00:00 radar_collect:backfill__2026-09-25T00:00:00+00:00 radar_collect:backfill__2026-09-26T00:00:00+00:00 radar_collect:backfill__2026-09-27T00:00:00+00:00 radar_collect:backfill__2026-09-28T00:00:00+00:00 radar_collect:backfill__2026-09-29T00:00:00+00:00 radar_collect:backfill__2026-09-30T00:00:00+00:00 radar_collect:backfill__2026-10-01T00:00:00+00:00 radar_collect:backfill__2026-10-02T00:00:00+00:00 radar_collect:backfill__2026-10-03T00:00:00+00:00 radar_collect:backfill__2026-10-04T00:00:00+00:00 radar_collect:backfill__2026-10-05T00:00:00+00:00 radar_collect:backfill__2026-10-06T00:00:00+00:00 radar_collect:backfill__2026-10-07T00:00:00+00:00 radar_collect:backfill__2026-10-08T00:00:00+00:00 radar_collect:backfill__2026-10-10T00:00:00+00:00 radar_collect:backfill__2026-10-11T00:00:00+00:00 radar_load:collect__2026-08-07 radar_load:collect__2026-08-08 radar_load:collect__2026-08-09 radar_load:collect__2026-08-10 radar_load:collect__2026-08-11 radar_load:collect__2026-08-12 radar_load:collect__2026-08-13 radar_load:collect__2026-08-14 radar_load:collect__2026-08-15 radar_load:collect__2026-08-16 radar_load:collect__2026-08-17 radar_load:collect__2026-08-18 radar_load:collect__2026-08-19 radar_load:collect__2026-08-20 radar_load:collect__2026-08-21 radar_load:collect__2026-08-22 radar_load:collect__2026-08-23 radar_load:collect__2026-08-24 radar_load:collect__2026-08-25 radar_load:collect__2026-08-26 radar_load:collect__2026-08-27 radar_load:collect__2026-08-28 radar_load:collect__2026-08-29 radar_load:collect__2026-08-30 radar_load:collect__2026-08-31 radar_load:collect__2026-09-01 radar_load:collect__2026-09-02 radar_load:collect__2026-09-03 radar_load:collect__2026-09-04 radar_load:collect__2026-09-05 radar_load:collect__2026-09-06 radar_load:collect__2026-09-07 radar_load:collect__2026-09-08 radar_load:collect__2026-09-09 radar_load:collect__2026-10-09 radar_load:collect__2026-10-10 radar_dbt:asset_triggered__2026-10-11T09:41:06.563590+00:00_eoXolKtD --out airflow/catchup.json --recount",
+  "commit": "376974d-dirty",
+  "created_at": "2026-10-11T10:19:06+00:00",
+  "metrics": {
+    "runs_success": {
+      "value": 100,
+      "n": 100,
+      "denominator": 101
+    },
+    "seconds_wall": {
+      "value": 3450.1,
+      "n": null,
+      "denominator": null
+    },
+    "seconds_tasks_span": {
+      "value": 3391.2,
+      "n": null,
+      "denominator": null
+    },
+    "seconds_window": {
+      "value": 3215.5,
+      "n": null,
+      "denominator": null
+    },
+    "rows_replayed": {
+      "value": 6158753,
+      "n": null,
+      "denominator": null
+    },
+    "partitions_matched": {
+      "value": 16,
+      "n": 16,
+      "denominator": 16
+    }
+  },
+  "method": "states and start/end times of the DAG runs and task instances from the Airflow REST API; seconds are end minus start as Airflow recorded them, for a task its last try; seconds_tasks_span runs from the first task start to the last task end; seconds_window from the first run start to the last run end; load summaries are the XCom each load task printed; a partition matches when ClickHouse rows with FINAL equal the Parquet rows (with --recount counted again when the report is written)",
+  "runs": [
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-08T00:00:00+00:00",
+      "logical_date": "2026-08-07T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:23:42.020394Z",
+      "end_date": "2026-10-11T09:23:46.097044Z",
+      "seconds": 4.1,
+      "seconds_tasks_span": 3.6,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.1
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-09T00:00:00+00:00",
+      "logical_date": "2026-08-08T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:23:46.142268Z",
+      "end_date": "2026-10-11T09:23:50.098413Z",
+      "seconds": 4.0,
+      "seconds_tasks_span": 3.5,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-10T00:00:00+00:00",
+      "logical_date": "2026-08-09T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:23:51.146723Z",
+      "end_date": "2026-10-11T09:23:55.193181Z",
+      "seconds": 4.0,
+      "seconds_tasks_span": 3.6,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.8
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-11T00:00:00+00:00",
+      "logical_date": "2026-08-10T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:23:56.242412Z",
+      "end_date": "2026-10-11T09:24:01.279684Z",
+      "seconds": 5.0,
+      "seconds_tasks_span": 4.5,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.7
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-12T00:00:00+00:00",
+      "logical_date": "2026-08-11T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:24:02.328015Z",
+      "end_date": "2026-10-11T09:24:06.517752Z",
+      "seconds": 4.2,
+      "seconds_tasks_span": 3.8,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.7
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.8
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-13T00:00:00+00:00",
+      "logical_date": "2026-08-12T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:24:07.574276Z",
+      "end_date": "2026-10-11T09:24:11.489704Z",
+      "seconds": 3.9,
+      "seconds_tasks_span": 3.5,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-14T00:00:00+00:00",
+      "logical_date": "2026-08-13T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:24:12.553937Z",
+      "end_date": "2026-10-11T09:24:16.621838Z",
+      "seconds": 4.1,
+      "seconds_tasks_span": 3.4,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.6
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-15T00:00:00+00:00",
+      "logical_date": "2026-08-14T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:24:17.077236Z",
+      "end_date": "2026-10-11T09:24:21.621667Z",
+      "seconds": 4.5,
+      "seconds_tasks_span": 4.0,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.6
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.3
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-16T00:00:00+00:00",
+      "logical_date": "2026-08-15T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:24:22.663623Z",
+      "end_date": "2026-10-11T09:24:26.809353Z",
+      "seconds": 4.1,
+      "seconds_tasks_span": 3.7,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.6
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-17T00:00:00+00:00",
+      "logical_date": "2026-08-16T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:24:27.855132Z",
+      "end_date": "2026-10-11T09:24:31.852239Z",
+      "seconds": 4.0,
+      "seconds_tasks_span": 3.7,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.4
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.9
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-18T00:00:00+00:00",
+      "logical_date": "2026-08-17T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:24:32.590132Z",
+      "end_date": "2026-10-11T09:24:36.968639Z",
+      "seconds": 4.4,
+      "seconds_tasks_span": 4.1,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-19T00:00:00+00:00",
+      "logical_date": "2026-08-18T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:24:38.027229Z",
+      "end_date": "2026-10-11T09:24:43.085231Z",
+      "seconds": 5.1,
+      "seconds_tasks_span": 4.6,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.7
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-20T00:00:00+00:00",
+      "logical_date": "2026-08-19T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:24:44.142220Z",
+      "end_date": "2026-10-11T09:24:48.264234Z",
+      "seconds": 4.1,
+      "seconds_tasks_span": 3.7,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.8
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-21T00:00:00+00:00",
+      "logical_date": "2026-08-20T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:24:49.315021Z",
+      "end_date": "2026-10-11T09:24:54.209649Z",
+      "seconds": 4.9,
+      "seconds_tasks_span": 4.3,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.6
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-22T00:00:00+00:00",
+      "logical_date": "2026-08-21T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:24:54.889466Z",
+      "end_date": "2026-10-11T09:24:59.379810Z",
+      "seconds": 4.5,
+      "seconds_tasks_span": 4.0,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.6
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-23T00:00:00+00:00",
+      "logical_date": "2026-08-22T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:24:59.969056Z",
+      "end_date": "2026-10-11T09:25:03.842627Z",
+      "seconds": 3.9,
+      "seconds_tasks_span": 3.3,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-24T00:00:00+00:00",
+      "logical_date": "2026-08-23T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:04.894089Z",
+      "end_date": "2026-10-11T09:25:09.428412Z",
+      "seconds": 4.5,
+      "seconds_tasks_span": 4.0,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.7
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.1
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-25T00:00:00+00:00",
+      "logical_date": "2026-08-24T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:10.086595Z",
+      "end_date": "2026-10-11T09:25:14.514376Z",
+      "seconds": 4.4,
+      "seconds_tasks_span": 3.9,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.4
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.1
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.5
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-26T00:00:00+00:00",
+      "logical_date": "2026-08-25T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:15.154146Z",
+      "end_date": "2026-10-11T09:25:19.514485Z",
+      "seconds": 4.4,
+      "seconds_tasks_span": 3.2,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.4
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-27T00:00:00+00:00",
+      "logical_date": "2026-08-26T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:20.225850Z",
+      "end_date": "2026-10-11T09:25:24.793483Z",
+      "seconds": 4.6,
+      "seconds_tasks_span": 4.3,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.9
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-28T00:00:00+00:00",
+      "logical_date": "2026-08-27T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:25.315863Z",
+      "end_date": "2026-10-11T09:25:29.601630Z",
+      "seconds": 4.3,
+      "seconds_tasks_span": 3.8,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-29T00:00:00+00:00",
+      "logical_date": "2026-08-28T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:30.400408Z",
+      "end_date": "2026-10-11T09:25:35.023488Z",
+      "seconds": 4.6,
+      "seconds_tasks_span": 4.0,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.6
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-30T00:00:00+00:00",
+      "logical_date": "2026-08-29T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:35.517506Z",
+      "end_date": "2026-10-11T09:25:39.746021Z",
+      "seconds": 4.2,
+      "seconds_tasks_span": 3.7,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.4
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.8
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-08-31T00:00:00+00:00",
+      "logical_date": "2026-08-30T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:40.601058Z",
+      "end_date": "2026-10-11T09:25:45.128345Z",
+      "seconds": 4.5,
+      "seconds_tasks_span": 4.0,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-01T00:00:00+00:00",
+      "logical_date": "2026-08-31T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:45.176739Z",
+      "end_date": "2026-10-11T09:25:48.581890Z",
+      "seconds": 3.4,
+      "seconds_tasks_span": 2.9,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.8
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-02T00:00:00+00:00",
+      "logical_date": "2026-09-01T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:49.627416Z",
+      "end_date": "2026-10-11T09:25:54.104688Z",
+      "seconds": 4.5,
+      "seconds_tasks_span": 4.1,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.6
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.8
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-03T00:00:00+00:00",
+      "logical_date": "2026-09-02T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:55.152238Z",
+      "end_date": "2026-10-11T09:25:59.695434Z",
+      "seconds": 4.5,
+      "seconds_tasks_span": 3.5,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-04T00:00:00+00:00",
+      "logical_date": "2026-09-03T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:59.749782Z",
+      "end_date": "2026-10-11T09:26:04.120819Z",
+      "seconds": 4.4,
+      "seconds_tasks_span": 3.9,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-05T00:00:00+00:00",
+      "logical_date": "2026-09-04T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:05.160882Z",
+      "end_date": "2026-10-11T09:26:09.752787Z",
+      "seconds": 4.6,
+      "seconds_tasks_span": 3.6,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.6
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-06T00:00:00+00:00",
+      "logical_date": "2026-09-05T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:10.803189Z",
+      "end_date": "2026-10-11T09:26:15.556167Z",
+      "seconds": 4.8,
+      "seconds_tasks_span": 4.3,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.9
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-07T00:00:00+00:00",
+      "logical_date": "2026-09-06T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:16.002351Z",
+      "end_date": "2026-10-11T09:26:19.923046Z",
+      "seconds": 3.9,
+      "seconds_tasks_span": 3.6,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.7
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.9
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-08T00:00:00+00:00",
+      "logical_date": "2026-09-07T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:20.966634Z",
+      "end_date": "2026-10-11T09:26:25.530979Z",
+      "seconds": 4.6,
+      "seconds_tasks_span": 4.1,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.7
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.3
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-09T00:00:00+00:00",
+      "logical_date": "2026-09-08T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:26.119061Z",
+      "end_date": "2026-10-11T09:26:29.954772Z",
+      "seconds": 3.8,
+      "seconds_tasks_span": 3.3,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.4
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-10T00:00:00+00:00",
+      "logical_date": "2026-09-09T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:30.014826Z",
+      "end_date": "2026-10-11T09:26:34.278985Z",
+      "seconds": 4.3,
+      "seconds_tasks_span": 3.7,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.7
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-11T00:00:00+00:00",
+      "logical_date": "2026-09-10T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:35.315545Z",
+      "end_date": "2026-10-11T09:26:38.917782Z",
+      "seconds": 3.6,
+      "seconds_tasks_span": 3.0,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.1
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-12T00:00:00+00:00",
+      "logical_date": "2026-09-11T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:38.980460Z",
+      "end_date": "2026-10-11T09:26:42.399171Z",
+      "seconds": 3.4,
+      "seconds_tasks_span": 3.3,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.8
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-13T00:00:00+00:00",
+      "logical_date": "2026-09-12T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:43.436167Z",
+      "end_date": "2026-10-11T09:26:46.876471Z",
+      "seconds": 3.4,
+      "seconds_tasks_span": 2.8,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.7
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-14T00:00:00+00:00",
+      "logical_date": "2026-09-13T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:47.031647Z",
+      "end_date": "2026-10-11T09:26:51.152453Z",
+      "seconds": 4.1,
+      "seconds_tasks_span": 3.0,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-15T00:00:00+00:00",
+      "logical_date": "2026-09-14T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:51.195953Z",
+      "end_date": "2026-10-11T09:26:55.681602Z",
+      "seconds": 4.5,
+      "seconds_tasks_span": 3.3,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.6
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-16T00:00:00+00:00",
+      "logical_date": "2026-09-15T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:55.735029Z",
+      "end_date": "2026-10-11T09:26:58.678161Z",
+      "seconds": 2.9,
+      "seconds_tasks_span": 2.8,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.6
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-17T00:00:00+00:00",
+      "logical_date": "2026-09-16T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:59.032469Z",
+      "end_date": "2026-10-11T09:27:02.581125Z",
+      "seconds": 3.5,
+      "seconds_tasks_span": 2.4,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.8
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-18T00:00:00+00:00",
+      "logical_date": "2026-09-17T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:03.260645Z",
+      "end_date": "2026-10-11T09:27:06.638282Z",
+      "seconds": 3.4,
+      "seconds_tasks_span": 3.3,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.6
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-19T00:00:00+00:00",
+      "logical_date": "2026-09-18T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:07.671564Z",
+      "end_date": "2026-10-11T09:27:11.408358Z",
+      "seconds": 3.7,
+      "seconds_tasks_span": 3.6,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-20T00:00:00+00:00",
+      "logical_date": "2026-09-19T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:11.627153Z",
+      "end_date": "2026-10-11T09:27:16.403431Z",
+      "seconds": 4.8,
+      "seconds_tasks_span": 3.6,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.7
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.3
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-21T00:00:00+00:00",
+      "logical_date": "2026-09-20T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:16.735601Z",
+      "end_date": "2026-10-11T09:27:20.226636Z",
+      "seconds": 3.5,
+      "seconds_tasks_span": 2.3,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-22T00:00:00+00:00",
+      "logical_date": "2026-09-21T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:20.284851Z",
+      "end_date": "2026-10-11T09:27:25.396896Z",
+      "seconds": 5.1,
+      "seconds_tasks_span": 4.0,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.4
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-23T00:00:00+00:00",
+      "logical_date": "2026-09-22T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:26.438759Z",
+      "end_date": "2026-10-11T09:27:30.339232Z",
+      "seconds": 3.9,
+      "seconds_tasks_span": 3.7,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-24T00:00:00+00:00",
+      "logical_date": "2026-09-23T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:31.370897Z",
+      "end_date": "2026-10-11T09:27:34.492821Z",
+      "seconds": 3.1,
+      "seconds_tasks_span": 2.0,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.6
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-25T00:00:00+00:00",
+      "logical_date": "2026-09-24T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:35.526915Z",
+      "end_date": "2026-10-11T09:27:39.339394Z",
+      "seconds": 3.8,
+      "seconds_tasks_span": 3.7,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.8
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-26T00:00:00+00:00",
+      "logical_date": "2026-09-25T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:40.382234Z",
+      "end_date": "2026-10-11T09:27:44.433928Z",
+      "seconds": 4.1,
+      "seconds_tasks_span": 2.9,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.7
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-27T00:00:00+00:00",
+      "logical_date": "2026-09-26T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:45.470195Z",
+      "end_date": "2026-10-11T09:27:49.336778Z",
+      "seconds": 3.9,
+      "seconds_tasks_span": 3.0,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.8
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-28T00:00:00+00:00",
+      "logical_date": "2026-09-27T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:50.370109Z",
+      "end_date": "2026-10-11T09:27:53.583933Z",
+      "seconds": 3.2,
+      "seconds_tasks_span": 3.1,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-29T00:00:00+00:00",
+      "logical_date": "2026-09-28T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:54.614757Z",
+      "end_date": "2026-10-11T09:27:58.540245Z",
+      "seconds": 3.9,
+      "seconds_tasks_span": 2.8,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.4
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.1
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-09-30T00:00:00+00:00",
+      "logical_date": "2026-09-29T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:58.586602Z",
+      "end_date": "2026-10-11T09:28:01.632910Z",
+      "seconds": 3.0,
+      "seconds_tasks_span": 2.9,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.6
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-10-01T00:00:00+00:00",
+      "logical_date": "2026-09-30T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:02.505136Z",
+      "end_date": "2026-10-11T09:28:06.744238Z",
+      "seconds": 4.2,
+      "seconds_tasks_span": 3.1,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-10-02T00:00:00+00:00",
+      "logical_date": "2026-10-01T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:06.782480Z",
+      "end_date": "2026-10-11T09:28:10.492400Z",
+      "seconds": 3.7,
+      "seconds_tasks_span": 2.6,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.4
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-10-03T00:00:00+00:00",
+      "logical_date": "2026-10-02T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:11.522258Z",
+      "end_date": "2026-10-11T09:28:14.881132Z",
+      "seconds": 3.4,
+      "seconds_tasks_span": 3.3,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.4
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-10-04T00:00:00+00:00",
+      "logical_date": "2026-10-03T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:15.908137Z",
+      "end_date": "2026-10-11T09:28:19.488087Z",
+      "seconds": 3.6,
+      "seconds_tasks_span": 2.6,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.4
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.1
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-10-05T00:00:00+00:00",
+      "logical_date": "2026-10-04T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:20.518066Z",
+      "end_date": "2026-10-11T09:28:24.887412Z",
+      "seconds": 4.4,
+      "seconds_tasks_span": 3.2,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.4
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-10-06T00:00:00+00:00",
+      "logical_date": "2026-10-05T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:24.932410Z",
+      "end_date": "2026-10-11T09:28:27.802106Z",
+      "seconds": 2.9,
+      "seconds_tasks_span": 2.7,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-10-07T00:00:00+00:00",
+      "logical_date": "2026-10-06T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:28.831849Z",
+      "end_date": "2026-10-11T09:28:32.753496Z",
+      "seconds": 3.9,
+      "seconds_tasks_span": 2.8,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.4
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-10-08T00:00:00+00:00",
+      "logical_date": "2026-10-07T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:32.792107Z",
+      "end_date": "2026-10-11T09:28:36.931838Z",
+      "seconds": 4.1,
+      "seconds_tasks_span": 3.0,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.5
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "skipped",
+          "try_number": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-10-10T00:00:00+00:00",
+      "logical_date": "2026-10-09T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:36.970034Z",
+      "end_date": "2026-10-11T09:28:40.733064Z",
+      "seconds": 3.8,
+      "seconds_tasks_span": 3.2,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.6
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.2
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_collect",
+      "run_id": "backfill__2026-10-11T00:00:00+00:00",
+      "logical_date": "2026-10-10T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:41.777276Z",
+      "end_date": "2026-10-11T09:28:46.217477Z",
+      "seconds": 4.4,
+      "seconds_tasks_span": 3.9,
+      "tasks": [
+        {
+          "task_id": "sync_from_server",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.4
+        },
+        {
+          "task_id": "check_partitions",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.1
+        },
+        {
+          "task_id": "trigger_load",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 0.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-07",
+      "logical_date": "2026-08-07T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:23:46.078078Z",
+      "end_date": "2026-10-11T09:25:03.837069Z",
+      "seconds": 77.8,
+      "seconds_tasks_span": 76.8,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.5
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 74.3,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-08-07",
+            "rows_parquet": 531057,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 71.2,
+            "rows_clickhouse_final": 531057,
+            "error_messages": 0,
+            "rows_parquet_at_report": 531057,
+            "rows_clickhouse_final_at_report": 531057
+          }
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 3.0
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.9
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 3.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-08",
+      "logical_date": "2026-08-08T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:04.882625Z",
+      "end_date": "2026-10-11T09:25:15.175006Z",
+      "seconds": 10.3,
+      "seconds_tasks_span": 9.9,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.5
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.6
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-09",
+      "logical_date": "2026-08-09T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:15.221341Z",
+      "end_date": "2026-10-11T09:25:26.486300Z",
+      "seconds": 11.3,
+      "seconds_tasks_span": 10.5,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-10",
+      "logical_date": "2026-08-10T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:27.529316Z",
+      "end_date": "2026-10-11T09:25:38.515229Z",
+      "seconds": 11.0,
+      "seconds_tasks_span": 10.7,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.5
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.7
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.5
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-11",
+      "logical_date": "2026-08-11T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:38.567330Z",
+      "end_date": "2026-10-11T09:25:49.651234Z",
+      "seconds": 11.1,
+      "seconds_tasks_span": 10.9,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.6
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.6
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-12",
+      "logical_date": "2026-08-12T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:25:49.710933Z",
+      "end_date": "2026-10-11T09:26:01.913088Z",
+      "seconds": 12.2,
+      "seconds_tasks_span": 11.6,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.5
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.7
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.9
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.8
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-13",
+      "logical_date": "2026-08-13T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:01.975183Z",
+      "end_date": "2026-10-11T09:26:14.311946Z",
+      "seconds": 12.3,
+      "seconds_tasks_span": 11.2,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.6
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-14",
+      "logical_date": "2026-08-14T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:14.374253Z",
+      "end_date": "2026-10-11T09:26:26.201640Z",
+      "seconds": 11.8,
+      "seconds_tasks_span": 11.7,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 3.1
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.9
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.9
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.8
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.9
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-15",
+      "logical_date": "2026-08-15T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:27.247389Z",
+      "end_date": "2026-10-11T09:26:38.413673Z",
+      "seconds": 11.2,
+      "seconds_tasks_span": 10.3,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.6
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.7
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-16",
+      "logical_date": "2026-08-16T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:38.883626Z",
+      "end_date": "2026-10-11T09:26:50.077231Z",
+      "seconds": 11.2,
+      "seconds_tasks_span": 10.7,
+      "tasks": [
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.5
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 3.2
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-17",
+      "logical_date": "2026-08-17T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:26:51.122190Z",
+      "end_date": "2026-10-11T09:27:01.243462Z",
+      "seconds": 10.1,
+      "seconds_tasks_span": 9.2,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.7
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-18",
+      "logical_date": "2026-08-18T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:01.305987Z",
+      "end_date": "2026-10-11T09:27:10.218420Z",
+      "seconds": 8.9,
+      "seconds_tasks_span": 8.8,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-19",
+      "logical_date": "2026-08-19T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:11.268025Z",
+      "end_date": "2026-10-11T09:27:22.962355Z",
+      "seconds": 11.7,
+      "seconds_tasks_span": 11.4,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.8
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.6
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.8
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.8
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.5
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-20",
+      "logical_date": "2026-08-20T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:23.033599Z",
+      "end_date": "2026-10-11T09:27:35.549534Z",
+      "seconds": 12.5,
+      "seconds_tasks_span": 11.6,
+      "tasks": [
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 3.2
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 3.3
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 3.0
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 3.2
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-21",
+      "logical_date": "2026-08-21T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:35.610028Z",
+      "end_date": "2026-10-11T09:27:47.590014Z",
+      "seconds": 12.0,
+      "seconds_tasks_span": 11.8,
+      "tasks": [
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.8
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.8
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.6
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-22",
+      "logical_date": "2026-08-22T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:47.650952Z",
+      "end_date": "2026-10-11T09:27:57.451941Z",
+      "seconds": 9.8,
+      "seconds_tasks_span": 9.5,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-23",
+      "logical_date": "2026-08-23T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:27:58.508706Z",
+      "end_date": "2026-10-11T09:28:08.620690Z",
+      "seconds": 10.1,
+      "seconds_tasks_span": 9.6,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.5
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-24",
+      "logical_date": "2026-08-24T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:08.668285Z",
+      "end_date": "2026-10-11T09:28:23.792205Z",
+      "seconds": 15.1,
+      "seconds_tasks_span": 14.7,
+      "tasks": [
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 6.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-25",
+      "logical_date": "2026-08-25T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:24.852326Z",
+      "end_date": "2026-10-11T09:28:35.860271Z",
+      "seconds": 11.0,
+      "seconds_tasks_span": 10.4,
+      "tasks": [
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.6
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-26",
+      "logical_date": "2026-08-26T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:36.904684Z",
+      "end_date": "2026-10-11T09:28:46.779107Z",
+      "seconds": 9.9,
+      "seconds_tasks_span": 9.6,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.5
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-27",
+      "logical_date": "2026-08-27T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:46.906343Z",
+      "end_date": "2026-10-11T09:28:56.200189Z",
+      "seconds": 9.3,
+      "seconds_tasks_span": 8.5,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-28",
+      "logical_date": "2026-08-28T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:28:57.233446Z",
+      "end_date": "2026-10-11T09:29:06.893939Z",
+      "seconds": 9.7,
+      "seconds_tasks_span": 9.0,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.5
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-29",
+      "logical_date": "2026-08-29T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:29:07.943172Z",
+      "end_date": "2026-10-11T09:29:17.747763Z",
+      "seconds": 9.8,
+      "seconds_tasks_span": 9.7,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.7
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.5
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.3
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-30",
+      "logical_date": "2026-08-30T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:29:18.256691Z",
+      "end_date": "2026-10-11T09:29:27.533544Z",
+      "seconds": 9.3,
+      "seconds_tasks_span": 8.4,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.3
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-08-31",
+      "logical_date": "2026-08-31T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:29:28.349527Z",
+      "end_date": "2026-10-11T09:30:25.930589Z",
+      "seconds": 57.6,
+      "seconds_tasks_span": 56.9,
+      "tasks": [
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 52.8,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-08-31",
+            "rows_parquet": 512717,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 50.7,
+            "rows_clickhouse_final": 512717,
+            "error_messages": 0,
+            "rows_parquet_at_report": 512717,
+            "rows_clickhouse_final_at_report": 512717
+          }
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.8
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-09-01",
+      "logical_date": "2026-09-01T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:30:26.961750Z",
+      "end_date": "2026-10-11T09:31:24.307994Z",
+      "seconds": 57.3,
+      "seconds_tasks_span": 56.6,
+      "tasks": [
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 55.2,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-09-01",
+            "rows_parquet": 521692,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 52.9,
+            "rows_clickhouse_final": 521692,
+            "error_messages": 0,
+            "rows_parquet_at_report": 521692,
+            "rows_clickhouse_final_at_report": 521692
+          }
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.5
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.3
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-09-02",
+      "logical_date": "2026-09-02T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:31:25.346449Z",
+      "end_date": "2026-10-11T09:32:22.658933Z",
+      "seconds": 57.3,
+      "seconds_tasks_span": 56.5,
+      "tasks": [
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 54.7,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-09-02",
+            "rows_parquet": 529455,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 52.3,
+            "rows_clickhouse_final": 529455,
+            "error_messages": 0,
+            "rows_parquet_at_report": 529455,
+            "rows_clickhouse_final_at_report": 529455
+          }
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.3
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-09-03",
+      "logical_date": "2026-09-03T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:32:23.691626Z",
+      "end_date": "2026-10-11T09:33:20.779592Z",
+      "seconds": 57.1,
+      "seconds_tasks_span": 56.8,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 54.8,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-09-03",
+            "rows_parquet": 522208,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 52.6,
+            "rows_clickhouse_final": 522208,
+            "error_messages": 0,
+            "rows_parquet_at_report": 522208,
+            "rows_clickhouse_final_at_report": 522208
+          }
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-09-04",
+      "logical_date": "2026-09-04T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:33:21.817085Z",
+      "end_date": "2026-10-11T09:34:20.614016Z",
+      "seconds": 58.8,
+      "seconds_tasks_span": 58.7,
+      "tasks": [
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 54.0,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-09-04",
+            "rows_parquet": 520205,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 51.7,
+            "rows_clickhouse_final": 520205,
+            "error_messages": 0,
+            "rows_parquet_at_report": 520205,
+            "rows_clickhouse_final_at_report": 520205
+          }
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.3
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-09-05",
+      "logical_date": "2026-09-05T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:34:20.768869Z",
+      "end_date": "2026-10-11T09:36:19.875358Z",
+      "seconds": 119.1,
+      "seconds_tasks_span": 118.9,
+      "tasks": [
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 115.1,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-09-05",
+            "rows_parquet": 511514,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 112.9,
+            "rows_clickhouse_final": 511514,
+            "error_messages": 0,
+            "rows_parquet_at_report": 511514,
+            "rows_clickhouse_final_at_report": 511514
+          }
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-09-06",
+      "logical_date": "2026-09-06T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:36:20.916313Z",
+      "end_date": "2026-10-11T09:37:18.301548Z",
+      "seconds": 57.4,
+      "seconds_tasks_span": 56.8,
+      "tasks": [
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 51.8,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-09-06",
+            "rows_parquet": 500381,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 49.6,
+            "rows_clickhouse_final": 500381,
+            "error_messages": 0,
+            "rows_parquet_at_report": 500381,
+            "rows_clickhouse_final_at_report": 500381
+          }
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.8
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.4
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-09-07",
+      "logical_date": "2026-09-07T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:37:18.370193Z",
+      "end_date": "2026-10-11T09:38:14.857311Z",
+      "seconds": 56.5,
+      "seconds_tasks_span": 55.6,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 53.8,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-09-07",
+            "rows_parquet": 505037,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 51.2,
+            "rows_clickhouse_final": 505037,
+            "error_messages": 0,
+            "rows_parquet_at_report": 505037,
+            "rows_clickhouse_final_at_report": 505037
+          }
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.2
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.3
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-09-08",
+      "logical_date": "2026-09-08T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:38:15.887557Z",
+      "end_date": "2026-10-11T09:39:10.410421Z",
+      "seconds": 54.5,
+      "seconds_tasks_span": 53.6,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.9
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 51.6,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-09-08",
+            "rows_parquet": 517202,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 49.2,
+            "rows_clickhouse_final": 517202,
+            "error_messages": 0,
+            "rows_parquet_at_report": 517202,
+            "rows_clickhouse_final_at_report": 517202
+          }
+        },
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.1
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.3
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-09-09",
+      "logical_date": "2026-09-09T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:39:11.445083Z",
+      "end_date": "2026-10-11T09:39:20.328606Z",
+      "seconds": 8.9,
+      "seconds_tasks_span": 8.4,
+      "tasks": [
+        {
+          "task_id": "load_habr",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.3
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-10-09",
+      "logical_date": "2026-10-09T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:39:21.361710Z",
+      "end_date": "2026-10-11T09:40:13.385654Z",
+      "seconds": 52.0,
+      "seconds_tasks_span": 51.7,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 49.4,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-10-09",
+            "rows_parquet": 495389,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 47.3,
+            "rows_clickhouse_final": 495389,
+            "error_messages": 0,
+            "rows_parquet_at_report": 495389,
+            "rows_clickhouse_final_at_report": 495389
+          }
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 6.1,
+          "summary": {
+            "source": "trudvsem",
+            "dt": "2026-10-09",
+            "rows_parquet": 1497,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 4.2,
+            "rows_clickhouse_final": 1497,
+            "error_messages": 0,
+            "rows_parquet_at_report": 1497,
+            "rows_clickhouse_final_at_report": 1497
+          }
+        },
+        {
+          "task_id": "load_habr",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 6.5,
+          "summary": {
+            "source": "habr",
+            "dt": "2026-10-09",
+            "rows_parquet": 1061,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 4.2,
+            "rows_clickhouse_final": 1061,
+            "error_messages": 0,
+            "rows_parquet_at_report": 1061,
+            "rows_clickhouse_final_at_report": 1061
+          }
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.0
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 1.3
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_load",
+      "run_id": "collect__2026-10-10",
+      "logical_date": "2026-10-10T00:00:00Z",
+      "state": "success",
+      "start_date": "2026-10-11T09:40:13.698436Z",
+      "end_date": "2026-10-11T09:41:06.682575Z",
+      "seconds": 53.0,
+      "seconds_tasks_span": 52.8,
+      "tasks": [
+        {
+          "task_id": "load_trudvsem_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 51.2,
+          "summary": {
+            "source": "trudvsem_snapshot",
+            "dt": "2026-10-10",
+            "rows_parquet": 487786,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 49.1,
+            "rows_clickhouse_final": 487786,
+            "error_messages": 0,
+            "rows_parquet_at_report": 487786,
+            "rows_clickhouse_final_at_report": 487786
+          }
+        },
+        {
+          "task_id": "load_trudvsem",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 6.0,
+          "summary": {
+            "source": "trudvsem",
+            "dt": "2026-10-10",
+            "rows_parquet": 492,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 4.1,
+            "rows_clickhouse_final": 492,
+            "error_messages": 0,
+            "rows_parquet_at_report": 492,
+            "rows_clickhouse_final_at_report": 492
+          }
+        },
+        {
+          "task_id": "load_habr",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 6.4,
+          "summary": {
+            "source": "habr",
+            "dt": "2026-10-10",
+            "rows_parquet": 1060,
+            "rows_clickhouse_before": 0,
+            "replayed": true,
+            "seconds_until_consumed": 4.2,
+            "rows_clickhouse_final": 1060,
+            "error_messages": 0,
+            "rows_parquet_at_report": 1060,
+            "rows_clickhouse_final_at_report": 1060
+          }
+        },
+        {
+          "task_id": "load_telegram",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.3
+        },
+        {
+          "task_id": "load_superjob",
+          "state": "skipped",
+          "try_number": 1,
+          "seconds": 2.4
+        },
+        {
+          "task_id": "hand_over_to_dbt",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1.3
+        }
+      ]
+    },
+    {
+      "dag_id": "radar_dbt",
+      "run_id": "asset_triggered__2026-10-11T09:41:06.563590+00:00_eoXolKtD",
+      "logical_date": null,
+      "state": "failed",
+      "start_date": "2026-10-11T09:41:06.667763Z",
+      "end_date": "2026-10-11T10:17:17.557184Z",
+      "seconds": 2170.9,
+      "seconds_tasks_span": 2170.3,
+      "tasks": [
+        {
+          "task_id": "build",
+          "state": "success",
+          "try_number": 1,
+          "seconds": 1859.6
+        },
+        {
+          "task_id": "source_freshness",
+          "state": "failed",
+          "try_number": 2,
+          "seconds": 4.9
+        }
+      ]
+    }
+  ]
+}

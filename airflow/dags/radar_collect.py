@@ -12,7 +12,8 @@ Telegram history), one run per date:
     airflow backfill create --dag-id radar_collect --from-date 2026-07-22 --to-date 2026-07-28 --max-active-runs 1
 
 A date without any complete partition is skipped once nothing more can arrive for it; radar_load
-skips each source ClickHouse already holds, and dbt runs once after the last loaded date.
+skips each source ClickHouse already holds, and dbt runs once after the last loaded date. One date
+by hand is a backfill with the same --from-date and --to-date: the DAG takes no manual runs.
 """
 
 from datetime import UTC, datetime, timedelta
@@ -41,6 +42,11 @@ with DAG(
     start_date=datetime(2026, 10, 8, tzinfo=UTC),
     catchup=True,
     max_active_runs=1,
+    # A manual run with logical date D gets the interval that ends at D, while the scheduled run of
+    # D starts there. Once the schedule reaches D, Airflow 3.3 finds the manual run, derives the
+    # next date from its interval, gets D again and creates no scheduled run any more: the run of
+    # 2026-10-08 held the schedule until a backfill passed it on 2026-10-11.
+    allowed_run_types=["scheduled", "backfill"],
     is_paused_upon_creation=False,
     default_args={"owner": "radar", "retries": 2, "retry_delay": timedelta(minutes=15)},
     tags=["radar", "daily"],

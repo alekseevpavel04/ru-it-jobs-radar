@@ -97,6 +97,12 @@ def test_load_dag_skip_code_matches_the_task_script() -> None:
     assert constant(parse(DAGS / "radar_load.py"), "SKIP_EXIT_CODE") == module.SKIP_EXIT_CODE
 
 
+def test_collect_takes_no_manual_runs() -> None:
+    # A manual run at a date the schedule has not reached blocks the scheduler (see the DAG).
+    (call,) = dag_calls(parse(DAGS / "radar_collect.py"))
+    assert keyword(call, "allowed_run_types") == ["scheduled", "backfill"]
+
+
 def test_collect_triggers_load_for_the_same_date() -> None:
     text = (DAGS / "radar_collect.py").read_text(encoding="utf-8")
     assert 'trigger_dag_id="radar_load"' in text
