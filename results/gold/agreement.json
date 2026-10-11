@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/eval/agreement.py",
   "command": "python -m radar.eval.agreement",
-  "commit": "e5347da-dirty",
-  "created_at": "2026-10-10T13:56:07+00:00",
+  "commit": "8d57fe2-dirty",
+  "created_at": "2026-10-11T14:35:06+00:00",
   "metrics": {
     "test_all_fields_equal": {
       "value": 0.8727,
@@ -103,6 +103,106 @@
       "value": 1.0,
       "n": 165,
       "denominator": 165
+    },
+    "tg_test_all_fields_equal": {
+      "value": 0.8615,
+      "n": 112,
+      "denominator": 130
+    },
+    "tg_test_role_exact": {
+      "value": 0.9846,
+      "n": 128,
+      "denominator": 130
+    },
+    "tg_test_grade_exact": {
+      "value": 0.9923,
+      "n": 129,
+      "denominator": 130
+    },
+    "tg_test_skills_exact": {
+      "value": 0.9231,
+      "n": 120,
+      "denominator": 130
+    },
+    "tg_test_salary_exact": {
+      "value": 1.0,
+      "n": 130,
+      "denominator": 130
+    },
+    "tg_test_work_format_exact": {
+      "value": 0.9923,
+      "n": 129,
+      "denominator": 130
+    },
+    "tg_test_cities_exact": {
+      "value": 1.0,
+      "n": 130,
+      "denominator": 130
+    },
+    "tg_test_experience_years_exact": {
+      "value": 0.9846,
+      "n": 128,
+      "denominator": 130
+    },
+    "tg_test_employment_type_exact": {
+      "value": 0.9769,
+      "n": 127,
+      "denominator": 130
+    },
+    "tg_test_lang_exact": {
+      "value": 1.0,
+      "n": 130,
+      "denominator": 130
+    },
+    "tg_dev_all_fields_equal": {
+      "value": 0.8889,
+      "n": 48,
+      "denominator": 54
+    },
+    "tg_dev_role_exact": {
+      "value": 0.963,
+      "n": 52,
+      "denominator": 54
+    },
+    "tg_dev_grade_exact": {
+      "value": 1.0,
+      "n": 54,
+      "denominator": 54
+    },
+    "tg_dev_skills_exact": {
+      "value": 0.9259,
+      "n": 50,
+      "denominator": 54
+    },
+    "tg_dev_salary_exact": {
+      "value": 1.0,
+      "n": 54,
+      "denominator": 54
+    },
+    "tg_dev_work_format_exact": {
+      "value": 1.0,
+      "n": 54,
+      "denominator": 54
+    },
+    "tg_dev_cities_exact": {
+      "value": 1.0,
+      "n": 54,
+      "denominator": 54
+    },
+    "tg_dev_experience_years_exact": {
+      "value": 0.9815,
+      "n": 53,
+      "denominator": 54
+    },
+    "tg_dev_employment_type_exact": {
+      "value": 1.0,
+      "n": 54,
+      "denominator": 54
+    },
+    "tg_dev_lang_exact": {
+      "value": 1.0,
+      "n": 54,
+      "denominator": 54
     }
   },
   "method": "two independent passes of the same model by docs/annotation_guide.md; exact agreement per field after ordering lists, F1 of pass B against pass A by radar.eval.metrics",
@@ -157,6 +257,14 @@
       },
       "all_fields_equal": {
         "n": 384,
+        "denominator": 440
+      },
+      "excluded_by_both": {
+        "n": 0,
+        "denominator": 440
+      },
+      "exclusion_differs": {
+        "n": 0,
         "denominator": 440
       },
       "f1_b_against_a": {
@@ -224,6 +332,14 @@
         "n": 137,
         "denominator": 165
       },
+      "excluded_by_both": {
+        "n": 0,
+        "denominator": 165
+      },
+      "exclusion_differs": {
+        "n": 0,
+        "denominator": 165
+      },
       "f1_b_against_a": {
         "role_f1": 0.9697,
         "role_macro_f1": 0.9426,
@@ -235,6 +351,152 @@
         "salary_f1": 1.0,
         "experience_years_f1": 0.9912,
         "macro_f1": 0.9889
+      }
+    },
+    "tg_test": {
+      "records": {
+        "a": 140,
+        "b": 140,
+        "both": 140
+      },
+      "invalid": {
+        "a": 0,
+        "b": 0
+      },
+      "exact": {
+        "role": {
+          "n": 128,
+          "denominator": 130
+        },
+        "grade": {
+          "n": 129,
+          "denominator": 130
+        },
+        "skills": {
+          "n": 120,
+          "denominator": 130
+        },
+        "salary": {
+          "n": 130,
+          "denominator": 130
+        },
+        "work_format": {
+          "n": 129,
+          "denominator": 130
+        },
+        "cities": {
+          "n": 130,
+          "denominator": 130
+        },
+        "experience_years": {
+          "n": 128,
+          "denominator": 130
+        },
+        "employment_type": {
+          "n": 127,
+          "denominator": 130
+        },
+        "lang": {
+          "n": 130,
+          "denominator": 130
+        }
+      },
+      "all_fields_equal": {
+        "n": 112,
+        "denominator": 130
+      },
+      "excluded_by_both": {
+        "n": 10,
+        "denominator": 140
+      },
+      "exclusion_differs": {
+        "n": 0,
+        "denominator": 140
+      },
+      "f1_b_against_a": {
+        "role_f1": 0.9846,
+        "role_macro_f1": 0.9892,
+        "grade_f1": 0.9855,
+        "work_format_f1": 0.9903,
+        "employment_type_f1": 0.9333,
+        "skills_f1": 0.9784,
+        "cities_f1": 1.0,
+        "salary_f1": 1.0,
+        "experience_years_f1": 0.961,
+        "macro_f1": 0.9791
+      }
+    },
+    "tg_dev": {
+      "records": {
+        "a": 60,
+        "b": 60,
+        "both": 60
+      },
+      "invalid": {
+        "a": 0,
+        "b": 0
+      },
+      "exact": {
+        "role": {
+          "n": 52,
+          "denominator": 54
+        },
+        "grade": {
+          "n": 54,
+          "denominator": 54
+        },
+        "skills": {
+          "n": 50,
+          "denominator": 54
+        },
+        "salary": {
+          "n": 54,
+          "denominator": 54
+        },
+        "work_format": {
+          "n": 54,
+          "denominator": 54
+        },
+        "cities": {
+          "n": 54,
+          "denominator": 54
+        },
+        "experience_years": {
+          "n": 53,
+          "denominator": 54
+        },
+        "employment_type": {
+          "n": 54,
+          "denominator": 54
+        },
+        "lang": {
+          "n": 54,
+          "denominator": 54
+        }
+      },
+      "all_fields_equal": {
+        "n": 48,
+        "denominator": 54
+      },
+      "excluded_by_both": {
+        "n": 6,
+        "denominator": 60
+      },
+      "exclusion_differs": {
+        "n": 0,
+        "denominator": 60
+      },
+      "f1_b_against_a": {
+        "role_f1": 0.963,
+        "role_macro_f1": 0.9111,
+        "grade_f1": 1.0,
+        "work_format_f1": 1.0,
+        "employment_type_f1": 1.0,
+        "skills_f1": 0.9858,
+        "cities_f1": 1.0,
+        "salary_f1": 1.0,
+        "experience_years_f1": 0.96,
+        "macro_f1": 0.9886
       }
     }
   }
