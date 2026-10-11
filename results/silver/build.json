@@ -1,0 +1,88 @@
+{
+  "source_script": "src/radar/extract/silver.py",
+  "command": "python -m radar.extract.silver build",
+  "commit": "abcdb64-dirty",
+  "created_at": "2026-10-11T09:24:26+00:00",
+  "metrics": {
+    "records_labeled_by_both": {
+      "value": 6001,
+      "n": null,
+      "denominator": null
+    },
+    "records_written": {
+      "value": 0.9998,
+      "n": 6000,
+      "denominator": 6001
+    },
+    "dropped_not_in_train_pool": {
+      "value": 0.0002,
+      "n": 1,
+      "denominator": 6001
+    },
+    "dropped_input_changed": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 6001
+    },
+    "dropped_qwen_invalid": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 6001
+    },
+    "dropped_yandex_invalid": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 6001
+    }
+  },
+  "composition": "rules",
+  "sources": {
+    "role": "rules",
+    "grade": "rules",
+    "skills": "rules",
+    "salary": "rules",
+    "work_format": "rules",
+    "cities": "rules",
+    "experience_years": "rules",
+    "employment_type": "rules",
+    "lang": "rules"
+  },
+  "config_file": "configs/silver.toml",
+  "config_sha256": "221f7b0a52f12d505deb5347145daf40892ec3bb44db909bf9ca4b6f4c215004",
+  "teachers": {
+    "qwen": {
+      "model": "Qwen3-8B-Q4_K_M",
+      "prompt_sha256": "5937b5a6fdf2adeb28ed2c8541631ad7cf602fe19efa46fc9e5db06e650f8728",
+      "schema_sha256": "f71af6bb76c28c170911aaa71363fe791142357ef6110d50a53891500a139d12"
+    },
+    "yandex": {
+      "model": "YandexGPT-5-Lite-8B-instruct-Q4_K_M",
+      "prompt_sha256": "5937b5a6fdf2adeb28ed2c8541631ad7cf602fe19efa46fc9e5db06e650f8728",
+      "schema_sha256": "f71af6bb76c28c170911aaa71363fe791142357ef6110d50a53891500a139d12"
+    }
+  },
+  "output_file": "data/silver/train.jsonl",
+  "output_sha256": "d3863bc78eb9756e14b862da8abf0f6ab3bdcdc82374d2848ce4598913719c10",
+  "ids_sha256": "99ecae715bdf270148ce46f26120c93554cb259e7fc4c4f8594cae3830ece43b",
+  "strata": {
+    "habr|analyst_other": 28,
+    "habr|dev": 47,
+    "habr|ml_ds_data": 56,
+    "habr|non_it_noise": 29,
+    "habr|other_it": 29,
+    "habr|qa_devops_sys": 73,
+    "trudvsem_snapshot|analyst_other": 90,
+    "trudvsem_snapshot|dev": 524,
+    "trudvsem_snapshot|ml_ds_data": 76,
+    "trudvsem_snapshot|non_it_noise": 1359,
+    "trudvsem_snapshot|other_it": 276,
+    "trudvsem_snapshot|qa_devops_sys": 745,
+    "trudvsem|analyst_other": 80,
+    "trudvsem|dev": 617,
+    "trudvsem|ml_ds_data": 22,
+    "trudvsem|non_it_noise": 1396,
+    "trudvsem|other_it": 130,
+    "trudvsem|qa_devops_sys": 423
+  },
+  "method": "records labeled by both teachers; a record leaves the set if it is no longer in train_pool, if its input is not the one the teachers saw, or if a teacher the composition names for a field has no valid answer; agreed_<field>: records where the teachers agreed on a field the composition takes from their agreement (the rest take the rules' value)"
+}

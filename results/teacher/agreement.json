@@ -1,0 +1,518 @@
+{
+  "source_script": "src/radar/extract/teacher.py",
+  "command": "python -m radar.extract.teacher --agreement",
+  "commit": "abcdb64-dirty",
+  "created_at": "2026-10-11T09:22:04+00:00",
+  "metrics": {
+    "train_pool_records_labeled_by_both": {
+      "value": 6001,
+      "n": null,
+      "denominator": null
+    },
+    "train_pool_qwen_valid": {
+      "value": 1.0,
+      "n": 6001,
+      "denominator": 6001
+    },
+    "train_pool_yandex_valid": {
+      "value": 0.9997,
+      "n": 5999,
+      "denominator": 6001
+    },
+    "train_pool_both_valid": {
+      "value": 0.9997,
+      "n": 5999,
+      "denominator": 6001
+    },
+    "train_pool_all_fields_equal": {
+      "value": 0.1037,
+      "n": 622,
+      "denominator": 5999
+    },
+    "train_pool_role_exact": {
+      "value": 0.7126,
+      "n": 4275,
+      "denominator": 5999
+    },
+    "train_pool_grade_exact": {
+      "value": 0.8425,
+      "n": 5054,
+      "denominator": 5999
+    },
+    "train_pool_skills_exact": {
+      "value": 0.2187,
+      "n": 1312,
+      "denominator": 5999
+    },
+    "train_pool_salary_exact": {
+      "value": 0.867,
+      "n": 5201,
+      "denominator": 5999
+    },
+    "train_pool_work_format_exact": {
+      "value": 0.9458,
+      "n": 5674,
+      "denominator": 5999
+    },
+    "train_pool_cities_exact": {
+      "value": 0.9532,
+      "n": 5718,
+      "denominator": 5999
+    },
+    "train_pool_experience_years_exact": {
+      "value": 0.9218,
+      "n": 5530,
+      "denominator": 5999
+    },
+    "train_pool_employment_type_exact": {
+      "value": 0.9832,
+      "n": 5898,
+      "denominator": 5999
+    },
+    "train_pool_lang_exact": {
+      "value": 0.9993,
+      "n": 5995,
+      "denominator": 5999
+    },
+    "train_pool_role_f1": {
+      "value": 0.7126,
+      "n": null,
+      "denominator": null
+    },
+    "train_pool_role_macro_f1": {
+      "value": 0.6961,
+      "n": null,
+      "denominator": null
+    },
+    "train_pool_grade_f1": {
+      "value": 0.5979,
+      "n": null,
+      "denominator": null
+    },
+    "train_pool_work_format_f1": {
+      "value": 0.718,
+      "n": null,
+      "denominator": null
+    },
+    "train_pool_employment_type_f1": {
+      "value": 0.8712,
+      "n": null,
+      "denominator": null
+    },
+    "train_pool_skills_f1": {
+      "value": 0.5783,
+      "n": null,
+      "denominator": null
+    },
+    "train_pool_cities_f1": {
+      "value": 0.9621,
+      "n": null,
+      "denominator": null
+    },
+    "train_pool_salary_f1": {
+      "value": 0.8644,
+      "n": null,
+      "denominator": null
+    },
+    "train_pool_experience_years_f1": {
+      "value": 0.915,
+      "n": null,
+      "denominator": null
+    },
+    "train_pool_macro_f1": {
+      "value": 0.7774,
+      "n": null,
+      "denominator": null
+    },
+    "train_pool_skills_f1_dictionary": {
+      "value": 0.5886,
+      "n": null,
+      "denominator": null
+    },
+    "train_pool_macro_f1_dictionary": {
+      "value": 0.7787,
+      "n": null,
+      "denominator": null
+    },
+    "dev_records_labeled_by_both": {
+      "value": 165,
+      "n": null,
+      "denominator": null
+    },
+    "dev_qwen_valid": {
+      "value": 0.9939,
+      "n": 164,
+      "denominator": 165
+    },
+    "dev_yandex_valid": {
+      "value": 1.0,
+      "n": 165,
+      "denominator": 165
+    },
+    "dev_both_valid": {
+      "value": 0.9939,
+      "n": 164,
+      "denominator": 165
+    },
+    "dev_all_fields_equal": {
+      "value": 0.0854,
+      "n": 14,
+      "denominator": 164
+    },
+    "dev_role_exact": {
+      "value": 0.7378,
+      "n": 121,
+      "denominator": 164
+    },
+    "dev_grade_exact": {
+      "value": 0.9085,
+      "n": 149,
+      "denominator": 164
+    },
+    "dev_skills_exact": {
+      "value": 0.2439,
+      "n": 40,
+      "denominator": 164
+    },
+    "dev_salary_exact": {
+      "value": 0.8537,
+      "n": 140,
+      "denominator": 164
+    },
+    "dev_work_format_exact": {
+      "value": 0.9085,
+      "n": 149,
+      "denominator": 164
+    },
+    "dev_cities_exact": {
+      "value": 0.9817,
+      "n": 161,
+      "denominator": 164
+    },
+    "dev_experience_years_exact": {
+      "value": 0.9451,
+      "n": 155,
+      "denominator": 164
+    },
+    "dev_employment_type_exact": {
+      "value": 0.9634,
+      "n": 158,
+      "denominator": 164
+    },
+    "dev_lang_exact": {
+      "value": 1.0,
+      "n": 164,
+      "denominator": 164
+    },
+    "dev_role_f1": {
+      "value": 0.7378,
+      "n": null,
+      "denominator": null
+    },
+    "dev_role_macro_f1": {
+      "value": 0.7504,
+      "n": null,
+      "denominator": null
+    },
+    "dev_grade_f1": {
+      "value": 0.8148,
+      "n": null,
+      "denominator": null
+    },
+    "dev_work_format_f1": {
+      "value": 0.6885,
+      "n": null,
+      "denominator": null
+    },
+    "dev_employment_type_f1": {
+      "value": 0.8125,
+      "n": null,
+      "denominator": null
+    },
+    "dev_skills_f1": {
+      "value": 0.6866,
+      "n": null,
+      "denominator": null
+    },
+    "dev_cities_f1": {
+      "value": 0.9851,
+      "n": null,
+      "denominator": null
+    },
+    "dev_salary_f1": {
+      "value": 0.85,
+      "n": null,
+      "denominator": null
+    },
+    "dev_experience_years_f1": {
+      "value": 0.9478,
+      "n": null,
+      "denominator": null
+    },
+    "dev_macro_f1": {
+      "value": 0.8154,
+      "n": null,
+      "denominator": null
+    },
+    "dev_skills_f1_dictionary": {
+      "value": 0.7001,
+      "n": null,
+      "denominator": null
+    },
+    "dev_macro_f1_dictionary": {
+      "value": 0.8171,
+      "n": null,
+      "denominator": null
+    },
+    "dev_gold_role_agreed_correct": {
+      "value": 0.8678,
+      "n": 105,
+      "denominator": 121
+    },
+    "dev_gold_role_agreed_rules_correct": {
+      "value": 0.8347,
+      "n": 101,
+      "denominator": 121
+    },
+    "dev_gold_role_disagreed_rules_correct": {
+      "value": 0.4884,
+      "n": 21,
+      "denominator": 43
+    },
+    "dev_gold_role_disagreed_qwen_correct": {
+      "value": 0.5349,
+      "n": 23,
+      "denominator": 43
+    },
+    "dev_gold_role_disagreed_yandex_correct": {
+      "value": 0.2558,
+      "n": 11,
+      "denominator": 43
+    },
+    "dev_gold_grade_agreed_correct": {
+      "value": 0.9664,
+      "n": 144,
+      "denominator": 149
+    },
+    "dev_gold_grade_agreed_rules_correct": {
+      "value": 0.9799,
+      "n": 146,
+      "denominator": 149
+    },
+    "dev_gold_grade_disagreed_rules_correct": {
+      "value": 0.9333,
+      "n": 14,
+      "denominator": 15
+    },
+    "dev_gold_grade_disagreed_qwen_correct": {
+      "value": 0.6,
+      "n": 9,
+      "denominator": 15
+    },
+    "dev_gold_grade_disagreed_yandex_correct": {
+      "value": 0.4,
+      "n": 6,
+      "denominator": 15
+    },
+    "dev_gold_skills_agreed_correct": {
+      "value": 0.35,
+      "n": 14,
+      "denominator": 40
+    },
+    "dev_gold_skills_agreed_rules_correct": {
+      "value": 0.75,
+      "n": 30,
+      "denominator": 40
+    },
+    "dev_gold_skills_disagreed_rules_correct": {
+      "value": 0.4919,
+      "n": 61,
+      "denominator": 124
+    },
+    "dev_gold_skills_disagreed_qwen_correct": {
+      "value": 0.1855,
+      "n": 23,
+      "denominator": 124
+    },
+    "dev_gold_skills_disagreed_yandex_correct": {
+      "value": 0.0565,
+      "n": 7,
+      "denominator": 124
+    },
+    "dev_gold_salary_agreed_correct": {
+      "value": 0.9643,
+      "n": 135,
+      "denominator": 140
+    },
+    "dev_gold_salary_agreed_rules_correct": {
+      "value": 1.0,
+      "n": 140,
+      "denominator": 140
+    },
+    "dev_gold_salary_disagreed_rules_correct": {
+      "value": 1.0,
+      "n": 24,
+      "denominator": 24
+    },
+    "dev_gold_salary_disagreed_qwen_correct": {
+      "value": 0.6667,
+      "n": 16,
+      "denominator": 24
+    },
+    "dev_gold_salary_disagreed_yandex_correct": {
+      "value": 0.3333,
+      "n": 8,
+      "denominator": 24
+    },
+    "dev_gold_work_format_agreed_correct": {
+      "value": 0.9799,
+      "n": 146,
+      "denominator": 149
+    },
+    "dev_gold_work_format_agreed_rules_correct": {
+      "value": 0.9664,
+      "n": 144,
+      "denominator": 149
+    },
+    "dev_gold_work_format_disagreed_rules_correct": {
+      "value": 0.6667,
+      "n": 10,
+      "denominator": 15
+    },
+    "dev_gold_work_format_disagreed_qwen_correct": {
+      "value": 0.5333,
+      "n": 8,
+      "denominator": 15
+    },
+    "dev_gold_work_format_disagreed_yandex_correct": {
+      "value": 0.2,
+      "n": 3,
+      "denominator": 15
+    },
+    "dev_gold_cities_agreed_correct": {
+      "value": 1.0,
+      "n": 161,
+      "denominator": 161
+    },
+    "dev_gold_cities_agreed_rules_correct": {
+      "value": 1.0,
+      "n": 161,
+      "denominator": 161
+    },
+    "dev_gold_cities_disagreed_rules_correct": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "dev_gold_cities_disagreed_qwen_correct": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "dev_gold_cities_disagreed_yandex_correct": {
+      "value": 0.6667,
+      "n": 2,
+      "denominator": 3
+    },
+    "dev_gold_experience_years_agreed_correct": {
+      "value": 0.9548,
+      "n": 148,
+      "denominator": 155
+    },
+    "dev_gold_experience_years_agreed_rules_correct": {
+      "value": 0.9484,
+      "n": 147,
+      "denominator": 155
+    },
+    "dev_gold_experience_years_disagreed_rules_correct": {
+      "value": 0.6667,
+      "n": 6,
+      "denominator": 9
+    },
+    "dev_gold_experience_years_disagreed_qwen_correct": {
+      "value": 0.3333,
+      "n": 3,
+      "denominator": 9
+    },
+    "dev_gold_experience_years_disagreed_yandex_correct": {
+      "value": 0.4444,
+      "n": 4,
+      "denominator": 9
+    },
+    "dev_gold_employment_type_agreed_correct": {
+      "value": 0.9747,
+      "n": 154,
+      "denominator": 158
+    },
+    "dev_gold_employment_type_agreed_rules_correct": {
+      "value": 0.9873,
+      "n": 156,
+      "denominator": 158
+    },
+    "dev_gold_employment_type_disagreed_rules_correct": {
+      "value": 1.0,
+      "n": 6,
+      "denominator": 6
+    },
+    "dev_gold_employment_type_disagreed_qwen_correct": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 6
+    },
+    "dev_gold_employment_type_disagreed_yandex_correct": {
+      "value": 1.0,
+      "n": 6,
+      "denominator": 6
+    },
+    "dev_gold_lang_agreed_correct": {
+      "value": 1.0,
+      "n": 164,
+      "denominator": 164
+    },
+    "dev_gold_lang_agreed_rules_correct": {
+      "value": 1.0,
+      "n": 164,
+      "denominator": 164
+    },
+    "dev_gold_lang_disagreed_rules_correct": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 0
+    },
+    "dev_gold_lang_disagreed_qwen_correct": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 0
+    },
+    "dev_gold_lang_disagreed_yandex_correct": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 0
+    }
+  },
+  "a": "qwen",
+  "b": "yandex",
+  "teachers": {
+    "qwen/train_pool": {
+      "model": "Qwen3-8B-Q4_K_M",
+      "prompt_sha256": "5937b5a6fdf2adeb28ed2c8541631ad7cf602fe19efa46fc9e5db06e650f8728",
+      "schema_sha256": "f71af6bb76c28c170911aaa71363fe791142357ef6110d50a53891500a139d12"
+    },
+    "yandex/train_pool": {
+      "model": "YandexGPT-5-Lite-8B-instruct-Q4_K_M",
+      "prompt_sha256": "5937b5a6fdf2adeb28ed2c8541631ad7cf602fe19efa46fc9e5db06e650f8728",
+      "schema_sha256": "f71af6bb76c28c170911aaa71363fe791142357ef6110d50a53891500a139d12"
+    },
+    "qwen/dev": {
+      "model": "Qwen3-8B-Q4_K_M",
+      "prompt_sha256": "5937b5a6fdf2adeb28ed2c8541631ad7cf602fe19efa46fc9e5db06e650f8728",
+      "schema_sha256": "f71af6bb76c28c170911aaa71363fe791142357ef6110d50a53891500a139d12"
+    },
+    "yandex/dev": {
+      "model": "YandexGPT-5-Lite-8B-instruct-Q4_K_M",
+      "prompt_sha256": "5937b5a6fdf2adeb28ed2c8541631ad7cf602fe19efa46fc9e5db06e650f8728",
+      "schema_sha256": "f71af6bb76c28c170911aaa71363fe791142357ef6110d50a53891500a139d12"
+    }
+  },
+  "method": "records labeled by both teachers; <field>_exact: equal value after ordering and casefolding lists, over records where both answers are valid; <field>_f1: F1 of b against a by radar.eval.agreement.compare (skills casefolded), skills_f1_dictionary and macro_f1_dictionary with the spelling dictionary of configs/skills.toml; no gold on train_pool, so agreement there is not accuracy. dev_gold_*: exact equality with data/gold/dev.jsonl on dev records where both answers are valid, split by whether the teachers agree on the field; rules are the regex baseline on the same inputs"
+}

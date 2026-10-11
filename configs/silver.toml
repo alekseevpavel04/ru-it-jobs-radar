@@ -1,0 +1,27 @@
+# Silver labels for the student (`python -m radar.extract.silver`).
+#
+# A composition names the source of each schema field: "rules" (the regex baseline on the same
+# input), "qwen" or "yandex" (that teacher's answer), "agree" (the teachers' value where
+# both answered and agree, the rules' value otherwise). A field not listed comes from the rules.
+#
+# Compositions are compared on dev only (`dev --composition NAME`); `build` writes the chosen one.
+# Changing `chosen` or a composition changes the training set: record it in docs/EXPERIMENTS.md.
+
+# Every candidate stays within 0.01 macro F1 of the rules on dev (results/extract/dev_silver_*_vs_regex.json),
+# and a gain below 0.01 does not count (stop rule of EXPERIMENTS.md): the simplest composition wins.
+chosen = "rules"
+
+[compositions.rules]
+
+# The teachers' only dev gains over the rules are role and work_format (results/extract/dev_*.json).
+[compositions.qwen_role_format]
+role = "qwen"
+work_format = "qwen"
+
+[compositions.agree_role_format]
+role = "agree"
+work_format = "agree"
+
+# Role alone: its dev gain is the larger one, work_format F1 rises while its accuracy drops.
+[compositions.qwen_role]
+role = "qwen"

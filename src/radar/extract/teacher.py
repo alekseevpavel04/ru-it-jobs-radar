@@ -27,6 +27,7 @@ request failed, is labeled again on resume.
     python -m radar.extract.teacher --teacher qwen --split train_pool --workers 3 --resume
     python -m radar.extract.teacher --teacher qwen --split train_pool --limit 3000 --keep-all ml_ds_data --resume
     python -m radar.extract.teacher --probe-report 50
+    python -m radar.extract.teacher --agreement        # results/teacher/agreement.json
 """
 
 import argparse
@@ -49,10 +50,14 @@ import pyarrow.parquet as pq
 from pydantic import ValidationError
 
 from radar.config import ROOT, data_dir, load_dotenv, require
-from radar.eval.agreement import compare
-from radar.eval.cli import load_config
+from radar.eval.agreement import FIELDS, compare, field_values
+from radar.eval.agreement import parse as parse_output
+from radar.eval.cli import SKILL_NORMALIZERS, load_config
+from radar.eval.data import load_gold
+from radar.eval.metrics import score
+from radar.extract.baseline import extract, read_inputs
 from radar.extract.corpus import largest_remainder, permanent_random
-from radar.extract.schema import SCHEMA_VERSION, dump, json_schema, parse
+from radar.extract.schema import SCHEMA_VERSION, dump, json_schema, parse, try_parse
 from radar.results import write_result
 
 log = logging.getLogger("radar.extract.teacher")
@@ -531,6 +536,114 @@ def cmd_probe_report(n: int) -> int:
     return 0
 
 
+# --- agreement ----------------------------------------------------------------------------------
+
+PAIR = ("qwen", "yandex")
+
+
+def compare_rows(rows: Iterable[Mapping[str, Any]]) -> dict[str, dict[str, Any]]:
+    """Teacher rows in the shape radar.eval.agreement.compare reads."""
+    return {r["id"]: {"output": json.loads(r["output"]) if r["output"] else None} for r in rows}
+
+
+def agreement_metrics(
+    split: str, a_rows: Sequence[Mapping[str, Any]], b_rows: Sequence[Mapping[str, Any]], salary_rel_tol: float
+) -> dict[str, dict[str, Any]]:
+    a, b = compare_rows(a_rows), compare_rows(b_rows)
+    result = compare(a, b, salary_rel_tol)
+    n = result["records"]["both"]
+    equal = result["all_fields_equal"]
+    metrics: dict[str, dict[str, Any]] = {f"{split}_records_labeled_by_both": {"value": n}}
+    for name, key in zip(PAIR, ("a", "b"), strict=True):
+        metrics[f"{split}_{name}_valid"] = share(n - result["invalid"][key], n)
+    metrics[f"{split}_both_valid"] = share(equal["denominator"], n)
+    metrics[f"{split}_all_fields_equal"] = share(equal["n"], equal["denominator"])
+    for field in FIELDS:
+        metrics[f"{split}_{field}_exact"] = share(result["exact"][field]["n"], result["exact"][field]["denominator"])
+    for key, value in result["f1_b_against_a"].items():
+        metrics[f"{split}_{key}"] = {"value": value}
+
+    # skills once more with the spelling dictionary, the comparison every dev result uses
+    pairs = [
+        (x, y)
+        for i in sorted(set(a) & set(b))
+        if (x := parse_output(a[i]["output"])) and (y := parse_output(b[i]["output"]))
+    ]
+    stats = score(
+        [x for x, _ in pairs], [y for _, y in pairs], salary_rel_tol, normalize_skill=SKILL_NORMALIZERS["dictionary"]
+    )
+    metrics[f"{split}_skills_f1_dictionary"] = {"value": round(stats["skills_f1"].value(), 4)}
+    metrics[f"{split}_macro_f1_dictionary"] = {"value": round(stats["macro_f1"].value(), 4)}
+    return metrics
+
+
+def gold_reference(
+    a_rows: Sequence[Mapping[str, Any]], b_rows: Sequence[Mapping[str, Any]]
+) -> dict[str, dict[str, Any]]:
+    """On dev, where gold exists: how often the agreed value is the gold one, and on disagreement how
+    often each teacher and the rules are. Exact equality after ordering and casefolding lists."""
+    gold_dir = data_dir() / "gold"
+    gold = {g.id: field_values(g.fields) for g in load_gold(gold_dir / "dev.jsonl")}
+    rules = {rid: field_values(extract(text)) for rid, text in read_inputs(gold_dir / "dev_inputs.jsonl")}
+    answers = {
+        name: {r["id"]: field_values(p) for r in rows if (p := try_parse(r["output"])) is not None}
+        for name, rows in zip(PAIR, (a_rows, b_rows), strict=True)
+    }
+    both = [rid for rid in gold if all(rid in answers[name] for name in PAIR)]
+    metrics: dict[str, dict[str, Any]] = {}
+    for field in FIELDS:
+        agreed = [rid for rid in both if answers["qwen"][rid][field] == answers["yandex"][rid][field]]
+        disagreed = sorted(set(both) - set(agreed))
+        correct = Counter[str]()
+        for rid in agreed:
+            correct["agreed"] += answers["qwen"][rid][field] == gold[rid][field]
+            correct["agreed_rules"] += rules[rid][field] == gold[rid][field]
+        for rid in disagreed:
+            correct["rules"] += rules[rid][field] == gold[rid][field]
+            for name in PAIR:
+                correct[name] += answers[name][rid][field] == gold[rid][field]
+        metrics[f"dev_gold_{field}_agreed_correct"] = share(correct["agreed"], len(agreed))
+        metrics[f"dev_gold_{field}_agreed_rules_correct"] = share(correct["agreed_rules"], len(agreed))
+        for name in ("rules", *PAIR):
+            metrics[f"dev_gold_{field}_disagreed_{name}_correct"] = share(correct[name], len(disagreed))
+    return metrics
+
+
+def cmd_agreement() -> int:
+    cfg = load_config()
+    metrics: dict[str, dict[str, Any]] = {}
+    identity: dict[str, dict[str, Any]] = {}
+    for split in SPLITS:
+        rows = [read_rows(output_path(name, split)) for name in PAIR]
+        for name, r in zip(PAIR, rows, strict=True):
+            if not r:
+                raise SystemExit(f"{output_path(name, split)} is missing or empty: label {split} with {name} first")
+            meta = json.loads(meta_path(name, split).read_text(encoding="utf-8"))
+            identity[f"{name}/{split}"] = {k: meta[k] for k in IDENTITY}
+        metrics |= agreement_metrics(split, rows[0], rows[1], cfg.salary_rel_tol)
+        if split == "dev":
+            metrics |= gold_reference(rows[0], rows[1])
+    path = write_result(
+        "teacher/agreement.json",
+        metrics,
+        source_script="src/radar/extract/teacher.py",
+        a=PAIR[0],
+        b=PAIR[1],
+        teachers=identity,
+        method="records labeled by both teachers; <field>_exact: equal value after ordering and casefolding lists, "
+        "over records where both answers are valid; <field>_f1: F1 of b against a by radar.eval.agreement.compare "
+        "(skills casefolded), skills_f1_dictionary and macro_f1_dictionary with the spelling dictionary of "
+        "configs/skills.toml; no gold on train_pool, so agreement there is not accuracy. dev_gold_*: exact "
+        "equality with data/gold/dev.jsonl on dev records where both answers are valid, split by whether the "
+        "teachers agree on the field; rules are the regex baseline on the same inputs",
+    )
+    print(path)
+    for key, value in metrics.items():
+        shown = f"{value['n']} of {value['denominator']}" if "denominator" in value else ""
+        print(f"{key:55} {value['value']:>8} {shown}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
     logging.getLogger("httpx").setLevel(logging.WARNING)
@@ -538,6 +651,7 @@ def main(argv: list[str] | None = None) -> int:
     mode = ap.add_mutually_exclusive_group(required=True)
     mode.add_argument("--teacher", choices=sorted(TEACHERS))
     mode.add_argument("--probe-report", type=int, metavar="N", help="results/teacher/probe.json from N probe records")
+    mode.add_argument("--agreement", action="store_true", help="results/teacher/agreement.json: qwen against yandex")
     ap.add_argument("--split", choices=SPLITS, default="train_pool")
     ap.add_argument(
         "--limit",
@@ -554,6 +668,8 @@ def main(argv: list[str] | None = None) -> int:
     load_dotenv()
     if args.probe_report:
         return cmd_probe_report(args.probe_report)
+    if args.agreement:
+        return cmd_agreement()
     return cmd_label(args)
 
 
