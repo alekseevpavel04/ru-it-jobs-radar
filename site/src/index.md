@@ -9,6 +9,7 @@ toc: true
 import {ROLE, ROLE_GROUP, ROLE_GROUP_ORDER, SOURCE, int, pct, share, day, dateLong, dateShort, monthTick, ofChannels} from "./components/labels.js";
 
 const meta = FileAttachment("data/meta.json").json();
+const life = FileAttachment("data/lifetime.json").json();
 const weeklyRows = FileAttachment("data/weekly_vacancies.json").json();
 const telegramRows = FileAttachment("data/weekly_telegram.json").json();
 ```
@@ -186,7 +187,7 @@ Plot.plot({
 
 <div class="note-small">
 
-Новая вакансия: впервые появилась в снимке этой недели (первая неделя сбора не считается, в ней всё уже открыто). Закрытая: её нет в следующем полном снимке портала. Пустые точки: неделя собрана не полностью${afterGap.length ? ` или идёт после пропуска (${afterGap.map((w) => `с ${dateShort(w.week)}`).join(", ")}), и тогда в неё попадают закрытия пропущенных недель` : ""}; линия через такие точки не проводится.${offScale.length ? ` За пределами шкалы: ${offScale.map((d) => `${d.kind} на неделе с ${dateShort(d.week)}: ${int(d.n)}`).join(", ")}.` : ""}
+Новая вакансия: впервые появилась в снимке этой недели (первая неделя сбора не считается, в ней всё уже открыто). Закрытая: её нет в ${life.grace_days} полных снимках портала подряд. Пустые точки: неделя собрана не полностью${afterGap.length ? ` или идёт после пропуска (${afterGap.map((w) => `с ${dateShort(w.week)}`).join(", ")}), и тогда в неё попадают закрытия пропущенных недель` : ""}; линия через такие точки не проводится.${offScale.length ? ` За пределами шкалы: ${offScale.map((d) => `${d.kind} на неделе с ${dateShort(d.week)}: ${int(d.n)}`).join(", ")}.` : ""}
 
 </div>
 </div>
