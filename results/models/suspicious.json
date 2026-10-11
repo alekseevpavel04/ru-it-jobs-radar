@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/models/suspicious.py",
   "command": "python -m radar.models.suspicious run",
-  "commit": "65ee508-dirty",
-  "created_at": "2026-10-11T11:28:36+00:00",
+  "commit": "70fced2-dirty",
+  "created_at": "2026-10-11T11:40:19+00:00",
   "metrics": {
     "cards": {
       "value": 25909,
@@ -741,6 +741,334 @@
         },
         "cards_sha256": "56a8e1ea475352e9823901678bf71cb99f82ab653026100f1f4e22d8649b2fe7",
         "items": 150
+      }
+    }
+  },
+  "scores_dev": {
+    "labeled": 150,
+    "unsure": 0,
+    "unlabeled": 0,
+    "missing_predictions": 0,
+    "suspicious": 23,
+    "categories": {
+      "formal": 21,
+      "bait": 2,
+      "grey": 1
+    },
+    "systems": {
+      "lf:course_pay": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 1,
+        "sample_suspicious": 23
+      },
+      "lf:training_then_job": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 3,
+        "sample_suspicious": 23
+      },
+      "lf:income_bait": {
+        "precision": {
+          "value": null
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 0,
+        "sample_suspicious": 23
+      },
+      "lf:unlimited_income": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 1,
+        "sample_suspicious": 23
+      },
+      "lf:no_experience_high_pay": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 13,
+        "sample_suspicious": 23
+      },
+      "lf:sole_remote_no_experience": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 2,
+        "sample_suspicious": 23
+      },
+      "lf:salary_high": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 16,
+        "sample_suspicious": 23
+      },
+      "lf:title_sales": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 2,
+        "sample_suspicious": 23
+      },
+      "lf:grey": {
+        "precision": {
+          "value": 1.0,
+          "ci_low": 1.0,
+          "ci_high": 1.0
+        },
+        "recall": {
+          "value": 0.0043,
+          "ci_low": 0.0016,
+          "ci_high": 0.0294
+        },
+        "f1": {
+          "value": 0.0085,
+          "ci_low": 0.0032,
+          "ci_high": 0.0571
+        },
+        "sample_tp": 1,
+        "sample_flagged": 1,
+        "sample_suspicious": 23
+      },
+      "lf:salary_low": {
+        "precision": {
+          "value": 0.1429,
+          "ci_low": 0.0,
+          "ci_high": 0.4286
+        },
+        "recall": {
+          "value": 0.0043,
+          "ci_low": 0.0,
+          "ci_high": 0.0608
+        },
+        "f1": {
+          "value": 0.0083,
+          "ci_low": 0.0031,
+          "ci_high": 0.1304
+        },
+        "sample_tp": 1,
+        "sample_flagged": 7,
+        "sample_suspicious": 23
+      },
+      "lf:mass_text": {
+        "precision": {
+          "value": 1.0,
+          "ci_low": 1.0,
+          "ci_high": 1.0
+        },
+        "recall": {
+          "value": 0.1195,
+          "ci_low": 0.0443,
+          "ci_high": 0.8235
+        },
+        "f1": {
+          "value": 0.2135,
+          "ci_low": 0.0849,
+          "ci_high": 0.9032
+        },
+        "sample_tp": 13,
+        "sample_flagged": 13,
+        "sample_suspicious": 23
+      },
+      "lf:formal_note": {
+        "precision": {
+          "value": null
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 0,
+        "sample_suspicious": 23
+      },
+      "lf:repost_chain": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 3,
+        "sample_suspicious": 23
+      },
+      "any_combined_suspicious_vote": {
+        "precision": {
+          "value": 0.5,
+          "ci_low": 0.4833,
+          "ci_high": 0.5333
+        },
+        "recall": {
+          "value": 0.128,
+          "ci_low": 0.0461,
+          "ci_high": 0.8824
+        },
+        "f1": {
+          "value": 0.2039,
+          "ci_low": 0.0842,
+          "ci_high": 0.6465
+        },
+        "sample_tp": 15,
+        "sample_flagged": 43,
+        "sample_suspicious": 23
+      },
+      "majority_vote": {
+        "precision": {
+          "value": 0.6798,
+          "ci_low": 0.4091,
+          "ci_high": 0.8278
+        },
+        "recall": {
+          "value": 0.0453,
+          "ci_low": 0.0097,
+          "ci_high": 0.4454
+        },
+        "f1": {
+          "value": 0.085,
+          "ci_low": 0.019,
+          "ci_high": 0.5633
+        },
+        "sample_tp": 6,
+        "sample_flagged": 11,
+        "sample_suspicious": 23
+      },
+      "label_model": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 17,
+        "sample_suspicious": 23
+      },
+      "classifier": {
+        "precision": {
+          "value": 0.5948,
+          "ci_low": 0.4073,
+          "ci_high": 0.7451
+        },
+        "recall": {
+          "value": 0.0752,
+          "ci_low": 0.0218,
+          "ci_high": 0.6323
+        },
+        "f1": {
+          "value": 0.1335,
+          "ci_low": 0.0415,
+          "ci_high": 0.6561
+        },
+        "sample_tp": 13,
+        "sample_flagged": 25,
+        "sample_suspicious": 23
       }
     }
   }

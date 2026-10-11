@@ -1,0 +1,141 @@
+{
+  "source_script": "src/radar/models/suspicious_agreement.py",
+  "command": "python -m radar.models.suspicious_agreement",
+  "commit": "70fced2-dirty",
+  "created_at": "2026-10-11T11:38:20+00:00",
+  "metrics": {
+    "dev_label_equal": {
+      "value": 0.9867,
+      "n": 148,
+      "denominator": 150
+    },
+    "dev_label_and_categories_equal": {
+      "value": 0.9867,
+      "n": 148,
+      "denominator": 150
+    },
+    "dev_suspicious_final": {
+      "value": 0.1533,
+      "n": 23,
+      "denominator": 150
+    },
+    "dev_unsure_final": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 150
+    },
+    "test_label_equal": {
+      "value": 0.9867,
+      "n": 148,
+      "denominator": 150
+    },
+    "test_label_and_categories_equal": {
+      "value": 0.9867,
+      "n": 148,
+      "denominator": 150
+    },
+    "test_suspicious_final": {
+      "value": 0.1267,
+      "n": 19,
+      "denominator": 150
+    },
+    "test_unsure_final": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 150
+    }
+  },
+  "method": "two independent passes of the same model by docs/suspicious_guide.md; equal means the same label and the same set of categories; differing cards take the adjudicated label",
+  "splits": {
+    "dev": {
+      "cards": 150,
+      "label_equal": {
+        "n": 148,
+        "denominator": 150
+      },
+      "label_and_categories_equal": {
+        "n": 148,
+        "denominator": 150
+      },
+      "suspicious_final": {
+        "n": 23,
+        "denominator": 150
+      },
+      "unsure_final": {
+        "n": 0,
+        "denominator": 150
+      },
+      "disagreements": [
+        {
+          "item_id": "d038",
+          "a": [
+            "unsure",
+            []
+          ],
+          "b": [
+            "ok",
+            []
+          ]
+        },
+        {
+          "item_id": "d103",
+          "a": [
+            "unsure",
+            []
+          ],
+          "b": [
+            "ok",
+            []
+          ]
+        }
+      ]
+    },
+    "test": {
+      "cards": 150,
+      "label_equal": {
+        "n": 148,
+        "denominator": 150
+      },
+      "label_and_categories_equal": {
+        "n": 148,
+        "denominator": 150
+      },
+      "suspicious_final": {
+        "n": 19,
+        "denominator": 150
+      },
+      "unsure_final": {
+        "n": 0,
+        "denominator": 150
+      },
+      "disagreements": [
+        {
+          "item_id": "t078",
+          "a": [
+            "suspicious",
+            [
+              "bait"
+            ]
+          ],
+          "b": [
+            "ok",
+            []
+          ]
+        },
+        {
+          "item_id": "t093",
+          "a": [
+            "suspicious",
+            [
+              "formal"
+            ]
+          ],
+          "b": [
+            "ok",
+            []
+          ]
+        }
+      ]
+    }
+  }
+}

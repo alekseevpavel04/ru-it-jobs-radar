@@ -1,6 +1,6 @@
 outs:
-- md5: 6f032031a8a67a8f28f59899a43a1f64.dir
-  size: 25838630
-  nfiles: 5
+- md5: 71e709aa22241b860439021105b636ce.dir
+  size: 25967264
+  nfiles: 12
   hash: md5
   path: suspicious
