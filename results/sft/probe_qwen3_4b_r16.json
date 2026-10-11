@@ -1,0 +1,107 @@
+{
+  "source_script": "src/radar/train/sft.py",
+  "command": "python -m radar.train.sft --config configs/sft/qwen3_4b.toml --probe 50",
+  "commit": "ae3834f",
+  "created_at": "2026-10-11T22:33:42+00:00",
+  "metrics": {
+    "train_seconds": {
+      "value": 56.6885,
+      "n": null,
+      "denominator": null
+    },
+    "global_step": {
+      "value": 4,
+      "n": null,
+      "denominator": null
+    },
+    "epoch": {
+      "value": 1.0,
+      "n": null,
+      "denominator": null
+    },
+    "step_seconds_median": {
+      "value": 15.9297,
+      "n": null,
+      "denominator": null
+    },
+    "peak_reserved_mib": {
+      "value": 3928.0,
+      "n": null,
+      "denominator": null
+    },
+    "peak_allocated_mib": {
+      "value": 3468.144,
+      "n": null,
+      "denominator": null
+    },
+    "vram_limit_mib": {
+      "value": 6586.0,
+      "n": null,
+      "denominator": null
+    },
+    "train_loss_last": {
+      "value": 0.4738,
+      "n": null,
+      "denominator": null
+    },
+    "probe_tokens_per_s": {
+      "value": 1160.285,
+      "n": null,
+      "denominator": null
+    },
+    "forecast_epoch_h": {
+      "value": 1.8525,
+      "n": null,
+      "denominator": null
+    },
+    "forecast_run_h": {
+      "value": 3.7049,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "config_file": "configs/sft/qwen3_4b.toml",
+  "config_sha256": "d5303a1260a525be5d437125405b7b38dd7d10312f9b5b10705275a067f367f2",
+  "params": {
+    "name": "qwen3_4b_r16",
+    "model": "Qwen/Qwen3-4B",
+    "backend": "unsloth",
+    "lora.r": 16,
+    "lora.alpha": 32,
+    "lora.dropout": 0.0,
+    "lora.targets": "q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj",
+    "train.max_seq_len": 2048,
+    "train.epochs": 2,
+    "train.lr": 0.0002,
+    "train.batch": 2,
+    "train.grad_accum": 8,
+    "train.warmup_ratio": 0.03,
+    "train.scheduler": "cosine",
+    "train.weight_decay": 0.0,
+    "train.optim": "adamw_8bit",
+    "train.seed": 20261008,
+    "train.logging_steps": 10,
+    "train.eval_steps": 200,
+    "train.save_steps": 100,
+    "train.save_total_limit": 2,
+    "guard.vram_margin_mib": 512,
+    "guard.step_time_factor": 3.0,
+    "guard.reference_steps": 5,
+    "guard.patience": 3,
+    "train_examples": 50,
+    "val_examples": 0,
+    "dataset_train_sha256": "e8a27b553c6f55a903ecd2a3179c609457ccf07caa56d21322600df399f51324",
+    "dataset_val_sha256": "266184de763ef034f1b07b5fe8e4328b298fd370e3bc786a8fd212f9b6c6ef2d",
+    "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+    "max_input_tokens": 1536,
+    "commit": "ae3834f",
+    "mode": "probe"
+  },
+  "dataset_meta": {
+    "train_sha256": "e8a27b553c6f55a903ecd2a3179c609457ccf07caa56d21322600df399f51324",
+    "val_sha256": "266184de763ef034f1b07b5fe8e4328b298fd370e3bc786a8fd212f9b6c6ef2d",
+    "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+    "max_input_tokens": 1536
+  },
+  "forecast": "forecast_*_h: the full training file's prompt and answer tokens over the probe's tokens per second (steps after the first), times epochs; evaluation and checkpoint time not included"
+}
