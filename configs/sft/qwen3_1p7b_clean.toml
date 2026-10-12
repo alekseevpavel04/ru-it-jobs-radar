@@ -1,0 +1,40 @@
+# The student (EXPERIMENTS E9-E12): the recipe of E9, the best of the iterations (1.7B,
+# two epochs; E10 4B +0.0095 and E11 three epochs -0.019 on the mean of dev and tg_dev, two gains
+# below 0.01 in a row stop the iterations), trained on the silver set rebuilt after the 2026-10-12
+# corpus refresh, so no training input holds a name the cleaner now removes.
+name = "qwen3_1p7b_r16_clean"
+model = "Qwen/Qwen3-1.7B"
+backend = "unsloth"
+
+[data]
+train = "data/sft/train.jsonl"
+val = "data/sft/val.jsonl"
+meta = "data/sft/meta.json"
+
+[lora]
+r = 16
+alpha = 32
+dropout = 0.0
+
+[train]
+max_seq_len = 2048
+epochs = 2
+lr = 2e-4
+# effective batch 16 for both students. At micro-batch 2 the 1.7B peaked at 3 695 MiB on the card
+# (gpu_smoke.json), so micro-batch 4 is tried here; the --probe run checks its peak before training
+batch = 4
+grad_accum = 4
+warmup_ratio = 0.03
+scheduler = "cosine"
+optim = "adamw_8bit"
+seed = 20261008
+logging_steps = 10
+eval_steps = 200
+save_steps = 100
+save_total_limit = 2
+
+[guard]
+vram_margin_mib = 512
+step_time_factor = 3.0
+reference_steps = 5
+patience = 3
