@@ -198,3 +198,18 @@ def test_server_refuses_unknown_records_fields_stale_labels_and_foreign_hosts(se
     assert _request(server, "POST", "/api/answer", ok | {"fields_sha": "0" * 64})[0] == 400
     assert _request(server, "GET", "/api/state", host="evil.example:80")[0] == 403
     assert not server.answers_path.exists()
+
+
+def test_a_verdict_without_field_marks_counts_for_the_verdict_only() -> None:
+    items = [hc.Item(id=f"r{i}", source="habr", split="test", input="t", fields={"role": "qa"}) for i in range(3)]
+    sha = items[0].fields_sha
+    answers = {
+        "r0": hc.Answer(id="r0", fields_sha=sha, marks={f: "ok" for f in hc.FIELDS}, verdict="agree"),
+        "r1": hc.Answer(id="r1", fields_sha=sha, verdict="agree"),
+    }
+    metrics, extra = hc.summarize(items, answers)
+    assert (metrics["records_judged"]["n"], metrics["records_judged"]["denominator"]) == (2, 3)
+    assert (metrics["records_checked"]["n"], metrics["records_checked"]["denominator"]) == (1, 3)
+    assert (metrics["verdict_agree"]["n"], metrics["verdict_agree"]["denominator"]) == (2, 2)
+    assert metrics["field_role_correct"]["denominator"] == 1
+    assert extra["unchecked_ids"] == ["r2"]

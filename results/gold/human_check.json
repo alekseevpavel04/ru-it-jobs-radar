@@ -1,0 +1,172 @@
+{
+  "source_script": "src/radar/eval/human_check.py",
+  "command": "python -m radar.eval.human_check report",
+  "commit": "e00bdcc-dirty",
+  "created_at": "2026-10-12T17:43:18+00:00",
+  "metrics": {
+    "records_judged": {
+      "value": 1.0,
+      "n": 50,
+      "denominator": 50
+    },
+    "records_checked": {
+      "value": 0.06,
+      "n": 3,
+      "denominator": 50
+    },
+    "records_all_fields_correct": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "field_role_correct": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "field_grade_correct": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "field_skills_correct": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "field_salary_correct": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "field_work_format_correct": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "field_cities_correct": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "field_experience_years_correct": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "field_employment_type_correct": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "field_lang_correct": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "verdict_agree": {
+      "value": 1.0,
+      "n": 50,
+      "denominator": 50
+    },
+    "verdict_disagree": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 50
+    },
+    "verdict_unsure": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 50
+    }
+  },
+  "method": "the project author read each sampled test record next to its gold label and gave an overall verdict (agree, disagree, unsure) against the vacancy text and docs/annotation_guide.md; records_judged counts the verdicts; where the author also marked every field as correct or wrong the record counts as checked, and the per-field shares are over checked records only",
+  "sample": {
+    "seed": 20261008,
+    "size": 50,
+    "min_per_source": 8,
+    "population": {
+      "habr": 65,
+      "telegram": 130,
+      "trudvsem": 181,
+      "trudvsem_snapshot": 194
+    },
+    "composition": {
+      "habr": 8,
+      "telegram": 11,
+      "trudvsem": 15,
+      "trudvsem_snapshot": 16
+    },
+    "gold_sha256": {
+      "test": "17a51c987e65680620230c1cfb9a4903d93689c677f6798488c8a84aa2856d94",
+      "tg_test": "09f1b0f86b505e97680131db2a02aa5b1e2f30d06d7586f245ca1fd7494625e1"
+    },
+    "ids_sha256": "48e4e8c8681172c23a98cfc592200ca2f37a72a0566e59e09facba0f67b80b28",
+    "ids": [
+      "trudvsem_snapshot:1b684418-3a2e-11f0-bd48-cb26dff57dd7",
+      "trudvsem_snapshot:eb1ab8d8-78a5-11f1-a41f-c3af44321512",
+      "trudvsem:9c4672fb-0012-11f1-adc6-997f1955d448",
+      "trudvsem:02d62d18-20dc-11f0-9de6-d549be31d974",
+      "telegram:data_hr/612",
+      "trudvsem:1569cc08-9004-11f1-b244-c5b25bc14f69",
+      "trudvsem:652456d8-81da-11f1-a65f-59f30d2f7521",
+      "telegram:getitrussia/469",
+      "trudvsem:84edc4e8-922b-11f1-9d62-2f50b9e6b1e0",
+      "habr:1000168871",
+      "trudvsem:c19c14d8-b1b3-11f1-98bc-350b59df29cf",
+      "trudvsem:e3d1d878-a53b-11f1-8aec-a3ab0dfb7e4e",
+      "telegram:progjob/55283",
+      "trudvsem_snapshot:fc2b95e5-3681-11ee-ad7e-0d972cff014f",
+      "trudvsem_snapshot:73168b59-59c6-11f1-ac0f-f1a19d144bdd",
+      "trudvsem_snapshot:349669f8-7e8c-11f1-881f-b11bcd9b7b98",
+      "habr:1000167228",
+      "telegram:progjob/62125",
+      "trudvsem:64e10077-c1fd-11f1-9dff-97d306130813",
+      "telegram:juniors_rabota_jobs/342",
+      "habr:1000168583",
+      "trudvsem:1603a1ef-c90d-11f0-bb35-65c40553d4d9",
+      "trudvsem:a05bb31b-a698-11f1-b4b9-312b1e80675a",
+      "trudvsem_snapshot:18f457d5-5b4a-11f1-b964-dd82fad7662e",
+      "trudvsem:3d9496c0-2e9c-11f1-9aff-8534fa1888d5",
+      "trudvsem_snapshot:fd1e8804-8033-11f1-98b5-7d198ff3aa1a",
+      "trudvsem:1e791478-fda8-11f0-a982-3baac0a37e0c",
+      "trudvsem_snapshot:ac8bd904-003c-11f1-90fd-05574afd36d4",
+      "telegram:remotegeekjob/15649",
+      "trudvsem:ad8e8f28-85d7-11f1-ae5d-9f41f4fa76e3",
+      "trudvsem_snapshot:1aa82d38-2432-11f1-8d48-d52d8860c0e6",
+      "trudvsem_snapshot:ccb9b9a0-2f57-11f1-8f5f-c9fcff8a7192",
+      "trudvsem_snapshot:75cd972b-6e21-11f1-a0ef-714ad8f097f6",
+      "trudvsem_snapshot:21a68808-7f4c-11f1-af90-fdfd96230151",
+      "trudvsem_snapshot:c8657818-f79b-11f0-a027-0dd543315e5a",
+      "habr:1000167140",
+      "trudvsem_snapshot:b9e4082b-67ca-11f1-a95e-05a97d193f2d",
+      "trudvsem:91db3a80-f07c-11f0-ac31-6d1879456f92",
+      "trudvsem:1aca8e09-7c31-11f1-96a1-71ec6ab38b2c",
+      "habr:1000166776",
+      "habr:1000169062",
+      "trudvsem_snapshot:2f23d90c-3a4c-11f1-96a1-bd257e890366",
+      "habr:1000168726",
+      "telegram:infosec_work/2160",
+      "habr:1000167253",
+      "telegram:golangjobsit/1019",
+      "trudvsem_snapshot:784bc785-5cba-11f0-bf73-d549be31d974",
+      "telegram:progjob/35705",
+      "telegram:devjobs/12377",
+      "telegram:javascript_jobs_feed/2246"
+    ]
+  },
+  "by_source": {
+    "trudvsem": {
+      "checked": 1,
+      "all_fields_correct": 1
+    },
+    "trudvsem_snapshot": {
+      "checked": 2,
+      "all_fields_correct": 2
+    }
+  },
+  "disagreements": [],
+  "verdict_disagree_ids": [],
+  "unchecked_ids": [],
+  "stale_answers": []
+}

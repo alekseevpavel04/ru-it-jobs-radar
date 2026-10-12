@@ -210,24 +210,28 @@ def current(items: list[Item], answers: dict[str, Answer]) -> tuple[dict[str, An
 def summarize(items: list[Item], answers: dict[str, Answer]) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
     valid, stale = current(items, answers)
     checked = [item for item in items if item.id in valid and valid[item.id].complete()]
-    if not checked:
-        raise ValueError("no record is checked yet: every field marked and an overall verdict given")
-    n = len(checked)
-    done = {item.id for item in checked}
+    # A reviewer may give the overall verdict without marking the fields one by one: such a record
+    # counts for the verdict and not for the per-field shares.
+    judged = [item for item in items if item.id in valid and valid[item.id].verdict is not None]
+    if not judged:
+        raise ValueError("no record is judged yet: give an overall verdict at least")
 
     def share(k: int, d: int) -> dict[str, Any]:
-        return {"value": round(k / d, 4), "n": k, "denominator": d}
+        return {"value": round(k / d, 4) if d else None, "n": k, "denominator": d}
 
+    n = len(checked)
+    done = {item.id for item in judged}
     all_ok = {item.id for item in checked if all(valid[item.id].marks[f] == "ok" for f in FIELDS)}
     metrics: dict[str, dict[str, Any]] = {
+        "records_judged": share(len(judged), len(items)),
         "records_checked": share(n, len(items)),
         "records_all_fields_correct": share(len(all_ok), n),
     }
     for field in FIELDS:
         metrics[f"field_{field}_correct"] = share(sum(valid[i.id].marks[field] == "ok" for i in checked), n)
-    verdicts = Counter(valid[i.id].verdict for i in checked)
+    verdicts = Counter(valid[i.id].verdict for i in judged)
     for verdict in ("agree", "disagree", "unsure"):
-        metrics[f"verdict_{verdict}"] = share(verdicts[verdict], n)
+        metrics[f"verdict_{verdict}"] = share(verdicts[verdict], len(judged))
 
     by_source: dict[str, dict[str, int]] = {}
     for item in checked:
@@ -395,9 +399,10 @@ def cmd_report(_: argparse.Namespace) -> int:
         metrics,
         source_script="src/radar/eval/human_check.py",
         method=(
-            "the project author marked every field of the gold label of each sampled test record as correct or "
-            "wrong against the vacancy text and docs/annotation_guide.md, and gave an overall verdict; a record "
-            "counts as checked when all fields are marked and the verdict is given"
+            "the project author read each sampled test record next to its gold label and gave an overall verdict "
+            "(agree, disagree, unsure) against the vacancy text and docs/annotation_guide.md; records_judged "
+            "counts the verdicts; where the author also marked every field as correct or wrong the record counts "
+            "as checked, and the per-field shares are over checked records only"
         ),
         sample={k: sample[k] for k in ("seed", "size", "min_per_source", "population", "composition")}
         | {"gold_sha256": sample["gold_sha256"], "ids_sha256": sample["ids_sha256"]}
