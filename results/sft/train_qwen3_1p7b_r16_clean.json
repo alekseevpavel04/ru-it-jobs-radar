@@ -1,0 +1,99 @@
+{
+  "source_script": "src/radar/train/sft.py",
+  "command": "python -m radar.train.sft --config configs/sft/qwen3_1p7b_clean.toml --resume",
+  "commit": "b8ddbd0-dirty",
+  "created_at": "2026-10-12T18:30:54+00:00",
+  "metrics": {
+    "train_seconds": {
+      "value": 3772.6614,
+      "n": null,
+      "denominator": null
+    },
+    "global_step": {
+      "value": 1360,
+      "n": null,
+      "denominator": null
+    },
+    "epoch": {
+      "value": 2.0,
+      "n": null,
+      "denominator": null
+    },
+    "step_seconds_median": {
+      "value": 4.4969,
+      "n": null,
+      "denominator": null
+    },
+    "peak_reserved_mib": {
+      "value": 4510.0,
+      "n": null,
+      "denominator": null
+    },
+    "peak_allocated_mib": {
+      "value": 3223.3818,
+      "n": null,
+      "denominator": null
+    },
+    "vram_limit_mib": {
+      "value": 6586.0,
+      "n": null,
+      "denominator": null
+    },
+    "train_loss_last": {
+      "value": 0.0166,
+      "n": null,
+      "denominator": null
+    },
+    "eval_loss_last": {
+      "value": 0.0308,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "config_file": "configs/sft/qwen3_1p7b_clean.toml",
+  "config_sha256": "869a5b05039a1662865fc343fd9fbfb3d16cad073318c531f90c07b941c95dd0",
+  "params": {
+    "name": "qwen3_1p7b_r16_clean",
+    "model": "Qwen/Qwen3-1.7B",
+    "backend": "unsloth",
+    "lora.r": 16,
+    "lora.alpha": 32,
+    "lora.dropout": 0.0,
+    "lora.targets": "q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj",
+    "train.max_seq_len": 2048,
+    "train.epochs": 2,
+    "train.lr": 0.0002,
+    "train.batch": 4,
+    "train.grad_accum": 4,
+    "train.warmup_ratio": 0.03,
+    "train.scheduler": "cosine",
+    "train.weight_decay": 0.0,
+    "train.optim": "adamw_8bit",
+    "train.seed": 20261008,
+    "train.logging_steps": 10,
+    "train.eval_steps": 200,
+    "train.save_steps": 100,
+    "train.save_total_limit": 2,
+    "guard.vram_margin_mib": 512,
+    "guard.step_time_factor": 3.0,
+    "guard.reference_steps": 5,
+    "guard.patience": 3,
+    "train_examples": 10866,
+    "val_examples": 561,
+    "dataset_train_sha256": "6f738b2217fca74829c99fb9aa946c0f7c7196a07065cf5874bb7de81bd541d1",
+    "dataset_val_sha256": "5e808123ba5fb8dc55b28804b9212da96c70bf8c72a08aa8da78ade3dc920e0e",
+    "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+    "max_input_tokens": 1536,
+    "commit": "e5ec399-dirty",
+    "mode": "train"
+  },
+  "dataset_meta": {
+    "train_sha256": "6f738b2217fca74829c99fb9aa946c0f7c7196a07065cf5874bb7de81bd541d1",
+    "val_sha256": "5e808123ba5fb8dc55b28804b9212da96c70bf8c72a08aa8da78ade3dc920e0e",
+    "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+    "max_input_tokens": 1536
+  },
+  "adapter_dir": "models/sft/qwen3_1p7b_r16_clean/adapter",
+  "mlflow_run_id": "884f1adb2e924127988339fbae12a5fa",
+  "note": "this session only: a resumed run reports the time and peaks of its last session; every session is in models/sft/<name>/run.json"
+}
