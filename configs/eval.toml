@@ -2,7 +2,7 @@
 # record the change in docs/EXPERIMENTS.md.
 
 [bootstrap]
-# EXPERIMENTS.md: paired bootstrap, 1000 resamples or more, seed fixed here.
+# docs/EXPERIMENTS.md: paired bootstrap, 1000 resamples or more, seed fixed here.
 n_resamples = 2000
 seed = 20261008
 confidence = 0.95

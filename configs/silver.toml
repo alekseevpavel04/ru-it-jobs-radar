@@ -17,14 +17,14 @@ telegram = ["rules", "qwen_role_format", "qwen_all", "agree_all"]
 
 [chosen]
 # Every candidate stays within 0.01 macro F1 of the rules on dev (results/extract/dev_silver_*_vs_regex.json),
-# and a gain below 0.01 does not count (stop rule of EXPERIMENTS.md): the simplest composition wins.
+# and a gain below 0.01 does not count (stop rule of docs/EXPERIMENTS.md): the simplest composition wins.
 trudvsem_habr = "rules"
 # agree_all minus qwen_all on tg_dev: +0.014 macro F1 (results/extract/tg_dev_silver_agree_all_vs_silver_qwen_all.json), above the
 # 0.01 threshold; skills gain most, where the rules stand in when the teachers disagree.
 telegram = "agree_all"
 
 # A rules-only composition needs no teacher: its records are a stratified sample of the family's
-# current training pool, drawn as the teacher labeling drew the teachers' sample (every ML/DS/data vacancy, the
+# current training pool, drawn the way the teachers' sample was drawn (every ML/DS/data vacancy, the
 # rest proportional to source x role proxy). The labels then follow the current versions of the
 # vacancies after a corpus rebuild.
 [rules_sample.trudvsem_habr]

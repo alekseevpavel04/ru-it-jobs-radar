@@ -1,4 +1,4 @@
-# Iteration 3 of the student (EXPERIMENTS E11): the 1.7B recipe of E9 with three epochs instead of
+# Iteration 3 of the student (E11 in docs/EXPERIMENTS.md): the 1.7B recipe of E9 with three epochs instead of
 # two, on the silver set rebuilt after the 2026-10-12 corpus refresh (posts whose input changed when
 # names were cleaned, and English remoteit posts, are out). The 4B of E10 gained 0.0095 on the mean
 # of dev and tg_dev, below the 0.01 of the stop rule, so the 1.7B stays the student.

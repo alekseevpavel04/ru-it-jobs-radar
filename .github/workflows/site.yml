@@ -11,7 +11,7 @@ on:
       - "src/radar/site/scan_dist.py"
       - ".github/workflows/site.yml"
   workflow_dispatch:
-  # Daily rebuild goes together with the daily data commit; until then the site is
+  # No daily rebuild yet: it goes on together with the daily data commit. Until then the site is
   # rebuilt on a change under site/ or by hand.
   # schedule:
   #   - cron: "30 5 * * *"

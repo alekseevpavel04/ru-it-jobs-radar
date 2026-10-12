@@ -1,6 +1,6 @@
-# Gold samples (`python -m radar.extract.corpus sample`). The seed is the one of
+# Gold samples, S1 in docs/EXPERIMENTS.md (`python -m radar.extract.corpus sample`). The seed is the one of
 # configs/eval.toml. Changing anything here redraws test and dev: `sample` refuses once they exist,
-# and a redraw is a new line in docs/EXPERIMENTS.md.
+# and a redraw is a new entry in docs/EXPERIMENTS.md.
 
 # Groups per role-proxy bucket. The natural distribution is about 1.5% ml_ds_data and 45%
 # non_it_noise; ML, DS and data roles are oversampled so that per-field metrics on them have support,

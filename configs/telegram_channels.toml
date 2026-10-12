@@ -1,9 +1,10 @@
 # Public Telegram channels collected through t.me/s/<name> for weekly site aggregates and the
-# extraction corpus (DECISIONS 10; texts are never published). Survey of 2026-10-08; numbers per
-# channel are in results/sources/telegram_channels.json, method in docs/sources.md (Telegram, 1.5).
+# extraction corpus (decision 10 in docs/DECISIONS.md; texts are never published). Survey of 2026-10-08;
+# numbers per channel are in results/sources/telegram_channels.json, method in docs/sources.md
+# (Telegram, additional channels).
 #
 # A channel is enabled when its last post is at most 30 days old, at least 15 of its last 50 posts
-# carry a vacancy (rules, and the manual check where one was made), at least 30% of its text posts are
+# carry a vacancy (rules, and the check labels where they were made), at least 30% of its text posts are
 # in Russian, the topic is IT and it is not a copy of another enabled channel. `exception` records why
 # a channel stays enabled although it fails a criterion; `backfill = false` marks a channel that keeps
 # only recent posts, so it is collected daily and never backfilled.
@@ -15,7 +16,7 @@
 # `network` groups channels of one publisher: their posts overlap, so cross-channel dedup is required
 # (the same goes for habr_career and progjob against the Habr Career source).
 
-# Known before 1.5 (audit 1.4)
+# Known before the channel survey (source audit)
 
 [[channel]]
 name = "datasciencejobs"
@@ -80,7 +81,7 @@ network = ""
 enabled = true
 known_before_1_5 = true
 lang = "ru"
-exception = "selected before the survey; most posts are in English (international remote); kept on 2026-10-12 with its Russian posts only"
+exception = "selected before the channel survey; most posts are in English (international remote); kept on 2026-10-12 with its Russian posts only"
 reason = "remote IT vacancies, mostly English; only Russian posts count"
 
 [[channel]]
@@ -99,7 +100,7 @@ enabled = true
 known_before_1_5 = true
 reason = "Python vacancies, history since 2021"
 
-# Added in 1.5: general IT
+# Added by the survey: general IT
 
 [[channel]]
 name = "it_vakansii_jobs"
@@ -192,7 +193,7 @@ network = "geekjob"
 enabled = true
 reason = "remote IT vacancies of the geekjob network, high volume, about half in English"
 
-# Added in 1.5: data, analytics, ML
+# Added by the survey: data, analytics, ML
 
 [[channel]]
 name = "datajob"
@@ -271,7 +272,7 @@ network = ""
 enabled = true
 reason = "DS and ML vacancies and internships, small"
 
-# Added in 1.5: by stack and role
+# Added by the survey: by stack and role
 
 [[channel]]
 name = "fordevops"
@@ -442,7 +443,7 @@ enabled = true
 backfill = false
 reason = "frontend vacancies; keeps only about two weeks of posts (older ids are deleted), so no backfill, daily collection only"
 
-# Surveyed in 1.5 and left out
+# Surveyed and left out
 
 [[channel]]
 name = "morejobs"

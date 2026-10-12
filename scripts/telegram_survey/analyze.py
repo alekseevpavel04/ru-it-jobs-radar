@@ -242,7 +242,7 @@ def main() -> None:
             for reason, bad in (
                 ("stale", m["days_since_last_post"]["value"] > ALIVE_DAYS),
                 ("few vacancies", m["vacancy_share"]["value"] < MIN_VACANCY_SHARE),
-                ("few vacancies by manual check", manual["value"] < MIN_VACANCY_SHARE),
+                ("few vacancies by check labels", manual["value"] < MIN_VACANCY_SHARE),
                 ("not russian", m["russian_post_share"]["value"] < MIN_RU_POSTS),
             )
             if bad

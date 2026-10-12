@@ -47,7 +47,7 @@ same_place = true
 same_title = false
 
 [text_cluster]
-# Same text regardless of place: the grouping for the gold split (5.2), not an entity.
+# Same text regardless of place: the grouping for the gold split (S1 in docs/EXPERIMENTS.md), not an entity.
 jaccard = 0.8
 
 [entities]

@@ -1,6 +1,6 @@
 # Telegram extraction records and their gold samples (`python -m radar.extract.telegram_corpus sample`).
 # The seed is the one of configs/eval.toml. Changing anything here redraws test and dev: `sample`
-# refuses once they exist, and a redraw is a new line in docs/EXPERIMENTS.md.
+# refuses once they exist, and a redraw is a new entry in docs/EXPERIMENTS.md.
 
 [records]
 # Characters of the post left after links, hashtags, @names and PII placeholders are cut. Below 100

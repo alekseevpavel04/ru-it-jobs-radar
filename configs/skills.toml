@@ -1,4 +1,4 @@
-# Skill dictionary v1: canonical names of the `skills` field, their spellings, and what
+# Skill dictionary v1 (E2 in docs/EXPERIMENTS.md): canonical names of the `skills` field, their spellings, and what
 # the annotation guide does not count as a skill. Read by `radar.extract.skills` (normalization of
 # any system's output and of the eval comparison) and by `radar.extract.skill_dictionary` (the
 # search in texts of the rule baseline). The dbt seed `dbt/seeds/skill_dictionary.csv` is v0 and

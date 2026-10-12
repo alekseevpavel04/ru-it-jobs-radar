@@ -1,5 +1,5 @@
 # Channel candidates of 2026-10-08, one per line, gathered from forwards and t.me
-# links in the ten channels known from 1.4, DuckDuckGo results and channel lists, filtered by name. See docs/sources.md.
+# links in the ten channels known from the source audit, DuckDuckGo results and channel lists, filtered by name. See docs/sources.md.
 ai_rabota
 alljvmjobs
 analyst_job
