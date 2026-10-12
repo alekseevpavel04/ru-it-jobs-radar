@@ -53,6 +53,17 @@ sources:
             warn_after: {count: 26, period: hour}
             error_after: {count: 50, period: hour}
             filter: "source = 'telegram'"
+      - name: superjob
+        identifier: vacancies
+        description: >
+          Daily snapshot of the SuperJob API's IT slice: catalogue 33 plus title queries for IT
+          roles filed elsewhere (radar.collect.superjob); dt is the Moscow day of the run. Texts stay
+          local (DECISIONS 2).
+        config:
+          freshness:
+            warn_after: {count: 26, period: hour}
+            error_after: {count: 50, period: hour}
+            filter: "source = 'superjob'"
 
   - name: dedup
     database: staging

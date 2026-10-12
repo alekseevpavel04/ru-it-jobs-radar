@@ -1,6 +1,6 @@
 import pytest
 
-COLLECTORS = ("habr", "telegram", "trudvsem", "trudvsem_snapshot")
+COLLECTORS = ("habr", "superjob", "telegram", "trudvsem", "trudvsem_snapshot")
 
 
 @pytest.fixture(autouse=True)

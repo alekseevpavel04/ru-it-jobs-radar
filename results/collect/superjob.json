@@ -1,0 +1,230 @@
+{
+  "source_script": "src/radar/collect/superjob.py",
+  "command": "python -m radar.collect.superjob",
+  "commit": "856b080-dirty",
+  "created_at": "2026-10-12T15:40:55+00:00",
+  "metrics": {
+    "days": {
+      "value": 1,
+      "n": null,
+      "denominator": null
+    },
+    "rows_total": {
+      "value": 787,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_distinct_vacancies": {
+      "value": 787,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_only_by_title": {
+      "value": 129,
+      "n": 129,
+      "denominator": 787
+    },
+    "last_run_catalogue_total": {
+      "value": 661,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_catalogue_coverage": {
+      "value": 0.9955,
+      "n": 658,
+      "denominator": 661
+    },
+    "last_run_written": {
+      "value": 787,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_requests": {
+      "value": 61,
+      "n": null,
+      "denominator": null
+    },
+    "last_run_truncated_queries": {
+      "value": 0,
+      "n": 0,
+      "denominator": 17
+    }
+  },
+  "method": "recomputed from data/raw/superjob partitions and _meta/runs.jsonl",
+  "days": [
+    {
+      "dt": "2026-10-12",
+      "rows": 787,
+      "distinct_ids": 787,
+      "rejected_not_written": 0,
+      "parquet_bytes": 812977,
+      "pii_removed": {
+        "address": 448,
+        "company_code": 8,
+        "employer_name": 8,
+        "person_name": 111,
+        "phone": 426
+      },
+      "runs": [
+        {
+          "started_at": "2026-10-12T15:38:04.693317+00:00",
+          "finished_at": "2026-10-12T15:40:54.812258+00:00",
+          "dt": "2026-10-12",
+          "complete": true,
+          "queries": {
+            "catalogue_33": {
+              "total": 661,
+              "windows": 13,
+              "pages": 28,
+              "records": 663,
+              "distinct": 658,
+              "truncated": false
+            },
+            "title_программист": {
+              "total": 62,
+              "windows": 1,
+              "pages": 2,
+              "records": 62,
+              "distinct": 62,
+              "truncated": false
+            },
+            "title_разработчик": {
+              "total": 42,
+              "windows": 1,
+              "pages": 2,
+              "records": 44,
+              "distinct": 42,
+              "truncated": false
+            },
+            "title_developer": {
+              "total": 7,
+              "windows": 1,
+              "pages": 1,
+              "records": 7,
+              "distinct": 7,
+              "truncated": false
+            },
+            "title_аналитик": {
+              "total": 80,
+              "windows": 1,
+              "pages": 2,
+              "records": 80,
+              "distinct": 80,
+              "truncated": false
+            },
+            "title_data": {
+              "total": 10,
+              "windows": 1,
+              "pages": 1,
+              "records": 10,
+              "distinct": 10,
+              "truncated": false
+            },
+            "title_python": {
+              "total": 4,
+              "windows": 1,
+              "pages": 1,
+              "records": 4,
+              "distinct": 4,
+              "truncated": false
+            },
+            "title_java": {
+              "total": 3,
+              "windows": 1,
+              "pages": 1,
+              "records": 3,
+              "distinct": 3,
+              "truncated": false
+            },
+            "title_frontend": {
+              "total": 4,
+              "windows": 1,
+              "pages": 1,
+              "records": 4,
+              "distinct": 4,
+              "truncated": false
+            },
+            "title_backend": {
+              "total": 3,
+              "windows": 1,
+              "pages": 1,
+              "records": 3,
+              "distinct": 3,
+              "truncated": false
+            },
+            "title_devops": {
+              "total": 7,
+              "windows": 1,
+              "pages": 1,
+              "records": 7,
+              "distinct": 7,
+              "truncated": false
+            },
+            "title_тестировщик": {
+              "total": 2,
+              "windows": 1,
+              "pages": 1,
+              "records": 2,
+              "distinct": 2,
+              "truncated": false
+            },
+            "title_qa": {
+              "total": 6,
+              "windows": 1,
+              "pages": 1,
+              "records": 6,
+              "distinct": 6,
+              "truncated": false
+            },
+            "title_1С": {
+              "total": 33,
+              "windows": 1,
+              "pages": 1,
+              "records": 33,
+              "distinct": 33,
+              "truncated": false
+            },
+            "title_системный администратор": {
+              "total": 67,
+              "windows": 1,
+              "pages": 2,
+              "records": 67,
+              "distinct": 67,
+              "truncated": false
+            },
+            "title_machine learning": {
+              "total": 0,
+              "windows": 1,
+              "pages": 1,
+              "records": 0,
+              "distinct": 0,
+              "truncated": false
+            },
+            "title_инженер данных": {
+              "total": 0,
+              "windows": 1,
+              "pages": 1,
+              "records": 0,
+              "distinct": 0,
+              "truncated": false
+            }
+          },
+          "records_fetched": 995,
+          "distinct_vacancies": 787,
+          "only_by_title": 129,
+          "written": 787,
+          "duplicates_skipped": 0,
+          "rejected": 0,
+          "objects_without_id": 0,
+          "requests": 61,
+          "retries": 0,
+          "seconds_in_requests": 47.6,
+          "catalogue_coverage": {
+            "n": 658,
+            "denominator": 661
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -22,11 +22,12 @@ class Threshold:
 
 # The thresholds of dbt/models/staging/_sources.yml. dbt measures from fetched_at in ClickHouse;
 # here the clock starts when the partition was due locally, so both alert after about one missed
-# day (warn) and two (error). superjob is not collected (no key) and has no threshold.
+# day (warn) and two (error).
 THRESHOLDS = {
     "trudvsem": Threshold(26, 50),
     "habr": Threshold(26, 50),
     "telegram": Threshold(26, 50),
+    "superjob": Threshold(26, 50),
     # A snapshot is published about 13:50 Moscow time and takes hours to download and parse.
     "trudvsem_snapshot": Threshold(48, 96),
 }

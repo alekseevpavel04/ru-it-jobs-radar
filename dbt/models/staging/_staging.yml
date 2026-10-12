@@ -451,6 +451,100 @@ models:
         description: When the chosen raw row reached ClickHouse; drives which days a build takes again.
         data_tests: [not_null]
 
+  - name: stg_superjob
+    description: >
+      SuperJob, one row per vacancy per raw day (source_id, dt): a full snapshot of the API's IT slice
+      every run (catalogue 33 plus title queries, radar.collect.superjob). A rerun on the same day can
+      write a second raw row for a vacancy that changed in between; the latest fetched_at wins. Not
+      yet in stg_vacancies, the dedup and the marts. Texts stay local (DECISIONS 2).
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source_id, dt]
+    columns:
+      - name: source
+        description: Always superjob here.
+        data_tests: [not_null]
+      - name: source_id
+        description: SuperJob vacancy id.
+        data_tests: [not_null]
+      - name: dt
+        description: Moscow day of the run.
+        data_tests: [not_null]
+      - name: content_hash
+        description: Hash of what the record says; the raise date, viewer state and the employer profile are left out.
+        data_tests: [not_null]
+      - name: fetched_at
+        description: When the search page with this vacancy was requested (UTC).
+        data_tests: [not_null]
+      - name: published_at
+        description: >
+          date_published, UTC. SuperJob moves it when the employer raises the vacancy, so it is the
+          latest raise, not the first publication.
+      - name: modified_at
+        description: Always null; SuperJob gives no modification date.
+      - name: url
+        description: Vacancy page on superjob.ru.
+      - name: title
+        description: profession, the job title.
+        data_tests: [not_null]
+      - name: text
+        description: vacancyRichText as plain text after PII removal (or duties, requirements and conditions when it is empty).
+      - name: has_text
+        description: text is present and not blank.
+        data_tests: [not_null]
+      - name: employer_name
+        description: firm_name; "ИП" or a placeholder when the employer is a person.
+      - name: employer_id
+        description: SuperJob client id; null when the employer is a person.
+      - name: town
+        description: Town of the vacancy.
+      - name: address_town_level
+        description: Address cut to the region and settlement before the raw layer; street, house, coordinates and metro are not stored.
+      - name: salary_from
+        description: payment_from; 0 at the source means not stated and is null here.
+      - name: salary_to
+        description: payment_to; 0 at the source means not stated and is null here.
+      - name: salary_currency
+        description: Currency as SuperJob writes it.
+      - name: salary_currency_code
+        description: ISO code of salary_currency.
+      - name: salary_by_agreement
+        description: agreement, the salary is "by agreement".
+      - name: experience
+        description: Required experience as SuperJob names it.
+      - name: experience_id
+        description: SuperJob experience id (0 not important, 1 none, 2 from 1 year, 3 from 3 years, 4 from 6 years).
+      - name: type_of_work
+        description: Employment type as SuperJob names it.
+      - name: place_of_work
+        description: Place of work as SuperJob names it.
+      - name: remote_work
+        description: place_of_work id 2 (work from home).
+      - name: catalogue_ids
+        description: Ids of the SuperJob catalogues (industries) the vacancy is filed under.
+      - name: catalogue_positions
+        description: Titles of the catalogue positions.
+      - name: in_it_catalogue
+        description: Filed under catalogue 33 "IT, Интернет, связь, телеком".
+        data_tests: [not_null]
+      - name: skills
+        description: professionalSkills of the vacancy.
+      - name: uploaded_to_trudvsem
+        description: trud_vsem.is_uploded, SuperJob says it passed the vacancy on to trudvsem; a hint for the cross-source dedup.
+      - name: published_until
+        description: date_pub_to, UTC; the end of the current publication.
+      - name: collector_queries
+        description: Collector queries that found the vacancy (catalogue_33, title_<phrase>).
+      - name: is_it_candidate
+        description: >
+          In catalogue 33 or the title matches the IT pattern of the trudvsem models (macro
+          it_title_pattern). Recall first, like the trudvsem filter; not measured.
+        data_tests: [not_null]
+      - name: ingested_at
+        description: When the chosen raw row reached ClickHouse; drives which days a build takes again.
+        data_tests: [not_null]
+
   - name: stg_vacancies
     description: >
       All staging sources in one column set (a view over the per-source tables). Columns a source

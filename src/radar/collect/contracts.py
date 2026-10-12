@@ -184,3 +184,32 @@ def parse_habr_card(html: str) -> HabrCard:
     return HabrCard.model_validate(
         {"vacancy": state.get("vacancy"), "company": state.get("company") or {}, "job_posting": posting}
     )
+
+
+# SuperJob API: GET /2.0/vacancies/
+
+
+class SuperjobTitled(_Open):
+    id: StrictInt
+    title: str
+
+
+class SuperjobVacancy(_Open):
+    id: StrictInt
+    profession: str = Field(min_length=1)
+    date_published: StrictInt
+    link: str
+    firm_name: str | None = None
+    id_client: StrictInt | None = None
+    town: SuperjobTitled | None = None
+    catalogues: list[SuperjobTitled] = []
+    payment_from: StrictInt | None = None
+    payment_to: StrictInt | None = None
+    currency: str | None = None
+    vacancyRichText: str | None = None
+
+
+class SuperjobResponse(_Open):
+    objects: list[dict[str, Any]]
+    total: StrictInt
+    more: StrictBool

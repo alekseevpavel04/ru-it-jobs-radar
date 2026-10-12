@@ -25,7 +25,7 @@ from airflow.timetables.interval import CronDataIntervalTimetable
 
 # Sources the server collects every day; the local backfills (trudvsem snapshots before
 # 2026-10-09, Telegram) do not go through it.
-SERVER_SOURCES = ("trudvsem", "habr", "trudvsem_snapshot")
+SERVER_SOURCES = ("trudvsem", "habr", "trudvsem_snapshot", "superjob")
 # Topics, as in radar_load: a date goes on when any of them is complete.
 RAW_SOURCES = ("trudvsem", "trudvsem_snapshot", "habr", "telegram", "superjob")
 SYNC = f"bash /opt/radar/airflow/scripts/sync_from_vps.sh {' '.join(SERVER_SOURCES)}"

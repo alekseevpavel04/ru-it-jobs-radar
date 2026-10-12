@@ -8,7 +8,8 @@
 # RADAR_SNAPSHOT_SINCE=YYYY-MM-DD passes --since to the snapshot collector: the daily server takes
 # new versions only and leaves older ones to the backfill on another machine (docs/vps.md).
 # The stack is brought up only where it is defined (infra/compose); the daily server runs the
-# collectors alone, and they finish with a warning when the stream is not configured.
+# collectors alone, and they finish with a warning when the stream is not configured. Without
+# SUPERJOB_APP_KEY in .env the SuperJob collector logs a warning and exits 0.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
@@ -19,7 +20,7 @@ else
 fi
 
 sources=("$@")
-[ ${#sources[@]} -gt 0 ] || sources=(trudvsem habr trudvsem_snapshot)
+[ ${#sources[@]} -gt 0 ] || sources=(trudvsem habr trudvsem_snapshot superjob)
 
 mkdir -p logs/daily
 day_log="logs/daily/$(date '+%Y-%m-%d').log"

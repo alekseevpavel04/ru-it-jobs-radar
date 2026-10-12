@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
-STAGING = {"stg_trudvsem_api", "stg_trudvsem_snapshot", "stg_habr"}
+STAGING = {"stg_trudvsem_api", "stg_trudvsem_snapshot", "stg_habr", "stg_superjob"}
 HISTORY = {
     "hist_snapshot_days",
     "hist_observations",
@@ -62,7 +62,7 @@ def test_union_row_count_test_exists(manifest: dict[str, Any]) -> None:
 
 def test_every_source_has_its_own_freshness(manifest: dict[str, Any]) -> None:
     sources = {s["name"]: s for s in manifest["sources"].values() if s["source_name"] == "raw"}
-    assert set(sources) == {"trudvsem", "trudvsem_snapshot", "habr", "telegram"}
+    assert set(sources) == {"trudvsem", "trudvsem_snapshot", "habr", "telegram", "superjob"}
     for name, spec in sources.items():
         freshness = spec["freshness"]
         assert freshness["warn_after"]["count"] and freshness["error_after"]["count"], name

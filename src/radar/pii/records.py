@@ -65,13 +65,17 @@ _NOT_TEXT = frozenset(
         "published_at",
         "modified_at",
         "snapshot_version",
+        "link",
+        "client_logo",
     }
 )
 # UUIDs and hex digests (`*_hash`) can hold any digit run; they are not checked for codes either.
 _OPAQUE = frozenset({"id", "source_id"})
 
 _OGRNIP_RUN = re.compile(r"(?<!\d)3\d{14}(?!\d)")
-_CONTACT_KEYS = frozenset({"contactPerson", "contact_person", "contactList", "contact_list"})
+_CONTACT_KEYS = frozenset(
+    {"contactPerson", "contact_person", "contactList", "contact_list", "contact", "phone", "phones", "fax", "faxes"}
+)
 _EMPLOYER_NAME_KEYS = frozenset({"fullCompanyName", "name", "title"})
 
 
@@ -209,6 +213,103 @@ def clean_habr_card_company(company: Record) -> tuple[Record, Counter[str]]:
     return out, +counts
 
 
+_SUPERJOB_PLACE = ("latitude", "longitude", "metro")
+# What leads from a SuperJob employer who is a person back to them: the client page (its URL slug is
+# the transliterated name), the site, the logo, the description and the addresses.
+_SUPERJOB_CLIENT_TRACE = ("id", "link", "url", "description", "client_logo", "address", "addresses")
+_IP_TOKEN = re.compile(r"(?<![\w-])ИП(?![\w-])")
+_WORD = re.compile(r"[^\W\d_]+")
+
+
+def _is_whole_person(name: Any) -> bool:
+    """ "ИП Фамилия Имя Отчество", or nothing but a full name."""
+    if not isinstance(name, str) or not name.strip():
+        return False
+    return is_ip_name(name) or clean_text_counts(name.strip(" «»\"'"))[0] == "[name]"
+
+
+def _is_person_name(name: Any) -> bool:
+    """A SuperJob employer name that is a person: a whole name, or a brand with "(ИП Фамилия Имя)"."""
+    if _is_whole_person(name):
+        return True
+    return isinstance(name, str) and "[name]" in clean_text_counts(name)[0] and bool(_IP_TOKEN.search(name))
+
+
+def _clean_person_employer(name: Any, person_words: set[str]) -> tuple[Any, bool]:
+    """The other name of the same employer can be a bare surname ("Фамилия" next to "Фамилия Имя
+    Отчество"); a name made only of the person's words goes whole, a brand stays."""
+    if not isinstance(name, str) or not name.strip():
+        return name, False
+    words = {w.lower() for w in _WORD.findall(name)}
+    if not is_ip_name(name) and words and words <= person_words:
+        return "[name]", True
+    cleaned, removed = clean_employer_name(name)
+    return cleaned, bool(removed)
+
+
+def _town_level(address: str) -> str | None:
+    """`coarse_address` and then nothing from the first part with a digit: SuperJob writes blocks
+    and buildings as "кв-л 12" and "к. 1234", which the street words do not cover."""
+    kept: list[str] = []
+    for part in (coarse_address(address) or "").split(", "):
+        if not part or any(ch.isdigit() for ch in part):
+            break
+        kept.append(part)
+    return ", ".join(kept) or None
+
+
+def _count_numbers(single: Any, many: Any) -> int:
+    numbers = [p for p in many if isinstance(p, dict) and str(p.get("number") or "").strip()] if many else []
+    return len(numbers) or int(bool(str(single or "").strip()))
+
+
+def clean_superjob_vacancy(vacancy: Record) -> tuple[Record, Counter[str]]:
+    """An object of SuperJob `GET /2.0/vacancies/`.
+
+    Contacts go whole; the place keeps the town and the address loses the street, the house, the
+    coordinates and the metro. An employer who is a person keeps "ИП", its brand or a placeholder.
+    """
+    out = dict(vacancy)
+    counts: Counter[str] = Counter()
+    if str(out.pop("contact", None) or "").strip():
+        counts["contact_person"] += 1
+    if str(out.pop("email", None) or "").strip():
+        counts["email"] += 1
+    counts["phone"] += _count_numbers(out.pop("phone", None), out.pop("phones", None))
+    counts["phone"] += _count_numbers(out.pop("fax", None), out.pop("faxes", None))
+    address = out.get("address")
+    town = _town_level(address) if isinstance(address, str) and address else None
+    place = _drop(out, _SUPERJOB_PLACE)
+    if town is None:
+        place = _drop(out, ["address"]) or place
+    else:
+        out["address"] = town
+    counts["address"] += place or town != address
+    client = dict(out.get("client") or {})
+    for key in ("address", "addresses"):
+        value = client.get(key)
+        if isinstance(value, str) and value:
+            client[key] = _town_level(value)
+            counts["address"] += client[key] != value
+        elif value:
+            client[key] = []
+            counts["address"] += 1
+    names = (out.get("firm_name"), client.get("title"))
+    if any(_is_person_name(n) for n in names):
+        person_words = {w.lower() for n in names if _is_whole_person(n) for w in _WORD.findall(str(n))}
+        out["firm_name"], removed = _clean_person_employer(out.get("firm_name"), person_words)
+        if client.get("title"):
+            client["title"], client_removed = _clean_person_employer(client["title"], person_words)
+            removed = removed or client_removed
+        counts["employer_name"] += removed
+        traced = _drop(client, _SUPERJOB_CLIENT_TRACE)
+        counts["company_code"] += _drop(out, ["id_client", "client_logo", "firm_activity"]) or traced
+    if "client" in out:
+        out["client"] = client
+    out = _clean_strings(out, counts)
+    return out, +counts
+
+
 def _walk(node: Any, key: str = "", parent: str = "") -> Iterator[tuple[str, str, Any]]:
     yield key, parent, node
     if isinstance(node, dict):
@@ -231,7 +332,7 @@ def scan_record(record: Any, keep: Iterable[str] = DEFAULT_KEEP_HANDLES) -> Coun
     for key, parent, value in _walk(record):
         if key in _CONTACT_KEYS and value:
             found["contact"] += 1
-        elif key == "email" and parent == "company" and value:
+        elif key == "email" and parent in ("company", "payload") and value:
             found["email"] += 1
         elif key == "inn" and len(digits(value)) == 12:
             found["inn"] += 1

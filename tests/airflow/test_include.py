@@ -82,7 +82,7 @@ def test_source_without_partitions_is_an_error(tmp_path: Path) -> None:
 
 
 def test_thresholds_cover_the_collected_sources() -> None:
-    assert set(raw_layer.THRESHOLDS) == {"trudvsem", "habr", "telegram", "trudvsem_snapshot"}
+    assert set(raw_layer.THRESHOLDS) == {"trudvsem", "habr", "telegram", "trudvsem_snapshot", "superjob"}
 
 
 def test_batch_hands_over_once_after_the_last_run() -> None:
