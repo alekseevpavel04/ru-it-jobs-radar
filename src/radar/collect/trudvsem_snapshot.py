@@ -363,6 +363,7 @@ def process_file(path: Path, version: Version, fetched_at: datetime, root: Path 
         try:
             vacancies, rss_max = _fill(writer, iter_vacancies(stream), version, fetched_at, pii, proc, started)
         except BaseException:
+            # BaseException: Ctrl+C and SystemExit must also close the partition before re-raising.
             # Keep what was parsed, without the completion marker: a rerun skips these keys.
             writer.close(complete=False)
             raise
