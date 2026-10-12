@@ -1,0 +1,43 @@
+# Settings for `python -m radar.models.salary`. Changing any value changes every reported number:
+# record the change in docs/EXPERIMENTS.md.
+
+[data]
+# A monthly midpoint below this is a part-time or per-shift amount that slipped past the schedule
+# filter (the minimum wage of 2026 is about 27 000); the dropped count is reported.
+min_monthly_rub = 10000
+
+[split]
+# Shares of the leak-free groups (radar.models.salary_data); the gold test and dev groups of
+# the extraction corpus are pinned to test and dev first. Calibration is carved out of train.
+salt = "salary-v0"
+dev_share = 0.15
+test_share = 0.15
+calib_share = 0.25
+
+[interval]
+# Nominal coverage of the interval returned by /salary.
+level = 0.8
+
+[temporal]
+# Second fit on vacancies first seen before this day, scored on dev vacancies first seen from it on.
+cutoff = "2026-09-14"
+
+[features]
+# A skill becomes a feature when this many training vacancies carry it.
+min_skill_count = 20
+# Cells of the median baseline (and n_similar) back off to a coarser level below this size.
+min_cell = 5
+
+[model]
+cv_folds = 5
+seed = 20261008
+max_iter = 600
+# Grid of the gradient boosting model, chosen by grouped cross-validation on the fit part only.
+learning_rate = [0.05, 0.1]
+max_leaf_nodes = [15, 31]
+min_samples_leaf = [20, 50]
+l2_regularization = [0.0, 1.0]
+ridge_alpha = [0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
+
+[importance]
+repeats = 10
