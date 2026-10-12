@@ -92,6 +92,46 @@ export const CATEGORY = {
   tools: "инструменты"
 };
 
+// The dictionary names skills in English; concepts get a Russian label on the site, technology and
+// product names stay as they are. The digest uses the same labels (a test keeps them equal).
+export const SKILL = {
+  "API integration": "Интеграции по API",
+  "A/B tests": "A/B-тесты",
+  "Algorithms": "Алгоритмы",
+  "Antivirus": "Антивирусная защита",
+  "Clean architecture": "Чистая архитектура",
+  "Communication": "Коммуникация",
+  "Computer vision": "Компьютерное зрение",
+  "Cryptography": "Криптография",
+  "Deep learning": "Глубокое обучение",
+  "Design patterns": "Паттерны проектирования",
+  "Embedded": "Встраиваемые системы",
+  "English": "Английский язык",
+  "Firewalls": "Межсетевые экраны",
+  "Gradient boosting": "Градиентный бустинг",
+  "Information security standards": "Стандарты ИБ",
+  "Machine learning": "Машинное обучение",
+  "Manual testing": "Ручное тестирование",
+  "Microservices": "Микросервисы",
+  "Multithreading": "Многопоточность",
+  "Networking": "Компьютерные сети",
+  "Pentest": "Пентест",
+  "Product analytics": "Продуктовая аналитика",
+  "Prompt engineering": "Промпт-инжиниринг",
+  "Recommender systems": "Рекомендательные системы",
+  "Requirements": "Работа с требованиями",
+  "Speech recognition": "Распознавание речи",
+  "Statistics": "Статистика",
+  "System design": "Проектирование систем",
+  "Teamwork": "Командная работа",
+  "Test automation": "Автоматизация тестирования",
+  "Time series": "Временные ряды",
+  "Vector databases": "Векторные БД",
+  "Virtualization": "Виртуализация"
+};
+
+export const withSkillLabels = (rows) => rows.map((d) => ({...d, skill: SKILL[d.skill] ?? d.skill}));
+
 const integer = new Intl.NumberFormat("ru-RU");
 const percent = new Intl.NumberFormat("ru-RU", {style: "percent", minimumFractionDigits: 1, maximumFractionDigits: 1});
 

@@ -6,15 +6,15 @@ toc: true
 # Навыки в вакансиях
 
 ```js
-import {ROLE, SOURCE, CATEGORY, int, pct, share, dateLong} from "./components/labels.js";
+import {ROLE, SOURCE, CATEGORY, SKILL, withSkillLabels, int, pct, share, dateLong} from "./components/labels.js";
 
 const meta = FileAttachment("data/meta.json").json();
-const totals = FileAttachment("data/skills.json").json();
-const byRole = FileAttachment("data/skills_by_role.json").json();
+const totals = FileAttachment("data/skills.json").json().then(withSkillLabels);
+const byRole = FileAttachment("data/skills_by_role.json").json().then(withSkillLabels);
 const junior = FileAttachment("data/junior.json").json();
 ```
 
-Навык засчитывается вакансии, если его название или синоним из словаря встречается в заголовке, тексте или тегах навыков источника. Доля считается от всех вакансий источника и роли, включая те, где не нашлось ни одного навыка. Словарь пока ручной (версия 0), поэтому широкие синонимы завышают отдельные строки: например, слово «интеграция» засчитывается навыку API integration.
+Навык засчитывается вакансии, если его название или синоним из словаря встречается в заголовке, тексте или тегах навыков источника. Доля считается от всех вакансий источника и роли, включая те, где не нашлось ни одного навыка. Словарь пока ручной (версия 0), поэтому широкие синонимы завышают отдельные строки: например, слово «интеграция» засчитывается навыку «${SKILL["API integration"]}».
 
 ```js
 const FAMILIES = ["trudvsem", "habr", "telegram"];

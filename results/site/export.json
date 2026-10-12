@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/export.py",
   "command": "python -m radar.site.export",
-  "commit": "ee368d2-dirty",
-  "created_at": "2026-10-11T15:25:23+00:00",
+  "commit": "b86274a-dirty",
+  "created_at": "2026-10-12T16:56:16+00:00",
   "metrics": {
     "bytes_meta": {
       "value": 911,
@@ -20,7 +20,7 @@
       "denominator": null
     },
     "bytes_weekly_vacancies": {
-      "value": 53846,
+      "value": 53849,
       "n": null,
       "denominator": null
     },
@@ -30,7 +30,7 @@
       "denominator": null
     },
     "bytes_weekly_telegram": {
-      "value": 227893,
+      "value": 227802,
       "n": null,
       "denominator": null
     },
@@ -40,17 +40,17 @@
       "denominator": null
     },
     "bytes_skills": {
-      "value": 82205,
+      "value": 82204,
       "n": null,
       "denominator": null
     },
     "rows_skills_by_role": {
-      "value": 3118,
+      "value": 3117,
       "n": null,
       "denominator": null
     },
     "bytes_skills_by_role": {
-      "value": 435385,
+      "value": 435248,
       "n": null,
       "denominator": null
     },
@@ -100,12 +100,12 @@
       "denominator": null
     },
     "bytes_lifetime_observed": {
-      "value": 4597,
+      "value": 4599,
       "n": null,
       "denominator": null
     },
     "data_through": {
-      "value": "2026-10-10",
+      "value": "2026-10-11",
       "n": null,
       "denominator": null
     }

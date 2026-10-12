@@ -1,11 +1,11 @@
 {
-  "exported_at": "2026-10-11T15:25:22Z",
-  "commit": "ee368d2",
-  "data_through": "2026-10-10",
+  "exported_at": "2026-10-12T16:56:16Z",
+  "commit": "b86274a",
+  "data_through": "2026-10-11",
   "periods": {
     "habr": {
       "period_from": "2026-10-08",
-      "period_to": "2026-10-10"
+      "period_to": "2026-10-11"
     },
     "telegram": {
       "period_from": "2026-07-01",
@@ -13,7 +13,7 @@
     },
     "trudvsem": {
       "period_from": "2026-06-30",
-      "period_to": "2026-10-10"
+      "period_to": "2026-10-11"
     }
   },
   "snapshot_first_week": "2026-06-29",
@@ -27,7 +27,7 @@
     "weekly_vacancies.json": 306,
     "weekly_telegram.json": 1936,
     "skills.json": 749,
-    "skills_by_role.json": 3118,
+    "skills_by_role.json": 3117,
     "skills_junior.json": 444,
     "work_format.json": 199,
     "junior.json": 55,

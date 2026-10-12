@@ -34,3 +34,11 @@
   color: var(--theme-foreground-muted);
   max-width: 720px;
 }
+
+/* Markdown tables (digest issues, methodology) scroll inside the page on a phone instead of widening it. */
+@media (max-width: 640px) {
+  #observablehq-main > table {
+    display: block;
+    overflow-x: auto;
+  }
+}

@@ -144,6 +144,11 @@ def results(skill_counts: dict[str, int] | None = None, base: int = 1000) -> dic
             {"source": "telegram", "last_week": W40.isoformat()},
             {"source": "trudvsem_snapshot", "last_week": W40.isoformat()},
         ],
+        # complete days through 10 October: W40 closures of the snapshot are known (through 4 October)
+        "closure_window": [
+            {"source": "habr", "last_complete_day": "2026-10-10"},
+            {"source": "trudvsem_snapshot", "last_complete_day": "2026-10-10"},
+        ],
         # W39 shares: Python 28.0%, SQL 26.0%, Docker 1.5%; W40 from the arguments over `base`
         "skills": [
             *skill_rows(W39, {"Python": 280, "SQL": 260, "Docker": 15}, 1000),
@@ -176,9 +181,9 @@ def test_iso_week_labels_across_the_year_boundary() -> None:
 
 def test_queries_read_only_the_marts_of_the_week() -> None:
     sqls = queries(W40)
-    assert set(sqls) == {"weekly", "last_week", "skills", "periods", "salaries"}
+    assert set(sqls) == {"weekly", "last_week", "closure_window", "skills", "periods", "salaries"}
     for sql in sqls.values():
-        assert re.findall(r"\bFROM\s+(\w+)\.", sql) == ["marts"]
+        assert set(re.findall(r"\bFROM\s+(\w+)\.", sql)) == {"marts"}
         assert sql.endswith("FORMAT JSON")
     assert "'2026-09-21', '2026-09-28'" in sqls["weekly"]
     assert "FROM marts.mart_skills_weekly WHERE week IN ('2026-09-21', '2026-09-28')" in sqls["skills"]
@@ -265,6 +270,44 @@ def test_a_week_without_data_names_the_last_one() -> None:
     assert "За эту неделю данных нет. Последняя неделя с данными началась 7 сентября 2026." in page
 
 
+def test_closures_of_a_week_the_data_cannot_confirm_yet_are_not_printed() -> None:
+    # An issue made on Monday 5 October: snapshot days complete through Sunday 4 October, so its
+    # closures are known through 28 September (7 missing days) and the week of 28 September is open.
+    data = results()
+    data["closure_window"] = [
+        {"source": "habr", "last_complete_day": "2026-10-04"},
+        {"source": "trudvsem_snapshot", "last_complete_day": "2026-10-04"},
+    ]
+    issue = build(W40, data, NOW)
+    assert issue.vacancies[0].closures_known_through == "2026-09-28"
+    page = plain(render(issue))
+    assert "Закрыто 96" not in page
+    assert (
+        "Закрытия этой недели ещё не известны: закрытой вакансия считается после 7 полных дней сбора без неё, "
+        "а полные дни сбора есть по 4 октября 2026. Неделей раньше закрыто 100." in page
+    )
+    assert "| Группа ролей | Открыто | Неделей раньше | Изменение | Новые | Закрыты неделей раньше |" in page
+    assert "| Разработка | 1 080 | 1 000 | +80 (+8,0 %) | 115 | 90 |" in page
+    # Habr: its first week, three days missing close a vacancy, nothing earlier to fall back on
+    assert "после 3 полных дней сбора без неё" in page
+
+
+def test_closures_of_a_settled_week_are_printed() -> None:
+    page = plain(render(build(W40, results(), NOW)))
+    assert "Закрыто 96." in page
+    assert "| Новые | Закрыты |" in page
+
+
+def test_absent_days_are_the_dbt_macro() -> None:
+    macro = (ROOT / "dbt" / "macros" / "history.sql").read_text(encoding="utf-8")
+    body = re.search(r"macro history_absent_days_to_close.*?multiIf\((.*?)\)\s*\n", macro, re.S)
+    grace = re.search(r"var\('history_grace_days', (\d+)\)", macro)
+    assert body is not None and grace is not None
+    found = dict(re.findall(r"= '(\w+)', (\d+|\{\{ history_grace_days\(\) \}\})", body.group(1)))
+    found = {k: int(grace.group(1)) if "grace" in v else int(v) for k, v in found.items()}
+    assert found == digest.ABSENT_DAYS_TO_CLOSE
+
+
 def test_next_issue_compares_salaries_with_the_previous(tmp_path: Path) -> None:
     write(build(W40, results(), NOW), tmp_path)
     after = results()
@@ -326,6 +369,7 @@ def test_labels_are_the_site_labels() -> None:
     assert _js_object(source, "GRADE") == digest.GRADE
     assert _js_object(source, "REGION") == digest.REGION
     assert _js_object(source, "MART_GROUP") == digest.MART_GROUP
+    assert _js_object(source, "SKILL") == digest.SKILL
 
 
 def test_workflow_calls_the_module_and_is_wired() -> None:
@@ -344,3 +388,56 @@ def test_workflow_calls_the_module_and_is_wired() -> None:
     import_script = (ROOT / "scripts" / "n8n_import.sh").read_text(encoding="utf-8")
     assert http["credentials"]["httpBasicAuth"]["id"] in import_script
     assert workflow["id"] in import_script
+
+
+def _issue_from_figures(doc: dict[str, Any], previous: dict[str, Any] | None) -> digest.Issue:
+    def vacancy_week(d: dict[str, Any] | None) -> digest.VacancyWeek | None:
+        if d is None:
+            return None
+        groups = {g: digest.Counts(**c) for g, c in d["groups"].items()}
+        return digest.VacancyWeek(**{**d, "total": digest.Counts(**d["total"]), "groups": groups})
+
+    def telegram_week(d: dict[str, Any] | None) -> digest.TelegramWeek | None:
+        return None if d is None else digest.TelegramWeek(**d)
+
+    def skill_week(d: dict[str, Any] | None) -> digest.SkillWeek | None:
+        return None if d is None else digest.SkillWeek(**d)
+
+    def salaries(d: dict[str, Any]) -> dict[str, list[digest.SalaryGroup]]:
+        return {family: [digest.SalaryGroup(**g) for g in groups] for family, groups in d["salaries"].items()}
+
+    plain_fields = ("week", "week_start", "week_end", "generated_at", "generated_by", "salary_periods")
+    return digest.Issue(
+        **{k: doc[k] for k in plain_fields},
+        vacancies=[
+            digest.VacancySection(
+                **{**s, "current": vacancy_week(s["current"]), "previous": vacancy_week(s["previous"])}
+            )
+            for s in doc["vacancies"]
+        ],
+        telegram=digest.TelegramSection(
+            **{
+                **doc["telegram"],
+                "current": telegram_week(doc["telegram"]["current"]),
+                "previous": telegram_week(doc["telegram"]["previous"]),
+            }
+        ),
+        skills=[
+            digest.SkillSection(**{**s, "current": skill_week(s["current"]), "previous": skill_week(s["previous"])})
+            for s in doc["skills"]
+        ],
+        salaries=salaries(doc),
+        compared_with=doc["compared_with"],
+        salaries_previous={} if previous is None else salaries(previous),
+    )
+
+
+def test_committed_issues_are_their_figures() -> None:
+    # Every number of a published issue page comes from its data/<week>.json, and the index lists them all.
+    issues = {str(d["week"]): d for d in digest.load_issues(digest.OUT)}
+    assert issues
+    for week, doc in issues.items():
+        previous = issues[doc["compared_with"]] if doc["compared_with"] else None
+        page = (digest.OUT / f"{week}.md").read_text(encoding="utf-8")
+        assert render(_issue_from_figures(doc, previous)) == page, week
+    assert (digest.OUT / "index.md").read_text(encoding="utf-8") == render_index(issues.values())

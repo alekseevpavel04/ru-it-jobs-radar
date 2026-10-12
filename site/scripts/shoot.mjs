@@ -69,6 +69,7 @@ for (const width of args.widths.split(",").map(Number)) {
   const context = await browser.newContext({
     viewport: {width, height: width < 600 ? 844 : 900},
     deviceScaleFactor: 1,
+    colorScheme: "light",
     locale: "ru-RU"
   });
   for (const name of args.pages.split(",")) {

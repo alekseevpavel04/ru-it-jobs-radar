@@ -6,13 +6,13 @@ toc: false
 # Вакансии для начинающих
 
 ```js
-import {ROLE, SOURCE, CATEGORY, GRADE, REGION, REGION_ORDER, int, pct, share, rub, dateLong} from "./components/labels.js";
+import {ROLE, SOURCE, CATEGORY, GRADE, REGION, REGION_ORDER, withSkillLabels, int, pct, share, rub, dateLong} from "./components/labels.js";
 import {shownBounds, rangePlot} from "./components/salary.js";
 
 const meta = FileAttachment("data/meta.json").json();
 const junior = FileAttachment("data/junior.json").json();
-const skillsJunior = FileAttachment("data/skills_junior.json").json();
-const skillsAll = FileAttachment("data/skills.json").json();
+const skillsJunior = FileAttachment("data/skills_junior.json").json().then(withSkillLabels);
+const skillsAll = FileAttachment("data/skills.json").json().then(withSkillLabels);
 const salaries = FileAttachment("data/salaries.json").json();
 ```
 
@@ -93,7 +93,7 @@ const graded = FAMILIES.map((s) => {
 });
 ```
 
-Навыки, зарплаты и города ниже считаются только по вакансиям с грейдом стажёр или джуниор: витрины навыков и зарплат разбиты по грейду, а не по требуемому опыту. Это заметная часть джуниорского среза не везде: ${graded.map((g) => `${SOURCE[g.s]} ${share(g.graded, g.open)}`).join("; ")} вакансий, открытых начинающим (грейд и «без опыта» пересекаются, поэтому доля не дополняет «без опыта» до целого).
+Навыки, зарплаты и города ниже считаются только по вакансиям с грейдом стажёр или джуниор: витрины навыков и зарплат разбиты по грейду, а не по требуемому опыту. Это заметная часть джуниорского среза не везде: ${graded.map((g) => `${SOURCE[g.s]} ${share(g.graded, g.open)} ${g.s === "telegram" ? "постов" : "вакансий"}`).join("; ")}, открытых начинающим (грейд и «без опыта» пересекаются, поэтому доля не дополняет «без опыта» до целого).
 
 ### Навыки
 
@@ -123,7 +123,7 @@ base === 0
       width,
       height: 20 * 26 + 50,
       marginLeft: width < 600 ? 150 : 200,
-      x: {grid: true, label: "доля вакансий", tickFormat: pct, zero: true},
+      x: {grid: true, label: skillSource === "telegram" ? "доля постов" : "доля вакансий", tickFormat: pct, zero: true},
       y: {label: null, domain: juniorRows.slice(0, 20).map((d) => d.skill)},
       color: {domain: ["стажёр и джуниор", "все вакансии"], range: ["#3ca951", "#a0a0a0"], legend: true},
       marks: [
@@ -150,6 +150,8 @@ const salaryRows = ["trudvsem", "habr"].map((s) => {
 });
 const gradeShown = shownBounds(juniorGrades, minN, (d) => `${SOURCE[d.source]} · ${GRADE[d.grade]}`);
 const gradeHidden = juniorGrades.filter((d) => d.with_from < minN && d.with_to < minN);
+// one bound shown, the other under the threshold
+const gradeOneBound = juniorGrades.filter((d) => (d.with_from < minN) !== (d.with_to < minN));
 const juniorShown = shownBounds(juniorCells, minN, (d) => `${SOURCE[d.source]} · ${ROLE[d.role_bucket]} · ${GRADE[d.grade]} · ${REGION[d.region_group]}`).sort(
   (a, b) => b.with_salary_rub - a.with_salary_rub
 );
@@ -160,7 +162,7 @@ const juniorHidden = juniorCells.filter((d) => d.with_from < minN && d.with_to <
 
 <div class="card">
 
-Медианы вилки по грейду, посчитанные в витрине по всем вакансиям грейда источника. Граница показана, если её указали хотя бы ${minN} вакансий (почему так, на странице «Зарплаты»)${gradeHidden.length ? `; не набрали: ${gradeHidden.map((d) => `${SOURCE[d.source]}, ${GRADE[d.grade]} (${int(d.with_salary_rub)} с суммой)`).join("; ")}` : ""}. Это вилка из объявления, а не выплаченная зарплата.
+Медианы вилки по грейду, посчитанные в витрине по всем вакансиям грейда источника. Граница показана, если её указали хотя бы ${minN} вакансий (почему так, на странице «Зарплаты»)${gradeHidden.length ? `; не набрали: ${gradeHidden.map((d) => `${SOURCE[d.source]}, ${GRADE[d.grade]} (${int(d.with_salary_rub)} с суммой)`).join("; ")}` : ""}${gradeOneBound.length ? `; только одна граница: ${gradeOneBound.map((d) => d.with_from < minN ? `${SOURCE[d.source]}, ${GRADE[d.grade]} («от» указали ${int(d.with_from)})` : `${SOURCE[d.source]}, ${GRADE[d.grade]} («до» указали ${int(d.with_to)})`).join("; ")}` : ""}. Это вилка из объявления, а не выплаченная зарплата.
 
 ```js
 gradeShown.length === 0 ? html`` : rangePlot(gradeShown, {width, labelWidth: 230})

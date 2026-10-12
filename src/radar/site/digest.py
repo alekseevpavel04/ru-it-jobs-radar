@@ -44,6 +44,11 @@ CHANGE_MIN_BASE = 20
 TOP_MOVERS = 3
 # A skill moves in the digest only when both weeks count at least this many mentions of it.
 MOVER_MIN_MENTIONS = 20
+# Complete collection days a vacancy has to be missing before the history closes it, dated to the
+# first missing day (dbt macro history_absent_days_to_close; a test keeps the two equal). Closures of
+# the last days of the data are not known yet, so an issue made on Monday cannot count the closures
+# of the week that just ended.
+ABSENT_DAYS_TO_CLOSE = {"trudvsem_snapshot": 7, "habr": 3}
 # Same rule as radar.site.export.salary_min_n() (the smallest cell whose 95% interval for the median
 # drops the min and the max); a test pins the two together, export itself needs pydantic.
 SALARY_MIN_N = 9
@@ -114,6 +119,42 @@ REGION = {
     "remote": "удалённо",
     "unknown": "место не указано",
 }
+# Russian labels of the dictionary's concept skills, as SKILL on the site; technology names stay.
+SKILL = {
+    "API integration": "Интеграции по API",
+    "A/B tests": "A/B-тесты",
+    "Algorithms": "Алгоритмы",
+    "Antivirus": "Антивирусная защита",
+    "Clean architecture": "Чистая архитектура",
+    "Communication": "Коммуникация",
+    "Computer vision": "Компьютерное зрение",
+    "Cryptography": "Криптография",
+    "Deep learning": "Глубокое обучение",
+    "Design patterns": "Паттерны проектирования",
+    "Embedded": "Встраиваемые системы",
+    "English": "Английский язык",
+    "Firewalls": "Межсетевые экраны",
+    "Gradient boosting": "Градиентный бустинг",
+    "Information security standards": "Стандарты ИБ",
+    "Machine learning": "Машинное обучение",
+    "Manual testing": "Ручное тестирование",
+    "Microservices": "Микросервисы",
+    "Multithreading": "Многопоточность",
+    "Networking": "Компьютерные сети",
+    "Pentest": "Пентест",
+    "Product analytics": "Продуктовая аналитика",
+    "Prompt engineering": "Промпт-инжиниринг",
+    "Recommender systems": "Рекомендательные системы",
+    "Requirements": "Работа с требованиями",
+    "Speech recognition": "Распознавание речи",
+    "Statistics": "Статистика",
+    "System design": "Проектирование систем",
+    "Teamwork": "Командная работа",
+    "Test automation": "Автоматизация тестирования",
+    "Time series": "Временные ряды",
+    "Vector databases": "Векторные БД",
+    "Virtualization": "Виртуализация",
+}
 SOURCE = {
     "trudvsem_snapshot": "«Работа в России», снимки портала",
     "trudvsem": "«Работа в России»",
@@ -175,6 +216,16 @@ def queries(monday: date) -> dict[str, str]:
             "SELECT source, toString(max(week)) AS last_week FROM marts.mart_weekly_dynamics "
             f"WHERE week <= '{current}' GROUP BY source ORDER BY source FORMAT JSON"
         ),
+        # The last collected day of a source (the window of mart_lifetime), taken as its last complete
+        # day only when every collected day of its last week was complete; otherwise NULL, unknown.
+        "closure_window": (
+            "SELECT l.source AS source, if(w.complete_days = w.days_collected, toString(l.period_to), NULL) "
+            "AS last_complete_day FROM (SELECT source, max(period_to) AS period_to FROM marts.mart_lifetime "
+            "GROUP BY source) AS l INNER JOIN (SELECT source, argMax(complete_days, week) AS complete_days, "
+            "argMax(days_collected, week) AS days_collected FROM marts.mart_weekly_dynamics "
+            "WHERE source IN ('trudvsem_snapshot', 'habr') GROUP BY source) AS w ON l.source = w.source "
+            "ORDER BY source FORMAT JSON"
+        ),
         "skills": (
             "SELECT toString(week) AS week, source, skill, vacancies_mentioning, vacancies_in_week "
             f"FROM marts.mart_skills_weekly WHERE week IN ('{previous}', '{current}') "
@@ -220,6 +271,9 @@ class VacancySection:
     last_week_with_data: str | None
     current: VacancyWeek | None
     previous: VacancyWeek | None
+    last_complete_day: str | None = None
+    # the last first-missing day whose closure the data can already confirm
+    closures_known_through: str | None = None
 
 
 @dataclass(frozen=True)
@@ -349,9 +403,16 @@ def build(
     current_day, previous_day = monday.isoformat(), (monday - timedelta(days=7)).isoformat()
     weekly = results["weekly"]
     last_week = {r["source"]: r["last_week"] for r in results["last_week"]}
+    last_complete = {r["source"]: r["last_complete_day"] for r in results["closure_window"]}
 
     def rows(source: str, week: str) -> list[Mapping[str, Any]]:
         return [r for r in weekly if r["source"] == source and r["week"] == week]
+
+    def known_through(source: str) -> str | None:
+        last = last_complete.get(source)
+        if last is None:
+            return None
+        return (date.fromisoformat(last) - timedelta(days=ABSENT_DAYS_TO_CLOSE[source] - 1)).isoformat()
 
     vacancies = [
         VacancySection(
@@ -359,6 +420,8 @@ def build(
             last_week_with_data=last_week.get(source),
             current=vacancy_week(rows(source, current_day)),
             previous=vacancy_week(rows(source, previous_day)),
+            last_complete_day=last_complete.get(source),
+            closures_known_through=known_through(source),
         )
         for source in VACANCY_SOURCES
     ]
@@ -496,7 +559,7 @@ def _table(head: list[str], rows: list[list[str]], text_columns: int = 1) -> lis
     return ["| " + " | ".join(r) + " |" for r in [head, align, *rows]]
 
 
-def render_vacancies(section: VacancySection) -> list[str]:
+def render_vacancies(section: VacancySection, week_end: str) -> list[str]:
     lines = [f"## {SOURCE[section.source]}", ""]
     cur, prev = section.current, section.previous
     if cur is None:
@@ -520,22 +583,51 @@ def render_vacancies(section: VacancySection) -> list[str]:
         text += " Неделей раньше данных нет, сравнения нет."
     text += f" Новых {share(cur.total.new, cur.total.active)}"
     text += "; это первая неделя сбора, вакансии первого дня в новые не входят." if cur.first_collected_week else "."
-    if cur.total.closed is not None:
-        text += f" Закрыто {num(cur.total.closed)}"
+    # A closure is dated to the first missing day but known only after the source's run of missing
+    # complete days, so the closures of the last week of the data are still partial.
+    known = section.closures_known_through
+    previous_end = (date.fromisoformat(week_end) - timedelta(days=7)).isoformat()
+    settled = cur.total.closed is not None and known is not None and week_end <= known
+    previous_settled = (
+        not settled
+        and prev is not None
+        and prev.total.closed is not None
+        and known is not None
+        and previous_end <= known
+    )
+    closed_column: str | None = None
+    if settled:
+        text += f" Закрыто {num(cur.total.closed or 0)}"
         text += ", среди них могут быть исчезнувшие за неделю без данных." if prev is None else "."
+        closed_column = "Закрыты"
+    elif cur.total.closed is not None:
+        text += (
+            f" Закрытия этой недели ещё не известны: закрытой вакансия считается после "
+            f"{ABSENT_DAYS_TO_CLOSE[section.source]} полных дней сбора без неё"
+        )
+        if section.last_complete_day is not None:
+            text += f", а полные дни сбора есть по {day_text(section.last_complete_day)}"
+        text += "."
+        if previous_settled and prev is not None:
+            text += f" Неделей раньше закрыто {num(prev.total.closed or 0)}."
+            closed_column = "Закрыты неделей раньше"
     lines += [text, ""]
 
     head = ["Группа ролей", "Открыто"]
     if prev is not None:
         head += ["Неделей раньше", "Изменение"]
-    head += ["Новые", "Закрыты"]
+    head += ["Новые"] + ([closed_column] if closed_column else [])
     rows = []
     for group, c in sorted(cur.groups.items(), key=lambda kv: (-kv[1].active, kv[0])):
         row = [group, num(c.active)]
-        if prev is not None:
-            before = prev.groups.get(group, Counts(0, 0, 0)).active
-            row += [num(before), change(c.active, before)]
-        row += [num(c.new), "нет" if c.closed is None else num(c.closed)]
+        before = prev.groups.get(group, Counts(0, 0, 0)) if prev is not None else None
+        if before is not None:
+            row += [num(before.active), change(c.active, before.active)]
+        row.append(num(c.new))
+        if closed_column:
+            counted = c if settled else before
+            closed = counted.closed if counted is not None else None
+            row.append("нет" if closed is None else num(closed))
         rows.append(row)
     return [*lines, *_table(head, rows), ""]
 
@@ -602,7 +694,7 @@ def render_skills(issue: Issue) -> list[str]:
             continue
         unit = "постов" if section.source == "telegram" else "вакансий"
         top = sorted(cur.mentions.items(), key=lambda kv: (-kv[1], kv[0]))[:TOP_SKILLS]
-        listed = ", ".join(f"{skill} {share(n, cur.base)}" for skill, n in top)
+        listed = ", ".join(f"{SKILL.get(skill, skill)} {share(n, cur.base)}" for skill, n in top)
         collected = f", дней сбора {days[section.source]}" if section.source in days else ""
         text = f"- {name}, {unit} недели {num(cur.base)}{collected}: {listed}."
         if prev is None:
@@ -611,7 +703,7 @@ def render_skills(issue: Issue) -> list[str]:
             moved = movers(cur, prev)
             if moved:
                 parts = [
-                    f"{skill} {points(delta)} (было {share(prev.mentions[skill], prev.base)}, "
+                    f"{SKILL.get(skill, skill)} {points(delta)} (было {share(prev.mentions[skill], prev.base)}, "
                     f"стало {share(cur.mentions[skill], cur.base)})"
                     for skill, delta in moved
                 ]
@@ -684,7 +776,7 @@ def render(issue: Issue) -> str:
         "",
     ]
     for section in issue.vacancies:
-        lines += render_vacancies(section)
+        lines += render_vacancies(section, issue.week_end)
     lines += render_telegram(issue.telegram, issue.week_end)
     lines += render_skills(issue)
     lines += render_salaries(issue)
@@ -692,8 +784,9 @@ def render(issue: Issue) -> str:
         "---",
         "",
         f"Числа выпуска лежат в репозитории в `site/src/digest/data/{issue.week}.json`. Источник: витрины "
-        "mart_weekly_dynamics, mart_skills_weekly, mart_skills и mart_salaries. Выпуск собирает сценарий n8n "
-        f"`{WORKFLOW}` по понедельникам в 09:00 по Москве.",
+        "mart_weekly_dynamics, mart_skills_weekly, mart_skills и mart_salaries. Выпуск собирает модуль "
+        f"`radar.site.digest`; по расписанию его вызывает сценарий n8n `{WORKFLOW}` по понедельникам в 09:00 "
+        "по Москве.",
         "",
     ]
     return "\n".join(lines)
@@ -708,8 +801,9 @@ def render_index(issues: Iterable[Mapping[str, Any]]) -> str:
         "",
         "# Еженедельный дайджест рынка",
         "",
-        "Каждый понедельник сценарий n8n собирает из витрин радара сводку за прошедшую неделю: открытые "
-        "вакансии по группам ролей, новые и закрытые, посты Telegram-каналов, навыки и медианы зарплат. "
+        "Выпуск это сводка из витрин радара за прошедшую неделю: открытые вакансии по группам ролей, новые и "
+        "закрытые, посты Telegram-каналов, навыки и медианы зарплат. По расписанию его собирает сценарий n8n "
+        "в понедельник утром. "
         "Каждое число дано вместе с базой, от которой оно считается.",
         "",
         "Выпуски, новые сверху:",

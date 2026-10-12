@@ -29,6 +29,7 @@ function weekTotals(source) {
         new: d3.sum(v, (d) => d.new),
         closed: v[0].closed === null ? null : d3.sum(v, (d) => d.closed),
         days: v[0].days_collected,
+        complete: v[0].complete_days,
         first: v[0].first_collected_week
       }),
       (d) => d.week
@@ -40,6 +41,14 @@ function weekTotals(source) {
 }
 
 const snapshotWeeks = weekTotals("trudvsem_snapshot");
+// A closure is dated to the first day the vacancy is missing and known only after grace_days complete
+// snapshots without it, so the closures of the last days of the data are still partial. The last
+// collected day counts as complete only when every collected day of its week was.
+const snapshotTail = snapshotWeeks.at(-1);
+const lastCompleteDay =
+  snapshotTail.complete === snapshotTail.days ? new Date(+snapshotTail.date + (snapshotTail.days - 1) * 864e5) : null;
+const closuresKnownThrough = lastCompleteDay && new Date(+lastCompleteDay - (life.grace_days - 1) * 864e5);
+const closuresPending = (w) => !closuresKnownThrough || +w.date + 6 * 864e5 > +closuresKnownThrough;
 const lastFull = snapshotWeeks.findLast((w) => w.days === 7);
 const habrWeeks = weekTotals("habr");
 const habrLast = habrWeeks.at(-1);
@@ -141,9 +150,10 @@ ${SOURCE.trudvsem_snapshot}: вакансия считается в неделе
 ```js
 const flows = snapshotWeeks.flatMap((w) => [
   {date: w.date, week: w.week, kind: "новые", n: w.first ? null : w.new, flagged: w.days < 7},
-  {date: w.date, week: w.week, kind: "закрытые", n: w.closed, flagged: w.days < 7 || w.afterGap}
+  {date: w.date, week: w.week, kind: "закрытые", n: w.closed, flagged: w.days < 7 || w.afterGap || closuresPending(w), pending: closuresPending(w)}
 ]).filter((d) => d.n !== null);
 const afterGap = snapshotWeeks.filter((w) => w.afterGap);
+const pendingWeeks = snapshotWeeks.filter((w) => w.closed !== null && closuresPending(w));
 // A flagged week far above the rest would squash the scale; it is listed under the chart instead.
 const flowCap = 1.5 * d3.max(flows.filter((d) => !d.flagged), (d) => d.n);
 const offScale = flows.filter((d) => d.n > flowCap);
@@ -177,7 +187,7 @@ Plot.plot({
       fillOpacity: (d) => (d.flagged ? 0 : 1),
       strokeWidth: 1.5,
       r: 4,
-      title: (d) => `${d.kind}: ${int(d.n)}\nнеделя с ${dateLong(d.week)}${d.flagged ? "\nнеделя неполная или после пропуска" : ""}`,
+      title: (d) => `${d.kind}: ${int(d.n)}\nнеделя с ${dateLong(d.week)}${d.pending ? "\nзакрытия ещё подтверждаются" : d.flagged ? "\nнеделя неполная или после пропуска" : ""}`,
       tip: true
     }),
     Plot.ruleY([0])
@@ -187,7 +197,7 @@ Plot.plot({
 
 <div class="note-small">
 
-Новая вакансия: впервые появилась в снимке этой недели (первая неделя сбора не считается, в ней всё уже открыто). Закрытая: её нет в ${life.grace_days} полных снимках портала подряд. Пустые точки: неделя собрана не полностью${afterGap.length ? ` или идёт после пропуска (${afterGap.map((w) => `с ${dateShort(w.week)}`).join(", ")}), и тогда в неё попадают закрытия пропущенных недель` : ""}; линия через такие точки не проводится.${offScale.length ? ` За пределами шкалы: ${offScale.map((d) => `${d.kind} на неделе с ${dateShort(d.week)}: ${int(d.n)}`).join(", ")}.` : ""}
+Новая вакансия: впервые появилась в снимке этой недели (первая неделя сбора не считается, в ней всё уже открыто). Закрытая: её нет в ${life.grace_days} полных снимках портала подряд. Пустые точки: неделя собрана не полностью${afterGap.length ? ` или идёт после пропуска (${afterGap.map((w) => `с ${dateShort(w.week)}`).join(", ")}), и тогда в неё попадают закрытия пропущенных недель` : ""}; линия через такие точки не проводится.${pendingWeeks.length ? ` Закрытия ${pendingWeeks.length > 1 ? "недель" : "недели"} ${pendingWeeks.map((w) => `с ${dateShort(w.week)}`).join(", ")} ещё подтверждаются: ${lastCompleteDay ? `полные снимки есть по ${dateLong(lastCompleteDay)}, поэтому известны закрытия только по ${dateLong(closuresKnownThrough)}` : "последний день сбора неполный"}, и это число потом вырастет.` : ""}${offScale.length ? ` За пределами шкалы: ${offScale.map((d) => `${d.kind} на неделе с ${dateShort(d.week)}: ${int(d.n)}`).join(", ")}.` : ""}
 
 </div>
 </div>
