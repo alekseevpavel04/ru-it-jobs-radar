@@ -25,6 +25,9 @@ PROFILE_SECRETS = set(" ".join(re.findall(r'^  \[\w+\]="(.+)"$', LIB, flags=re.M
 WRITABLE_BINDS = {
     # The sync from the collection server adds partitions to the raw layer.
     ("airflow-scheduler", "../../data/raw"),
+    # The weekly drift report (radar_drift): its summary and the local Evidently HTML.
+    ("airflow-scheduler", "../../results/monitor"),
+    ("airflow-scheduler", "../../reports/evidently"),
     # The weekly digest writes its pages for the site build.
     ("n8n", "../../site/src/digest"),
 }

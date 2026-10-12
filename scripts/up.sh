@@ -10,8 +10,9 @@ reexec_in_wsl up.sh "$@"
 require_env_file
 select_profiles "$@"
 require_profile_secrets
-# Mount points of the Airflow worker's dbt target/ and logs/ volumes inside its read-only dbt/.
-mkdir -p "$RADAR_ROOT/dbt/target" "$RADAR_ROOT/dbt/logs"
+# Mount points of the Airflow worker's dbt target/ and logs/ volumes inside its read-only dbt/, and
+# the bind-mounted output directories of radar_drift, owned by the user the worker runs as.
+mkdir -p "$RADAR_ROOT/dbt/target" "$RADAR_ROOT/dbt/logs" "$RADAR_ROOT/results/monitor" "$RADAR_ROOT/reports/evidently"
 
 services=$(compose "${PROFILE_ARGS[@]}" config --services)
 # `up --wait` reports a one-shot container that exited as a failure, so the *-init services

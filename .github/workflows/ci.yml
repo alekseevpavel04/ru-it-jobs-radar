@@ -15,5 +15,5 @@ jobs:
           version: "0.10.5"
           enable-cache: true
       - run: uv python install 3.11
-      - run: uv sync --frozen
+      - run: uv sync --frozen --group monitor
       - run: bash scripts/check.sh

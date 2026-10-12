@@ -20,6 +20,7 @@ EXPECTED = {
     "radar_load",
     "radar_dbt",
     "radar_sla",
+    "radar_drift",
     "radar_ml_label",
     "radar_retrain",
     "radar_publish",

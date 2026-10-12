@@ -14,7 +14,7 @@ from radar.stream.producer import SOURCES
 ROOT = Path(__file__).resolve().parents[2]
 DAGS = ROOT / "airflow" / "dags"
 
-ACTIVE = {"radar_collect", "radar_load", "radar_dbt", "radar_sla"}
+ACTIVE = {"radar_collect", "radar_load", "radar_dbt", "radar_sla", "radar_drift"}
 SKELETONS = {"radar_ml_label", "radar_retrain", "radar_publish"}
 # The scheduler and the DAG processor import every file often: only Airflow and the standard
 # library at the top, the project's code runs in tasks under its own environment.
@@ -116,3 +116,9 @@ def test_dbt_is_scheduled_by_the_asset_load_emits() -> None:
     schedule = next(kw.value for kw in call.keywords if kw.arg == "schedule")
     assert ast.unparse(schedule) == "[RAW_VACANCIES]"
     assert "outlets=[RAW_VACANCIES]" in (DAGS / "radar_load.py").read_text(encoding="utf-8")
+
+
+def test_drift_runs_weekly_on_the_project_interpreter() -> None:
+    text = (DAGS / "radar_drift.py").read_text(encoding="utf-8")
+    assert 'CronTriggerTimetable("0 10 * * 1", timezone="UTC")' in text
+    assert constant(parse(DAGS / "radar_drift.py"), "DRIFT") == "/opt/radar/.venv/bin/python -m radar.monitor.drift"

@@ -23,7 +23,7 @@ ENV UV_PYTHON_DOWNLOADS=never \
     UV_LINK_MODE=copy \
     UV_COMPILE_BYTECODE=1
 RUN --mount=type=cache,target=/home/airflow/.cache/uv,uid=50000 \
-    uv sync --frozen --no-dev --no-install-project --python /usr/python/bin/python3.11 \
+    uv sync --frozen --no-dev --group monitor --no-install-project --python /usr/python/bin/python3.11 \
     && echo /opt/radar/src > /opt/radar/.venv/lib/python3.11/site-packages/radar_src.pth
 
 WORKDIR /opt/airflow

@@ -327,6 +327,10 @@ services:
       - airflow-dbt-logs:/opt/radar/dbt/logs
       # Written by the sync from the collection server; assumes RADAR_DATA_DIR=data on the host.
       - ../../data/raw:/opt/radar/data/raw
+      # Outputs of radar_drift (radar.monitor.drift): the summary goes to the repo's results/, the
+      # Evidently HTML reports stay local. scripts/up.sh creates both, so Docker does not as root.
+      - ../../results/monitor:/opt/radar/results/monitor
+      - ../../reports/evidently:/opt/radar/reports/evidently
       # The host user's ssh directory for the sync (set by lib.sh); keys are copied into the tmpfs.
       - ${RADAR_SSH_DIR:?run through scripts/up.sh, which sets RADAR_SSH_DIR}:/run/host-ssh:ro
       - airflow-logs:/opt/airflow/logs

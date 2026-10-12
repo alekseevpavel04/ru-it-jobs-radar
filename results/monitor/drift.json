@@ -1,0 +1,731 @@
+{
+  "source_script": "src/radar/monitor/drift.py",
+  "command": "python -m radar.monitor.drift",
+  "commit": "5c49ad6-dirty",
+  "created_at": "2026-10-12T17:35:48+00:00",
+  "metrics": {
+    "trudvsem_snapshot.drifted_features": {
+      "value": 0.0909,
+      "n": 1,
+      "denominator": 11
+    },
+    "trudvsem_snapshot.volume_anomaly_days": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 7
+    },
+    "trudvsem_snapshot.duplicates_current": {
+      "value": 0.4352,
+      "n": 490,
+      "denominator": 1126
+    },
+    "trudvsem_snapshot.new_vacancies_current": {
+      "value": 636,
+      "n": null,
+      "denominator": null
+    },
+    "telegram.drifted_features": {
+      "value": 0.2857,
+      "n": 2,
+      "denominator": 7
+    },
+    "telegram.volume_anomaly_days": {
+      "value": 0.4286,
+      "n": 3,
+      "denominator": 7
+    },
+    "telegram.duplicates_current": {
+      "value": 0.0595,
+      "n": 32,
+      "denominator": 538
+    },
+    "telegram.new_vacancies_current": {
+      "value": 506,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "settings": {
+    "reference_weeks": 4,
+    "min_reference_weeks": 2,
+    "num_method": "wasserstein",
+    "cat_method": "jensenshannon",
+    "drift_threshold": 0.1,
+    "anomaly_z": 3.0,
+    "sigma_floor": 0.05,
+    "null_jump": 0.05
+  },
+  "sources": {
+    "trudvsem_snapshot": {
+      "first_day": "2026-06-30",
+      "last_day": "2026-10-11",
+      "complete_weeks": 14,
+      "reference_weeks": [
+        "2026-07-06",
+        "2026-07-13",
+        "2026-07-20",
+        "2026-07-27"
+      ],
+      "current_week": "2026-10-05",
+      "quality": {
+        "days_collected": {
+          "reference": {
+            "value": 1.0,
+            "n": 28,
+            "denominator": 28
+          },
+          "current": {
+            "value": 1.0,
+            "n": 7,
+            "denominator": 7
+          }
+        },
+        "rows": {
+          "reference": 15082406,
+          "current": 3431790
+        },
+        "volume": {
+          "reference_median_rows": 540200.0,
+          "reference_sigma_rows": 27010.0,
+          "days": {
+            "value": 0.0,
+            "n": 0,
+            "denominator": 7
+          },
+          "flagged": []
+        },
+        "it_share": {
+          "reference": {
+            "value": 0.0174,
+            "n": 262374,
+            "denominator": 15082406
+          },
+          "current": {
+            "value": 0.0195,
+            "n": 66768,
+            "denominator": 3431790
+          }
+        },
+        "it_without_text": {
+          "reference": {
+            "value": 0.0002,
+            "n": 47,
+            "denominator": 262374
+          },
+          "current": {
+            "value": 0.0,
+            "n": 0,
+            "denominator": 66768
+          }
+        },
+        "it_without_title": {
+          "reference": {
+            "value": 0.0,
+            "n": 0,
+            "denominator": 262374
+          },
+          "current": {
+            "value": 0.0,
+            "n": 0,
+            "denominator": 66768
+          }
+        },
+        "it_without_published_at": {
+          "reference": {
+            "value": 0.0,
+            "n": 0,
+            "denominator": 262374
+          },
+          "current": {
+            "value": 0.0,
+            "n": 0,
+            "denominator": 66768
+          }
+        },
+        "new_vacancies": {
+          "reference_per_week": 745.5,
+          "current": 636
+        },
+        "duplicates": {
+          "reference": {
+            "value": 0.2987,
+            "n": 1270,
+            "denominator": 4252
+          },
+          "current": {
+            "value": 0.4352,
+            "n": 490,
+            "denominator": 1126
+          }
+        },
+        "feature_nulls": [
+          {
+            "feature": "salary_mid_rub",
+            "reference": {
+              "value": 0.0392,
+              "n": 117,
+              "denominator": 2982
+            },
+            "current": {
+              "value": 0.0252,
+              "n": 16,
+              "denominator": 636
+            },
+            "jump": false
+          },
+          {
+            "feature": "experience_min_years",
+            "reference": {
+              "value": 0.003,
+              "n": 9,
+              "denominator": 2982
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 636
+            },
+            "jump": false
+          },
+          {
+            "feature": "n_skills",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2982
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 636
+            },
+            "jump": false
+          },
+          {
+            "feature": "text_len",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2982
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 636
+            },
+            "jump": false
+          },
+          {
+            "feature": "role_bucket",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2982
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 636
+            },
+            "jump": false
+          },
+          {
+            "feature": "grade",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2982
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 636
+            },
+            "jump": false
+          },
+          {
+            "feature": "work_format",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2982
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 636
+            },
+            "jump": false
+          },
+          {
+            "feature": "region_group",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2982
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 636
+            },
+            "jump": false
+          },
+          {
+            "feature": "region",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2982
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 636
+            },
+            "jump": false
+          },
+          {
+            "feature": "has_salary_rub",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2982
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 636
+            },
+            "jump": false
+          },
+          {
+            "feature": "no_experience",
+            "reference": {
+              "value": 0.003,
+              "n": 9,
+              "denominator": 2982
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 636
+            },
+            "jump": false
+          }
+        ]
+      },
+      "units": {
+        "reference": 2982,
+        "current": 636
+      },
+      "status": "ok",
+      "not_available": [],
+      "drift": {
+        "drifted_features": {
+          "value": 0.0909,
+          "n": 1,
+          "denominator": 11
+        },
+        "drifted_beyond_spread": {
+          "value": 0.0,
+          "n": 0,
+          "denominator": 11
+        },
+        "features": [
+          {
+            "feature": "salary_mid_rub",
+            "type": "numerical",
+            "method": "wasserstein",
+            "score": 0.0673,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.1283,
+            "beyond_spread": false
+          },
+          {
+            "feature": "experience_min_years",
+            "type": "numerical",
+            "method": "wasserstein",
+            "score": 0.0642,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.1318,
+            "beyond_spread": false
+          },
+          {
+            "feature": "n_skills",
+            "type": "numerical",
+            "method": "wasserstein",
+            "score": 0.0337,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.1915,
+            "beyond_spread": false
+          },
+          {
+            "feature": "text_len",
+            "type": "numerical",
+            "method": "wasserstein",
+            "score": 0.0474,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.2137,
+            "beyond_spread": false
+          },
+          {
+            "feature": "role_bucket",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.071,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.1093,
+            "beyond_spread": false
+          },
+          {
+            "feature": "grade",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0426,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.079,
+            "beyond_spread": false
+          },
+          {
+            "feature": "work_format",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0361,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0813,
+            "beyond_spread": false
+          },
+          {
+            "feature": "region_group",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0289,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0641,
+            "beyond_spread": false
+          },
+          {
+            "feature": "region",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.1751,
+            "threshold": 0.1,
+            "drifted": true,
+            "reference_spread": 0.2153,
+            "beyond_spread": false
+          },
+          {
+            "feature": "has_salary_rub",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0283,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0838,
+            "beyond_spread": false
+          },
+          {
+            "feature": "no_experience",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0335,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0405,
+            "beyond_spread": false
+          }
+        ]
+      },
+      "report_html": "reports/evidently/2026-10-05/trudvsem_snapshot.html"
+    },
+    "trudvsem": {
+      "status": "insufficient_history",
+      "first_day": "2026-10-08",
+      "last_day": "2026-10-11",
+      "complete_weeks": 0,
+      "needed_weeks": 3
+    },
+    "habr": {
+      "status": "insufficient_history",
+      "first_day": "2026-10-08",
+      "last_day": "2026-10-11",
+      "complete_weeks": 0,
+      "needed_weeks": 3
+    },
+    "superjob": {
+      "status": "no_data"
+    },
+    "telegram": {
+      "first_day": "2026-06-30",
+      "last_day": "2026-10-11",
+      "complete_weeks": 14,
+      "reference_weeks": [
+        "2026-07-06",
+        "2026-07-13",
+        "2026-07-20",
+        "2026-07-27"
+      ],
+      "current_week": "2026-10-05",
+      "quality": {
+        "days_collected": {
+          "reference": {
+            "value": 1.0,
+            "n": 28,
+            "denominator": 28
+          },
+          "current": {
+            "value": 0.5714,
+            "n": 4,
+            "denominator": 7
+          }
+        },
+        "rows": {
+          "reference": 2442,
+          "current": 506
+        },
+        "volume": {
+          "reference_median_rows": 99.5,
+          "reference_sigma_rows": 29.7,
+          "days": {
+            "value": 0.4286,
+            "n": 3,
+            "denominator": 7
+          },
+          "flagged": [
+            {
+              "day": "2026-10-09",
+              "rows": 0,
+              "kind": "missing"
+            },
+            {
+              "day": "2026-10-10",
+              "rows": 0,
+              "kind": "missing"
+            },
+            {
+              "day": "2026-10-11",
+              "rows": 0,
+              "kind": "missing"
+            }
+          ]
+        },
+        "new_vacancies": {
+          "reference_per_week": 610.5,
+          "current": 506
+        },
+        "duplicates": {
+          "reference": {
+            "value": 0.0754,
+            "n": 199,
+            "denominator": 2641
+          },
+          "current": {
+            "value": 0.0595,
+            "n": 32,
+            "denominator": 538
+          }
+        },
+        "feature_nulls": [
+          {
+            "feature": "n_skills",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2442
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 506
+            },
+            "jump": false
+          },
+          {
+            "feature": "role_bucket",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2442
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 506
+            },
+            "jump": false
+          },
+          {
+            "feature": "grade",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2442
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 506
+            },
+            "jump": false
+          },
+          {
+            "feature": "work_format",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2442
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 506
+            },
+            "jump": false
+          },
+          {
+            "feature": "no_experience",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2442
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 506
+            },
+            "jump": false
+          },
+          {
+            "feature": "is_multi_vacancy",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2442
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 506
+            },
+            "jump": false
+          },
+          {
+            "feature": "channel_topic",
+            "reference": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 2442
+            },
+            "current": {
+              "value": 0.0,
+              "n": 0,
+              "denominator": 506
+            },
+            "jump": false
+          }
+        ]
+      },
+      "units": {
+        "reference": 2442,
+        "current": 506
+      },
+      "status": "ok",
+      "not_available": [],
+      "drift": {
+        "drifted_features": {
+          "value": 0.2857,
+          "n": 2,
+          "denominator": 7
+        },
+        "drifted_beyond_spread": {
+          "value": 0.2857,
+          "n": 2,
+          "denominator": 7
+        },
+        "features": [
+          {
+            "feature": "n_skills",
+            "type": "numerical",
+            "method": "wasserstein",
+            "score": 0.2387,
+            "threshold": 0.1,
+            "drifted": true,
+            "reference_spread": 0.0594,
+            "beyond_spread": true
+          },
+          {
+            "feature": "role_bucket",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.1153,
+            "threshold": 0.1,
+            "drifted": true,
+            "reference_spread": 0.069,
+            "beyond_spread": true
+          },
+          {
+            "feature": "grade",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0309,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0421,
+            "beyond_spread": false
+          },
+          {
+            "feature": "work_format",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0648,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0303,
+            "beyond_spread": true
+          },
+          {
+            "feature": "no_experience",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0234,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0165,
+            "beyond_spread": true
+          },
+          {
+            "feature": "is_multi_vacancy",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0094,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0256,
+            "beyond_spread": false
+          },
+          {
+            "feature": "channel_topic",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0955,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0771,
+            "beyond_spread": true
+          }
+        ]
+      },
+      "report_html": "reports/evidently/2026-10-05/telegram.html"
+    }
+  }
+}
