@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/extract/telegram_corpus.py",
-  "command": "python -m radar.extract.telegram_corpus sample --resample",
-  "commit": "f13e529-dirty",
-  "created_at": "2026-10-11T14:22:03+00:00",
+  "command": "python -m radar.extract.telegram_corpus refresh",
+  "commit": "559e3c2",
+  "created_at": "2026-10-12T09:06:11+00:00",
   "metrics": {
     "raw.rows_read": {
       "value": 363204,
@@ -30,13 +30,13 @@
       "denominator": 266110
     },
     "posts.link_stub": {
-      "value": 0.107,
-      "n": 27028,
+      "value": 0.1071,
+      "n": 27056,
       "denominator": 252563
     },
     "records": {
-      "value": 0.8252,
-      "n": 219586,
+      "value": 0.8251,
+      "n": 219558,
       "denominator": 266110
     },
     "dropped.not_vacancy.ad": {
@@ -85,24 +85,24 @@
       "denominator": 363204
     },
     "dropped.link_stub": {
-      "value": 0.0744,
-      "n": 27028,
+      "value": 0.0745,
+      "n": 27056,
       "denominator": 363204
     },
     "groups": {
-      "value": 168004,
+      "value": 167627,
       "n": null,
       "denominator": null
     },
     "groups.multi_record": {
-      "value": 0.1698,
-      "n": 28529,
-      "denominator": 168004
+      "value": 0.1717,
+      "n": 28778,
+      "denominator": 167627
     },
     "groups.cross_channel": {
-      "value": 0.0936,
-      "n": 15717,
-      "denominator": 168004
+      "value": 0.0953,
+      "n": 15979,
+      "denominator": 167627
     },
     "groups.largest": {
       "value": 200,
@@ -110,7 +110,7 @@
       "denominator": null
     },
     "groups.edges.same_text": {
-      "value": 35890,
+      "value": 36278,
       "n": null,
       "denominator": null
     },
@@ -120,54 +120,44 @@
       "denominator": null
     },
     "groups.edges.near_text": {
-      "value": 182005,
+      "value": 182759,
       "n": null,
       "denominator": null
     },
     "lang.records.ru": {
       "value": 0.9406,
-      "n": 206540,
-      "denominator": 219586
+      "n": 206509,
+      "denominator": 219558
     },
     "lang.records.en": {
       "value": 0.0594,
-      "n": 13035,
-      "denominator": 219586
+      "n": 13038,
+      "denominator": 219558
     },
     "lang.records.other": {
       "value": 0.0001,
       "n": 11,
-      "denominator": 219586
+      "denominator": 219558
     },
     "pii_suspect.recruiter_name.records": {
-      "value": 0.0065,
-      "n": 1421,
-      "denominator": 219586
+      "value": 0.0001,
+      "n": 13,
+      "denominator": 219558
     },
     "s1.records_linked": {
-      "value": 0.0037,
-      "n": 821,
-      "denominator": 219586
+      "value": 0.004,
+      "n": 881,
+      "denominator": 219558
     },
     "s1.records_linked.by_habr_id": {
       "value": 0.0032,
-      "n": 705,
-      "denominator": 219586
+      "n": 712,
+      "denominator": 219558
     },
     "s1.records_linked.by_text": {
-      "value": 0.0006,
-      "n": 130,
-      "denominator": 219586
-    },
-    "frame.blocked_groups.fixtures": {
-      "value": 8,
-      "n": null,
-      "denominator": null
-    },
-    "frame.blocked_groups.s1_linked": {
-      "value": 710,
-      "n": null,
-      "denominator": null
+      "value": 0.0009,
+      "n": 196,
+      "denominator": 219558
     },
     "split.test.groups": {
       "value": 140,
@@ -190,12 +180,12 @@
       "denominator": null
     },
     "split.train_pool.groups": {
-      "value": 167663,
+      "value": 167286,
       "n": null,
       "denominator": null
     },
     "split.train_pool.records": {
-      "value": 219149,
+      "value": 219120,
       "n": null,
       "denominator": null
     },
@@ -205,7 +195,7 @@
       "denominator": null
     },
     "split.withheld.records": {
-      "value": 177,
+      "value": 178,
       "n": null,
       "denominator": null
     },
@@ -280,8 +270,8 @@
       "denominator": null
     },
     "test.pii_suspect.recruiter_name": {
-      "value": 0.0071,
-      "n": 1,
+      "value": 0.0,
+      "n": 0,
       "denominator": 140
     },
     "leak.test_with_train_neighbour_drawn": {
@@ -392,47 +382,47 @@
     "decisions10.train_pool.ml_ds_data": {
       "value": 0.101,
       "n": 22140,
-      "denominator": 219149
+      "denominator": 219120
     },
     "decisions10.train_pool_groups.ml_ds_data": {
       "value": 0.0971,
-      "n": 16274,
-      "denominator": 167663
+      "n": 16241,
+      "denominator": 167286
     },
     "role_proxy.train_pool.ml_ds_data": {
       "value": 0.101,
       "n": 22140,
-      "denominator": 219149
+      "denominator": 219120
     },
     "role_proxy.train_pool.dev": {
       "value": 0.495,
-      "n": 108469,
-      "denominator": 219149
+      "n": 108454,
+      "denominator": 219120
     },
     "role_proxy.train_pool.analyst_other": {
       "value": 0.0602,
       "n": 13201,
-      "denominator": 219149
+      "denominator": 219120
     },
     "role_proxy.train_pool.qa_devops_sys": {
       "value": 0.1503,
-      "n": 32937,
-      "denominator": 219149
+      "n": 32925,
+      "denominator": 219120
     },
     "role_proxy.train_pool.other_it": {
       "value": 0.0758,
       "n": 16614,
-      "denominator": 219149
+      "denominator": 219120
     },
     "role_proxy.train_pool.non_it_noise": {
       "value": 0.1177,
-      "n": 25788,
-      "denominator": 219149
+      "n": 25786,
+      "denominator": 219120
     },
     "train_pool.linked_to_s1_train_pool": {
-      "value": 0.0033,
-      "n": 730,
-      "denominator": 219149
+      "value": 0.0036,
+      "n": 790,
+      "denominator": 219120
     },
     "baseline_check.dev.schema_valid": {
       "value": 1.0,
@@ -443,6 +433,21 @@
       "value": 1.0,
       "n": 1000,
       "denominator": 1000
+    },
+    "check.test_ids_equal_frozen": {
+      "value": "true",
+      "n": null,
+      "denominator": null
+    },
+    "check.dev_ids_equal_frozen": {
+      "value": "true",
+      "n": null,
+      "denominator": null
+    },
+    "check.test_dev_rows_equal_frozen": {
+      "value": "true",
+      "n": null,
+      "denominator": null
     }
   },
   "config": {
@@ -498,8 +503,8 @@
       "not_vacancy": 363,
       "multi_vacancy": 154,
       "digest": 7,
-      "link_stub": 54,
-      "records": 2065
+      "link_stub": 57,
+      "records": 2062
     },
     "analytics_jobs": {
       "posts": 837,
@@ -642,8 +647,8 @@
       "not_vacancy": 389,
       "multi_vacancy": 228,
       "digest": 9,
-      "link_stub": 36,
-      "records": 1881
+      "link_stub": 41,
+      "records": 1876
     },
     "forallqa": {
       "posts": 3567,
@@ -651,8 +656,8 @@
       "not_vacancy": 420,
       "multi_vacancy": 193,
       "digest": 7,
-      "link_stub": 54,
-      "records": 2893
+      "link_stub": 61,
+      "records": 2886
     },
     "foranalysts": {
       "posts": 6868,
@@ -669,8 +674,8 @@
       "not_vacancy": 465,
       "multi_vacancy": 157,
       "digest": 13,
-      "link_stub": 73,
-      "records": 2590
+      "link_stub": 81,
+      "records": 2582
     },
     "forfrontend": {
       "posts": 3947,
@@ -678,8 +683,8 @@
       "not_vacancy": 480,
       "multi_vacancy": 245,
       "digest": 10,
-      "link_stub": 31,
-      "records": 3181
+      "link_stub": 34,
+      "records": 3178
     },
     "forpython": {
       "posts": 3131,
@@ -687,8 +692,8 @@
       "not_vacancy": 401,
       "multi_vacancy": 176,
       "digest": 11,
-      "link_stub": 35,
-      "records": 2508
+      "link_stub": 37,
+      "records": 2506
     },
     "gamedevjob": {
       "posts": 3743,
@@ -1022,19 +1027,19 @@
     "geekjobs": 3744,
     "infosec_work": 3523,
     "getitrussia": 3251,
-    "forfrontend": 3179,
+    "forfrontend": 3175,
     "datajobschannel": 2984,
-    "forallqa": 2888,
+    "forallqa": 2881,
     "myitjob": 2681,
     "gamedevjob": 2616,
-    "fordevops": 2587,
-    "forpython": 2503,
+    "fordevops": 2579,
+    "forpython": 2501,
     "jc_it": 2166,
     "juniors_rabota_jobs": 2125,
     "jobofferinside": 2099,
-    "alljvmjobs": 2062,
+    "alljvmjobs": 2059,
     "remotejun": 1894,
-    "forallmobile": 1881,
+    "forallmobile": 1876,
     "product_jobs": 1827,
     "datasciencejobs": 1738,
     "pydevjob": 1542,
@@ -1155,8 +1160,8 @@
   "hashes": {
     "test_ids_sha256": "d7490248d5d625b95f5b3435bfa3e5d87774a8f60afee880204584127439cf63",
     "dev_ids_sha256": "113248e3e08064a4e1f186879332e83674f434c69c8b3f10e2ede30aac7013c1",
-    "train_pool_ids_sha256": "e1a070895fbdaa3be80e9eae27f732401ca2e034d02dbc3543c3e8d1ff437117",
-    "split_content_sha256": "0b1d1cd2b25880eab684dab607cfa227a4ffb6fcc0c67e544c89de6a385fe089"
+    "train_pool_ids_sha256": "30e4d51bf0787edf16bab877ae092973f0b78539bea7051f8df9d9a6afd3fe60",
+    "split_content_sha256": "4f3e33cb168f6448ed99adc2c7e163db5fa6cdbd5ce0a75e7e2e48db80f65080"
   },
   "frozen": {
     "test_ids_sha256": "d7490248d5d625b95f5b3435bfa3e5d87774a8f60afee880204584127439cf63",
@@ -1321,13 +1326,14 @@
         "telegram:remotegeekjob/16170"
       ],
       "telegram:remotegeekjob/16870": [
+        "telegram:forfrontend/4327",
         "telegram:remotegeekjob/16888"
       ]
     }
   },
   "leak_test_dev_pairs": [],
   "gold_groups_joined": [],
-  "stage": "sample",
+  "stage": "refresh",
   "draw": {
     "frame_groups": 167286,
     "skipped_near_gold": 0,
@@ -2471,5 +2477,15 @@
       "test": 0,
       "dev": 0
     }
-  ]
+  ],
+  "gold_current_version": {
+    "test.same": 139,
+    "test.pii": 1,
+    "test.other": 0,
+    "test.missing": 0,
+    "dev.same": 60,
+    "dev.pii": 0,
+    "dev.other": 0,
+    "dev.missing": 0
+  }
 }
