@@ -280,7 +280,7 @@ def spaces(keys: Keys, candidates: Sequence[Candidate], p: Params) -> dict[str, 
 
     n = len(keys.source)
     habr = [i for i in range(n) if keys.source[i] == "habr"]
-    trud = [i for i in range(n) if keys.source[i] != "habr"]
+    trud = [i for i in range(n) if keys.source[i] in ("trudvsem", "trudvsem_snapshot")]
     cross_habr = cross_pairs(group_by(keys.employer_name, habr), group_by(keys.employer_name, trud)) | cross_pairs(
         group_by(keys.title, habr), group_by(keys.title, trud)
     )

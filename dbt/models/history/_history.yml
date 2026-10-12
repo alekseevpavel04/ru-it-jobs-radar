@@ -28,29 +28,31 @@ models:
   - name: hist_observations
     description: >
       Every sighting of a tracked vacancy, one row per (source, source_id, dt): snapshot IT
-      candidates, all of Habr, all of the API slice. The history columns are the same for every
-      source; a column a source lacks is NULL.
+      candidates, all of Habr, all of the API slice and all of the SuperJob slice (a vacancy whose
+      title leaves the IT filter is still the same vacancy in its slice). The history columns are
+      the same for every source; a column a source lacks is NULL.
     columns:
       - name: source
-        description: trudvsem, trudvsem_snapshot or habr.
+        description: trudvsem, trudvsem_snapshot, habr or superjob.
         data_tests:
           - not_null
           - accepted_values:
               arguments:
-                values: [trudvsem, trudvsem_snapshot, habr]
+                values: [trudvsem, trudvsem_snapshot, habr, superjob]
       - name: is_closed_state
         description: >
           The record itself says the vacancy is not open: snapshot deleted, or status "Не
-          опубликовано" or "Не одобрено" ("Ожидает подтверждения" counts as open); Habr archived.
-          The API has no such field.
+          опубликовано" or "Не одобрено" ("Ожидает подтверждения" counts as open); Habr archived;
+          SuperJob is_archive or is_closed. The API has no such field.
       - name: title_norm
         description: Title lowercased, ё as е, punctuation and repeated spaces removed.
       - name: employer_key
         description: >
           Employer identity for reposts: INN for trudvsem, company id for Habr, else the name; NULL
-          for a sole proprietor, whose name is removed to the bare "ИП".
+          for a sole proprietor, whose name is removed to the bare "ИП". SuperJob: the client id only,
+          NULL for a person employer (the cleaner removes the id, and the name is "ИП" or "[name]").
       - name: location_key
-        description: Region for trudvsem, the sorted city list for Habr.
+        description: Region for trudvsem, the sorted city list for Habr, the town for SuperJob.
       - name: skills
         description: Skills sorted, so that a reordering is not a change.
       - name: text_hash
@@ -74,7 +76,10 @@ models:
           Consecutive complete days a vacancy has to be missing to count as closed: the grace
           window history_grace_days (dbt var, default 7) for the snapshot, whose portal hides open
           vacancies for a few days; 3 for Habr (the list misses about 14% of open vacancies on a
-          day); NULL for the API (an incremental slice, absence means nothing). Reasons in
+          day); 2 for SuperJob (a full snapshot of its slice every run, 3 of 661 missed in the first
+          run); NULL for the API (an incremental slice, absence means nothing). Until a source has
+          that many complete days after a sighting nothing closes (closure_confirmed_dt NULL): a
+          source with one collected day only has open, left-censored vacancies. Reasons in
           macros/history.sql.
       - name: next_complete_dt
         description: First complete day after dt.
@@ -96,8 +101,8 @@ models:
       exclusive: the day the next version was first seen, or the day it closed; NULL for the version
       valid now. Closure per source: snapshot, missing (or deleted or unpublished) on
       history_grace_days consecutive complete snapshots (dbt var, default 7), as of the first of
-      them; Habr, missing three consecutive complete days (as of the first) or archived; API, never
-      by absence. A vacancy seen open again within that window is the same open vacancy and keeps
+      them; Habr, missing three consecutive complete days (as of the first) or archived; SuperJob,
+      missing two consecutive complete days (as of the first) or archived; API, never by absence. A vacancy seen open again within that window is the same open vacancy and keeps
       its version; seen again later, it opens a reopened version. A closure across days without a
       complete collection (hist_calendar.next_complete_after_gap) is closed_in_gap. Join
       (source, source_id) to the dedup mapping for vacancy_entity_id.
@@ -110,7 +115,7 @@ models:
             columns: [source, source_id, version_no]
     columns:
       - name: source
-        description: trudvsem, trudvsem_snapshot or habr.
+        description: trudvsem, trudvsem_snapshot, habr or superjob.
         data_tests: [not_null]
       - name: source_id
         description: Vacancy id at the source; with source, the join key to the dedup entity.
@@ -223,7 +228,7 @@ models:
 
 unit_tests:
   - name: hist_calendar_complete_days
-    description: A day with too few rows is not complete; closure dates step over it. Habr needs three days.
+    description: A day with too few rows is not complete; closure dates step over it. Habr needs three days, SuperJob two.
     model: hist_calendar
     overrides:
       vars:
@@ -246,6 +251,9 @@ unit_tests:
           - {source: habr, source_id: h, dt: 2026-10-04}
           - {source: trudvsem, source_id: t, dt: 2026-10-01}
           - {source: trudvsem, source_id: t, dt: 2026-10-02}
+          - {source: superjob, source_id: j, dt: 2026-10-12}
+          - {source: superjob, source_id: j, dt: 2026-10-13}
+          - {source: superjob, source_id: j, dt: 2026-10-14}
     expect:
       rows:
         - {source: trudvsem_snapshot, dt: 2026-07-01, is_complete: true, next_complete_dt: 2026-07-02, closure_confirmed_dt: 2026-07-02}
@@ -259,6 +267,9 @@ unit_tests:
         - {source: habr, dt: 2026-10-04, is_complete: true, next_complete_dt: null, closure_confirmed_dt: null}
         - {source: trudvsem, dt: 2026-10-01, is_complete: true, next_complete_dt: 2026-10-02, closure_confirmed_dt: null}
         - {source: trudvsem, dt: 2026-10-02, is_complete: true, next_complete_dt: null, closure_confirmed_dt: null}
+        - {source: superjob, dt: 2026-10-12, is_complete: true, next_complete_dt: 2026-10-13, closure_confirmed_dt: 2026-10-14}
+        - {source: superjob, dt: 2026-10-13, is_complete: true, next_complete_dt: 2026-10-14, closure_confirmed_dt: null}
+        - {source: superjob, dt: 2026-10-14, is_complete: true, next_complete_dt: null, closure_confirmed_dt: null}
 
   # Snapshot days 07-01..07-09, then 07-25 after a hole of 15 days; 07-03 has too few rows.
   - name: hist_calendar_grace_and_gaps

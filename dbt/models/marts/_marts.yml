@@ -6,8 +6,12 @@ version: 2
 #
 # Common to all of them:
 # - A vacancy is a dedup entity within its source family (int_vacancy_entities): trudvsem (the API
-#   and the daily snapshots, one portal sharing ids) or habr. A vacancy seen in the API and in a
-#   snapshot, or posted twice, counts once, with the fields of its latest record.
+#   and the daily snapshots, one portal sharing ids), habr or superjob. A vacancy seen in the API and
+#   in a snapshot, or posted twice, counts once, with the fields of its latest record. Families are
+#   separate instruments and are never added up: a vacancy posted on two sites is in both.
+# - SuperJob joined on 2026-10-12. Its first collected day opens it everywhere: nothing is new or
+#   closed on that day (mart_weekly_dynamics, is_first_collected_week), every vacancy then is
+#   left-censored, and closures need two later complete days (macros/history.sql).
 # - Titles without any IT role (role bucket not_it: postmen and bank clerks that the wide trudvsem
 #   IT filter lets in, sales and copywriting on Habr) are left out of every mart; how many is in
 #   results/dbt/marts.json.
@@ -18,12 +22,13 @@ version: 2
 models:
   - name: mart_weekly_dynamics
     description: >
-      Week x source x role bucket. trudvsem_snapshot, trudvsem (API) and habr count vacancies
-      (dedup entities within the source): active = seen open on at least one collected day of the
-      week; new = first seen that week, never on the source's first collected day (everything open
-      then is already there, is_first_collected_week marks the week); closed = closure confirmed by
-      the history that week (hist_vacancy_lifetime: history_grace_days complete snapshots missing,
-      7 by default, 3 complete Habr days missing; the API never closes, so NULL there). Telegram rows count vacancy posts of the week
+      Week x source x role bucket. trudvsem_snapshot, trudvsem (API), habr and superjob count
+      vacancies (dedup entities within the source): active = seen open on at least one collected day
+      of the week; new = first seen that week, never on the source's first collected day (everything
+      open then is already there, is_first_collected_week marks the week, so a source that joins
+      later shows no jump of new vacancies); closed = closure confirmed by the history that week
+      (hist_vacancy_lifetime: history_grace_days complete snapshots missing, 7 by default, 3 complete
+      Habr days missing, 2 complete SuperJob days missing; the API never closes, so NULL there). Telegram rows count vacancy posts of the week
       they were published, in their own columns, never added to vacancies. Rows of one week and
       source add up across buckets. The sources are separate instruments: the snapshot is the full
       portal, the API a daily slice of modified records, so their series are not added together.
@@ -37,11 +42,11 @@ models:
         description: Monday of the week (Moscow time for Telegram posts, the collected day otherwise).
         data_tests: [not_null]
       - name: source
-        description: trudvsem_snapshot, trudvsem (API), habr or telegram.
+        description: trudvsem_snapshot, trudvsem (API), habr, superjob or telegram.
         data_tests:
           - accepted_values:
               arguments:
-                values: [trudvsem_snapshot, trudvsem, habr, telegram]
+                values: [trudvsem_snapshot, trudvsem, habr, superjob, telegram]
       - name: role_bucket
         description: &role_bucket >
           Role bucket by the title rule (macros/marts.sql, role_buckets; Telegram: first line, then
@@ -101,10 +106,10 @@ models:
       grade, region and source totals, each computed over the vacancies of the group, not from cell
       medians. A dimension a level does not split by reads 'all'. The rows of one level cover every
       vacancy of the source once, so a sum over rows is taken within one level only. Amounts are RUB per month as the sources state them
-      (both publish monthly salaries and have no period field; nothing is converted); a vacancy in
-      another currency is counted in with_salary_other_currency and left out of the quantiles. Habr's
-      own estimate (predictedSalary) is not used. trudvsem rows mix the API and the snapshots (one
-      portal, one entity per vacancy); Habr rows stay separate. Quantiles (linear interpolation) are
+      (all three publish monthly salaries and have no period field; nothing is converted); a vacancy
+      in another currency is counted in with_salary_other_currency and left out of the quantiles.
+      Habr's own estimate (predictedSalary) is not used. trudvsem rows mix the API and the snapshots
+      (one portal, one entity per vacancy); Habr and SuperJob rows stay separate. Quantiles (linear interpolation) are
       NULL when fewer than 5 vacancies state that bound. On trudvsem salary_to often equals
       salary_from (the portal's form), which keeps it as stated.
     data_tests:
@@ -114,11 +119,11 @@ models:
             columns: [source, level, role_group, role_bucket, grade, region_group]
     columns:
       - name: source
-        description: trudvsem (API and snapshots) or habr.
+        description: trudvsem (API and snapshots), habr or superjob.
         data_tests:
           - accepted_values:
               arguments:
-                values: [trudvsem, habr]
+                values: [trudvsem, habr, superjob]
       - name: level
         description: >
           What the row totals: cell (bucket x grade x region), bucket_grade, bucket, group_grade,
@@ -147,7 +152,7 @@ models:
         description: &grade >
           intern, junior, middle, senior, lead or unknown. Habr: the qualification the employer states,
           else the title rule; trudvsem: the title rule, else intern for «Стажировка» employment;
-          Telegram: first line and hashtags. In a title naming several grades the lowest wins;
+          SuperJob: the title rule; Telegram: first line and hashtags. In a title naming several grades the lowest wins;
           ведущий and главный read as senior, руководитель and начальник as lead.
         data_tests:
           - accepted_values:
@@ -156,7 +161,7 @@ models:
       - name: region_group
         description: >
           remote when the work format is remote, else moscow or spb (the city, not the oblast: trudvsem
-          region, Habr city list), else other when any place is stated, else unknown; all on levels
+          region, Habr city list, SuperJob town), else other when any place is stated, else unknown; all on levels
           that do not split by region.
         data_tests:
           - accepted_values:
@@ -208,7 +213,7 @@ models:
   - name: mart_skills
     description: >
       Skill x role bucket x grade per source: vacancies (Telegram: posts) whose title, text or skill
-      tags (trudvsem skills, Habr skill tags) mention the skill by the v0 dictionary (seed
+      tags (trudvsem skills, Habr skill tags, SuperJob professionalSkills) mention the skill by the v0 dictionary (seed
       skill_dictionary), of the vacancies in that bucket and grade (vacancies_in_cell). Only skills
       with a mention get a row. A vacancy has one bucket and one grade, so a skill's rows add up
       across grades and buckets within a source; across sources they would count a vacancy posted on
@@ -220,11 +225,11 @@ models:
             columns: [source, role_bucket, grade, skill]
     columns:
       - name: source
-        description: trudvsem (API and snapshots), habr or telegram.
+        description: trudvsem (API and snapshots), habr, superjob or telegram.
         data_tests:
           - accepted_values:
               arguments:
-                values: &sources3 [trudvsem, habr, telegram]
+                values: &families [trudvsem, habr, superjob, telegram]
       - name: role_bucket
         description: *role_bucket
         data_tests:
@@ -259,7 +264,7 @@ models:
     description: >
       Work format x role bucket x source, of the vacancies (Telegram: posts of the last 100 days) in
       that bucket. hybrid only from the text; remote from a source field (trudvsem remote employment,
-      Habr remoteWork) or a remote phrase; office from an office phrase, or on Habr when remote work is
+      Habr remoteWork, SuperJob place of work «на дому») or a remote phrase; office from an office phrase, or on Habr when remote work is
       not allowed and a city is named; anything else unknown, never office by default. On trudvsem
       unknown is most of it: the portal has a remote flag and nothing for office or hybrid.
     data_tests:
@@ -269,11 +274,11 @@ models:
             columns: [source, role_bucket, work_format]
     columns:
       - name: source
-        description: trudvsem (API and snapshots), habr or telegram.
+        description: trudvsem (API and snapshots), habr, superjob or telegram.
         data_tests:
           - accepted_values:
               arguments:
-                values: *sources3
+                values: *families
       - name: role_bucket
         description: *role_bucket
         data_tests:
@@ -297,11 +302,12 @@ models:
 
   - name: mart_employers
     description: >
-      Top 100 employers per source family by open IT vacancies: trudvsem by INN, Habr by company id.
+      Top 100 employers per source family by open IT vacancies: trudvsem by INN, Habr by company id,
+      SuperJob by client id.
       Open = not closed and seen within 7 days of the family's latest collected day (as_of), so July
       snapshot vacancies never seen again are not counted as open in October. Sole proprietors are
       left out: their name is personal data (DECISIONS 3), the raw cleaner has replaced it with «ИП»
-      and removed the INN, so they have no key; their count is in results/dbt/marts.json. Lifetime is
+      or «[name]» and removed the INN or the SuperJob client id, so they have no key; their count is in results/dbt/marts.json. Lifetime is
       the median duration_days of the employer's IT vacancies (per source vacancy) whose closure was
       observed and whose start was not before the first collected day, printed from 3 of them.
     data_tests:
@@ -314,19 +320,23 @@ models:
             columns: [source, employer_rank]
     columns:
       - name: source
-        description: trudvsem (API and snapshots) or habr.
+        description: trudvsem (API and snapshots), habr or superjob.
         data_tests:
           - accepted_values:
               arguments:
-                values: [trudvsem, habr]
+                values: [trudvsem, habr, superjob]
       - name: employer_rank
         description: 1 for the most open IT vacancies; ties by vacancies seen, then by key.
         data_tests: [not_null]
       - name: employer_key
-        description: INN (trudvsem) or Habr company id.
+        description: INN (trudvsem), Habr company id or SuperJob client id.
         data_tests: [not_null]
       - name: employer_key_kind
-        description: inn or habr_company_id.
+        description: inn, habr_company_id or superjob_client_id.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [inn, habr_company_id, superjob_client_id]
       - name: employer_name
         description: >
           Employer name of the latest record; never a sole proprietor (singular test
@@ -351,7 +361,8 @@ models:
     description: >
       The junior slice per source and role bucket: vacancies open to a beginner, graded intern or
       junior or stating that no experience is needed (trudvsem: required experience 0 years, the
-      portal's «без опыта»; Habr and Telegram, which have no such field: a phrase of the text). Each
+      portal's «без опыта»; SuperJob: experience «Без опыта»; Habr and Telegram, which have no such
+      field: a phrase of the text). Each
       count has vacancies of the row as its denominator. Telegram covers the posts of the last 100
       days.
     data_tests:
@@ -361,11 +372,11 @@ models:
             columns: [source, role_bucket]
     columns:
       - name: source
-        description: trudvsem (API and snapshots), habr or telegram.
+        description: trudvsem (API and snapshots), habr, superjob or telegram.
         data_tests:
           - accepted_values:
               arguments:
-                values: *sources3
+                values: *families
       - name: role_bucket
         description: *role_bucket
         data_tests:
@@ -393,7 +404,7 @@ models:
               arguments:
                 denominator: open_to_junior
       - name: no_experience_required
-        description: No experience required (field on trudvsem, a text phrase elsewhere).
+        description: No experience required (field on trudvsem and SuperJob, a text phrase elsewhere).
         data_tests:
           - not_above:
               arguments:
@@ -405,7 +416,9 @@ models:
               arguments:
                 denominator: vacancies
       - name: experience_field_stated
-        description: trudvsem vacancies with the experience field filled; NULL where the source has no such field.
+        description: >
+          Vacancies with the experience field filled (trudvsem; SuperJob other than «Не имеет
+          значения»); NULL where the source has no such field.
         data_tests:
           - not_above:
               arguments:
@@ -416,7 +429,7 @@ models:
       Skill x ISO week (its Monday) x source, for the weekly digest: vacancies of the week (Telegram:
       posts) that mention the skill by the dictionary (seed skill_dictionary), of all of the week's
       units of the source (vacancies_in_week). The units are those of mart_weekly_dynamics:
-      trudvsem_snapshot, trudvsem (API) and habr count dedup entities seen open on a collected day of
+      trudvsem_snapshot, trudvsem (API), habr and superjob count dedup entities seen open on a collected day of
       the week, with the skills of the entity's latest record; Telegram counts the vacancy posts
       published that week after the cross-post dedup. IT roles only; only skills with a mention get a
       row. A week of the snapshot backfill may hold few collected days (mart_weekly_dynamics
@@ -431,11 +444,11 @@ models:
         description: Monday of the ISO week (Moscow time for Telegram posts, the collected day otherwise).
         data_tests: [not_null]
       - name: source
-        description: trudvsem_snapshot, trudvsem (API), habr or telegram.
+        description: trudvsem_snapshot, trudvsem (API), habr, superjob or telegram.
         data_tests:
           - accepted_values:
               arguments:
-                values: [trudvsem_snapshot, trudvsem, habr, telegram]
+                values: [trudvsem_snapshot, trudvsem, habr, superjob, telegram]
       - name: skill
         description: Canonical skill name of the dictionary.
         data_tests: [not_null]
@@ -457,7 +470,8 @@ models:
       How long IT vacancies stayed up, per source and role group (level group) and per source (level
       source), from hist_vacancy_lifetime, one row per source vacancy (a repost under a new id is
       another vacancy here; the survival analysis follows dedup entities instead). Only the sources
-      whose absence closes a vacancy: trudvsem_snapshot and habr. The duration quantiles describe the
+      whose absence closes a vacancy: trudvsem_snapshot, habr and superjob (until two complete days
+      follow its first one, every SuperJob vacancy is still open and the quantiles are NULL). The duration quantiles describe the
       closures observed in the collection window and nothing more: they leave out vacancies still
       open, closed in a gap of the collection, open on the first collected day (start unknown) and
       closed by a repost, and long lifetimes have had less time to end, so they lean short and are not
@@ -470,11 +484,11 @@ models:
             columns: [source, level, role_group]
     columns:
       - name: source
-        description: trudvsem_snapshot or habr.
+        description: trudvsem_snapshot, habr or superjob.
         data_tests:
           - accepted_values:
               arguments:
-                values: [trudvsem_snapshot, habr]
+                values: [trudvsem_snapshot, habr, superjob]
       - name: level
         description: group (one role group) or source (all of the source).
         data_tests:

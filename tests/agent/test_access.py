@@ -56,7 +56,7 @@ def test_schema_context_has_every_mart_column_types_and_values() -> None:
     text = schema_context(types)
     for name in TABLES:
         assert f"TABLE marts.{name}:" in text
-    assert "Values: trudvsem, habr, telegram." in text
+    assert "Values: trudvsem, habr, superjob, telegram." in text
     assert "- vacancies UInt64:" in text
 
 

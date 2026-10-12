@@ -3,9 +3,13 @@
 The raw layer only grows (radar.collect.writer); this command is the one exception, and it keeps
 every row. Each stored record goes through the same cleaning calls its collector makes, on the same
 units (a Telegram post; a Habr card text and every list and company string; each labelled section
-and payload string of trudvsem), and its content hash is recomputed the way the collector computes
-it, so the next collection of an unchanged vacancy produces the same key. For Habr the list hash
-that decides whether a card is read again is recomputed too (see `_clean_habr`).
+and payload string of trudvsem; the SuperJob text and every payload string), and its content hash is
+recomputed the way the collector computes it, so the next collection of an unchanged vacancy
+produces the same key. For Habr the list hash that decides whether a card is read again is
+recomputed too (see `_clean_habr`). Addresses the collector cut to the town level (every SuperJob
+address, those of person employers on trudvsem) are cut again with the current `coarse_address`;
+the person employer is recognised by what the cleaner left: the name «ИП» or «Глава КФХ», or a
+name with «[name]» and no INN (the INN that marked a person is gone, a company keeps its own).
 
 A changed part is written next to itself, read back and compared with the original (same row count,
 same ids in the same order, every column the source's cleaner does not touch equal), then renamed
@@ -18,7 +22,7 @@ Left alone: the partition of today's Moscow date and any partition without `_SUC
 may still be writing them), and any part modified in the last 30 minutes. They are listed as
 skipped; run the command again later.
 
-    python -m radar.pii.rewrite --source {telegram,habr,trudvsem,trudvsem_snapshot}
+    python -m radar.pii.rewrite --source {telegram,habr,trudvsem,trudvsem_snapshot,superjob}
         [--since YYYY-MM-DD] [--until YYYY-MM-DD] [--dry-run | --scan-only] [--no-scan]
 """
 
@@ -39,10 +43,11 @@ from typing import Any
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from radar.collect import habr, setup_logging, telegram, trudvsem, trudvsem_snapshot
+from radar.collect import habr, setup_logging, superjob, telegram, trudvsem, trudvsem_snapshot
 from radar.collect.envelope import content_hash
 from radar.collect.summary import append_meta, meta_dir, partition_dates
 from radar.collect.writer import SUCCESS, partition_dir
+from radar.pii.employer import coarse_address, is_ip_name
 from radar.pii.records import _clean_strings, scan_record
 from radar.pii.text import DEFAULT_KEEP_HANDLES, clean_text, scan_text
 
@@ -53,7 +58,7 @@ MIN_AGE = timedelta(minutes=30)
 META = "pii_rewrites"
 # Rows the scanner holds as Python objects at a time; a snapshot part is 50 000 rows of about 4 KB.
 SCAN_BATCH = 10_000
-SOURCES = ("telegram", "habr", "trudvsem", "trudvsem_snapshot")
+SOURCES = ("telegram", "habr", "trudvsem", "trudvsem_snapshot", "superjob")
 
 Row = dict[str, Any]
 # The cleaned row, what the cleaner found, and notes about the stored row (hash not reproduced...).
@@ -146,6 +151,98 @@ def _clean_habr(row: Row, keep: frozenset[str]) -> Cleaned:
     return out, found, notes
 
 
+def _is_person_employer(name: Any, company: Any) -> bool:
+    """An employer the cleaner has already found to be a person: «ИП» or «Глава КФХ», or a name with
+    «[name]» whose INN is gone. A company named after a person keeps its INN and its address."""
+    if not isinstance(name, str):
+        return False
+    inn = company.get("inn") if isinstance(company, dict) else None
+    return is_ip_name(name) or ("[name]" in name and not inn)
+
+
+def _coarse(address: Any, found: Counter[str]) -> Any:
+    if not isinstance(address, str) or not address:
+        return address
+    out = coarse_address(address)
+    # Only a cut is counted: a zero entry would make the counter truthy and the row "changed".
+    if out != address:
+        found["address"] += 1
+    return out
+
+
+def _coarsen_snapshot(payload: Row, found: Counter[str]) -> Row:
+    person = _is_person_employer(payload.get("fullCompanyName"), payload.get("company"))
+    if not person or "vacancyAddress" not in payload:
+        return payload
+    out = dict(payload)
+    coarse = _coarse(out["vacancyAddress"], found)
+    if coarse is None:
+        out.pop("vacancyAddress")
+    else:
+        out["vacancyAddress"] = coarse
+    return out
+
+
+def _coarsen_api(payload: Row, found: Counter[str]) -> Row:
+    addresses = (payload.get("addresses") or {}).get("address") or []
+    company = payload.get("company") or {}
+    if not _is_person_employer(company.get("name"), company) or not addresses:
+        return payload
+    # The collector counts one cut per record, however many addresses it has.
+    changed: Counter[str] = Counter()
+    coarse = [{"location": _coarse(a.get("location"), changed)} for a in addresses]
+    if not changed:
+        return payload
+    found["address"] += 1
+    return {**payload, "addresses": {"address": coarse}}
+
+
+def _coarsen_superjob(payload: Row, found: Counter[str]) -> Row:
+    """As `clean_superjob_vacancy` cuts the vacancy's and the employer profile's addresses."""
+    out = dict(payload)
+    address = out.get("address")
+    if isinstance(address, str) and address:
+        town = _coarse(address, found)
+        if town is None:
+            out.pop("address")
+        else:
+            out["address"] = town
+    client = out.get("client")
+    if isinstance(client, dict):
+        out["client"] = {k: _coarse(v, found) if k in ("address", "addresses") else v for k, v in client.items()}
+    return out
+
+
+# Payload keys the SuperJob collector adds after cleaning.
+_SUPERJOB_AS_IS = frozenset({"_queries"})
+
+
+def _clean_superjob(row: Row, keep: frozenset[str]) -> Cleaned:
+    """Text, payload strings and addresses; the `title` column is the cleaned `profession`."""
+    found: Counter[str] = Counter()
+    text = row["text"]
+    new_text = text
+    if text:
+        new_text, found = clean_text(text)
+    payload = json.loads(row["payload"])
+    new_payload = _clean_payload(_coarsen_superjob(payload, found), found, _SUPERJOB_AS_IS)
+    if not found:
+        return row, found, Counter()
+    notes: Counter[str] = Counter()
+    notes["hash_not_reproduced"] += (
+        content_hash(row["title"], text, payload, ignore=superjob.VOLATILE) != row["content_hash"]
+    )
+    title = new_payload.get("profession")
+    out = {
+        **row,
+        "title": title,
+        "text": new_text,
+        "payload": _dumps(new_payload),
+        "content_hash": content_hash(title, new_text, new_payload, ignore=superjob.VOLATILE),
+    }
+    return out, found, notes
+
+
 @dataclass(frozen=True)
 class SectionedText:
     """How a trudvsem collector builds `text`: `Label: value` blocks in label order, a blank line apart."""
@@ -190,14 +287,18 @@ class SectionedText:
 
 
 def _trudvsem_cleaner(
-    sections: SectionedText, title_key: str, volatile: tuple[str, ...], as_is: frozenset[str]
+    sections: SectionedText,
+    title_key: str,
+    volatile: tuple[str, ...],
+    as_is: frozenset[str],
+    coarsen: Callable[[Row, Counter[str]], Row],
 ) -> Callable[[Row, frozenset[str]], Cleaned]:
     head = sections.head
 
     def clean(row: Row, keep: frozenset[str]) -> Cleaned:
         found: Counter[str] = Counter()
         payload = json.loads(row["payload"])
-        new_payload = _clean_payload(payload, found, as_is)
+        new_payload = _clean_payload(coarsen(payload, found), found, as_is)
         new_text, ambiguous = sections.clean(row["text"], found, head)
         if not found:
             return row, found, Counter()
@@ -235,6 +336,7 @@ SPECS = {
             "job-name",
             trudvsem.VOLATILE,
             frozenset({"_queries"}),
+            _coarsen_api,
         ),
         ("title", "text", "payload", "content_hash", "pii_removed"),
     ),
@@ -244,9 +346,11 @@ SPECS = {
             "vacancyName",
             trudvsem_snapshot.VOLATILE,
             frozenset({"snapshot_version"}),
+            _coarsen_snapshot,
         ),
         ("title", "text", "payload", "content_hash", "pii_removed"),
     ),
+    "superjob": Source(_clean_superjob, ("title", "text", "payload", "content_hash", "pii_removed")),
 }
 _READ = ("source_id", "url", "title", "text", "payload", "content_hash", "pii_removed")
 
@@ -261,8 +365,14 @@ def clean_row(source: str, row: Row, keep: frozenset[str]) -> Cleaned:
     new, found, notes = SPECS[source].clean(row, keep)
     if found:
         removed = Counter(dict(row["pii_removed"] or []))
+        stored_addresses = removed["address"]
         removed.update(found)
-        new = {**new, "pii_removed": list(removed.items())}
+        # Collectors count an address once per place it was cut in, however much went. Cutting again
+        # an address that collection already counted (its street, the coordinates) is not a second
+        # cut. The rarer case, a cut now in a place collection did not count (a SuperJob employer
+        # profile address next to a counted vacancy address), stays undercounted by one.
+        removed["address"] = max(stored_addresses, found["address"])
+        new = {**new, "pii_removed": list((+removed).items())}
     return new, found, notes
 
 

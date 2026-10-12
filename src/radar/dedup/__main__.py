@@ -447,8 +447,14 @@ def entity_stats(wd: Path, mapping: dict[str, list[str]]) -> dict[str, dict[str,
         "entities.total": {"value": len(size)},
         "entities.multi_record": _share(sum(1 for n in size.values() if n > 1), len(size)),
         "entities.multi_source": _share(sum(1 for v in sources_of.values() if len(v) > 1), len(size)),
-        "entities.habr_and_trudvsem": _share(
-            sum(1 for v in sources_of.values() if "habr" in v and len(v) > 1), len(size)
+        **{
+            f"entities.{site}_and_trudvsem": _share(
+                sum(1 for v in sources_of.values() if site in v and v & {"trudvsem", "trudvsem_snapshot"}), len(size)
+            )
+            for site in ("habr", "superjob")
+        },
+        "entities.habr_and_superjob": _share(
+            sum(1 for v in sources_of.values() if {"habr", "superjob"} <= v), len(size)
         ),
         "entities.largest": {"value": max(size.values())},
         "text_clusters.total": {"value": len(text_size)},

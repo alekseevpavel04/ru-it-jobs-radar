@@ -6,10 +6,11 @@
     query_settings={'max_threads': 2, 'join_use_nulls': 1}
 ) }}
 
--- Top employers per source family by open IT vacancies: trudvsem by INN, Habr by company id. Open
--- means not closed and seen within open_now_days of the family's latest collected day (as_of). Sole
--- proprietors are left out: their name is personal data and the raw cleaner has already replaced it
--- with «ИП» and removed the INN, so they have no key to group by. Lifetime is the median
+-- Top employers per source family by open IT vacancies: trudvsem by INN, Habr by company id, SuperJob
+-- by client id. Open means not closed and seen within open_now_days of the family's latest collected
+-- day (as_of). Sole proprietors are left out: their name is personal data and the raw cleaner has
+-- already replaced it with «ИП» (or put «[name]» in it) and removed the INN or the client id, so
+-- they have no key to group by. Lifetime is the median
 -- duration_days of the employer's IT vacancies whose closure was observed and whose start was
 -- (not left-censored), per source vacancy, printed from lifetime_min_closed of them.
 WITH vacancies AS (
@@ -55,7 +56,8 @@ SELECT
     CAST(r.source AS LowCardinality(String)) AS source,
     toUInt32(r.employer_rank) AS employer_rank,
     r.employer_key AS employer_key,
-    CAST(if(r.source = 'habr', 'habr_company_id', 'inn') AS LowCardinality(String)) AS employer_key_kind,
+    CAST(multiIf(r.source = 'habr', 'habr_company_id', r.source = 'superjob', 'superjob_client_id', 'inn')
+        AS LowCardinality(String)) AS employer_key_kind,
     r.employer_name AS employer_name,
     r.open_it_vacancies AS open_it_vacancies,
     r.it_vacancies_seen AS it_vacancies_seen,

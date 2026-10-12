@@ -30,13 +30,18 @@
 ] -%}
 
 {#- Columns a source does not have come as NULL or an empty array; Habr is an IT site, so all of it
-    is an IT candidate. -#}
+    is an IT candidate. SuperJob names its employment type type_of_work and has no region field (the
+    town is in cities) and no salary string. -#}
 {%- set absent = {
     'stg_trudvsem_api': {'cities': '[]', 'remote_work': 'NULL', 'grade': 'NULL'},
     'stg_trudvsem_snapshot': {'cities': '[]', 'remote_work': 'NULL', 'grade': 'NULL'},
     'stg_habr': {
         'region': 'NULL', 'schedule': 'NULL', 'experience_min_years': 'NULL', 'source_type': 'NULL',
         'is_it_candidate': 'true'
+    },
+    'stg_superjob': {
+        'region': 'NULL', 'salary_text': 'NULL', 'schedule': 'NULL', 'employment': 'type_of_work',
+        'grade': 'NULL', 'source_type': 'NULL'
     },
 } -%}
 

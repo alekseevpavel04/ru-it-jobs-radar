@@ -6,12 +6,12 @@
     query_settings={'max_threads': 2, 'max_bytes_before_external_sort': 268435456}
 ) }}
 
--- One row per vacancy within a source family: trudvsem (the API and the snapshots, one portal) or
--- habr. A vacancy is a dedup entity (vacancy_entity_id, else the portal id), so a
--- vacancy seen in the API and in a snapshot, or posted twice, counts once. Its fields are those of
--- its latest record: the latest staged day, the API before the snapshot on the same day (its text
--- is complete for every record). Families are not merged: Habr and trudvsem rows of the marts stay
--- apart, and the entities that span both (1 on 2026-10-08) count once in each.
+-- One row per vacancy within a source family: trudvsem (the API and the snapshots, one portal),
+-- habr or superjob. A vacancy is a dedup entity (vacancy_entity_id, else the portal id),
+-- so a vacancy seen in the API and in a snapshot, or posted twice, counts once. Its fields are those
+-- of its latest record: the latest staged day, the API before the snapshot on the same day (its text
+-- is complete for every record). Families are not merged: their rows of the marts stay apart, and an
+-- entity that spans two families (Habr and trudvsem: 1 on 2026-10-08) counts once in each.
 WITH ranked AS (
     SELECT *
     FROM {{ ref('int_vacancy_records') }}

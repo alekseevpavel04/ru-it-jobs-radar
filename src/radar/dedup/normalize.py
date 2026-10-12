@@ -81,11 +81,12 @@ def normalize_employer(name: str | None) -> str | None:
     """Key that groups spellings of one employer: «ПАО "МТС"» and «МТС» give `мтс`.
 
     A sole proprietor comes from the sources as just «ИП» (the name is personal data), which says
-    nothing about which employer it is, so it gives None, as does an empty name.
+    nothing about which employer it is, so it gives None, as does an empty name. So does the
+    placeholder «[name]» the raw cleaner leaves for a person: two people are not one employer.
     """
     if not name:
         return None
-    out = name.lower().replace("ё", "е")
+    out = name.replace("[name]", " ").lower().replace("ё", "е")
     out = _LEGAL_RE.sub(" ", out)
     out = " ".join(_NON_WORD.sub(" ", out).split())
     return out or None

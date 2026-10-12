@@ -62,7 +62,11 @@ def parse_address(address: str | None) -> tuple[str | None, frozenset[str] | Non
 
 
 def place_of(location: str | None, address: str | None, remote: bool | None, source: str) -> Place:
-    """`location` is the trudvsem region or the comma-joined Habr cities."""
+    """`location` is the trudvsem region, the SuperJob town or the comma-joined Habr cities.
+
+    SuperJob goes the trudvsem way: its town stands where the region does, and its address, cut to
+    region and settlement by the raw cleaner, gives the settlement when it says «г. ...».
+    """
     if source == "habr":
         names = frozenset(_norm(c) for c in (location or "").split(",") if _norm(c))
         return Place(names, None, None, bool(remote))

@@ -3,7 +3,12 @@
 trudvsem rows, API and snapshot alike, count where is_it_candidate holds, the same filter that
 feeds the extraction corpus; Habr is an IT site and is taken whole. The API slice is not all IT:
 on 2026-10-08 its non-IT rows were mass postings (loaders, bank clerks) whose clusters of hundreds
-of identical texts would swamp the pair counts. Telegram posts are not dedup units here:
+of identical texts would swamp the pair counts. SuperJob counts where its own is_it_candidate holds
+(catalogue 33 also holds telecom and engineering); its town is the location and its address, cut to
+the town level by the raw cleaner, may add the settlement. SuperJob flags the vacancies it passed on
+to trudvsem (stg_superjob.uploaded_to_trudvsem); the flag is not a linking feature, the rule stays
+the one tuned on the labeled pairs, and how many flagged vacancies the rule links to a trudvsem
+record is reported by dbt/report.py as a recall check. Telegram posts are not dedup units here:
 radar.extract.telegram_corpus groups them itself.
 
 The API and the snapshots are the same portal and share vacancy ids. Records with one id in both
@@ -27,7 +32,7 @@ from radar.dedup.normalize import normalize_employer
 if TYPE_CHECKING:
     from radar.stream.clickhouse import ClickHouse
 
-SOURCES = ("trudvsem", "trudvsem_snapshot", "habr")
+SOURCES = ("trudvsem", "trudvsem_snapshot", "habr", "superjob")
 
 _SELECT = {
     "trudvsem": """
@@ -57,6 +62,17 @@ _SELECT = {
                salary_text, salary_from, salary_to, text,
                toString(published_at) AS published_at, CAST(NULL AS Nullable(String)) AS modified_at
         FROM staging.stg_habr
+        ORDER BY source_id, dt DESC
+        LIMIT 1 BY source_id
+    """,
+    "superjob": """
+        SELECT source, source_id, toString(dt) AS dt, title, employer_name,
+               CAST(NULL AS Nullable(String)) AS employer_inn, CAST(NULL AS Nullable(String)) AS region,
+               address_town_level AS address, cities, remote_work AS remote,
+               CAST(NULL AS Nullable(String)) AS salary_text, salary_from, salary_to, text,
+               toString(published_at) AS published_at, CAST(NULL AS Nullable(String)) AS modified_at
+        FROM staging.stg_superjob
+        WHERE is_it_candidate
         ORDER BY source_id, dt DESC
         LIMIT 1 BY source_id
     """,

@@ -8,10 +8,11 @@ models:
     description: >
       One row per IT vacancy record within its source (source, source_id): the latest staged day of
       the record, its lifetime from hist_vacancy_lifetime, the dedup entity and the rule fields of
-      the marts (macros/marts.sql). IT records are those the dedup links: snapshot and API records
-      with is_it_candidate, all of Habr. The entity is vacancy_entity_id of staging.vacancy_entities;
+      the marts (macros/marts.sql). IT records are those the dedup links: snapshot, API and SuperJob
+      records with is_it_candidate, all of Habr. The entity is vacancy_entity_id of staging.vacancy_entities;
       a record the dedup has not seen yet (staged after its last run) gets
-      "<family>:<source_id>", keyed by the portal so that its API and snapshot records still meet.
+      "<family>:<source_id>", keyed by the portal so that its API and snapshot records still meet
+      (macro source_family).
       It reads hist_snapshot_days and hist_vacancy_lifetime, so dbt builds it after them in any run
       that selects both; a run that rebuilds history alone leaves it stale, which is why history is
       rebuilt with the selector history_and_marts (dbt/selectors.yml) or a full build.
@@ -21,17 +22,17 @@ models:
             columns: [source, source_id]
     columns:
       - name: source
-        description: trudvsem, trudvsem_snapshot or habr.
+        description: trudvsem, trudvsem_snapshot, habr or superjob.
         data_tests: [not_null]
       - name: source_id
         description: Vacancy id at the source.
         data_tests: [not_null]
       - name: family
-        description: trudvsem (API and snapshots, one portal) or habr.
+        description: trudvsem (API and snapshots, one portal), habr or superjob.
         data_tests:
           - accepted_values:
               arguments:
-                values: [trudvsem, habr]
+                values: [trudvsem, habr, superjob]
       - name: entity_id
         description: Dedup entity, or "<family>:<source_id>" for a record the dedup has not seen.
         data_tests: [not_null]
@@ -56,11 +57,15 @@ models:
       - name: url
         description: Link to the vacancy at the source.
       - name: employer_key
-        description: INN (trudvsem) or Habr company id; NULL for a sole proprietor.
+        description: INN (trudvsem), Habr company id or SuperJob client id; NULL for a sole proprietor.
       - name: employer_name
         description: Employer name; «ИП» for a sole proprietor.
       - name: is_sole_proprietor
-        description: The employer is a sole proprietor (name «ИП» after the raw cleaner).
+        description: >
+          The employer is a person: a sole proprietor (name «ИП» after the raw cleaner), or a name
+          with «[name]» and no INN or client id left (a private person on trudvsem, a brand with
+          «(ИП [name])» on SuperJob). A company whose name has a person's name in it keeps its key and
+          is not one.
       - name: salary_from
         description: Lower bound as stated.
       - name: salary_to
@@ -72,7 +77,7 @@ models:
       - name: role_bucket
         description: Role bucket of the title (macros/marts.sql, role_buckets); not_it when no IT role.
       - name: grade
-        description: intern, junior, middle, senior, lead or unknown (Habr stated grade first, then the title).
+        description: intern, junior, middle, senior, lead or unknown (Habr stated grade first, then the title; SuperJob has no grade field).
       - name: grade_is_stated
         description: The grade is Habr's stated qualification, not the title rule.
       - name: work_format
@@ -80,13 +85,13 @@ models:
       - name: region_group
         description: moscow, spb, other, remote or unknown.
       - name: region
-        description: trudvsem region (subject of the federation); NULL on Habr.
+        description: trudvsem region (subject of the federation); NULL on Habr and SuperJob.
       - name: cities
-        description: Habr city list; empty on trudvsem.
+        description: Habr city list, the SuperJob town; empty on trudvsem.
       - name: experience_min_years
-        description: Required years of experience (trudvsem).
+        description: Required years of experience (trudvsem; SuperJob from its experience id).
       - name: no_experience
-        description: No experience required (trudvsem field 0; Habr text phrase).
+        description: No experience required (trudvsem field 0; SuperJob «Без опыта»; Habr text phrase).
       - name: skills
         description: Dictionary skills found in title, text and source skill tags, sorted.
 
@@ -103,7 +108,7 @@ models:
             columns: [family, entity_id]
     columns:
       - name: family
-        description: trudvsem or habr.
+        description: trudvsem, habr or superjob.
         data_tests: [not_null]
       - name: entity_id
         description: Dedup entity (see int_vacancy_records).
@@ -131,7 +136,7 @@ models:
       - name: is_open_now
         description: Not closed and last seen within 7 days of family_last_dt.
       - name: employer_key
-        description: INN or Habr company id of the latest record; NULL for a sole proprietor.
+        description: INN, Habr company id or SuperJob client id of the latest record; NULL for a sole proprietor.
       - name: employer_name
         description: Employer name of the latest record.
       - name: is_sole_proprietor
@@ -153,7 +158,7 @@ models:
       - name: region_group
         description: Region group of the latest record.
       - name: experience_min_years
-        description: Required years of experience (trudvsem).
+        description: Required years of experience (trudvsem, SuperJob).
       - name: no_experience
         description: No experience required.
       - name: skills

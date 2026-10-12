@@ -250,6 +250,10 @@ MART_COLUMNS: dict[str, tuple[str, ...]] = {
 
 MartRows = Mapping[str, list[dict[str, Any]]]
 
+# SuperJob is in the marts since 2026-10-12 with a single collected day: it joins the site once its
+# weekly series and closures mean something.
+SITE_EXCLUDED = frozenset({"superjob"})
+
 
 def fetch_marts(ch: ClickHouse) -> dict[str, list[dict[str, Any]]]:
     marts = {}
@@ -258,7 +262,8 @@ def fetch_marts(ch: ClickHouse) -> dict[str, list[dict[str, Any]]]:
             f"SELECT {', '.join(columns)} FROM marts.{table} "
             "SETTINGS output_format_json_quote_64bit_integers = 0 FORMAT JSONEachRow"
         )
-        marts[table] = [json.loads(line) for line in body.splitlines() if line]
+        rows = (json.loads(line) for line in body.splitlines() if line)
+        marts[table] = [r for r in rows if not SITE_EXCLUDED.intersection({r.get("source"), r.get("family")})]
     return marts
 
 

@@ -22,7 +22,7 @@ from radar.results import write_result
 from radar.stream.clickhouse import ClickHouse
 
 TARGET = ROOT / "dbt" / "target"
-STAGING = ("stg_trudvsem_api", "stg_trudvsem_snapshot", "stg_habr", "stg_vacancies")
+STAGING = ("stg_trudvsem_api", "stg_trudvsem_snapshot", "stg_habr", "stg_superjob", "stg_vacancies")
 MARTS = (
     "mart_weekly_dynamics",
     "mart_salaries",
@@ -96,6 +96,10 @@ def staging_metrics(ch: ClickHouse) -> dict[str, dict[str, Any]]:
         ch, "SELECT dt, countIf(is_it_candidate), count() FROM staging.stg_trudvsem_api GROUP BY dt ORDER BY dt"
     ):
         out[f"it_candidates_trudvsem_api_{dt}"] = share(int(it), int(total))
+    for dt, it, total in rows(
+        ch, "SELECT dt, countIf(is_it_candidate), count() FROM staging.stg_superjob GROUP BY dt ORDER BY dt"
+    ):
+        out[f"it_candidates_superjob_{dt}"] = share(int(it), int(total))
     for dt, future, total in rows(
         ch,
         "SELECT dt, countIf(has_future_published_at), countIf(has_card) FROM staging.stg_habr GROUP BY dt ORDER BY dt",
@@ -263,6 +267,20 @@ def marts_metrics(ch: ClickHouse) -> dict[str, dict[str, Any]]:
         out[f"sole_proprietor_left_out_of_employers_{family}"] = share(int(sole), it)
         if family == "trudvsem":
             out["vacancies_in_api_and_snapshot_counted_once"] = share(int(both), int(entities))
+    # SuperJob flags the vacancies it passed on to trudvsem; how many of them the dedup links to a
+    # trudvsem record is a recall check of the cross-source link (the copy may also be outside the
+    # trudvsem IT slice or not collected yet, so this is a lower bound).
+    for linked, flagged in rows(
+        ch,
+        "SELECT countIf(has(e.sources, 'trudvsem') OR has(e.sources, 'trudvsem_snapshot')), count() "
+        "FROM (SELECT DISTINCT source_id FROM staging.stg_superjob "
+        "WHERE is_it_candidate AND uploaded_to_trudvsem) AS s "
+        "INNER JOIN (SELECT source_id, vacancy_entity_id FROM staging.vacancy_entities WHERE source = 'superjob') AS v "
+        "ON s.source_id = v.source_id "
+        "INNER JOIN (SELECT vacancy_entity_id, groupUniqArray(source) AS sources FROM staging.vacancy_entities "
+        "GROUP BY vacancy_entity_id) AS e ON v.vacancy_entity_id = e.vacancy_entity_id",
+    ):
+        out["superjob_uploaded_to_trudvsem_linked"] = share(int(linked), int(flagged))
     for posts, not_it, copies, network_keys, week_keys in rows(
         ch,
         "SELECT count(), countIf(role_bucket = 'not_it'), countIf(is_week_duplicate), "
@@ -277,7 +295,7 @@ def marts_metrics(ch: ClickHouse) -> dict[str, dict[str, Any]]:
         out["telegram_posts_after_week_dedup"] = share(int(week_keys), int(posts))
 
     # Weekly headlines: shares of the IT vacancies active in the source's latest collected week.
-    for source in ("trudvsem_snapshot", "trudvsem", "habr"):
+    for source in ("trudvsem_snapshot", "trudvsem", "habr", "superjob"):
         for week, days, data, ml, total in rows(
             ch,
             f"SELECT week, any(days_collected), sumIf(vacancies_active, role_bucket IN ({it_data_buckets()})), "

@@ -1,4 +1,4 @@
-"""Deduplication of vacancies across trudvsem API, trudvsem snapshots and Habr.
+"""Deduplication of vacancies across trudvsem API, trudvsem snapshots, Habr and SuperJob.
 
 Steps, each writing under data/dedup/, settings in configs/dedup.toml:
   python -m radar.dedup units        units.parquet from staging (ClickHouse)

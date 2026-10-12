@@ -7,8 +7,8 @@
 ) }}
 
 -- Salaries as the source states them: from and to of RUB amounts, each quantile over the vacancies
--- that state that bound. Both sources state monthly amounts without a period field (the trudvsem
--- portal and Habr Career publish a monthly salary), so nothing is converted; amounts in another
+-- that state that bound. The sources state monthly amounts without a period field (the trudvsem
+-- portal, Habr Career and SuperJob publish a monthly salary), so nothing is converted; amounts in another
 -- currency are counted, not converted, and left out of the quantiles. Habr's own estimate
 -- (predictedSalary) is never used. Over every vacancy entity of the collection period
 -- (int_vacancy_entities, latest record), per source family.

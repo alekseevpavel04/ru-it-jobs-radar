@@ -10,12 +10,12 @@ from typing import Any
 import pyarrow.parquet as pq
 import pytest
 
-from radar.collect import habr, trudvsem, trudvsem_snapshot
+from radar.collect import habr, superjob, trudvsem, trudvsem_snapshot
 from radar.collect.envelope import RawRecord, content_hash
 from radar.collect.summary import read_meta
 from radar.collect.telegram import MSK, VOLATILE, keep_handles
 from radar.collect.writer import PartitionWriter, partition_dir
-from radar.pii import clean_habr_card_company, clean_text, rewrite, text
+from radar.pii import clean_habr_card_company, clean_text, records, rewrite, text
 
 KEEP = keep_handles()
 NOW = datetime.now(UTC)
@@ -250,9 +250,24 @@ def snapshot_record() -> RawRecord:
     return trudvsem_snapshot.to_record(SNAPSHOT_VACANCY, version, NOW)
 
 
+SUPERJOB_VACANCY: dict[str, Any] = json.loads(
+    (Path(__file__).resolve().parents[1] / "fixtures" / "superjob" / "vacancies_page.json").read_text(encoding="utf-8")
+)["objects"][0]
+
+
+def superjob_record() -> RawRecord:
+    vacancy = {**SUPERJOB_VACANCY, "vacancyRichText": SUPERJOB_VACANCY["vacancyRichText"] + f"<p>{NAME_LINE}</p>"}
+    return superjob.to_record(vacancy, ["catalogue_33"], NOW)
+
+
 @pytest.mark.parametrize(
     ("source", "build"),
-    [("habr", habr_record), ("trudvsem", api_record), ("trudvsem_snapshot", snapshot_record)],
+    [
+        ("habr", habr_record),
+        ("trudvsem", api_record),
+        ("trudvsem_snapshot", snapshot_record),
+        ("superjob", superjob_record),
+    ],
 )
 def test_rewrite_gives_the_record_the_collector_builds_now(
     tmp_path: Path, source: str, build: Callable[[], RawRecord]
@@ -279,6 +294,98 @@ def test_rewrite_gives_the_record_the_collector_builds_now(
     assert row["payload"] == json.dumps(collected.payload, ensure_ascii=False, separators=(",", ":"))
     assert dict(row["pii_removed"]) == collected.pii_removed
     assert rewrite.scan(source, keep, tmp_path)["rows_with_person_name"] == 0
+
+
+# A person employer's address as stored by a cleaner that did not cut it, and one the current
+# cleaner cuts after the town: a Zelenograd building with no street word in front.
+PERSON_ADDRESS = "г Москва, г Зеленоград, к. 1001"
+
+
+def api_person_record() -> RawRecord:
+    vacancy = {
+        **API_VACANCY,
+        "company": {"name": "ИП Иванов Иван Иванович", "inn": "770000000001"},
+        "addresses": {"address": [{"location": PERSON_ADDRESS}]},
+    }
+    return trudvsem.to_record(vacancy, ["industry_it"], NOW)
+
+
+def snapshot_person_record() -> RawRecord:
+    vacancy = {
+        **SNAPSHOT_VACANCY,
+        "fullCompanyName": "ИП Иванов Иван Иванович",
+        "company": {"inn": "770000000001"},
+        "vacancyAddress": PERSON_ADDRESS,
+    }
+    return trudvsem_snapshot.to_record(vacancy, trudvsem_snapshot.Version("20261001T000000", ""), NOW)
+
+
+def superjob_town_record() -> RawRecord:
+    return superjob.to_record({**SUPERJOB_VACANCY, "address": "Москва, Примерный р-н, кв-л 12"}, ["catalogue_33"], NOW)
+
+
+@pytest.mark.parametrize(
+    ("source", "build"),
+    [
+        ("trudvsem", api_person_record),
+        ("trudvsem_snapshot", snapshot_person_record),
+        ("superjob", superjob_town_record),
+    ],
+)
+def test_rewrite_cuts_an_address_the_collector_cuts_now(
+    tmp_path: Path, source: str, build: Callable[[], RawRecord], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    with monkeypatch.context() as mp:
+        mp.setattr(records, "coarse_address", lambda address: address)
+        stored = build()
+    collected = build()
+    assert stored.content_hash != collected.content_hash
+    with PartitionWriter(source, PAST, root=tmp_path) as writer:
+        writer.add(stored)
+    (part,) = writer.parts
+    stamp = time.time() - 3600
+    os.utime(part, (stamp, stamp))
+
+    summary = rewrite.rewrite(source, rewrite.keep_for(source), root=tmp_path, now=NOW)
+
+    (row,) = rows(part)
+    assert summary["pii_added"] == {"address": 1}
+    assert summary["hash_not_reproduced"] == 0
+    assert row["content_hash"] == collected.content_hash
+    assert row["payload"] == json.dumps(collected.payload, ensure_ascii=False, separators=(",", ":"))
+    assert dict(row["pii_removed"]) == collected.pii_removed
+
+
+@pytest.mark.parametrize(
+    ("source", "build"),
+    [
+        ("trudvsem", api_person_record),
+        ("trudvsem_snapshot", snapshot_person_record),
+        ("superjob", superjob_town_record),
+    ],
+)
+def test_an_address_cut_by_the_current_cleaner_is_left_alone(
+    tmp_path: Path, source: str, build: Callable[[], RawRecord]
+) -> None:
+    with PartitionWriter(source, PAST, root=tmp_path) as writer:
+        writer.add(build())
+    stamp = time.time() - 3600
+    os.utime(writer.parts[0], (stamp, stamp))
+    summary = rewrite.rewrite(source, rewrite.keep_for(source), root=tmp_path, now=NOW)
+    assert (summary["rows_changed"], summary["parts_rewritten"]) == (0, 0)
+
+
+def test_a_company_address_is_not_cut_again(tmp_path: Path) -> None:
+    # A company named after a person: the name holds «[name]», the INN says it is a company.
+    company = {**API_VACANCY["company"], "name": "ООО [name] и партнёры"}
+    vacancy = {**API_VACANCY, "company": company, "addresses": {"address": [{"location": PERSON_ADDRESS}]}}
+    stored = trudvsem.to_record(vacancy, ["industry_it"], NOW)
+    with PartitionWriter("trudvsem", PAST, root=tmp_path) as writer:
+        writer.add(stored)
+    stamp = time.time() - 3600
+    os.utime(writer.parts[0], (stamp, stamp))
+    summary = rewrite.rewrite("trudvsem", rewrite.keep_for("trudvsem"), root=tmp_path, now=NOW)
+    assert summary["rows_changed"] == 0
 
 
 def test_habr_card_is_not_read_again_after_a_rewrite(tmp_path: Path) -> None:

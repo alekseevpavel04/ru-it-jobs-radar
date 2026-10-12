@@ -51,6 +51,24 @@ def test_remote_hides_place_except_for_a_sole_proprietor() -> None:
     assert traits_of(proprietor) == Traits(None, None, "москва", None)
 
 
+def test_superjob_employer_is_a_trait_of_its_own() -> None:
+    one, other, habr = to_units(
+        [
+            {"source": "superjob", "source_id": "1", "dt": "2026-10-12", "cities": ["Подольск"],
+             "address": "Московская обл., г. Подольск", "employer_name": 'ООО "Ромашка"'},
+            {"source": "superjob", "source_id": "2", "dt": "2026-10-12", "employer_name": "Лютик"},
+            {"source": "habr", "source_id": "3", "dt": "2026-10-12", "employer_name": "Ромашка Групп"},
+        ]
+    )  # fmt: skip
+    assert traits_of(one) == Traits(None, None, "подольск", None, "ромашка")
+    traits = {u.uid: traits_of(u) for u in (one, other, habr)}
+    edges = [Edge(one.uid, other.uid, 0.9, 0.9), Edge(one.uid, habr.uid, 0.8, 0.9)]
+    groups, refused = components([u.uid for u in (one, other, habr)], edges, traits=traits)
+    # two SuperJob employers never merge; another site's spelling of the name does not block a link
+    assert groups == [["habr:3", "superjob:1"], ["superjob:2"]]
+    assert refused == 1
+
+
 def test_mapping_spreads_to_id_linked_records_and_ids_are_stable() -> None:
     units = to_units(
         [

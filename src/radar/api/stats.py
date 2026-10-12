@@ -11,9 +11,9 @@ from radar.agent.clickhouse import Result
 
 Query = Callable[[str, dict[str, str]], Result]
 
-WeeklySource = Literal["trudvsem_snapshot", "trudvsem", "habr", "telegram"]
-SalarySource = Literal["trudvsem", "habr"]
-SkillSource = Literal["trudvsem", "habr", "telegram"]
+WeeklySource = Literal["trudvsem_snapshot", "trudvsem", "habr", "superjob", "telegram"]
+SalarySource = Literal["trudvsem", "habr", "superjob"]
+SkillSource = Literal["trudvsem", "habr", "superjob", "telegram"]
 SalaryLevel = Literal["group_grade", "group", "grade", "source"]
 RoleBucket = Literal[
     "ml_ds",

@@ -15,7 +15,8 @@
 -- One row per IT vacancy record within its source, (source, source_id): its latest staged day,
 -- the rule fields of the marts (macros/marts.sql) and the dedup entity it belongs to. IT records are
 -- those the history tracks: snapshot IT candidates, API IT candidates (the API slice also carries
--- non-IT mass postings, which the dedup leaves out too) and all of Habr.
+-- non-IT mass postings, which the dedup leaves out too), all of Habr and SuperJob IT candidates (its
+-- catalogue 33 also holds telecom and engineering).
 WITH {{ skill_dictionary_constant() }} AS skill_dict,
 
 snapshot_latest AS (
@@ -61,12 +62,26 @@ records AS (
     FROM {{ ref('stg_habr') }}
     ORDER BY source_id, dt DESC
     LIMIT 1 BY source_id
+
+    UNION ALL
+
+    SELECT
+        source, source_id, dt, title, text, url, employer_name,
+        CAST(toString(employer_id) AS Nullable(String)) AS employer_key,
+        CAST(NULL AS Nullable(String)) AS region, cities,
+        CAST(NULL AS Nullable(String)) AS salary_text, salary_from, salary_to, salary_currency_code,
+        CAST(type_of_work AS Nullable(String)) AS employment, remote_work,
+        experience_min_years, CAST(NULL AS Nullable(String)) AS stated_grade, skills
+    FROM {{ ref('stg_superjob') }}
+    WHERE is_it_candidate
+    ORDER BY source_id, dt DESC
+    LIMIT 1 BY source_id
 ),
 
 -- The API and the snapshots share vacancy ids, so the fallback for a record the dedup has not seen
 -- yet is keyed by the portal, not by the source: its API and snapshot records still meet.
 entities AS (
-    SELECT if(source = 'habr', 'habr', 'trudvsem') AS family, source_id, any(vacancy_entity_id) AS vacancy_entity_id
+    SELECT {{ source_family('source') }} AS family, source_id, any(vacancy_entity_id) AS vacancy_entity_id
     FROM {{ source('dedup', 'vacancy_entities') }}
     GROUP BY family, source_id
 ),
@@ -74,13 +89,16 @@ entities AS (
 ruled AS (
     SELECT
         r.*,
-        CAST(if(r.source = 'habr', 'habr', 'trudvsem') AS LowCardinality(String)) AS family,
+        CAST({{ source_family('r.source') }} AS LowCardinality(String)) AS family,
         {{ rule_text('r.title') }} AS title_rule,
         {{ rule_text("concat(coalesce(r.title, ''), '\\n', coalesce(r.text, ''), '\\n', arrayStringConcat(r.skills, ' | '))") }}
             AS body_rule,
+        -- A person employer can also read «[name]» or a brand with «(ИП [name])»; the cleaner then
+        -- removed its INN or client id too. A company named after a person keeps its key.
         coalesce(
             r.employer_name = 'ИП' OR startsWith(r.employer_name, 'ИП ')
-                OR startsWith(lowerUTF8(r.employer_name), 'индивидуальный предприниматель'),
+                OR startsWith(lowerUTF8(r.employer_name), 'индивидуальный предприниматель')
+                OR (position(r.employer_name, '[name]') > 0 AND r.employer_key IS NULL),
             false
         ) AS is_sole_proprietor
     FROM records AS r
@@ -91,7 +109,7 @@ derived AS (
         *,
         {{ work_format(
             'body_rule',
-            "if(source = 'habr', remote_work, employment = 'Дистанционная (удаленная) работа')",
+            "if(source IN ('habr', 'superjob'), remote_work, employment = 'Дистанционная (удаленная) работа')",
             "source = 'habr' AND remote_work = false AND notEmpty(cities)"
         ) }} AS work_format_rule
     FROM ruled
@@ -137,6 +155,7 @@ SELECT
     d.region AS region,
     d.cities AS cities,
     d.experience_min_years AS experience_min_years,
+    -- trudvsem: the field is 0; SuperJob: «Без опыта»; Habr has no field, a phrase of the text
     if(d.source = 'habr', {{ no_experience_text('d.body_rule') }}, d.experience_min_years = 0) AS no_experience,
     {{ skills_found('d.body_rule') }} AS skills
 FROM derived AS d

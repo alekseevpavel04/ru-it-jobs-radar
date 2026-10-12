@@ -247,17 +247,6 @@ def _clean_person_employer(name: Any, person_words: set[str]) -> tuple[Any, bool
     return cleaned, bool(removed)
 
 
-def _town_level(address: str) -> str | None:
-    """`coarse_address` and then nothing from the first part with a digit: SuperJob writes blocks
-    and buildings as "кв-л 12" and "к. 1234", which the street words do not cover."""
-    kept: list[str] = []
-    for part in (coarse_address(address) or "").split(", "):
-        if not part or any(ch.isdigit() for ch in part):
-            break
-        kept.append(part)
-    return ", ".join(kept) or None
-
-
 def _count_numbers(single: Any, many: Any) -> int:
     numbers = [p for p in many if isinstance(p, dict) and str(p.get("number") or "").strip()] if many else []
     return len(numbers) or int(bool(str(single or "").strip()))
@@ -278,7 +267,7 @@ def clean_superjob_vacancy(vacancy: Record) -> tuple[Record, Counter[str]]:
     counts["phone"] += _count_numbers(out.pop("phone", None), out.pop("phones", None))
     counts["phone"] += _count_numbers(out.pop("fax", None), out.pop("faxes", None))
     address = out.get("address")
-    town = _town_level(address) if isinstance(address, str) and address else None
+    town = coarse_address(address) if isinstance(address, str) and address else None
     place = _drop(out, _SUPERJOB_PLACE)
     if town is None:
         place = _drop(out, ["address"]) or place
@@ -289,7 +278,7 @@ def clean_superjob_vacancy(vacancy: Record) -> tuple[Record, Counter[str]]:
     for key in ("address", "addresses"):
         value = client.get(key)
         if isinstance(value, str) and value:
-            client[key] = _town_level(value)
+            client[key] = coarse_address(value)
             counts["address"] += client[key] != value
         elif value:
             client[key] = []

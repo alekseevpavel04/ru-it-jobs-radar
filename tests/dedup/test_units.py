@@ -22,6 +22,17 @@ def test_api_and_snapshot_with_one_id_form_one_group() -> None:
     assert reps[0].location == "Москва, Казань"
 
 
+def test_superjob_town_is_the_location_and_its_ids_are_its_own() -> None:
+    sj, trud = to_units(
+        [
+            row("superjob", "u1", "2026-10-12", cities=["Подольск"], address="Московская обл., г. Подольск"),
+            row("trudvsem", "u1", "2026-10-12"),
+        ]
+    )
+    assert (sj.uid, sj.group, sj.location) == ("superjob:u1", "superjob:u1", "Подольск")
+    assert len(representatives([sj, trud])) == 2
+
+
 def test_api_wins_over_snapshot_of_the_same_day() -> None:
     units = to_units([row("trudvsem_snapshot", "u1", "2026-10-08"), row("trudvsem", "u1", "2026-10-08")])
     assert [u.source for u in representatives(units)] == ["trudvsem"]

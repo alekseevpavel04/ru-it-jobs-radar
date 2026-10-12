@@ -6,8 +6,8 @@
     query_settings={'max_threads': 2, 'max_bytes_before_external_group_by': 268435456}
 ) }}
 
--- Week x source x role bucket. Vacancy sources (trudvsem_snapshot, trudvsem API, habr) count dedup
--- entities within the source: active = seen open on at least one collected day of the week, new =
+-- Week x source x role bucket. Vacancy sources (trudvsem_snapshot, trudvsem API, habr, superjob)
+-- count dedup entities within the source: active = seen open on at least one collected day of the week, new =
 -- first seen that week (never on the source's first collected day, when everything is already
 -- there), closed = closure confirmed by the history (hist_vacancy_lifetime) that week. Telegram
 -- counts posts, a separate measure in separate columns: a post is not a vacancy and is never added

@@ -8,7 +8,7 @@
 
 -- How long IT vacancies stayed up, per source and role group, from hist_vacancy_lifetime: one row
 -- per source vacancy (a repost under a new id is another vacancy here). Only sources whose absence
--- closes a vacancy (the snapshots, Habr); the API never shows a closure.
+-- closes a vacancy (the snapshots, Habr, SuperJob); the API never shows a closure.
 --
 -- The quantiles describe closures seen in the collection window, nothing more: a vacancy still open
 -- or closed in a gap has no end date, one open on the first collected day has no start, and long

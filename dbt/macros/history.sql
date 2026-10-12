@@ -25,10 +25,21 @@
     p = 1 - 1 050 / 1 227 = 0.144, a false closure would need 0.144^3 = 0.003 against 0.021 for two
     days. The price is that a closure is confirmed two days later; until then the vacancy stays
     open and censored at its last sighting.
+    superjob, 2: every run is a full snapshot of the slice (no modification date to ask by), and the
+    first run reached 658 of the 661 vacancies of catalogue 33 (last_run_catalogue_coverage in
+    results/collect/superjob.json; the three missing were probably raised mid-walk and slid between
+    pages). With that miss independent from day to day, p = 3 / 661 = 0.0045, one missing day would
+    falsely close about 4 of 800 vacancies a day, two days 0.00002 of them. Evidence is a single run:
+    the share of reopened SuperJob vacancies after the first weeks tells whether 2 holds.
     trudvsem (API), NULL: the daily run asks for records modified since the last run, so absence
     says nothing; the API has no status or deleted field either. -#}
 {% macro history_absent_days_to_close(source_expr) -%}
-    multiIf({{ source_expr }} = 'trudvsem_snapshot', {{ history_grace_days() }}, {{ source_expr }} = 'habr', 3, NULL)
+    multiIf(
+        {{ source_expr }} = 'trudvsem_snapshot', {{ history_grace_days() }},
+        {{ source_expr }} = 'habr', 3,
+        {{ source_expr }} = 'superjob', 2,
+        NULL
+    )
 {%- endmacro %}
 
 {% macro history_grace_days() -%}
@@ -87,7 +98,7 @@
 
 
 {#- One observation of a vacancy on one collected day, the same columns for every source. -#}
-{% macro history_observation(employer_key, location_key, is_closed_state, schedule, remote_work, status) -%}
+{% macro history_observation(employer_key, location_key, is_closed_state, schedule, remote_work, status, employment='employment') -%}
     CAST(source AS LowCardinality(String)) AS source,
     source_id,
     dt,
@@ -102,7 +113,7 @@
     salary_to,
     salary_currency_code,
     CAST({{ schedule }} AS Nullable(String)) AS schedule,
-    CAST(employment AS Nullable(String)) AS employment,
+    CAST({{ employment }} AS Nullable(String)) AS employment,
     CAST({{ remote_work }} AS Nullable(Bool)) AS remote_work,
     CAST({{ status }} AS Nullable(String)) AS status,
     arraySort(skills) AS skills,

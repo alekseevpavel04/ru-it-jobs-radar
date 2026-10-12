@@ -48,7 +48,7 @@ MOVER_MIN_MENTIONS = 20
 # first missing day (dbt macro history_absent_days_to_close; a test keeps the two equal). Closures of
 # the last days of the data are not known yet, so an issue made on Monday cannot count the closures
 # of the week that just ended.
-ABSENT_DAYS_TO_CLOSE = {"trudvsem_snapshot": 7, "habr": 3}
+ABSENT_DAYS_TO_CLOSE = {"trudvsem_snapshot": 7, "habr": 3, "superjob": 2}
 # Same rule as radar.site.export.salary_min_n() (the smallest cell whose 95% interval for the median
 # drops the min and the max); a test pins the two together, export itself needs pydantic.
 SALARY_MIN_N = 9

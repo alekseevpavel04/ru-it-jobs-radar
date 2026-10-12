@@ -455,8 +455,9 @@ models:
     description: >
       SuperJob, one row per vacancy per raw day (source_id, dt): a full snapshot of the API's IT slice
       every run (catalogue 33 plus title queries, radar.collect.superjob). A rerun on the same day can
-      write a second raw row for a vacancy that changed in between; the latest fetched_at wins. Not
-      yet in stg_vacancies, the dedup and the marts. Texts stay local (DECISIONS 2).
+      write a second raw row for a vacancy that changed in between; the latest fetched_at wins. Feeds
+      stg_vacancies, the history (absence closes, see hist_calendar), the dedup units and the marts
+      as a source family of its own. Texts stay local (DECISIONS 2).
     data_tests:
       - unique_combination:
           arguments:
@@ -499,6 +500,8 @@ models:
         description: SuperJob client id; null when the employer is a person.
       - name: town
         description: Town of the vacancy.
+      - name: cities
+        description: The town as a one-element list (empty without a town), the column of the union and the marts.
       - name: address_town_level
         description: Address cut to the region and settlement before the raw layer; street, house, coordinates and metro are not stored.
       - name: salary_from
@@ -515,12 +518,20 @@ models:
         description: Required experience as SuperJob names it.
       - name: experience_id
         description: SuperJob experience id (0 not important, 1 none, 2 from 1 year, 3 from 3 years, 4 from 6 years).
+      - name: experience_min_years
+        description: >
+          Required years as a minimum: 0 for «Без опыта», 1, 3 and 6 for «От 1 года», «От 3 лет» and «От 6
+          лет»; NULL for «Не имеет значения», which states no requirement.
       - name: type_of_work
         description: Employment type as SuperJob names it.
       - name: place_of_work
         description: Place of work as SuperJob names it.
+      - name: place_of_work_id
+        description: SuperJob place of work id (0 not important, 1 at the employer, 2 at home, 3 travelling).
       - name: remote_work
-        description: place_of_work id 2 (work from home).
+        description: >
+          true for place_of_work 2 (work from home), false for 1 and 3, NULL for 0 «Не имеет значения»
+          (784 of 787 on 2026-10-12), which says nothing about the format.
       - name: catalogue_ids
         description: Ids of the SuperJob catalogues (industries) the vacancy is filed under.
       - name: catalogue_positions
@@ -534,6 +545,11 @@ models:
         description: trud_vsem.is_uploded, SuperJob says it passed the vacancy on to trudvsem; a hint for the cross-source dedup.
       - name: published_until
         description: date_pub_to, UTC; the end of the current publication.
+      - name: is_archived
+        description: >
+          is_archive or is_closed of the record; the search returned none on 2026-10-12 (0 of 787), so a
+          closure is seen through absence (hist_calendar).
+        data_tests: [not_null]
       - name: collector_queries
         description: Collector queries that found the vacancy (catalogue_33, title_<phrase>).
       - name: is_it_candidate
@@ -548,18 +564,18 @@ models:
   - name: stg_vacancies
     description: >
       All staging sources in one column set (a view over the per-source tables). Columns a source
-      does not have are null or an empty array: region, schedule, experience and source_type are
-      trudvsem only; cities, remote_work and grade are Habr only. Every Habr vacancy is an IT
-      candidate. Row count equals the sum of the per-source models (singular test
+      does not have are null or an empty array: region, schedule and source_type are trudvsem only;
+      experience_min_years is trudvsem and SuperJob; cities and remote_work are Habr and SuperJob;
+      grade is Habr only. Every Habr vacancy is an IT candidate. Row count equals the sum of the per-source models (singular test
       assert_stg_vacancies_rows_match_sources).
     columns:
       - name: source
-        description: trudvsem, trudvsem_snapshot or habr.
+        description: trudvsem, trudvsem_snapshot, habr or superjob.
         data_tests:
           - not_null
           - accepted_values:
               arguments:
-                values: [trudvsem, trudvsem_snapshot, habr]
+                values: [trudvsem, trudvsem_snapshot, habr, superjob]
       - name: source_id
         description: Vacancy id at the source.
         data_tests: [not_null]
@@ -588,7 +604,7 @@ models:
       - name: region
         description: Region name (trudvsem).
       - name: cities
-        description: Location titles (Habr).
+        description: Location titles (Habr), the town (SuperJob).
       - name: salary_text
         description: Salary as the source prints it.
       - name: salary_from
@@ -606,11 +622,11 @@ models:
       - name: schedule
         description: Working schedule (trudvsem).
       - name: employment
-        description: Employment type as the source names it.
+        description: Employment type as the source names it (SuperJob type_of_work).
       - name: remote_work
-        description: Remote flag (Habr).
+        description: Remote flag (Habr; SuperJob place_of_work, NULL where it is «Не имеет значения»).
       - name: experience_min_years
-        description: Required years of experience (trudvsem).
+        description: Required years of experience as a minimum (trudvsem; SuperJob from its experience id).
       - name: grade
         description: Qualification (Habr).
       - name: source_type
@@ -618,7 +634,7 @@ models:
       - name: skills
         description: Skills listed or tagged at the source.
       - name: is_it_candidate
-        description: Wide IT filter for trudvsem (see stg_trudvsem_snapshot); always true for Habr.
+        description: Wide IT filter for trudvsem (see stg_trudvsem_snapshot) and SuperJob (see stg_superjob); always true for Habr.
         data_tests: [not_null]
       - name: ingested_at
         description: When the chosen raw row reached ClickHouse.

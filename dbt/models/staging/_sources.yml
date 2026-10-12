@@ -74,12 +74,14 @@ sources:
       - name: vacancy_entities
         description: >
           Cross-source dedup entities, written by `python -m radar.dedup link` over the IT
-          units of stg_trudvsem_api, stg_trudvsem_snapshot and stg_habr as staged when it ran. One
+          units of stg_trudvsem_api, stg_trudvsem_snapshot, stg_habr and stg_superjob as staged when it
+          ran (stg_superjob since 2026-10-12; until the next link run its records fall back to their
+          own id). One
           row per (source, source_id). Records staged after that run have no row yet; the marts then
           fall back to the record's own id (int_vacancy_records).
         columns:
           - name: source
-            description: trudvsem, trudvsem_snapshot or habr.
+            description: trudvsem, trudvsem_snapshot, habr or superjob.
           - name: source_id
             description: Vacancy id at the source; the API and the snapshots share ids.
           - name: vacancy_entity_id

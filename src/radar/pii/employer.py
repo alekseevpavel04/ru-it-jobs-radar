@@ -16,10 +16,11 @@ _KFH_NAME = re.compile(
 _STREET_WORDS = (
     r"ул|улица|пр|пр-т|пр-кт|просп|проспект|пер|переулок|ш|шоссе|д|дом|б-р|бульвар|наб|набережная|пл|площадь"
     r"|мкр|мкрн|микрорайон|проезд|туп|тупик|кв|квартира|корп|корпус|стр|строение|лит|литер|тракт|аллея|линия"
-    r"|тер|территория|снт|офис|оф|помещ|помещение|влд|владение|зд|здание"
+    r"|тер|территория|снт|офис|оф|помещ|помещение|влд|владение|зд|здание|к|кв-л|квартал"
 )
 _POSTCODE = re.compile(r"\d{6}")
-_STREET_PART = re.compile(rf"^(?:(?:{_STREET_WORDS})(?![\w-])|\d)|(?<![\w-])(?:{_STREET_WORDS})\.?$", re.IGNORECASE)
+_STREET_PART = re.compile(rf"^(?:{_STREET_WORDS})(?![\w-])|(?<![\w-])(?:{_STREET_WORDS})\.?$", re.IGNORECASE)
+_DIGIT = re.compile(r"\d")
 
 
 def digits(value: object) -> str:
@@ -47,14 +48,19 @@ def clean_employer_name(name: str | None) -> tuple[str | None, int]:
 
 
 def coarse_address(address: str | None) -> str | None:
-    """Keep region and settlement, drop the street and everything after it."""
+    """Keep region and settlement, drop the street and everything after it.
+
+    A part with a digit other than the postcode is street level too: a house, a block written as
+    "кв-л 12" or a Zelenograd building "к. 1001Б", which no street word announces. A settlement
+    whose name has a digit is lost with it; for a person's address that errs on the safe side.
+    """
     if not address:
         return address
     kept: list[str] = []
     for part in (p.strip() for p in address.split(",")):
         if _POSTCODE.fullmatch(part):
             continue
-        if _STREET_PART.search(part):
+        if _STREET_PART.search(part) or _DIGIT.search(part):
             break
         if part:
             kept.append(part)

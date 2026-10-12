@@ -15,6 +15,13 @@
 {%- endmacro %}
 
 
+{#- Source family of a record: the trudvsem API and its snapshots are one portal sharing vacancy ids,
+    every other source is a family of its own. Families are never merged in the marts. -#}
+{% macro source_family(source) -%}
+    if({{ source }} IN ('trudvsem', 'trudvsem_snapshot'), 'trudvsem', {{ source }})
+{%- endmacro %}
+
+
 {#- Role bucket by title (Telegram: first line of the post). The first matching bucket wins, so the
     order is part of the rule: specific data and ML roles before generic analysts and developers,
     1C before analysts and developers, security before admins, explicit backend and frontend words

@@ -4,8 +4,9 @@
 the id links between the trudvsem API and snapshots. Links are transitive, so templates chain: a
 card that states only the region joins offices in two towns, a short legal name joins two
 subsidiaries. So a component carries what its records state, and a link is refused when the merged
-component would hold two INNs, two Habr employers, two settlements or two streets (remote cards
-state no place). Links are taken strongest Jaccard first, so a refused link loses to the closer one.
+component would hold two INNs, two Habr employers, two SuperJob employers, two settlements or two
+streets (remote cards state no place). Links are taken strongest Jaccard first, so a refused link
+loses to the closer one.
 A component still above `max_component` is recut by raising the Jaccard threshold inside it in
 steps of 0.05; how many were recut is reported.
 
@@ -75,6 +76,7 @@ class Traits:
     habr_employer: str | None
     settlement: str | None
     street: frozenset[str] | None
+    superjob_employer: str | None = None
 
 
 def traits_of(u: Unit) -> Traits:
@@ -87,13 +89,14 @@ def traits_of(u: Unit) -> Traits:
         habr_employer=u.employer_name_key if u.source == "habr" else None,
         settlement=place.settlement if stated else None,
         street=place.street if stated else None,
+        superjob_employer=u.employer_name_key if u.source == "superjob" else None,
     )
 
 
 class ConstrainedUnionFind(UnionFind):
     """Union that refuses a merge whose component would state two different values of a trait."""
 
-    FIELDS = ("inn", "habr_employer", "settlement", "street")
+    FIELDS = ("inn", "habr_employer", "settlement", "street", "superjob_employer")
 
     def __init__(self, items: Iterable[str], traits: dict[str, Traits]) -> None:
         super().__init__(items)
