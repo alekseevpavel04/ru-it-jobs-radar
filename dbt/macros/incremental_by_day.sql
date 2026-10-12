@@ -22,6 +22,11 @@
     exchanges it atomically; a change of the model's columns needs one (--full-refresh), and so does
     a change of its logic when skip_unchanged_days is on, since unchanged days are not rebuilt. -#}
 
+{% macro first_column(result) -%}
+  {{ return(result.columns[0].values() if result.columns | length else []) }}
+{%- endmacro %}
+
+
 {% macro staging_day() -%}
     toDate('__staging_day__')
 {%- endmacro %}
@@ -57,7 +62,8 @@
     {%- endif %}
     ORDER BY 1
   {% endset %}
-  {% set days = run_query(days_query).columns[0].values() if execute else [] %}
+  {#- an empty result comes back from the ClickHouse adapter without columns, not with an empty one -#}
+  {% set days = first_column(run_query(days_query)) if execute else [] %}
   {% if days and not rebuild and config.get('skip_unchanged_days', false) %}
     {% set day_list %}{% for day in days %}'{{ day }}'{{ ',' if not loop.last }}{% endfor %}{% endset %}
     {% set changed_query %}
@@ -78,7 +84,7 @@
       ORDER BY 1
       SETTINGS join_use_nulls = 0, max_threads = 2
     {% endset %}
-    {% set changed = run_query(changed_query).columns[0].values() %}
+    {% set changed = first_column(run_query(changed_query)) %}
     {{ log(this.identifier ~ ': ' ~ (days | length - changed | length) ~ ' of ' ~ days | length
            ~ ' day(s) with new rows already staged, skipped', info=True) }}
     {% set days = changed %}
