@@ -1,0 +1,4 @@
+# AWQ venv inside WSL (~/venvs/awq, Python 3.12), separate because no llm-compressor release fits the vLLM venv
+# pins (compressed-tensors 0.17.0, torch 2.13) and in the training venv it would move torch 2.14.1 to 2.14.0.
+# Exact resolved set: requirements-awq.lock.txt.
+llmcompressor==0.14.0

@@ -1,0 +1,981 @@
+{
+  "source_script": "src/radar/train/quantize.py",
+  "command": "python -m radar.train.quantize summary --name qwen3_1p7b_r16_clean --reference sft_1p7b_r16_clean --systems sft_1p7b_clean_f16 sft_1p7b_clean_q8_0 sft_1p7b_clean_q4_k_m sft_1p7b_clean_q4_k_m_schema sft_1p7b_clean_awq sft_1p7b_clean_awq_schema --bench data/inference/bench/sft_1p7b_clean_q4_k_m_w1.meta.json data/inference/bench/sft_1p7b_clean_q4_k_m_w2.meta.json data/inference/bench/sft_1p7b_clean_q4_k_m_w8.meta.json data/inference/bench/sft_1p7b_clean_awq_w1.meta.json data/inference/bench/sft_1p7b_clean_awq_w8.meta.json",
+  "commit": "032281c-dirty",
+  "created_at": "2026-10-12T19:06:09+00:00",
+  "metrics": {
+    "dev/sft_1p7b_r16_clean/macro_f1": {
+      "value": 0.898951,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.878003,
+      "ci_high": 0.918434
+    },
+    "dev/sft_1p7b_r16_clean/valid_json": {
+      "value": 1.0,
+      "n": 165,
+      "denominator": 165,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "dev/sft_1p7b_r16_clean/records_per_s": {
+      "value": 0.973,
+      "n": null,
+      "denominator": null,
+      "batch": 8,
+      "backend": "unsloth"
+    },
+    "dev/sft_1p7b_clean_f16/macro_f1": {
+      "value": 0.910539,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.888798,
+      "ci_high": 0.930419
+    },
+    "dev/sft_1p7b_clean_f16/valid_json": {
+      "value": 1.0,
+      "n": 165,
+      "denominator": 165,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "dev/sft_1p7b_clean_f16/macro_f1_minus_sft_1p7b_r16_clean": {
+      "value": 0.011589,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.002543,
+      "ci_high": 0.026638
+    },
+    "dev/sft_1p7b_clean_f16/records_per_s": {
+      "value": 2.783,
+      "n": null,
+      "denominator": null,
+      "workers": 4
+    },
+    "dev/sft_1p7b_clean_f16/latency_p50_s": {
+      "value": 1.35,
+      "n": null,
+      "denominator": null
+    },
+    "dev/sft_1p7b_clean_f16/latency_p95_s": {
+      "value": 2.002,
+      "n": null,
+      "denominator": null
+    },
+    "dev/sft_1p7b_clean_f16/vram_peak_mib": {
+      "value": 6028,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "dev/sft_1p7b_clean_f16/same_answer_as_sft_1p7b_r16_clean": {
+      "value": 0.7273,
+      "n": 120,
+      "denominator": 165
+    },
+    "dev/sft_1p7b_clean_q8_0/macro_f1": {
+      "value": 0.912121,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.890458,
+      "ci_high": 0.932167
+    },
+    "dev/sft_1p7b_clean_q8_0/valid_json": {
+      "value": 1.0,
+      "n": 165,
+      "denominator": 165,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "dev/sft_1p7b_clean_q8_0/macro_f1_minus_sft_1p7b_r16_clean": {
+      "value": 0.013171,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.001136,
+      "ci_high": 0.028593
+    },
+    "dev/sft_1p7b_clean_q8_0/records_per_s": {
+      "value": 3.748,
+      "n": null,
+      "denominator": null,
+      "workers": 4
+    },
+    "dev/sft_1p7b_clean_q8_0/latency_p50_s": {
+      "value": 1.002,
+      "n": null,
+      "denominator": null
+    },
+    "dev/sft_1p7b_clean_q8_0/latency_p95_s": {
+      "value": 1.51,
+      "n": null,
+      "denominator": null
+    },
+    "dev/sft_1p7b_clean_q8_0/vram_peak_mib": {
+      "value": 4474,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "dev/sft_1p7b_clean_q8_0/same_answer_as_sft_1p7b_r16_clean": {
+      "value": 0.7152,
+      "n": 118,
+      "denominator": 165
+    },
+    "dev/sft_1p7b_clean_q4_k_m/macro_f1": {
+      "value": 0.904078,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.88133,
+      "ci_high": 0.925078
+    },
+    "dev/sft_1p7b_clean_q4_k_m/valid_json": {
+      "value": 1.0,
+      "n": 165,
+      "denominator": 165,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "dev/sft_1p7b_clean_q4_k_m/macro_f1_minus_sft_1p7b_r16_clean": {
+      "value": 0.005128,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.01098,
+      "ci_high": 0.021528
+    },
+    "dev/sft_1p7b_clean_q4_k_m/records_per_s": {
+      "value": 3.789,
+      "n": null,
+      "denominator": null,
+      "workers": 4
+    },
+    "dev/sft_1p7b_clean_q4_k_m/latency_p50_s": {
+      "value": 0.967,
+      "n": null,
+      "denominator": null
+    },
+    "dev/sft_1p7b_clean_q4_k_m/latency_p95_s": {
+      "value": 1.531,
+      "n": null,
+      "denominator": null
+    },
+    "dev/sft_1p7b_clean_q4_k_m/vram_peak_mib": {
+      "value": 3783,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "dev/sft_1p7b_clean_q4_k_m/same_answer_as_sft_1p7b_r16_clean": {
+      "value": 0.6848,
+      "n": 113,
+      "denominator": 165
+    },
+    "dev/sft_1p7b_clean_q4_k_m_schema/macro_f1": {
+      "value": 0.90477,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.881879,
+      "ci_high": 0.925525
+    },
+    "dev/sft_1p7b_clean_q4_k_m_schema/valid_json": {
+      "value": 1.0,
+      "n": 165,
+      "denominator": 165,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "dev/sft_1p7b_clean_q4_k_m_schema/macro_f1_minus_sft_1p7b_r16_clean": {
+      "value": 0.005819,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.010633,
+      "ci_high": 0.022635
+    },
+    "dev/sft_1p7b_clean_q4_k_m_schema/records_per_s": {
+      "value": 3.77,
+      "n": null,
+      "denominator": null,
+      "workers": 4
+    },
+    "dev/sft_1p7b_clean_q4_k_m_schema/latency_p50_s": {
+      "value": 1.006,
+      "n": null,
+      "denominator": null
+    },
+    "dev/sft_1p7b_clean_q4_k_m_schema/latency_p95_s": {
+      "value": 1.448,
+      "n": null,
+      "denominator": null
+    },
+    "dev/sft_1p7b_clean_q4_k_m_schema/vram_peak_mib": {
+      "value": 3783,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "dev/sft_1p7b_clean_q4_k_m_schema/same_answer_as_sft_1p7b_r16_clean": {
+      "value": 0.697,
+      "n": 115,
+      "denominator": 165
+    },
+    "dev/sft_1p7b_clean_awq/macro_f1": {
+      "value": 0.906752,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.885325,
+      "ci_high": 0.926438
+    },
+    "dev/sft_1p7b_clean_awq/valid_json": {
+      "value": 1.0,
+      "n": 165,
+      "denominator": 165,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "dev/sft_1p7b_clean_awq/macro_f1_minus_sft_1p7b_r16_clean": {
+      "value": 0.007801,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.007794,
+      "ci_high": 0.024687
+    },
+    "dev/sft_1p7b_clean_awq/records_per_s": {
+      "value": 5.113,
+      "n": null,
+      "denominator": null,
+      "workers": 4
+    },
+    "dev/sft_1p7b_clean_awq/latency_p50_s": {
+      "value": 0.751,
+      "n": null,
+      "denominator": null
+    },
+    "dev/sft_1p7b_clean_awq/latency_p95_s": {
+      "value": 1.141,
+      "n": null,
+      "denominator": null
+    },
+    "dev/sft_1p7b_clean_awq/vram_peak_mib": {
+      "value": 6944,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "dev/sft_1p7b_clean_awq/same_answer_as_sft_1p7b_r16_clean": {
+      "value": 0.6788,
+      "n": 112,
+      "denominator": 165
+    },
+    "dev/sft_1p7b_clean_awq_schema/macro_f1": {
+      "value": 0.903309,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.88085,
+      "ci_high": 0.923809
+    },
+    "dev/sft_1p7b_clean_awq_schema/valid_json": {
+      "value": 1.0,
+      "n": 165,
+      "denominator": 165,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "dev/sft_1p7b_clean_awq_schema/macro_f1_minus_sft_1p7b_r16_clean": {
+      "value": 0.004358,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.01109,
+      "ci_high": 0.020376
+    },
+    "dev/sft_1p7b_clean_awq_schema/records_per_s": {
+      "value": 4.917,
+      "n": null,
+      "denominator": null,
+      "workers": 4
+    },
+    "dev/sft_1p7b_clean_awq_schema/latency_p50_s": {
+      "value": 0.779,
+      "n": null,
+      "denominator": null
+    },
+    "dev/sft_1p7b_clean_awq_schema/latency_p95_s": {
+      "value": 1.128,
+      "n": null,
+      "denominator": null
+    },
+    "dev/sft_1p7b_clean_awq_schema/vram_peak_mib": {
+      "value": 6992,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "dev/sft_1p7b_clean_awq_schema/same_answer_as_sft_1p7b_r16_clean": {
+      "value": 0.6788,
+      "n": 112,
+      "denominator": 165
+    },
+    "tg_dev/sft_1p7b_r16_clean/macro_f1": {
+      "value": 0.831923,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.759918,
+      "ci_high": 0.879124
+    },
+    "tg_dev/sft_1p7b_r16_clean/valid_json": {
+      "value": 1.0,
+      "n": 54,
+      "denominator": 54,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_dev/sft_1p7b_r16_clean/records_per_s": {
+      "value": 1.126,
+      "n": null,
+      "denominator": null,
+      "batch": 8,
+      "backend": "unsloth"
+    },
+    "tg_dev/sft_1p7b_clean_f16/macro_f1": {
+      "value": 0.836058,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.771984,
+      "ci_high": 0.883353
+    },
+    "tg_dev/sft_1p7b_clean_f16/valid_json": {
+      "value": 1.0,
+      "n": 54,
+      "denominator": 54,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_dev/sft_1p7b_clean_f16/macro_f1_minus_sft_1p7b_r16_clean": {
+      "value": 0.004135,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.062703,
+      "ci_high": 0.069116
+    },
+    "tg_dev/sft_1p7b_clean_f16/records_per_s": {
+      "value": 3.939,
+      "n": null,
+      "denominator": null,
+      "workers": 4
+    },
+    "tg_dev/sft_1p7b_clean_f16/latency_p50_s": {
+      "value": 0.942,
+      "n": null,
+      "denominator": null
+    },
+    "tg_dev/sft_1p7b_clean_f16/latency_p95_s": {
+      "value": 1.572,
+      "n": null,
+      "denominator": null
+    },
+    "tg_dev/sft_1p7b_clean_f16/vram_peak_mib": {
+      "value": 6025,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "tg_dev/sft_1p7b_clean_f16/same_answer_as_sft_1p7b_r16_clean": {
+      "value": 0.7167,
+      "n": 43,
+      "denominator": 60
+    },
+    "tg_dev/sft_1p7b_clean_q8_0/macro_f1": {
+      "value": 0.840688,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.775996,
+      "ci_high": 0.88804
+    },
+    "tg_dev/sft_1p7b_clean_q8_0/valid_json": {
+      "value": 1.0,
+      "n": 54,
+      "denominator": 54,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_dev/sft_1p7b_clean_q8_0/macro_f1_minus_sft_1p7b_r16_clean": {
+      "value": 0.008764,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.056234,
+      "ci_high": 0.073953
+    },
+    "tg_dev/sft_1p7b_clean_q8_0/records_per_s": {
+      "value": 5.146,
+      "n": null,
+      "denominator": null,
+      "workers": 4
+    },
+    "tg_dev/sft_1p7b_clean_q8_0/latency_p50_s": {
+      "value": 0.717,
+      "n": null,
+      "denominator": null
+    },
+    "tg_dev/sft_1p7b_clean_q8_0/latency_p95_s": {
+      "value": 1.319,
+      "n": null,
+      "denominator": null
+    },
+    "tg_dev/sft_1p7b_clean_q8_0/vram_peak_mib": {
+      "value": 4476,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "tg_dev/sft_1p7b_clean_q8_0/same_answer_as_sft_1p7b_r16_clean": {
+      "value": 0.7167,
+      "n": 43,
+      "denominator": 60
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m/macro_f1": {
+      "value": 0.847232,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.787059,
+      "ci_high": 0.891183
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m/valid_json": {
+      "value": 1.0,
+      "n": 54,
+      "denominator": 54,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m/macro_f1_minus_sft_1p7b_r16_clean": {
+      "value": 0.015308,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.051979,
+      "ci_high": 0.090114
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m/records_per_s": {
+      "value": 5.45,
+      "n": null,
+      "denominator": null,
+      "workers": 4
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m/latency_p50_s": {
+      "value": 0.647,
+      "n": null,
+      "denominator": null
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m/latency_p95_s": {
+      "value": 1.306,
+      "n": null,
+      "denominator": null
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m/vram_peak_mib": {
+      "value": 3783,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m/same_answer_as_sft_1p7b_r16_clean": {
+      "value": 0.6,
+      "n": 36,
+      "denominator": 60
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m_schema/macro_f1": {
+      "value": 0.843263,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.782304,
+      "ci_high": 0.888845
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m_schema/valid_json": {
+      "value": 1.0,
+      "n": 54,
+      "denominator": 54,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m_schema/macro_f1_minus_sft_1p7b_r16_clean": {
+      "value": 0.01134,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.057449,
+      "ci_high": 0.08567
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m_schema/records_per_s": {
+      "value": 5.315,
+      "n": null,
+      "denominator": null,
+      "workers": 4
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m_schema/latency_p50_s": {
+      "value": 0.672,
+      "n": null,
+      "denominator": null
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m_schema/latency_p95_s": {
+      "value": 1.313,
+      "n": null,
+      "denominator": null
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m_schema/vram_peak_mib": {
+      "value": 3783,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "tg_dev/sft_1p7b_clean_q4_k_m_schema/same_answer_as_sft_1p7b_r16_clean": {
+      "value": 0.6,
+      "n": 36,
+      "denominator": 60
+    },
+    "tg_dev/sft_1p7b_clean_awq/macro_f1": {
+      "value": 0.850056,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.779636,
+      "ci_high": 0.894494
+    },
+    "tg_dev/sft_1p7b_clean_awq/valid_json": {
+      "value": 0.981481,
+      "n": 53,
+      "denominator": 54,
+      "ci_low": 0.944444,
+      "ci_high": 1.0
+    },
+    "tg_dev/sft_1p7b_clean_awq/macro_f1_minus_sft_1p7b_r16_clean": {
+      "value": 0.018132,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.015041,
+      "ci_high": 0.062198
+    },
+    "tg_dev/sft_1p7b_clean_awq/records_per_s": {
+      "value": 6.916,
+      "n": null,
+      "denominator": null,
+      "workers": 4
+    },
+    "tg_dev/sft_1p7b_clean_awq/latency_p50_s": {
+      "value": 0.509,
+      "n": null,
+      "denominator": null
+    },
+    "tg_dev/sft_1p7b_clean_awq/latency_p95_s": {
+      "value": 0.97,
+      "n": null,
+      "denominator": null
+    },
+    "tg_dev/sft_1p7b_clean_awq/vram_peak_mib": {
+      "value": 6943,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "tg_dev/sft_1p7b_clean_awq/same_answer_as_sft_1p7b_r16_clean": {
+      "value": 0.65,
+      "n": 39,
+      "denominator": 60
+    },
+    "tg_dev/sft_1p7b_clean_awq_schema/macro_f1": {
+      "value": 0.856891,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.786195,
+      "ci_high": 0.901693
+    },
+    "tg_dev/sft_1p7b_clean_awq_schema/valid_json": {
+      "value": 1.0,
+      "n": 54,
+      "denominator": 54,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_dev/sft_1p7b_clean_awq_schema/macro_f1_minus_sft_1p7b_r16_clean": {
+      "value": 0.024968,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.004138,
+      "ci_high": 0.068972
+    },
+    "tg_dev/sft_1p7b_clean_awq_schema/records_per_s": {
+      "value": 6.863,
+      "n": null,
+      "denominator": null,
+      "workers": 4
+    },
+    "tg_dev/sft_1p7b_clean_awq_schema/latency_p50_s": {
+      "value": 0.511,
+      "n": null,
+      "denominator": null
+    },
+    "tg_dev/sft_1p7b_clean_awq_schema/latency_p95_s": {
+      "value": 0.971,
+      "n": null,
+      "denominator": null
+    },
+    "tg_dev/sft_1p7b_clean_awq_schema/vram_peak_mib": {
+      "value": 6992,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "tg_dev/sft_1p7b_clean_awq_schema/same_answer_as_sft_1p7b_r16_clean": {
+      "value": 0.6667,
+      "n": 40,
+      "denominator": 60
+    },
+    "size_mib/merged_bf16": {
+      "value": 3281.8,
+      "n": null,
+      "denominator": null
+    },
+    "size_mib/sft_1p7b_clean_f16": {
+      "value": 3287.6,
+      "n": null,
+      "denominator": null
+    },
+    "size_mib/sft_1p7b_clean_q8_0": {
+      "value": 1749.4,
+      "n": null,
+      "denominator": null
+    },
+    "size_mib/sft_1p7b_clean_q4_k_m": {
+      "value": 1056.1,
+      "n": null,
+      "denominator": null
+    },
+    "size_mib/sft_1p7b_clean_q4_k_m_schema": {
+      "value": 1056.1,
+      "n": null,
+      "denominator": null
+    },
+    "size_mib/sft_1p7b_clean_awq": {
+      "value": 1292.1,
+      "n": null,
+      "denominator": null
+    },
+    "size_mib/sft_1p7b_clean_awq_schema": {
+      "value": 1292.1,
+      "n": null,
+      "denominator": null
+    },
+    "bench/sft_1p7b_clean_q4_k_m/workers_1/records_per_s": {
+      "value": 2.077,
+      "n": null,
+      "denominator": null,
+      "workers": 1
+    },
+    "bench/sft_1p7b_clean_q4_k_m/workers_1/latency_p50_s": {
+      "value": 0.451,
+      "n": null,
+      "denominator": null
+    },
+    "bench/sft_1p7b_clean_q4_k_m/workers_1/latency_p95_s": {
+      "value": 0.674,
+      "n": null,
+      "denominator": null
+    },
+    "bench/sft_1p7b_clean_q4_k_m/workers_1/vram_peak_mib": {
+      "value": 3783,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "bench/sft_1p7b_clean_q4_k_m/workers_2/records_per_s": {
+      "value": 3.164,
+      "n": null,
+      "denominator": null,
+      "workers": 2
+    },
+    "bench/sft_1p7b_clean_q4_k_m/workers_2/latency_p50_s": {
+      "value": 0.583,
+      "n": null,
+      "denominator": null
+    },
+    "bench/sft_1p7b_clean_q4_k_m/workers_2/latency_p95_s": {
+      "value": 0.892,
+      "n": null,
+      "denominator": null
+    },
+    "bench/sft_1p7b_clean_q4_k_m/workers_2/vram_peak_mib": {
+      "value": 3785,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "bench/sft_1p7b_clean_q4_k_m/workers_8/records_per_s": {
+      "value": 4.759,
+      "n": null,
+      "denominator": null,
+      "workers": 8
+    },
+    "bench/sft_1p7b_clean_q4_k_m/workers_8/latency_p50_s": {
+      "value": 1.606,
+      "n": null,
+      "denominator": null
+    },
+    "bench/sft_1p7b_clean_q4_k_m/workers_8/latency_p95_s": {
+      "value": 2.392,
+      "n": null,
+      "denominator": null
+    },
+    "bench/sft_1p7b_clean_q4_k_m/workers_8/vram_peak_mib": {
+      "value": 5580,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "bench/sft_1p7b_clean_awq/workers_1/records_per_s": {
+      "value": 1.676,
+      "n": null,
+      "denominator": null,
+      "workers": 1
+    },
+    "bench/sft_1p7b_clean_awq/workers_1/latency_p50_s": {
+      "value": 0.568,
+      "n": null,
+      "denominator": null
+    },
+    "bench/sft_1p7b_clean_awq/workers_1/latency_p95_s": {
+      "value": 0.848,
+      "n": null,
+      "denominator": null
+    },
+    "bench/sft_1p7b_clean_awq/workers_1/vram_peak_mib": {
+      "value": 6944,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    },
+    "bench/sft_1p7b_clean_awq/workers_8/records_per_s": {
+      "value": 7.132,
+      "n": null,
+      "denominator": null,
+      "workers": 8
+    },
+    "bench/sft_1p7b_clean_awq/workers_8/latency_p50_s": {
+      "value": 1.073,
+      "n": null,
+      "denominator": null
+    },
+    "bench/sft_1p7b_clean_awq/workers_8/latency_p95_s": {
+      "value": 1.525,
+      "n": null,
+      "denominator": null
+    },
+    "bench/sft_1p7b_clean_awq/workers_8/vram_peak_mib": {
+      "value": 6991,
+      "n": null,
+      "denominator": null,
+      "what": "nvidia-smi, whole card"
+    }
+  },
+  "name": "qwen3_1p7b_r16_clean",
+  "reference": "sft_1p7b_r16_clean",
+  "systems": [
+    "sft_1p7b_clean_f16",
+    "sft_1p7b_clean_q8_0",
+    "sft_1p7b_clean_q4_k_m",
+    "sft_1p7b_clean_q4_k_m_schema",
+    "sft_1p7b_clean_awq",
+    "sft_1p7b_clean_awq_schema"
+  ],
+  "bench_files": [
+    "data/inference/bench/sft_1p7b_clean_q4_k_m_w1.meta.json",
+    "data/inference/bench/sft_1p7b_clean_q4_k_m_w2.meta.json",
+    "data/inference/bench/sft_1p7b_clean_q4_k_m_w8.meta.json",
+    "data/inference/bench/sft_1p7b_clean_awq_w1.meta.json",
+    "data/inference/bench/sft_1p7b_clean_awq_w8.meta.json"
+  ],
+  "served": {
+    "sft_1p7b_r16_clean": {
+      "adapter": "models/sft/qwen3_1p7b_r16_clean/adapter",
+      "adapter_sha256": "338478948d4b1d1b91b976cc6a88c14831f78dfde1e10653e04843218cf798c0",
+      "backend": "unsloth",
+      "batch": 8
+    },
+    "sft_1p7b_clean_f16": {
+      "backend": "llama",
+      "weights": {
+        "file": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-F16.gguf",
+        "size_mib": 3287.6,
+        "type": "F16",
+        "sha256": "0043fcc79ffb16eb9f01bf5ab2ba4aa3ddacb37f46c1d7f21240997fab7f3991"
+      },
+      "decoding": {
+        "greedy": true,
+        "max_new_tokens": 512,
+        "json_schema_constrained": false
+      },
+      "server": {
+        "model_path": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-F16.gguf",
+        "model_alias": "qwen3_1p7b_r16_clean-F16",
+        "model_ftype": "F16",
+        "build_info": "b11052-eb1e1f495",
+        "total_slots": 4,
+        "n_ctx_per_slot": 4096
+      },
+      "template_match": {
+        "n": 165,
+        "denominator": 165
+      },
+      "prompt_token_mismatch": 0
+    },
+    "sft_1p7b_clean_q8_0": {
+      "backend": "llama",
+      "weights": {
+        "file": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q8_0.gguf",
+        "size_mib": 1749.4,
+        "type": "Q8_0",
+        "sha256": "50bf294152b8e55977b770674ee0de878782237e008286469bf8385c14d638ad"
+      },
+      "decoding": {
+        "greedy": true,
+        "max_new_tokens": 512,
+        "json_schema_constrained": false
+      },
+      "server": {
+        "model_path": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q8_0.gguf",
+        "model_alias": "qwen3_1p7b_r16_clean-Q8_0",
+        "model_ftype": "Q8_0",
+        "build_info": "b11052-eb1e1f495",
+        "total_slots": 4,
+        "n_ctx_per_slot": 4096
+      },
+      "template_match": {
+        "n": 165,
+        "denominator": 165
+      },
+      "prompt_token_mismatch": 0
+    },
+    "sft_1p7b_clean_q4_k_m": {
+      "backend": "llama",
+      "weights": {
+        "file": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q4_K_M.gguf",
+        "size_mib": 1056.1,
+        "type": "Q4_K_M",
+        "sha256": "8159abbceaa20ac01aba8305e2ce480d1c75f0bc8fd71740b4db673030a0e9f2"
+      },
+      "decoding": {
+        "greedy": true,
+        "max_new_tokens": 512,
+        "json_schema_constrained": false
+      },
+      "server": {
+        "model_path": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q4_K_M.gguf",
+        "model_alias": "qwen3_1p7b_r16_clean-Q4_K_M",
+        "model_ftype": "Q4_K - Medium",
+        "build_info": "b11052-eb1e1f495",
+        "total_slots": 4,
+        "n_ctx_per_slot": 4096
+      },
+      "template_match": {
+        "n": 165,
+        "denominator": 165
+      },
+      "prompt_token_mismatch": 0
+    },
+    "sft_1p7b_clean_q4_k_m_schema": {
+      "backend": "llama",
+      "weights": {
+        "file": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q4_K_M.gguf",
+        "size_mib": 1056.1,
+        "type": "Q4_K_M",
+        "sha256": "8159abbceaa20ac01aba8305e2ce480d1c75f0bc8fd71740b4db673030a0e9f2"
+      },
+      "decoding": {
+        "greedy": true,
+        "max_new_tokens": 512,
+        "json_schema_constrained": true
+      },
+      "server": {
+        "model_path": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q4_K_M.gguf",
+        "model_alias": "qwen3_1p7b_r16_clean-Q4_K_M",
+        "model_ftype": "Q4_K - Medium",
+        "build_info": "b11052-eb1e1f495",
+        "total_slots": 4,
+        "n_ctx_per_slot": 4096
+      },
+      "template_match": {
+        "n": 165,
+        "denominator": 165
+      },
+      "prompt_token_mismatch": 0
+    },
+    "sft_1p7b_clean_awq": {
+      "backend": "vllm",
+      "weights": {
+        "dir": "models/awq/qwen3_1p7b_r16_clean",
+        "size_mib": 1292.1,
+        "quantization": "compressed-tensors"
+      },
+      "decoding": {
+        "greedy": true,
+        "max_new_tokens": 512,
+        "json_schema_constrained": false
+      },
+      "server": {
+        "model_path": "/mnt/d/VScode_projects/ru-it-jobs-radar/models/awq/qwen3_1p7b_r16_clean",
+        "model_alias": "qwen3_1p7b_r16_clean-awq",
+        "max_model_len": 4096
+      },
+      "template_match": null,
+      "prompt_token_mismatch": 0
+    },
+    "sft_1p7b_clean_awq_schema": {
+      "backend": "vllm",
+      "weights": {
+        "dir": "models/awq/qwen3_1p7b_r16_clean",
+        "size_mib": 1292.1,
+        "quantization": "compressed-tensors"
+      },
+      "decoding": {
+        "greedy": true,
+        "max_new_tokens": 512,
+        "json_schema_constrained": true
+      },
+      "server": {
+        "model_path": "/mnt/d/VScode_projects/ru-it-jobs-radar/models/awq/qwen3_1p7b_r16_clean",
+        "model_alias": "qwen3_1p7b_r16_clean-awq",
+        "max_model_len": 4096
+      },
+      "template_match": null,
+      "prompt_token_mismatch": 0
+    }
+  },
+  "gguf_manifest": {
+    "name": "qwen3_1p7b_r16_clean",
+    "merged": "models/merged/qwen3_1p7b_r16_clean",
+    "adapter": "models/sft/qwen3_1p7b_r16_clean/adapter",
+    "adapter_sha256": "338478948d4b1d1b91b976cc6a88c14831f78dfde1e10653e04843218cf798c0",
+    "llama_cpp": "b11052",
+    "imatrix": null,
+    "files": [
+      {
+        "file": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-F16.gguf",
+        "type": "F16",
+        "size_bytes": 3447348928,
+        "size_mib": 3287.6,
+        "sha256": "0043fcc79ffb16eb9f01bf5ab2ba4aa3ddacb37f46c1d7f21240997fab7f3991",
+        "from": null
+      },
+      {
+        "file": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q8_0.gguf",
+        "type": "Q8_0",
+        "size_bytes": 1834426048,
+        "size_mib": 1749.4,
+        "sha256": "50bf294152b8e55977b770674ee0de878782237e008286469bf8385c14d638ad",
+        "from": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-F16.gguf"
+      },
+      {
+        "file": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q4_K_M.gguf",
+        "type": "Q4_K_M",
+        "size_bytes": 1107408576,
+        "size_mib": 1056.1,
+        "sha256": "8159abbceaa20ac01aba8305e2ce480d1c75f0bc8fd71740b4db673030a0e9f2",
+        "from": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-F16.gguf"
+      }
+    ],
+    "commit": "b0cbe3d-dirty",
+    "created_at": "2026-10-12T18:38:56+00:00"
+  },
+  "method": "macro F1 and valid JSON from results/extract/<split>_<system>.json (python -m radar.eval), the difference to the reference from <split>_<system>_vs_<reference>.json (paired bootstrap on the same gold rows); same answer: both parse to an equal JSON value, over every predicted record of the split, gold or not; records per second over the wall time of a run with `workers` requests in flight (llama-server with at least as many slots, vLLM with max-num-seqs 8); latency per record measured by the client; peak memory of the whole card by nvidia-smi, vLLM reserving 0.85 of it up front; sizes from the files"
+}
