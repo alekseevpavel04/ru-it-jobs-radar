@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/extract/telegram_corpus.py",
   "command": "python -m radar.extract.telegram_corpus refresh",
-  "commit": "559e3c2",
-  "created_at": "2026-10-12T09:06:11+00:00",
+  "commit": "2e6b631-dirty",
+  "created_at": "2026-10-12T11:10:36+00:00",
   "metrics": {
     "raw.rows_read": {
       "value": 363204,
@@ -35,8 +35,8 @@
       "denominator": 252563
     },
     "records": {
-      "value": 0.8251,
-      "n": 219558,
+      "value": 0.8249,
+      "n": 219517,
       "denominator": 266110
     },
     "dropped.not_vacancy.ad": {
@@ -89,20 +89,25 @@
       "n": 27056,
       "denominator": 363204
     },
+    "dropped.channel_lang": {
+      "value": 0.0001,
+      "n": 41,
+      "denominator": 363204
+    },
     "groups": {
-      "value": 167627,
+      "value": 167598,
       "n": null,
       "denominator": null
     },
     "groups.multi_record": {
       "value": 0.1717,
-      "n": 28778,
-      "denominator": 167627
+      "n": 28775,
+      "denominator": 167598
     },
     "groups.cross_channel": {
       "value": 0.0953,
-      "n": 15979,
-      "denominator": 167627
+      "n": 15976,
+      "denominator": 167598
     },
     "groups.largest": {
       "value": 200,
@@ -110,7 +115,7 @@
       "denominator": null
     },
     "groups.edges.same_text": {
-      "value": 36278,
+      "value": 36266,
       "n": null,
       "denominator": null
     },
@@ -120,44 +125,44 @@
       "denominator": null
     },
     "groups.edges.near_text": {
-      "value": 182759,
+      "value": 182737,
       "n": null,
       "denominator": null
     },
     "lang.records.ru": {
-      "value": 0.9406,
+      "value": 0.9407,
       "n": 206509,
-      "denominator": 219558
+      "denominator": 219517
     },
     "lang.records.en": {
-      "value": 0.0594,
-      "n": 13038,
-      "denominator": 219558
+      "value": 0.0592,
+      "n": 12997,
+      "denominator": 219517
     },
     "lang.records.other": {
       "value": 0.0001,
       "n": 11,
-      "denominator": 219558
+      "denominator": 219517
     },
     "pii_suspect.recruiter_name.records": {
       "value": 0.0001,
       "n": 13,
-      "denominator": 219558
+      "denominator": 219517
     },
     "s1.records_linked": {
       "value": 0.004,
       "n": 881,
-      "denominator": 219558
+      "denominator": 219517
     },
     "s1.records_linked.by_habr_id": {
       "value": 0.0032,
       "n": 712,
-      "denominator": 219558
+      "denominator": 219517
     },
     "s1.records_linked.by_text": {
       "value": 0.0009,
       "n": 196,
-      "denominator": 219558
+      "denominator": 219517
     },
     "split.test.groups": {
       "value": 140,
@@ -180,12 +185,12 @@
       "denominator": null
     },
     "split.train_pool.groups": {
-      "value": 167286,
+      "value": 167257,
       "n": null,
       "denominator": null
     },
     "split.train_pool.records": {
-      "value": 219120,
+      "value": 219079,
       "n": null,
       "denominator": null
     },
@@ -380,49 +385,49 @@
       "denominator": null
     },
     "decisions10.train_pool.ml_ds_data": {
-      "value": 0.101,
-      "n": 22140,
-      "denominator": 219120
+      "value": 0.1011,
+      "n": 22138,
+      "denominator": 219079
     },
     "decisions10.train_pool_groups.ml_ds_data": {
       "value": 0.0971,
-      "n": 16241,
-      "denominator": 167286
+      "n": 16239,
+      "denominator": 167257
     },
     "role_proxy.train_pool.ml_ds_data": {
-      "value": 0.101,
-      "n": 22140,
-      "denominator": 219120
+      "value": 0.1011,
+      "n": 22138,
+      "denominator": 219079
     },
     "role_proxy.train_pool.dev": {
-      "value": 0.495,
-      "n": 108454,
-      "denominator": 219120
+      "value": 0.4949,
+      "n": 108430,
+      "denominator": 219079
     },
     "role_proxy.train_pool.analyst_other": {
-      "value": 0.0602,
-      "n": 13201,
-      "denominator": 219120
+      "value": 0.0603,
+      "n": 13200,
+      "denominator": 219079
     },
     "role_proxy.train_pool.qa_devops_sys": {
       "value": 0.1503,
-      "n": 32925,
-      "denominator": 219120
+      "n": 32918,
+      "denominator": 219079
     },
     "role_proxy.train_pool.other_it": {
       "value": 0.0758,
-      "n": 16614,
-      "denominator": 219120
+      "n": 16610,
+      "denominator": 219079
     },
     "role_proxy.train_pool.non_it_noise": {
       "value": 0.1177,
-      "n": 25786,
-      "denominator": 219120
+      "n": 25783,
+      "denominator": 219079
     },
     "train_pool.linked_to_s1_train_pool": {
       "value": 0.0036,
       "n": 790,
-      "denominator": 219120
+      "denominator": 219079
     },
     "baseline_check.dev.schema_valid": {
       "value": 1.0,
@@ -495,6 +500,7 @@
       "multi_vacancy": 14,
       "digest": 0,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 1035
     },
     "alljvmjobs": {
@@ -504,6 +510,7 @@
       "multi_vacancy": 154,
       "digest": 7,
       "link_stub": 57,
+      "channel_lang": 0,
       "records": 2062
     },
     "analytics_jobs": {
@@ -513,6 +520,7 @@
       "multi_vacancy": 24,
       "digest": 10,
       "link_stub": 18,
+      "channel_lang": 0,
       "records": 756
     },
     "backend_frontend_jobs": {
@@ -522,6 +530,7 @@
       "multi_vacancy": 3,
       "digest": 44,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 671
     },
     "data_engineer_jobs": {
@@ -531,6 +540,7 @@
       "multi_vacancy": 21,
       "digest": 3,
       "link_stub": 25,
+      "channel_lang": 0,
       "records": 440
     },
     "data_hr": {
@@ -540,6 +550,7 @@
       "multi_vacancy": 31,
       "digest": 12,
       "link_stub": 1,
+      "channel_lang": 0,
       "records": 1034
     },
     "data_secrets_career": {
@@ -549,6 +560,7 @@
       "multi_vacancy": 0,
       "digest": 168,
       "link_stub": 14,
+      "channel_lang": 0,
       "records": 1049
     },
     "datajob": {
@@ -558,6 +570,7 @@
       "multi_vacancy": 151,
       "digest": 0,
       "link_stub": 344,
+      "channel_lang": 0,
       "records": 1457
     },
     "datajobschannel": {
@@ -567,6 +580,7 @@
       "multi_vacancy": 79,
       "digest": 18,
       "link_stub": 7,
+      "channel_lang": 0,
       "records": 3000
     },
     "datasciencejobs": {
@@ -576,6 +590,7 @@
       "multi_vacancy": 61,
       "digest": 7,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 1747
     },
     "datascjobs": {
@@ -585,6 +600,7 @@
       "multi_vacancy": 5,
       "digest": 0,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 269
     },
     "dataviz_jobs": {
@@ -594,6 +610,7 @@
       "multi_vacancy": 69,
       "digest": 19,
       "link_stub": 258,
+      "channel_lang": 0,
       "records": 605
     },
     "de_rabota": {
@@ -603,6 +620,7 @@
       "multi_vacancy": 10,
       "digest": 0,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 890
     },
     "devjobs": {
@@ -612,6 +630,7 @@
       "multi_vacancy": 185,
       "digest": 130,
       "link_stub": 12,
+      "channel_lang": 0,
       "records": 8007
     },
     "devs_it": {
@@ -621,6 +640,7 @@
       "multi_vacancy": 118,
       "digest": 135,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 3768
     },
     "dotnetrujobsfeed": {
@@ -630,6 +650,7 @@
       "multi_vacancy": 77,
       "digest": 20,
       "link_stub": 1,
+      "channel_lang": 0,
       "records": 4311
     },
     "dsml_jobs": {
@@ -639,6 +660,7 @@
       "multi_vacancy": 2,
       "digest": 1,
       "link_stub": 14,
+      "channel_lang": 0,
       "records": 435
     },
     "forallmobile": {
@@ -648,6 +670,7 @@
       "multi_vacancy": 228,
       "digest": 9,
       "link_stub": 41,
+      "channel_lang": 0,
       "records": 1876
     },
     "forallqa": {
@@ -657,6 +680,7 @@
       "multi_vacancy": 193,
       "digest": 7,
       "link_stub": 61,
+      "channel_lang": 0,
       "records": 2886
     },
     "foranalysts": {
@@ -666,6 +690,7 @@
       "multi_vacancy": 692,
       "digest": 33,
       "link_stub": 166,
+      "channel_lang": 0,
       "records": 5210
     },
     "fordevops": {
@@ -675,6 +700,7 @@
       "multi_vacancy": 157,
       "digest": 13,
       "link_stub": 81,
+      "channel_lang": 0,
       "records": 2582
     },
     "forfrontend": {
@@ -684,6 +710,7 @@
       "multi_vacancy": 245,
       "digest": 10,
       "link_stub": 34,
+      "channel_lang": 0,
       "records": 3178
     },
     "forpython": {
@@ -693,6 +720,7 @@
       "multi_vacancy": 176,
       "digest": 11,
       "link_stub": 37,
+      "channel_lang": 0,
       "records": 2506
     },
     "gamedevjob": {
@@ -702,6 +730,7 @@
       "multi_vacancy": 80,
       "digest": 45,
       "link_stub": 2,
+      "channel_lang": 0,
       "records": 2624
     },
     "geekjobs": {
@@ -711,6 +740,7 @@
       "multi_vacancy": 520,
       "digest": 49,
       "link_stub": 12,
+      "channel_lang": 0,
       "records": 3749
     },
     "getitrussia": {
@@ -720,6 +750,7 @@
       "multi_vacancy": 53,
       "digest": 42,
       "link_stub": 11,
+      "channel_lang": 0,
       "records": 3258
     },
     "golangjobsit": {
@@ -729,6 +760,7 @@
       "multi_vacancy": 10,
       "digest": 5,
       "link_stub": 19,
+      "channel_lang": 0,
       "records": 613
     },
     "habr_career": {
@@ -738,6 +770,7 @@
       "multi_vacancy": 3760,
       "digest": 2131,
       "link_stub": 14464,
+      "channel_lang": 0,
       "records": 1332
     },
     "infosec_work": {
@@ -747,6 +780,7 @@
       "multi_vacancy": 149,
       "digest": 6,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 3530
     },
     "it_interns": {
@@ -756,6 +790,7 @@
       "multi_vacancy": 159,
       "digest": 293,
       "link_stub": 5,
+      "channel_lang": 0,
       "records": 578
     },
     "it_vakansii_jobs": {
@@ -765,6 +800,7 @@
       "multi_vacancy": 143,
       "digest": 531,
       "link_stub": 1,
+      "channel_lang": 0,
       "records": 1131
     },
     "javascript_jobs_feed": {
@@ -774,6 +810,7 @@
       "multi_vacancy": 181,
       "digest": 289,
       "link_stub": 2264,
+      "channel_lang": 0,
       "records": 18841
     },
     "jc_it": {
@@ -783,6 +820,7 @@
       "multi_vacancy": 0,
       "digest": 3,
       "link_stub": 2881,
+      "channel_lang": 0,
       "records": 2177
     },
     "job_javadevs": {
@@ -792,6 +830,7 @@
       "multi_vacancy": 72,
       "digest": 151,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 4573
     },
     "job_python": {
@@ -801,6 +840,7 @@
       "multi_vacancy": 116,
       "digest": 134,
       "link_stub": 3,
+      "channel_lang": 0,
       "records": 5663
     },
     "job_react": {
@@ -810,6 +850,7 @@
       "multi_vacancy": 53,
       "digest": 160,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 3892
     },
     "jobforjunior": {
@@ -819,6 +860,7 @@
       "multi_vacancy": 225,
       "digest": 41,
       "link_stub": 16,
+      "channel_lang": 0,
       "records": 5773
     },
     "jobforqa": {
@@ -828,6 +870,7 @@
       "multi_vacancy": 39,
       "digest": 29,
       "link_stub": 79,
+      "channel_lang": 0,
       "records": 695
     },
     "jobofferinside": {
@@ -837,6 +880,7 @@
       "multi_vacancy": 26,
       "digest": 22,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 2107
     },
     "jun_qa": {
@@ -846,6 +890,7 @@
       "multi_vacancy": 298,
       "digest": 81,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 481
     },
     "juniors_rabota_jobs": {
@@ -855,6 +900,7 @@
       "multi_vacancy": 6,
       "digest": 0,
       "link_stub": 1,
+      "channel_lang": 0,
       "records": 2130
     },
     "llm_jobs": {
@@ -864,6 +910,7 @@
       "multi_vacancy": 2,
       "digest": 0,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 31
     },
     "myitjob": {
@@ -873,6 +920,7 @@
       "multi_vacancy": 48,
       "digest": 14,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 2690
     },
     "nlp_jobs": {
@@ -882,6 +930,7 @@
       "multi_vacancy": 4,
       "digest": 1,
       "link_stub": 1,
+      "channel_lang": 0,
       "records": 85
     },
     "offersanalysis": {
@@ -891,6 +940,7 @@
       "multi_vacancy": 0,
       "digest": 44,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 272
     },
     "product_jobs": {
@@ -900,6 +950,7 @@
       "multi_vacancy": 55,
       "digest": 33,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 1831
     },
     "progjob": {
@@ -909,6 +960,7 @@
       "multi_vacancy": 235,
       "digest": 37,
       "link_stub": 10,
+      "channel_lang": 0,
       "records": 61646
     },
     "pydevjob": {
@@ -918,6 +970,7 @@
       "multi_vacancy": 97,
       "digest": 1,
       "link_stub": 327,
+      "channel_lang": 0,
       "records": 1547
     },
     "pythonpythonjobs": {
@@ -927,6 +980,7 @@
       "multi_vacancy": 148,
       "digest": 170,
       "link_stub": 1,
+      "channel_lang": 0,
       "records": 1323
     },
     "qa_testirovshchik_jobs_vakansii": {
@@ -936,6 +990,7 @@
       "multi_vacancy": 86,
       "digest": 0,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 1305
     },
     "qajoboffer": {
@@ -945,6 +1000,7 @@
       "multi_vacancy": 4,
       "digest": 32,
       "link_stub": 198,
+      "channel_lang": 0,
       "records": 948
     },
     "rabota_golang": {
@@ -954,6 +1010,7 @@
       "multi_vacancy": 5,
       "digest": 1,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 1010
     },
     "remote_job_it_geeklink": {
@@ -963,6 +1020,7 @@
       "multi_vacancy": 133,
       "digest": 130,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 5073
     },
     "remotegeekjob": {
@@ -972,6 +1030,7 @@
       "multi_vacancy": 2319,
       "digest": 175,
       "link_stub": 216,
+      "channel_lang": 0,
       "records": 25574
     },
     "remoteit": {
@@ -981,7 +1040,8 @@
       "multi_vacancy": 21,
       "digest": 5,
       "link_stub": 5247,
-      "records": 314
+      "channel_lang": 41,
+      "records": 273
     },
     "remotejun": {
       "posts": 4932,
@@ -990,6 +1050,7 @@
       "multi_vacancy": 1790,
       "digest": 632,
       "link_stub": 127,
+      "channel_lang": 0,
       "records": 1899
     },
     "runello_rus_frontend": {
@@ -999,6 +1060,7 @@
       "multi_vacancy": 0,
       "digest": 0,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 24
     },
     "v1c_rabota": {
@@ -1008,6 +1070,7 @@
       "multi_vacancy": 15,
       "digest": 5,
       "link_stub": 0,
+      "channel_lang": 0,
       "records": 1065
     }
   },
@@ -1064,7 +1127,7 @@
     "jun_qa": 480,
     "data_engineer_jobs": 438,
     "dsml_jobs": 432,
-    "remoteit": 313,
+    "remoteit": 272,
     "offersanalysis": 270,
     "datascjobs": 267,
     "nlp_jobs": 84,
@@ -1160,8 +1223,8 @@
   "hashes": {
     "test_ids_sha256": "d7490248d5d625b95f5b3435bfa3e5d87774a8f60afee880204584127439cf63",
     "dev_ids_sha256": "113248e3e08064a4e1f186879332e83674f434c69c8b3f10e2ede30aac7013c1",
-    "train_pool_ids_sha256": "30e4d51bf0787edf16bab877ae092973f0b78539bea7051f8df9d9a6afd3fe60",
-    "split_content_sha256": "4f3e33cb168f6448ed99adc2c7e163db5fa6cdbd5ce0a75e7e2e48db80f65080"
+    "train_pool_ids_sha256": "5b0a4cf5bb9d592ac556f5ff33a9836564829413e0279926fe122dc2fba872b0",
+    "split_content_sha256": "c9e10b0c1400648b1dffd05d73d62a919b656a027cbdb6ad979ffaeaba19d259"
   },
   "frozen": {
     "test_ids_sha256": "d7490248d5d625b95f5b3435bfa3e5d87774a8f60afee880204584127439cf63",
