@@ -106,7 +106,7 @@ flowchart LR
 |---|---|---|
 | Коллекторы и чистка ПДн | [`src/radar/collect`](src/radar/collect), [`src/radar/pii`](src/radar/pii) | [`results/collect/`](results/collect/) |
 | Redpanda и загрузка в ClickHouse | [`src/radar/stream`](src/radar/stream), [`infra/compose`](infra/compose) | сверка Parquet с ClickHouse, [`results/stream/replay.json`](results/stream/replay.json) |
-| dbt: staging, история (SCD2, время жизни, перевыкладки), витрины | [`dbt/`](dbt/) | моделей <!--n:dbt/build.json:metrics.models_ok.n:d-->21<!--/n-->, тестов прошло <!--n:dbt/build.json:metrics.tests_passed.n:d-->186<!--/n--> из <!--n:dbt/build.json:metrics.tests_passed.denominator:d-->186<!--/n--> |
+| dbt: staging, история (SCD2, время жизни, перевыкладки), витрины | [`dbt/`](dbt/) | моделей <!--n:dbt/build.json:metrics.models_ok.n:d-->22<!--/n-->, тестов прошло <!--n:dbt/build.json:metrics.tests_passed.n:d-->199<!--/n--> из <!--n:dbt/build.json:metrics.tests_passed.denominator:d-->199<!--/n--> |
 | Airflow: сбор, загрузка, dbt | [`airflow/dags`](airflow/dags) | прогон за прошлые даты, успешных запусков <!--n:airflow/backfill_7d.json:metrics.runs_success.n:d-->15<!--/n--> из <!--n:airflow/backfill_7d.json:metrics.runs_success.denominator:d-->15<!--/n--> |
 | Извлечение: корпус, правила, учителя, silver, обучение, оценка | [`src/radar/extract`](src/radar/extract), [`src/radar/train`](src/radar/train), [`src/radar/eval`](src/radar/eval) | [`results/extract/`](results/extract/), [`results/sft/`](results/sft/) |
 | Дедуп, время жизни, детектор подозрительных | [`src/radar/dedup`](src/radar/dedup), [`src/radar/models`](src/radar/models) | [`results/dedup/`](results/dedup/), [`results/models/`](results/models/) |
