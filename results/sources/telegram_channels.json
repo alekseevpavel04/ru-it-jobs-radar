@@ -1,8 +1,8 @@
 {
   "source_script": "scripts/telegram_survey/analyze.py",
   "command": "python scripts/telegram_survey/analyze.py",
-  "commit": "f707872-dirty",
-  "created_at": "2026-10-08T14:28:52+00:00",
+  "commit": "faa6ddc-dirty",
+  "created_at": "2026-10-12T17:47:41+00:00",
   "metrics": {
     "rules_v2_tuning_agreement": {
       "value": 0.947,
@@ -167,7 +167,7 @@
   },
   "method": {
     "sample": "last 50 posts per channel, service messages excluded",
-    "vacancy_rule": "src/radar/collect/telegram_rules.py, manual labels in check_labels.csv",
+    "vacancy_rule": "src/radar/collect/telegram_rules.py, check labels in check_labels.csv",
     "depth": "first and last post, 8 windows of ?before= as strata (deep.py)",
     "near_duplicate": "word 5-shingles, Jaccard >= 0.5, vacancy posts across samples",
     "selection": "alive <= 30 days, vacancy share >= 0.3, russian posts >= 0.3 (cyrillic letters >= 0.4), IT topic, no channel repeated on shared dates",
@@ -278,12 +278,12 @@
         "denominator": 43
       },
       "near_duplicate_top": {
-        "value": "ai_rabota 4, datajob 2, datascjobs 1"
+        "value": "ai_rabota 4, datajob 2, analytics_jobs 1"
       },
       "days_since_last_post": {
         "value": 0
       },
-      "vacancy_share_manual": {
+      "vacancy_share_agent": {
         "value": 0.86,
         "n": 43,
         "denominator": 50
@@ -404,12 +404,12 @@
         "denominator": 43
       },
       "near_duplicate_top": {
-        "value": "foranalysts 4, fordevops 3, alljvmjobs 3"
+        "value": "foranalysts 4, alljvmjobs 3, fordevops 3"
       },
       "days_since_last_post": {
         "value": 0
       },
-      "vacancy_share_manual": {
+      "vacancy_share_agent": {
         "value": 0.88,
         "n": 44,
         "denominator": 50
@@ -893,7 +893,7 @@
         "denominator": 33
       },
       "near_duplicate_top": {
-        "value": "data_hr 5, datascjobs 1, golangjobsit 1"
+        "value": "data_hr 5, data_engineer_jobs 1, datascjobs 1"
       },
       "days_since_last_post": {
         "value": 1
@@ -1149,7 +1149,7 @@
         "value": "enabled",
         "topic": "remote",
         "network": "",
-        "reason": "remote IT vacancies, mostly English"
+        "reason": "remote IT vacancies, mostly English; only Russian posts count"
       }
     },
     "jobforjunior": {
@@ -1255,7 +1255,7 @@
         "denominator": 43
       },
       "near_duplicate_top": {
-        "value": "forallqa 6, forpython 3, forfrontend 2"
+        "value": "forallqa 6, forpython 3, alljvmjobs 2"
       },
       "days_since_last_post": {
         "value": 0
@@ -1377,7 +1377,7 @@
         "denominator": 48
       },
       "near_duplicate_top": {
-        "value": "ai_rabota 3, devs_it 3, job_react 2"
+        "value": "ai_rabota 3, devs_it 3, job_javadevs 2"
       },
       "days_since_last_post": {
         "value": 0
@@ -1748,7 +1748,7 @@
       "days_since_last_post": {
         "value": 0
       },
-      "vacancy_share_manual": {
+      "vacancy_share_agent": {
         "value": 0.88,
         "n": 44,
         "denominator": 50
@@ -1875,7 +1875,7 @@
       "days_since_last_post": {
         "value": 0
       },
-      "vacancy_share_manual": {
+      "vacancy_share_agent": {
         "value": 0.9,
         "n": 45,
         "denominator": 50
@@ -2726,7 +2726,7 @@
         "denominator": 38
       },
       "near_duplicate_top": {
-        "value": "job_python 1, job_react 1, devs_it 1"
+        "value": "datajobschannel 1, devs_it 1, it_vakansii_jobs 1"
       },
       "days_since_last_post": {
         "value": 0
@@ -3089,12 +3089,12 @@
         "denominator": 26
       },
       "near_duplicate_top": {
-        "value": "datasciencejobs 1, ai_rabota 1"
+        "value": "ai_rabota 1, datasciencejobs 1"
       },
       "days_since_last_post": {
         "value": 3
       },
-      "vacancy_share_manual": {
+      "vacancy_share_agent": {
         "value": 0.48,
         "n": 24,
         "denominator": 50
@@ -3215,7 +3215,7 @@
         "denominator": 37
       },
       "near_duplicate_top": {
-        "value": "llm_jobs 5, datajobschannel 3, data_engineer_jobs 3"
+        "value": "llm_jobs 5, data_engineer_jobs 3, datajobschannel 3"
       },
       "days_since_last_post": {
         "value": 0
@@ -3341,7 +3341,7 @@
       "days_since_last_post": {
         "value": 0
       },
-      "vacancy_share_manual": {
+      "vacancy_share_agent": {
         "value": 0.48,
         "n": 24,
         "denominator": 50
@@ -3583,7 +3583,7 @@
         "denominator": 37
       },
       "near_duplicate_top": {
-        "value": "datajobschannel 3, golangjobsit 2, data_hr 2"
+        "value": "datajobschannel 3, data_hr 2, golangjobsit 2"
       },
       "days_since_last_post": {
         "value": 1
@@ -4188,7 +4188,7 @@
         "denominator": 48
       },
       "near_duplicate_top": {
-        "value": "job_python 3, datasciencejobs 3, devs_it 1"
+        "value": "datasciencejobs 3, job_python 3, datajob 1"
       },
       "days_since_last_post": {
         "value": 0
@@ -4798,7 +4798,7 @@
       "days_since_last_post": {
         "value": 0
       },
-      "vacancy_share_manual": {
+      "vacancy_share_agent": {
         "value": 0.72,
         "n": 36,
         "denominator": 50
@@ -5161,7 +5161,7 @@
         "denominator": 50
       },
       "near_duplicate_top": {
-        "value": "job_python 2, devs_it 2, backend_frontend_jobs 1"
+        "value": "devs_it 2, job_python 2, backend_frontend_jobs 1"
       },
       "days_since_last_post": {
         "value": 0
@@ -5403,7 +5403,7 @@
         "denominator": 44
       },
       "near_duplicate_top": {
-        "value": "alljvmjobs 8, forallqa 4, fordevops 4"
+        "value": "alljvmjobs 8, forallmobile 4, forallqa 4"
       },
       "days_since_last_post": {
         "value": 0
@@ -5524,7 +5524,7 @@
         "denominator": 48
       },
       "near_duplicate_top": {
-        "value": "devs_it 7, job_python 2, job_react 1"
+        "value": "devs_it 7, job_python 2, backend_frontend_jobs 1"
       },
       "days_since_last_post": {
         "value": 0
@@ -5645,7 +5645,7 @@
         "denominator": 42
       },
       "near_duplicate_top": {
-        "value": "datascjobs 2, rabota_golang 1, data_hr 1"
+        "value": "datascjobs 2, data_hr 1, datajobschannel 1"
       },
       "days_since_last_post": {
         "value": 2
@@ -5771,7 +5771,7 @@
       "days_since_last_post": {
         "value": 6
       },
-      "vacancy_share_manual": {
+      "vacancy_share_agent": {
         "value": 0.5,
         "n": 25,
         "denominator": 50
@@ -5892,7 +5892,7 @@
         "denominator": 44
       },
       "near_duplicate_top": {
-        "value": "alljvmjobs 10, forfrontend 4, foranalysts 4"
+        "value": "alljvmjobs 10, foranalysts 4, forfrontend 4"
       },
       "days_since_last_post": {
         "value": 0
@@ -7578,7 +7578,7 @@
       "days_since_last_post": {
         "value": 0
       },
-      "vacancy_share_manual": {
+      "vacancy_share_agent": {
         "value": 0.0,
         "n": 0,
         "denominator": 50
@@ -7587,7 +7587,7 @@
         "value": "disabled",
         "topic": "analytics",
         "network": "",
-        "reason": "education channel for analysts, no vacancies in the manual check"
+        "reason": "education channel for analysts, no vacancies in the check labels"
       }
     },
     "devops_jobs_feed": {
@@ -7698,7 +7698,7 @@
       "days_since_last_post": {
         "value": 0
       },
-      "vacancy_share_manual": {
+      "vacancy_share_agent": {
         "value": 0.16,
         "n": 8,
         "denominator": 50
@@ -7818,7 +7818,7 @@
       "days_since_last_post": {
         "value": 0
       },
-      "vacancy_share_manual": {
+      "vacancy_share_agent": {
         "value": 0.0,
         "n": 0,
         "denominator": 50
@@ -7827,7 +7827,7 @@
         "value": "disabled",
         "topic": "1c",
         "network": "",
-        "reason": "1C programming content and ads, no vacancies in the manual check"
+        "reason": "1C programming content and ads, no vacancies in the check labels"
       }
     }
   },

@@ -464,7 +464,7 @@ name = "getanalysts"
 topic = "analytics"
 network = ""
 enabled = false
-reason = "education channel for analysts, no vacancies in the manual check"
+reason = "education channel for analysts, no vacancies in the check labels"
 
 [[channel]]
 name = "devops_jobs_feed"
@@ -478,5 +478,5 @@ name = "odin1c_rus"
 topic = "1c"
 network = ""
 enabled = false
-reason = "1C programming content and ads, no vacancies in the manual check"
+reason = "1C programming content and ads, no vacancies in the check labels"
 

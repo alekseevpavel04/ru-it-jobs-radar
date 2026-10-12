@@ -181,7 +181,10 @@ def channel_metrics(d: dict, posts: list[dict], verdicts: list[Verdict], dup_wit
         "forwarded_from_top": {"value": ", ".join(f"{k} {v}" for k, v in fwd.most_common(3))},
         "habr_link_share": share(sum(v.habr_link for v in vac), len(vac)),
         "near_duplicate_share": share(sum(bool(k) for k in dup_keys), len(vac)),
-        "near_duplicate_top": {"value": ", ".join(f"{k} {v}" for k, v in dups.most_common(3))},
+        # ties broken by channel name, so a rerun on the same cache gives the same list
+        "near_duplicate_top": {
+            "value": ", ".join(f"{k} {v}" for k, v in sorted(dups.items(), key=lambda kv: (-kv[1], kv[0]))[:3])
+        },
         "days_since_last_post": {"value": (fetched - datetime.fromisoformat(d["last_date"])).days},
     }
 
@@ -221,7 +224,7 @@ def main() -> None:
     by_id = {ch: {p["id"]: v for p, v in zip(samples[ch], verdicts[ch], strict=True)} for ch in samples}
     for label_set in labels.values():
         for ch, posts in label_set.items():
-            channels[ch]["vacancy_share_manual"] = share(sum(t for t, _ in posts.values()), len(posts))
+            channels[ch]["vacancy_share_agent"] = share(sum(t for t, _ in posts.values()), len(posts))
     enabled = [ch for ch, c in config.items() if c["enabled"]]
     runs = {
         "v2_tuning": labels["tuning"],
@@ -236,13 +239,13 @@ def main() -> None:
 
     for ch in enabled:
         m = channels[ch]
-        manual = m.get("vacancy_share_manual", m["vacancy_share"])
+        agent = m.get("vacancy_share_agent", m["vacancy_share"])
         fails = [
             reason
             for reason, bad in (
                 ("stale", m["days_since_last_post"]["value"] > ALIVE_DAYS),
                 ("few vacancies", m["vacancy_share"]["value"] < MIN_VACANCY_SHARE),
-                ("few vacancies by check labels", manual["value"] < MIN_VACANCY_SHARE),
+                ("few vacancies by check labels", agent["value"] < MIN_VACANCY_SHARE),
                 ("not russian", m["russian_post_share"]["value"] < MIN_RU_POSTS),
             )
             if bad
@@ -309,7 +312,7 @@ def main() -> None:
         source_script="scripts/telegram_survey/analyze.py",
         method={
             "sample": f"last {SAMPLE} posts per channel, service messages excluded",
-            "vacancy_rule": "src/radar/collect/telegram_rules.py, manual labels in check_labels.csv",
+            "vacancy_rule": "src/radar/collect/telegram_rules.py, check labels in check_labels.csv",
             "depth": "first and last post, 8 windows of ?before= as strata (deep.py)",
             "near_duplicate": f"word {SHINGLE}-shingles, Jaccard >= {DUP_JACCARD}, vacancy posts across samples",
             "selection": f"alive <= {ALIVE_DAYS} days, vacancy share >= {MIN_VACANCY_SHARE}, russian posts >= "
