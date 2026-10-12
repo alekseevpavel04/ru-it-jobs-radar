@@ -76,10 +76,19 @@ class MLflowTracker:
         run_id = id_file.read_text(encoding="utf-8").strip() if resume and id_file.exists() else None
         run = mlflow.start_run(run_id=run_id, run_name=None if run_id else run_name)
         id_file.write_text(run.info.run_id + "\n", encoding="utf-8")
+        # MLflow refuses to change a logged param, and a resumed run logs some anew (the commit)
+        self.logged: dict[str, str] = dict(run.data.params) if run_id else {}
         log.info("MLflow run %s at %s", run.info.run_id, uri)
 
     def log_params(self, params: Mapping[str, Any]) -> None:
-        self.mlflow.log_params({k: str(v)[:6000] for k, v in params.items()})
+        values = {k: str(v)[:6000] for k, v in params.items()}
+        fresh = {k: v for k, v in values.items() if k not in self.logged}
+        changed = {f"resume.{k}": v for k, v in values.items() if k in self.logged and self.logged[k] != v}
+        if fresh:
+            self.mlflow.log_params(fresh)
+            self.logged |= fresh
+        if changed:
+            self.mlflow.set_tags(changed)
 
     def log_metrics(self, metrics: Mapping[str, float], step: int) -> None:
         self.mlflow.log_metrics(numeric(metrics), step=step)
