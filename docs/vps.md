@@ -9,7 +9,7 @@
 | код | `~/ru-it-jobs-radar` (копия `src/`, `scripts/daily_collect.sh`, `pyproject.toml`, `uv.lock`) | репозиторий |
 | окружение | `~/.local/bin/uv`, Python 3.11 от uv, `.venv` проекта | `.venv` |
 | настройки | `.env` с `RADAR_USER_AGENT`, `RADAR_DATA_DIR` и `SUPERJOB_APP_KEY` (с 2026-10-12), права 600 | `.env` |
-| данные | `data/raw/{trudvsem,habr,trudvsem_snapshot,superjob}` | `data/raw/...` |
+| данные | `data/raw/{trudvsem,habr,trudvsem_snapshot,superjob,telegram}` | `data/raw/...` |
 | логи | `logs/daily/<дата>.log`, `logs/daily/cron-<месяц>.log` | `logs/daily/` |
 
 `REDPANDA_BROKERS` на сервере не задан: каждый коллектор пишет одно предупреждение и завершается с кодом 0. Снимки trudvsem сервер берёт начиная с версии 2026-10-09 (`RADAR_SNAPSHOT_SINCE` в строке cron), более старые догружает локальный бэкфилл.

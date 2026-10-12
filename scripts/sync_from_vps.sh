@@ -6,7 +6,7 @@
 # machines collected on their own is left alone and reported, with its run log lines.
 # `_meta/*.jsonl` and `_rejects/*.jsonl` get the server's lines that are not yet local, other
 # `_meta` files are copied when absent.
-#   scripts/sync_from_vps.sh                 trudvsem habr trudvsem_snapshot superjob
+#   scripts/sync_from_vps.sh                 trudvsem habr trudvsem_snapshot superjob telegram
 #   scripts/sync_from_vps.sh habr            only these
 # RADAR_VPS       ssh destination, an alias from ~/.ssh/config (default radar-vps)
 # RADAR_VPS_DIR   project directory on the server, relative to its home (default ru-it-jobs-radar)
@@ -18,7 +18,7 @@ vps=${RADAR_VPS:-radar-vps}
 remote_dir=${RADAR_VPS_DIR:-ru-it-jobs-radar}
 raw=${RADAR_DATA_DIR:-data}/raw
 sources=("$@")
-[ ${#sources[@]} -gt 0 ] || sources=(trudvsem habr trudvsem_snapshot superjob)
+[ ${#sources[@]} -gt 0 ] || sources=(trudvsem habr trudvsem_snapshot superjob telegram)
 mkdir -p "$raw"
 
 # One line per file: S marker md5 / P part size / M metadata file, all relative to data/raw.

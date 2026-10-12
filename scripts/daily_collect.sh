@@ -20,7 +20,7 @@ else
 fi
 
 sources=("$@")
-[ ${#sources[@]} -gt 0 ] || sources=(trudvsem habr trudvsem_snapshot superjob)
+[ ${#sources[@]} -gt 0 ] || sources=(trudvsem habr trudvsem_snapshot superjob telegram)
 
 mkdir -p logs/daily
 day_log="logs/daily/$(date '+%Y-%m-%d').log"
