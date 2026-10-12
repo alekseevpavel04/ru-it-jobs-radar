@@ -1,0 +1,148 @@
+version: 2
+
+# Fields extracted from vacancy texts. The models are on only when var extraction_model
+# (dbt_project.yml) names the model_id the marts read; empty until the corpus run has loaded
+# extract.vacancy_fields, so a build before that does not fail on a table that is not there yet.
+sources:
+  - name: extract
+    database: extract
+    schema: extract
+    description: >
+      Written by `python -m radar.extract.corpus_run` (DDL infra/clickhouse/002_extract_vacancy_fields.sql),
+      not by dbt. One row per vacancy version (source, source_id, content_hash) and extractor
+      (model_id), schema version 1.
+    tables:
+      - name: vacancy_fields
+        description: ReplacingMergeTree keyed by (source, source_id, content_hash, model_id); read with FINAL.
+
+models:
+  - name: stg_vacancy_fields
+    description: >
+      Extracted fields of every extractor, one row per vacancy version and model_id, after FINAL.
+      An invalid answer (it broke the schema or was cut at the token limit) has valid false and
+      every field empty.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source, source_id, content_hash, model_id]
+    columns:
+      - name: source
+        description: trudvsem, trudvsem_snapshot, habr, superjob or telegram.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [trudvsem, trudvsem_snapshot, habr, superjob, telegram]
+      - name: source_id
+        description: Vacancy id at the source; for Telegram <channel>/<post id>.
+        data_tests: [not_null]
+      - name: content_hash
+        description: The raw version the fields were extracted from.
+        data_tests: [not_null]
+      - name: model_id
+        description: Extractor, weights and prompt as one name; a new prompt is a new model_id.
+        data_tests: [not_null]
+      - name: prompt_sha256
+        description: sha256 of the system prompt; NULL for an extractor without one (regex baseline).
+      - name: schema_version
+        description: Version of the extraction schema.
+      - name: dt
+        description: Raw partition of the extracted version.
+      - name: input_sha256
+        description: sha256 of the extractor input (radar.extract.inputs.input_for_record).
+      - name: input_truncated
+        description: The input was cut to the model's context; NULL when the extractor does not report it.
+      - name: valid
+        description: The answer passed the schema.
+      - name: finish_reason
+        description: Why generation stopped (stop, length), as the extractor reports it.
+      - name: reused
+        description: The answer of an identical input extracted earlier by the same model_id, not a request of its own.
+      - name: role
+        description: Role (schema enumeration) or NULL.
+      - name: grade
+        description: intern, junior, middle, senior, lead or NULL.
+      - name: skills
+        description: Skills as the extractor wrote them; [] when none found.
+      - name: salary_from
+        description: Lower bound of the stated salary.
+      - name: salary_to
+        description: Upper bound of the stated salary.
+      - name: salary_currency
+        description: RUB, USD, EUR, KZT, BYN, UZS, CNY, GBP or NULL.
+      - name: salary_gross_net
+        description: gross, net or NULL.
+      - name: salary_period
+        description: month, year, day, hour or NULL.
+      - name: work_format
+        description: office, hybrid, remote or NULL.
+      - name: cities
+        description: Cities named in the vacancy; [] when none.
+      - name: experience_min
+        description: Required years of experience, lower bound.
+      - name: experience_max
+        description: Required years of experience, upper bound.
+      - name: employment_type
+        description: labor_contract, gph, self_employed, internship or NULL.
+      - name: lang
+        description: ru, en, other; NULL only on an invalid answer.
+      - name: run_id
+        description: Runner invocation that wrote the row (data/corpus_run/<model_id>/meta.json).
+      - name: created_at
+        description: When the runner received the answer, or copied it for a reused row (UTC).
+
+  - name: int_vacancy_fields
+    description: >
+      One row per vacancy record (source, source_id) at the version the corpus run extracts, with
+      the fields of var extraction_model. Portal records are the latest staged version of an IT
+      candidate (trudvsem API and snapshots, Habr, SuperJob), Telegram records the latest stored
+      version of a post stg_telegram counts as a single vacancy. is_extracted is false for a version
+      the run has not reached yet and for the Telegram posts the corpus rules leave out (digests,
+      link stubs). Joins int_vacancy_records and stg_telegram on (source, source_id).
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source, source_id]
+    columns:
+      - name: source
+        description: trudvsem, trudvsem_snapshot, habr, superjob or telegram.
+        data_tests: [not_null]
+      - name: source_id
+        description: Vacancy id at the source; for Telegram <channel>/<post id>.
+        data_tests: [not_null]
+      - name: dt
+        description: Raw partition of the version (for portal records the latest staged day).
+      - name: content_hash
+        description: The version the fields belong to.
+      - name: is_extracted
+        description: extract.vacancy_fields holds this version for var extraction_model.
+      - name: valid
+        description: The answer passed the schema; false also when not extracted.
+      - name: role
+        description: Role (schema enumeration) or NULL.
+      - name: grade
+        description: intern, junior, middle, senior, lead or NULL.
+      - name: skills
+        description: Skills as the extractor wrote them.
+      - name: salary_from
+        description: Lower bound of the stated salary.
+      - name: salary_to
+        description: Upper bound of the stated salary.
+      - name: salary_currency
+        description: Currency code or NULL.
+      - name: salary_gross_net
+        description: gross, net or NULL.
+      - name: salary_period
+        description: month, year, day, hour or NULL.
+      - name: work_format
+        description: office, hybrid, remote or NULL.
+      - name: cities
+        description: Cities named in the vacancy.
+      - name: experience_min
+        description: Required years of experience, lower bound.
+      - name: experience_max
+        description: Required years of experience, upper bound.
+      - name: employment_type
+        description: labor_contract, gph, self_employed, internship or NULL.
+      - name: lang
+        description: ru, en, other or NULL.

@@ -1,0 +1,284 @@
+{
+  "source_script": "src/radar/extract/corpus_run.py",
+  "command": "python -m radar.extract.corpus_run plan --rate hf_generate=1.0 --rate llama_server_0p5=0.5 --rate llama_server_0p25=0.25",
+  "commit": "9c238fa-dirty",
+  "created_at": "2026-10-12T17:25:40+00:00",
+  "metrics": {
+    "trudvsem_versions": {
+      "value": 8933,
+      "n": null,
+      "denominator": null
+    },
+    "trudvsem_done": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "trudvsem_to_extract": {
+      "value": 8933,
+      "n": null,
+      "denominator": null
+    },
+    "trudvsem_distinct_inputs_to_extract": {
+      "value": 8768,
+      "n": null,
+      "denominator": null
+    },
+    "trudvsem_input_chars_mean": {
+      "value": 1136.9,
+      "n": null,
+      "denominator": null
+    },
+    "trudvsem_snapshot_versions": {
+      "value": 25670,
+      "n": null,
+      "denominator": null
+    },
+    "trudvsem_snapshot_done": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "trudvsem_snapshot_to_extract": {
+      "value": 25670,
+      "n": null,
+      "denominator": null
+    },
+    "trudvsem_snapshot_distinct_inputs_to_extract": {
+      "value": 22379,
+      "n": null,
+      "denominator": null
+    },
+    "trudvsem_snapshot_input_chars_mean": {
+      "value": 1200.3,
+      "n": null,
+      "denominator": null
+    },
+    "habr_versions": {
+      "value": 1098,
+      "n": null,
+      "denominator": null
+    },
+    "habr_done": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "habr_to_extract": {
+      "value": 1098,
+      "n": null,
+      "denominator": null
+    },
+    "habr_distinct_inputs_to_extract": {
+      "value": 1088,
+      "n": null,
+      "denominator": null
+    },
+    "habr_input_chars_mean": {
+      "value": 2385.5,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_versions": {
+      "value": 219517,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_done": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_to_extract": {
+      "value": 219517,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_distinct_inputs_to_extract": {
+      "value": 192596,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_input_chars_mean": {
+      "value": 739.9,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_dropped_channel_lang": {
+      "value": 41,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_dropped_digest": {
+      "value": 5949,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_dropped_link_stub": {
+      "value": 27056,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_to_extract_published_2016": {
+      "value": 10,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_to_extract_published_2017": {
+      "value": 1714,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_to_extract_published_2018": {
+      "value": 5359,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_to_extract_published_2019": {
+      "value": 10896,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_to_extract_published_2020": {
+      "value": 13714,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_to_extract_published_2021": {
+      "value": 21044,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_to_extract_published_2022": {
+      "value": 33505,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_to_extract_published_2023": {
+      "value": 38572,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_to_extract_published_2024": {
+      "value": 38667,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_to_extract_published_2025": {
+      "value": 34141,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_to_extract_published_2026": {
+      "value": 21895,
+      "n": null,
+      "denominator": null
+    },
+    "total_to_extract": {
+      "value": 255218,
+      "n": null,
+      "denominator": null
+    },
+    "total_requests": {
+      "value": 224536,
+      "n": null,
+      "denominator": null
+    },
+    "requests_saved_by_identical_inputs": {
+      "value": 0.1202,
+      "n": 30682,
+      "denominator": 255218
+    },
+    "forecast_hf_generate_hours": {
+      "value": 62.4,
+      "n": null,
+      "denominator": null,
+      "requests": 224536,
+      "assumed_s_per_request": 1.0
+    },
+    "forecast_hf_generate_trudvsem_hours": {
+      "value": 2.4,
+      "n": null,
+      "denominator": null
+    },
+    "forecast_hf_generate_trudvsem_snapshot_hours": {
+      "value": 6.2,
+      "n": null,
+      "denominator": null
+    },
+    "forecast_hf_generate_habr_hours": {
+      "value": 0.3,
+      "n": null,
+      "denominator": null
+    },
+    "forecast_hf_generate_telegram_hours": {
+      "value": 53.5,
+      "n": null,
+      "denominator": null
+    },
+    "forecast_llama_server_0p5_hours": {
+      "value": 31.2,
+      "n": null,
+      "denominator": null,
+      "requests": 224536,
+      "assumed_s_per_request": 0.5
+    },
+    "forecast_llama_server_0p5_trudvsem_hours": {
+      "value": 1.2,
+      "n": null,
+      "denominator": null
+    },
+    "forecast_llama_server_0p5_trudvsem_snapshot_hours": {
+      "value": 3.1,
+      "n": null,
+      "denominator": null
+    },
+    "forecast_llama_server_0p5_habr_hours": {
+      "value": 0.2,
+      "n": null,
+      "denominator": null
+    },
+    "forecast_llama_server_0p5_telegram_hours": {
+      "value": 26.7,
+      "n": null,
+      "denominator": null
+    },
+    "forecast_llama_server_0p25_hours": {
+      "value": 15.6,
+      "n": null,
+      "denominator": null,
+      "requests": 224536,
+      "assumed_s_per_request": 0.25
+    },
+    "forecast_llama_server_0p25_trudvsem_hours": {
+      "value": 0.6,
+      "n": null,
+      "denominator": null
+    },
+    "forecast_llama_server_0p25_trudvsem_snapshot_hours": {
+      "value": 1.6,
+      "n": null,
+      "denominator": null
+    },
+    "forecast_llama_server_0p25_habr_hours": {
+      "value": 0.1,
+      "n": null,
+      "denominator": null
+    },
+    "forecast_llama_server_0p25_telegram_hours": {
+      "value": 13.4,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "model_id": null,
+  "sources": [
+    "trudvsem",
+    "trudvsem_snapshot",
+    "habr",
+    "superjob",
+    "telegram"
+  ],
+  "telegram_since": null,
+  "method": "versions as `run` enumerates them (latest staged IT version per portal record, latest Telegram post version kept by the corpus rules); done: rows of model_id already in the table; a request is a distinct input across all sources (per-source forecasts count distinct inputs within the source, so they add up to more than the total); forecast hours = requests x the seconds per request given with --rate, an assumption of the command line, not a measurement of this script"
+}

@@ -32,17 +32,22 @@ def _int(value: Any) -> int:
         return 0
 
 
-def rub_range(low: int, high: int) -> str | None:
-    """trudvsem salaryMin/salaryMax as the portal shows them; zero means not filled in."""
+def amount_range(low: int, high: int, unit: str) -> str | None:
+    """A salary range as a job page shows it; zero means not filled in."""
     if low <= 0 and high <= 0:
         return None
     if high <= 0 or high < low:
-        return f"от {_thousands(low)} руб."
+        return f"от {_thousands(low)} {unit}"
     if low <= 0:
-        return f"до {_thousands(high)} руб."
+        return f"до {_thousands(high)} {unit}"
     if low == high:
-        return f"{_thousands(low)} руб."
-    return f"от {_thousands(low)} до {_thousands(high)} руб."
+        return f"{_thousands(low)} {unit}"
+    return f"от {_thousands(low)} до {_thousands(high)} {unit}"
+
+
+def rub_range(low: int, high: int) -> str | None:
+    """trudvsem salaryMin/salaryMax as the portal shows them."""
+    return amount_range(low, high, "руб.")
 
 
 def _trudvsem_page(salary_min: Any, salary_max: Any, address: Any, experience: Any, busy: Any, schedule: Any) -> Facts:
@@ -144,6 +149,43 @@ def facts_habr(payload: Mapping[str, Any]) -> Facts:
     return facts
 
 
+SUPERJOB_CURRENCY = {"rub": "руб.", "usd": "$", "eur": "€", "kzt": "тенге", "uzs": "сум", "byn": "бел. руб."}
+# SuperJob's "no matter" answers: the employer chose not to state the fact.
+SUPERJOB_UNSTATED = "Не имеет значения"
+
+
+def _superjob_title(payload: Mapping[str, Any], key: str) -> str | None:
+    title = (payload.get(key) or {}).get("title")
+    return str(title) if title and title != SUPERJOB_UNSTATED else None
+
+
+def facts_superjob(payload: Mapping[str, Any]) -> Facts:
+    """A SuperJob vacancy page: salary as published (zero is not filled in, "по договоренности" is no
+    amount), the town, required experience, type of work and place of work when it is stated. The
+    address is left out: the collector cuts it to the town level, which the town already says."""
+    facts: Facts = []
+    currency = str(payload.get("currency") or "rub")
+    salary = amount_range(
+        _int(payload.get("payment_from") or 0),
+        _int(payload.get("payment_to") or 0),
+        SUPERJOB_CURRENCY.get(currency, currency.upper()),
+    )
+    if salary:
+        facts.append(("Зарплата", salary))
+    town = (payload.get("town") or {}).get("title")
+    if town:
+        facts.append(("Местоположение", str(town)))
+    for key, label in (
+        ("experience", "Требуемый опыт"),
+        ("type_of_work", "Тип занятости"),
+        ("place_of_work", "Формат работы"),
+    ):
+        value = _superjob_title(payload, key)
+        if value:
+            facts.append((label, value))
+    return facts
+
+
 def _no_facts(payload: Mapping[str, Any]) -> Facts:
     return []
 
@@ -152,6 +194,7 @@ FACTS: dict[str, Callable[[Mapping[str, Any]], Facts]] = {
     "trudvsem": facts_trudvsem,
     "trudvsem_snapshot": facts_trudvsem_snapshot,
     "habr": facts_habr,
+    "superjob": facts_superjob,
     "telegram": _no_facts,
 }
 

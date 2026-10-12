@@ -5,6 +5,7 @@ import pytest
 from radar.extract.inputs import (
     build_input,
     facts_habr,
+    facts_superjob,
     facts_trudvsem,
     facts_trudvsem_snapshot,
     input_for_record,
@@ -212,5 +213,47 @@ def test_trudvsem_api_record() -> None:
 
 
 def test_source_without_adapter_is_an_error() -> None:
-    with pytest.raises(KeyError, match="superjob"):
-        input_for_record({"source": "superjob", "title": "x", "text": "y", "payload": {}})
+    with pytest.raises(KeyError, match="hh"):
+        input_for_record({"source": "hh", "title": "x", "text": "y", "payload": {}})
+
+
+SUPERJOB_PAYLOAD = {
+    "profession": "Python-разработчик",
+    "payment_from": 150000,
+    "payment_to": 220000,
+    "currency": "rub",
+    "agreement": False,
+    "town": {"id": 4, "title": "Москва"},
+    "experience": {"id": 2, "title": "От 1 года"},
+    "type_of_work": {"id": 6, "title": "Полный рабочий день"},
+    "place_of_work": {"id": 2, "title": "Удалённая работа (на дому)"},
+}
+
+
+def test_superjob_facts() -> None:
+    assert facts_superjob(SUPERJOB_PAYLOAD) == [
+        ("Зарплата", "от 150 000 до 220 000 руб."),
+        ("Местоположение", "Москва"),
+        ("Требуемый опыт", "От 1 года"),
+        ("Тип занятости", "Полный рабочий день"),
+        ("Формат работы", "Удалённая работа (на дому)"),
+    ]
+
+
+def test_superjob_unstated_facts_are_not_rendered() -> None:
+    payload = {
+        "payment_from": 0,
+        "payment_to": 0,
+        "currency": "rub",
+        "agreement": True,
+        "town": {"title": "Казань"},
+        "experience": {"id": 0, "title": "Не имеет значения"},
+        "place_of_work": {"id": 1, "title": "Не имеет значения"},
+    }
+    assert facts_superjob(payload) == [("Местоположение", "Казань")]
+
+
+def test_superjob_salary_parses_back() -> None:
+    salary = dict(facts_superjob({"payment_from": 60000, "payment_to": 0, "currency": "rub"}))["Зарплата"]
+    s = parse_salary(salary)
+    assert s is not None and (s.from_, s.to, s.currency) == (60000, None, "RUB")

@@ -13,9 +13,17 @@ flags:
   send_anonymous_usage_stats: false
   use_colors: false
 
+vars:
+  # model_id of extract.vacancy_fields that int_vacancy_fields reads (radar.extract.corpus_run).
+  # Empty until the corpus run has loaded the table: the models of models/extract stay off.
+  extraction_model: ""
+
 models:
   radar:
     staging:
+      +schema: staging
+      +materialized: view
+    extract:
       +schema: staging
       +materialized: view
 
