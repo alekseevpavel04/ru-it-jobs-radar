@@ -38,6 +38,16 @@ vLLM reserves its gpu_memory_utilization share up front, so its peak says little
 Writes data/predictions/<split>/<system>.jsonl ({"id", "output", "valid", "finish", "truncated_input",
 "prompt_tokens", "completion_tokens", "seconds", "template_match"}) and <system>.meta.json. Test splits
 are not served.
+
+Corpus extraction. `backend` is the factory radar.extract.corpus_run loads: each input is
+rendered by radar.train.quantize.prompt_rows with the merged model's tokenizer and dataset_meta.json,
+the function that rendered the dev prompts every served variant was scored on, and goes to the same
+LlamaServer or Vllm client. It needs transformers, so the runner runs in the WSL training venv:
+    PYTHONPATH=src HF_HUB_OFFLINE=1 ~/venvs/train/bin/python -m radar.extract.corpus_run run \
+        --backend radar.extract.student_server:backend --backend-opt base_url=http://127.0.0.1:8095 --workers 8
+Options: name (models/merged/<name>), server (vllm or llama), quant (awq, or the GGUF type llama-server
+serves), schema (on or off), base_url. model_id is <name>-<quant>, with -noschema when decoding is
+free: the AWQ checkpoint without the schema broke one tg_dev answer of 54 (E14), so it runs with it.
 """
 
 import argparse
@@ -52,15 +62,18 @@ import time
 from collections.abc import Callable, Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any, Protocol
 
 import httpx
 
 from radar.config import ROOT, data_dir
 from radar.eval.cli import SYSTEM_NAME
+from radar.extract.corpus_run import Answer
 from radar.extract.schema import json_schema, try_parse
 from radar.results import git_commit
+from radar.train.predict import dataset_meta
+from radar.train.quantize import prompt_rows
 
 log = logging.getLogger("radar.extract.student_server")
 
@@ -308,6 +321,82 @@ def summary(rows: Sequence[Mapping[str, Any]], prompts: Sequence[Mapping[str, An
             "max": round(max(seconds), 3),
         },
     }
+
+
+# --- corpus extraction --------------------------------------------------------------------------
+
+
+class CorpusBackend:
+    """The served student as a radar.extract.corpus_run backend, one input per request."""
+
+    def __init__(self, server: Backend, tokenizer: Any, meta: Mapping[str, Any], model_id: str) -> None:
+        self.server, self.tokenizer, self.meta = server, tokenizer, meta
+        self.model_id = model_id
+        self.prompt_sha256: str | None = meta["prompt_sha256"]
+        # A fast tokenizer is not safe to call from the runner's worker threads at once; rendering
+        # takes milliseconds against seconds of generation.
+        self._render = threading.Lock()
+
+    def answer(self, text: str) -> Answer:
+        with self._render:
+            (row,) = prompt_rows([{"id": "", "input": text}], self.tokenizer, self.meta)
+        cut = row["truncated_input"]
+        try:
+            out = self.server.predict(row)
+        except httpx.HTTPStatusError as e:
+            return Answer(None, error=f"HTTP {e.response.status_code}: {e.response.text[:300]}", input_truncated=cut)
+        except httpx.TimeoutException as e:
+            return Answer(None, error=f"timeout: {e!r}", input_truncated=cut)
+        # Another token count or template means the server reads another prompt than the scored one.
+        if out["prompt_tokens"] != row["prompt_tokens"] or out["template_match"] is False:
+            raise RuntimeError(
+                f"the server read {out['prompt_tokens']} prompt tokens, the tokenizer rendered "
+                f"{row['prompt_tokens']}; template match {out['template_match']}"
+            )
+        return Answer(out["output"], out["finish"], input_truncated=cut, seconds=out["seconds"])
+
+    def extract(self, inputs: Sequence[str]) -> list[Answer]:
+        return [self.answer(text) for text in inputs]
+
+
+def served_weights(model_path: str) -> tuple[str, str]:
+    """(directory, name) of a served checkpoint directory, (directory, stem) of a GGUF file."""
+    path = PurePosixPath(model_path.replace("\\", "/"))
+    return path.parent.name, path.stem if path.suffix == ".gguf" else path.name
+
+
+def connect(
+    name: str, tokenizer: Any, client: httpx.Client, server: str, quant: str, schema: bool, max_new_tokens: int
+) -> CorpusBackend:
+    """A corpus backend after the server confirmed it serves the weights `name` and `quant` stand for."""
+    if server not in BACKENDS:
+        raise SystemExit(f"server {server!r}: one of {', '.join(sorted(BACKENDS))}")
+    client_backend = BACKENDS[server](client, max_new_tokens, json_schema() if schema else None)
+    info = client_backend.info()
+    # models/awq/<name> in vLLM, models/gguf/<name>/<name>-<type>.gguf in llama-server
+    expected = (quant, name) if server == "vllm" else (name, f"{name}-{quant}")
+    if served_weights(info["model_path"]) != expected:
+        raise SystemExit(f"the server serves {info['model_path']}, not {name} {quant}")
+    model_id = f"{name}-{quant.lower()}" + ("" if schema else "-noschema")
+    return CorpusBackend(client_backend, tokenizer, dataset_meta(MERGED / name), model_id)
+
+
+def backend(
+    name: str = "qwen3_1p7b_r16_clean",
+    server: str = "vllm",
+    quant: str = "awq",
+    schema: str = "on",
+    base_url: str | None = None,
+    max_new_tokens: str = str(MAX_NEW_TOKENS),
+) -> CorpusBackend:
+    """Factory for `python -m radar.extract.corpus_run run --backend radar.extract.student_server:backend`."""
+    from transformers import AutoTokenizer  # type: ignore[import-not-found]
+
+    if schema not in ("on", "off"):
+        raise SystemExit(f"schema={schema!r}: on or off")
+    tokenizer = AutoTokenizer.from_pretrained(str(MERGED / name))
+    client = httpx.Client(base_url=base_url or DEFAULT_URL[server], timeout=httpx.Timeout(600.0, connect=10.0))
+    return connect(name, tokenizer, client, server, quant, schema == "on", int(max_new_tokens))
 
 
 def main(argv: list[str] | None = None) -> int:

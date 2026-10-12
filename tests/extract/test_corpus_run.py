@@ -22,10 +22,12 @@ from radar.extract.corpus_run import (
     RegexBackend,
     Version,
     cmd_run,
+    drop_cut_line,
     load_backend,
     open_meta,
     plan_metrics,
     sha256_text,
+    stop_on_signal,
     table_row,
     versions,
 )
@@ -414,3 +416,40 @@ def test_clickhouse_store_queries() -> None:
 def test_version_key_and_id() -> None:
     v = Version("telegram", "c/1", "h", "2026-10-08", None, "text")
     assert v.key == ("telegram", "c/1", "h") and v.id == "telegram:c/1"
+
+
+class StoppedBackend(FakeBackend):
+    """Stopped from outside (SIGTERM) while asking for its third input."""
+
+    def extract(self, inputs: Sequence[str]) -> list[Answer]:
+        if len(self.seen) == 2:
+            stop_on_signal(15, None)
+        return super().extract(inputs)
+
+
+def test_a_stopped_run_keeps_its_rows_and_resumes(store: FakeStore, tmp_path: Path) -> None:
+    with pytest.raises(SystemExit) as stopped:
+        cmd_run(args(tmp_path), store, StoppedBackend(), seed=7)
+    assert stopped.value.code == 143
+    meta = json.loads((tmp_path / "state" / "meta.json").read_text(encoding="utf-8"))
+    assert meta["runs"][-1]["finished"] is False and meta["runs"][-1]["requests"] == 2
+    assert len(store.table) == meta["runs"][-1]["rows"]
+
+    rows_file = tmp_path / "state" / "rows.jsonl"
+    with rows_file.open("a", encoding="utf-8") as f:
+        f.write('{"source": "ha')  # a harder stop in the middle of a write
+    backend = FakeBackend()
+    cmd_run(args(tmp_path), store, backend, seed=7)
+    assert len(backend.seen) == 2
+    assert len(store.table) == 5
+    assert all(json.loads(line) for line in rows_file.read_text(encoding="utf-8").splitlines())
+
+
+def test_cut_line_is_dropped_only_when_there_is_one(tmp_path: Path) -> None:
+    path = tmp_path / "rows.jsonl"
+    path.write_bytes(b'{"a": 1}\n{"b": 2}\n')
+    assert drop_cut_line(path) is False
+    path.write_bytes(b'{"a": 1}\n{"b"')
+    assert drop_cut_line(path) is True
+    assert path.read_bytes() == b'{"a": 1}\n'
+    assert drop_cut_line(tmp_path / "missing.jsonl") is False

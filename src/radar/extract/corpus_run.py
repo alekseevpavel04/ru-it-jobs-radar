@@ -26,12 +26,16 @@ State: data/corpus_run/<model_id>/meta.json (identity and every run, written bef
 request) and rows.jsonl (append-only, one line per version, flushed per line). The table gets rows in
 chunks; a run that died between the file and the table is caught up by the next run (or `sync`)
 before it enumerates anything. A failed request is written to the file with its error, never to the
-table, and is tried again on the next run.
+table, and is tried again on the next run. A run stops safely at any moment: SIGTERM (`kill <pid>`)
+lets the requests in flight finish and inserts what is waiting, and a partial last line left by a
+harder stop is cut off before the next run reads the file. The same command resumes.
 
     python -m radar.extract.corpus_run plan --rate hf_generate=1.0 --rate llama_server=0.25
     python -m radar.extract.corpus_run run --backend regex --limit 20 --dry-run
-    python -m radar.extract.corpus_run run --backend radar.extract.student_server:backend --workers 4 --limit 50
-    python -m radar.extract.corpus_run run --backend radar.extract.student_server:backend --workers 4
+    python -m radar.extract.corpus_run run --backend radar.extract.student_server:backend \
+        --backend-opt base_url=http://127.0.0.1:8095 --workers 8 --limit 200      (WSL training venv)
+    python -m radar.extract.corpus_run run --backend radar.extract.student_server:backend \
+        --backend-opt base_url=http://127.0.0.1:8095 --workers 8
     python -m radar.extract.corpus_run sync --model-id <model_id>
     python -m radar.extract.corpus_run report --model-id <model_id>
 """
@@ -43,6 +47,7 @@ import json
 import logging
 import os
 import re
+import signal
 import sys
 import time
 from collections import Counter, defaultdict
@@ -354,6 +359,22 @@ def state_dir(model_id: str, dry_run: bool = False) -> Path:
     return root / "dry_run" / model_id if dry_run else root / model_id
 
 
+def drop_cut_line(path: Path) -> bool:
+    """Cut the file back to its last newline. A process killed in the middle of a write leaves a
+    partial last line, and the next run would append to it; that version is simply extracted again."""
+    if not path.exists() or path.stat().st_size == 0:
+        return False
+    with path.open("rb+") as f:
+        f.seek(-1, os.SEEK_END)
+        if f.read(1) == b"\n":
+            return False
+        f.seek(0)
+        data = f.read()
+        f.truncate(data.rfind(b"\n") + 1)
+    log.warning("%s: dropped a partial last line", path)
+    return True
+
+
 def read_rows(path: Path) -> list[dict[str, Any]]:
     if not path.exists():
         return []
@@ -562,6 +583,7 @@ def cmd_run(args: argparse.Namespace, store: Store, backend: Backend, seed: int)
     directory = args.state_dir or state_dir(backend.model_id, args.dry_run)
     meta_file, rows_file = directory / "meta.json", directory / "rows.jsonl"
     meta = open_meta(meta_file, backend, args.backend)
+    drop_cut_line(rows_file)
     file_rows = read_rows(rows_file)
 
     loaded = 0
@@ -899,6 +921,13 @@ def _sources(value: str) -> list[str]:
     return names
 
 
+def stop_on_signal(signum: int, frame: object) -> None:
+    """`kill <pid>` unwinds the run like an error: requests in flight finish and are written, the
+    rows waiting for the table are inserted, and meta.json records the run as unfinished."""
+    log.warning("signal %d: stopping after the requests in flight", signum)
+    raise SystemExit(128 + signum)
+
+
 def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
     logging.getLogger("httpx").setLevel(logging.WARNING)
@@ -945,6 +974,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "report":
             return cmd_report(args, store)
         backend = load_backend(args.backend, parse_options(args.backend_opt))
+        signal.signal(signal.SIGTERM, stop_on_signal)
         return cmd_run(args, store, backend, load_config().seed)
 
 

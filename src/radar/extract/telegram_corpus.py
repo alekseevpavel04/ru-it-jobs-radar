@@ -66,7 +66,6 @@ from pydantic import ValidationError
 
 from radar.collect.telegram_rules import ROLE_RX, title_line
 from radar.config import ROOT, data_dir
-from radar.dedup.minhash import lsh_pairs, signatures
 from radar.dedup.normalize import jaccard, normalize_text, shingles
 from radar.extract.baseline import Input, output_for, predict_lang, split_input
 from radar.extract.corpus import (
@@ -417,6 +416,10 @@ def group_records(records: Sequence[TgRecord], cfg: Config, frozen: Sequence[Gro
     (Jaccard >= the group threshold) or a shared job-board key. Members of frozen test and dev groups
     stay in them; other records of their component form `<group>_linked`. The rest is named after
     its smallest record id."""
+    # MinHash is imported where it is used: the corpus rules (drop_reason) also serve the extraction
+    # runner in the WSL training venv, which has no datasketch.
+    from radar.dedup.minhash import lsh_pairs
+
     uf = UnionFind()
     edges: Counter[str] = Counter()
     for r in records:
@@ -515,6 +518,8 @@ def neighbours(
 ) -> dict[str, list[str]]:
     """Query id -> index ids with an exact Jaccard >= threshold; MinHash LSH only proposes pairs."""
     from datasketch import MinHashLSH  # type: ignore[import-untyped]
+
+    from radar.dedup.minhash import signatures
 
     sigs = signatures([d for _, d in index] + [d for _, d in queries], num_perm, seed)
     lsh = MinHashLSH(threshold=threshold, num_perm=num_perm)
