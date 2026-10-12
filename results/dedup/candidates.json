@@ -1,11 +1,11 @@
 {
   "source_script": "src/radar/dedup/__main__.py",
   "command": "python -m radar.dedup candidates",
-  "commit": "daaabf9-dirty",
-  "created_at": "2026-10-11T15:17:41+00:00",
+  "commit": "6f0813a-dirty",
+  "created_at": "2026-10-12T19:30:28+00:00",
   "metrics": {
     "units.trudvsem": {
-      "value": 8932,
+      "value": 8933,
       "n": null,
       "denominator": null
     },
@@ -19,15 +19,20 @@
       "n": null,
       "denominator": null
     },
+    "units.superjob": {
+      "value": 764,
+      "n": null,
+      "denominator": null
+    },
     "units.total": {
-      "value": 35700,
+      "value": 36465,
       "n": null,
       "denominator": null
     },
     "units_with_text.trudvsem": {
       "value": 1.0,
-      "n": 8932,
-      "denominator": 8932
+      "n": 8933,
+      "denominator": 8933
     },
     "units_with_text.trudvsem_snapshot": {
       "value": 0.9999,
@@ -35,37 +40,42 @@
       "denominator": 25670
     },
     "units_with_text.habr": {
-      "value": 0.9818,
-      "n": 1078,
+      "value": 0.9836,
+      "n": 1080,
       "denominator": 1098
     },
+    "units_with_text.superjob": {
+      "value": 1.0,
+      "n": 764,
+      "denominator": 764
+    },
     "id_links.snapshot_api": {
-      "value": 8932,
+      "value": 8933,
       "n": null,
       "denominator": null
     },
     "id_links.share_of_api_units": {
       "value": 1.0,
-      "n": 8932,
-      "denominator": 8932
+      "n": 8933,
+      "denominator": 8933
     },
     "id_links.same_title": {
       "value": 1.0,
-      "n": 8932,
-      "denominator": 8932
+      "n": 8933,
+      "denominator": 8933
     },
     "groups.total": {
-      "value": 26768,
+      "value": 27532,
       "n": null,
       "denominator": null
     },
     "groups.trudvsem": {
-      "value": 593,
+      "value": 292,
       "n": null,
       "denominator": null
     },
     "groups.trudvsem_snapshot": {
-      "value": 25077,
+      "value": 25378,
       "n": null,
       "denominator": null
     },
@@ -74,53 +84,58 @@
       "n": null,
       "denominator": null
     },
+    "groups.superjob": {
+      "value": 764,
+      "n": null,
+      "denominator": null
+    },
     "pairs.minhash": {
-      "value": 4413429,
+      "value": 4417876,
       "n": null,
       "denominator": null
     },
     "pairs.embedding": {
-      "value": 179926,
+      "value": 185748,
       "n": null,
       "denominator": null
     },
     "pairs.both": {
-      "value": 50049,
+      "value": 52188,
       "n": null,
       "denominator": null
     },
     "pairs.union": {
-      "value": 4543306,
+      "value": 4551436,
       "n": null,
       "denominator": null
     },
     "pairs.cross_source": {
-      "value": 0.0341,
-      "n": 154999,
-      "denominator": 4543306
+      "value": 0.0213,
+      "n": 96840,
+      "denominator": 4551436
     },
     "pairs.band.high_minhash": {
-      "value": 1676158,
+      "value": 1679609,
       "n": null,
       "denominator": null
     },
     "pairs.band.high_embed": {
-      "value": 855980,
+      "value": 856090,
       "n": null,
       "denominator": null
     },
     "pairs.band.border_minhash": {
-      "value": 1729810,
+      "value": 1730725,
       "n": null,
       "denominator": null
     },
     "pairs.band.border_embed": {
-      "value": 201682,
+      "value": 203954,
       "n": null,
       "denominator": null
     },
     "pairs.band.below_border": {
-      "value": 79676,
+      "value": 81058,
       "n": null,
       "denominator": null
     },
@@ -210,24 +225,24 @@
       "denominator": null
     },
     "seconds.embedding": {
-      "value": 72.8,
+      "value": 85.2,
       "n": null,
       "denominator": null
     },
     "seconds.minhash": {
-      "value": 19.6,
+      "value": 30.1,
       "n": null,
       "denominator": null
     },
     "seconds.knn": {
-      "value": 6.7,
+      "value": 8.8,
       "n": null,
       "denominator": null
     },
     "embedding.truncated_texts": {
-      "value": 0.0929,
-      "n": 3318,
-      "denominator": 35700
+      "value": 0.0993,
+      "n": 3620,
+      "denominator": 36465
     },
     "embedding.peak_vram_mib": {
       "value": 1139,
@@ -275,17 +290,21 @@
   "staging_days": {
     "trudvsem": [
       "2026-10-08",
-      "2026-10-10"
+      "2026-10-11"
     ],
     "trudvsem_snapshot": [
       "2026-06-30",
-      "2026-10-10"
+      "2026-10-11"
     ],
     "habr": [
       "2026-10-08",
-      "2026-10-10"
+      "2026-10-11"
+    ],
+    "superjob": [
+      "2026-10-12",
+      "2026-10-12"
     ]
   },
-  "units_rule": "Units of deduplication: the latest staged record of each (source, source_id) that may be IT.\n\ntrudvsem rows, API and snapshot alike, count where is_it_candidate holds, the same filter that\nfeeds the extraction corpus; Habr is an IT site and is taken whole. The API slice is not all IT:\non 2026-10-08 its non-IT rows were mass postings (loaders, bank clerks) whose clusters of hundreds\nof identical texts would swamp the pair counts. Telegram posts are not dedup units here:\nradar.extract.telegram_corpus groups them itself.\n\nThe API and the snapshots are the same portal and share vacancy ids. Records with one id in both\nform one group before any text comparison: the group is represented by its latest record, and the\nother members ride along. Candidate search then runs over groups, so these certain links neither\ninflate the candidate counts nor end up in the labeling sample.\n",
+  "units_rule": "Units of deduplication: the latest staged record of each (source, source_id) that may be IT.\n\ntrudvsem rows, API and snapshot alike, count where is_it_candidate holds, the same filter that\nfeeds the extraction corpus; Habr is an IT site and is taken whole. The API slice is not all IT:\non 2026-10-08 its non-IT rows were mass postings (loaders, bank clerks) whose clusters of hundreds\nof identical texts would swamp the pair counts. SuperJob counts where its own is_it_candidate holds\n(catalogue 33 also holds telecom and engineering); its town is the location and its address, cut to\nthe town level by the raw cleaner, may add the settlement. SuperJob flags the vacancies it passed on\nto trudvsem (stg_superjob.uploaded_to_trudvsem); the flag is not a linking feature, the rule stays\nthe one tuned on the labeled pairs, and how many flagged vacancies the rule links to a trudvsem\nrecord is reported by dbt/report.py as a recall check. Telegram posts are not dedup units here:\nradar.extract.telegram_corpus groups them itself.\n\nThe API and the snapshots are the same portal and share vacancy ids. Records with one id in both\nform one group before any text comparison: the group is represented by its latest record, and the\nother members ride along. Candidate search then runs over groups, so these certain links neither\ninflate the candidate counts nor end up in the labeling sample.\n",
   "blocking": "Candidate pairs of the two methods, their bands, and the stratified sample for labeling.\n\nBlocking: a pair of groups is a candidate when MinHash LSH puts the two texts in a common band\n(word shingles, units with text only) or when one is among the other's top-k e5 neighbours above a\ncosine floor. Nothing else restricts a candidate: sources and employers may differ.\n\nThe labeling sample covers what the candidates can miss as well as what they find. Strata are\ndisjoint and taken in this order, a pair belongs to the first that holds:\n\n  high_minhash      candidate, jaccard >= jaccard_high\n  high_embed        candidate, cosine >= cosine_high\n  border_minhash    candidate, jaccard >= jaccard_border\n  border_embed      candidate, cosine >= cosine_border\n  cross_habr        Habr against trudvsem, same normalized employer name or title\n  cross_trudvsem    trudvsem API against a snapshot-only id, same employer\n  same_employer_low same source, same employer\n\nA pair is drawn through a unit, not uniformly over pairs: a unit uniformly among those with a\npartner in the stratum, then a partner uniformly. One employer posting the same text in 70 regions\nmakes thousands of pairs, and uniform pairs would spend a whole stratum on it. Each drawn pair\ncarries its per-draw probability (1/A)(1/d_a + 1/d_b), A units with a partner, d their partner\ncounts, so stage B can weight estimates back to pairs (Hansen-Hurwitz). A stratum no larger than\nits allocation is taken whole.\n"
 }
