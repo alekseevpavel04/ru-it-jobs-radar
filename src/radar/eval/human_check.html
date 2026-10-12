@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Проверка эталона</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --panel: #fff; --line: #dfe3e8; --text: #1d2329; --muted: #6b7682;
+    --ok: #1f8a4c; --ok-bg: #e3f4ea; --bad: #c0392b; --bad-bg: #fbe6e3; --warn: #b7791f; --warn-bg: #fdf3dc;
+    --accent: #2f6fde; --accent-bg: #eaf1fd; --mark: #fff1a8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { font: 14px/1.45 system-ui, "Segoe UI", Roboto, sans-serif; color: var(--text); background: var(--bg);
+         display: flex; flex-direction: column; }
+  header { display: flex; align-items: center; gap: 14px; padding: 8px 16px; background: var(--panel);
+           border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  header h1 { font-size: 16px; margin: 0 6px 0 0; }
+  .pill { padding: 2px 9px; border-radius: 10px; background: var(--accent-bg); color: var(--accent); font-weight: 600; }
+  .meta { color: var(--muted); font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; }
+  .src { padding: 1px 7px; border-radius: 4px; background: #eef0f3; color: var(--text); font-size: 12px; }
+  header .spacer { flex: 1; }
+  button { font: inherit; cursor: pointer; border: 1px solid var(--line); background: var(--panel); border-radius: 6px;
+           padding: 4px 10px; color: var(--text); }
+  button:hover { border-color: #b9c1ca; }
+  kbd { font: 11px ui-monospace, Consolas, monospace; padding: 0 4px; border: 1px solid var(--line); border-bottom-width: 2px;
+        border-radius: 3px; background: #fafbfc; color: var(--muted); margin-left: 4px; }
+  a { color: var(--accent); }
+  #status { font-size: 12.5px; color: var(--muted); min-width: 150px; text-align: right; }
+  #status.err { color: var(--bad); font-weight: 600; }
+  #strip { display: flex; gap: 3px; padding: 6px 16px; background: var(--panel); border-bottom: 1px solid var(--line);
+           flex-wrap: wrap; }
+  #strip span { width: 18px; height: 18px; border-radius: 3px; background: #e6e9ed; cursor: pointer; font-size: 9.5px;
+                display: flex; align-items: center; justify-content: center; color: #8a949e; }
+  #strip span.partial { background: var(--warn-bg); color: var(--warn); }
+  #strip span.ok { background: #bfe5cd; color: var(--ok); }
+  #strip span.issue { background: #f3c4bd; color: var(--bad); }
+  #strip span.cur { outline: 2px solid var(--accent); outline-offset: 1px; }
+  main { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; padding: 12px 16px;
+         min-height: 0; }
+  .pane { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: auto; min-height: 0; }
+  #text { padding: 14px 18px; white-space: pre-wrap; font-size: 15px; line-height: 1.55; overflow-wrap: anywhere; }
+  #text mark { background: var(--mark); border-radius: 2px; padding: 0 1px; }
+  #form { padding: 8px 12px 16px; }
+  .field { display: grid; grid-template-columns: 150px minmax(0, 1fr) auto; gap: 4px 12px; padding: 8px 8px;
+           border-radius: 6px; border: 1px solid transparent; align-items: start; }
+  .field + .field { margin-top: 2px; }
+  .field.active { border-color: var(--accent); background: var(--accent-bg); }
+  .fname { font-weight: 600; }
+  .fname code { display: block; font-weight: 400; font-size: 11.5px; color: var(--muted); }
+  .fval { min-width: 0; }
+  .null { color: var(--muted); font-style: italic; }
+  .hint { color: var(--muted); margin-left: 6px; }
+  .chip { display: inline-block; padding: 1px 8px; margin: 0 4px 4px 0; border-radius: 10px; background: #eef0f3;
+          border: 1px solid #e1e5ea; }
+  .chip.absent { border-style: dashed; border-color: var(--warn); background: var(--warn-bg); }
+  .kv { display: grid; grid-template-columns: max-content 1fr; gap: 0 10px; }
+  .kv span:nth-child(odd) { color: var(--muted); }
+  .marks { display: flex; gap: 6px; }
+  .marks button.ok.on { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); font-weight: 600; }
+  .marks button.wrong.on { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); font-weight: 600; }
+  .extra { grid-column: 2 / 4; display: none; gap: 6px; }
+  .field.showextra .extra { display: flex; }
+  .extra input { font: inherit; padding: 4px 8px; border: 1px solid var(--line); border-radius: 5px; }
+  .extra input.comment { flex: 1; min-width: 0; }
+  .extra input.case { width: 140px; }
+  #verdict { margin-top: 14px; padding: 12px 8px 0; border-top: 1px solid var(--line); }
+  #verdict h2 { font-size: 14px; margin: 0 0 8px; }
+  #verdict .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  #verdict button.on[data-v="agree"] { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); font-weight: 600; }
+  #verdict button.on[data-v="disagree"] { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); font-weight: 600; }
+  #verdict button.on[data-v="unsure"] { background: var(--warn-bg); border-color: var(--warn); color: var(--warn); font-weight: 600; }
+  #note { width: 100%; margin-top: 8px; font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 5px;
+          min-height: 44px; resize: vertical; }
+  #help { display: none; position: fixed; right: 16px; top: 52px; background: var(--panel); border: 1px solid var(--line);
+          border-radius: 8px; padding: 12px 16px; box-shadow: 0 6px 24px rgba(0,0,0,.12); z-index: 5; }
+  #help.open { display: block; }
+  #help table { border-collapse: collapse; }
+  #help td { padding: 2px 10px 2px 0; }
+  .legend { color: var(--muted); font-size: 12.5px; margin: 6px 8px 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Проверка эталона</h1>
+  <span class="pill" id="progress"></span>
+  <span id="pos"></span>
+  <span class="src" id="source"></span>
+  <span class="meta" id="rid"></span>
+  <span class="spacer"></span>
+  <button id="prev">назад<kbd>&larr;</kbd></button>
+  <button id="next">дальше<kbd>&rarr;</kbd></button>
+  <button id="nextOpen">к непроверенной<kbd>N</kbd></button>
+  <a href="/guide" target="_blank">гайд разметки</a>
+  <button id="helpBtn">клавиши<kbd>?</kbd></button>
+  <span id="status"></span>
+</header>
+<div id="strip"></div>
+<main>
+  <div class="pane"><div id="text"></div></div>
+  <div class="pane">
+    <div id="form"></div>
+    <div class="legend">Пунктирный навык не найден в тексте дословно; в тексте навыки эталона подсвечены.</div>
+    <div id="verdict">
+      <h2>Итог по записи</h2>
+      <div class="row">
+        <button data-v="agree">согласен с эталоном<kbd>Q</kbd></button>
+        <button data-v="disagree">не согласен<kbd>W</kbd></button>
+        <button data-v="unsure">не могу судить<kbd>E</kbd></button>
+      </div>
+      <textarea id="note" placeholder="заметка к записи (необязательно)"></textarea>
+    </div>
+  </div>
+</main>
+<div id="help">
+  <table>
+    <tr><td><kbd>&uarr;</kbd><kbd>&darr;</kbd> или <kbd>K</kbd><kbd>J</kbd></td><td>поле выше или ниже</td></tr>
+    <tr><td><kbd>1</kbd></td><td>поле верно, к следующему</td></tr>
+    <tr><td><kbd>2</kbd></td><td>поле неверно, курсор остаётся: <kbd>C</kbd> комментарий, <kbd>&darr;</kbd> дальше</td></tr>
+    <tr><td><kbd>A</kbd></td><td>все неотмеченные поля верны</td></tr>
+    <tr><td><kbd>C</kbd></td><td>комментарий к полю</td></tr>
+    <tr><td><kbd>Q</kbd> <kbd>W</kbd> <kbd>E</kbd></td><td>итог: согласен, не согласен, не могу судить</td></tr>
+    <tr><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>предыдущая и следующая запись</td></tr>
+    <tr><td><kbd>N</kbd></td><td>следующая непроверенная</td></tr>
+    <tr><td><kbd>Esc</kbd></td><td>выйти из поля ввода</td></tr>
+  </table>
+  <p class="legend">Ответы сохраняются на сервере после каждого клика; страницу можно закрыть и вернуться.</p>
+</div>
+<script>
+"use strict";
+const LABELS = {
+  role: "Роль", grade: "Грейд", skills: "Навыки", salary: "Зарплата", work_format: "Формат работы",
+  cities: "Города", experience_years: "Опыт, лет", employment_type: "Оформление", lang: "Язык",
+};
+const HINTS = {
+  work_format: { office: "офис", hybrid: "гибрид", remote: "удалённо" },
+  employment_type: { labor_contract: "трудовой договор", gph: "ГПХ", self_employed: "самозанятость", internship: "стажировка" },
+  grade: { intern: "стажёр", junior: "младший", middle: "средний", senior: "старший, ведущий", lead: "лид" },
+  lang: { ru: "русский", en: "английский", other: "другой" },
+  gross_net: { gross: "до вычета", net: "на руки" },
+  period: { month: "в месяц", year: "в год", day: "в день", hour: "в час" },
+};
+let ITEMS = [], FIELDS = [], ANSWERS = {};
+let idx = 0, fieldIdx = 0, saveChain = Promise.resolve(), timer = null;
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const wordRe = (alts, flags) => new RegExp("(?<![\\p{L}\\p{N}])(?:" + alts.join("|") + ")(?![\\p{L}\\p{N}])", flags);
+
+function answer(item) {
+  if (!ANSWERS[item.id]) {
+    ANSWERS[item.id] = { id: item.id, fields_sha: item.fields_sha, marks: {}, comments: {}, cases: {}, verdict: null, note: "" };
+  }
+  return ANSWERS[item.id];
+}
+function complete(a) { return !!a && a.verdict !== null && FIELDS.every((f) => f in a.marks); }
+function stateOf(item) {
+  const a = ANSWERS[item.id];
+  if (!a || (Object.keys(a.marks).length === 0 && a.verdict === null)) return "";
+  if (!complete(a)) return "partial";
+  return a.verdict === "agree" && FIELDS.every((f) => a.marks[f] === "ok") ? "ok" : "issue";
+}
+
+function nullSpan() { return '<span class="null">null, не указано</span>'; }
+function enumVal(field, v) {
+  if (v === null) return nullSpan();
+  const hint = HINTS[field] && HINTS[field][v];
+  return "<b>" + esc(v) + "</b>" + (hint ? '<span class="hint">' + esc(hint) + "</span>" : "");
+}
+function num(v) { return v === null ? '<span class="null">null</span>' : "<b>" + esc(Number(v).toLocaleString("ru-RU")) + "</b>"; }
+function render(field, v, text) {
+  if (field === "skills" || field === "cities") {
+    if (!v.length) return '<span class="null">[] пусто</span>';
+    return v.map((s) => {
+      const absent = field === "skills" && !wordRe([reEsc(s)], "iu").test(text);
+      return '<span class="chip' + (absent ? ' absent" title="в тексте не найдено дословно' : "") + '">' + esc(s) + "</span>";
+    }).join("");
+  }
+  if (field === "salary") {
+    if (v === null) return nullSpan();
+    return '<div class="kv"><span>сумма</span><span>от ' + num(v.from) + " до " + num(v.to) + "</span>" +
+      "<span>валюта</span><span>" + enumVal("currency", v.currency) + "</span>" +
+      "<span>налог</span><span>" + enumVal("gross_net", v.gross_net) + "</span>" +
+      "<span>период</span><span>" + enumVal("period", v.period) + "</span></div>";
+  }
+  if (field === "experience_years") {
+    if (v === null) return nullSpan();
+    return "от " + num(v.min) + " до " + num(v.max) + " лет";
+  }
+  return enumVal(field, v);
+}
+function highlighted(text, skills) {
+  const alts = [...skills].sort((a, b) => b.length - a.length).map(reEsc);
+  if (!alts.length) return esc(text);
+  let out = "", last = 0;
+  for (const m of text.matchAll(wordRe(alts, "giu"))) {
+    out += esc(text.slice(last, m.index)) + "<mark>" + esc(m[0]) + "</mark>";
+    last = m.index + m[0].length;
+  }
+  return out + esc(text.slice(last));
+}
+
+function draw(scrollTop) {
+  const item = ITEMS[idx], a = answer(item);
+  const done = ITEMS.filter((it) => complete(ANSWERS[it.id])).length;
+  $("#progress").textContent = "проверено " + done + " из " + ITEMS.length;
+  $("#pos").textContent = "запись " + (idx + 1) + " из " + ITEMS.length;
+  $("#source").textContent = item.source;
+  $("#rid").textContent = item.id;
+  $("#strip").innerHTML = ITEMS.map((it, i) =>
+    '<span data-i="' + i + '" class="' + stateOf(it) + (i === idx ? " cur" : "") + '" title="' + esc(it.id) + '">' + (i + 1) + "</span>").join("");
+  if (scrollTop) {
+    $("#text").innerHTML = highlighted(item.input, item.fields.skills);
+    $("#text").parentElement.scrollTop = 0;
+  }
+  $("#form").innerHTML = FIELDS.map((f, i) => {
+    const mark = a.marks[f], comment = a.comments[f] || "", cases = (a.cases[f] || []).join(", ");
+    const show = mark === "wrong" || comment || cases;
+    return '<div class="field' + (i === fieldIdx ? " active" : "") + (show ? " showextra" : "") + '" data-f="' + f + '" data-i="' + i + '">' +
+      '<div class="fname">' + LABELS[f] + "<code>" + f + "</code></div>" +
+      '<div class="fval">' + render(f, item.fields[f], item.input) + "</div>" +
+      '<div class="marks"><button class="ok' + (mark === "ok" ? " on" : "") + '" data-m="ok">верно</button>' +
+      '<button class="wrong' + (mark === "wrong" ? " on" : "") + '" data-m="wrong">неверно</button></div>' +
+      '<div class="extra"><input class="comment" placeholder="что не так" value="' + esc(comment) + '">' +
+      '<input class="case" placeholder="случай гайда, №" value="' + esc(cases) + '"></div></div>';
+  }).join("");
+  document.querySelectorAll("#verdict button").forEach((b) => b.classList.toggle("on", b.dataset.v === a.verdict));
+  if (document.activeElement !== $("#note")) $("#note").value = a.note || "";
+  const active = document.querySelector(".field.active");
+  if (active) active.scrollIntoView({ block: "nearest" });
+}
+
+function setStatus(text, err) {
+  $("#status").textContent = text;
+  $("#status").classList.toggle("err", !!err);
+}
+function save(item) {
+  const body = JSON.stringify(answer(item));
+  setStatus("сохраняю...");
+  saveChain = saveChain.then(async () => {
+    try {
+      const r = await fetch("/api/answer", { method: "POST", headers: { "Content-Type": "application/json" }, body });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.error || r.status);
+      setStatus("сохранено " + new Date().toLocaleTimeString("ru-RU"));
+    } catch (e) {
+      setStatus("не сохранено: " + e.message, true);
+    }
+  });
+}
+function saveSoon(item) {
+  clearTimeout(timer);
+  timer = setTimeout(() => save(item), 500);
+}
+
+function mark(f, m, advance) {
+  const item = ITEMS[idx];
+  answer(item).marks[f] = m;
+  if (advance && fieldIdx < FIELDS.length - 1) fieldIdx += 1;
+  save(item);
+  draw(false);
+}
+function verdict(v) {
+  const item = ITEMS[idx];
+  answer(item).verdict = v;
+  save(item);
+  draw(false);
+}
+function go(i) {
+  if (i < 0 || i >= ITEMS.length) return;
+  idx = i;
+  fieldIdx = 0;
+  draw(true);
+}
+function nextOpen() {
+  for (let k = 1; k <= ITEMS.length; k++) {
+    const i = (idx + k) % ITEMS.length;
+    if (!complete(ANSWERS[ITEMS[i].id])) return go(i);
+  }
+  setStatus("все записи проверены");
+}
+
+$("#form").addEventListener("click", (e) => {
+  const row = e.target.closest(".field");
+  if (!row) return;
+  fieldIdx = Number(row.dataset.i);
+  if (e.target.dataset.m) mark(row.dataset.f, e.target.dataset.m, false);
+  else if (e.target.tagName !== "INPUT") draw(false);
+});
+$("#form").addEventListener("input", (e) => {
+  const row = e.target.closest(".field"), item = ITEMS[idx], a = answer(item), f = row.dataset.f;
+  if (e.target.classList.contains("comment")) {
+    if (e.target.value.trim()) a.comments[f] = e.target.value; else delete a.comments[f];
+  } else {
+    const nums = (e.target.value.match(/\d+/g) || []).map(Number);
+    if (nums.length) a.cases[f] = nums; else delete a.cases[f];
+  }
+  saveSoon(item);
+});
+$("#note").addEventListener("input", () => { answer(ITEMS[idx]).note = $("#note").value; saveSoon(ITEMS[idx]); });
+document.querySelectorAll("#verdict button").forEach((b) => b.addEventListener("click", () => verdict(b.dataset.v)));
+$("#strip").addEventListener("click", (e) => { if (e.target.dataset.i) go(Number(e.target.dataset.i)); });
+$("#prev").addEventListener("click", () => go(idx - 1));
+$("#next").addEventListener("click", () => go(idx + 1));
+$("#nextOpen").addEventListener("click", nextOpen);
+$("#helpBtn").addEventListener("click", () => $("#help").classList.toggle("open"));
+
+document.addEventListener("keydown", (e) => {
+  if (e.ctrlKey || e.altKey || e.metaKey) return;
+  const typing = ["INPUT", "TEXTAREA"].includes(document.activeElement.tagName);
+  if (typing) {
+    if (e.key === "Escape" || (e.key === "Enter" && document.activeElement.tagName === "INPUT")) {
+      clearTimeout(timer);
+      save(ITEMS[idx]);
+      document.activeElement.blur();
+      draw(false);
+      e.preventDefault();
+    }
+    return;
+  }
+  const f = FIELDS[fieldIdx];
+  const actions = {
+    ArrowDown: () => { fieldIdx = Math.min(fieldIdx + 1, FIELDS.length - 1); draw(false); },
+    KeyJ: () => actions.ArrowDown(),
+    ArrowUp: () => { fieldIdx = Math.max(fieldIdx - 1, 0); draw(false); },
+    KeyK: () => actions.ArrowUp(),
+    Digit1: () => mark(f, "ok", true),
+    Numpad1: () => mark(f, "ok", true),
+    Digit2: () => mark(f, "wrong", false),
+    Numpad2: () => mark(f, "wrong", false),
+    KeyA: () => {
+      const item = ITEMS[idx], a = answer(item);
+      FIELDS.forEach((x) => { if (!(x in a.marks)) a.marks[x] = "ok"; });
+      save(item);
+      draw(false);
+    },
+    KeyC: () => {
+      const row = document.querySelector('.field[data-i="' + fieldIdx + '"]');
+      row.classList.add("showextra");
+      row.querySelector("input.comment").focus();
+    },
+    KeyQ: () => verdict("agree"),
+    KeyW: () => verdict("disagree"),
+    KeyE: () => verdict("unsure"),
+    ArrowRight: () => go(idx + 1),
+    ArrowLeft: () => go(idx - 1),
+    KeyN: () => nextOpen(),
+    Slash: () => $("#help").classList.toggle("open"),
+    Escape: () => $("#help").classList.remove("open"),
+  };
+  const act = actions[e.code];
+  if (act) {
+    e.preventDefault();
+    act();
+  }
+});
+
+fetch("/api/state").then((r) => r.json()).then((s) => {
+  ITEMS = s.items;
+  FIELDS = s.fields;
+  ANSWERS = s.answers;
+  const first = ITEMS.findIndex((it) => !complete(ANSWERS[it.id]));
+  go(first === -1 ? 0 : first);
+}).catch((e) => setStatus("не загрузилось: " + e.message, true));
+</script>
+</body>
+</html>
