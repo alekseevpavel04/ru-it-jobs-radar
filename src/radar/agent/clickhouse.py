@@ -72,8 +72,10 @@ class ReadOnlyClickHouse:
         """One statement as is: the live tests send hostile SQL here to see the server refuse it."""
         return self.client.post("/", content=sql.encode("utf-8"), params=params)
 
-    def run(self, sql: str) -> Result:
-        response = self.raw(sql + "\nFORMAT JSONCompact")
+    def run(self, sql: str, params: dict[str, str] | None = None) -> Result:
+        """`params` fill `{name:Type}` placeholders as ClickHouse query parameters (`param_<name>`)."""
+        query = {f"param_{k}": v for k, v in (params or {}).items()}
+        response = self.raw(sql + "\nFORMAT JSONCompact", query or None)
         if response.status_code != 200:
             text = response.text.strip()
             match = _CODE.search(text)

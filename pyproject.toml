@@ -13,6 +13,7 @@ dependencies = [
     "datasketch==2.0.0",
     "dbt-clickhouse==1.10.3",
     "dbt-core==1.12.5",
+    "fastapi==0.143.0",
     "httpx==0.28.1",
     "langgraph==1.2.14",
     "lifelines==0.30.3",
@@ -24,9 +25,11 @@ dependencies = [
     "pyarrow==25.0.1",
     "pydantic==2.13.5",
     "pyyaml==6.0.3",
+    "redis==8.1.0",
     "scikit-learn==1.9.1",
     "sqlglot==30.21.0",
     "tzdata==2026.5",
+    "uvicorn==0.54.0",
 ]
 
 [dependency-groups]
@@ -43,6 +46,9 @@ dev = [
 ]
 dvc = [
     "dvc==3.67.1",
+]
+monitor = [
+    "evidently==0.7.23",
 ]
 
 [tool.hatch.build.targets.wheel]
