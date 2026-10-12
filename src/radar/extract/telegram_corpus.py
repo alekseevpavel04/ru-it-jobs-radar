@@ -12,7 +12,9 @@ with at least `min_content_chars` of its own text once links, hashtags and @name
 with a link has its vacancy behind the link. Every drop is counted by reason. The input is the post text as
 `radar.extract.inputs.input_for_record` renders it for Telegram, without a header and without the
 channel name: the Space receives a pasted text and nothing else, and a channel name would let a model
-guess the role from where the post was seen. English posts stay: the schema has `lang`.
+guess the role from where the post was seen. English posts stay: the schema has `lang`. The exception
+is a channel the config keeps to one language (`lang` in configs/telegram_channels.toml, remoteit
+since 2026-10-12): there a post in another language by `post_lang` is dropped (`channel_lang`).
 
 Groups: cross-posts and reposts are one group, joined by the same normalized text, by a near-duplicate
 text (MinHash proposes, the exact Jaccard of word shingles decides) or by the same job-board link
@@ -66,7 +68,7 @@ from radar.collect.telegram_rules import ROLE_RX, title_line
 from radar.config import ROOT, data_dir
 from radar.dedup.minhash import lsh_pairs, signatures
 from radar.dedup.normalize import jaccard, normalize_text, shingles
-from radar.extract.baseline import output_for, predict_lang, split_input
+from radar.extract.baseline import Input, output_for, predict_lang, split_input
 from radar.extract.corpus import (
     EVAL_CONFIG,
     SPLITS,
@@ -136,7 +138,7 @@ _LINK_LINE = re.compile(r"^\W*(?:https?://|www\.)\S+\s*$", re.M)
 _RECRUITER_NAME = re.compile(r"\bИщет\s+[А-ЯЁ][а-яё]+\s+[А-ЯЁ][а-яё]+")
 
 # Reasons a post is not a record, in the order they are checked.
-DROPS = ("not_vacancy", "multi_vacancy", "digest", "link_stub")
+DROPS = ("not_vacancy", "multi_vacancy", "digest", "link_stub", "channel_lang")
 
 
 @dataclass(frozen=True)
@@ -169,6 +171,12 @@ def networks(path: Path = CHANNELS) -> dict[str, str]:
     """Channel -> publisher network; a channel without one is a network of its own."""
     channels = tomllib.loads(path.read_text(encoding="utf-8"))["channel"]
     return {str(c["name"]): str(c.get("network") or c["name"]) for c in channels}
+
+
+def channel_langs(path: Path = CHANNELS) -> dict[str, str]:
+    """Channel -> the one language its posts count in (`lang`); a channel without it keeps every post."""
+    channels = tomllib.loads(path.read_text(encoding="utf-8"))["channel"]
+    return {str(c["name"]): str(c["lang"]) for c in channels if c.get("lang")}
 
 
 # --- records --------------------------------------------------------------------------------
@@ -204,6 +212,14 @@ def own_text(text: str | None) -> str:
     out = _HANDLE.sub(" ", out)
     out = _PLACEHOLDERS.sub(" ", out)
     return " ".join(out.split())
+
+
+def post_lang(text: str | None) -> str:
+    """Language of what the post itself says, by the letter shares of the regex baseline's `lang`
+    (Latin above 60% of letters is English). Links, hashtags and @names are Latin in any post: with
+    them a Russian title whose vacancy sits behind a telegra.ph link reads as English. Macro
+    post_lang in dbt/macros/telegram_lang.sql repeats this for stg_telegram."""
+    return predict_lang(Input({}, own_text(text)))
 
 
 def hashtags(text: str) -> tuple[str, ...]:
@@ -256,7 +272,8 @@ def payload_of(row: Mapping[str, Any]) -> dict[str, Any]:
     return dict(json.loads(raw) if isinstance(raw, str) else raw or {})
 
 
-def drop_reason(row: Mapping[str, Any], min_content_chars: int) -> str | None:
+def drop_reason(row: Mapping[str, Any], min_content_chars: int, lang: str | None = None) -> str | None:
+    """`lang`: the only language the post's channel counts in (remoteit keeps its Russian posts)."""
     text = str(row["text"] or "")
     if not row["is_vacancy"]:
         return "not_vacancy"
@@ -266,6 +283,8 @@ def drop_reason(row: Mapping[str, Any], min_content_chars: int) -> str | None:
         return "digest"
     if len(own_text(text)) < min_content_chars:
         return "link_stub"
+    if lang and post_lang(text) != lang:
+        return "channel_lang"
     return None
 
 
@@ -334,7 +353,13 @@ class Posts:
     published: tuple[str, str]
 
 
-def build_records(rows: Sequence[Mapping[str, Any]], n_rows: int, network_of: Mapping[str, str], cfg: Config) -> Posts:
+def build_records(
+    rows: Sequence[Mapping[str, Any]],
+    n_rows: int,
+    network_of: Mapping[str, str],
+    cfg: Config,
+    lang_of: Mapping[str, str] | None = None,
+) -> Posts:
     records = []
     dropped: Counter[str] = Counter()
     kinds: Counter[str] = Counter()
@@ -343,7 +368,7 @@ def build_records(rows: Sequence[Mapping[str, Any]], n_rows: int, network_of: Ma
         channel = str(row["source_id"]).rsplit("/", 1)[0]
         per_channel[channel]["posts"] += 1
         per_channel[channel]["vacancy_posts"] += bool(row["is_vacancy"])
-        why = drop_reason(row, cfg.min_content_chars)
+        why = drop_reason(row, cfg.min_content_chars, (lang_of or {}).get(channel))
         if why is None:
             records.append(make_record(row, network_of))
             per_channel[channel]["records"] += 1
@@ -877,7 +902,7 @@ def build(root: Path, cfg: Config) -> Built:
     if not complete:
         raise SystemExit(f"no complete Telegram partition under {root / SOURCE}")
     rows, n_rows = read_posts(root, complete)
-    posts = build_records(rows, n_rows, networks(), cfg)
+    posts = build_records(rows, n_rows, networks(), cfg, channel_langs())
     log.info(
         "%d posts in %d complete partitions (%s skipped as incomplete): %d records",
         posts.posts,

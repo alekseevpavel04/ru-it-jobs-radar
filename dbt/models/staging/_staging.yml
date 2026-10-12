@@ -539,7 +539,9 @@ models:
       hashtags, punctuation and emoji aside) published in the same week counts once, whichever
       channel carried it; the earliest copy is the one counted (is_week_duplicate false). The
       configs network groups explain most copies, but the data also has copies across networks and
-      reposts inside one channel, so the week, not the network, is the dedup scope.
+      reposts inside one channel, so the week, not the network, is the dedup scope. A channel with
+      a language in the seed (remoteit, Russian only since 2026-10-12) keeps only posts whose own text is
+      in it (macro post_lang, the rule of radar.extract.telegram_corpus.post_lang); raw keeps all.
     data_tests:
       - unique_combination:
           arguments:

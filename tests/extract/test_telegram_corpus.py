@@ -20,6 +20,7 @@ from radar.extract.telegram_corpus import (
     assign,
     baseline_check,
     build_records,
+    channel_langs,
     draw,
     drop_reason,
     file_sha256,
@@ -33,6 +34,7 @@ from radar.extract.telegram_corpus import (
     make_record,
     own_text,
     partitions,
+    post_lang,
     read_posts,
     refresh_records,
     representatives,
@@ -198,7 +200,7 @@ def test_build_records_counts_drops_per_reason_and_channel() -> None:
     ]
     posts = build_records(rows, 4, {}, cfg())
     assert [r.id for r in posts.records] == ["telegram:a/1"]
-    assert posts.dropped == {"not_vacancy": 1, "multi_vacancy": 1, "digest": 0, "link_stub": 1}
+    assert posts.dropped == {"not_vacancy": 1, "multi_vacancy": 1, "digest": 0, "link_stub": 1, "channel_lang": 0}
     assert posts.not_vacancy_kinds == {"ad": 1}
     assert posts.per_channel["b"]["link_stub"] == 1
 
@@ -355,6 +357,36 @@ def test_regex_baseline_accepts_telegram_inputs() -> None:
     ]
     inputs = [(f"telegram:x/{i}", rec(f"x/{i}", t).input) for i, t in enumerate(texts)]
     assert baseline_check(inputs) == (len(texts), [])
+
+
+def test_post_lang_reads_what_the_post_itself_says() -> None:
+    # Links and hashtags are Latin in any post: with them this title is 11 Cyrillic of 49 letters.
+    assert post_lang("Java разработчик\nhttps://telegra.ph/Java-razrabotchik-01-25 #java #remote #itjob") == "ru"
+    assert post_lang(GO) == "ru"
+    assert post_lang(EN) == "en"
+    assert post_lang("Senior PHP Developer\nhttps://telegra.ph/Senior-PHP-Developer-04-08 #remote #php") == "en"
+    assert post_lang("https://telegra.ph/Data-Scientist-06-28 [link]") == "other"
+    assert post_lang(None) == "other"
+
+
+def test_a_channel_kept_to_russian_drops_its_other_posts_only() -> None:
+    assert drop_reason(row("remoteit/1", EN), 100, "ru") == "channel_lang"
+    assert drop_reason(row("remoteit/2", GO), 100, "ru") is None
+    assert drop_reason(row("jobs/1", EN), 100) is None
+    # the earlier reasons come first, so their counts do not move
+    assert drop_reason(row("remoteit/3", EN, vacancy=False), 100, "ru") == "not_vacancy"
+    rows = [row("remoteit/1", EN), row("remoteit/2", GO), row("jobs/1", EN)]
+    posts = build_records(rows, 3, {}, cfg(), {"remoteit": "ru"})
+    assert [r.id for r in posts.records] == ["telegram:remoteit/2", "telegram:jobs/1"]
+    assert posts.dropped["channel_lang"] == 1
+    assert posts.per_channel["remoteit"]["channel_lang"] == 1
+
+
+def test_channel_langs_from_the_config(tmp_path: Path) -> None:
+    path = tmp_path / "channels.toml"
+    path.write_text('[[channel]]\nname = "a"\nlang = "ru"\n\n[[channel]]\nname = "b"\n', encoding="utf-8")
+    assert channel_langs(path) == {"a": "ru"}
+    assert channel_langs()["remoteit"] == "ru"
 
 
 def test_published_at_is_iso_utc() -> None:

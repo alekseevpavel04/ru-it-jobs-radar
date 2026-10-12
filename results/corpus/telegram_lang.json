@@ -1,0 +1,88 @@
+{
+  "source_script": "src/radar/extract/telegram_lang.py",
+  "command": "python -m radar.extract.telegram_lang",
+  "commit": "b6f5d80-dirty",
+  "created_at": "2026-10-12T10:53:42+00:00",
+  "metrics": {
+    "frozen_gold_records_in_ruled_channels": {
+      "value": 1,
+      "n": null,
+      "denominator": null
+    },
+    "frozen_test_records_dropped": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "frozen_dev_records_dropped": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "config": {
+    "channel_lang": {
+      "remoteit": "ru"
+    },
+    "min_content_chars": 100
+  },
+  "partitions_used": [
+    "2026-10-08",
+    "2026-10-10",
+    "2026-10-11"
+  ],
+  "partitions_skipped_incomplete": [],
+  "channels": {
+    "remoteit": {
+      "posts_kept": {
+        "value": 0.2685,
+        "n": 3432,
+        "denominator": 12781
+      },
+      "posts_dropped": {
+        "value": 0.7315,
+        "n": 9349,
+        "denominator": 12781
+      },
+      "posts_ru": {
+        "value": 0.2685,
+        "n": 3432,
+        "denominator": 12781
+      },
+      "posts_en": {
+        "value": 0.7197,
+        "n": 9198,
+        "denominator": 12781
+      },
+      "posts_other": {
+        "value": 0.0118,
+        "n": 151,
+        "denominator": 12781
+      },
+      "vacancy_posts_kept": {
+        "value": 0.2176,
+        "n": 1216,
+        "denominator": 5587
+      },
+      "vacancy_posts_dropped": {
+        "value": 0.7824,
+        "n": 4371,
+        "denominator": 5587
+      },
+      "vacancy_posts_with_text_kept": {
+        "value": 0.8529,
+        "n": 290,
+        "denominator": 340
+      },
+      "vacancy_posts_dropped_short_with_cyrillic_word": {
+        "value": 0.0874,
+        "n": 382,
+        "denominator": 4371
+      }
+    }
+  },
+  "frozen_dropped_ids": {
+    "test": [],
+    "dev": []
+  }
+}

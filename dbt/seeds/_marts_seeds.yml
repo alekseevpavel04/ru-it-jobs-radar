@@ -63,6 +63,7 @@ seeds:
         network: String
         topic: String
         enabled: Bool
+        lang: String
     columns:
       - name: channel
         description: Channel name (t.me/s/<channel>).
@@ -73,3 +74,11 @@ seeds:
         description: Topic in the config.
       - name: enabled
         description: Collected daily.
+      - name: lang
+        description: >
+          The one language the channel's posts count in (macro post_lang), empty when every post
+          counts. stg_telegram drops the channel's posts in other languages; raw keeps them.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['', ru]

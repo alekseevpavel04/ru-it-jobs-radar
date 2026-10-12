@@ -8,6 +8,10 @@
 # a channel stays enabled although it fails a criterion; `backfill = false` marks a channel that keeps
 # only recent posts, so it is collected daily and never backfilled.
 #
+# `lang` keeps a channel to one language downstream: only posts whose own text (links, hashtags and
+# @names cut) is in it count in stg_telegram and enter the Telegram corpus; the raw layer keeps every
+# post. Rule and counts: radar.extract.telegram_corpus.post_lang, results/corpus/telegram_lang.json.
+#
 # `network` groups channels of one publisher: their posts overlap, so cross-channel dedup is required
 # (the same goes for habr_career and progjob against the Habr Career source).
 
@@ -75,8 +79,9 @@ topic = "remote"
 network = ""
 enabled = true
 known_before_1_5 = true
-exception = "selected before the survey; most posts are in English (international remote), to disable or keep only Russian posts"
-reason = "remote IT vacancies, mostly English"
+lang = "ru"
+exception = "selected before the survey; most posts are in English (international remote); kept on 2026-10-12 with its Russian posts only"
+reason = "remote IT vacancies, mostly English; only Russian posts count"
 
 [[channel]]
 name = "jobforjunior"

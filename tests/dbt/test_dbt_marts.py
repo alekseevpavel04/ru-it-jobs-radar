@@ -147,8 +147,8 @@ def test_telegram_channels_seed_matches_the_config() -> None:
     config = tomllib.loads((ROOT / "configs" / "telegram_channels.toml").read_text(encoding="utf-8"))["channel"]
     with (SEEDS / "telegram_channels.csv").open(encoding="utf-8", newline="") as f:
         seed = list(csv.DictReader(f))
-    assert [(r["channel"], r["network"], r["topic"], r["enabled"]) for r in seed] == [
-        (c["name"], c["network"], c["topic"], str(c["enabled"]).lower()) for c in config
+    assert [(r["channel"], r["network"], r["topic"], r["enabled"], r["lang"]) for r in seed] == [
+        (c["name"], c["network"], c["topic"], str(c["enabled"]).lower(), c.get("lang", "")) for c in config
     ]
 
 

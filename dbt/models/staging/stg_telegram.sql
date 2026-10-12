@@ -35,7 +35,7 @@ latest AS (
 ),
 
 channels AS (
-    SELECT channel, if(coalesce(network, '') = '', channel, network) AS network, topic
+    SELECT channel, if(coalesce(network, '') = '', channel, network) AS network, topic, coalesce(lang, '') AS lang
     FROM {{ ref('telegram_channels') }}
 ),
 
@@ -46,6 +46,7 @@ ruled AS (
         -- a channel missing from the seed is a network of its own
         if(c.channel = '', l.channel, c.network) AS network,
         nullIf(c.topic, '') AS channel_topic,
+        c.lang AS channel_lang,
         l.dt AS dt,
         l.fetched_at AS fetched_at,
         assumeNotNull(l.published_at) AS published_at,
@@ -70,6 +71,9 @@ bucketed AS (
         {{ role_bucket('hashtags') }} AS hashtag_bucket,
         {{ role_bucket('substringUTF8(body, 1, 300)') }} AS head_bucket
     FROM ruled
+    -- A channel kept to one language (seed lang: remoteit) counts only posts in it; raw keeps
+    -- the others. post_lang is the rule of radar.extract.telegram_corpus.post_lang.
+    WHERE channel_lang = '' OR {{ post_lang('body') }} = channel_lang
 )
 
 SELECT
