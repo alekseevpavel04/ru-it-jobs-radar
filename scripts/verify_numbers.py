@@ -9,6 +9,12 @@ optional transforms: `pct` multiplies by 100, `ru` prints a decimal comma and sp
 thousands. `--write` rewrites the text between markers instead of checking it, so a number is
 never typed by hand in two places.
 
+Result files use keys that contain dots themselves (`metrics["leak.test_with_train_neighbour"]`), so a
+dotted key is resolved level by level: at a dict, the longest run of the remaining parts that is a
+literal key is tried first, then shorter runs down to a single part; at a list, the part is an index.
+`metrics.heldout.entity.raw.tp.value` thus reaches `metrics["heldout.entity.raw.tp"]["value"]`. If
+the key can be resolved along more than one path, the marker fails as ambiguous instead of picking one.
+
 Also validates every results/**/*.json that has a `metrics` block against the result convention.
 """
 
@@ -16,17 +22,44 @@ import argparse
 import json
 import re
 import sys
+from collections.abc import Iterator
+from itertools import islice
 from pathlib import Path
 from typing import Any
 
 from pydantic import ValidationError
 
 from radar.config import RESULTS, ROOT
-from radar.results import ResultFile, lookup
+from radar.results import ResultFile
 
 MARKER = re.compile(r"<!--n:(?P<path>[^:]+):(?P<key>[^:]+):(?P<fmt>[^>]*?)-->(?P<text>.*?)<!--/n-->", re.S)
 DEFAULT_TARGETS = ["README.md", "docs", "site/src"]
 TEXT_SUFFIXES = {".md", ".html", ".svelte", ".js", ".ts"}
+
+
+def _resolve(node: Any, parts: list[str]) -> Iterator[Any]:
+    if not parts:
+        yield node
+    elif isinstance(node, list):
+        try:
+            child = node[int(parts[0])]
+        except (ValueError, IndexError):
+            return
+        yield from _resolve(child, parts[1:])
+    elif isinstance(node, dict):
+        for end in range(len(parts), 0, -1):
+            key = ".".join(parts[:end])
+            if key in node:
+                yield from _resolve(node[key], parts[end:])
+
+
+def lookup(doc: Any, dotted: str) -> Any:
+    found = list(islice(_resolve(doc, dotted.split(".")), 2))
+    if not found:
+        raise KeyError(dotted)
+    if len(found) > 1:
+        raise KeyError(f"{dotted} is ambiguous: it resolves along more than one path")
+    return found[0]
 
 
 def render(value: Any, fmt: str) -> str:

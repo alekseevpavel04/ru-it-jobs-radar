@@ -64,3 +64,49 @@ def test_result_convention_enforced(repo: Path) -> None:
 def test_ru_thousands() -> None:
     assert verify_numbers.render(499817, ",d|ru") == "499 817"
     assert verify_numbers.render(1234.5, ",.1f|ru") == "1 234,5"
+
+
+def test_lookup_dotted_keys() -> None:
+    doc = {
+        "metrics": {
+            "leak.test": {"value": 0, "n": 0, "denominator": 440},
+            "staged.records": {"value": 10},
+            "staged.records.habr": {"value": 3},
+        },
+        "plain": {"a": [{"b": 7}]},
+    }
+    assert verify_numbers.lookup(doc, "metrics.leak.test.denominator") == 440
+    assert verify_numbers.lookup(doc, "metrics.staged.records.value") == 10
+    assert verify_numbers.lookup(doc, "metrics.staged.records.habr.value") == 3
+    assert verify_numbers.lookup(doc, "plain.a.0.b") == 7
+    with pytest.raises(KeyError):
+        verify_numbers.lookup(doc, "metrics.leak.nope.value")
+    with pytest.raises(KeyError):
+        verify_numbers.lookup(doc, "plain.a.1.b")
+
+
+def test_lookup_falls_back_to_shorter_key() -> None:
+    doc = {"a.b": {"x": 1}, "a": {"b": {"y": 2}}}
+    assert verify_numbers.lookup(doc, "a.b.x") == 1
+    assert verify_numbers.lookup(doc, "a.b.y") == 2
+
+
+def test_lookup_ambiguous_fails() -> None:
+    doc = {"a.b": {"c": 1}, "a": {"b.c": 2}}
+    with pytest.raises(KeyError, match="ambiguous"):
+        verify_numbers.lookup(doc, "a.b.c")
+
+
+def test_dotted_metric_marker(repo: Path) -> None:
+    results.write_result(
+        "corpus/refresh.json",
+        {"leak.test_with_train_neighbour": {"value": 0.0, "n": 0, "denominator": 440}},
+        source_script="tests",
+    )
+    readme = (
+        "<!--n:corpus/refresh.json:metrics.leak.test_with_train_neighbour.n:d-->?<!--/n--> из "
+        "<!--n:corpus/refresh.json:metrics.leak.test_with_train_neighbour.denominator:d-->?<!--/n-->"
+    )
+    assert run(repo, readme, "--write") == 0
+    assert "-->0<!--/n--> из <!--n:" in (repo / "README.md").read_text(encoding="utf-8")
+    assert "-->440<!--/n-->" in (repo / "README.md").read_text(encoding="utf-8")
