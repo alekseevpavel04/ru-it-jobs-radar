@@ -18,6 +18,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any, Literal
 
+import sqlglot
 from pydantic import BaseModel
 
 from radar.agent.clickhouse import ReadOnlyClickHouse
@@ -93,6 +94,14 @@ def assign_splits(questions: list[Question], seed: int, dev_share: float) -> dic
     return out
 
 
+def _stable_order(sql: str, rows: list[list[Any]]) -> list[list[Any]]:
+    """Rows of a query without ORDER BY come in any order; sort them so a rebuild rewrites no line."""
+    tree = sqlglot.parse_one(sql, dialect="clickhouse")
+    if tree.args.get("order") is not None:
+        return rows
+    return sorted(rows, key=lambda row: json.dumps(row, ensure_ascii=False, default=str))
+
+
 def build(ro: ReadOnlyClickHouse, spec: Spec) -> list[Item]:
     ids = [q.id for q in spec.questions]
     if len(set(ids)) != len(ids):
@@ -106,7 +115,7 @@ def build(ro: ReadOnlyClickHouse, spec: Spec) -> list[Item]:
         if not result.rows:
             raise ValueError(f"{q.id}: the reference query returns no rows")
         split, quick = splits[q.id]
-        answer = Reference(columns=result.columns, types=result.types, rows=result.rows)
+        answer = Reference(columns=result.columns, types=result.types, rows=_stable_order(q.sql, result.rows))
         items.append(
             Item(
                 id=q.id,

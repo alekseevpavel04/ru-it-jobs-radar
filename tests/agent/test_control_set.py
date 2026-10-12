@@ -2,7 +2,7 @@
 
 from collections import Counter
 
-from radar.agent.control_set import Question, assign_splits, load, load_spec
+from radar.agent.control_set import Question, _stable_order, assign_splits, load, load_spec
 from radar.agent.snapshot import pin_id, pinned
 from radar.agent.sqlcheck import check
 
@@ -17,6 +17,23 @@ def test_at_least_100_questions_with_unique_ids() -> None:
 def test_every_reference_query_passes_the_agent_check() -> None:
     for q in load_spec().questions:
         assert check(q.sql).tables, q.id
+
+
+def test_employer_names_are_asked_and_answered_for_trudvsem_only() -> None:
+    # Habr and SuperJob allow aggregates only: their employers are asked about by rank and counts.
+    for q in load_spec().questions:
+        if "mart_employers" in q.sql and ("employer_name" in q.sql or "employer_key" in q.sql):
+            assert "source = 'trudvsem'" in q.sql, q.id
+    for item in load():
+        for column in ("employer_name", "employer_key"):
+            if column in item.answer.columns:
+                assert "source = 'trudvsem'" in item.sql, item.id
+
+
+def test_rows_without_order_by_are_sorted_ordered_ones_kept() -> None:
+    rows = [["senior", 11], ["intern", 4]]
+    assert _stable_order("SELECT grade, n FROM t", rows) == [["intern", 4], ["senior", 11]]
+    assert _stable_order("SELECT grade, n FROM t ORDER BY n DESC", rows) == rows
 
 
 def test_every_kind_has_dev_and_test() -> None:

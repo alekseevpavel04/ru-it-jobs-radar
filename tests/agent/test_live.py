@@ -117,3 +117,16 @@ def test_both_profiles_describe_tables_that_exist(ro: ReadOnlyClickHouse) -> Non
         for name in profile.tables:
             assert f"TABLE marts.{name}:" in prompt, (profile.name, name)
         assert ro.run(f"SELECT count() FROM {profile.database}.mart_salaries").rows[0][0] > 0
+
+
+@pytest.mark.parametrize("database", ["marts", SNAPSHOT_DATABASE])
+def test_aggregate_only_sources_never_name_an_employer(ro: ReadOnlyClickHouse, database: str) -> None:
+    sql = (
+        "SELECT source, countIf(employer_name IS NOT NULL), countIf(employer_key IS NOT NULL), count() "
+        "FROM marts.mart_employers GROUP BY source"
+    )
+    rows = {r[0]: r[1:] for r in ro.run(check(sql, database=database).sql).rows}
+    assert rows["trudvsem"][0] == rows["trudvsem"][2] > 0
+    for source, (names, keys, n) in rows.items():
+        if source != "trudvsem":
+            assert names == keys == 0 and n > 0, source

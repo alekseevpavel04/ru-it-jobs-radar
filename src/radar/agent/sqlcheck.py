@@ -4,6 +4,11 @@ What reaches ClickHouse is the SQL rendered back from the checked syntax tree, n
 so the parser that checks and the text that runs cannot disagree. The read-only account
 (infra/clickhouse/agent/readonly_user.sql) enforces the same rules on the server; this check rejects
 early, with a reason the agent can report.
+
+The rendered SQL also reads mart_employers through a masking subquery: employer names are published
+for the open data of «Работа России» only, while Habr and SuperJob allow aggregates only, so for them
+employer_name and employer_key (a Habr company id resolves to the name) read NULL whatever the query
+asks. Counts and ranks of those employers stay available.
 """
 
 import logging
@@ -32,6 +37,9 @@ FORBIDDEN_FUNCTIONS = frozenset(
     {"sleep", "sleepeachrow", "file", "url", "s3", "remote", "remotesecure", "input", "joinget", "joingetornull"}
 )
 FORBIDDEN_PREFIXES = ("dictget", "dicthas", "dictisin")
+EMPLOYERS = "mart_employers"
+NAMED_SOURCES = ("trudvsem",)
+HIDDEN_COLUMNS = ("employer_name", "employer_key")
 
 logging.getLogger("sqlglot").setLevel(logging.ERROR)
 
@@ -85,6 +93,28 @@ def _check_clauses(tree: exp.Query) -> None:
         name = _function_name(func)
         if name in FORBIDDEN_FUNCTIONS or name.startswith(FORBIDDEN_PREFIXES):
             raise Blocked(f"function {name} is not allowed")
+    # `x IN db.table` reads a table the parser sees as a column, past the whitelist and the mask.
+    for node in tree.find_all(exp.In):
+        if node.args.get("field") is not None:
+            raise Blocked("IN <table> is not allowed; write IN (SELECT ...)")
+
+
+def _employers_view(database: str) -> exp.Select:
+    named = exp.column("source").isin(*NAMED_SOURCES)
+    replace = [exp.alias_(exp.If(this=named.copy(), true=exp.column(c), false=exp.null()), c) for c in HIDDEN_COLUMNS]
+    return exp.select(exp.Star(replace=replace)).from_(exp.table_(EMPLOYERS, db=database))
+
+
+def _mask_employers(tree: exp.Query, found: list[exp.Table], database: str) -> None:
+    for table in found:
+        if table.name != EMPLOYERS:
+            continue
+        # FINAL belongs to the table; ClickHouse rejects it after a subquery.
+        target = table.parent if isinstance(table.parent, exp.Final) else table
+        target.replace(_employers_view(database).subquery(table.alias or EMPLOYERS))
+    for column in tree.find_all(exp.Column):
+        if column.table == EMPLOYERS and column.args.get("db") is not None:
+            column.set("db", None)
 
 
 def _plain_limit(node: exp.Query) -> int | None:
@@ -132,5 +162,6 @@ def check(
     names = tuple(sorted({t.name for t in found}))
     for table in found:
         table.set("db", exp.to_identifier(database))
+    _mask_employers(tree, found, database)
     bounded = _bound_rows(tree, max_rows)
     return CheckedQuery(bounded.sql(dialect="clickhouse"), names)

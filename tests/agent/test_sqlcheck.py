@@ -1,6 +1,8 @@
 import pytest
+import sqlglot
+from sqlglot import exp
 
-from radar.agent.sqlcheck import MAX_ROWS, Blocked, Unparsable, check
+from radar.agent.sqlcheck import EMPLOYERS, HIDDEN_COLUMNS, MAX_ROWS, NAMED_SOURCES, Blocked, Unparsable, check
 
 ATTACKS = [
     "INSERT INTO marts.mart_junior (source) VALUES ('x')",
@@ -38,6 +40,8 @@ ATTACKS = [
     "SELECT dictGet('d', 'x', 1) FROM marts.mart_junior",
     "SELECT * FROM mart_unknown",
     "SELECT * FROM marts.vacancies",
+    "SELECT 1 FROM marts.mart_junior WHERE source IN raw.vacancies",
+    "SELECT 1 FROM marts.mart_junior WHERE employer_name IN marts.mart_employers",
     "SELECT 1",
     "EXPLAIN SELECT * FROM marts.mart_junior",
     "SHOW TABLES FROM raw",
@@ -113,3 +117,41 @@ def test_trailing_semicolon_and_fence_free_text() -> None:
 def test_garbage_is_unparsable() -> None:
     with pytest.raises(Unparsable):
         check("SELECT FROM WHERE (")
+
+
+def _employer_reads(sql: str) -> list[exp.Select]:
+    tree = sqlglot.parse_one(sql, dialect="clickhouse")
+    return [t.parent_select for t in tree.find_all(exp.Table) if t.name == EMPLOYERS and t.db]
+
+
+@pytest.mark.parametrize(
+    ("sql", "n_reads"),
+    [
+        ("SELECT employer_name, employer_key FROM marts.mart_employers WHERE source = 'habr'", 1),
+        ("SELECT e.employer_name FROM marts.mart_employers AS e FINAL JOIN marts.mart_junior AS j USING (source)", 1),
+        ("SELECT marts.mart_employers.employer_name FROM mart_employers", 1),
+        ("WITH mart_employers AS (SELECT * FROM marts.mart_employers) SELECT employer_key FROM mart_employers", 1),
+        ("SELECT employer_name FROM marts.mart_employers UNION ALL SELECT employer_name FROM mart_employers", 2),
+        ("SELECT count() FROM marts.mart_junior WHERE source IN (SELECT source FROM marts.mart_employers)", 1),
+    ],
+)
+def test_every_read_of_employers_goes_through_the_mask(sql: str, n_reads: int) -> None:
+    rendered = check(sql, database="agent_snapshot").sql
+    reads = _employer_reads(rendered)
+    assert len(reads) == n_reads
+    for select in reads:
+        star = select.expressions[0]
+        assert isinstance(star, exp.Star)
+        masked = {alias.alias: alias.this for alias in star.args["replace"]}
+        assert set(masked) == set(HIDDEN_COLUMNS)
+        for column, expr in masked.items():
+            keep = [str(v.this) for v in expr.find(exp.In).expressions]
+            assert keep == list(NAMED_SOURCES) and expr.find(exp.Null) is not None, column
+        assert select.args["from_"].this.db == "agent_snapshot"
+    assert "FINAL" not in rendered and "marts." not in rendered
+
+
+def test_mask_keeps_the_alias_and_other_tables() -> None:
+    rendered = check("SELECT e.employer_rank, j.vacancies FROM marts.mart_employers e, marts.mart_junior j").sql
+    assert ") AS e" in rendered and "marts.mart_junior AS j" in rendered
+    assert NAMED_SOURCES == ("trudvsem",)

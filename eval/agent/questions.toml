@@ -663,6 +663,9 @@ question = "Сколько вакансий уровня junior и стажир�
 sql = "SELECT graded_junior + graded_intern FROM marts.mart_junior WHERE source = 'trudvsem' AND role_bucket = 'qa'"
 
 # ---------------------------------------------------------------- employers
+# Employers are named only for «Работа России» (open data). Habr and SuperJob allow aggregates only:
+# their employers are asked about by rank and counts, and the agent reads their names as NULL
+# (radar.agent.sqlcheck).
 
 [[question]]
 id = "employer_01"
@@ -673,14 +676,14 @@ sql = "SELECT employer_name FROM marts.mart_employers WHERE source = 'trudvsem' 
 [[question]]
 id = "employer_02"
 kind = "employer"
-question = "Сколько открытых IT-вакансий у МТС Банка на Хабр Карьере?"
-sql = "SELECT open_it_vacancies FROM marts.mart_employers WHERE source = 'habr' AND employer_name = 'МТС Банк'"
+question = "Сколько открытых IT-вакансий у работодателя на втором месте на Хабр Карьере?"
+sql = "SELECT open_it_vacancies FROM marts.mart_employers WHERE source = 'habr' AND employer_rank = 2"
 
 [[question]]
 id = "employer_03"
 kind = "employer"
-question = "Назови пять работодателей с наибольшим числом открытых IT-вакансий на Хабр Карьере."
-sql = "SELECT employer_name FROM marts.mart_employers WHERE source = 'habr' AND employer_rank <= 5"
+question = "Сколько открытых IT-вакансий у каждого из пяти крупнейших работодателей Хабр Карьеры?"
+sql = "SELECT open_it_vacancies FROM marts.mart_employers WHERE source = 'habr' AND employer_rank <= 5"
 
 [[question]]
 id = "employer_04"
@@ -700,8 +703,8 @@ sql = "SELECT sum(open_it_vacancies) FROM marts.mart_employers WHERE source = 't
 [[question]]
 id = "employer_06"
 kind = "employer"
-question = "Какое место занимает Cloud.ru по числу открытых IT-вакансий на Хабр Карьере?"
-sql = "SELECT employer_rank FROM marts.mart_employers WHERE source = 'habr' AND employer_name = 'Cloud.ru'"
+question = "На каком месте Хабр Карьеры стоит первый работодатель, у которого меньше 20 открытых IT-вакансий?"
+sql = "SELECT min(employer_rank) FROM marts.mart_employers WHERE source = 'habr' AND open_it_vacancies < 20"
 
 [[question]]
 id = "employer_07"
