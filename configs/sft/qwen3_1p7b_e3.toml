@@ -1,0 +1,40 @@
+# Iteration 3 of the student (EXPERIMENTS E11): the 1.7B recipe of E9 with three epochs instead of
+# two, on the silver set rebuilt after the 2026-10-12 corpus refresh (posts whose input changed when
+# names were cleaned, and English remoteit posts, are out). The 4B of E10 gained 0.0095 on the mean
+# of dev and tg_dev, below the 0.01 of the stop rule, so the 1.7B stays the student.
+name = "qwen3_1p7b_r16_e3"
+model = "Qwen/Qwen3-1.7B"
+backend = "unsloth"
+
+[data]
+train = "data/sft/train.jsonl"
+val = "data/sft/val.jsonl"
+meta = "data/sft/meta.json"
+
+[lora]
+r = 16
+alpha = 32
+dropout = 0.0
+
+[train]
+max_seq_len = 2048
+epochs = 3
+lr = 2e-4
+# effective batch 16 for both students. At micro-batch 2 the 1.7B peaked at 3 695 MiB on the card
+# (gpu_smoke.json), so micro-batch 4 is tried here; the --probe run checks its peak before training
+batch = 4
+grad_accum = 4
+warmup_ratio = 0.03
+scheduler = "cosine"
+optim = "adamw_8bit"
+seed = 20261008
+logging_steps = 10
+eval_steps = 200
+save_steps = 100
+save_total_limit = 2
+
+[guard]
+vram_margin_mib = 512
+step_time_factor = 3.0
+reference_steps = 5
+patience = 3

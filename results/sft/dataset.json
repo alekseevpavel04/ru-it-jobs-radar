@@ -1,51 +1,51 @@
 {
   "source_script": "src/radar/train/dataset.py",
   "command": "python -m radar.train.dataset",
-  "commit": "b3fd795-dirty",
-  "created_at": "2026-10-11T20:31:06+00:00",
+  "commit": "e5478ad-dirty",
+  "created_at": "2026-10-12T13:20:34+00:00",
   "metrics": {
     "silver_records": {
-      "value": 11447,
+      "value": 11427,
       "n": null,
       "denominator": null
     },
     "train_examples": {
       "value": 0.9509,
-      "n": 10885,
-      "denominator": 11447
+      "n": 10866,
+      "denominator": 11427
     },
     "val_examples": {
       "value": 0.0491,
-      "n": 562,
-      "denominator": 11447
+      "n": 561,
+      "denominator": 11427
     },
     "dropped_too_long": {
       "value": 0.0,
       "n": 0,
-      "denominator": 11447
+      "denominator": 11427
     },
     "dropped_not_in_train_pool": {
       "value": 0.0,
       "n": 0,
-      "denominator": 11447
+      "denominator": 11427
     },
     "truncated_inputs": {
       "value": 0.0015,
       "n": 17,
-      "denominator": 11447
+      "denominator": 11427
     },
     "train_groups": {
-      "value": 10115,
+      "value": 10096,
       "n": null,
       "denominator": null
     },
     "val_groups": {
-      "value": 555,
+      "value": 554,
       "n": null,
       "denominator": null
     },
     "train_sequence_tokens": {
-      "value": 7737764,
+      "value": 7728858,
       "n": null,
       "denominator": null
     },
@@ -70,24 +70,24 @@
       "denominator": 281
     },
     "telegram.train_examples": {
-      "value": 5166,
+      "value": 5147,
       "n": null,
       "denominator": null
     },
     "telegram.train_truncated": {
       "value": 0.0,
       "n": 0,
-      "denominator": 5166
+      "denominator": 5147
     },
     "telegram.val_examples": {
-      "value": 281,
+      "value": 280,
       "n": null,
       "denominator": null
     },
     "telegram.val_truncated": {
       "value": 0.0,
       "n": 0,
-      "denominator": 281
+      "denominator": 280
     }
   },
   "config_file": "configs/sft/dataset.toml",
@@ -98,21 +98,21 @@
   "max_input_tokens": 1536,
   "max_seq_len": 2048,
   "silver_file": "data/silver/train.jsonl",
-  "silver_sha256": "3cdbdc0c64849654d56f3fa139fbf4ea8f3f9b35e71d7a50591b3e36eb79c7e4",
-  "train_sha256": "e8a27b553c6f55a903ecd2a3179c609457ccf07caa56d21322600df399f51324",
-  "val_sha256": "266184de763ef034f1b07b5fe8e4328b298fd370e3bc786a8fd212f9b6c6ef2d",
+  "silver_sha256": "ce7986ee8d98ef668252ee485534e738c58e4bc7b5fa4513ade87c509dc6c92a",
+  "train_sha256": "6f738b2217fca74829c99fb9aa946c0f7c7196a07065cf5874bb7de81bd541d1",
+  "val_sha256": "5e808123ba5fb8dc55b28804b9212da96c70bf8c72a08aa8da78ade3dc920e0e",
   "dropped_too_long_ids": [],
   "dropped_not_in_train_pool_ids": [],
   "by_source": {
     "train": {
       "habr": 313,
-      "telegram": 5166,
+      "telegram": 5147,
       "trudvsem": 132,
       "trudvsem_snapshot": 5274
     },
     "val": {
       "habr": 21,
-      "telegram": 281,
+      "telegram": 280,
       "trudvsem": 8,
       "trudvsem_snapshot": 252
     }
@@ -120,11 +120,11 @@
   "by_role_proxy": {
     "train": {
       "telegram|analyst_other": 314,
-      "telegram|dev": 2559,
-      "telegram|ml_ds_data": 514,
-      "telegram|non_it_noise": 539,
+      "telegram|dev": 2548,
+      "telegram|ml_ds_data": 513,
+      "telegram|non_it_noise": 538,
       "telegram|other_it": 421,
-      "telegram|qa_devops_sys": 819,
+      "telegram|qa_devops_sys": 813,
       "trudvsem_habr|analyst_other": 195,
       "trudvsem_habr|dev": 1048,
       "trudvsem_habr|ml_ds_data": 205,
@@ -134,7 +134,7 @@
     },
     "val": {
       "telegram|analyst_other": 14,
-      "telegram|dev": 143,
+      "telegram|dev": 142,
       "telegram|ml_ds_data": 18,
       "telegram|non_it_noise": 38,
       "telegram|other_it": 21,
@@ -149,24 +149,24 @@
   },
   "by_label_role": {
     "train": {
-      "backend": 1218,
+      "backend": 1211,
       "business_analyst": 196,
       "data_analyst": 238,
       "data_engineer": 214,
       "data_scientist": 101,
       "designer": 250,
       "developer_1c": 245,
-      "devops": 181,
+      "devops": 179,
       "embedded": 51,
-      "frontend": 640,
-      "fullstack": 192,
+      "frontend": 639,
+      "fullstack": 191,
       "manager": 472,
-      "ml_engineer": 158,
+      "ml_engineer": 157,
       "mlops": 14,
-      "mobile": 244,
+      "mobile": 242,
       "non_it": 2999,
       "other_it": 403,
-      "qa": 470,
+      "qa": 465,
       "security": 547,
       "software_engineer": 771,
       "support": 272,
@@ -174,7 +174,7 @@
       "system_analyst": 261
     },
     "val": {
-      "backend": 74,
+      "backend": 73,
       "business_analyst": 12,
       "data_analyst": 10,
       "data_engineer": 9,
@@ -229,13 +229,13 @@
     "telegram": {
       "input_before_cap": {
         "p50": 163,
-        "p90": 557,
+        "p90": 558,
         "p99": 974,
         "max": 1360
       },
       "prompt": {
         "p50": 463,
-        "p90": 857,
+        "p90": 858,
         "p99": 1274,
         "max": 1660
       },
@@ -246,8 +246,8 @@
         "max": 199
       },
       "sequence": {
-        "p50": 533,
-        "p90": 943,
+        "p50": 534,
+        "p90": 944,
         "p99": 1348,
         "max": 1778
       }
