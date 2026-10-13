@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/models/salary.py",
-  "command": "python -m radar.models.salary",
-  "commit": "2ff7e25-dirty",
-  "created_at": "2026-10-13T08:04:05+00:00",
+  "command": "python -m radar.models.salary --frame data/salary/frame.parquet",
+  "commit": "2174d87",
+  "created_at": "2026-10-13T17:16:46+00:00",
   "metrics": {
     "data_entities_it_rub_salary": {
       "value": 10499,
@@ -2123,7 +2123,7 @@
     "test": "6c39228141e699743e0f8abeb4576d3bf3baea88f5276e609b08e995faa3e316"
   },
   "frame_sha256": "b985142480b527cd1b8c0fed39e3386ba8cb32d66e80c54670a43a29af6ec6c9",
-  "model_version": "salary-student-2ff7e25-dirty",
+  "model_version": "salary-student-2174d87",
   "feature_version": "student",
   "extraction_model": "qwen3_1p7b_r16_clean-awq",
   "level": 0.8,
