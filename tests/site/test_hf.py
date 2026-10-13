@@ -232,21 +232,26 @@ def test_fields_only_rows_carry_no_id_text_or_link() -> None:
         assert not {"text", "title", "url", "source_id", "vacancy_id", "employer_name"} & set(schema.names)
 
 
-def test_telegram_aggregates_count_channel_weeks_and_drop_small_cells() -> None:
-    def post(day: str, **over: Any) -> dict[str, Any]:
-        return {"channel": "datasciencejobs", "version_day": "2026-10-12", "published_day": day, **FIELDS, **over}
+def test_telegram_aggregates_pool_channels_by_week_and_drop_small_cells() -> None:
+    def post(day: str, channel: str = "datasciencejobs", **over: Any) -> dict[str, Any]:
+        return {"channel": channel, "version_day": "2026-10-12", "published_day": day, **FIELDS, **over}
 
     # 2026-10-05 is a Monday, 2026-10-11 the Sunday of the same week; 1970-01-01 means no date.
-    posts = [post("2026-10-05") for _ in range(hf_dataset.MIN_CELL - 1)] + [post("2026-10-11")]
+    posts = [post("2026-10-05") for _ in range(hf_dataset.MIN_CELL - 2)]
+    posts += [post("2026-10-11", channel="ml_jobs"), post("2026-10-07", channel="ml_jobs")]
     posts += [post("1970-01-01", role="qa"), post("2026-10-06", extraction_valid=False)]
     rows = hf_dataset.fields_only_rows(FakeClickHouse({"telegram": posts}), "m", "telegram")  # type: ignore[arg-type]
     cells, dropped = hf_dataset.telegram_aggregates(rows)
-    week = {"week": date(2026, 10, 5), "channel": "datasciencejobs"}
-    assert week | {"dimension": "role", "value": "data_scientist", "posts": 5, "posts_in_channel_week": 6} in cells
-    assert week | {"dimension": "skill", "value": "SQL", "posts": 5, "posts_in_channel_week": 6} in cells
+    week = {"week": date(2026, 10, 5)}
+    assert week | {"dimension": "role", "value": "data_scientist", "posts": 5, "posts_in_week": 6} in cells
+    assert week | {"dimension": "skill", "value": "SQL", "posts": 5, "posts_in_week": 6} in cells
     assert not any(c["value"] == "qa" for c in cells)  # one post, and in the week of its raw version
+    assert "channel" not in hf_dataset.TELEGRAM_SCHEMA.names and all("channel" not in c for c in cells)
     assert dropped >= 1
     assert all(c["posts"] >= hf_dataset.MIN_CELL for c in cells)
+    # Pooled, the five data_scientist posts of two channels reach the floor; per channel neither does.
+    assert hf_dataset.role_kept(rows, lambda r: (hf_dataset.week_of(r),)) == 5
+    assert hf_dataset.role_kept(rows, lambda r: (hf_dataset.week_of(r), r["channel"])) == 0
 
 
 def test_habr_aggregates_drop_small_cells() -> None:

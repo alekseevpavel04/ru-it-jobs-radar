@@ -1,50 +1,50 @@
 {
   "source_script": "src/radar/site/hf_space.py",
   "command": "python -m radar.site.hf_space bench",
-  "commit": "d9d444e-dirty",
-  "created_at": "2026-10-13T08:45:48+00:00",
+  "commit": "010f191-dirty",
+  "created_at": "2026-10-13T17:28:05+00:00",
   "metrics": {
     "latency_p50_s": {
-      "value": 25.56,
+      "value": 9.67,
       "n": null,
       "denominator": null
     },
     "latency_p95_s": {
-      "value": 45.15,
+      "value": 17.95,
       "n": null,
       "denominator": null
     },
     "latency_max_s": {
-      "value": 54.45,
+      "value": 22.58,
       "n": null,
       "denominator": null
     },
     "model_p50_s": {
-      "value": 25.42,
+      "value": 9.36,
       "n": null,
       "denominator": null
     },
     "model_p95_s": {
-      "value": 45.02,
+      "value": 17.48,
       "n": null,
       "denominator": null
     },
     "prompt_p50_s": {
-      "value": 11.04,
+      "value": 5.11,
       "n": null,
       "denominator": null
     },
     "generate_p50_s": {
-      "value": 12.67,
+      "value": 4.46,
       "n": null,
       "denominator": null
     },
     "host_load_1min": {
-      "value": 19.6,
+      "value": 3.9,
       "n": null,
       "denominator": null,
-      "before": 19.57,
-      "after": 18.25
+      "before": 2.96,
+      "after": 3.93
     },
     "host_cpus": {
       "value": 10,
@@ -52,12 +52,12 @@
       "denominator": null
     },
     "first_request_s": {
-      "value": 26.59,
+      "value": 13.88,
       "n": null,
       "denominator": null
     },
     "cold_start_s": {
-      "value": 14.2,
+      "value": 6.4,
       "n": null,
       "denominator": null
     },
@@ -97,12 +97,12 @@
       "denominator": null
     },
     "container_memory_mib": {
-      "value": 1752.1,
+      "value": 3096.6,
       "n": null,
       "denominator": null
     },
     "image_size_mib": {
-      "value": 1182,
+      "value": 1183,
       "n": null,
       "denominator": null
     }
@@ -120,10 +120,10 @@
   "per_request": [
     {
       "id": "trudvsem_snapshot:623eafca-7780-11f0-a9f5-d549be31d974",
-      "wall_s": 30.717,
-      "model_s": 30.482,
-      "prompt_s": 14.123,
-      "generate_s": 16.266,
+      "wall_s": 11.913,
+      "model_s": 11.466,
+      "prompt_s": 6.364,
+      "generate_s": 5.095,
       "prompt_tokens": 630,
       "completion_tokens": 92,
       "valid": true,
@@ -131,10 +131,10 @@
     },
     {
       "id": "trudvsem_snapshot:dcffff16-bd94-11f1-aa68-7523fb122f6d",
-      "wall_s": 25.558,
-      "model_s": 25.422,
-      "prompt_s": 12.532,
-      "generate_s": 12.672,
+      "wall_s": 11.401,
+      "model_s": 11.007,
+      "prompt_s": 6.26,
+      "generate_s": 4.695,
       "prompt_tokens": 627,
       "completion_tokens": 85,
       "valid": true,
@@ -142,10 +142,10 @@
     },
     {
       "id": "trudvsem_snapshot:61684158-b0ce-11f1-987b-b1d3bf2d14ab",
-      "wall_s": 45.148,
-      "model_s": 45.02,
-      "prompt_s": 24.712,
-      "generate_s": 20.139,
+      "wall_s": 17.954,
+      "model_s": 17.357,
+      "prompt_s": 11.224,
+      "generate_s": 6.067,
       "prompt_tokens": 885,
       "completion_tokens": 103,
       "valid": true,
@@ -153,10 +153,10 @@
     },
     {
       "id": "trudvsem_snapshot:a76a5020-4479-11f1-aa71-659f9ad1813b",
-      "wall_s": 27.455,
-      "model_s": 27.316,
-      "prompt_s": 13.522,
-      "generate_s": 13.529,
+      "wall_s": 11.257,
+      "model_s": 10.877,
+      "prompt_s": 6.419,
+      "generate_s": 4.371,
       "prompt_tokens": 636,
       "completion_tokens": 78,
       "valid": true,
@@ -164,10 +164,10 @@
     },
     {
       "id": "trudvsem_snapshot:7363ea28-b00c-11f1-b99e-4972ddb33ebb",
-      "wall_s": 17.537,
-      "model_s": 17.29,
-      "prompt_s": 7.895,
-      "generate_s": 9.206,
+      "wall_s": 8.493,
+      "model_s": 8.166,
+      "prompt_s": 3.653,
+      "generate_s": 4.462,
       "prompt_tokens": 489,
       "completion_tokens": 81,
       "valid": true,
@@ -175,10 +175,10 @@
     },
     {
       "id": "trudvsem_snapshot:722a4908-688c-11f1-a95e-05a97d193f2d",
-      "wall_s": 14.261,
-      "model_s": 14.021,
-      "prompt_s": 5.284,
-      "generate_s": 8.692,
+      "wall_s": 6.503,
+      "model_s": 6.694,
+      "prompt_s": 2.828,
+      "generate_s": 3.859,
       "prompt_tokens": 437,
       "completion_tokens": 71,
       "valid": true,
@@ -186,10 +186,10 @@
     },
     {
       "id": "trudvsem_snapshot:58173708-3569-11f0-9d0b-e7d0d2cf29b1",
-      "wall_s": 20.53,
-      "model_s": 20.217,
-      "prompt_s": 9.572,
-      "generate_s": 10.595,
+      "wall_s": 8.78,
+      "model_s": 8.503,
+      "prompt_s": 4.643,
+      "generate_s": 3.852,
       "prompt_tokens": 544,
       "completion_tokens": 71,
       "valid": true,
@@ -197,10 +197,10 @@
     },
     {
       "id": "trudvsem_snapshot:44448886-be71-11f1-9dff-97d306130813",
-      "wall_s": 27.645,
-      "model_s": 27.577,
-      "prompt_s": 14.543,
-      "generate_s": 12.897,
+      "wall_s": 12.955,
+      "model_s": 12.546,
+      "prompt_s": 7.568,
+      "generate_s": 4.923,
       "prompt_tokens": 693,
       "completion_tokens": 89,
       "valid": true,
@@ -208,10 +208,10 @@
     },
     {
       "id": "trudvsem_snapshot:2bf568c8-a531-11f1-aa6f-e58ffaa23423",
-      "wall_s": 17.652,
-      "model_s": 17.611,
-      "prompt_s": 8.392,
-      "generate_s": 9.102,
+      "wall_s": 9.65,
+      "model_s": 9.358,
+      "prompt_s": 4.416,
+      "generate_s": 4.884,
       "prompt_tokens": 531,
       "completion_tokens": 81,
       "valid": true,
@@ -219,10 +219,10 @@
     },
     {
       "id": "trudvsem_snapshot:1a91b578-faa5-11f0-8628-a3cca5294b78",
-      "wall_s": 23.377,
-      "model_s": 22.807,
-      "prompt_s": 13.185,
-      "generate_s": 9.505,
+      "wall_s": 10.858,
+      "model_s": 10.613,
+      "prompt_s": 6.331,
+      "generate_s": 4.229,
       "prompt_tokens": 621,
       "completion_tokens": 76,
       "valid": true,
@@ -230,10 +230,10 @@
     },
     {
       "id": "trudvsem_snapshot:c1a852a2-927b-11ed-b2dd-93f7cc862eb6",
-      "wall_s": 21.454,
-      "model_s": 21.221,
-      "prompt_s": 11.045,
-      "generate_s": 10.031,
+      "wall_s": 10.085,
+      "model_s": 9.718,
+      "prompt_s": 5.363,
+      "generate_s": 4.307,
       "prompt_tokens": 578,
       "completion_tokens": 77,
       "valid": true,
@@ -241,10 +241,10 @@
     },
     {
       "id": "trudvsem_snapshot:03858bd8-43a3-11f1-8e97-0164d64c91c4",
-      "wall_s": 54.449,
-      "model_s": 54.286,
-      "prompt_s": 36.832,
-      "generate_s": 17.086,
+      "wall_s": 22.581,
+      "model_s": 22.017,
+      "prompt_s": 15.041,
+      "generate_s": 6.922,
       "prompt_tokens": 1078,
       "completion_tokens": 114,
       "valid": true,
@@ -252,10 +252,10 @@
     },
     {
       "id": "trudvsem_snapshot:769471d8-a287-11f0-8bdd-abd4f0e64f6f",
-      "wall_s": 20.887,
-      "model_s": 20.805,
-      "prompt_s": 9.517,
-      "generate_s": 11.088,
+      "wall_s": 8.575,
+      "model_s": 8.305,
+      "prompt_s": 4.425,
+      "generate_s": 3.803,
       "prompt_tokens": 531,
       "completion_tokens": 71,
       "valid": true,
@@ -263,10 +263,10 @@
     },
     {
       "id": "trudvsem_snapshot:4016bb60-a500-11f0-a18c-bdc82d0d5dcd",
-      "wall_s": 25.892,
-      "model_s": 25.754,
-      "prompt_s": 9.675,
-      "generate_s": 15.933,
+      "wall_s": 8.549,
+      "model_s": 8.253,
+      "prompt_s": 3.85,
+      "generate_s": 4.349,
       "prompt_tokens": 499,
       "completion_tokens": 80,
       "valid": true,
@@ -274,10 +274,10 @@
     },
     {
       "id": "trudvsem_snapshot:283c63e8-b80f-11ed-91ba-7dbf5d2a6230",
-      "wall_s": 28.822,
-      "model_s": 28.727,
-      "prompt_s": 11.628,
-      "generate_s": 17.022,
+      "wall_s": 9.126,
+      "model_s": 8.908,
+      "prompt_s": 4.424,
+      "generate_s": 4.475,
       "prompt_tokens": 532,
       "completion_tokens": 81,
       "valid": true,
@@ -285,10 +285,10 @@
     },
     {
       "id": "trudvsem_snapshot:588bac08-90cd-11f1-9d62-2f50b9e6b1e0",
-      "wall_s": 28.894,
-      "model_s": 28.383,
-      "prompt_s": 8.329,
-      "generate_s": 19.925,
+      "wall_s": 8.532,
+      "model_s": 8.46,
+      "prompt_s": 3.746,
+      "generate_s": 4.663,
       "prompt_tokens": 494,
       "completion_tokens": 84,
       "valid": true,
@@ -296,10 +296,10 @@
     },
     {
       "id": "trudvsem_snapshot:a55b92c1-c15c-11f1-aa68-7523fb122f6d",
-      "wall_s": 40.993,
-      "model_s": 40.851,
-      "prompt_s": 16.938,
-      "generate_s": 23.75,
+      "wall_s": 17.515,
+      "model_s": 16.877,
+      "prompt_s": 8.361,
+      "generate_s": 8.506,
       "prompt_tokens": 731,
       "completion_tokens": 147,
       "valid": true,
@@ -307,10 +307,10 @@
     },
     {
       "id": "trudvsem_snapshot:0ca79d18-afec-11f1-987b-b1d3bf2d14ab",
-      "wall_s": 43.176,
-      "model_s": 43.079,
-      "prompt_s": 26.717,
-      "generate_s": 13.826,
+      "wall_s": 17.806,
+      "model_s": 17.484,
+      "prompt_s": 12.573,
+      "generate_s": 4.824,
       "prompt_tokens": 967,
       "completion_tokens": 82,
       "valid": true,
@@ -318,10 +318,10 @@
     },
     {
       "id": "trudvsem_snapshot:6eccbd58-a353-11f0-a18c-bdc82d0d5dcd",
-      "wall_s": 10.517,
-      "model_s": 10.41,
-      "prompt_s": 0.236,
-      "generate_s": 8.715,
+      "wall_s": 4.121,
+      "model_s": 3.973,
+      "prompt_s": 0.049,
+      "generate_s": 3.836,
       "prompt_tokens": 531,
       "completion_tokens": 71,
       "valid": true,
@@ -329,15 +329,15 @@
     },
     {
       "id": "trudvsem_snapshot:76bf32d8-5817-11f1-aec1-4103e3ed6448",
-      "wall_s": 19.227,
-      "model_s": 19.19,
-      "prompt_s": 10.144,
-      "generate_s": 8.93,
+      "wall_s": 9.673,
+      "model_s": 9.314,
+      "prompt_s": 5.112,
+      "generate_s": 4.157,
       "prompt_tokens": 563,
       "completion_tokens": 75,
       "valid": true,
       "same_fields_as_corpus": true
     }
   ],
-  "measured_at": "2026-10-13T08:45:48+00:00"
+  "measured_at": "2026-10-13T17:28:05+00:00"
 }

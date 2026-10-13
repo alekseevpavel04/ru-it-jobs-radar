@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/hf_scan.py",
   "command": "python -m radar.site.hf_scan",
-  "commit": "06f75b0-dirty",
-  "created_at": "2026-10-13T15:32:31+00:00",
+  "commit": "010f191-dirty",
+  "created_at": "2026-10-13T17:29:26+00:00",
   "metrics": {
     "files_scanned": {
       "value": 28,
@@ -10,7 +10,7 @@
       "denominator": null
     },
     "items_scanned": {
-      "value": 66377,
+      "value": 54399,
       "n": null,
       "denominator": null
     },
@@ -32,7 +32,7 @@
     {
       "file": "storage/hf/dataset/aggregates/telegram_weekly.parquet",
       "scanned_as": "rows",
-      "items": 39356,
+      "items": 27378,
       "findings": {}
     },
     {

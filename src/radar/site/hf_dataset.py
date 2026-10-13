@@ -10,8 +10,9 @@ What leaves the project follows DECISIONS 2 and 3 and the publication rules of d
   out, the fields stay. An employer who is a person (ИП, a 12-digit INN) has no name in the export.
 - SuperJob: the extracted fields only, with the date. No text, no title, no vacancy id (an id leads
   back to the text), no link, no employer.
-- Telegram: aggregates only, no row of any kind. Weekly counts per public channel and value of a
-  field, the same dimensions and the same MIN_CELL as Habr.
+- Telegram: aggregates only, no row of any kind. Weekly counts over all channels per value of a
+  field, the same dimensions and the same MIN_CELL as Habr. No channel dimension: per channel the
+  floor dropped the field of almost half the posts, and a small channel's week came close to its posts.
 - Habr Career: aggregates only, no row of any kind (DECISIONS 2 of 12.10). Monthly counts per role,
   grade, work format, employment type and skill; a cell below MIN_CELL vacancies is left out, so no
   cell describes a single vacancy.
@@ -135,11 +136,10 @@ AGGREGATE_SCHEMA = schema(
 TELEGRAM_SCHEMA = schema(
     [
         ("week", pa.date32()),
-        ("channel", pa.string()),
         ("dimension", pa.string()),
         ("value", pa.string()),
         ("posts", pa.int64()),
-        ("posts_in_channel_week", pa.int64()),
+        ("posts_in_week", pa.int64()),
     ]
 )
 
@@ -325,14 +325,20 @@ def week_of(row: Mapping[str, Any]) -> date:
 
 
 def telegram_aggregates(rows: Sequence[Mapping[str, Any]]) -> tuple[list[dict[str, Any]], int]:
-    """Weekly counts of posts per channel and value of a field; cells under MIN_CELL are dropped."""
-    per_week, cells = field_cells(rows, lambda r: (week_of(r), r["channel"]))
+    """Weekly counts of posts over all channels per value of a field; cells under MIN_CELL are dropped."""
+    per_week, cells = field_cells(rows, lambda r: (week_of(r),))
     out = [
-        {"week": w, "channel": c, "dimension": d, "value": v, "posts": n, "posts_in_channel_week": per_week[(w, c)]}
-        for (w, c, d, v), n in sorted(cells.items())
+        {"week": w, "dimension": d, "value": v, "posts": n, "posts_in_week": per_week[(w,)]}
+        for (w, d, v), n in sorted(cells.items())
         if n >= MIN_CELL
     ]
     return out, sum(1 for n in cells.values() if n < MIN_CELL)
+
+
+def role_kept(rows: Sequence[Mapping[str, Any]], group: Callable[[Mapping[str, Any]], tuple[Any, ...]]) -> int:
+    """Posts whose role lands in a cell of at least MIN_CELL under this grouping."""
+    _, cells = field_cells(rows, group)
+    return sum(n for key, n in cells.items() if key[-2] == "role" and n >= MIN_CELL)
 
 
 def write_parts(source: str, rows: Sequence[Mapping[str, Any]]) -> list[Path]:
@@ -415,8 +421,13 @@ def export(model_id: str) -> dict[str, Any]:
     metrics["telegram.cells"] = {"value": len(telegram)}
     metrics["telegram.cells_dropped_below_min"] = {"value": telegram_suppressed}
     # How much of the field survives the cell floor: a post's role is in at most one published cell.
+    valid_posts = metrics["telegram.extraction_valid"]["n"]
     metrics["telegram.role_in_published_cells"] = share(
-        sum(c["posts"] for c in telegram if c["dimension"] == "role"), metrics["telegram.extraction_valid"]["n"]
+        sum(c["posts"] for c in telegram if c["dimension"] == "role"), valid_posts
+    )
+    # The same floor per channel and week, the layout these aggregates replaced; kept for the comparison.
+    metrics["telegram.role_in_cells_per_channel_week"] = share(
+        role_kept(posts, lambda r: (week_of(r), r["channel"])), valid_posts
     )
     weeks = sorted({week_of(r) for r in posts})
     metrics["telegram.first_week"] = {"value": weeks[0].isoformat()}

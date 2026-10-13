@@ -197,7 +197,7 @@ async function run() {
   $("status").className = "status";
   $("status").textContent = "Модель читает текст на процессоре." +
     (info && info.speed ? ` В локальной проверке на двух ядрах половина ответов пришла быстрее ${Math.round(info.speed.p50_s)} с, длинный текст дольше.` +
-      ` Замер шёл на загруженной машине (средняя нагрузка ${dec(info.speed.host_load_1min, 1)} при ${info.speed.host_cpus} ядрах), на свободном процессоре время другое.` : "");
+      ` Замер шёл на машине с другими задачами (средняя нагрузка до ${dec(info.speed.host_load_1min, 1)} при ${info.speed.host_cpus} ядрах), процессор Space другой, и время на нём другое.` : "");
   try {
     const resp = await fetch("api/extract", {
       method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({text})
