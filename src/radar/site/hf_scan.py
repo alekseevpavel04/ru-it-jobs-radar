@@ -1,4 +1,4 @@
-"""Scan what an upload would send (storage/hf) for personal data; must find nothing.
+"""Scan what an upload to Hugging Face would send (storage/hf) for personal data; must find nothing.
 
     python -m radar.site.hf_scan
 
@@ -27,7 +27,7 @@ import pyarrow.parquet as pq
 from radar.pii.records import scan_record
 from radar.pii.text import scan_text
 from radar.results import write_result
-from radar.site.hf_common import STORAGE, shown, tree
+from radar.site.hf_common import LICENSES, STORAGE, shown, tree
 
 log = logging.getLogger("radar.site.hf_scan")
 
@@ -36,6 +36,8 @@ TEXT_SUFFIXES = {".md", ".txt"}
 # The Space page is code; the data it shows comes from assets/space.json, which is scanned.
 SKIPPED_SUFFIXES = {".gguf", ".safetensors", ".pkl", ".py", ".jinja", ".sh", ".toml", ".html"}
 SKIPPED_NAMES = {"Dockerfile", "requirements.txt", "tokenizer.json", "tokenizer_config.json"}
+# Upstream license texts, copied byte for byte; scripts/scan_pii.py still reads them.
+SKIPPED_NAMES |= {p.name for p in LICENSES.iterdir()}
 _UUID = r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
 SHAPES = {
     "vacancy_id": re.compile(rf"^{_UUID}$"),

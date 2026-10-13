@@ -185,3 +185,4 @@ src/radar/pii/text.py	person_name	108a9941e791	synthetic example in a comment, r
 tests/pii/test_names.py	person_name	108a9941e791	synthetic value of a test, replaced a name taken from a post on 13.10
 tests/pii/test_names.py	person_name	4b688486ab61	synthetic value of a test, replaced a name taken from a post on 13.10
 tests/pii/test_names.py	person_name	5781efb80c98	synthetic value of a test
+*/licenses/YandexGPT-5-Lite-8B-LICENSE.txt	email	dbdc3085a8ff	Yandex sales address in the verbatim license agreement, not a person

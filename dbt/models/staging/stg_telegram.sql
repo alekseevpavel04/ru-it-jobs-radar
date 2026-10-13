@@ -71,7 +71,7 @@ bucketed AS (
         {{ role_bucket('hashtags') }} AS hashtag_bucket,
         {{ role_bucket('substringUTF8(body, 1, 300)') }} AS head_bucket
     FROM ruled
-    -- A channel kept to one language (seed lang: remoteit) counts only posts in it; raw keeps
+    -- A channel kept to one language (seed lang: remoteit, see docs/sources.md) counts only posts in it; raw keeps
     -- the others. post_lang is the rule of radar.extract.telegram_corpus.post_lang.
     WHERE channel_lang = '' OR {{ post_lang('body') }} = channel_lang
 )

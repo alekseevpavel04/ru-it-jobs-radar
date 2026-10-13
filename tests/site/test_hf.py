@@ -3,6 +3,7 @@ import shutil
 import subprocess
 import sys
 from collections import Counter
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -226,8 +227,26 @@ def test_fields_only_rows_carry_no_id_text_or_link() -> None:
     (sj,) = hf_dataset.fields_only_rows(ch, "m", "superjob")  # type: ignore[arg-type]
     assert tg["channel"] == "datasciencejobs" and tg["_month"] == "2025-03"
     assert "channel" not in sj
-    for schema in (hf_dataset.SCHEMAS["telegram"], hf_dataset.SCHEMAS["superjob"]):
-        assert not {"text", "title", "url", "source_id", "vacancy_id"} & set(schema.names)
+    assert set(hf_dataset.SCHEMAS) == {"trudvsem", "superjob"}  # Telegram leaves as aggregates only
+    for schema in (hf_dataset.TELEGRAM_SCHEMA, hf_dataset.SCHEMAS["superjob"]):
+        assert not {"text", "title", "url", "source_id", "vacancy_id", "employer_name"} & set(schema.names)
+
+
+def test_telegram_aggregates_count_channel_weeks_and_drop_small_cells() -> None:
+    def post(day: str, **over: Any) -> dict[str, Any]:
+        return {"channel": "datasciencejobs", "version_day": "2026-10-12", "published_day": day, **FIELDS, **over}
+
+    # 2026-10-05 is a Monday, 2026-10-11 the Sunday of the same week; 1970-01-01 means no date.
+    posts = [post("2026-10-05") for _ in range(hf_dataset.MIN_CELL - 1)] + [post("2026-10-11")]
+    posts += [post("1970-01-01", role="qa"), post("2026-10-06", extraction_valid=False)]
+    rows = hf_dataset.fields_only_rows(FakeClickHouse({"telegram": posts}), "m", "telegram")  # type: ignore[arg-type]
+    cells, dropped = hf_dataset.telegram_aggregates(rows)
+    week = {"week": date(2026, 10, 5), "channel": "datasciencejobs"}
+    assert week | {"dimension": "role", "value": "data_scientist", "posts": 5, "posts_in_channel_week": 6} in cells
+    assert week | {"dimension": "skill", "value": "SQL", "posts": 5, "posts_in_channel_week": 6} in cells
+    assert not any(c["value"] == "qa" for c in cells)  # one post, and in the week of its raw version
+    assert dropped >= 1
+    assert all(c["posts"] >= hf_dataset.MIN_CELL for c in cells)
 
 
 def test_habr_aggregates_drop_small_cells() -> None:
@@ -287,10 +306,10 @@ def test_card_headers_match_the_layout() -> None:
     assert configs == {
         "trudvsem": "data/trudvsem/*.parquet",
         "superjob": "data/superjob/*.parquet",
-        "telegram": "data/telegram/*.parquet",
+        "telegram_aggregates": "aggregates/telegram_weekly.parquet",
         "habr_aggregates": "aggregates/habr_monthly.parquet",
     }
-    assert set(hf_dataset.ROW_SOURCES) | {"habr_aggregates"} == set(configs)
+    assert set(hf_dataset.ROW_SOURCES) | {"telegram_aggregates", "habr_aggregates"} == set(configs)
 
 
 def test_published_card_has_values_only(tmp_path: Path) -> None:

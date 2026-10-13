@@ -35,4 +35,10 @@ datasets:
 - Длинный текст обрезается до первых <!--n:sft/train_qwen3_1p7b_r16_clean.json:params.max_input_tokens:,d|ru-->1 536<!--/n--> токенов, как при обучении.
 - Оценка зарплаты построена почти целиком на вакансиях «Работы в России». Для вакансий, которые публикуются только на коммерческих площадках, она может быть смещена.
 
+## Лицензии
+
+Код Space под MIT. Модель извлечения, которую Space скачивает и запускает, распространяется на условиях Apache 2.0 (база Qwen3-1.7B) и лицензионного соглашения YandexGPT-5-Lite-8B: часть её обучающей разметки взята из ответов YandexGPT-5-Lite-8B-instruct. Подробно в [NOTICE.md](NOTICE.md), копии лицензий в `licenses/`.
+
+> YandexGPT-5-Lite-8B распространяется на условиях Лицензионного соглашения YandexGPT-5-Lite-8B. Copyright (c) 2025, ООО «ЯНДЕКС». Все права защищены.
+
 Код, методика и все числа: [github.com/alekseevpavel04/ru-it-jobs-radar](https://github.com/alekseevpavel04/ru-it-jobs-radar). Сайт с рынком: [alekseevpavel04.github.io/ru-it-jobs-radar](https://alekseevpavel04.github.io/ru-it-jobs-radar/).

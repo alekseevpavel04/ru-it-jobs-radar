@@ -31,7 +31,7 @@ headline = [
 model = "radar-extractor"
 key = "qwen3_1p7b_r16_clean"
 alias = "champion"
-description = "Qwen3-1.7B, LoRA r16, two epochs (the recipe of E9) on the silver set after the refresh of 12.10 (E13); quantized in E14. Experiment ids refer to docs/EXPERIMENTS.md."
+description = "Qwen3-1.7B, LoRA r16, two epochs (the recipe of E9 in docs/EXPERIMENTS.md) on the silver set rebuilt after the corpus refresh of 12.10; its quantized variants are scored in results/extract/quant_summary.json."
 train_run_id_file = "models/sft/qwen3_1p7b_r16_clean/mlflow_run_id.txt"
 artifacts = [
   { path = "models/sft/qwen3_1p7b_r16_clean/adapter", dest = "adapter" },

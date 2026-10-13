@@ -8,8 +8,10 @@ What leaves the project follows DECISIONS 2 and 3 and the publication rules of d
   version: title, text, link and the portal's own fields with the extracted fields. A vacancy the
   portal marks "Вакансия интернет ресурса" was reposted from another site: its title and text stay
   out, the fields stay. An employer who is a person (ИП, a 12-digit INN) has no name in the export.
-- SuperJob and Telegram: the extracted fields only, with the date and, for Telegram, the public
-  channel. No text, no title, no vacancy id or post number (an id leads back to the text), no link.
+- SuperJob: the extracted fields only, with the date. No text, no title, no vacancy id (an id leads
+  back to the text), no link, no employer.
+- Telegram: aggregates only, no row of any kind. Weekly counts per public channel and value of a
+  field, the same dimensions and the same MIN_CELL as Habr.
 - Habr Career: aggregates only, no row of any kind (DECISIONS 2 of 12.10). Monthly counts per role,
   grade, work format, employment type and skill; a cell below MIN_CELL vacancies is left out, so no
   cell describes a single vacancy.
@@ -21,7 +23,7 @@ data once more (radar.pii.text); a finding is replaced by its placeholder and co
 
 Rows are split by time: one Parquet file per year of publication (the version's raw partition date
 when the source gives none) under data/<source>/<YYYY>.parquet; trudvsem keeps vacancies open since
-2015 and Telegram channels go back years, so monthly files would be hundreds of tiny ones. The export is rerunnable:
+2015, so monthly files would be hundreds of tiny ones. The export is rerunnable:
 each run rewrites the tree from what the table holds now, so it follows the corpus extraction while
 that is still running. Writes the card (hf/dataset/README.md.in filled from results/) and
 results/public/hf_dataset.json.
@@ -33,8 +35,8 @@ import logging
 import shutil
 import sys
 from collections import Counter
-from collections.abc import Iterable, Mapping, Sequence
-from datetime import UTC, datetime
+from collections.abc import Callable, Iterable, Mapping, Sequence
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -55,7 +57,8 @@ RESULT = "public/hf_dataset.json"
 REPOSTED = "Вакансия интернет ресурса"
 MIN_CELL = 5
 TRUDVSEM_FEEDS = {"trudvsem": "staging.stg_trudvsem_api", "trudvsem_snapshot": "staging.stg_trudvsem_snapshot"}
-ROW_SOURCES = ("trudvsem", "superjob", "telegram")
+ROW_SOURCES = ("trudvsem", "superjob")
+AGGREGATE_DIMENSIONS = ("role", "grade", "work_format", "employment_type")
 
 FIELD_COLUMNS = (
     "role",
@@ -117,7 +120,6 @@ SCHEMAS = {
         ]
     ),
     "superjob": schema([("published_date", pa.date32()), *FIELDS_SCHEMA]),
-    "telegram": schema([("channel", pa.string()), ("published_date", pa.date32()), *FIELDS_SCHEMA]),
 }
 
 AGGREGATE_SCHEMA = schema(
@@ -127,6 +129,17 @@ AGGREGATE_SCHEMA = schema(
         ("value", pa.string()),
         ("vacancies", pa.int64()),
         ("vacancies_in_month", pa.int64()),
+    ]
+)
+
+TELEGRAM_SCHEMA = schema(
+    [
+        ("week", pa.date32()),
+        ("channel", pa.string()),
+        ("dimension", pa.string()),
+        ("value", pa.string()),
+        ("posts", pa.int64()),
+        ("posts_in_channel_week", pa.int64()),
     ]
 )
 
@@ -270,28 +283,56 @@ def fields_only_rows(ch: ClickHouse, model_id: str, source: str) -> list[dict[st
         out: dict[str, Any] = {"published_date": day_or_none(row["published_day"])}
         if source == "telegram":
             out["channel"] = row["channel"]
-        rows.append({**out, **fields_part(row), "_month": month_of(row)})
+        day = out["published_date"] or day_or_none(row["version_day"])
+        rows.append({**out, **fields_part(row), "_month": month_of(row), "_day": day})
     return rows
+
+
+def field_cells(
+    rows: Sequence[Mapping[str, Any]], group: Callable[[Mapping[str, Any]], tuple[Any, ...]]
+) -> tuple[Counter[tuple[Any, ...]], Counter[tuple[Any, ...]]]:
+    """(rows per group, rows per group and value of a field); a row that broke the schema counts in the group only."""
+    per_group: Counter[tuple[Any, ...]] = Counter()
+    cells: Counter[tuple[Any, ...]] = Counter()
+    for r in rows:
+        key = group(r)
+        per_group[key] += 1
+        if not r["extraction_valid"]:
+            continue
+        for dim in AGGREGATE_DIMENSIONS:
+            cells[(*key, dim, r[dim] or "null")] += 1
+        for skill in set(r["skills"]):
+            cells[(*key, "skill", skill)] += 1
+    return per_group, cells
 
 
 def habr_aggregates(ch: ClickHouse, model_id: str) -> tuple[list[dict[str, Any]], int, int]:
     """Monthly counts of Habr vacancies per value of a field; cells under MIN_CELL are dropped."""
     rows = fields_only_rows(ch, model_id, "habr")
-    per_month = Counter(r["_month"] for r in rows)
-    cells: Counter[tuple[str, str, str]] = Counter()
-    for r in rows:
-        if not r["extraction_valid"]:
-            continue
-        for dim in ("role", "grade", "work_format", "employment_type"):
-            cells[(r["_month"], dim, r[dim] or "null")] += 1
-        for skill in set(r["skills"]):
-            cells[(r["_month"], "skill", skill)] += 1
+    per_month, cells = field_cells(rows, lambda r: (r["_month"],))
     out = [
-        {"month": m, "dimension": d, "value": v, "vacancies": n, "vacancies_in_month": per_month[m]}
+        {"month": m, "dimension": d, "value": v, "vacancies": n, "vacancies_in_month": per_month[(m,)]}
         for (m, d, v), n in sorted(cells.items())
         if n >= MIN_CELL
     ]
     return out, sum(1 for n in cells.values() if n < MIN_CELL), len(rows)
+
+
+def week_of(row: Mapping[str, Any]) -> date:
+    """Monday of the week of publication, of the raw version when the source gives no date."""
+    day: date = row["_day"].date()
+    return day - timedelta(days=day.weekday())
+
+
+def telegram_aggregates(rows: Sequence[Mapping[str, Any]]) -> tuple[list[dict[str, Any]], int]:
+    """Weekly counts of posts per channel and value of a field; cells under MIN_CELL are dropped."""
+    per_week, cells = field_cells(rows, lambda r: (week_of(r), r["channel"]))
+    out = [
+        {"week": w, "channel": c, "dimension": d, "value": v, "posts": n, "posts_in_channel_week": per_week[(w, c)]}
+        for (w, c, d, v), n in sorted(cells.items())
+        if n >= MIN_CELL
+    ]
+    return out, sum(1 for n in cells.values() if n < MIN_CELL)
 
 
 def write_parts(source: str, rows: Sequence[Mapping[str, Any]]) -> list[Path]:
@@ -328,7 +369,6 @@ def export(model_id: str) -> dict[str, Any]:
     rows = {
         "trudvsem": trudvsem_rows(ch, model_id, found),
         "superjob": fields_only_rows(ch, model_id, "superjob"),
-        "telegram": fields_only_rows(ch, model_id, "telegram"),
     }
     files = {source: write_parts(source, rows[source]) for source in ROW_SOURCES}
     habr, habr_suppressed, habr_vacancies = habr_aggregates(ch, model_id)
@@ -336,6 +376,13 @@ def export(model_id: str) -> dict[str, Any]:
     agg_dir.mkdir(parents=True, exist_ok=True)
     habr_file = agg_dir / "habr_monthly.parquet"
     pq.write_table(pa.Table.from_pylist(habr, schema=AGGREGATE_SCHEMA), habr_file, compression="zstd")
+    posts = fields_only_rows(ch, model_id, "telegram")
+    telegram, telegram_suppressed = telegram_aggregates(posts)
+    telegram_file = agg_dir / "telegram_weekly.parquet"
+    pq.write_table(pa.Table.from_pylist(telegram, schema=TELEGRAM_SCHEMA), telegram_file, compression="zstd")
+    stale = OUT / "data" / "telegram"
+    if stale.exists():
+        shutil.rmtree(stale)
 
     tv = rows["trudvsem"]
     metrics: dict[str, dict[str, Any]] = {}
@@ -352,19 +399,36 @@ def export(model_id: str) -> dict[str, Any]:
     with_text = sum(r["text"] is not None for r in tv)
     metrics["trudvsem.with_text"] = share(with_text, len(tv))
     metrics["trudvsem.text_withheld_reposted"] = share(sum(r["text_withheld"] is not None for r in tv), len(tv))
+    # Not withheld, the portal sent no text: with_text and the reposted ones then add up to all rows.
+    metrics["trudvsem.no_text_at_source"] = share(
+        sum(r["text"] is None and r["text_withheld"] is None for r in tv), len(tv)
+    )
     metrics["trudvsem.employer_name_removed_person"] = {"value": found.pop("employer_person", 0)}
     metrics["trudvsem.from_api_feed"] = share(sum(r["feed"] == "trudvsem" for r in tv), len(tv))
     metrics["habr.cells"] = {"value": len(habr)}
     metrics["habr.cells_dropped_below_min"] = {"value": habr_suppressed}
     metrics["habr.min_cell"] = {"value": MIN_CELL}
     metrics["habr.vacancies"] = {"value": habr_vacancies}
+    metrics["telegram.posts"] = {"value": len(posts)}
+    metrics["telegram.extraction_valid"] = share(sum(r["extraction_valid"] for r in posts), len(posts))
+    metrics["telegram.channels"] = {"value": len({r["channel"] for r in posts})}
+    metrics["telegram.cells"] = {"value": len(telegram)}
+    metrics["telegram.cells_dropped_below_min"] = {"value": telegram_suppressed}
+    # How much of the field survives the cell floor: a post's role is in at most one published cell.
+    metrics["telegram.role_in_published_cells"] = share(
+        sum(c["posts"] for c in telegram if c["dimension"] == "role"), metrics["telegram.extraction_valid"]["n"]
+    )
+    weeks = sorted({week_of(r) for r in posts})
+    metrics["telegram.first_week"] = {"value": weeks[0].isoformat()}
+    metrics["telegram.last_week"] = {"value": weeks[-1].isoformat()}
     metrics["pii_replaced_on_export"] = {"value": sum(found.values()), "by_kind": dict(found)}
     metrics["rows_total"] = {"value": sum(len(rows[s]) for s in ROW_SOURCES)}
 
     template = (HF / "dataset" / "README.md.in").read_text(encoding="utf-8")
     extra = {
         "model_id": model_id,
-        "files": {s: [shown(f) for f in fs] for s, fs in files.items()} | {"habr": [shown(habr_file)]},
+        "files": {s: [shown(f) for f in fs] for s, fs in files.items()}
+        | {"habr": [shown(habr_file)], "telegram": [shown(telegram_file)]},
         "exported_at": datetime.now(UTC).isoformat(timespec="seconds"),
     }
     write_result(RESULT, metrics, source_script="src/radar/site/hf_dataset.py", **extra)
@@ -372,12 +436,14 @@ def export(model_id: str) -> dict[str, Any]:
     (OUT / "README.md").write_text(card.published, encoding="utf-8", newline="\n")
     shutil.copy2(HF / "dataset" / "LICENSE.md", OUT / "LICENSE.md")
     log.info(
-        "dataset -> %s: trudvsem %d (with text %d), superjob %d, telegram %d, habr cells %d; card %d numbers",
+        "dataset -> %s: trudvsem %d (with text %d), superjob %d, telegram cells %d of %d posts, habr cells %d; "
+        "card %d numbers",
         shown(OUT),
         len(tv),
         with_text,
         len(rows["superjob"]),
-        len(rows["telegram"]),
+        len(telegram),
+        len(posts),
         len(habr),
         card.numbers,
     )

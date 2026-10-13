@@ -1,16 +1,16 @@
 {
   "source_script": "src/radar/site/hf_scan.py",
   "command": "python -m radar.site.hf_scan",
-  "commit": "d9d444e-dirty",
-  "created_at": "2026-10-13T08:49:47+00:00",
+  "commit": "06f75b0-dirty",
+  "created_at": "2026-10-13T15:32:31+00:00",
   "metrics": {
     "files_scanned": {
-      "value": 35,
+      "value": 28,
       "n": null,
       "denominator": null
     },
     "items_scanned": {
-      "value": 81255,
+      "value": 66377,
       "n": null,
       "denominator": null
     },
@@ -30,69 +30,15 @@
       "findings": {}
     },
     {
+      "file": "storage/hf/dataset/aggregates/telegram_weekly.parquet",
+      "scanned_as": "rows",
+      "items": 39356,
+      "findings": {}
+    },
+    {
       "file": "storage/hf/dataset/data/superjob/2026.parquet",
       "scanned_as": "rows",
       "items": 764,
-      "findings": {}
-    },
-    {
-      "file": "storage/hf/dataset/data/telegram/2017.parquet",
-      "scanned_as": "rows",
-      "items": 2,
-      "findings": {}
-    },
-    {
-      "file": "storage/hf/dataset/data/telegram/2018.parquet",
-      "scanned_as": "rows",
-      "items": 3,
-      "findings": {}
-    },
-    {
-      "file": "storage/hf/dataset/data/telegram/2019.parquet",
-      "scanned_as": "rows",
-      "items": 8,
-      "findings": {}
-    },
-    {
-      "file": "storage/hf/dataset/data/telegram/2020.parquet",
-      "scanned_as": "rows",
-      "items": 6,
-      "findings": {}
-    },
-    {
-      "file": "storage/hf/dataset/data/telegram/2021.parquet",
-      "scanned_as": "rows",
-      "items": 21,
-      "findings": {}
-    },
-    {
-      "file": "storage/hf/dataset/data/telegram/2022.parquet",
-      "scanned_as": "rows",
-      "items": 18,
-      "findings": {}
-    },
-    {
-      "file": "storage/hf/dataset/data/telegram/2023.parquet",
-      "scanned_as": "rows",
-      "items": 34,
-      "findings": {}
-    },
-    {
-      "file": "storage/hf/dataset/data/telegram/2024.parquet",
-      "scanned_as": "rows",
-      "items": 29,
-      "findings": {}
-    },
-    {
-      "file": "storage/hf/dataset/data/telegram/2025.parquet",
-      "scanned_as": "rows",
-      "items": 32769,
-      "findings": {}
-    },
-    {
-      "file": "storage/hf/dataset/data/telegram/2026.parquet",
-      "scanned_as": "rows",
-      "items": 21346,
       "findings": {}
     },
     {
@@ -210,6 +156,12 @@
       "findings": {}
     },
     {
+      "file": "storage/hf/model/LICENSE.md",
+      "scanned_as": "text",
+      "items": 1,
+      "findings": {}
+    },
+    {
       "file": "storage/hf/model/README.md",
       "scanned_as": "text",
       "items": 1,
@@ -228,6 +180,12 @@
       "findings": {}
     },
     {
+      "file": "storage/hf/space/NOTICE.md",
+      "scanned_as": "text",
+      "items": 1,
+      "findings": {}
+    },
+    {
       "file": "storage/hf/space/README.md",
       "scanned_as": "text",
       "items": 1,
@@ -242,6 +200,8 @@
     "storage/hf/model/chat_template.jinja",
     "storage/hf/model/gguf/qwen3_1p7b_r16_clean-Q4_K_M.gguf",
     "storage/hf/model/gguf/qwen3_1p7b_r16_clean-Q8_0.gguf",
+    "storage/hf/model/licenses/Qwen3-1.7B-LICENSE.txt",
+    "storage/hf/model/licenses/YandexGPT-5-Lite-8B-LICENSE.txt",
     "storage/hf/model/model.safetensors",
     "storage/hf/model/tokenizer.json",
     "storage/hf/model/tokenizer_config.json",
@@ -255,6 +215,8 @@
     "storage/hf/space/assets/tokenizer/tokenizer.json",
     "storage/hf/space/assets/tokenizer/tokenizer_config.json",
     "storage/hf/space/Dockerfile",
+    "storage/hf/space/licenses/Qwen3-1.7B-LICENSE.txt",
+    "storage/hf/space/licenses/YandexGPT-5-Lite-8B-LICENSE.txt",
     "storage/hf/space/requirements.txt",
     "storage/hf/space/start.sh",
     "storage/hf/space/vendor/radar/__init__.py",

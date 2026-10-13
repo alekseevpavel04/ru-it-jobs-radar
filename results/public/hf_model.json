@@ -1,11 +1,11 @@
 {
   "source_script": "src/radar/site/hf_model.py",
   "command": "python -m radar.site.hf_model",
-  "commit": "d9d444e-dirty",
-  "created_at": "2026-10-13T08:37:31+00:00",
+  "commit": "06f75b0-dirty",
+  "created_at": "2026-10-13T15:27:05+00:00",
   "metrics": {
     "files": {
-      "value": 15,
+      "value": 18,
       "n": null,
       "denominator": null
     },
@@ -108,6 +108,24 @@
       "size_bytes": 1834426048,
       "size_mib": 1749.4,
       "sha256": "50bf294152b8e55977b770674ee0de878782237e008286469bf8385c14d638ad"
+    },
+    {
+      "file": "LICENSE.md",
+      "size_bytes": 2343,
+      "size_mib": 0.0,
+      "sha256": "709b24f8f3ae7193f32ccb86e807ca3e4bde64fe0a9b960d36e1827712f11679"
+    },
+    {
+      "file": "licenses/Qwen3-1.7B-LICENSE.txt",
+      "size_bytes": 11343,
+      "size_mib": 0.0,
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    },
+    {
+      "file": "licenses/YandexGPT-5-Lite-8B-LICENSE.txt",
+      "size_bytes": 23003,
+      "size_mib": 0.0,
+      "sha256": "56a61be5cb709ece34f44d143ba1ce25745760d16f1068fb91b22e797a1a913a"
     },
     {
       "file": "model.safetensors",

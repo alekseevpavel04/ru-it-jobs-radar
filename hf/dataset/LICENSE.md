@@ -10,6 +10,6 @@
 
 ## Извлечённые поля и агрегаты
 
-Извлечённые поля всех конфигураций (`role`, `grade`, `skills`, `salary_*`, `work_format`, `cities`, `experience_*`, `employment_type`, `lang`, `extraction_valid`) и агрегаты `habr_aggregates` это производные данные проекта ru-it-jobs-radar. Они распространяются по лицензии Creative Commons Attribution 4.0 International (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
+Извлечённые поля всех конфигураций (`role`, `grade`, `skills`, `salary_*`, `work_format`, `cities`, `experience_*`, `employment_type`, `lang`, `extraction_valid`) и агрегаты `telegram_aggregates` и `habr_aggregates` это производные данные проекта ru-it-jobs-radar. Они распространяются по лицензии Creative Commons Attribution 4.0 International (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
 
-Тексты SuperJob, Хабр Карьеры и Telegram-каналов в набор не входят.
+Тексты SuperJob, Хабр Карьеры и Telegram-каналов в набор не входят. При использовании извлечённых полей и агрегатов указывайте проект ru-it-jobs-radar и ссылку на набор.

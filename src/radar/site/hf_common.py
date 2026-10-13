@@ -33,6 +33,8 @@ from radar.config import RESULTS, ROOT
 
 HF = ROOT / "hf"
 CONFIG = HF / "hf.toml"
+# Upstream license texts the model repo and the Space carry next to the weights they serve.
+LICENSES = HF / "licenses"
 STORAGE = ROOT / "storage" / "hf"
 PENDING = re.compile(r"<!--pending:(?P<path>[^:]+):(?P<key>[^:]+):(?P<fmt>[^>]*?)-->(?P<text>.*?)<!--/pending-->", re.S)
 

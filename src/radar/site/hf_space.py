@@ -10,7 +10,7 @@
 The image runs the GGUF with llama-server and renders prompts with radar.train.dataset, so a few
 modules of this package travel with it: the entry modules and everything they import from radar at
 module level (`vendored`), so a new import in the salary model reaches the image without an edit here.
-The assembled tree is the Space repo as an upload would send it.
+The assembled tree is the Space repo as it would be uploaded.
 On Hugging Face the GGUF is downloaded from the model repo at start; locally it is mounted.
 
 Texts. Only trudvsem texts are publishable (DECISIONS 2), and only those not reposted from other
@@ -42,7 +42,7 @@ from radar.extract.inputs import input_for_record
 from radar.extract.schema import dump, try_parse
 from radar.models.salary import load_model
 from radar.results import write_result
-from radar.site.hf_common import HF, STORAGE, load_config, render_card, results_doc, shown, write_json
+from radar.site.hf_common import HF, LICENSES, STORAGE, load_config, render_card, results_doc, shown, write_json
 from radar.stream.clickhouse import ClickHouse
 
 log = logging.getLogger("radar.site.hf_space")
@@ -303,7 +303,7 @@ def space_info(cfg: dict[str, Any]) -> dict[str, Any]:
 
 
 def speed() -> dict[str, Any] | None:
-    """The local run's typical answer time, for the page to say how long to wait."""
+    """The local run's answer time and the host load it was measured under, for the page's wait note."""
     path = ROOT / "results" / RESULT
     if not path.exists():
         return None
@@ -311,6 +311,8 @@ def speed() -> dict[str, Any] | None:
     return {
         "p50_s": doc["metrics"]["latency_p50_s"]["value"],
         "p95_s": doc["metrics"]["latency_p95_s"]["value"],
+        "host_load_1min": doc["metrics"]["host_load_1min"]["value"],
+        "host_cpus": doc["metrics"]["host_cpus"]["value"],
         "measured_at": doc["measured_at"][:10],
         "source": f"results/{RESULT}",
     }
@@ -322,6 +324,7 @@ def cmd_assemble() -> int:
     if OUT.exists():
         shutil.rmtree(OUT)
     shutil.copytree(SPACE_SRC, OUT, ignore=shutil.ignore_patterns("__pycache__", "README.md.in"))
+    shutil.copytree(LICENSES, OUT / "licenses")
     for rel in vendored():
         dst = OUT / "vendor" / rel
         dst.parent.mkdir(parents=True, exist_ok=True)

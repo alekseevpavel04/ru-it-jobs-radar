@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/hf_dataset.py",
   "command": "python -m radar.site.hf_dataset",
-  "commit": "d9d444e-dirty",
-  "created_at": "2026-10-13T08:49:16+00:00",
+  "commit": "06f75b0-dirty",
+  "created_at": "2026-10-13T15:30:40+00:00",
   "metrics": {
     "trudvsem.rows": {
       "value": 25818,
@@ -64,36 +64,6 @@
       "n": null,
       "denominator": null
     },
-    "telegram.rows": {
-      "value": 54236,
-      "n": null,
-      "denominator": null
-    },
-    "telegram.extraction_valid": {
-      "value": 0.9983,
-      "n": 54144,
-      "denominator": 54236
-    },
-    "telegram.files": {
-      "value": 10,
-      "n": null,
-      "denominator": null
-    },
-    "telegram.mib": {
-      "value": 0.6,
-      "n": null,
-      "denominator": null
-    },
-    "telegram.first_month": {
-      "value": "2017-10",
-      "n": null,
-      "denominator": null
-    },
-    "telegram.last_month": {
-      "value": "2026-10",
-      "n": null,
-      "denominator": null
-    },
     "trudvsem.with_text": {
       "value": 0.7307,
       "n": 18864,
@@ -102,6 +72,11 @@
     "trudvsem.text_withheld_reposted": {
       "value": 0.2693,
       "n": 6952,
+      "denominator": 25818
+    },
+    "trudvsem.no_text_at_source": {
+      "value": 0.0001,
+      "n": 2,
       "denominator": 25818
     },
     "trudvsem.employer_name_removed_person": {
@@ -134,6 +109,46 @@
       "n": null,
       "denominator": null
     },
+    "telegram.posts": {
+      "value": 112115,
+      "n": null,
+      "denominator": null
+    },
+    "telegram.extraction_valid": {
+      "value": 0.9982,
+      "n": 111917,
+      "denominator": 112115
+    },
+    "telegram.channels": {
+      "value": 58,
+      "n": null,
+      "denominator": null
+    },
+    "telegram.cells": {
+      "value": 39356,
+      "n": null,
+      "denominator": null
+    },
+    "telegram.cells_dropped_below_min": {
+      "value": 299356,
+      "n": null,
+      "denominator": null
+    },
+    "telegram.role_in_published_cells": {
+      "value": 0.5581,
+      "n": 62466,
+      "denominator": 111917
+    },
+    "telegram.first_week": {
+      "value": "2017-10-09",
+      "n": null,
+      "denominator": null
+    },
+    "telegram.last_week": {
+      "value": "2026-10-12",
+      "n": null,
+      "denominator": null
+    },
     "pii_replaced_on_export": {
       "value": 0,
       "n": null,
@@ -141,7 +156,7 @@
       "by_kind": {}
     },
     "rows_total": {
-      "value": 80818,
+      "value": 26582,
       "n": null,
       "denominator": null
     }
@@ -165,21 +180,12 @@
     "superjob": [
       "storage/hf/dataset/data/superjob/2026.parquet"
     ],
-    "telegram": [
-      "storage/hf/dataset/data/telegram/2017.parquet",
-      "storage/hf/dataset/data/telegram/2018.parquet",
-      "storage/hf/dataset/data/telegram/2019.parquet",
-      "storage/hf/dataset/data/telegram/2020.parquet",
-      "storage/hf/dataset/data/telegram/2021.parquet",
-      "storage/hf/dataset/data/telegram/2022.parquet",
-      "storage/hf/dataset/data/telegram/2023.parquet",
-      "storage/hf/dataset/data/telegram/2024.parquet",
-      "storage/hf/dataset/data/telegram/2025.parquet",
-      "storage/hf/dataset/data/telegram/2026.parquet"
-    ],
     "habr": [
       "storage/hf/dataset/aggregates/habr_monthly.parquet"
+    ],
+    "telegram": [
+      "storage/hf/dataset/aggregates/telegram_weekly.parquet"
     ]
   },
-  "exported_at": "2026-10-13T08:49:16+00:00"
+  "exported_at": "2026-10-13T15:30:40+00:00"
 }

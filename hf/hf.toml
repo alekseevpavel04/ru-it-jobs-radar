@@ -2,7 +2,7 @@
 # read this file; nothing is uploaded by them.
 
 [repos]
-# Repository names.
+# Proposed names, confirmed before the first upload.
 model = "alekseevpavel04/ru-it-vacancy-extractor-qwen3-1.7b"
 dataset = "alekseevpavel04/ru-it-vacancies"
 space = "alekseevpavel04/ru-it-jobs-radar"
