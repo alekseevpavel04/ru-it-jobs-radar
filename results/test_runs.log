@@ -60,3 +60,4 @@
 2026-10-13T17:17:02+00:00	salary	-	7146452	python -m radar.models.salary --final-test
 2026-10-13T17:17:06+00:00	matching	-	7146452-dirty	python -m radar.models.matching evaluate --final-test
 2026-10-13T17:19:38+00:00	suspicious	-	7146452-dirty	python -m radar.models.suspicious run --final-test
+2026-10-13T20:37:44+00:00	agent	-	b03bea0-dirty	python -m radar.agent eval --split test --final-test
