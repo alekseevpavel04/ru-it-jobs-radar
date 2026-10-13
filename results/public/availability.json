@@ -1,0 +1,112 @@
+{
+  "source_script": "src/radar/site/availability.py",
+  "command": "python -m radar.site.availability",
+  "commit": "5e7685d-dirty",
+  "created_at": "2026-10-13T19:53:29+00:00",
+  "metrics": {
+    "site.reached_from_ru": {
+      "value": 1.0,
+      "n": 4,
+      "denominator": 4
+    },
+    "site.reached_all": {
+      "value": 1.0,
+      "n": 7,
+      "denominator": 7
+    },
+    "space.reached_from_ru": {
+      "value": 1.0,
+      "n": 4,
+      "denominator": 4
+    },
+    "space.reached_all": {
+      "value": 1.0,
+      "n": 7,
+      "denominator": 7
+    },
+    "space_page.reached_from_ru": {
+      "value": 1.0,
+      "n": 4,
+      "denominator": 4
+    },
+    "space_page.reached_all": {
+      "value": 1.0,
+      "n": 7,
+      "denominator": 7
+    },
+    "model.reached_from_ru": {
+      "value": 1.0,
+      "n": 4,
+      "denominator": 4
+    },
+    "model.reached_all": {
+      "value": 1.0,
+      "n": 7,
+      "denominator": 7
+    },
+    "dataset.reached_from_ru": {
+      "value": 1.0,
+      "n": 4,
+      "denominator": 4
+    },
+    "dataset.reached_all": {
+      "value": 1.0,
+      "n": 7,
+      "denominator": 7
+    }
+  },
+  "urls": {
+    "site": "https://alekseevpavel04.github.io/ru-it-jobs-radar/",
+    "space": "https://alekseevpavel04-ru-it-jobs-radar.static.hf.space/index.html",
+    "space_page": "https://huggingface.co/spaces/alekseevpavel04/ru-it-jobs-radar",
+    "model": "https://huggingface.co/alekseevpavel04/ru-it-vacancy-extractor-qwen3-1.7b",
+    "dataset": "https://huggingface.co/datasets/alekseevpavel04/ru-it-vacancies"
+  },
+  "checks": {
+    "site": {
+      "local_ru": true,
+      "ru1": true,
+      "ru2": true,
+      "ru3": true,
+      "de1": true,
+      "nl1": true,
+      "us1": true
+    },
+    "space": {
+      "local_ru": true,
+      "ru1": true,
+      "ru2": true,
+      "ru3": true,
+      "de1": true,
+      "nl1": true,
+      "us1": true
+    },
+    "space_page": {
+      "local_ru": true,
+      "ru1": true,
+      "ru2": true,
+      "ru3": true,
+      "de1": true,
+      "nl1": true,
+      "us1": true
+    },
+    "model": {
+      "local_ru": true,
+      "ru1": true,
+      "ru2": true,
+      "ru3": true,
+      "de1": true,
+      "nl1": true,
+      "us1": true
+    },
+    "dataset": {
+      "local_ru": true,
+      "ru1": true,
+      "ru2": true,
+      "ru3": true,
+      "de1": true,
+      "nl1": true,
+      "us1": true
+    }
+  }
+}
