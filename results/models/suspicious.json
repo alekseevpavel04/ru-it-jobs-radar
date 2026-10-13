@@ -1,23 +1,23 @@
 {
   "source_script": "src/radar/models/suspicious.py",
-  "command": "python -m radar.models.suspicious run",
-  "commit": "149c8bb-dirty",
-  "created_at": "2026-10-11T11:55:30+00:00",
+  "command": "python -m radar.models.suspicious run --final-test",
+  "commit": "7146452-dirty",
+  "created_at": "2026-10-13T17:19:46+00:00",
   "metrics": {
     "cards": {
-      "value": 25909,
+      "value": 27723,
       "n": null,
       "denominator": null
     },
     "records": {
-      "value": 34762,
+      "value": 36832,
       "n": null,
       "denominator": null
     },
     "lf.course_pay.coverage": {
       "value": 0.0,
       "n": 1,
-      "denominator": 25909
+      "denominator": 27723
     },
     "lf.course_pay.overlap": {
       "value": 0.0,
@@ -32,7 +32,7 @@
     "lf.training_then_job.coverage": {
       "value": 0.0001,
       "n": 3,
-      "denominator": 25909
+      "denominator": 27723
     },
     "lf.training_then_job.overlap": {
       "value": 0.6667,
@@ -47,7 +47,7 @@
     "lf.income_bait.coverage": {
       "value": 0.0,
       "n": 1,
-      "denominator": 25909
+      "denominator": 27723
     },
     "lf.income_bait.overlap": {
       "value": 0.0,
@@ -62,7 +62,7 @@
     "lf.unlimited_income.coverage": {
       "value": 0.0001,
       "n": 2,
-      "denominator": 25909
+      "denominator": 27723
     },
     "lf.unlimited_income.overlap": {
       "value": 0.5,
@@ -75,54 +75,54 @@
       "denominator": 2
     },
     "lf.no_experience_high_pay.coverage": {
-      "value": 0.001,
-      "n": 26,
-      "denominator": 25909
+      "value": 0.0011,
+      "n": 31,
+      "denominator": 27723
     },
     "lf.no_experience_high_pay.overlap": {
       "value": 1.0,
-      "n": 26,
-      "denominator": 26
+      "n": 31,
+      "denominator": 31
     },
     "lf.no_experience_high_pay.conflict": {
       "value": 1.0,
-      "n": 26,
-      "denominator": 26
+      "n": 31,
+      "denominator": 31
     },
     "lf.sole_remote_no_experience.coverage": {
-      "value": 0.0003,
-      "n": 8,
-      "denominator": 25909
+      "value": 0.0007,
+      "n": 19,
+      "denominator": 27723
     },
     "lf.sole_remote_no_experience.overlap": {
       "value": 0.0,
       "n": 0,
-      "denominator": 8
+      "denominator": 19
     },
     "lf.sole_remote_no_experience.conflict": {
       "value": 0.0,
       "n": 0,
-      "denominator": 8
+      "denominator": 19
     },
     "lf.salary_high.coverage": {
-      "value": 0.003,
-      "n": 78,
-      "denominator": 25909
+      "value": 0.0036,
+      "n": 101,
+      "denominator": 27723
     },
     "lf.salary_high.overlap": {
-      "value": 0.859,
-      "n": 67,
-      "denominator": 78
+      "value": 0.5545,
+      "n": 56,
+      "denominator": 101
     },
     "lf.salary_high.conflict": {
-      "value": 0.859,
-      "n": 67,
-      "denominator": 78
+      "value": 0.5545,
+      "n": 56,
+      "denominator": 101
     },
     "lf.title_sales.coverage": {
       "value": 0.0003,
       "n": 7,
-      "denominator": 25909
+      "denominator": 27723
     },
     "lf.title_sales.overlap": {
       "value": 0.7143,
@@ -137,7 +137,7 @@
     "lf.grey.coverage": {
       "value": 0.0,
       "n": 1,
-      "denominator": 25909
+      "denominator": 27723
     },
     "lf.grey.overlap": {
       "value": 0.0,
@@ -150,54 +150,54 @@
       "denominator": 1
     },
     "lf.salary_low.coverage": {
-      "value": 0.0008,
-      "n": 21,
-      "denominator": 25909
+      "value": 0.0006,
+      "n": 17,
+      "denominator": 27723
     },
     "lf.salary_low.overlap": {
-      "value": 0.9524,
-      "n": 20,
-      "denominator": 21
+      "value": 0.9412,
+      "n": 16,
+      "denominator": 17
     },
     "lf.salary_low.conflict": {
-      "value": 0.7619,
-      "n": 16,
-      "denominator": 21
+      "value": 0.8824,
+      "n": 15,
+      "denominator": 17
     },
     "lf.pay_far_below.coverage": {
-      "value": 0.0079,
-      "n": 205,
-      "denominator": 25909
+      "value": 0.0078,
+      "n": 215,
+      "denominator": 27723
     },
     "lf.pay_far_below.overlap": {
-      "value": 0.6439,
-      "n": 132,
-      "denominator": 205
+      "value": 0.6186,
+      "n": 133,
+      "denominator": 215
     },
     "lf.pay_far_below.conflict": {
-      "value": 0.5805,
-      "n": 119,
-      "denominator": 205
+      "value": 0.5721,
+      "n": 123,
+      "denominator": 215
     },
     "lf.mass_text.coverage": {
-      "value": 0.0039,
-      "n": 102,
-      "denominator": 25909
+      "value": 0.003,
+      "n": 83,
+      "denominator": 27723
     },
     "lf.mass_text.overlap": {
       "value": 1.0,
-      "n": 102,
-      "denominator": 102
+      "n": 83,
+      "denominator": 83
     },
     "lf.mass_text.conflict": {
-      "value": 0.1863,
-      "n": 19,
-      "denominator": 102
+      "value": 0.0,
+      "n": 0,
+      "denominator": 83
     },
     "lf.mass_template.coverage": {
-      "value": 0.006,
+      "value": 0.0056,
       "n": 156,
-      "denominator": 25909
+      "denominator": 27723
     },
     "lf.mass_template.overlap": {
       "value": 0.6474,
@@ -212,7 +212,7 @@
     "lf.formal_note.coverage": {
       "value": 0.0,
       "n": 0,
-      "denominator": 25909
+      "denominator": 27723
     },
     "lf.formal_note.overlap": {
       "value": 0.0,
@@ -225,154 +225,154 @@
       "denominator": 0
     },
     "lf.repost_chain.coverage": {
-      "value": 0.0103,
-      "n": 268,
-      "denominator": 25909
+      "value": 0.0302,
+      "n": 838,
+      "denominator": 27723
     },
     "lf.repost_chain.overlap": {
-      "value": 0.9254,
-      "n": 248,
-      "denominator": 268
+      "value": 0.9368,
+      "n": 785,
+      "denominator": 838
     },
     "lf.repost_chain.conflict": {
-      "value": 0.8955,
-      "n": 240,
-      "denominator": 268
+      "value": 0.9272,
+      "n": 777,
+      "denominator": 838
     },
     "lf.public_sector.coverage": {
-      "value": 0.2415,
-      "n": 6258,
-      "denominator": 25909
+      "value": 0.2306,
+      "n": 6394,
+      "denominator": 27723
     },
     "lf.public_sector.overlap": {
-      "value": 0.2437,
-      "n": 1525,
-      "denominator": 6258
+      "value": 0.241,
+      "n": 1541,
+      "denominator": 6394
     },
     "lf.public_sector.conflict": {
-      "value": 0.0128,
-      "n": 80,
-      "denominator": 6258
+      "value": 0.0185,
+      "n": 118,
+      "denominator": 6394
     },
     "lf.large_employer.coverage": {
-      "value": 0.3871,
-      "n": 10029,
-      "denominator": 25909
+      "value": 0.3879,
+      "n": 10755,
+      "denominator": 27723
     },
     "lf.large_employer.overlap": {
-      "value": 0.217,
-      "n": 2176,
-      "denominator": 10029
+      "value": 0.249,
+      "n": 2678,
+      "denominator": 10755
     },
     "lf.large_employer.conflict": {
-      "value": 0.0287,
-      "n": 288,
-      "denominator": 10029
+      "value": 0.0732,
+      "n": 787,
+      "denominator": 10755
     },
     "lf.concrete_requirements.coverage": {
-      "value": 0.1875,
-      "n": 4859,
-      "denominator": 25909
+      "value": 0.1736,
+      "n": 4814,
+      "denominator": 27723
     },
     "lf.concrete_requirements.overlap": {
-      "value": 0.3766,
-      "n": 1830,
-      "denominator": 4859
+      "value": 0.3614,
+      "n": 1740,
+      "denominator": 4814
     },
     "lf.concrete_requirements.conflict": {
-      "value": 0.0354,
-      "n": 172,
-      "denominator": 4859
+      "value": 0.031,
+      "n": 149,
+      "denominator": 4814
     },
     "weak.covered": {
-      "value": 0.7201,
-      "n": 18658,
-      "denominator": 25909
+      "value": 0.7046,
+      "n": 19533,
+      "denominator": 27723
     },
     "weak.any_suspicious_vote": {
-      "value": 0.0066,
-      "n": 172,
-      "denominator": 25909
+      "value": 0.006,
+      "n": 165,
+      "denominator": 27723
     },
     "weak.any_ok_vote": {
-      "value": 0.7161,
-      "n": 18554,
-      "denominator": 25909
+      "value": 0.7005,
+      "n": 19421,
+      "denominator": 27723
     },
     "weak.conflicted": {
-      "value": 0.0026,
-      "n": 68,
-      "denominator": 25909
+      "value": 0.0019,
+      "n": 53,
+      "denominator": 27723
     },
     "weak.majority_suspicious": {
       "value": 0.004,
-      "n": 104,
-      "denominator": 25909
+      "n": 112,
+      "denominator": 27723
     },
     "weak.majority_ok": {
-      "value": 0.7136,
-      "n": 18488,
-      "denominator": 25909
+      "value": 0.6989,
+      "n": 19375,
+      "denominator": 27723
     },
     "weak.majority_tie_or_none": {
-      "value": 0.2824,
-      "n": 7317,
-      "denominator": 25909
+      "value": 0.2971,
+      "n": 8236,
+      "denominator": 27723
     },
     "weak.training_suspicious": {
       "value": 0.004,
-      "n": 104,
-      "denominator": 25843
+      "n": 112,
+      "denominator": 27677
     },
     "label_model.suspicious": {
-      "value": 0.2415,
-      "n": 6258,
-      "denominator": 25909
+      "value": 0.2306,
+      "n": 6394,
+      "denominator": 27723
     },
     "label_model.prior": {
-      "value": 0.237,
+      "value": 0.2253,
       "n": null,
       "denominator": null
     },
     "label_model.agrees_with_majority": {
-      "value": 0.6582,
-      "n": 12237,
-      "denominator": 18592
+      "value": 0.6664,
+      "n": 12987,
+      "denominator": 19487
     },
     "classifier.flagged": {
-      "value": 0.005,
-      "n": 130,
-      "denominator": 25909
+      "value": 0.0052,
+      "n": 144,
+      "denominator": 27723
     },
     "classifier.flagged_without_suspicious_vote": {
-      "value": 0.001,
-      "n": 26,
-      "denominator": 25737
+      "value": 0.0012,
+      "n": 32,
+      "denominator": 27558
     },
     "classifier.cv_auc_vs_weak_labels": {
-      "value": 0.9793,
+      "value": 0.9806,
       "n": null,
       "denominator": null
     },
     "classifier.cv_agrees_with_weak_labels": {
-      "value": 0.9951,
-      "n": 25716,
-      "denominator": 25843
+      "value": 0.995,
+      "n": 27538,
+      "denominator": 27677
     },
     "classifier.cv_recovers_weak_positives": {
-      "value": 0.7115,
-      "n": 74,
-      "denominator": 104
+      "value": 0.7321,
+      "n": 82,
+      "denominator": 112
     },
     "reposts.cards_reposting_a_closed_card": {
-      "value": 0.0799,
-      "n": 1976,
-      "denominator": 24732
+      "value": 0.1074,
+      "n": 2772,
+      "denominator": 25818
     },
     "reposts.cards_in_long_chain": {
-      "value": 0.0108,
-      "n": 268,
-      "denominator": 24732
+      "value": 0.0325,
+      "n": 838,
+      "denominator": 25818
     }
   },
   "limits_ru": [
@@ -384,14 +384,19 @@
   ],
   "data": {
     "habr": {
-      "cards": 1098,
+      "cards": 1141,
       "first_seen": "2026-10-08",
-      "last_seen": "2026-10-10"
+      "last_seen": "2026-10-12"
+    },
+    "superjob": {
+      "cards": 764,
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
     },
     "trudvsem": {
-      "cards": 24811,
+      "cards": 25818,
       "first_seen": "2026-06-30",
-      "last_seen": "2026-10-10"
+      "last_seen": "2026-10-12"
     }
   },
   "labeling_functions": [
@@ -525,8 +530,8 @@
   "weak_label": "majority vote of the functions in_weak_label; a card without votes is OK, a tie is left out of training",
   "label_model": {
     "kind": "Dawid-Skene, two classes, EM from the majority vote, Dirichlet pseudo-count 1; a candidate scored on dev, not the training label",
-    "iterations": 967,
-    "converged": true,
+    "iterations": 1000,
+    "converged": false,
     "p_vote_given_class": {
       "course_pay": {
         "suspicious_vote": [
@@ -534,7 +539,7 @@
           0.0002
         ],
         "ok_vote": [
-          0.0001,
+          0.0,
           0.0002
         ]
       },
@@ -544,7 +549,7 @@
           0.0002
         ],
         "ok_vote": [
-          0.0001,
+          0.0,
           0.0002
         ]
       },
@@ -554,37 +559,37 @@
           0.0002
         ],
         "ok_vote": [
-          0.0001,
+          0.0,
           0.0002
         ]
       },
       "unlimited_income": {
         "suspicious_vote": [
-          0.0002,
+          0.0001,
           0.0002
         ],
         "ok_vote": [
-          0.0001,
+          0.0,
           0.0002
         ]
       },
       "no_experience_high_pay": {
         "suspicious_vote": [
-          0.0014,
-          0.0002
+          0.0013,
+          0.0009
         ],
         "ok_vote": [
-          0.0001,
+          0.0,
           0.0002
         ]
       },
       "sole_remote_no_experience": {
         "suspicious_vote": [
-          0.0005,
+          0.0009,
           0.0002
         ],
         "ok_vote": [
-          0.0001,
+          0.0,
           0.0002
         ]
       },
@@ -594,7 +599,7 @@
           0.0002
         ],
         "ok_vote": [
-          0.0001,
+          0.0,
           0.0002
         ]
       },
@@ -604,68 +609,68 @@
           0.0002
         ],
         "ok_vote": [
-          0.0001,
+          0.0,
           0.0002
         ]
       },
       "salary_low": {
         "suspicious_vote": [
-          0.0007,
-          0.0016
+          0.0005,
+          0.0014
         ],
         "ok_vote": [
-          0.0001,
+          0.0,
           0.0002
         ]
       },
       "mass_text": {
         "suspicious_vote": [
-          0.0052,
+          0.0039,
           0.0002
         ],
         "ok_vote": [
-          0.0001,
+          0.0,
           0.0002
         ]
       },
       "formal_note": {
         "suspicious_vote": [
-          0.0001,
+          0.0,
           0.0002
         ],
         "ok_vote": [
-          0.0001,
+          0.0,
           0.0002
         ]
       },
       "public_sector": {
         "suspicious_vote": [
-          0.0001,
+          0.0,
           0.0002
         ],
         "ok_vote": [
-          0.0071,
-          0.9962
+          0.0079,
+          0.9961
         ]
       },
       "large_employer": {
         "suspicious_vote": [
-          0.0001,
+          0.0,
           0.0002
         ],
         "ok_vote": [
-          0.4653,
-          0.1352
+          0.4616,
+          0.1347
         ]
       },
       "concrete_requirements": {
         "suspicious_vote": [
-          0.0001,
+          0.0,
           0.0002
         ],
         "ok_vote": [
-          0.2132,
-          0.105
+          0.1971,
+          0.0933
         ]
       }
     }
@@ -676,38 +681,38 @@
     "cv": "5 folds grouped by text group",
     "top_features": {
       "suspicious": [
-        "аналитик бизнес",
-        "процессов обязанности",
-        "образовательных услуг",
         "исполнительность требования",
         "оконченное",
-        "процессов",
-        "аналитик",
-        "коммуникация",
-        "продаж",
-        "#group_region_share",
-        "оркестрацией",
-        "специальности информационные",
+        "образовательных услуг",
+        "аналитик бизнес",
         "сервисов проведение",
-        "несоответствий",
-        "мониторингов"
+        "специальности информационные",
+        "оркестрацией",
+        "мониторингов",
+        "профильный опыт",
+        "процессов управление",
+        "процессов обязанности",
+        "процессов",
+        "продаж",
+        "контейнерами",
+        "профильный"
       ],
       "ok": [
-        "обеспечения",
-        "программного",
-        "средства проектирования",
-        "программных",
-        "методы средства",
-        "программного обеспечения",
+        "#employer_cards",
         "#skills",
+        "средства проектирования",
+        "методы средства",
+        "обеспечения",
+        "программных",
+        "программного",
+        "интерфейсов",
+        "программного обеспечения",
         "проектирования",
         "проектирования программного",
         "архитектуры программного",
         "программных интерфейсов",
-        "интерфейсов",
-        "#salary_z",
-        "оборудования",
-        "#employer_cards"
+        "проектирование",
+        "средства"
       ]
     }
   },
@@ -964,9 +969,9 @@
       },
       "lf:salary_low": {
         "precision": {
-          "value": 0.1429,
+          "value": 0.1667,
           "ci_low": 0.0,
-          "ci_high": 0.4286
+          "ci_high": 0.5
         },
         "recall": {
           "value": 0.0043,
@@ -979,7 +984,7 @@
           "ci_high": 0.1304
         },
         "sample_tp": 1,
-        "sample_flagged": 7,
+        "sample_flagged": 6,
         "sample_suspicious": 23
       },
       "lf:pay_far_below": {
@@ -1007,17 +1012,17 @@
           "ci_high": 1.0
         },
         "recall": {
-          "value": 0.1195,
-          "ci_low": 0.0443,
-          "ci_high": 0.8235
+          "value": 0.0368,
+          "ci_low": 0.005,
+          "ci_high": 0.3866
         },
         "f1": {
-          "value": 0.2135,
-          "ci_low": 0.0849,
-          "ci_high": 0.9032
+          "value": 0.0709,
+          "ci_low": 0.0136,
+          "ci_high": 0.5576
         },
-        "sample_tp": 13,
-        "sample_flagged": 13,
+        "sample_tp": 4,
+        "sample_flagged": 4,
         "sample_suspicious": 23
       },
       "lf:mass_template": {
@@ -1071,34 +1076,14 @@
           "value": null
         },
         "sample_tp": 0,
-        "sample_flagged": 3,
+        "sample_flagged": 14,
         "sample_suspicious": 23
       },
       "any_combined_suspicious_vote": {
         "precision": {
-          "value": 0.5,
-          "ci_low": 0.4833,
-          "ci_high": 0.5333
-        },
-        "recall": {
-          "value": 0.128,
-          "ci_low": 0.0461,
-          "ci_high": 0.8824
-        },
-        "f1": {
-          "value": 0.2039,
-          "ci_low": 0.0842,
-          "ci_high": 0.6465
-        },
-        "sample_tp": 15,
-        "sample_flagged": 43,
-        "sample_suspicious": 23
-      },
-      "majority_vote": {
-        "precision": {
-          "value": 0.6798,
-          "ci_low": 0.4091,
-          "ci_high": 0.8278
+          "value": 0.268,
+          "ci_low": 0.1216,
+          "ci_high": 0.3968
         },
         "recall": {
           "value": 0.0453,
@@ -1106,12 +1091,32 @@
           "ci_high": 0.4454
         },
         "f1": {
-          "value": 0.085,
-          "ci_low": 0.019,
-          "ci_high": 0.5633
+          "value": 0.0775,
+          "ci_low": 0.0181,
+          "ci_high": 0.3986
         },
         "sample_tp": 6,
-        "sample_flagged": 11,
+        "sample_flagged": 33,
+        "sample_suspicious": 23
+      },
+      "majority_vote": {
+        "precision": {
+          "value": 0.7263,
+          "ci_low": 0.5074,
+          "ci_high": 0.8427
+        },
+        "recall": {
+          "value": 0.0453,
+          "ci_low": 0.0097,
+          "ci_high": 0.4454
+        },
+        "f1": {
+          "value": 0.0853,
+          "ci_low": 0.019,
+          "ci_high": 0.5734
+        },
+        "sample_tp": 6,
+        "sample_flagged": 10,
         "sample_suspicious": 23
       },
       "label_model": {
@@ -1134,9 +1139,9 @@
       },
       "classifier": {
         "precision": {
-          "value": 0.5948,
-          "ci_low": 0.4073,
-          "ci_high": 0.7451
+          "value": 0.6379,
+          "ci_low": 0.4499,
+          "ci_high": 0.7828
         },
         "recall": {
           "value": 0.0752,
@@ -1144,13 +1149,372 @@
           "ci_high": 0.6323
         },
         "f1": {
-          "value": 0.1335,
-          "ci_low": 0.0415,
-          "ci_high": 0.6561
+          "value": 0.1345,
+          "ci_low": 0.0417,
+          "ci_high": 0.6743
         },
         "sample_tp": 13,
-        "sample_flagged": 25,
+        "sample_flagged": 23,
         "sample_suspicious": 23
+      }
+    }
+  },
+  "scores_test": {
+    "labeled": 150,
+    "unsure": 0,
+    "unlabeled": 0,
+    "missing_predictions": 0,
+    "suspicious": 19,
+    "categories": {
+      "formal": 13,
+      "bait": 6
+    },
+    "systems": {
+      "lf:course_pay": {
+        "precision": {
+          "value": null
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 0,
+        "sample_suspicious": 19
+      },
+      "lf:training_then_job": {
+        "precision": {
+          "value": null
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 0,
+        "sample_suspicious": 19
+      },
+      "lf:income_bait": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 1,
+        "sample_suspicious": 19
+      },
+      "lf:unlimited_income": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 1,
+        "sample_suspicious": 19
+      },
+      "lf:no_experience_high_pay": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 11,
+        "sample_suspicious": 19
+      },
+      "lf:sole_remote_no_experience": {
+        "precision": {
+          "value": 0.6667,
+          "ci_low": 0.3333,
+          "ci_high": 1.0
+        },
+        "recall": {
+          "value": 0.016,
+          "ci_low": 0.0047,
+          "ci_high": 0.0771
+        },
+        "f1": {
+          "value": 0.0312,
+          "ci_low": 0.0092,
+          "ci_high": 0.1419
+        },
+        "sample_tp": 4,
+        "sample_flagged": 6,
+        "sample_suspicious": 19
+      },
+      "lf:salary_high": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 7,
+        "sample_suspicious": 19
+      },
+      "lf:title_sales": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 5,
+        "sample_suspicious": 19
+      },
+      "lf:grey": {
+        "precision": {
+          "value": null
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 0,
+        "sample_suspicious": 19
+      },
+      "lf:salary_low": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 9,
+        "sample_suspicious": 19
+      },
+      "lf:pay_far_below": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 14,
+        "sample_suspicious": 19
+      },
+      "lf:mass_text": {
+        "precision": {
+          "value": 0.9167,
+          "ci_low": 0.75,
+          "ci_high": 1.0
+        },
+        "recall": {
+          "value": 0.2712,
+          "ci_low": 0.1034,
+          "ci_high": 0.9443
+        },
+        "f1": {
+          "value": 0.4186,
+          "ci_low": 0.1834,
+          "ci_high": 0.9673
+        },
+        "sample_tp": 11,
+        "sample_flagged": 12,
+        "sample_suspicious": 19
+      },
+      "lf:mass_template": {
+        "precision": {
+          "value": 0.9167,
+          "ci_low": 0.75,
+          "ci_high": 1.0
+        },
+        "recall": {
+          "value": 0.2712,
+          "ci_low": 0.1034,
+          "ci_high": 0.9443
+        },
+        "f1": {
+          "value": 0.4186,
+          "ci_low": 0.1834,
+          "ci_high": 0.9673
+        },
+        "sample_tp": 11,
+        "sample_flagged": 12,
+        "sample_suspicious": 19
+      },
+      "lf:formal_note": {
+        "precision": {
+          "value": null
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 0,
+        "sample_suspicious": 19
+      },
+      "lf:repost_chain": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 12,
+        "sample_suspicious": 19
+      },
+      "any_combined_suspicious_vote": {
+        "precision": {
+          "value": 0.6563,
+          "ci_low": 0.5345,
+          "ci_high": 0.7309
+        },
+        "recall": {
+          "value": 0.2872,
+          "ci_low": 0.1084,
+          "ci_high": 0.9868
+        },
+        "f1": {
+          "value": 0.3996,
+          "ci_low": 0.1828,
+          "ci_high": 0.8302
+        },
+        "sample_tp": 15,
+        "sample_flagged": 45,
+        "sample_suspicious": 19
+      },
+      "majority_vote": {
+        "precision": {
+          "value": 0.8326,
+          "ci_low": 0.674,
+          "ci_high": 0.9375
+        },
+        "recall": {
+          "value": 0.2872,
+          "ci_low": 0.1084,
+          "ci_high": 0.9868
+        },
+        "f1": {
+          "value": 0.4271,
+          "ci_low": 0.1893,
+          "ci_high": 0.9448
+        },
+        "sample_tp": 15,
+        "sample_flagged": 24,
+        "sample_suspicious": 19
+      },
+      "label_model": {
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "recall": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "f1": {
+          "value": null
+        },
+        "sample_tp": 0,
+        "sample_flagged": 25,
+        "sample_suspicious": 19
+      },
+      "classifier": {
+        "precision": {
+          "value": 0.775,
+          "ci_low": 0.629,
+          "ci_high": 0.8791
+        },
+        "recall": {
+          "value": 0.2952,
+          "ci_low": 0.1119,
+          "ci_high": 1.0
+        },
+        "f1": {
+          "value": 0.4276,
+          "ci_low": 0.1917,
+          "ci_high": 0.9195
+        },
+        "sample_tp": 17,
+        "sample_flagged": 33,
+        "sample_suspicious": 19
       }
     }
   }

@@ -1,0 +1,1364 @@
+{
+  "source_script": "src/radar/models/salary.py",
+  "command": "python -m radar.models.salary --final-test",
+  "commit": "7146452-dirty",
+  "created_at": "2026-10-13T17:17:03+00:00",
+  "metrics": {
+    "test_global_median_mae_rub": {
+      "value": 41987.945,
+      "n": null,
+      "denominator": null,
+      "ci_low": 38589.622,
+      "ci_high": 45692.6234
+    },
+    "test_global_median_mape": {
+      "value": 0.48,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.4604,
+      "ci_high": 0.5006
+    },
+    "test_global_median_within_20pct": {
+      "value": 0.2211,
+      "n": 360,
+      "denominator": 1628,
+      "ci_low": 0.198,
+      "ci_high": 0.2459
+    },
+    "test_cell_median_mae_rub": {
+      "value": 35581.0743,
+      "n": null,
+      "denominator": null,
+      "ci_low": 32775.9874,
+      "ci_high": 38581.0108
+    },
+    "test_cell_median_mape": {
+      "value": 0.4243,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3976,
+      "ci_high": 0.4533
+    },
+    "test_cell_median_within_20pct": {
+      "value": 0.2955,
+      "n": 481,
+      "denominator": 1628,
+      "ci_low": 0.271,
+      "ci_high": 0.3205
+    },
+    "test_cell_median_coverage": {
+      "value": 0.75,
+      "n": 1221,
+      "denominator": 1628,
+      "ci_low": 0.7242,
+      "ci_high": 0.7743
+    },
+    "test_cell_median_width_rub": {
+      "value": 93621.6472,
+      "n": null,
+      "denominator": null,
+      "ci_low": 90426.0256,
+      "ci_high": 96970.7044
+    },
+    "test_cell_median_width_rel": {
+      "value": 1.3343,
+      "n": null,
+      "denominator": null,
+      "ci_low": 1.3128,
+      "ci_high": 1.3563
+    },
+    "test_ridge_mae_rub": {
+      "value": 32391.1646,
+      "n": null,
+      "denominator": null,
+      "ci_low": 29810.5395,
+      "ci_high": 35254.4534
+    },
+    "test_ridge_mape": {
+      "value": 0.3889,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3672,
+      "ci_high": 0.4129
+    },
+    "test_ridge_within_20pct": {
+      "value": 0.3268,
+      "n": 532,
+      "denominator": 1628,
+      "ci_low": 0.302,
+      "ci_high": 0.3523
+    },
+    "test_ridge_coverage": {
+      "value": 0.7697,
+      "n": 1253,
+      "denominator": 1628,
+      "ci_low": 0.7437,
+      "ci_high": 0.7944
+    },
+    "test_ridge_width_rub": {
+      "value": 85967.724,
+      "n": null,
+      "denominator": null,
+      "ci_low": 83367.5943,
+      "ci_high": 88616.9738
+    },
+    "test_ridge_width_rel": {
+      "value": 1.1751,
+      "n": null,
+      "denominator": null,
+      "ci_low": 1.1751,
+      "ci_high": 1.1751
+    },
+    "test_gbm_quantile_mae_rub": {
+      "value": 31272.1524,
+      "n": null,
+      "denominator": null,
+      "ci_low": 28726.512,
+      "ci_high": 34022.7991
+    },
+    "test_gbm_quantile_mape": {
+      "value": 0.3796,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3563,
+      "ci_high": 0.4056
+    },
+    "test_gbm_quantile_within_20pct": {
+      "value": 0.3354,
+      "n": 546,
+      "denominator": 1628,
+      "ci_low": 0.31,
+      "ci_high": 0.361
+    },
+    "test_gbm_quantile_coverage": {
+      "value": 0.7279,
+      "n": 1185,
+      "denominator": 1628,
+      "ci_low": 0.701,
+      "ci_high": 0.7528
+    },
+    "test_gbm_quantile_width_rub": {
+      "value": 80942.7036,
+      "n": null,
+      "denominator": null,
+      "ci_low": 77942.1145,
+      "ci_high": 83941.7141
+    },
+    "test_gbm_quantile_width_rel": {
+      "value": 1.1024,
+      "n": null,
+      "denominator": null,
+      "ci_low": 1.0814,
+      "ci_high": 1.1226
+    },
+    "test_gbm_cqr_mae_rub": {
+      "value": 31272.1524,
+      "n": null,
+      "denominator": null,
+      "ci_low": 28726.512,
+      "ci_high": 34022.7991
+    },
+    "test_gbm_cqr_mape": {
+      "value": 0.3796,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3563,
+      "ci_high": 0.4056
+    },
+    "test_gbm_cqr_within_20pct": {
+      "value": 0.3354,
+      "n": 546,
+      "denominator": 1628,
+      "ci_low": 0.31,
+      "ci_high": 0.361
+    },
+    "test_gbm_cqr_coverage": {
+      "value": 0.7611,
+      "n": 1239,
+      "denominator": 1628,
+      "ci_low": 0.736,
+      "ci_high": 0.7856
+    },
+    "test_gbm_cqr_width_rub": {
+      "value": 84694.13,
+      "n": null,
+      "denominator": null,
+      "ci_low": 81605.7748,
+      "ci_high": 87799.1666
+    },
+    "test_gbm_cqr_width_rel": {
+      "value": 1.1548,
+      "n": null,
+      "denominator": null,
+      "ci_low": 1.1333,
+      "ci_high": 1.1754
+    },
+    "test_gbm_from_mae_rub": {
+      "value": 29675.7925,
+      "n": null,
+      "denominator": null,
+      "ci_low": 27076.0173,
+      "ci_high": 32496.7613,
+      "rows": 1620
+    },
+    "test_gbm_to_mae_rub": {
+      "value": 32844.4418,
+      "n": null,
+      "denominator": null,
+      "ci_low": 30228.0737,
+      "ci_high": 35704.7101,
+      "rows": 1527
+    },
+    "test_diff_gbm_cqr_minus_ridge_mae_rub": {
+      "value": -1119.0122,
+      "n": null,
+      "denominator": null,
+      "ci_low": -1889.7323,
+      "ci_high": -368.0035
+    },
+    "test_diff_gbm_cqr_minus_ridge_mape": {
+      "value": -0.0093,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0201,
+      "ci_high": 0.0014
+    },
+    "test_diff_gbm_cqr_minus_cell_median_mae_rub": {
+      "value": -4308.9219,
+      "n": null,
+      "denominator": null,
+      "ci_low": -5562.4425,
+      "ci_high": -3120.3618
+    },
+    "test_diff_gbm_cqr_minus_cell_median_mape": {
+      "value": -0.0447,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0611,
+      "ci_high": -0.0284
+    },
+    "test_diff_ridge_minus_cell_median_mae_rub": {
+      "value": -3189.9098,
+      "n": null,
+      "denominator": null,
+      "ci_low": -4319.4353,
+      "ci_high": -2040.9692
+    },
+    "test_diff_ridge_minus_cell_median_mape": {
+      "value": -0.0354,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.052,
+      "ci_high": -0.0193
+    },
+    "test_diff_cell_median_minus_global_median_mae_rub": {
+      "value": -6406.8707,
+      "n": null,
+      "denominator": null,
+      "ci_low": -8055.2326,
+      "ci_high": -4665.1232
+    },
+    "test_diff_cell_median_minus_global_median_mape": {
+      "value": -0.0557,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0769,
+      "ci_high": -0.0336
+    },
+    "test_rules_gbm_cqr_mae_rub": {
+      "value": 30101.4145,
+      "n": null,
+      "denominator": null,
+      "ci_low": 27695.0564,
+      "ci_high": 32879.2151
+    },
+    "test_rules_gbm_cqr_mape": {
+      "value": 0.3689,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3459,
+      "ci_high": 0.3923
+    },
+    "test_rules_gbm_cqr_within_20pct": {
+      "value": 0.352,
+      "n": 573,
+      "denominator": 1628,
+      "ci_low": 0.3264,
+      "ci_high": 0.3776
+    },
+    "test_rules_gbm_cqr_coverage": {
+      "value": 0.7801,
+      "n": 1270,
+      "denominator": 1628,
+      "ci_low": 0.7584,
+      "ci_high": 0.8018
+    },
+    "test_rules_gbm_cqr_width_rub": {
+      "value": 85896.0327,
+      "n": null,
+      "denominator": null,
+      "ci_low": 82666.6948,
+      "ci_high": 89004.9466
+    },
+    "test_student_gbm_cqr_mae_rub": {
+      "value": 31272.1524,
+      "n": null,
+      "denominator": null,
+      "ci_low": 28726.512,
+      "ci_high": 34022.7991
+    },
+    "test_student_gbm_cqr_mape": {
+      "value": 0.3796,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3563,
+      "ci_high": 0.4056
+    },
+    "test_student_gbm_cqr_within_20pct": {
+      "value": 0.3354,
+      "n": 546,
+      "denominator": 1628,
+      "ci_low": 0.31,
+      "ci_high": 0.361
+    },
+    "test_student_gbm_cqr_coverage": {
+      "value": 0.7611,
+      "n": 1239,
+      "denominator": 1628,
+      "ci_low": 0.736,
+      "ci_high": 0.7856
+    },
+    "test_student_gbm_cqr_width_rub": {
+      "value": 84694.13,
+      "n": null,
+      "denominator": null,
+      "ci_low": 81605.7748,
+      "ci_high": 87799.1666
+    },
+    "test_diff_student_minus_rules_gbm_cqr_mae_rub": {
+      "value": 1170.7379,
+      "n": null,
+      "denominator": null,
+      "ci_low": 318.4504,
+      "ci_high": 2002.4973
+    },
+    "test_diff_student_minus_rules_gbm_cqr_mape": {
+      "value": 0.0107,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0007,
+      "ci_high": 0.0222
+    },
+    "test_diff_student_minus_rules_gbm_cqr_within_20pct": {
+      "value": -0.0166,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0377,
+      "ci_high": 0.0049
+    },
+    "test_diff_student_minus_rules_gbm_cqr_coverage": {
+      "value": -0.019,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0375,
+      "ci_high": -0.0012
+    },
+    "test_diff_student_minus_rules_gbm_cqr_width_rub": {
+      "value": -1201.9027,
+      "n": null,
+      "denominator": null,
+      "ci_low": -2725.1378,
+      "ci_high": 438.8262
+    }
+  },
+  "breakdown_test": {
+    "role_group": {
+      "analyst": {
+        "rows": 57,
+        "groups": 42,
+        "gbm_cqr_mae_rub": {
+          "value": 40876.1423,
+          "ci_low": 30774.3676,
+          "ci_high": 50754.8588
+        },
+        "gbm_cqr_mape": {
+          "value": 0.4221,
+          "ci_low": 0.2916,
+          "ci_high": 0.5882
+        },
+        "gbm_cqr_coverage": {
+          "value": 0.807,
+          "ci_low": 0.6904,
+          "ci_high": 0.9091,
+          "n": 46,
+          "denominator": 57
+        },
+        "gbm_cqr_width_rub": {
+          "value": 136625.6398,
+          "ci_low": 124102.1666,
+          "ci_high": 147648.8957
+        },
+        "ridge_mae_rub": {
+          "value": 39612.3022,
+          "ci_low": 29177.9826,
+          "ci_high": 50591.3222
+        },
+        "ridge_mape": {
+          "value": 0.3939,
+          "ci_low": 0.2887,
+          "ci_high": 0.5331
+        },
+        "ridge_coverage": {
+          "value": 0.7193,
+          "ci_low": 0.6,
+          "ci_high": 0.8356,
+          "n": 41,
+          "denominator": 57
+        },
+        "ridge_width_rub": {
+          "value": 132237.2106,
+          "ci_low": 122222.7206,
+          "ci_high": 141075.1164
+        },
+        "cell_median_mae_rub": {
+          "value": 60724.1102,
+          "ci_low": 47565.812,
+          "ci_high": 73626.2925
+        },
+        "cell_median_mape": {
+          "value": 0.6555,
+          "ci_low": 0.4606,
+          "ci_high": 0.9134
+        },
+        "cell_median_coverage": {
+          "value": 0.6491,
+          "ci_low": 0.5098,
+          "ci_high": 0.7907,
+          "n": 37,
+          "denominator": 57
+        },
+        "cell_median_width_rub": {
+          "value": 132660.0923,
+          "ci_low": 121693.6301,
+          "ci_high": 142731.7407
+        }
+      },
+      "dev": {
+        "rows": 581,
+        "groups": 500,
+        "gbm_cqr_mae_rub": {
+          "value": 32688.5358,
+          "ci_low": 28643.2182,
+          "ci_high": 37404.0048
+        },
+        "gbm_cqr_mape": {
+          "value": 0.3898,
+          "ci_low": 0.3512,
+          "ci_high": 0.4315
+        },
+        "gbm_cqr_coverage": {
+          "value": 0.7556,
+          "ci_low": 0.7175,
+          "ci_high": 0.7933,
+          "n": 439,
+          "denominator": 581
+        },
+        "gbm_cqr_width_rub": {
+          "value": 85326.189,
+          "ci_low": 80817.6998,
+          "ci_high": 90475.7175
+        },
+        "ridge_mae_rub": {
+          "value": 33052.0568,
+          "ci_low": 29009.3572,
+          "ci_high": 37756.2898
+        },
+        "ridge_mape": {
+          "value": 0.409,
+          "ci_low": 0.3687,
+          "ci_high": 0.4479
+        },
+        "ridge_coverage": {
+          "value": 0.7401,
+          "ci_low": 0.6995,
+          "ci_high": 0.7802,
+          "n": 430,
+          "denominator": 581
+        },
+        "ridge_width_rub": {
+          "value": 82772.9399,
+          "ci_low": 78774.7155,
+          "ci_high": 87513.0529
+        },
+        "cell_median_mae_rub": {
+          "value": 35666.549,
+          "ci_low": 31233.9452,
+          "ci_high": 40750.8199
+        },
+        "cell_median_mape": {
+          "value": 0.4108,
+          "ci_low": 0.3761,
+          "ci_high": 0.4447
+        },
+        "cell_median_coverage": {
+          "value": 0.7315,
+          "ci_low": 0.6912,
+          "ci_high": 0.7726,
+          "n": 425,
+          "denominator": 581
+        },
+        "cell_median_width_rub": {
+          "value": 90449.9358,
+          "ci_low": 84907.3378,
+          "ci_high": 97156.8276
+        }
+      },
+      "ml_ds_data": {
+        "rows": 151,
+        "groups": 98,
+        "gbm_cqr_mae_rub": {
+          "value": 50711.7662,
+          "ci_low": 39634.7742,
+          "ci_high": 63945.7327
+        },
+        "gbm_cqr_mape": {
+          "value": 0.4731,
+          "ci_low": 0.3544,
+          "ci_high": 0.6069
+        },
+        "gbm_cqr_coverage": {
+          "value": 0.6887,
+          "ci_low": 0.5915,
+          "ci_high": 0.7862,
+          "n": 104,
+          "denominator": 151
+        },
+        "gbm_cqr_width_rub": {
+          "value": 132325.871,
+          "ci_low": 118317.3623,
+          "ci_high": 147568.651
+        },
+        "ridge_mae_rub": {
+          "value": 56354.0268,
+          "ci_low": 44050.1541,
+          "ci_high": 71853.5268
+        },
+        "ridge_mape": {
+          "value": 0.4914,
+          "ci_low": 0.39,
+          "ci_high": 0.6058
+        },
+        "ridge_coverage": {
+          "value": 0.6358,
+          "ci_low": 0.5207,
+          "ci_high": 0.7453,
+          "n": 96,
+          "denominator": 151
+        },
+        "ridge_width_rub": {
+          "value": 117176.2999,
+          "ci_low": 106013.6328,
+          "ci_high": 129529.4685
+        },
+        "cell_median_mae_rub": {
+          "value": 61740.0375,
+          "ci_low": 48171.9621,
+          "ci_high": 78111.6457
+        },
+        "cell_median_mape": {
+          "value": 0.6007,
+          "ci_low": 0.4633,
+          "ci_high": 0.746
+        },
+        "cell_median_coverage": {
+          "value": 0.7483,
+          "ci_low": 0.654,
+          "ci_high": 0.8302,
+          "n": 113,
+          "denominator": 151
+        },
+        "cell_median_width_rub": {
+          "value": 147661.6824,
+          "ci_low": 135365.4402,
+          "ci_high": 159638.2321
+        }
+      },
+      "other_it": {
+        "rows": 143,
+        "groups": 123,
+        "gbm_cqr_mae_rub": {
+          "value": 33849.8619,
+          "ci_low": 25317.8847,
+          "ci_high": 43609.0847
+        },
+        "gbm_cqr_mape": {
+          "value": 0.4045,
+          "ci_low": 0.3268,
+          "ci_high": 0.4856
+        },
+        "gbm_cqr_coverage": {
+          "value": 0.7273,
+          "ci_low": 0.6298,
+          "ci_high": 0.8182,
+          "n": 104,
+          "denominator": 143
+        },
+        "gbm_cqr_width_rub": {
+          "value": 98160.1788,
+          "ci_low": 88734.3783,
+          "ci_high": 107767.8714
+        },
+        "ridge_mae_rub": {
+          "value": 36691.3292,
+          "ci_low": 27625.0843,
+          "ci_high": 47528.2731
+        },
+        "ridge_mape": {
+          "value": 0.4191,
+          "ci_low": 0.3473,
+          "ci_high": 0.5068
+        },
+        "ridge_coverage": {
+          "value": 0.7483,
+          "ci_low": 0.6561,
+          "ci_high": 0.8321,
+          "n": 107,
+          "denominator": 143
+        },
+        "ridge_width_rub": {
+          "value": 89034.6005,
+          "ci_low": 83032.8512,
+          "ci_high": 96223.0441
+        },
+        "cell_median_mae_rub": {
+          "value": 36628.6413,
+          "ci_low": 27319.6774,
+          "ci_high": 47054.4642
+        },
+        "cell_median_mape": {
+          "value": 0.4343,
+          "ci_low": 0.3304,
+          "ci_high": 0.5532
+        },
+        "cell_median_coverage": {
+          "value": 0.7343,
+          "ci_low": 0.64,
+          "ci_high": 0.8222,
+          "n": 105,
+          "denominator": 143
+        },
+        "cell_median_width_rub": {
+          "value": 107616.9209,
+          "ci_low": 95435.4929,
+          "ci_high": 119154.0948
+        }
+      },
+      "qa_devops_sys": {
+        "rows": 696,
+        "groups": 585,
+        "gbm_cqr_mae_rub": {
+          "value": 24556.1462,
+          "ci_low": 21581.0097,
+          "ci_high": 28427.5039
+        },
+        "gbm_cqr_mape": {
+          "value": 0.3422,
+          "ci_low": 0.3183,
+          "ci_high": 0.3693
+        },
+        "gbm_cqr_coverage": {
+          "value": 0.7845,
+          "ci_low": 0.7496,
+          "ci_high": 0.8185,
+          "n": 546,
+          "denominator": 696
+        },
+        "gbm_cqr_width_rub": {
+          "value": 66812.8654,
+          "ci_low": 64473.0665,
+          "ci_high": 69483.0037
+        },
+        "ridge_mae_rub": {
+          "value": 25165.735,
+          "ci_low": 22104.1337,
+          "ci_high": 28870.5252
+        },
+        "ridge_mape": {
+          "value": 0.3433,
+          "ci_low": 0.3207,
+          "ci_high": 0.368
+        },
+        "ridge_coverage": {
+          "value": 0.8319,
+          "ci_low": 0.8006,
+          "ci_high": 0.8618,
+          "n": 579,
+          "denominator": 696
+        },
+        "ridge_width_rub": {
+          "value": 77444.377,
+          "ci_low": 74347.4305,
+          "ci_high": 81076.409
+        },
+        "cell_median_mae_rub": {
+          "value": 27560.0695,
+          "ci_low": 24283.7543,
+          "ci_high": 31390.4057
+        },
+        "cell_median_mape": {
+          "value": 0.3763,
+          "ci_low": 0.3495,
+          "ci_high": 0.4085
+        },
+        "cell_median_coverage": {
+          "value": 0.7773,
+          "ci_low": 0.7402,
+          "ci_high": 0.8115,
+          "n": 541,
+          "denominator": 696
+        },
+        "cell_median_width_rub": {
+          "value": 78472.5144,
+          "ci_low": 76118.5923,
+          "ci_high": 80857.3525
+        }
+      }
+    },
+    "grade": {
+      "intern": {
+        "rows": 9,
+        "groups": 9,
+        "gbm_cqr_mae_rub": {
+          "value": 26656.3261,
+          "ci_low": 12196.0298,
+          "ci_high": 52211.2335
+        },
+        "gbm_cqr_mape": {
+          "value": 0.4224,
+          "ci_low": 0.2174,
+          "ci_high": 0.7571
+        },
+        "gbm_cqr_coverage": {
+          "value": 1.0,
+          "ci_low": 1.0,
+          "ci_high": 1.0,
+          "n": 9,
+          "denominator": 9
+        },
+        "gbm_cqr_width_rub": {
+          "value": 84737.2305,
+          "ci_low": 56082.5275,
+          "ci_high": 134412.1888
+        },
+        "ridge_mae_rub": {
+          "value": 19901.8458,
+          "ci_low": 7632.0805,
+          "ci_high": 41724.4747
+        },
+        "ridge_mape": {
+          "value": 0.3107,
+          "ci_low": 0.1289,
+          "ci_high": 0.5893
+        },
+        "ridge_coverage": {
+          "value": 0.8889,
+          "ci_low": 0.625,
+          "ci_high": 1.0,
+          "n": 8,
+          "denominator": 9
+        },
+        "ridge_width_rub": {
+          "value": 86662.1168,
+          "ci_low": 63593.6102,
+          "ci_high": 122352.3966
+        },
+        "cell_median_mae_rub": {
+          "value": 26625.8794,
+          "ci_low": 10878.216,
+          "ci_high": 42926.2132
+        },
+        "cell_median_mape": {
+          "value": 0.5199,
+          "ci_low": 0.203,
+          "ci_high": 0.8515
+        },
+        "cell_median_coverage": {
+          "value": 0.6667,
+          "ci_low": 0.3333,
+          "ci_high": 1.0,
+          "n": 6,
+          "denominator": 9
+        },
+        "cell_median_width_rub": {
+          "value": 132039.0661,
+          "ci_low": 86448.8611,
+          "ci_high": 180431.3371
+        }
+      },
+      "junior": {
+        "rows": 13,
+        "groups": 13,
+        "gbm_cqr_mae_rub": {
+          "value": 22026.8803,
+          "ci_low": 14899.8141,
+          "ci_high": 29621.7537
+        },
+        "gbm_cqr_mape": {
+          "value": 0.305,
+          "ci_low": 0.2254,
+          "ci_high": 0.3824
+        },
+        "gbm_cqr_coverage": {
+          "value": 0.8462,
+          "ci_low": 0.625,
+          "ci_high": 1.0,
+          "n": 11,
+          "denominator": 13
+        },
+        "gbm_cqr_width_rub": {
+          "value": 69360.7627,
+          "ci_low": 53232.1044,
+          "ci_high": 87037.9001
+        },
+        "ridge_mae_rub": {
+          "value": 24158.1549,
+          "ci_low": 16279.0353,
+          "ci_high": 32488.4518
+        },
+        "ridge_mape": {
+          "value": 0.3606,
+          "ci_low": 0.2429,
+          "ci_high": 0.4822
+        },
+        "ridge_coverage": {
+          "value": 0.7692,
+          "ci_low": 0.5,
+          "ci_high": 1.0,
+          "n": 10,
+          "denominator": 13
+        },
+        "ridge_width_rub": {
+          "value": 83507.4784,
+          "ci_low": 71330.8611,
+          "ci_high": 95605.575
+        },
+        "cell_median_mae_rub": {
+          "value": 34823.0058,
+          "ci_low": 20456.5946,
+          "ci_high": 48688.8566
+        },
+        "cell_median_mape": {
+          "value": 0.566,
+          "ci_low": 0.2828,
+          "ci_high": 0.8723
+        },
+        "cell_median_coverage": {
+          "value": 0.6154,
+          "ci_low": 0.3333,
+          "ci_high": 0.875,
+          "n": 8,
+          "denominator": 13
+        },
+        "cell_median_width_rub": {
+          "value": 103813.8873,
+          "ci_low": 70001.7959,
+          "ci_high": 138932.9236
+        }
+      },
+      "lead": {
+        "rows": 56,
+        "groups": 56,
+        "gbm_cqr_mae_rub": {
+          "value": 37006.6593,
+          "ci_low": 24328.1363,
+          "ci_high": 52825.8061
+        },
+        "gbm_cqr_mape": {
+          "value": 0.2851,
+          "ci_low": 0.2143,
+          "ci_high": 0.3666
+        },
+        "gbm_cqr_coverage": {
+          "value": 0.8214,
+          "ci_low": 0.7091,
+          "ci_high": 0.9167,
+          "n": 46,
+          "denominator": 56
+        },
+        "gbm_cqr_width_rub": {
+          "value": 116285.6073,
+          "ci_low": 100289.5151,
+          "ci_high": 133194.1814
+        },
+        "ridge_mae_rub": {
+          "value": 44293.083,
+          "ci_low": 29596.3619,
+          "ci_high": 61659.8248
+        },
+        "ridge_mape": {
+          "value": 0.3256,
+          "ci_low": 0.2603,
+          "ci_high": 0.3988
+        },
+        "ridge_coverage": {
+          "value": 0.7857,
+          "ci_low": 0.6786,
+          "ci_high": 0.8846,
+          "n": 44,
+          "denominator": 56
+        },
+        "ridge_width_rub": {
+          "value": 109344.8148,
+          "ci_low": 98804.3964,
+          "ci_high": 120137.2241
+        },
+        "cell_median_mae_rub": {
+          "value": 45212.5853,
+          "ci_low": 30684.1515,
+          "ci_high": 63644.5694
+        },
+        "cell_median_mape": {
+          "value": 0.3518,
+          "ci_low": 0.2694,
+          "ci_high": 0.444
+        },
+        "cell_median_coverage": {
+          "value": 0.8036,
+          "ci_low": 0.6964,
+          "ci_high": 0.8966,
+          "n": 45,
+          "denominator": 56
+        },
+        "cell_median_width_rub": {
+          "value": 113617.1424,
+          "ci_low": 100771.4191,
+          "ci_high": 128066.08
+        }
+      },
+      "middle": {
+        "rows": 20,
+        "groups": 19,
+        "gbm_cqr_mae_rub": {
+          "value": 60526.4314,
+          "ci_low": 41519.8984,
+          "ci_high": 80896.3645
+        },
+        "gbm_cqr_mape": {
+          "value": 0.3309,
+          "ci_low": 0.2084,
+          "ci_high": 0.4917
+        },
+        "gbm_cqr_coverage": {
+          "value": 0.65,
+          "ci_low": 0.4348,
+          "ci_high": 0.8462,
+          "n": 13,
+          "denominator": 20
+        },
+        "gbm_cqr_width_rub": {
+          "value": 168967.7969,
+          "ci_low": 136978.1877,
+          "ci_high": 197987.1473
+        },
+        "ridge_mae_rub": {
+          "value": 65595.1962,
+          "ci_low": 42075.4793,
+          "ci_high": 93910.2229
+        },
+        "ridge_mape": {
+          "value": 0.3098,
+          "ci_low": 0.2247,
+          "ci_high": 0.3928
+        },
+        "ridge_coverage": {
+          "value": 0.7,
+          "ci_low": 0.5,
+          "ci_high": 0.8947,
+          "n": 14,
+          "denominator": 20
+        },
+        "ridge_width_rub": {
+          "value": 189851.728,
+          "ci_low": 161020.5733,
+          "ci_high": 219518.4997
+        },
+        "cell_median_mae_rub": {
+          "value": 90674.6956,
+          "ci_low": 65613.9643,
+          "ci_high": 121375.2214
+        },
+        "cell_median_mape": {
+          "value": 0.4156,
+          "ci_low": 0.3438,
+          "ci_high": 0.4872
+        },
+        "cell_median_coverage": {
+          "value": 0.6,
+          "ci_low": 0.375,
+          "ci_high": 0.8182,
+          "n": 12,
+          "denominator": 20
+        },
+        "cell_median_width_rub": {
+          "value": 167570.7308,
+          "ci_low": 131262.908,
+          "ci_high": 199521.916
+        }
+      },
+      "senior": {
+        "rows": 168,
+        "groups": 151,
+        "gbm_cqr_mae_rub": {
+          "value": 41952.7162,
+          "ci_low": 31526.9451,
+          "ci_high": 56237.4407
+        },
+        "gbm_cqr_mape": {
+          "value": 0.3731,
+          "ci_low": 0.3156,
+          "ci_high": 0.4378
+        },
+        "gbm_cqr_coverage": {
+          "value": 0.7976,
+          "ci_low": 0.7303,
+          "ci_high": 0.8611,
+          "n": 134,
+          "denominator": 168
+        },
+        "gbm_cqr_width_rub": {
+          "value": 109894.0839,
+          "ci_low": 99338.1406,
+          "ci_high": 121013.5245
+        },
+        "ridge_mae_rub": {
+          "value": 42679.4772,
+          "ci_low": 32368.5149,
+          "ci_high": 56602.0081
+        },
+        "ridge_mape": {
+          "value": 0.3815,
+          "ci_low": 0.3242,
+          "ci_high": 0.4436
+        },
+        "ridge_coverage": {
+          "value": 0.7917,
+          "ci_low": 0.7216,
+          "ci_high": 0.8555,
+          "n": 133,
+          "denominator": 168
+        },
+        "ridge_width_rub": {
+          "value": 109693.0439,
+          "ci_low": 100239.641,
+          "ci_high": 120199.0873
+        },
+        "cell_median_mae_rub": {
+          "value": 48479.9237,
+          "ci_low": 36505.3299,
+          "ci_high": 63874.3822
+        },
+        "cell_median_mape": {
+          "value": 0.4106,
+          "ci_low": 0.3582,
+          "ci_high": 0.4712
+        },
+        "cell_median_coverage": {
+          "value": 0.75,
+          "ci_low": 0.6795,
+          "ci_high": 0.8192,
+          "n": 126,
+          "denominator": 168
+        },
+        "cell_median_width_rub": {
+          "value": 110549.9288,
+          "ci_low": 99560.239,
+          "ci_high": 121918.7001
+        }
+      },
+      "unknown": {
+        "rows": 1362,
+        "groups": 1104,
+        "gbm_cqr_mae_rub": {
+          "value": 29408.113,
+          "ci_low": 26862.9742,
+          "ci_high": 32120.4009
+        },
+        "gbm_cqr_mape": {
+          "value": 0.3854,
+          "ci_low": 0.3591,
+          "ci_high": 0.4157
+        },
+        "gbm_cqr_coverage": {
+          "value": 0.7533,
+          "ci_low": 0.7258,
+          "ci_high": 0.7804,
+          "n": 1026,
+          "denominator": 1362
+        },
+        "gbm_cqr_width_rub": {
+          "value": 79195.4205,
+          "ci_low": 76286.482,
+          "ci_high": 81952.317
+        },
+        "ridge_mae_rub": {
+          "value": 30306.2955,
+          "ci_low": 27646.0586,
+          "ci_high": 33125.1024
+        },
+        "ridge_mape": {
+          "value": 0.3944,
+          "ci_low": 0.3696,
+          "ci_high": 0.4217
+        },
+        "ridge_coverage": {
+          "value": 0.7665,
+          "ci_low": 0.7376,
+          "ci_high": 0.7942,
+          "n": 1044,
+          "denominator": 1362
+        },
+        "ridge_width_rub": {
+          "value": 80573.5116,
+          "ci_low": 78164.7816,
+          "ci_high": 83111.2639
+        },
+        "cell_median_mae_rub": {
+          "value": 32851.4179,
+          "ci_low": 30019.4975,
+          "ci_high": 35729.1707
+        },
+        "cell_median_mape": {
+          "value": 0.4271,
+          "ci_low": 0.3961,
+          "ci_high": 0.4611
+        },
+        "cell_median_coverage": {
+          "value": 0.7518,
+          "ci_low": 0.7233,
+          "ci_high": 0.7784,
+          "n": 1024,
+          "denominator": 1362
+        },
+        "cell_median_width_rub": {
+          "value": 89274.4104,
+          "ci_low": 86111.1658,
+          "ci_high": 92446.3259
+        }
+      }
+    },
+    "source": {
+      "habr": {
+        "rows": 23,
+        "groups": 19,
+        "gbm_cqr_mae_rub": {
+          "value": 86072.6908,
+          "ci_low": 55589.9136,
+          "ci_high": 127314.0667
+        },
+        "gbm_cqr_mape": {
+          "value": 0.3718,
+          "ci_low": 0.2178,
+          "ci_high": 0.5923
+        },
+        "gbm_cqr_coverage": {
+          "value": 0.6957,
+          "ci_low": 0.5,
+          "ci_high": 0.8636,
+          "n": 16,
+          "denominator": 23
+        },
+        "gbm_cqr_width_rub": {
+          "value": 206082.9931,
+          "ci_low": 175918.6417,
+          "ci_high": 231891.5912
+        },
+        "ridge_mae_rub": {
+          "value": 93952.8955,
+          "ci_low": 62641.8865,
+          "ci_high": 134464.801
+        },
+        "ridge_mape": {
+          "value": 0.3716,
+          "ci_low": 0.2709,
+          "ci_high": 0.502
+        },
+        "ridge_coverage": {
+          "value": 0.7826,
+          "ci_low": 0.6,
+          "ci_high": 0.9375,
+          "n": 18,
+          "denominator": 23
+        },
+        "ridge_width_rub": {
+          "value": 224950.91,
+          "ci_low": 200054.6932,
+          "ci_high": 250210.9729
+        },
+        "cell_median_mae_rub": {
+          "value": 127857.068,
+          "ci_low": 83724.9095,
+          "ci_high": 171237.3006
+        },
+        "cell_median_mape": {
+          "value": 0.475,
+          "ci_low": 0.3718,
+          "ci_high": 0.5638
+        },
+        "cell_median_coverage": {
+          "value": 0.6087,
+          "ci_low": 0.4,
+          "ci_high": 0.8095,
+          "n": 14,
+          "denominator": 23
+        },
+        "cell_median_width_rub": {
+          "value": 198869.354,
+          "ci_low": 163044.5066,
+          "ci_high": 227649.3546
+        }
+      },
+      "superjob": {
+        "rows": 12,
+        "groups": 12,
+        "gbm_cqr_mae_rub": {
+          "value": 49924.0416,
+          "ci_low": 33976.7222,
+          "ci_high": 66336.63
+        },
+        "gbm_cqr_mape": {
+          "value": 0.5483,
+          "ci_low": 0.3199,
+          "ci_high": 0.794
+        },
+        "gbm_cqr_coverage": {
+          "value": 0.5833,
+          "ci_low": 0.2857,
+          "ci_high": 0.8571,
+          "n": 7,
+          "denominator": 12
+        },
+        "gbm_cqr_width_rub": {
+          "value": 110416.0436,
+          "ci_low": 92778.4461,
+          "ci_high": 130369.5216
+        },
+        "ridge_mae_rub": {
+          "value": 45771.6185,
+          "ci_low": 34026.7957,
+          "ci_high": 60295.6354
+        },
+        "ridge_mape": {
+          "value": 0.4916,
+          "ci_low": 0.328,
+          "ci_high": 0.6767
+        },
+        "ridge_coverage": {
+          "value": 0.8333,
+          "ci_low": 0.5833,
+          "ci_high": 1.0,
+          "n": 10,
+          "denominator": 12
+        },
+        "ridge_width_rub": {
+          "value": 160088.6071,
+          "ci_low": 133075.1538,
+          "ci_high": 189948.4297
+        },
+        "cell_median_mae_rub": {
+          "value": 34299.9403,
+          "ci_low": 18398.6091,
+          "ci_high": 52174.8836
+        },
+        "cell_median_mape": {
+          "value": 0.2811,
+          "ci_low": 0.1898,
+          "ci_high": 0.373
+        },
+        "cell_median_coverage": {
+          "value": 0.9167,
+          "ci_low": 0.7143,
+          "ci_high": 1.0,
+          "n": 11,
+          "denominator": 12
+        },
+        "cell_median_width_rub": {
+          "value": 110654.5176,
+          "ci_low": 90030.4024,
+          "ci_high": 138750.5664
+        }
+      },
+      "trudvsem": {
+        "rows": 1593,
+        "groups": 1317,
+        "gbm_cqr_mae_rub": {
+          "value": 30340.4292,
+          "ci_low": 27863.9407,
+          "ci_high": 33103.1147
+        },
+        "gbm_cqr_mape": {
+          "value": 0.3784,
+          "ci_low": 0.3551,
+          "ci_high": 0.4044
+        },
+        "gbm_cqr_coverage": {
+          "value": 0.7633,
+          "ci_low": 0.7373,
+          "ci_high": 0.7885,
+          "n": 1216,
+          "denominator": 1593
+        },
+        "gbm_cqr_width_rub": {
+          "value": 82747.7353,
+          "ci_low": 79834.0878,
+          "ci_high": 85675.3732
+        },
+        "ridge_mae_rub": {
+          "value": 31401.5316,
+          "ci_low": 28803.7449,
+          "ci_high": 34264.0245
+        },
+        "ridge_mape": {
+          "value": 0.3884,
+          "ci_low": 0.3662,
+          "ci_high": 0.4133
+        },
+        "ridge_coverage": {
+          "value": 0.769,
+          "ci_low": 0.7427,
+          "ci_high": 0.7942,
+          "n": 1225,
+          "denominator": 1593
+        },
+        "ridge_width_rub": {
+          "value": 83402.7121,
+          "ci_low": 81006.0247,
+          "ci_high": 85811.036
+        },
+        "cell_median_mae_rub": {
+          "value": 34258.4288,
+          "ci_low": 31551.1919,
+          "ci_high": 37138.2408
+        },
+        "cell_median_mape": {
+          "value": 0.4246,
+          "ci_low": 0.3974,
+          "ci_high": 0.454
+        },
+        "cell_median_coverage": {
+          "value": 0.7508,
+          "ci_low": 0.725,
+          "ci_high": 0.775,
+          "n": 1196,
+          "denominator": 1593
+        },
+        "cell_median_width_rub": {
+          "value": 91973.7554,
+          "ci_low": 88843.3752,
+          "ci_high": 95172.2207
+        }
+      }
+    }
+  },
+  "feature_version": "student",
+  "model_version": "salary-student-2174d87"
+}

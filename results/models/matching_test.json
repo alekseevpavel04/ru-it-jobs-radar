@@ -1,0 +1,408 @@
+{
+  "source_script": "src/radar/models/matching.py",
+  "command": "python -m radar.models.matching evaluate --final-test",
+  "commit": "7146452-dirty",
+  "created_at": "2026-10-13T17:17:14+00:00",
+  "metrics": {
+    "test.bm25.ndcg": {
+      "value": 0.3511,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3294,
+      "ci_high": 0.3738
+    },
+    "test.bm25.mrr": {
+      "value": 0.8058,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.7673,
+      "ci_high": 0.8433
+    },
+    "test.bm25.recall": {
+      "value": 0.3317,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.2999,
+      "ci_high": 0.3653
+    },
+    "test.dense_e5-small.ndcg": {
+      "value": 0.3831,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3617,
+      "ci_high": 0.4061
+    },
+    "test.dense_e5-small.mrr": {
+      "value": 0.668,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.623,
+      "ci_high": 0.7132
+    },
+    "test.dense_e5-small.recall": {
+      "value": 0.3219,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.2929,
+      "ci_high": 0.3539
+    },
+    "test.rrf_e5-small.ndcg": {
+      "value": 0.4137,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3932,
+      "ci_high": 0.4362
+    },
+    "test.rrf_e5-small.mrr": {
+      "value": 0.8121,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.7726,
+      "ci_high": 0.847
+    },
+    "test.rrf_e5-small.recall": {
+      "value": 0.3631,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3321,
+      "ci_high": 0.3961
+    },
+    "test.fusion_e5-small@70.ndcg": {
+      "value": 0.4265,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.4057,
+      "ci_high": 0.4497
+    },
+    "test.fusion_e5-small@70.mrr": {
+      "value": 0.8647,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.8312,
+      "ci_high": 0.8969
+    },
+    "test.fusion_e5-small@70.recall": {
+      "value": 0.3729,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3414,
+      "ci_high": 0.4061
+    },
+    "test.dense_e5-base.ndcg": {
+      "value": 0.3733,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3528,
+      "ci_high": 0.3962
+    },
+    "test.dense_e5-base.mrr": {
+      "value": 0.5752,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.5294,
+      "ci_high": 0.6218
+    },
+    "test.dense_e5-base.recall": {
+      "value": 0.3325,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3029,
+      "ci_high": 0.3634
+    },
+    "test.rrf_e5-base.ndcg": {
+      "value": 0.4211,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3985,
+      "ci_high": 0.4447
+    },
+    "test.rrf_e5-base.mrr": {
+      "value": 0.7769,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.7375,
+      "ci_high": 0.8151
+    },
+    "test.rrf_e5-base.recall": {
+      "value": 0.3775,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3461,
+      "ci_high": 0.4104
+    },
+    "test.fusion_e5-base@80.ndcg": {
+      "value": 0.4445,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.4227,
+      "ci_high": 0.4676
+    },
+    "test.fusion_e5-base@80.mrr": {
+      "value": 0.831,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.7952,
+      "ci_high": 0.8663
+    },
+    "test.fusion_e5-base@80.recall": {
+      "value": 0.374,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3422,
+      "ci_high": 0.4073
+    },
+    "test.diff.bm25.minus.fusion_e5-base@80.ndcg": {
+      "value": -0.0934,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.1086,
+      "ci_high": -0.078
+    },
+    "test.diff.bm25.minus.fusion_e5-base@80.mrr": {
+      "value": -0.0252,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0545,
+      "ci_high": 0.0037
+    },
+    "test.diff.bm25.minus.fusion_e5-base@80.recall": {
+      "value": -0.0423,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0582,
+      "ci_high": -0.0264
+    },
+    "test.diff.dense_e5-small.minus.bm25.ndcg": {
+      "value": 0.032,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0087,
+      "ci_high": 0.0529
+    },
+    "test.diff.dense_e5-small.minus.bm25.mrr": {
+      "value": -0.1379,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.1861,
+      "ci_high": -0.0927
+    },
+    "test.diff.dense_e5-small.minus.bm25.recall": {
+      "value": -0.0097,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0326,
+      "ci_high": 0.0122
+    },
+    "test.diff.dense_e5-small.minus.fusion_e5-base@80.ndcg": {
+      "value": -0.0614,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0819,
+      "ci_high": -0.0436
+    },
+    "test.diff.dense_e5-small.minus.fusion_e5-base@80.mrr": {
+      "value": -0.163,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.2036,
+      "ci_high": -0.1224
+    },
+    "test.diff.dense_e5-small.minus.fusion_e5-base@80.recall": {
+      "value": -0.052,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0744,
+      "ci_high": -0.031
+    },
+    "test.diff.rrf_e5-small.minus.bm25.ndcg": {
+      "value": 0.0627,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0461,
+      "ci_high": 0.0786
+    },
+    "test.diff.rrf_e5-small.minus.bm25.mrr": {
+      "value": 0.0063,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0305,
+      "ci_high": 0.0402
+    },
+    "test.diff.rrf_e5-small.minus.bm25.recall": {
+      "value": 0.0314,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0187,
+      "ci_high": 0.0444
+    },
+    "test.diff.rrf_e5-small.minus.fusion_e5-base@80.ndcg": {
+      "value": -0.0308,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0452,
+      "ci_high": -0.0175
+    },
+    "test.diff.rrf_e5-small.minus.fusion_e5-base@80.mrr": {
+      "value": -0.0189,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0521,
+      "ci_high": 0.0152
+    },
+    "test.diff.rrf_e5-small.minus.fusion_e5-base@80.recall": {
+      "value": -0.0108,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0241,
+      "ci_high": 0.0024
+    },
+    "test.diff.fusion_e5-small@70.minus.bm25.ndcg": {
+      "value": 0.0754,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0624,
+      "ci_high": 0.0881
+    },
+    "test.diff.fusion_e5-small@70.minus.bm25.mrr": {
+      "value": 0.0589,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0313,
+      "ci_high": 0.085
+    },
+    "test.diff.fusion_e5-small@70.minus.bm25.recall": {
+      "value": 0.0412,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0285,
+      "ci_high": 0.054
+    },
+    "test.diff.fusion_e5-small@70.minus.fusion_e5-base@80.ndcg": {
+      "value": -0.018,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0292,
+      "ci_high": -0.007
+    },
+    "test.diff.fusion_e5-small@70.minus.fusion_e5-base@80.mrr": {
+      "value": 0.0337,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0085,
+      "ci_high": 0.0595
+    },
+    "test.diff.fusion_e5-small@70.minus.fusion_e5-base@80.recall": {
+      "value": -0.0011,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0144,
+      "ci_high": 0.0115
+    },
+    "test.diff.dense_e5-base.minus.bm25.ndcg": {
+      "value": 0.0223,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0,
+      "ci_high": 0.0439
+    },
+    "test.diff.dense_e5-base.minus.bm25.mrr": {
+      "value": -0.2306,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.2806,
+      "ci_high": -0.1808
+    },
+    "test.diff.dense_e5-base.minus.bm25.recall": {
+      "value": 0.0008,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.021,
+      "ci_high": 0.0221
+    },
+    "test.diff.dense_e5-base.minus.fusion_e5-base@80.ndcg": {
+      "value": -0.0712,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0861,
+      "ci_high": -0.056
+    },
+    "test.diff.dense_e5-base.minus.fusion_e5-base@80.mrr": {
+      "value": -0.2558,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.2961,
+      "ci_high": -0.2147
+    },
+    "test.diff.dense_e5-base.minus.fusion_e5-base@80.recall": {
+      "value": -0.0415,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.056,
+      "ci_high": -0.0277
+    },
+    "test.diff.rrf_e5-base.minus.bm25.ndcg": {
+      "value": 0.07,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0549,
+      "ci_high": 0.0856
+    },
+    "test.diff.rrf_e5-base.minus.bm25.mrr": {
+      "value": -0.0289,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0667,
+      "ci_high": 0.0071
+    },
+    "test.diff.rrf_e5-base.minus.bm25.recall": {
+      "value": 0.0458,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0324,
+      "ci_high": 0.0604
+    },
+    "test.diff.rrf_e5-base.minus.fusion_e5-base@80.ndcg": {
+      "value": -0.0235,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.032,
+      "ci_high": -0.0152
+    },
+    "test.diff.rrf_e5-base.minus.fusion_e5-base@80.mrr": {
+      "value": -0.0541,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0808,
+      "ci_high": -0.0283
+    },
+    "test.diff.rrf_e5-base.minus.fusion_e5-base@80.recall": {
+      "value": 0.0035,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.002,
+      "ci_high": 0.0095
+    },
+    "test.diff.fusion_e5-base@80.minus.bm25.ndcg": {
+      "value": 0.0934,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.078,
+      "ci_high": 0.1086
+    },
+    "test.diff.fusion_e5-base@80.minus.bm25.mrr": {
+      "value": 0.0252,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0037,
+      "ci_high": 0.0545
+    },
+    "test.diff.fusion_e5-base@80.minus.bm25.recall": {
+      "value": 0.0423,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0264,
+      "ci_high": 0.0582
+    }
+  },
+  "served": "fusion_e5-small@70"
+}

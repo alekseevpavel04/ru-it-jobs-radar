@@ -57,3 +57,6 @@
 2026-10-13T17:03:32+00:00	teacher_qwen	teacher_yandex	7e3d99d-dirty	python -m radar.eval.final --final-test --skip base_4b 31 s per record on test (no stop at the schema, VRAM spill), about 3 h; base models are compared on dev
 2026-10-13T17:03:32+00:00	teacher_yandex	regex	7e3d99d-dirty	python -m radar.eval.final --final-test --skip base_4b 31 s per record on test (no stop at the schema, VRAM spill), about 3 h; base models are compared on dev
 2026-10-13T17:03:33+00:00	final	scored	7e3d99d-dirty	python -m radar.eval.final --final-test --skip base_4b 31 s per record on test (no stop at the schema, VRAM spill), about 3 h; base models are compared on dev
+2026-10-13T17:17:02+00:00	salary	-	7146452	python -m radar.models.salary --final-test
+2026-10-13T17:17:06+00:00	matching	-	7146452-dirty	python -m radar.models.matching evaluate --final-test
+2026-10-13T17:19:38+00:00	suspicious	-	7146452-dirty	python -m radar.models.suspicious run --final-test
