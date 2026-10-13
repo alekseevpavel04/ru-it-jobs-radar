@@ -14,11 +14,27 @@ min_rows = 100
 n_folds = 5
 n_rep = 1
 seed = 20261008
-# Nuisance learners: E[log salary | X, other skills] and P(skill | X, other skills), both boosting.
-max_iter = 300
-learning_rate = 0.1
+# Nuisance learners: E[log salary | X, other skills] and P(skill | X, other skills), both boosting with
+# early stopping on an inner validation split (squared error and log loss). The first run of 13.10 used
+# 300 rounds without stopping and gave overconfident skill probabilities.
+max_iter = 1000
+learning_rate = 0.05
 max_leaf_nodes = 15
-min_samples_leaf = 20
+min_samples_leaf = 50
+l2_regularization = 1.0
+validation_fraction = 0.15
+n_iter_no_change = 20
+
+[overlap]
+# Trimming rule, fixed on 13.10 before the second run. For every skill, rows whose out-of-fold
+# probability of the skill (full-sample fit) lies outside [low, high] are dropped, and theta is
+# estimated again on the rest with the nuisances refitted there (Crump et al. 2009). The estimate then
+# describes vacancies where the skill is plausible given the controls.
+low = 0.05
+high = 0.95
+# A skill is estimated only if the kept rows hold at least this many vacancies with it and this many
+# without; otherwise it is reported as not estimable and stays out of the multiple-testing family.
+min_kept = 50
 
 [inference]
 level = 0.95
