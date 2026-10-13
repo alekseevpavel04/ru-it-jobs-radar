@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/extract/corpus_run.py",
   "command": "python -m radar.extract.corpus_run report --model-id qwen3_1p7b_r16_clean-awq",
-  "commit": "2ff7e25-dirty",
-  "created_at": "2026-10-13T07:57:24+00:00",
+  "commit": "ea04abe-dirty",
+  "created_at": "2026-10-13T20:36:15+00:00",
   "metrics": {
     "habr_rows": {
       "value": 1258,
@@ -25,14 +25,14 @@
       "denominator": 730
     },
     "telegram_rows": {
-      "value": 40736,
+      "value": 219863,
       "n": null,
       "denominator": null
     },
     "telegram_valid_json_requests": {
-      "value": 0.9987,
-      "n": 33275,
-      "denominator": 33317
+      "value": 0.9986,
+      "n": 192641,
+      "denominator": 192902
     },
     "trudvsem_rows": {
       "value": 9113,
@@ -55,14 +55,14 @@
       "denominator": 22341
     },
     "valid_json_requests": {
-      "value": 0.9993,
-      "n": 66223,
-      "denominator": 66269
+      "value": 0.9988,
+      "n": 225589,
+      "denominator": 225854
     },
     "valid_json_rows": {
-      "value": 0.999,
-      "n": 77632,
-      "denominator": 77713
+      "value": 0.9988,
+      "n": 256530,
+      "denominator": 256840
     }
   },
   "model_id": "qwen3_1p7b_r16_clean-awq",
