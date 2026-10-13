@@ -15,8 +15,8 @@ flags:
 
 vars:
   # model_id of extract.vacancy_fields that int_vacancy_fields reads (radar.extract.corpus_run).
-  # Empty until the corpus run has loaded the table: the models of models/extract stay off.
-  extraction_model: ""
+  # Empty keeps the models of models/extract off.
+  extraction_model: "qwen3_1p7b_r16_clean-awq"
 
 models:
   radar:
