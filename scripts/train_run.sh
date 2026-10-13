@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# Run a radar.train module (dataset, sft, predict) in the WSL training venv ~/venvs/train.
-# From Git Bash it re-runs itself inside the distro; inside WSL it runs directly.
+# Run a radar.train module (dataset, sft, predict, dpo_pairs, dpo, quantize) in the WSL training venv
+# ~/venvs/train. From Git Bash it re-runs itself inside the distro; inside WSL it runs directly.
 #   bash scripts/train_run.sh dataset
 #   bash scripts/train_run.sh sft --config configs/sft/qwen3_1p7b.toml --probe 50
 #   bash scripts/train_run.sh predict --adapter models/sft/qwen3_1p7b_r16/adapter --split dev --system qwen3_1p7b_sft_r16
+#   bash scripts/train_run.sh dpo --config configs/dpo/qwen3_1p7b_clean.toml --probe 50
 # Models come from the shared HF cache on D: and are never downloaded here (HF_HUB_OFFLINE).
 set -euo pipefail
 ROOT=$(cd "$(dirname "$0")/.." && pwd)

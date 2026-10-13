@@ -1,0 +1,51 @@
+# One DPO iteration on the final student (E13, docs/EXPERIMENTS.md). The DPO criterion of
+# EXPERIMENTS fired on tg_dev work_format (student minus Qwen-8B -0.067, threshold 0.05), so the
+# pairs lean on work_format and role. The LoRA of the SFT adapter keeps training; its frozen copy
+# is the reference model.
+name = "qwen3_1p7b_r16_clean_dpo"
+sft_adapter = "models/sft/qwen3_1p7b_r16_clean/adapter"
+
+[data]
+sft = "data/sft"
+pairs = "data/dpo"
+
+[pairs]
+# The student answers 2 000 training examples (1 000 per source family) and the 561 of the SFT
+# validation split. On examples it trained on for two epochs it mostly repeats the label, so the
+# validation split, unseen in training but still train_pool, gives most of its real mistakes.
+train_sample = 2000
+with_val = true
+holdout_share = 0.1
+seed = 20261008
+# Corrupted copies of silver answers. Enum swaps keep the rest of the answer byte for byte, so the
+# pair differs in one value; role swaps go to a neighbouring role (radar.train.dpo_pairs), a random
+# one would be an easy negative. Dropped key and cut JSON keep the format pairs of the PLAN row.
+work_format = 200
+role = 200
+drop_field = 50
+broken_json = 50
+
+[train]
+max_seq_len = 2048
+epochs = 2
+lr = 2e-5
+beta = 0.1
+# Chosen and rejected often differ by one token; plain DPO then tends to lower the likelihood of
+# both. An NLL term on the chosen answer (TRL loss "sft", weight 1 as in RPO) keeps it likely.
+sft_weight = 1.0
+batch = 1
+grad_accum = 16
+warmup_ratio = 0.1
+scheduler = "cosine"
+optim = "adamw_8bit"
+seed = 20261008
+logging_steps = 5
+eval_steps = 25
+save_steps = 25
+save_total_limit = 2
+
+[guard]
+vram_margin_mib = 512
+step_time_factor = 3.0
+reference_steps = 5
+patience = 3

@@ -2,7 +2,9 @@
 
     bash scripts/train_run.sh predict --adapter models/sft/qwen3_1p7b_r16/adapter --split dev --system sft_1p7b_r16
     bash scripts/train_run.sh predict --adapter models/sft/qwen3_1p7b_r16/epoch-1 --split tg_dev --system sft_1p7b_e1
-    bash scripts/train_run.sh predict --model Qwen/Qwen3-4B --split dev --system base_4b_student_prompt
+    bash scripts/train_run.sh predict --model Qwen/Qwen3-4B --split dev --system base_4b
+    bash scripts/train_run.sh predict --adapter models/sft/qwen3_1p7b_r16_clean/adapter --system sft_1p7b_r16_clean ...
+    ... --inputs data/dpo/student_inputs.jsonl --out data/dpo/student_answers.jsonl   on training rows (DPO)
 
 The input is the record's extractor input from data/gold/<split>_inputs.jsonl, cut to the
 max_input_tokens the adapter was trained with and wrapped in the same system prompt and chat
@@ -17,7 +19,9 @@ count goes to the sidecar; radar.eval scores an invalid answer as all fields emp
 
 Writes data/predictions/<split>/<system>.jsonl ({"id", "output", "valid", "finish", "truncated_input",
 "prompt_tokens", "completion_tokens", "batch", "batch_size", "batch_seconds"}) and <system>.meta.json.
-Test splits are not served.
+--inputs takes any {"id", "input"} file instead of a gold split (the DPO pairs use the
+student's answers on training rows) and writes only to --out. A test split is served only with
+--final-test, which the final test (python -m radar.eval.final) passes.
 """
 
 import argparse
@@ -33,11 +37,11 @@ from pathlib import Path
 from typing import Any
 
 from radar.config import ROOT, data_dir
-from radar.eval.cli import SYSTEM_NAME
+from radar.eval.cli import SYSTEM_NAME, TEST_SPLITS
 from radar.extract.schema import try_parse
 from radar.results import git_commit
 from radar.train.config import BACKENDS
-from radar.train.dataset import cap_input, read_jsonl, render_prompt, token_spans, write_jsonl
+from radar.train.dataset import cap_input, read_jsonl, render_prompt, sha256_file, token_spans, write_jsonl
 
 log = logging.getLogger("radar.train.predict")
 
@@ -100,13 +104,33 @@ def generate(
     return out
 
 
+def shown(path: Path) -> str:
+    path = path.resolve()
+    return path.relative_to(ROOT).as_posix() if path.is_relative_to(ROOT) else path.as_posix()
+
+
+def check_args(args: argparse.Namespace) -> None:
+    if not SYSTEM_NAME.match(args.system):
+        raise SystemExit(f"system name {args.system!r}: lowercase letters, digits, _ and -")
+    if (args.limit or args.inputs) and not args.out:
+        raise SystemExit("--limit and --inputs write outside the gold predictions: give them --out")
+    if args.split in TEST_SPLITS and not args.final_test:
+        raise SystemExit("refused: a test split is served once, by the final test, with --final-test")
+    if args.final_test and args.split not in TEST_SPLITS:
+        raise SystemExit("--final-test only goes with a test split (test, tg_test)")
+    if args.final_test and args.limit:
+        raise SystemExit("--final-test predicts the whole split, no --limit")
+
+
 def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
     ap = argparse.ArgumentParser(prog="python -m radar.train.predict", description=__doc__.splitlines()[0])
     who = ap.add_mutually_exclusive_group(required=True)
     who.add_argument("--adapter", type=Path, help="adapter directory (adapter/ or epoch-<k>/ of a run)")
     who.add_argument("--model", help="a base model alone, with the student prompt of data/sft/meta.json")
-    ap.add_argument("--split", required=True, choices=SPLITS)
+    source = ap.add_mutually_exclusive_group(required=True)
+    source.add_argument("--split", choices=[*SPLITS, *TEST_SPLITS])
+    source.add_argument("--inputs", type=Path, help='{"id", "input"} rows instead of a gold split (with --out)')
     ap.add_argument("--system", required=True, help="predictions file name, e.g. qwen3_1p7b_sft_r16")
     ap.add_argument("--backend", choices=BACKENDS, default="unsloth")
     ap.add_argument("--batch", type=int, default=8)
@@ -114,17 +138,16 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--limit", type=int, help="first N records only, for a probe (with --out)")
     ap.add_argument("--cpu", action="store_true", help="float32 on the CPU, no quantization (dry run)")
     ap.add_argument("--out", type=Path, help="default data/predictions/<split>/<system>.jsonl; set it for probes")
+    ap.add_argument("--final-test", action="store_true", help="serve a test split (final test only)")
     args = ap.parse_args(argv)
-    if not SYSTEM_NAME.match(args.system):
-        raise SystemExit(f"system name {args.system!r}: lowercase letters, digits, _ and -")
-    if args.limit and not args.out:
-        raise SystemExit("--limit writes a partial file: give it --out, outside data/predictions")
+    check_args(args)
 
     if args.cpu:
         os.environ["CUDA_VISIBLE_DEVICES"] = ""
     adapter = args.adapter.resolve() if args.adapter else None
     meta = dataset_meta(adapter)
-    records = read_jsonl(data_dir() / "gold" / f"{args.split}_inputs.jsonl")[: args.limit]
+    inputs = args.inputs or data_dir() / "gold" / f"{args.split}_inputs.jsonl"
+    records = read_jsonl(inputs)[: args.limit]
 
     from radar.train.hf import load_for_inference
 
@@ -148,6 +171,8 @@ def main(argv: list[str] | None = None) -> int:
     sidecar = {
         "system": args.system,
         "split": args.split,
+        "inputs_file": None if args.split else shown(inputs),
+        "inputs_sha256": None if args.split else sha256_file(inputs),
         "adapter": adapter.relative_to(ROOT).as_posix() if adapter and adapter.is_relative_to(ROOT) else None,
         "adapter_sha256": adapter_sha256(adapter) if adapter else None,
         "model": args.model,
@@ -167,7 +192,7 @@ def main(argv: list[str] | None = None) -> int:
         "created_at": datetime.now(UTC).isoformat(timespec="seconds"),
     }
     out.with_suffix(".meta.json").write_text(json.dumps(sidecar, indent=2) + "\n", encoding="utf-8")
-    log.info("%s on %s: valid JSON %d of %d, %.0f s -> %s", args.system, args.split, n_valid, len(rows), wall, out)
+    log.info("%s on %s: valid JSON %d of %d, %.0f s -> %s", args.system, shown(inputs), n_valid, len(rows), wall, out)
     return 0
 
 

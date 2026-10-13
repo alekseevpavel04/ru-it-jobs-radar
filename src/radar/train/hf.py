@@ -41,7 +41,7 @@ def tiny_base(model: str, out_dir: Path, seed: int) -> Path:
     return out_dir
 
 
-def _bnb() -> Any:
+def bnb_config() -> Any:
     import torch
     from transformers import BitsAndBytesConfig
 
@@ -84,7 +84,11 @@ def load_for_training(cfg: RunConfig, model_path: str, cpu: bool) -> tuple[Any, 
         model = AutoModelForCausalLM.from_pretrained(model_path, dtype=torch.float32)
     else:
         model = AutoModelForCausalLM.from_pretrained(
-            model_path, quantization_config=_bnb(), dtype=torch.bfloat16, device_map={"": 0}, attn_implementation="sdpa"
+            model_path,
+            quantization_config=bnb_config(),
+            dtype=torch.bfloat16,
+            device_map={"": 0},
+            attn_implementation="sdpa",
         )
         model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
     lora = LoraConfig(
@@ -125,7 +129,11 @@ def load_for_inference(adapter: Path | None, model: str | None, backend: str, ma
             llm = AutoModelForCausalLM.from_pretrained(base, dtype=torch.float32)
         else:
             llm = AutoModelForCausalLM.from_pretrained(
-                base, quantization_config=_bnb(), dtype=torch.bfloat16, device_map={"": 0}, attn_implementation="sdpa"
+                base,
+                quantization_config=bnb_config(),
+                dtype=torch.bfloat16,
+                device_map={"": 0},
+                attn_implementation="sdpa",
             )
         if adapter:
             from peft import PeftModel

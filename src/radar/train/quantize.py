@@ -3,6 +3,7 @@
     bash scripts/train_run.sh quantize merge --adapter models/sft/qwen3_1p7b_r16_clean/adapter     # WSL
     bash scripts/train_run.sh quantize convert --name qwen3_1p7b_r16_clean                         # WSL
     python -m radar.train.quantize quantize --name qwen3_1p7b_r16_clean                           # Windows
+    bash scripts/train_run.sh quantize prompts --name qwen3_1p7b_r16_clean --splits test tg_test --final-test
     python -m radar.train.quantize summary --name qwen3_1p7b_r16_clean --reference sft_1p7b_r16_clean \
         --systems sft_1p7b_clean_f16 sft_1p7b_clean_q8_0 sft_1p7b_clean_q4_k_m sft_1p7b_clean_awq \
         --bench data/inference/bench/*.meta.json
@@ -20,6 +21,8 @@ with the adapter's tokenizer and dataset_meta.json, through the same functions a
 radar.train.predict (system prompt, chat template with thinking off, input cut to max_input_tokens
 at a token boundary). radar.extract.student_server sends them to llama-server as text, so every
 quantized variant reads the prompt the student was trained on; the Windows venv has no tokenizer.
+prompts renders them again for the given splits from the merged directory (its tokenizer and
+dataset_meta.json); a test split only with --final-test, which the final test passes.
 
 convert runs llama.cpp's convert_hf_to_gguf.py of the same build as the binaries (LLAMA_CPP_SRC,
 the source tree of b11052) to an F16 GGUF; quantize runs llama-quantize.exe (LLAMA_DIR) from it to
@@ -43,6 +46,7 @@ from pathlib import Path
 from typing import Any
 
 from radar.config import RESULTS, ROOT, data_dir
+from radar.eval.cli import TEST_SPLITS
 from radar.results import git_commit, write_result
 
 log = logging.getLogger("radar.train.quantize")
@@ -124,7 +128,7 @@ def prompt_rows(records: Sequence[Mapping[str, Any]], tok: Any, meta: Mapping[st
     return rows
 
 
-def write_prompts(adapter: Path, out: Path) -> None:
+def write_prompts(adapter: Path, out: Path, splits: Sequence[str] = SPLITS) -> None:
     from transformers import AutoTokenizer  # type: ignore[import-not-found]
 
     from radar.train.dataset import read_jsonl, write_jsonl
@@ -132,7 +136,7 @@ def write_prompts(adapter: Path, out: Path) -> None:
 
     meta = dataset_meta(adapter)
     tok = AutoTokenizer.from_pretrained(str(adapter))
-    for split in SPLITS:
+    for split in splits:
         records = read_jsonl(data_dir() / "gold" / f"{split}_inputs.jsonl")
         rows = prompt_rows(records, tok, meta)
         write_jsonl(out / "prompts" / f"{split}.jsonl", rows)
@@ -174,6 +178,23 @@ def cmd_merge(adapter: Path, name: str | None) -> int:
 
 
 # --- GGUF ---------------------------------------------------------------------------------------
+
+
+def check_prompt_splits(splits: Sequence[str], final_test: bool) -> None:
+    unknown = sorted(set(splits) - {*SPLITS, *TEST_SPLITS})
+    if unknown:
+        raise SystemExit(f"unknown splits {unknown}")
+    tests = [s for s in splits if s in TEST_SPLITS]
+    if tests and not final_test:
+        raise SystemExit("refused: test prompts are rendered once, by the final test, with --final-test")
+    if final_test and len(tests) != len(splits):
+        raise SystemExit("--final-test only goes with test splits (test, tg_test)")
+
+
+def cmd_prompts(name: str, splits: Sequence[str], final_test: bool) -> int:
+    check_prompt_splits(splits, final_test)
+    write_prompts(MERGED / name, MERGED / name, splits)
+    return 0
 
 
 def cmd_convert(name: str) -> int:
@@ -343,6 +364,10 @@ def main(argv: list[str] | None = None) -> int:
     m = sub.add_parser("merge", help="adapter into the bf16 base, plus the dev prompts (training venv)")
     m.add_argument("--adapter", type=Path, required=True)
     m.add_argument("--name", help="default: the run directory name")
+    pr = sub.add_parser("prompts", help="render the prompts of the given splits again (training venv)")
+    pr.add_argument("--name", required=True)
+    pr.add_argument("--splits", nargs="+", required=True)
+    pr.add_argument("--final-test", action="store_true", help="test splits, final test only")
     c = sub.add_parser("convert", help="merged model to an F16 GGUF (training venv)")
     c.add_argument("--name", required=True)
     q = sub.add_parser("quantize", help="F16 GGUF to each type with llama-quantize (Windows)")
@@ -357,6 +382,8 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "merge":
         return cmd_merge(args.adapter, args.name)
+    if args.cmd == "prompts":
+        return cmd_prompts(args.name, args.splits, args.final_test)
     if args.cmd == "convert":
         return cmd_convert(args.name)
     if args.cmd == "quantize":

@@ -29,7 +29,7 @@ import shutil
 import statistics
 import sys
 import time
-from collections.abc import Mapping, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -86,7 +86,13 @@ def save_adapter(model: Any, tokenizer: Any, path: Path, meta: Mapping[str, Any]
 
 
 def make_callback(
-    guard: StepGuard, tracker: Tracker, out: Path, meta: Mapping[str, Any], tokenizer: Any, cpu: bool
+    guard: StepGuard,
+    tracker: Tracker,
+    out: Path,
+    meta: Mapping[str, Any],
+    tokenizer: Any,
+    cpu: bool,
+    save: Callable[[Any, Any, Path, Mapping[str, Any]], None] = save_adapter,
 ) -> Any:
     import torch  # type: ignore[import-not-found]
     from transformers import TrainerCallback  # type: ignore[import-not-found]
@@ -135,7 +141,7 @@ def make_callback(
 
         def on_epoch_end(self, args: Any, state: Any, control: Any, **kwargs: Any) -> None:
             if self.reason is None:
-                save_adapter(kwargs["model"], tokenizer, out / f"epoch-{round(state.epoch)}", meta)
+                save(kwargs["model"], tokenizer, out / f"epoch-{round(state.epoch)}", meta)
 
     return Watch()
 

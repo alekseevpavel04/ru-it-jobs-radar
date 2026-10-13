@@ -63,7 +63,7 @@ class LocalTracker:
 class MLflowTracker:
     def __init__(self, uri: str, run_dir: Path, run_name: str, resume: bool, experiment: str) -> None:
         try:
-            import mlflow  # type: ignore[import-not-found]
+            import mlflow  # type: ignore[import-not-found,unused-ignore]
         except ImportError as e:
             raise SystemExit(
                 "MLFLOW_TRACKING_URI is set but mlflow is not installed in this venv "

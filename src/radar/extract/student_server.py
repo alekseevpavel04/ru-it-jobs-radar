@@ -36,8 +36,8 @@ memory of the card is sampled with nvidia-smi during the run (the whole card, ot
 vLLM reserves its gpu_memory_utilization share up front, so its peak says little about need).
 
 Writes data/predictions/<split>/<system>.jsonl ({"id", "output", "valid", "finish", "truncated_input",
-"prompt_tokens", "completion_tokens", "seconds", "template_match"}) and <system>.meta.json. Test splits
-are not served.
+"prompt_tokens", "completion_tokens", "seconds", "template_match"}) and <system>.meta.json. A test split
+is served only with --final-test, which the final test (python -m radar.eval.final) passes.
 
 Corpus extraction. `backend` is the factory radar.extract.corpus_run loads: each input is
 rendered by radar.train.quantize.prompt_rows with the merged model's tokenizer and dataset_meta.json,
@@ -68,7 +68,7 @@ from typing import Any, Protocol
 import httpx
 
 from radar.config import ROOT, data_dir
-from radar.eval.cli import SYSTEM_NAME
+from radar.eval.cli import SYSTEM_NAME, TEST_SPLITS
 from radar.extract.corpus_run import Answer
 from radar.extract.schema import json_schema, try_parse
 from radar.results import git_commit
@@ -404,7 +404,7 @@ def main(argv: list[str] | None = None) -> int:
     logging.getLogger("httpx").setLevel(logging.WARNING)
     ap = argparse.ArgumentParser(prog="python -m radar.extract.student_server", description=__doc__.splitlines()[0])
     ap.add_argument("--name", required=True, help="merged model, models/merged/<name> (its prompts/ are read)")
-    ap.add_argument("--split", required=True, choices=SPLITS)
+    ap.add_argument("--split", required=True, choices=[*SPLITS, *TEST_SPLITS])
     ap.add_argument("--system", required=True, help="predictions file name, e.g. sft_1p7b_clean_q4_k_m")
     ap.add_argument("--backend", choices=sorted(BACKENDS), default="llama")
     ap.add_argument("--workers", type=int, default=4, help="requests in flight; llama-server needs as many slots")
@@ -413,11 +413,16 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--base-url", help="server root, without /v1; default per backend")
     ap.add_argument("--limit", type=int, help="first N records only, for a probe (with --out)")
     ap.add_argument("--out", type=Path, help="default data/predictions/<split>/<system>.jsonl; set it for probes")
+    ap.add_argument("--final-test", action="store_true", help="serve a test split (final test only)")
     args = ap.parse_args(argv)
     if not SYSTEM_NAME.match(args.system):
         raise SystemExit(f"system name {args.system!r}: lowercase letters, digits, _ and -")
     if args.limit and not args.out:
         raise SystemExit("--limit writes a partial file: give it --out, outside data/predictions")
+    if args.split in TEST_SPLITS and not args.final_test:
+        raise SystemExit("refused: a test split is served once, by the final test, with --final-test")
+    if args.final_test and (args.split not in TEST_SPLITS or args.limit):
+        raise SystemExit("--final-test goes with a whole test split (test, tg_test), no --limit")
 
     prompts_file = MERGED / args.name / "prompts" / f"{args.split}.jsonl"
     prompts = read_jsonl(prompts_file)[: args.limit]

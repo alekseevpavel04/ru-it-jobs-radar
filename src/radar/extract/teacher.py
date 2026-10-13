@@ -13,8 +13,9 @@ data/gold/dev_inputs.jsonl, the inputs the gold set was labeled on (gold labelin
 Telegram (radar.extract.telegram_corpus) has its own splits. tg_train_pool is one record per
 train_pool group of data/corpus/telegram/split.parquet, the group's latest post: a group is a
 cross-post or a repost, and labeling every copy spends teacher time on the same text. Its strata
-are channel network x role proxy. tg_dev is data/gold/tg_dev_inputs.jsonl. No test split, S1 or
-Telegram, is ever served here.
+are channel network x role proxy. tg_dev is data/gold/tg_dev_inputs.jsonl. A test split (test,
+tg_test) is labeled only with --final-test, by the final test (python -m radar.eval.final),
+with --prompt set to the prompt version its dev split was labeled with.
 
 A Telegram request asks for one more key, `exclude` (null, "multi_vacancy" or "not_vacancy"): the
 collector's filter lets some lists and non-vacancies through, and the gold set drops them
@@ -64,7 +65,7 @@ from pydantic import ValidationError
 from radar.config import ROOT, data_dir, load_dotenv, require
 from radar.eval.agreement import FIELDS, compare, field_values
 from radar.eval.agreement import parse as parse_output
-from radar.eval.cli import SKILL_NORMALIZERS, load_config
+from radar.eval.cli import SKILL_NORMALIZERS, TEST_SPLITS, load_config
 from radar.eval.data import load_gold
 from radar.eval.metrics import score
 from radar.extract.baseline import extract, read_inputs
@@ -199,11 +200,11 @@ def pool_items(split: str, seed: int) -> list[Item]:
     raise ValueError(f"{split!r} is not a training pool")
 
 
-def select(split: str, limit: int | None, keep_all: Sequence[str], seed: int) -> list[Item]:
+def select(split: str, limit: int | None, keep_all: Sequence[str], seed: int, final_test: bool = False) -> list[Item]:
     if split in DEV_OF:
         items = pool_items(split, seed)
         return items if limit is None and not keep_all else stratified(items, limit or len(items), keep_all)
-    if split in DEV_OF.values():
+    if split in DEV_OF.values() or (final_test and split in TEST_SPLITS):
         items = dev_items(data_dir() / "gold" / f"{split}_inputs.jsonl", seed)
         return items[:limit] if limit is not None else items
     raise ValueError(f"split {split!r} is not served by the teacher script")
@@ -213,7 +214,7 @@ def select(split: str, limit: int | None, keep_all: Sequence[str], seed: int) ->
 
 
 def asks_exclude(split: str) -> bool:
-    return split in TG_SPLITS
+    return split in (*TG_SPLITS, "tg_test")
 
 
 def request_schema(split: str) -> dict[str, Any]:
@@ -400,12 +401,13 @@ def reusable(rows: Sequence[Mapping[str, Any]], items: Sequence[Item]) -> tuple[
     return kept, {row["id"] for row in kept if row["id"] in current}
 
 
-def run_meta(teacher: Teacher, split: str, prompt_sha: str, schema_sha: str) -> dict[str, Any]:
+def run_meta(teacher: Teacher, split: str, prompt_sha: str, schema_sha: str, prompt: Path = PROMPT) -> dict[str, Any]:
+    prompt = prompt.resolve()
     return {
         "teacher": teacher.name,
         "model": teacher.alias,
         "split": split,
-        "prompt_file": PROMPT.relative_to(ROOT).as_posix() if PROMPT.is_relative_to(ROOT) else str(PROMPT),
+        "prompt_file": prompt.relative_to(ROOT).as_posix() if prompt.is_relative_to(ROOT) else str(prompt),
         "prompt_sha256": prompt_sha,
         "schema_version": SCHEMA_VERSION,
         "schema_sha256": schema_sha,
@@ -447,10 +449,12 @@ def labeled(
 def cmd_label(args: argparse.Namespace) -> int:
     teacher = TEACHERS[args.teacher]
     seed = load_config().seed
-    items = select(args.split, args.limit, args.keep_all, seed)
-    prompt = PROMPT.read_text(encoding="utf-8")
+    items = select(args.split, args.limit, args.keep_all, seed, args.final_test)
+    prompt = args.prompt.read_text(encoding="utf-8")
     schema = request_schema(args.split)
-    meta = run_meta(teacher, args.split, sha256_text(prompt), sha256_text(json.dumps(schema, sort_keys=True)))
+    meta = run_meta(
+        teacher, args.split, sha256_text(prompt), sha256_text(json.dumps(schema, sort_keys=True)), args.prompt
+    )
 
     out, meta_file = output_path(teacher.name, args.split), meta_path(teacher.name, args.split)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -771,7 +775,11 @@ def main(argv: list[str] | None = None) -> int:
         "--probe-report", type=int, metavar="N", help="results/teacher/probe*.json from N probe records of --split"
     )
     mode.add_argument("--agreement", action="store_true", help="results/teacher/agreement.json: qwen against yandex")
-    ap.add_argument("--split", choices=SPLITS, default="train_pool")
+    ap.add_argument("--split", choices=[*SPLITS, *TEST_SPLITS], default="train_pool")
+    ap.add_argument(
+        "--prompt", type=Path, default=PROMPT, help="system prompt file (default configs/teacher_prompt.md)"
+    )
+    ap.add_argument("--final-test", action="store_true", help="label a test split (final test only)")
     ap.add_argument(
         "--limit",
         type=int,
@@ -785,6 +793,10 @@ def main(argv: list[str] | None = None) -> int:
     run.add_argument("--overwrite", action="store_true", help="start the output file over")
     ap.add_argument("--log-every", type=int, default=25)
     args = ap.parse_args(argv)
+    if args.split in TEST_SPLITS and not args.final_test:
+        raise SystemExit("refused: a test split is labeled once, by the final test, with --final-test")
+    if args.final_test and (args.split not in TEST_SPLITS or args.teacher is None or args.limit):
+        raise SystemExit("--final-test goes with --teacher and a whole test split (test, tg_test)")
     load_dotenv()
     if args.probe_report:
         return cmd_probe_report(args.probe_report, args.split)
