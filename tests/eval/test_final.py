@@ -266,3 +266,8 @@ def test_prediction_tools_refuse_test_splits_without_the_flag() -> None:
     with pytest.raises(SystemExit, match="only goes with test"):
         check_prompt_splits(["dev"], final_test=True)
     check_prompt_splits(["test", "tg_test"], final_test=True)
+
+
+def test_skip_needs_a_known_system() -> None:
+    with pytest.raises(SystemExit, match="unknown systems to skip"):
+        final.main(["--status", "--skip", "no_such_system", "reason"])

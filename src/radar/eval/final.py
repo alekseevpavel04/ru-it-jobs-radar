@@ -681,10 +681,25 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--with-dpo", action="store_true", help=f"add {DPO.name} (only if E15 kept DPO)")
     ap.add_argument("--only", nargs="+", default=[], metavar="SYSTEM", help="predict these systems only")
     ap.add_argument("--rescore", metavar="REASON", help="score again; the reason goes to results/test_runs.log")
+    ap.add_argument(
+        "--skip",
+        nargs=2,
+        action="append",
+        default=[],
+        metavar=("SYSTEM", "REASON"),
+        help="leave a system out of the test, before any scoring; the reason goes to results/test_runs.log",
+    )
     args = ap.parse_args(argv)
     chosen = systems(args.with_dpo)
+    skipped = {name: reason for name, reason in args.skip}
+    unknown = sorted(set(skipped) - {s.name for s in chosen})
+    if unknown:
+        raise SystemExit(f"unknown systems to skip {unknown}")
+    chosen = tuple(s for s in chosen if s.name not in skipped)
     if args.status:
         return status(chosen)
+    for name, reason in skipped.items():
+        log_run(name, f"skipped: {reason}")
     return run(chosen, Context(), args.only, args.rescore)
 
 
