@@ -1,0 +1,65 @@
+# Settings for `python -m radar.models.forecast`. Every value is fixed before the run, nothing
+# is tuned on the backtest; changing any value changes every reported number: record the change in
+# docs/EXPERIMENTS.md.
+
+[data]
+# Weekly skill series of marts.mart_extracted_skills_weekly. A source enters the backtest only if its
+# usable run of weeks is at least min_train + horizon + min_origins - 1 long; the others are reported
+# with their length.
+sources = ["telegram", "all_portals", "trudvsem_snapshot", "trudvsem", "habr", "superjob"]
+# The Telegram corpus run extracted every post from 2025-01-01 on and almost nothing before (2024: 122
+# of 36 746 posts). The week of 2024-12-30 holds only its 2025 days, so the series starts a week later.
+first_week = { telegram = "2025-01-06" }
+# A week is used when this share of the units the run can extract has fields (coverage_extractable)
+# and the week is over (its Sunday is before the run date, Moscow time).
+min_coverage = 0.85
+# share: posts naming the skill / IT posts with fields of the week (primary, see docs/methods/forecast.md);
+# count: posts naming the skill.
+targets = ["share", "count"]
+
+[skills]
+# A skill is forecast when its median weekly mentions over the used weeks reach this many. At 20 the
+# binomial noise of a weekly share is at most about 1/sqrt(20) = 22% of its level; below it the
+# series is mostly sampling noise and every method reduces to smoothing.
+min_median_mentions = 20
+# HTTPS: 16% of Telegram IT posts against 3% on Habr Career and under 1% on trudvsem; the extractor
+# most likely reads the links of a post as the skill. Not a demand series.
+exclude = ["HTTPS"]
+# Reference source for the shares reported next to an excluded skill.
+reference_source = "habr"
+
+[backtest]
+horizon = 4
+# Weeks of history at the first origin.
+min_train = 26
+min_origins = 8
+# Seasonal naive repeats the value 52 weeks before; defined only at origins with that much history.
+season = 52
+
+[baselines]
+ma_window = 4
+
+[boosting]
+# One model over all forecast skills at each origin (global), direct over horizons: features are the
+# last `lags` values and the 4 and 13 week means, divided by the skill's mean over its training
+# weeks, plus the horizon; the target is the change from the last value on the same scale.
+lags = 8
+max_iter = 200
+learning_rate = 0.05
+max_leaf_nodes = 15
+min_samples_leaf = 20
+l2_regularization = 1.0
+
+[bootstrap]
+# Two-way bootstrap over the error matrix: skills drawn with replacement, origins in moving blocks of
+# `block` consecutive origins (errors of origins less than a horizon apart share weeks).
+replicates = 2000
+block = 4
+level = 0.95
+seed = 20261008
+
+[serve]
+# The forecast written for the next weeks uses the method with the lowest mean MASE among those whose
+# paired MASE interval against naive lies below zero, and naive when there is none. Interval of the
+# served forecast: this quantile of the method's absolute backtest errors of the skill at that horizon.
+interval_quantile = 0.8

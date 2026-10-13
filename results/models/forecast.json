@@ -1,0 +1,1439 @@
+{
+  "source_script": "src/radar/models/forecast.py",
+  "command": "python -m radar.models.forecast",
+  "commit": "06f75b0-dirty",
+  "created_at": "2026-10-13T15:29:19+00:00",
+  "metrics": {
+    "data.telegram.weeks": {
+      "value": 92,
+      "n": null,
+      "denominator": null,
+      "first_week": "2025-01-06",
+      "last_week": "2026-10-05",
+      "eligible": true,
+      "min_weeks": 37
+    },
+    "data.telegram.year_before_first_week": {
+      "value": 0.0033,
+      "n": 122,
+      "denominator": 36502
+    },
+    "data.all_portals.weeks": {
+      "value": 15,
+      "n": null,
+      "denominator": null,
+      "first_week": "2026-06-29",
+      "last_week": "2026-10-05",
+      "eligible": false,
+      "min_weeks": 37
+    },
+    "data.trudvsem_snapshot.weeks": {
+      "value": 15,
+      "n": null,
+      "denominator": null,
+      "first_week": "2026-06-29",
+      "last_week": "2026-10-05",
+      "eligible": false,
+      "min_weeks": 37
+    },
+    "data.trudvsem.weeks": {
+      "value": 1,
+      "n": null,
+      "denominator": null,
+      "first_week": "2026-10-05",
+      "last_week": "2026-10-05",
+      "eligible": false,
+      "min_weeks": 37
+    },
+    "data.habr.weeks": {
+      "value": 1,
+      "n": null,
+      "denominator": null,
+      "first_week": "2026-10-05",
+      "last_week": "2026-10-05",
+      "eligible": false,
+      "min_weeks": 37
+    },
+    "data.superjob.weeks": {
+      "value": 0,
+      "n": null,
+      "denominator": null,
+      "first_week": null,
+      "last_week": null,
+      "eligible": false,
+      "min_weeks": 37
+    },
+    "data.telegram.skills": {
+      "value": 17,
+      "n": null,
+      "denominator": null,
+      "min_median_mentions": 20.0
+    },
+    "data.telegram.it_units_median": {
+      "value": 470.0,
+      "n": null,
+      "denominator": null
+    },
+    "excluded.telegram.HTTPS": {
+      "value": 0.1612,
+      "n": 6863,
+      "denominator": 42572,
+      "reference_source": "habr",
+      "reference_value": 0.0292,
+      "reference_n": 24,
+      "reference_denominator": 822
+    },
+    "telegram.share.naive.mase": {
+      "value": 1.2313,
+      "n": null,
+      "denominator": null,
+      "ci_low": 1.0317,
+      "ci_high": 1.5062,
+      "cells": 1071,
+      "by_horizon": [
+        1.1005,
+        1.2516,
+        1.2994,
+        1.2738
+      ]
+    },
+    "telegram.share.seasonal_naive.mase": {
+      "value": 1.3305,
+      "n": null,
+      "denominator": null,
+      "ci_low": 1.1035,
+      "ci_high": 1.5996,
+      "cells": 629,
+      "by_horizon": [
+        1.3681,
+        1.3113,
+        1.3287,
+        1.3137
+      ]
+    },
+    "telegram.share.moving_average.mase": {
+      "value": 1.0456,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.8703,
+      "ci_high": 1.2713,
+      "cells": 1071,
+      "by_horizon": [
+        0.984,
+        1.0244,
+        1.0736,
+        1.1004
+      ]
+    },
+    "telegram.share.ets.mase": {
+      "value": 1.0386,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.8472,
+      "ci_high": 1.283,
+      "cells": 1071,
+      "by_horizon": [
+        1.0006,
+        1.0429,
+        1.0511,
+        1.0599
+      ]
+    },
+    "telegram.share.boosting.mase": {
+      "value": 1.0673,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.8874,
+      "ci_high": 1.3096,
+      "cells": 1071,
+      "by_horizon": [
+        0.9977,
+        1.0805,
+        1.1032,
+        1.0879
+      ]
+    },
+    "telegram.share.seasonal_naive_minus_naive.mase": {
+      "value": 0.074,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.2387,
+      "ci_high": 0.3741,
+      "cells": 629
+    },
+    "telegram.share.moving_average_minus_naive.mase": {
+      "value": -0.1857,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.2882,
+      "ci_high": -0.0945,
+      "cells": 1071
+    },
+    "telegram.share.ets_minus_naive.mase": {
+      "value": -0.1927,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.2873,
+      "ci_high": -0.099,
+      "cells": 1071
+    },
+    "telegram.share.boosting_minus_naive.mase": {
+      "value": -0.164,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.2432,
+      "ci_high": -0.0769,
+      "cells": 1071
+    },
+    "telegram.share.ets_minus_moving_average.mase": {
+      "value": -0.007,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0537,
+      "ci_high": 0.0494,
+      "cells": 1071
+    },
+    "telegram.share.boosting_minus_moving_average.mase": {
+      "value": 0.0217,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0282,
+      "ci_high": 0.0844,
+      "cells": 1071
+    },
+    "telegram.share.boosting_minus_ets.mase": {
+      "value": 0.0287,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0083,
+      "ci_high": 0.0805,
+      "cells": 1071
+    },
+    "telegram.share.naive.smape": {
+      "value": 21.008,
+      "n": null,
+      "denominator": null,
+      "ci_low": 17.7347,
+      "ci_high": 24.2847,
+      "cells": 1071
+    },
+    "telegram.share.seasonal_naive.smape": {
+      "value": 24.4192,
+      "n": null,
+      "denominator": null,
+      "ci_low": 20.1769,
+      "ci_high": 28.613,
+      "cells": 629
+    },
+    "telegram.share.moving_average.smape": {
+      "value": 17.9226,
+      "n": null,
+      "denominator": null,
+      "ci_low": 14.8304,
+      "ci_high": 21.0466,
+      "cells": 1071
+    },
+    "telegram.share.ets.smape": {
+      "value": 17.6851,
+      "n": null,
+      "denominator": null,
+      "ci_low": 14.45,
+      "ci_high": 21.0483,
+      "cells": 1071
+    },
+    "telegram.share.boosting.smape": {
+      "value": 18.1514,
+      "n": null,
+      "denominator": null,
+      "ci_low": 15.2089,
+      "ci_high": 21.4079,
+      "cells": 1071
+    },
+    "telegram.share.seasonal_naive_minus_naive.smape": {
+      "value": 2.5207,
+      "n": null,
+      "denominator": null,
+      "ci_low": -1.9878,
+      "ci_high": 7.9041,
+      "cells": 629
+    },
+    "telegram.share.moving_average_minus_naive.smape": {
+      "value": -3.0854,
+      "n": null,
+      "denominator": null,
+      "ci_low": -4.4592,
+      "ci_high": -1.6588,
+      "cells": 1071
+    },
+    "telegram.share.ets_minus_naive.smape": {
+      "value": -3.3229,
+      "n": null,
+      "denominator": null,
+      "ci_low": -4.7792,
+      "ci_high": -1.6931,
+      "cells": 1071
+    },
+    "telegram.share.boosting_minus_naive.smape": {
+      "value": -2.8566,
+      "n": null,
+      "denominator": null,
+      "ci_low": -4.0531,
+      "ci_high": -1.3447,
+      "cells": 1071
+    },
+    "telegram.share.ets_minus_moving_average.smape": {
+      "value": -0.2375,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.9975,
+      "ci_high": 0.5408,
+      "cells": 1071
+    },
+    "telegram.share.boosting_minus_moving_average.smape": {
+      "value": 0.2289,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.5392,
+      "ci_high": 1.0902,
+      "cells": 1071
+    },
+    "telegram.share.boosting_minus_ets.smape": {
+      "value": 0.4664,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.1099,
+      "ci_high": 1.2966,
+      "cells": 1071
+    },
+    "telegram.share.noise_floor.mase": {
+      "value": 0.714,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.6573,
+      "ci_high": 0.7901,
+      "cells": 1071
+    },
+    "telegram.share.seasonal_naive_minus_naive.skills_better": {
+      "value": 0.5882,
+      "n": 10,
+      "denominator": 17
+    },
+    "telegram.share.moving_average_minus_naive.skills_better": {
+      "value": 1.0,
+      "n": 17,
+      "denominator": 17
+    },
+    "telegram.share.ets_minus_naive.skills_better": {
+      "value": 1.0,
+      "n": 17,
+      "denominator": 17
+    },
+    "telegram.share.boosting_minus_naive.skills_better": {
+      "value": 1.0,
+      "n": 17,
+      "denominator": 17
+    },
+    "telegram.share.ets_minus_moving_average.skills_better": {
+      "value": 0.5294,
+      "n": 9,
+      "denominator": 17
+    },
+    "telegram.share.boosting_minus_moving_average.skills_better": {
+      "value": 0.2941,
+      "n": 5,
+      "denominator": 17
+    },
+    "telegram.share.boosting_minus_ets.skills_better": {
+      "value": 0.2353,
+      "n": 4,
+      "denominator": 17
+    },
+    "telegram.share.served": {
+      "value": "ets",
+      "n": null,
+      "denominator": null
+    },
+    "telegram.share.origins": {
+      "value": 63,
+      "n": null,
+      "denominator": null,
+      "seasonal_naive": 37
+    },
+    "telegram.count.naive.mase": {
+      "value": 1.1443,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.9477,
+      "ci_high": 1.4091,
+      "cells": 1071,
+      "by_horizon": [
+        1.0093,
+        1.1245,
+        1.201,
+        1.2423
+      ]
+    },
+    "telegram.count.seasonal_naive.mase": {
+      "value": 1.2639,
+      "n": null,
+      "denominator": null,
+      "ci_low": 1.0638,
+      "ci_high": 1.4578,
+      "cells": 629,
+      "by_horizon": [
+        1.28,
+        1.2808,
+        1.2543,
+        1.2407
+      ]
+    },
+    "telegram.count.moving_average.mase": {
+      "value": 1.0133,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.8215,
+      "ci_high": 1.2531,
+      "cells": 1071,
+      "by_horizon": [
+        0.932,
+        0.9948,
+        1.0523,
+        1.0739
+      ]
+    },
+    "telegram.count.ets.mase": {
+      "value": 0.9602,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.7661,
+      "ci_high": 1.199,
+      "cells": 1071,
+      "by_horizon": [
+        0.9118,
+        0.9458,
+        0.9873,
+        0.9957
+      ]
+    },
+    "telegram.count.boosting.mase": {
+      "value": 1.055,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.8426,
+      "ci_high": 1.2801,
+      "cells": 1071,
+      "by_horizon": [
+        0.986,
+        1.0261,
+        1.0869,
+        1.1211
+      ]
+    },
+    "telegram.count.seasonal_naive_minus_naive.mase": {
+      "value": 0.0911,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.2336,
+      "ci_high": 0.3302,
+      "cells": 629
+    },
+    "telegram.count.moving_average_minus_naive.mase": {
+      "value": -0.131,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.199,
+      "ci_high": -0.0692,
+      "cells": 1071
+    },
+    "telegram.count.ets_minus_naive.mase": {
+      "value": -0.1841,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.2944,
+      "ci_high": -0.0925,
+      "cells": 1071
+    },
+    "telegram.count.boosting_minus_naive.mase": {
+      "value": -0.0893,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.1885,
+      "ci_high": 0.0027,
+      "cells": 1071
+    },
+    "telegram.count.ets_minus_moving_average.mase": {
+      "value": -0.0531,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.1262,
+      "ci_high": -0.0,
+      "cells": 1071
+    },
+    "telegram.count.boosting_minus_moving_average.mase": {
+      "value": 0.0417,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.046,
+      "ci_high": 0.1162,
+      "cells": 1071
+    },
+    "telegram.count.boosting_minus_ets.mase": {
+      "value": 0.0948,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0249,
+      "ci_high": 0.1689,
+      "cells": 1071
+    },
+    "telegram.count.naive.smape": {
+      "value": 23.5026,
+      "n": null,
+      "denominator": null,
+      "ci_low": 18.5423,
+      "ci_high": 29.2361,
+      "cells": 1071
+    },
+    "telegram.count.seasonal_naive.smape": {
+      "value": 25.8454,
+      "n": null,
+      "denominator": null,
+      "ci_low": 20.8125,
+      "ci_high": 30.5043,
+      "cells": 629
+    },
+    "telegram.count.moving_average.smape": {
+      "value": 20.8131,
+      "n": null,
+      "denominator": null,
+      "ci_low": 16.2526,
+      "ci_high": 26.0449,
+      "cells": 1071
+    },
+    "telegram.count.ets.smape": {
+      "value": 19.7075,
+      "n": null,
+      "denominator": null,
+      "ci_low": 15.1002,
+      "ci_high": 24.9348,
+      "cells": 1071
+    },
+    "telegram.count.boosting.smape": {
+      "value": 21.4746,
+      "n": null,
+      "denominator": null,
+      "ci_low": 16.6176,
+      "ci_high": 26.4959,
+      "cells": 1071
+    },
+    "telegram.count.seasonal_naive_minus_naive.smape": {
+      "value": 1.0356,
+      "n": null,
+      "denominator": null,
+      "ci_low": -6.2053,
+      "ci_high": 6.2152,
+      "cells": 629
+    },
+    "telegram.count.moving_average_minus_naive.smape": {
+      "value": -2.6895,
+      "n": null,
+      "denominator": null,
+      "ci_low": -4.2973,
+      "ci_high": -1.1768,
+      "cells": 1071
+    },
+    "telegram.count.ets_minus_naive.smape": {
+      "value": -3.7951,
+      "n": null,
+      "denominator": null,
+      "ci_low": -6.0962,
+      "ci_high": -1.7998,
+      "cells": 1071
+    },
+    "telegram.count.boosting_minus_naive.smape": {
+      "value": -2.028,
+      "n": null,
+      "denominator": null,
+      "ci_low": -4.0423,
+      "ci_high": -0.0874,
+      "cells": 1071
+    },
+    "telegram.count.ets_minus_moving_average.smape": {
+      "value": -1.1056,
+      "n": null,
+      "denominator": null,
+      "ci_low": -2.7265,
+      "ci_high": 0.0274,
+      "cells": 1071
+    },
+    "telegram.count.boosting_minus_moving_average.smape": {
+      "value": 0.6615,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.975,
+      "ci_high": 2.0206,
+      "cells": 1071
+    },
+    "telegram.count.boosting_minus_ets.smape": {
+      "value": 1.7671,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.6575,
+      "ci_high": 2.9415,
+      "cells": 1071
+    },
+    "telegram.count.seasonal_naive_minus_naive.skills_better": {
+      "value": 0.4706,
+      "n": 8,
+      "denominator": 17
+    },
+    "telegram.count.moving_average_minus_naive.skills_better": {
+      "value": 1.0,
+      "n": 17,
+      "denominator": 17
+    },
+    "telegram.count.ets_minus_naive.skills_better": {
+      "value": 1.0,
+      "n": 17,
+      "denominator": 17
+    },
+    "telegram.count.boosting_minus_naive.skills_better": {
+      "value": 0.7647,
+      "n": 13,
+      "denominator": 17
+    },
+    "telegram.count.ets_minus_moving_average.skills_better": {
+      "value": 0.8824,
+      "n": 15,
+      "denominator": 17
+    },
+    "telegram.count.boosting_minus_moving_average.skills_better": {
+      "value": 0.3529,
+      "n": 6,
+      "denominator": 17
+    },
+    "telegram.count.boosting_minus_ets.skills_better": {
+      "value": 0.0588,
+      "n": 1,
+      "denominator": 17
+    },
+    "telegram.count.served": {
+      "value": "ets",
+      "n": null,
+      "denominator": null
+    },
+    "telegram.count.origins": {
+      "value": 63,
+      "n": null,
+      "denominator": null,
+      "seasonal_naive": 37
+    },
+    "runtime_seconds": {
+      "value": 151,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "definitions": {
+    "share": "Posts (vacancies) of the week naming the skill / IT posts (vacancies) of the week with valid fields.",
+    "count": "Posts (vacancies) of the week naming the skill.",
+    "mase": "Mean absolute error over the horizon divided by the mean absolute one-step change of the skill's training weeks (in-sample naive), averaged over skills and origins. Below 1: better than the in-sample naive.",
+    "smape": "Mean over the horizon of 200 |actual - forecast| / (|actual| + |forecast|), in percent, averaged over skills and origins.",
+    "ci": "Percentile interval of a two-way bootstrap: skills with replacement, origins in moving blocks of consecutive origins; the same draws for every method, so differences are paired.",
+    "minus": "<a>_minus_<b>: mean over the cells both methods forecast of a's error minus b's error. Below zero: a is better.",
+    "skills_better": "Skills whose mean MASE over origins is lower with a than with b.",
+    "seasonal_naive": "Defined only at origins with a full season of history, so its means and its differences cover those origins alone (cells).",
+    "by_horizon": "MASE at horizon 1, 2, 3, 4 weeks, averaged over skills and origins.",
+    "noise_floor": "Share target only: MASE of an oracle that knows the true weekly share and misses only by the binomial sampling noise of the week's IT posts, sqrt(2/pi) sqrt(p(1-p)/m); a lower bound under independent posts."
+  },
+  "limits_ru": [
+    "Ряд Telegram начинается 6 января 2025 года, до этого посты не извлекались: меньше двух лет недель, поэтому годовой сезон проверяется только на последних точках.",
+    "Набор каналов менялся (каналы появлялись и затихали), доля навыка отражает и состав каналов, а не только спрос рынка.",
+    "Навыки извлечены моделью из текста и содержат ошибки, ошибка извлечения входит в ряд как шум.",
+    "Порталы собираются меньше 20 недель, для бэктеста с горизонтом 4 недели и полугодовой историей этого мало.",
+    "Метод для прогноза на следующие недели выбран по тем же точкам бэктеста, по которым он оценён, поэтому его ошибка на будущих неделях может оказаться выше."
+  ],
+  "config": "configs/forecast.toml",
+  "run_date": "2026-10-13",
+  "backtest": {
+    "horizon": 4,
+    "min_train": 26,
+    "min_origins": 8,
+    "season": 52,
+    "ma_window": 4,
+    "lags": 8,
+    "min_coverage": 0.85
+  },
+  "bootstrap": {
+    "replicates": 2000,
+    "block": 4,
+    "level": 0.95,
+    "seed": 20261008
+  },
+  "interval_quantile": 0.8,
+  "methods": [
+    "naive",
+    "seasonal_naive",
+    "moving_average",
+    "ets",
+    "boosting"
+  ],
+  "skills": {
+    "telegram": [
+      "Python",
+      "SQL",
+      "PostgreSQL",
+      "Docker",
+      "Git",
+      "React",
+      "Java",
+      "CI/CD",
+      "REST",
+      "JavaScript",
+      "Linux",
+      "Kubernetes",
+      "Kafka",
+      "TypeScript",
+      "Go",
+      "Microservices",
+      "DevOps"
+    ]
+  },
+  "served": {
+    "telegram.share": {
+      "method": "ets",
+      "weeks": [
+        "2026-10-12",
+        "2026-10-19",
+        "2026-10-26",
+        "2026-11-02"
+      ],
+      "skills": {
+        "Python": {
+          "last": 0.18,
+          "forecast": [
+            0.1819,
+            0.1819,
+            0.1819,
+            0.1819
+          ],
+          "low": [
+            0.1492,
+            0.1482,
+            0.1474,
+            0.1494
+          ],
+          "high": [
+            0.2147,
+            0.2157,
+            0.2165,
+            0.2144
+          ]
+        },
+        "SQL": {
+          "last": 0.135,
+          "forecast": [
+            0.139,
+            0.139,
+            0.139,
+            0.139
+          ],
+          "low": [
+            0.1051,
+            0.0991,
+            0.1026,
+            0.1024
+          ],
+          "high": [
+            0.173,
+            0.1789,
+            0.1754,
+            0.1756
+          ]
+        },
+        "PostgreSQL": {
+          "last": 0.0838,
+          "forecast": [
+            0.0892,
+            0.0892,
+            0.0892,
+            0.0892
+          ],
+          "low": [
+            0.0554,
+            0.0533,
+            0.0533,
+            0.0526
+          ],
+          "high": [
+            0.1231,
+            0.1252,
+            0.1252,
+            0.1259
+          ]
+        },
+        "Docker": {
+          "last": 0.0654,
+          "forecast": [
+            0.083,
+            0.083,
+            0.083,
+            0.083
+          ],
+          "low": [
+            0.0617,
+            0.0592,
+            0.0577,
+            0.0573
+          ],
+          "high": [
+            0.1042,
+            0.1068,
+            0.1082,
+            0.1087
+          ]
+        },
+        "Git": {
+          "last": 0.0716,
+          "forecast": [
+            0.0779,
+            0.0779,
+            0.0779,
+            0.0779
+          ],
+          "low": [
+            0.0522,
+            0.0489,
+            0.0495,
+            0.0471
+          ],
+          "high": [
+            0.1036,
+            0.1068,
+            0.1062,
+            0.1087
+          ]
+        },
+        "React": {
+          "last": 0.0818,
+          "forecast": [
+            0.0915,
+            0.0915,
+            0.0915,
+            0.0915
+          ],
+          "low": [
+            0.0652,
+            0.0644,
+            0.0634,
+            0.0593
+          ],
+          "high": [
+            0.1178,
+            0.1185,
+            0.1196,
+            0.1237
+          ]
+        },
+        "Java": {
+          "last": 0.0634,
+          "forecast": [
+            0.0689,
+            0.0689,
+            0.0689,
+            0.0689
+          ],
+          "low": [
+            0.0469,
+            0.0461,
+            0.0468,
+            0.047
+          ],
+          "high": [
+            0.0909,
+            0.0918,
+            0.0911,
+            0.0908
+          ]
+        },
+        "CI/CD": {
+          "last": 0.0634,
+          "forecast": [
+            0.081,
+            0.081,
+            0.081,
+            0.081
+          ],
+          "low": [
+            0.0548,
+            0.0558,
+            0.055,
+            0.0564
+          ],
+          "high": [
+            0.1072,
+            0.1063,
+            0.107,
+            0.1056
+          ]
+        },
+        "REST": {
+          "last": 0.0736,
+          "forecast": [
+            0.0772,
+            0.0772,
+            0.0772,
+            0.0772
+          ],
+          "low": [
+            0.0499,
+            0.0484,
+            0.0504,
+            0.0516
+          ],
+          "high": [
+            0.1044,
+            0.1059,
+            0.1039,
+            0.1027
+          ]
+        },
+        "JavaScript": {
+          "last": 0.0634,
+          "forecast": [
+            0.0645,
+            0.0645,
+            0.0645,
+            0.0645
+          ],
+          "low": [
+            0.0443,
+            0.0444,
+            0.0444,
+            0.0445
+          ],
+          "high": [
+            0.0847,
+            0.0846,
+            0.0846,
+            0.0844
+          ]
+        },
+        "Linux": {
+          "last": 0.0634,
+          "forecast": [
+            0.0714,
+            0.0714,
+            0.0714,
+            0.0714
+          ],
+          "low": [
+            0.0495,
+            0.0485,
+            0.0504,
+            0.0502
+          ],
+          "high": [
+            0.0932,
+            0.0942,
+            0.0923,
+            0.0925
+          ]
+        },
+        "Kubernetes": {
+          "last": 0.0675,
+          "forecast": [
+            0.0656,
+            0.0656,
+            0.0656,
+            0.0656
+          ],
+          "low": [
+            0.0418,
+            0.0384,
+            0.0419,
+            0.0422
+          ],
+          "high": [
+            0.0895,
+            0.0929,
+            0.0894,
+            0.0891
+          ]
+        },
+        "Kafka": {
+          "last": 0.0552,
+          "forecast": [
+            0.066,
+            0.066,
+            0.066,
+            0.066
+          ],
+          "low": [
+            0.0479,
+            0.0476,
+            0.0488,
+            0.0473
+          ],
+          "high": [
+            0.0842,
+            0.0845,
+            0.0833,
+            0.0847
+          ]
+        },
+        "TypeScript": {
+          "last": 0.0511,
+          "forecast": [
+            0.0551,
+            0.0551,
+            0.0551,
+            0.0551
+          ],
+          "low": [
+            0.035,
+            0.0321,
+            0.0307,
+            0.0267
+          ],
+          "high": [
+            0.0751,
+            0.078,
+            0.0794,
+            0.0834
+          ]
+        },
+        "Go": {
+          "last": 0.0552,
+          "forecast": [
+            0.0599,
+            0.0599,
+            0.0599,
+            0.0599
+          ],
+          "low": [
+            0.0435,
+            0.0437,
+            0.0434,
+            0.0433
+          ],
+          "high": [
+            0.0763,
+            0.0761,
+            0.0764,
+            0.0765
+          ]
+        },
+        "Microservices": {
+          "last": 0.045,
+          "forecast": [
+            0.059,
+            0.059,
+            0.059,
+            0.059
+          ],
+          "low": [
+            0.0413,
+            0.0436,
+            0.0452,
+            0.0455
+          ],
+          "high": [
+            0.0767,
+            0.0745,
+            0.0728,
+            0.0726
+          ]
+        },
+        "DevOps": {
+          "last": 0.0307,
+          "forecast": [
+            0.044,
+            0.044,
+            0.044,
+            0.044
+          ],
+          "low": [
+            0.0269,
+            0.0271,
+            0.0267,
+            0.0271
+          ],
+          "high": [
+            0.0612,
+            0.061,
+            0.0614,
+            0.061
+          ]
+        }
+      }
+    },
+    "telegram.count": {
+      "method": "ets",
+      "weeks": [
+        "2026-10-12",
+        "2026-10-19",
+        "2026-10-26",
+        "2026-11-02"
+      ],
+      "skills": {
+        "Python": {
+          "last": 88.0,
+          "forecast": [
+            77.9,
+            77.9,
+            77.9,
+            77.9
+          ],
+          "low": [
+            57.7,
+            59.4,
+            59.5,
+            59.0
+          ],
+          "high": [
+            98.1,
+            96.4,
+            96.3,
+            96.8
+          ]
+        },
+        "SQL": {
+          "last": 66.0,
+          "forecast": [
+            68.8,
+            68.8,
+            68.8,
+            68.8
+          ],
+          "low": [
+            56.0,
+            56.7,
+            56.0,
+            56.6
+          ],
+          "high": [
+            81.6,
+            81.0,
+            81.7,
+            81.0
+          ]
+        },
+        "PostgreSQL": {
+          "last": 41.0,
+          "forecast": [
+            38.0,
+            38.0,
+            38.0,
+            38.0
+          ],
+          "low": [
+            22.8,
+            24.0,
+            23.9,
+            23.5
+          ],
+          "high": [
+            53.3,
+            52.1,
+            52.2,
+            52.6
+          ]
+        },
+        "Docker": {
+          "last": 32.0,
+          "forecast": [
+            35.3,
+            35.3,
+            35.3,
+            35.3
+          ],
+          "low": [
+            25.3,
+            24.7,
+            24.0,
+            24.0
+          ],
+          "high": [
+            45.2,
+            45.8,
+            46.5,
+            46.5
+          ]
+        },
+        "Git": {
+          "last": 35.0,
+          "forecast": [
+            33.0,
+            33.0,
+            33.0,
+            33.0
+          ],
+          "low": [
+            21.8,
+            21.1,
+            20.8,
+            21.2
+          ],
+          "high": [
+            44.2,
+            44.9,
+            45.3,
+            44.9
+          ]
+        },
+        "React": {
+          "last": 40.0,
+          "forecast": [
+            40.5,
+            40.5,
+            40.5,
+            40.5
+          ],
+          "low": [
+            26.3,
+            26.2,
+            23.9,
+            22.8
+          ],
+          "high": [
+            54.6,
+            54.7,
+            57.0,
+            58.1
+          ]
+        },
+        "Java": {
+          "last": 31.0,
+          "forecast": [
+            30.7,
+            30.7,
+            30.7,
+            30.7
+          ],
+          "low": [
+            20.7,
+            21.0,
+            20.1,
+            19.4
+          ],
+          "high": [
+            40.7,
+            40.4,
+            41.3,
+            42.0
+          ]
+        },
+        "CI/CD": {
+          "last": 31.0,
+          "forecast": [
+            35.2,
+            35.2,
+            35.2,
+            35.2
+          ],
+          "low": [
+            23.1,
+            22.7,
+            22.4,
+            22.3
+          ],
+          "high": [
+            47.3,
+            47.6,
+            47.9,
+            48.1
+          ]
+        },
+        "REST": {
+          "last": 36.0,
+          "forecast": [
+            35.7,
+            35.7,
+            35.7,
+            35.7
+          ],
+          "low": [
+            22.9,
+            23.1,
+            24.5,
+            23.8
+          ],
+          "high": [
+            48.5,
+            48.3,
+            46.9,
+            47.6
+          ]
+        },
+        "JavaScript": {
+          "last": 31.0,
+          "forecast": [
+            27.6,
+            27.6,
+            27.6,
+            27.6
+          ],
+          "low": [
+            16.2,
+            15.0,
+            16.1,
+            16.2
+          ],
+          "high": [
+            39.1,
+            40.3,
+            39.1,
+            39.1
+          ]
+        },
+        "Linux": {
+          "last": 31.0,
+          "forecast": [
+            27.3,
+            27.3,
+            27.3,
+            27.3
+          ],
+          "low": [
+            17.4,
+            17.3,
+            17.3,
+            17.1
+          ],
+          "high": [
+            37.3,
+            37.4,
+            37.4,
+            37.6
+          ]
+        },
+        "Kubernetes": {
+          "last": 33.0,
+          "forecast": [
+            28.6,
+            28.6,
+            28.6,
+            28.6
+          ],
+          "low": [
+            18.4,
+            18.9,
+            17.8,
+            18.4
+          ],
+          "high": [
+            38.8,
+            38.2,
+            39.4,
+            38.8
+          ]
+        },
+        "Kafka": {
+          "last": 27.0,
+          "forecast": [
+            32.6,
+            32.6,
+            32.6,
+            32.6
+          ],
+          "low": [
+            23.5,
+            23.6,
+            23.4,
+            23.5
+          ],
+          "high": [
+            41.7,
+            41.6,
+            41.8,
+            41.7
+          ]
+        },
+        "TypeScript": {
+          "last": 25.0,
+          "forecast": [
+            24.3,
+            24.3,
+            24.3,
+            24.3
+          ],
+          "low": [
+            14.1,
+            13.0,
+            12.4,
+            12.2
+          ],
+          "high": [
+            34.5,
+            35.6,
+            36.3,
+            36.4
+          ]
+        },
+        "Go": {
+          "last": 27.0,
+          "forecast": [
+            25.9,
+            25.9,
+            25.9,
+            25.9
+          ],
+          "low": [
+            17.4,
+            17.8,
+            16.3,
+            16.8
+          ],
+          "high": [
+            34.4,
+            34.0,
+            35.5,
+            35.0
+          ]
+        },
+        "Microservices": {
+          "last": 22.0,
+          "forecast": [
+            25.7,
+            25.7,
+            25.7,
+            25.7
+          ],
+          "low": [
+            19.3,
+            19.3,
+            19.1,
+            19.1
+          ],
+          "high": [
+            32.1,
+            32.2,
+            32.3,
+            32.4
+          ]
+        },
+        "DevOps": {
+          "last": 15.0,
+          "forecast": [
+            18.9,
+            18.9,
+            18.9,
+            18.9
+          ],
+          "low": [
+            10.2,
+            11.2,
+            11.3,
+            11.0
+          ],
+          "high": [
+            27.6,
+            26.7,
+            26.5,
+            26.9
+          ]
+        }
+      }
+    }
+  }
+}
