@@ -34,8 +34,8 @@ log = logging.getLogger("radar.site.hf_scan")
 RESULT = "public/hf_pii_scan.json"
 TEXT_SUFFIXES = {".md", ".txt"}
 # The Space page is code; the data it shows comes from assets/space.json, which is scanned.
-SKIPPED_SUFFIXES = {".gguf", ".safetensors", ".pkl", ".py", ".jinja", ".sh", ".toml", ".html"}
-SKIPPED_NAMES = {"Dockerfile", "requirements.txt", "tokenizer.json", "tokenizer_config.json"}
+SKIPPED_SUFFIXES = {".gguf", ".safetensors", ".pkl", ".py", ".jinja", ".sh", ".toml", ".html", ".js", ".mjs", ".wasm"}
+SKIPPED_NAMES = {"Dockerfile", "requirements.txt", "tokenizer.json", "tokenizer_config.json", "LICENSE", "LICENCE"}
 # Upstream license texts, copied byte for byte; scripts/scan_pii.py still reads them.
 SKIPPED_NAMES |= {p.name for p in LICENSES.iterdir()}
 _UUID = r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"

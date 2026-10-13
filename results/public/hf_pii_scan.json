@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/hf_scan.py",
   "command": "python -m radar.site.hf_scan",
-  "commit": "2cea881-dirty",
-  "created_at": "2026-10-13T17:38:28+00:00",
+  "commit": "a50cb15-dirty",
+  "created_at": "2026-10-13T21:00:42+00:00",
   "metrics": {
     "files_scanned": {
       "value": 28,
@@ -10,7 +10,7 @@
       "denominator": null
     },
     "items_scanned": {
-      "value": 54946,
+      "value": 78191,
       "n": null,
       "denominator": null
     },
@@ -32,7 +32,7 @@
     {
       "file": "storage/hf/dataset/aggregates/telegram_weekly.parquet",
       "scanned_as": "rows",
-      "items": 27925,
+      "items": 51170,
       "findings": {}
     },
     {
@@ -168,13 +168,13 @@
       "findings": {}
     },
     {
-      "file": "storage/hf/space/assets/space.json",
+      "file": "storage/hf/space/assets/salary.json",
       "scanned_as": "json",
       "items": 1,
       "findings": {}
     },
     {
-      "file": "storage/hf/space/assets/tokenizer/dataset_meta.json",
+      "file": "storage/hf/space/assets/space.json",
       "scanned_as": "json",
       "items": 1,
       "findings": {}
@@ -205,33 +205,20 @@
     "storage/hf/model/model.safetensors",
     "storage/hf/model/tokenizer.json",
     "storage/hf/model/tokenizer_config.json",
-    "storage/hf/space/app/config.py",
-    "storage/hf/space/app/fetch.py",
-    "storage/hf/space/app/main.py",
-    "storage/hf/space/app/prompt.py",
-    "storage/hf/space/app/static/index.html",
-    "storage/hf/space/assets/salary/salary.pkl",
-    "storage/hf/space/assets/tokenizer/chat_template.jinja",
     "storage/hf/space/assets/tokenizer/tokenizer.json",
     "storage/hf/space/assets/tokenizer/tokenizer_config.json",
-    "storage/hf/space/Dockerfile",
+    "storage/hf/space/index.html",
+    "storage/hf/space/js/app.js",
+    "storage/hf/space/js/extract.js",
+    "storage/hf/space/js/prompt.js",
+    "storage/hf/space/js/salary.js",
+    "storage/hf/space/js/schema.js",
     "storage/hf/space/licenses/Qwen3-1.7B-LICENSE.txt",
     "storage/hf/space/licenses/YandexGPT-5-Lite-8B-LICENSE.txt",
-    "storage/hf/space/requirements.txt",
-    "storage/hf/space/start.sh",
-    "storage/hf/space/vendor/radar/__init__.py",
-    "storage/hf/space/vendor/radar/config.py",
-    "storage/hf/space/vendor/radar/dedup/__init__.py",
-    "storage/hf/space/vendor/radar/dedup/normalize.py",
-    "storage/hf/space/vendor/radar/extract/__init__.py",
-    "storage/hf/space/vendor/radar/extract/schema.py",
-    "storage/hf/space/vendor/radar/models/__init__.py",
-    "storage/hf/space/vendor/radar/models/salary.py",
-    "storage/hf/space/vendor/radar/models/salary_data.py",
-    "storage/hf/space/vendor/radar/models/salary_features.py",
-    "storage/hf/space/vendor/radar/models/salary_shap.py",
-    "storage/hf/space/vendor/radar/results.py",
-    "storage/hf/space/vendor/radar/train/__init__.py",
-    "storage/hf/space/vendor/radar/train/dataset.py"
+    "storage/hf/space/vendor/tokenizers/LICENSE",
+    "storage/hf/space/vendor/tokenizers/tokenizers.min.mjs",
+    "storage/hf/space/vendor/wllama/index.js",
+    "storage/hf/space/vendor/wllama/LICENCE",
+    "storage/hf/space/vendor/wllama/wllama.wasm"
   ]
 }
