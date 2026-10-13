@@ -1,16 +1,16 @@
 {
   "source_script": "dbt/report.py",
   "command": "python dbt/report.py",
-  "commit": "005d3b3-dirty",
-  "created_at": "2026-10-13T18:35:32+00:00",
+  "commit": "b03bea0-dirty",
+  "created_at": "2026-10-13T20:39:09+00:00",
   "metrics": {
     "rows_mart_extracted_skills_weekly": {
-      "value": 105711,
+      "value": 120052,
       "n": null,
       "denominator": null
     },
     "rows_mart_extracted_fields_weekly": {
-      "value": 18733,
+      "value": 20214,
       "n": null,
       "denominator": null
     },
@@ -145,44 +145,44 @@
       "denominator": 2018
     },
     "coverage_telegram": {
-      "value": 0.6581,
-      "n": 151038,
+      "value": 0.8833,
+      "n": 202724,
       "denominator": 229518
     },
     "coverage_extractable_telegram": {
-      "value": 0.745,
-      "n": 151038,
+      "value": 1.0,
+      "n": 202724,
       "denominator": 202724
     },
     "valid_telegram": {
-      "value": 0.9984,
-      "n": 150797,
-      "denominator": 151038
+      "value": 0.9986,
+      "n": 202445,
+      "denominator": 202724
     },
     "it_telegram": {
-      "value": 0.9011,
-      "n": 135884,
-      "denominator": 150797
+      "value": 0.9085,
+      "n": 183914,
+      "denominator": 202445
     },
     "skills_by_spelling_telegram": {
-      "value": 0.9365,
-      "n": 563115,
-      "denominator": 601307
+      "value": 0.9373,
+      "n": 773833,
+      "denominator": 825589
     },
     "skills_in_dictionary_telegram": {
-      "value": 0.939,
-      "n": 564644,
-      "denominator": 601307
+      "value": 0.9395,
+      "n": 775681,
+      "denominator": 825589
     },
     "skills_non_skill_telegram": {
-      "value": 0.0109,
-      "n": 6553,
-      "denominator": 601307
+      "value": 0.0101,
+      "n": 8315,
+      "denominator": 825589
     },
     "skills_unchecked_telegram": {
-      "value": 0.0002,
-      "n": 117,
-      "denominator": 601307
+      "value": 0.0,
+      "n": 5,
+      "denominator": 825589
     },
     "telegram_linking_habr": {
       "value": 0.2697,
@@ -276,7 +276,7 @@
     }
   },
   "dbt_version": "1.12.5",
-  "build_finished_at": "2026-10-13T18:35:13.358648Z",
+  "build_finished_at": "2026-10-13T20:38:59.138285Z",
   "extraction_model": "qwen3_1p7b_r16_clean-awq",
   "notes": {
     "units": "portal vacancies (dedup entities; all_portals counts a vacancy on several portals once) and Telegram single-vacancy posts after the weekly cross-post dedup, each once over the period (mart_extraction_coverage level source)",
