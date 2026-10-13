@@ -289,6 +289,9 @@ services:
     volumes:
       # Saved by `python -m radar.models.salary`; outside git, so mounted rather than baked in.
       - ../../models/salary:/opt/radar/models/salary:ro
+      # The /match index and its query encoder in ONNX (onnx/), from `python -m radar.models.matching evaluate`
+      # and `python -m radar.models.matching_onnx export`; served by onnxruntime, the image has no torch.
+      - ../../models/matching:/opt/radar/models/matching:ro
       - ../../models/merged/qwen3_1p7b_r16_clean/dataset_meta.json:/opt/radar/models/student/dataset_meta.json:ro
     ports:
       - 127.0.0.1:8000:8000

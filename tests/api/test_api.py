@@ -21,7 +21,7 @@ from radar.api.extractors import REGEX_MODEL, StudentExtractor, spans_from_piece
 from radar.api.salary import Estimator, OutOfScope, UnknownSource
 from radar.config import ROOT, ConfigError
 from radar.extract.schema import VacancyFields
-from radar.models import matching
+from radar.models import matching, matching_onnx
 from radar.models.matching import BM25, MatchIndex
 
 TEXT = (
@@ -531,17 +531,48 @@ def test_match_index_is_loaded_from_its_pickle_or_reported_missing(tmp_path: Pat
     assert loaded is not None and loaded.version == "match-bm25-test"
 
 
-def test_an_encoder_that_does_not_load_leaves_match_503(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
-    def no_torch(model: str, max_length: int) -> Any:
-        raise ImportError("No module named 'torch'")
-
-    monkeypatch.setattr(matching, "load_encoder", no_torch)
+def dense_index_file(tmp_path: Path) -> Path:
     index = fake_index()
     index.system, index.model, index.fusion_weight = "fusion_e5-small@70", "intfloat/multilingual-e5-small", 0.7
-    index.vectors = np.ones((len(POOL), 4), dtype=np.float32)
+    index.vectors = np.eye(len(POOL), 4, dtype=np.float32)
     path = tmp_path / "index.pkl"
     path.write_bytes(pickle.dumps(index))
-    assert load_match_index(path) is None
+    return path
+
+
+def test_a_dense_index_without_its_onnx_export_leaves_match_503(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    def torch(model: str, max_length: int) -> Any:
+        raise AssertionError("the API never loads the encoder with torch")
+
+    monkeypatch.setattr(matching, "load_encoder", torch)
+    assert load_match_index(dense_index_file(tmp_path)) is None
+    (tmp_path / "onnx").mkdir()
+    (tmp_path / "onnx" / "meta.json").write_text(json.dumps({"model": "BAAI/bge-m3"}), encoding="utf-8")
+    assert load_match_index(dense_index_file(tmp_path)) is None  # an export of another model
+
+
+def test_a_dense_index_encodes_queries_with_the_onnx_export(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    asked: list[tuple[Path, str, int]] = []
+    seen: list[str] = []
+
+    def onnx(directory: Path, model: str, max_length: int) -> Callable[[list[str]], Any]:
+        asked.append((directory, model, max_length))
+
+        def encode(texts: list[str]) -> Any:
+            seen.extend(texts)
+            return np.array([[0.0, 1.0, 0.0, 0.0]], dtype=np.float32), 0
+
+        return encode
+
+    monkeypatch.setattr(matching_onnx, "load_encoder", onnx)
+    path = dense_index_file(tmp_path)
+    index = load_match_index(path)
+    assert index is not None
+    assert asked == [(tmp_path / "onnx", "intfloat/multilingual-e5-small", 512)]
+    assert seen == ["query: Python"]  # the warm-up at load, with the e5 query prefix
+    assert index.query_vector("ML").tolist() == [0.0, 1.0, 0.0, 0.0]
 
 
 def test_ids_reach_clickhouse_quoted() -> None:

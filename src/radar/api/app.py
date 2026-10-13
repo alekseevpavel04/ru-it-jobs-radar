@@ -34,7 +34,7 @@ from radar.api.models import (
 from radar.api.salary import Estimator, OutOfScope, SalaryEstimator, UnknownSource
 from radar.api.settings import Settings
 from radar.extract.schema import SCHEMA_VERSION, dump
-from radar.models import matching
+from radar.models import matching, matching_onnx
 from radar.models.matching import MatchIndex
 from radar.monitor.api_metrics import instrument
 
@@ -99,15 +99,20 @@ def salary_body(estimator: Estimator, request: SalaryRequest) -> SalaryResponse:
 
 
 def load_match_index(path: Path) -> MatchIndex | None:
-    """Outside git like the salary model: without it /match answers 503. The encoder is loaded here
-    rather than on the first request, so that request is not slow and the process's memory shows it."""
+    """Outside git like the salary model: without it /match answers 503. A dense system's queries are
+    encoded by the ONNX export next to the index (models/matching/onnx), not by torch, which the API
+    does not carry. The encoder is loaded here rather than on the first request, so that request is
+    not slow and the process's memory shows it."""
     if not path.exists():
         log.warning("no match index at %s: /match answers 503", path)
         return None
     index = matching.load_index(path)
     try:
+        if index.model is not None:
+            onnx_dir = path.parent / matching_onnx.DIRNAME
+            index.use_encoder(matching_onnx.load_encoder(onnx_dir, index.model, index.max_length))
         index.scores("Python")
-    except (ImportError, OSError) as e:  # torch or the encoder's files are not in this environment
+    except (OSError, ValueError) as e:  # the export is missing or of another model
         log.error("the encoder of %s does not load (%s): /match answers 503", index.system, e)
         return None
     return index

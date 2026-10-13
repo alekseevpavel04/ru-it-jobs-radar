@@ -1,7 +1,8 @@
 # The HTTP API (python -m radar.api) and the MCP server (python -m radar.mcp), profile api.
 # Built from the repo root (compose: context ../.., this file); Dockerfile.dockerignore keeps the
 # context to the dependency lock, the code and the repo files the services read at run time (the
-# skill dictionary, the marts' descriptions, configs). The salary model is not in git and is mounted.
+# skill dictionary, the marts' descriptions, configs). The salary model and the match index with its
+# ONNX query encoder are not in git and are mounted.
 FROM ghcr.io/astral-sh/uv:0.10.5 AS uv
 
 FROM python:3.11.16-slim
@@ -9,12 +10,14 @@ FROM python:3.11.16-slim
 COPY --from=uv /uv /usr/local/bin/uv
 
 WORKDIR /opt/radar
+# ORT_DISABLE_TELEMETRY: the Linux build of onnxruntime otherwise sends usage events to Microsoft.
 ENV UV_PYTHON_DOWNLOADS=never \
     UV_PROJECT_ENVIRONMENT=/opt/radar/.venv \
     UV_LINK_MODE=copy \
     UV_COMPILE_BYTECODE=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
+    ORT_DISABLE_TELEMETRY=1 \
     PATH=/opt/radar/.venv/bin:$PATH
 
 COPY pyproject.toml uv.lock ./

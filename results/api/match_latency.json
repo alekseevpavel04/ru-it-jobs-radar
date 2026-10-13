@@ -1,0 +1,147 @@
+{
+  "source_script": "src/radar/api/match_latency.py",
+  "command": "python -m radar.api.match_latency",
+  "commit": "66a2c8c-dirty",
+  "created_at": "2026-10-13T15:47:17+00:00",
+  "metrics": {
+    "match_latency_p50_ms": {
+      "value": 111.8,
+      "n": null,
+      "denominator": null
+    },
+    "match_latency_p95_ms": {
+      "value": 151.5,
+      "n": null,
+      "denominator": null
+    },
+    "match_latency_max_ms": {
+      "value": 151.5,
+      "n": null,
+      "denominator": null
+    },
+    "match_latency_mean_ms": {
+      "value": 121.4,
+      "n": null,
+      "denominator": null
+    },
+    "requests": {
+      "value": 10,
+      "n": null,
+      "denominator": null
+    },
+    "container_memory_current_mib": {
+      "value": 825.5,
+      "n": null,
+      "denominator": null
+    },
+    "container_memory_peak_mib": {
+      "value": 852.8,
+      "n": null,
+      "denominator": null
+    },
+    "container_memory_anon_mib": {
+      "value": 614.6,
+      "n": null,
+      "denominator": null
+    },
+    "container_memory_limit_mib": {
+      "value": 1024.0,
+      "n": null,
+      "denominator": null
+    },
+    "image_size_mb": {
+      "value": 2317.8,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "api_url": "http://127.0.0.1:8000",
+  "salt": "match-latency-v1",
+  "k": 10,
+  "sample": "synthetic dev resumes of data/matching/queries.parquet",
+  "warmup_requests": 1,
+  "concurrency": 1,
+  "quantiles": "nearest rank over the timed requests",
+  "memory_source": "cgroup v2 of the api container, read after the timed requests",
+  "image": "radar/api:0.1.0",
+  "api_health": {
+    "status": "ok",
+    "extract_backend": "student",
+    "salary_model": "salary-student-2ff7e25-dirty",
+    "match_model": "match-fusion_e5-small@70-51f30ca-dirty",
+    "checks": {
+      "redis": "ok",
+      "clickhouse": "ok",
+      "student": "ok",
+      "salary_model": "ok",
+      "match_index": "ok"
+    }
+  },
+  "docker_host_loadavg": {
+    "before": "3.05 2.57 2.30 3/1331 663507",
+    "after": "3.05 2.57 2.30 2/1332 663546",
+    "cpus": 10
+  },
+  "calls": [
+    {
+      "query_id": "dev-0029",
+      "resume_chars": 170,
+      "items": 10,
+      "ms": 141.3
+    },
+    {
+      "query_id": "dev-0172",
+      "resume_chars": 144,
+      "items": 10,
+      "ms": 151.5
+    },
+    {
+      "query_id": "dev-0128",
+      "resume_chars": 126,
+      "items": 10,
+      "ms": 107.7
+    },
+    {
+      "query_id": "dev-0067",
+      "resume_chars": 138,
+      "items": 10,
+      "ms": 111.8
+    },
+    {
+      "query_id": "dev-0259",
+      "resume_chars": 191,
+      "items": 10,
+      "ms": 102.3
+    },
+    {
+      "query_id": "dev-0027",
+      "resume_chars": 114,
+      "items": 10,
+      "ms": 88.4
+    },
+    {
+      "query_id": "dev-0191",
+      "resume_chars": 141,
+      "items": 10,
+      "ms": 78.1
+    },
+    {
+      "query_id": "dev-0041",
+      "resume_chars": 99,
+      "items": 10,
+      "ms": 137.7
+    },
+    {
+      "query_id": "dev-0091",
+      "resume_chars": 275,
+      "items": 10,
+      "ms": 149.3
+    },
+    {
+      "query_id": "dev-0180",
+      "resume_chars": 175,
+      "items": 10,
+      "ms": 146.0
+    }
+  ]
+}

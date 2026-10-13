@@ -1,0 +1,92 @@
+{
+  "source_script": "src/radar/models/matching_onnx.py",
+  "command": "python -m radar.models.matching_onnx check",
+  "commit": "66a2c8c-dirty",
+  "created_at": "2026-10-13T15:41:27+00:00",
+  "metrics": {
+    "parity.resumes": {
+      "value": 200,
+      "n": null,
+      "denominator": null
+    },
+    "parity.max_abs_diff": {
+      "value": 1.2665987014770508e-07,
+      "n": null,
+      "denominator": null
+    },
+    "parity.cosine_min": {
+      "value": 0.99999988,
+      "n": null,
+      "denominator": null
+    },
+    "parity.cosine_mean": {
+      "value": 1.0,
+      "n": null,
+      "denominator": null
+    },
+    "dev.fusion_e5-small@70.onnx.ndcg": {
+      "value": 0.423,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.4045,
+      "ci_high": 0.4421
+    },
+    "dev.fusion_e5-small@70.torch.ndcg": {
+      "value": 0.423,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.4045,
+      "ci_high": 0.4421
+    },
+    "dev.fusion_e5-small@70.onnx_minus_torch.ndcg": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "dev.fusion_e5-small@70.onnx.mrr": {
+      "value": 0.8434,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.8089,
+      "ci_high": 0.8761
+    },
+    "dev.fusion_e5-small@70.onnx.recall": {
+      "value": 0.3761,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3449,
+      "ci_high": 0.4076
+    },
+    "dev.same_top10": {
+      "value": 1.0,
+      "n": 300,
+      "denominator": 300
+    },
+    "encode_ms_median": {
+      "value": 14.1,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "served": "fusion_e5-small@70",
+  "index_version": "match-fusion_e5-small@70-51f30ca-dirty",
+  "encoder": {
+    "model": "intfloat/multilingual-e5-small",
+    "snapshot": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "pad_id": 1,
+    "pad_token": "<pad>",
+    "opset": 17,
+    "output": "last_hidden_state",
+    "torch": "2.14.1+cu130",
+    "transformers": "5.17.0",
+    "onnx": "1.23.2",
+    "model_sha256": "2dcd9ec32aa7b7144974b4ba7f631726411e9028a4d840afb593a34f1f4d0eb5",
+    "data_sha256": "c1a5ac8347910792cd9e3ff83b9c96f6fe8006178e849a22c1bb6126a03fcbae",
+    "exported_at": "2026-10-13T15:40:50+00:00",
+    "seconds": 19.0
+  },
+  "torch_vectors": "data/matching/emb/intfloat__multilingual-e5-small/queries.npy, dev rows",
+  "comparison": "ONNX vectors of single resumes against batched torch vectors, first 200 dev resumes; nDCG@10 of the served index over the whole pool on all 300 dev resumes with each"
+}

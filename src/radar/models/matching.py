@@ -362,6 +362,10 @@ class MatchIndex:
     def __getstate__(self) -> dict[str, Any]:
         return {k: v for k, v in self.__dict__.items() if k != "_encode"} | {"_encode": None}
 
+    def use_encoder(self, encode: Callable[[Sequence[str]], Any]) -> None:
+        """Encode queries with `encode` (the API's ONNX export) instead of loading the model with torch."""
+        self._encode = encode
+
     def query_vector(self, text: str) -> Array:
         if self.model is None:
             raise ValueError("the served system has no dense part")

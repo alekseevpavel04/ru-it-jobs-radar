@@ -15,11 +15,11 @@ bash scripts/e2e.sh --no-up    # только проверка против то
 
 | Метод | Что отдаёт |
 |---|---|
-| `GET /health` | доступность ClickHouse, Redis, ученика (если задан) и версию загруженной модели зарплаты; `degraded`, если чего-то нет |
+| `GET /health` | доступность ClickHouse, Redis, ученика (если задан) и версии загруженных модели зарплаты и индекса подбора; `degraded`, если чего-то нет |
 | `POST /extract {text}` | поля схемы 5.2, бэкенд (`student` или `regex`), версию модели, причину отката на регулярки |
 | `GET /stats/weekly`, `/stats/salaries`, `/stats/skills` | агрегаты витрин, у каждой доли знаменатель, кэш в Redis |
 | `POST /salary {fields, source}` | оценку в рублях в месяц: `point`, интервал `low..high` на номинальном уровне `level`, типичную вилку, `n_similar`, версию модели |
-| `POST /match {resume_text, k}` | 501 до модели подбора; формат запроса и ответа уже зафиксирован |
+| `POST /match {resume_text, k}` | до `k` (не больше 50) открытых вакансий, ближайших к тексту резюме: ранг, оценку и поля витрины `marts.mart_open_vacancies` по правилам публикации источника; версию индекса |
 
 `/salary` принимает поля целиком, как их возвращает `/extract`; указанная в полях зарплата не читается. `source` по умолчанию `trudvsem`: на нём почти все обучающие вакансии. Источник, которого модель не видела в обучении, и роль `non_it` получают 422, а не оценку. `n_similar` это число обучающих вакансий с той же ролью, грейдом и регионом; 0 показывается как есть и значит, что оценка держится только на более грубых закономерностях. Суммы как их публикуют источники, gross или net они не указывают.
 
@@ -67,3 +67,7 @@ llama-server -m /mnt/d/VScode_projects/assets/llm/qwen3-8b/Qwen3-8B-Q4_K_M.gguf 
 ## Модель зарплаты
 
 Файл `models/salary/salary.pkl` (вне git) сохраняет `python -m radar.models.salary`; в compose он монтируется только для чтения. API и MCP загружают модель при старте, поэтому после переобучения оба сервиса перезапускаются. Нет файла: `/salary` отвечает 503, остальное API работает, `/health` показывает `salary_model: missing`.
+
+## Индекс подбора
+
+`/match` отвечает индексом `models/matching/index.pkl` (`python -m radar.models.matching evaluate`, вне git) и энкодером запросов multilingual-e5-small в ONNX рядом с ним, `models/matching/onnx/` (`python -m radar.models.matching_onnx export` в WSL, где стоит torch). В образе API нет torch: запрос кодирует onnxruntime, токенизирует tokenizers, а префикс `query: `, среднее по токенам и L2-нормировка те же, что при построении индекса. Совпадение с векторами torch и nDCG@10 системы на dev с каждым из энкодеров в `results/models/matching_onnx.json` (`python -m radar.models.matching_onnx check`), задержка `/match` и память контейнера в `results/api/match_latency.json` (`python -m radar.api.match_latency`). В compose каталог `models/matching` монтируется только для чтения. Веса лежат отдельным файлом `model.onnx.data`: onnxruntime отображает его в память, а не копирует граф в кучу, и таблица эмбеддингов читается только по встреченным токенам. В образе выставлен `ORT_DISABLE_TELEMETRY=1`: Linux-сборка onnxruntime без него отправляет события использования в Microsoft. Нет индекса или экспорта: `/match` отвечает 503, `/health` показывает `match_index: missing`.
