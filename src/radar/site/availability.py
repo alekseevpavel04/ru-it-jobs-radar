@@ -34,7 +34,7 @@ def local_check(client: httpx.Client, url: str) -> bool:
 
 def node_checks(client: httpx.Client, url: str, wait_s: float) -> dict[str, bool]:
     """HTTP status per node; a node that did not answer within `wait_s` counts as not reaching the URL."""
-    params = httpx.QueryParams([("host", url)] + [("node", f"{n}.node.check-host.net") for n in NODES])
+    params = httpx.QueryParams({"host": url, "node": [f"{n}.node.check-host.net" for n in NODES]})
     request_id = client.get(f"{API}/check-http", params=params, headers={"Accept": "application/json"}).json()[
         "request_id"
     ]
