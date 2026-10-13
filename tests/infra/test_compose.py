@@ -70,9 +70,15 @@ def test_host_ports_are_unique_and_leave_llama_server_its_port() -> None:
     assert "8080" not in host_ports
 
 
-def test_llama_server_stays_outside_compose() -> None:
-    for name, svc in SERVICES.items():
-        assert "llama" not in name and "llama" not in svc.get("image", ""), name
+def test_gpu_llama_server_stays_outside_compose() -> None:
+    # The teachers' and the scoring llama-server run on Windows with the GPU (scripts/llm_server.sh).
+    # The one llama.cpp server in compose is the student behind /extract: the CPU build, no device.
+    llama = {name for name, svc in SERVICES.items() if "llama" in name or "llama" in svc.get("image", "")}
+    assert llama <= {"student"}
+    for name in llama:
+        svc = SERVICES[name]
+        assert svc["profiles"] == ["api"] and ":server-b" in svc["image"], name
+        assert not {"deploy", "devices", "gpus", "runtime"} & set(svc), name
 
 
 def assert_pinned(image: str, where: str) -> None:

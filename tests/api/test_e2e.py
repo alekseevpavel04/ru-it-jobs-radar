@@ -1,12 +1,15 @@
 """The main path against the running stack (scripts/e2e.sh brings it up): health, extraction of a
-vacancy, market aggregates, the salary estimate of the extracted fields, and the same estimate as an
-MCP tool over streamable HTTP. Reads only; the vacancy below is made up.
+vacancy by the student, market aggregates, the salary estimate of the extracted fields, and the same
+estimate as an MCP tool over streamable HTTP. Reads only; the vacancy below is made up, and a code
+unique to the run keeps its extraction out of the Redis cache, so the student really answers it.
 
     bash scripts/e2e.sh                      up the core and api profiles, then these tests
     pytest -m slow tests/api/test_e2e.py     against what is running
 """
 
 import os
+import time
+import uuid
 from collections.abc import Iterator
 from typing import Any
 
@@ -29,29 +32,38 @@ VACANCY = """Junior ML-инженер (компьютерное зрение)
 
 @pytest.fixture(scope="module")
 def api() -> Iterator[httpx.Client]:
-    with httpx.Client(base_url=API_URL, timeout=60) as client:
+    with httpx.Client(base_url=API_URL, timeout=150) as client:
         yield client
 
 
 @pytest.fixture(scope="module")
 def extracted(api: httpx.Client) -> dict[str, Any]:
-    response = api.post("/extract", json={"text": VACANCY})
+    text = f"{VACANCY}\nКод вакансии: {uuid.uuid4().hex[:8]}"
+    started = time.perf_counter()
+    response = api.post("/extract", json={"text": text})
+    seconds = time.perf_counter() - started
     assert response.status_code == 200, response.text
     body: dict[str, Any] = response.json()
-    return body
+    return {**body, "seconds": seconds}
 
 
-def test_health_sees_clickhouse_redis_and_the_salary_model(api: httpx.Client) -> None:
+def test_health_sees_clickhouse_redis_the_student_and_the_salary_model(api: httpx.Client) -> None:
     body = api.get("/health").json()
-    assert body["checks"]["clickhouse"] == "ok", body
-    assert body["checks"]["redis"] == "ok", body
-    assert body["checks"]["salary_model"] == "ok", body
+    assert body["status"] == "ok", body
+    assert body["extract_backend"] == "student", body
     assert body["salary_model"].startswith("salary-")
+
+
+def test_extract_is_answered_by_the_student(extracted: dict[str, Any], capsys: pytest.CaptureFixture[str]) -> None:
+    assert extracted["backend"] == "student", extracted["fallback_reason"]
+    assert extracted["cached"] is False and extracted["fallback_reason"] is None
+    with capsys.disabled():
+        print(f"\n/extract: {extracted['model']} answered in {extracted['seconds']:.2f} s (uncached)")
 
 
 def test_extract_reads_the_vacancy(extracted: dict[str, Any]) -> None:
     fields = extracted["fields"]
-    assert extracted["backend"] in ("student", "regex") and extracted["schema_version"] == 1
+    assert extracted["schema_version"] == 1
     assert fields["salary"]["from"] == 120000 and fields["salary"]["to"] == 160000
     assert fields["grade"] == "junior"
     assert "Python" in fields["skills"]
@@ -80,6 +92,13 @@ def test_salary_estimates_the_extracted_fields(api: httpx.Client, extracted: dic
     body = response.json()
     assert 0 < body["low"] <= body["point"] <= body["high"]
     assert body["n_similar"] >= 0 and body["model"].startswith("salary-")
+
+
+def test_metrics_count_the_requests_of_this_run(api: httpx.Client) -> None:
+    response = api.get("/metrics")
+    assert response.status_code == 200
+    assert 'radar_api_requests_total{method="GET",route="/health",status="200"}' in response.text
+    assert 'radar_api_request_duration_seconds_count{method="POST",route="/extract"}' in response.text
 
 
 def test_mcp_estimate_salary_matches_post_salary(api: httpx.Client) -> None:

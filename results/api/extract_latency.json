@@ -1,0 +1,215 @@
+{
+  "source_script": "src/radar/api/latency.py",
+  "command": "python -m radar.api.latency",
+  "commit": "d9d444e-dirty",
+  "created_at": "2026-10-13T08:40:55+00:00",
+  "metrics": {
+    "extract_latency_p50_s": {
+      "value": 21.33,
+      "n": null,
+      "denominator": null
+    },
+    "extract_latency_p95_s": {
+      "value": 52.728,
+      "n": null,
+      "denominator": null
+    },
+    "extract_latency_max_s": {
+      "value": 55.443,
+      "n": null,
+      "denominator": null
+    },
+    "extract_latency_mean_s": {
+      "value": 28.682,
+      "n": null,
+      "denominator": null
+    },
+    "requests": {
+      "value": 20,
+      "n": null,
+      "denominator": null
+    },
+    "truncated_inputs": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 20
+    },
+    "input_chars_median": {
+      "value": 954,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "api_url": "http://127.0.0.1:8000",
+  "salt": "api-latency-v1",
+  "sample": "trudvsem and trudvsem_snapshot inputs of data/corpus groups in train_pool, one per group",
+  "warmup_requests": 1,
+  "concurrency": 1,
+  "quantiles": "nearest rank over the timed requests",
+  "api_health": {
+    "status": "ok",
+    "extract_backend": "student",
+    "salary_model": "salary-student-2ff7e25-dirty",
+    "checks": {
+      "redis": "ok",
+      "clickhouse": "ok",
+      "student": "ok",
+      "salary_model": "ok"
+    }
+  },
+  "docker_host_loadavg": {
+    "before": "15.27 17.55 15.04 14/1562 124237",
+    "after": "17.89 18.01 16.22 13/1580 144010",
+    "cpus": 10
+  },
+  "student_service": {
+    "image": "ghcr.io/ggml-org/llama.cpp:server-b11046",
+    "cpus": 2,
+    "mem_limit": "3g",
+    "threads": 2,
+    "parallel": 2,
+    "alias": "qwen3_1p7b_r16_clean-Q4_K_M"
+  },
+  "calls": [
+    {
+      "id": "trudvsem_snapshot:ae48b0ba-89a3-11f1-9699-4f4591bc4f3e",
+      "input_chars": 267,
+      "truncated_input": false,
+      "seconds": 13.022,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem:722a4908-688c-11f1-a95e-05a97d193f2d",
+      "input_chars": 388,
+      "truncated_input": false,
+      "seconds": 11.892,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:bc5dbb98-f688-11f0-8628-a3cca5294b78",
+      "input_chars": 570,
+      "truncated_input": false,
+      "seconds": 20.435,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:509971a8-60b0-11f1-ae65-05b28ac604d6",
+      "input_chars": 468,
+      "truncated_input": false,
+      "seconds": 16.298,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:a5c6e1e8-45e4-11f0-b015-d549be31d974",
+      "input_chars": 1764,
+      "truncated_input": false,
+      "seconds": 33.106,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:b9f9a248-3712-11f1-8545-c53e91957a2c",
+      "input_chars": 992,
+      "truncated_input": false,
+      "seconds": 20.104,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:d8cf00f0-b8f1-11f1-8d33-c70851086420",
+      "input_chars": 1208,
+      "truncated_input": false,
+      "seconds": 30.63,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:ceb255d8-097a-11f1-b541-a17dd92cf0b4",
+      "input_chars": 1319,
+      "truncated_input": false,
+      "seconds": 36.433,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:7f461cb4-b592-11f1-a9f1-81af42855215",
+      "input_chars": 2340,
+      "truncated_input": false,
+      "seconds": 55.443,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:57f19ae7-42ed-11f1-9e37-73ccecd88317",
+      "input_chars": 2140,
+      "truncated_input": false,
+      "seconds": 50.613,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:58c2872b-c228-11f1-aa68-7523fb122f6d",
+      "input_chars": 780,
+      "truncated_input": false,
+      "seconds": 19.928,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:c29d2788-7080-11f1-82d9-89e7c108f6f5",
+      "input_chars": 572,
+      "truncated_input": false,
+      "seconds": 17.073,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:315f2d45-9fc9-11f1-8500-8bce8e4c6111",
+      "input_chars": 1457,
+      "truncated_input": false,
+      "seconds": 36.486,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:321bc024-b5ba-11f1-a000-651d429174be",
+      "input_chars": 2420,
+      "truncated_input": false,
+      "seconds": 49.452,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:65314b26-0e3e-11e7-a63e-037acc02728d",
+      "input_chars": 1154,
+      "truncated_input": false,
+      "seconds": 32.529,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:11b79ef2-17b2-11f1-973f-37d17022a317",
+      "input_chars": 806,
+      "truncated_input": false,
+      "seconds": 25.319,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:6d892939-a4fe-11f1-8f65-7f3d797fed49",
+      "input_chars": 330,
+      "truncated_input": false,
+      "seconds": 14.759,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:a2c4d610-00dc-11f1-8592-4dd9ad6edd88",
+      "input_chars": 916,
+      "truncated_input": false,
+      "seconds": 21.33,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:0096be28-8ff3-11f1-b546-0def9408a49f",
+      "input_chars": 3448,
+      "truncated_input": false,
+      "seconds": 52.728,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    },
+    {
+      "id": "trudvsem_snapshot:8644ae48-884e-11f0-bb3d-efc3bb2eec02",
+      "input_chars": 436,
+      "truncated_input": false,
+      "seconds": 16.057,
+      "model": "qwen3_1p7b_r16_clean-Q4_K_M"
+    }
+  ]
+}

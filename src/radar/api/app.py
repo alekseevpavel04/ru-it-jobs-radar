@@ -33,6 +33,7 @@ from radar.api.models import (
 from radar.api.salary import Estimator, OutOfScope, SalaryEstimator, UnknownSource
 from radar.api.settings import Settings
 from radar.extract.schema import SCHEMA_VERSION, dump
+from radar.monitor.api_metrics import instrument
 
 log = logging.getLogger("radar.api")
 
@@ -125,7 +126,6 @@ def create_app(services: Services) -> FastAPI:
 
     @app.middleware("http")
     async def access_log(request: Request, call_next: Callable[[Request], Awaitable[Response]]) -> Response:
-        # The place for the request counters and latency histograms of the monitoring task (9.3).
         started = time.perf_counter()
         response = await call_next(request)
         ms = round((time.perf_counter() - started) * 1000, 1)
@@ -232,6 +232,7 @@ def create_app(services: Services) -> FastAPI:
     def post_match(body: MatchRequest) -> MatchResponse:
         raise HTTPException(501, "vacancy matching is not served yet")
 
+    instrument(app)  # GET /metrics: request counts and latency per route (9.3)
     return app
 
 

@@ -24,6 +24,15 @@ x-llm-client: &llm-client
   environment:
     LLM_BASE_URL: http://host.docker.internal:8080/v1
 
+# The API and the MCP server share these; the API adds its student.
+x-api-env: &api-env
+  CLICKHOUSE_URL: http://clickhouse:8123
+  CLICKHOUSE_RO_USER: ${CLICKHOUSE_RO_USER:?set CLICKHOUSE_RO_USER in .env}
+  CLICKHOUSE_RO_PASSWORD: ${CLICKHOUSE_RO_PASSWORD:?set CLICKHOUSE_RO_PASSWORD in .env}
+  REDIS_URL: redis://redis:6379/0
+  LLM_BASE_URL: http://host.docker.internal:8080/v1
+  SALARY_MODEL_PATH: /opt/radar/models/salary/salary.pkl
+
 x-airflow-env: &airflow-env
   AIRFLOW__CORE__EXECUTOR: LocalExecutor
   # Letters and digits only in AIRFLOW_DB_PASSWORD: it goes into this URI as is.
@@ -189,11 +198,76 @@ services:
       test: ["CMD-SHELL", "redis-cli ping | grep -q PONG"]
     logging: *logging
 
+  # The fine-tuned student behind /extract, on the CPU: the Q4_K_M GGUF with the server
+  # flags it was scored with on dev (scripts/llm_server.sh student: f16 KV cache, 4096 tokens per
+  # slot, --jinja for the chat template stored in the GGUF), without GPU offload. Build 11046 is the
+  # published image nearest to the b11052 binary of those scores. Not published: only the API calls it.
+  # The weights are copied from the Windows drive to a volume on the VM's disk (again when the GGUF
+  # changes) and read whole into memory: memory-mapped over the WSL 9p mount, evicted pages were
+  # read back from Windows on every token, under a token per second. The copy reads 64 KiB at a time: large
+  # reads from that mount (cp, llama.cpp loading the whole file) fail with ENOMEM when the VM is
+  # short of memory.
+  student:
+    image: ghcr.io/ggml-org/llama.cpp:server-b11046
+    profiles: [api]
+    restart: unless-stopped
+    entrypoint:
+      - sh
+      - -c
+      - |
+        set -e
+        src=/models/qwen3_1p7b_r16_clean-Q4_K_M.gguf
+        dst=/weights/qwen3_1p7b_r16_clean-Q4_K_M.gguf
+        if [ ! -f "$$dst" ] || [ "$$src" -nt "$$dst" ] || [ "$$(stat -c %s "$$src")" != "$$(stat -c %s "$$dst")" ]; then
+          dd if="$$src" of="$$dst.part" bs=64k status=none
+          touch -r "$$src" "$$dst.part"
+          mv "$$dst.part" "$$dst"
+        fi
+        exec /app/llama-server --model "$$dst" "$$@"
+      - student
+    command:
+      - --load-mode
+      - none
+      - --alias
+      - qwen3_1p7b_r16_clean-Q4_K_M
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8080"
+      - --threads
+      - "2"
+      - --parallel
+      - "2"
+      - --ctx-size
+      - "8192"
+      - --no-kv-unified
+      - --flash-attn
+      - "on"
+      - --cache-type-k
+      - f16
+      - --cache-type-v
+      - f16
+      - --cache-ram
+      - "0"
+      - --jinja
+    volumes:
+      - ../../models/gguf/qwen3_1p7b_r16_clean:/models:ro
+      - student-weights:/weights
+    # Two threads on two CPUs: the VM's CPUs are shared with the stack and the training jobs, and
+    # under that load four threads generated about half as fast as two (llama.cpp threads wait for
+    # each other at every step, so one descheduled thread stalls the rest).
+    cpus: 2
+    mem_limit: 3g
+    healthcheck:
+      <<: *healthcheck
+      start_period: 120s
+      test: ["CMD", "curl", "--fail", "--silent", "--output", "/dev/null", "http://127.0.0.1:8080/health"]
+    logging: *logging
+
   # The HTTP API and the MCP server (8.2), one image. They read the marts as the
   # read-only account and cache in Redis; no depends_on on the core profile, so `up.sh api` alone
-  # starts them and /health names whatever is missing. Extraction is the regex baseline here: the
-  # student's server runs on the host, which containers do not reach (WSL NAT), and the same holds
-  # for the analyst's LLM behind ask_market until a server listens on the VM's address.
+  # starts them and /health names whatever is missing. The analyst's LLM behind ask_market runs on
+  # the host, which containers do not reach (WSL NAT): see docs/api.md for pointing it at one.
   api:
     build: &api-build
       context: ../..
@@ -204,16 +278,18 @@ services:
     command: ["python", "-m", "radar.api", "--host", "0.0.0.0", "--port", "8000"]
     extra_hosts:
       - host.docker.internal:host-gateway
-    environment: &api-env
-      CLICKHOUSE_URL: http://clickhouse:8123
-      CLICKHOUSE_RO_USER: ${CLICKHOUSE_RO_USER:?set CLICKHOUSE_RO_USER in .env}
-      CLICKHOUSE_RO_PASSWORD: ${CLICKHOUSE_RO_PASSWORD:?set CLICKHOUSE_RO_PASSWORD in .env}
-      REDIS_URL: redis://redis:6379/0
-      LLM_BASE_URL: http://host.docker.internal:8080/v1
-      SALARY_MODEL_PATH: /opt/radar/models/salary/salary.pkl
+    environment:
+      <<: *api-env
+      # /extract asks the student service; the regex answers only while it is down (/health says which).
+      STUDENT_LLM_URL: http://student:8080
+      # Directory with the student's dataset_meta.json: its system prompt and input cap.
+      STUDENT_ADAPTER_DIR: /opt/radar/models/student
+      # On the CPU an answer takes tens of seconds while other jobs load the VM.
+      STUDENT_TIMEOUT_S: "120"
     volumes:
       # Saved by `python -m radar.models.salary`; outside git, so mounted rather than baked in.
       - ../../models/salary:/opt/radar/models/salary:ro
+      - ../../models/merged/qwen3_1p7b_r16_clean/dataset_meta.json:/opt/radar/models/student/dataset_meta.json:ro
     ports:
       - 127.0.0.1:8000:8000
     mem_limit: 1g
@@ -591,4 +667,5 @@ volumes:
   n8n-data:
   prometheus-data:
   grafana-data:
+  student-weights:
   superset-home:

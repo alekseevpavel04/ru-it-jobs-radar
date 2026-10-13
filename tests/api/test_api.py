@@ -412,6 +412,16 @@ def test_match_answers_501_after_validation() -> None:
     assert api.post("/match", json={"resume_text": "Python", "k": 0}).status_code == 422
 
 
+def test_metrics_count_requests_by_route_template() -> None:
+    api = client(salary=FakeEstimator())
+    api.post("/salary", json={"fields": ANSWER})
+    api.post("/extract", json={"text": ""})
+    metrics = api.get("/metrics")
+    assert metrics.status_code == 200
+    assert 'radar_api_requests_total{method="POST",route="/salary",status="200"} 1.0' in metrics.text
+    assert 'radar_api_requests_total{method="POST",route="/extract",status="422"} 1.0' in metrics.text
+
+
 def test_health_reports_each_dependency() -> None:
     transport, _ = llama_server()
     ok = client(extractor=student(transport), salary=FakeEstimator()).get("/health").json()

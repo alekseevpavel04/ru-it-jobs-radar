@@ -7,6 +7,8 @@ bash scripts/e2e.sh            # scripts/up.sh core api, затем tests/api/te
 bash scripts/e2e.sh --no-up    # только проверка против того, что уже запущено
 ```
 
+В профиле `api` три сервиса: `student` (llama.cpp на CPU с учеником Q4_K_M, наружу не публикуется), `api` и `mcp`. `/extract` в compose отвечает учеником, регулярки отвечают только пока `student` недоступен; `/health` показывает это в `extract_backend` и `checks.student`, а ответ `/extract` в `backend` и `fallback_reason`. Задержка `/extract` на CPU в `results/api/extract_latency.json` (`python -m radar.api.latency`).
+
 Локально без Docker: `python -m radar.api` (порт 8000) и `python -m radar.mcp` (stdio) или `python -m radar.mcp --http` (порт 8001), настройки из `.env`.
 
 ## HTTP API
@@ -29,7 +31,23 @@ bash scripts/e2e.sh --no-up    # только проверка против то
 | `estimate_salary(role, grade, cities, skills, work_format, experience_min_years, employment_type, source)` | та же функция, что за `POST /salary` |
 | `find_vacancies(source, role_bucket, grade, region_group, work_format, skill, min_salary, limit)` | открытые вакансии по фильтрам, `limit` до 50, рядом число всех подходящих |
 
-Все три помечены как read-only. Фильтры доходят до ClickHouse параметрами запроса, текст аргумента в SQL не попадает. `ask_market` нужен локальный LLM по `LLM_BASE_URL`; из контейнера сервер на хосте Windows недоступен (WSL в режиме NAT), поэтому в compose этот инструмент отвечает ошибкой, пока LLM не слушает адрес, видимый из контейнеров. `find_vacancies` читает витрину `marts.mart_open_vacancies`; пока её нет, инструмент так и отвечает.
+Все три помечены как read-only. Фильтры доходят до ClickHouse параметрами запроса, текст аргумента в SQL не попадает. `ask_market` нужен локальный LLM по `LLM_BASE_URL` (как его подключить в compose, ниже). `find_vacancies` читает витрину `marts.mart_open_vacancies`; пока её нет, инструмент так и отвечает.
+
+### LLM для ask_market в compose
+
+Агент ходит в `LLM_BASE_URL` (в compose `http://host.docker.internal:8080/v1`, блок `x-api-env`) и до первого вопроса проверяет, что сервер отдаёт модель `Qwen3-8B-Q4_K_M`: на ней посчитан контрольный набор агента. Имя `host.docker.internal` в контейнерах `api` и `mcp` ведёт на шлюз Docker внутри ВМ WSL, а не в Windows. Поэтому llama-server, запущенный на Windows (`scripts/llm_server.sh qwen`), из контейнера не виден: WSL работает в режиме NAT, и связь идёт только из Windows в ВМ через проброс localhost.
+
+Рабочий путь это сервер внутри дистрибутива `radar`, который слушает все адреса ВМ:
+
+```
+# в WSL: llama-server Linux-сборки с CUDA (или образ ghcr.io/ggml-org/llama.cpp:server-cuda-b<N>)
+llama-server -m /mnt/d/VScode_projects/assets/llm/qwen3-8b/Qwen3-8B-Q4_K_M.gguf \
+    --alias Qwen3-8B-Q4_K_M --host 0.0.0.0 --port 8080 -ngl 99 -fa on --jinja -c 8192
+```
+
+Флаги те же, что в `scripts/llm_server.sh qwen`: сервер с другой моделью или другим шаблоном чата даёт другие ответы, чем на контрольном наборе. vLLM в WSL подходит так же (`--host 0.0.0.0`, `--served-model-name Qwen3-8B-Q4_K_M`), но только с теми же весами в GGUF. Чекпойнт AWQ под тем же именем был бы другой моделью под чужой этикеткой. Если порт или адрес другие, поменяйте `LLM_BASE_URL` в `x-api-env` и пересоздайте `mcp` (`scripts/up.sh api`). Проверка `python -m radar.mcp call ask_market '{"question": "Сколько вакансий ML на Хабр Карьере?"}' --url http://127.0.0.1:8001/mcp`.
+
+Порт ВМ на 0.0.0.0 виден контейнерам и через проброс localhost Windows, в локальную сеть он не выходит. Режим `networkingMode=mirrored` в `.wslconfig` открыл бы контейнерам сервер на Windows, но меняет сеть WSL для всей машины, поэтому здесь не используется. GPU одна: сервер на 8B занимает около 6 ГБ и не уживается с прогоном vLLM корпуса.
 
 Подключение настольного клиента по stdio:
 
