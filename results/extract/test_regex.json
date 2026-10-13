@@ -1,0 +1,979 @@
+{
+  "source_script": "src/radar/eval/cli.py",
+  "command": "python -m radar.eval.final --final-test --skip base_4b 31 s per record on test (no stop at the schema, VRAM spill), about 3 h; base models are compared on dev",
+  "commit": "7e3d99d-dirty",
+  "created_at": "2026-10-13T17:03:19+00:00",
+  "metrics": {
+    "valid_json": {
+      "value": 1.0,
+      "n": 440,
+      "denominator": 440,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "role_precision": {
+      "value": 0.711364,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.668182,
+      "ci_high": 0.752273
+    },
+    "role_recall": {
+      "value": 0.711364,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.668182,
+      "ci_high": 0.752273
+    },
+    "role_f1": {
+      "value": 0.711364,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.668182,
+      "ci_high": 0.752273
+    },
+    "role_accuracy": {
+      "value": 0.711364,
+      "n": 313,
+      "denominator": 440,
+      "ci_low": 0.668182,
+      "ci_high": 0.752273
+    },
+    "role_macro_f1": {
+      "value": 0.662196,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.577524,
+      "ci_high": 0.716674
+    },
+    "grade_precision": {
+      "value": 0.990991,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.969072,
+      "ci_high": 1.0
+    },
+    "grade_recall": {
+      "value": 0.859375,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.79545,
+      "ci_high": 0.918523
+    },
+    "grade_f1": {
+      "value": 0.920502,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.881348,
+      "ci_high": 0.953725
+    },
+    "grade_accuracy": {
+      "value": 0.956818,
+      "n": 421,
+      "denominator": 440,
+      "ci_low": 0.936364,
+      "ci_high": 0.975
+    },
+    "work_format_precision": {
+      "value": 0.915789,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.858696,
+      "ci_high": 0.966292
+    },
+    "work_format_recall": {
+      "value": 0.805556,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.728155,
+      "ci_high": 0.875
+    },
+    "work_format_f1": {
+      "value": 0.857143,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.797646,
+      "ci_high": 0.910894
+    },
+    "work_format_accuracy": {
+      "value": 0.947727,
+      "n": 417,
+      "denominator": 440,
+      "ci_low": 0.927273,
+      "ci_high": 0.965909
+    },
+    "employment_type_precision": {
+      "value": 0.916667,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.839271,
+      "ci_high": 0.981132
+    },
+    "employment_type_recall": {
+      "value": 0.887097,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.80303,
+      "ci_high": 0.961538
+    },
+    "employment_type_f1": {
+      "value": 0.901639,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.84,
+      "ci_high": 0.95146
+    },
+    "employment_type_accuracy": {
+      "value": 0.972727,
+      "n": 428,
+      "denominator": 440,
+      "ci_low": 0.956818,
+      "ci_high": 0.986364
+    },
+    "lang_accuracy": {
+      "value": 1.0,
+      "n": 440,
+      "denominator": 440,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "skills_precision": {
+      "value": 0.955659,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.942903,
+      "ci_high": 0.967419
+    },
+    "skills_recall": {
+      "value": 0.770461,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.736263,
+      "ci_high": 0.80122
+    },
+    "skills_f1": {
+      "value": 0.853125,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.831358,
+      "ci_high": 0.872817
+    },
+    "cities_precision": {
+      "value": 0.99093,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.981608,
+      "ci_high": 0.997763
+    },
+    "cities_recall": {
+      "value": 0.95207,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.909268,
+      "ci_high": 0.984271
+    },
+    "cities_f1": {
+      "value": 0.971111,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.946661,
+      "ci_high": 0.989787
+    },
+    "salary_precision": {
+      "value": 1.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "salary_recall": {
+      "value": 0.997245,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.991597,
+      "ci_high": 1.0
+    },
+    "salary_f1": {
+      "value": 0.998621,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.995781,
+      "ci_high": 1.0
+    },
+    "salary_accuracy": {
+      "value": 0.997727,
+      "n": 439,
+      "denominator": 440,
+      "ci_low": 0.993182,
+      "ci_high": 1.0
+    },
+    "salary_from_accuracy": {
+      "value": 1.0,
+      "n": 362,
+      "denominator": 362,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "salary_to_accuracy": {
+      "value": 1.0,
+      "n": 362,
+      "denominator": 362,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "salary_currency_accuracy": {
+      "value": 1.0,
+      "n": 362,
+      "denominator": 362,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "salary_gross_net_accuracy": {
+      "value": 1.0,
+      "n": 362,
+      "denominator": 362,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "salary_period_accuracy": {
+      "value": 0.994475,
+      "n": 360,
+      "denominator": 362,
+      "ci_low": 0.986071,
+      "ci_high": 1.0
+    },
+    "experience_years_precision": {
+      "value": 0.925081,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.893832,
+      "ci_high": 0.952978
+    },
+    "experience_years_recall": {
+      "value": 0.884735,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.848373,
+      "ci_high": 0.917934
+    },
+    "experience_years_f1": {
+      "value": 0.904459,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.871158,
+      "ci_high": 0.932912
+    },
+    "experience_years_accuracy": {
+      "value": 0.913636,
+      "n": 402,
+      "denominator": 440,
+      "ci_low": 0.886364,
+      "ci_high": 0.938636
+    },
+    "macro_f1": {
+      "value": 0.889745,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.874429,
+      "ci_high": 0.902955
+    }
+  },
+  "system": "regex",
+  "predictions_file": "data/predictions/test/regex.jsonl",
+  "predictions_sha256": "58f3f5e224e287c734192aa84565a025a80f99e24f0530584e10861f269b4f2f",
+  "n_missing_predictions": 0,
+  "n_extra_predictions_ignored": 0,
+  "undefined_metrics": [],
+  "by_source": {
+    "habr": {
+      "valid_json": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 65,
+        "denominator": 65
+      },
+      "role_precision": {
+        "value": 0.753846,
+        "ci_low": 0.646154,
+        "ci_high": 0.846154
+      },
+      "role_recall": {
+        "value": 0.753846,
+        "ci_low": 0.646154,
+        "ci_high": 0.846154
+      },
+      "role_f1": {
+        "value": 0.753846,
+        "ci_low": 0.646154,
+        "ci_high": 0.846154
+      },
+      "role_accuracy": {
+        "value": 0.753846,
+        "ci_low": 0.646154,
+        "ci_high": 0.846154,
+        "n": 49,
+        "denominator": 65
+      },
+      "role_macro_f1": {
+        "value": 0.637203,
+        "ci_low": 0.535725,
+        "ci_high": 0.750855
+      },
+      "grade_precision": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0
+      },
+      "grade_recall": {
+        "value": 0.977778,
+        "ci_low": 0.926829,
+        "ci_high": 1.0
+      },
+      "grade_f1": {
+        "value": 0.988764,
+        "ci_low": 0.962025,
+        "ci_high": 1.0
+      },
+      "grade_accuracy": {
+        "value": 0.984615,
+        "ci_low": 0.953846,
+        "ci_high": 1.0,
+        "n": 64,
+        "denominator": 65
+      },
+      "work_format_precision": {
+        "value": 0.88,
+        "ci_low": 0.785679,
+        "ci_high": 0.96
+      },
+      "work_format_recall": {
+        "value": 0.862745,
+        "ci_low": 0.764706,
+        "ci_high": 0.943396
+      },
+      "work_format_f1": {
+        "value": 0.871287,
+        "ci_low": 0.777778,
+        "ci_high": 0.945455
+      },
+      "work_format_accuracy": {
+        "value": 0.876923,
+        "ci_low": 0.8,
+        "ci_high": 0.938462,
+        "n": 57,
+        "denominator": 65
+      },
+      "employment_type_precision": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0
+      },
+      "employment_type_recall": {
+        "value": 0.84375,
+        "ci_low": 0.705828,
+        "ci_high": 0.962996
+      },
+      "employment_type_f1": {
+        "value": 0.915254,
+        "ci_low": 0.827549,
+        "ci_high": 0.981149
+      },
+      "employment_type_accuracy": {
+        "value": 0.923077,
+        "ci_low": 0.846154,
+        "ci_high": 0.984615,
+        "n": 60,
+        "denominator": 65
+      },
+      "lang_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 65,
+        "denominator": 65
+      },
+      "skills_precision": {
+        "value": 0.93945,
+        "ci_low": 0.906095,
+        "ci_high": 0.966851
+      },
+      "skills_recall": {
+        "value": 0.749634,
+        "ci_low": 0.670931,
+        "ci_high": 0.811768
+      },
+      "skills_f1": {
+        "value": 0.833876,
+        "ci_low": 0.781322,
+        "ci_high": 0.875005
+      },
+      "cities_precision": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0
+      },
+      "cities_recall": {
+        "value": 0.842697,
+        "ci_low": 0.683145,
+        "ci_high": 1.0
+      },
+      "cities_f1": {
+        "value": 0.914634,
+        "ci_low": 0.811748,
+        "ci_high": 1.0
+      },
+      "salary_precision": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0
+      },
+      "salary_recall": {
+        "value": 0.888889,
+        "ci_low": 0.625,
+        "ci_high": 1.0
+      },
+      "salary_f1": {
+        "value": 0.941176,
+        "ci_low": 0.769231,
+        "ci_high": 1.0
+      },
+      "salary_accuracy": {
+        "value": 0.984615,
+        "ci_low": 0.953846,
+        "ci_high": 1.0,
+        "n": 64,
+        "denominator": 65
+      },
+      "salary_from_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 8,
+        "denominator": 8
+      },
+      "salary_to_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 8,
+        "denominator": 8
+      },
+      "salary_currency_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 8,
+        "denominator": 8
+      },
+      "salary_gross_net_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 8,
+        "denominator": 8
+      },
+      "salary_period_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 8,
+        "denominator": 8
+      },
+      "experience_years_precision": {
+        "value": 0.888889,
+        "ci_low": 0.758621,
+        "ci_high": 1.0
+      },
+      "experience_years_recall": {
+        "value": 0.705882,
+        "ci_low": 0.542857,
+        "ci_high": 0.852941
+      },
+      "experience_years_f1": {
+        "value": 0.786885,
+        "ci_low": 0.646102,
+        "ci_high": 0.897449
+      },
+      "experience_years_accuracy": {
+        "value": 0.830769,
+        "ci_low": 0.738462,
+        "ci_high": 0.923077,
+        "n": 54,
+        "denominator": 65
+      },
+      "macro_f1": {
+        "value": 0.875715,
+        "ci_low": 0.838718,
+        "ci_high": 0.906828
+      }
+    },
+    "trudvsem": {
+      "valid_json": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 181,
+        "denominator": 181
+      },
+      "role_precision": {
+        "value": 0.729282,
+        "ci_low": 0.66837,
+        "ci_high": 0.79558
+      },
+      "role_recall": {
+        "value": 0.729282,
+        "ci_low": 0.66837,
+        "ci_high": 0.79558
+      },
+      "role_f1": {
+        "value": 0.729282,
+        "ci_low": 0.66837,
+        "ci_high": 0.79558
+      },
+      "role_accuracy": {
+        "value": 0.729282,
+        "ci_low": 0.66837,
+        "ci_high": 0.79558,
+        "n": 132,
+        "denominator": 181
+      },
+      "role_macro_f1": {
+        "value": 0.600569,
+        "ci_low": 0.494306,
+        "ci_high": 0.722501
+      },
+      "grade_precision": {
+        "value": 0.969697,
+        "ci_low": 0.903226,
+        "ci_high": 1.0
+      },
+      "grade_recall": {
+        "value": 0.842105,
+        "ci_low": 0.71875,
+        "ci_high": 0.947368
+      },
+      "grade_f1": {
+        "value": 0.901408,
+        "ci_low": 0.818182,
+        "ci_high": 0.963855
+      },
+      "grade_accuracy": {
+        "value": 0.961326,
+        "ci_low": 0.933702,
+        "ci_high": 0.983425,
+        "n": 174,
+        "denominator": 181
+      },
+      "work_format_precision": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0
+      },
+      "work_format_recall": {
+        "value": 0.818182,
+        "ci_low": 0.642786,
+        "ci_high": 0.961538
+      },
+      "work_format_f1": {
+        "value": 0.9,
+        "ci_low": 0.782556,
+        "ci_high": 0.980392
+      },
+      "work_format_accuracy": {
+        "value": 0.977901,
+        "ci_low": 0.955801,
+        "ci_high": 0.994475,
+        "n": 177,
+        "denominator": 181
+      },
+      "employment_type_precision": {
+        "value": 0.888889,
+        "ci_low": 0.625,
+        "ci_high": 1.0
+      },
+      "employment_type_recall": {
+        "value": 0.888889,
+        "ci_low": 0.625,
+        "ci_high": 1.0
+      },
+      "employment_type_f1": {
+        "value": 0.888889,
+        "ci_low": 0.666667,
+        "ci_high": 1.0
+      },
+      "employment_type_accuracy": {
+        "value": 0.98895,
+        "ci_low": 0.972376,
+        "ci_high": 1.0,
+        "n": 179,
+        "denominator": 181
+      },
+      "lang_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 181,
+        "denominator": 181
+      },
+      "skills_precision": {
+        "value": 0.955403,
+        "ci_low": 0.936161,
+        "ci_high": 0.971293
+      },
+      "skills_recall": {
+        "value": 0.758856,
+        "ci_low": 0.705498,
+        "ci_high": 0.805752
+      },
+      "skills_f1": {
+        "value": 0.845862,
+        "ci_low": 0.807711,
+        "ci_high": 0.876736
+      },
+      "cities_precision": {
+        "value": 0.99435,
+        "ci_low": 0.982759,
+        "ci_high": 1.0
+      },
+      "cities_recall": {
+        "value": 0.977778,
+        "ci_low": 0.955556,
+        "ci_high": 0.994475
+      },
+      "cities_f1": {
+        "value": 0.985994,
+        "ci_low": 0.969359,
+        "ci_high": 0.99723
+      },
+      "salary_precision": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0
+      },
+      "salary_recall": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0
+      },
+      "salary_f1": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0
+      },
+      "salary_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 181,
+        "denominator": 181
+      },
+      "salary_from_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 178,
+        "denominator": 178
+      },
+      "salary_to_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 178,
+        "denominator": 178
+      },
+      "salary_currency_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 178,
+        "denominator": 178
+      },
+      "salary_gross_net_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 178,
+        "denominator": 178
+      },
+      "salary_period_accuracy": {
+        "value": 0.994382,
+        "ci_low": 0.982955,
+        "ci_high": 1.0,
+        "n": 177,
+        "denominator": 178
+      },
+      "experience_years_precision": {
+        "value": 0.961832,
+        "ci_low": 0.925373,
+        "ci_high": 0.992128
+      },
+      "experience_years_recall": {
+        "value": 0.940299,
+        "ci_low": 0.897638,
+        "ci_high": 0.976562
+      },
+      "experience_years_f1": {
+        "value": 0.950943,
+        "ci_low": 0.913195,
+        "ci_high": 0.981413
+      },
+      "experience_years_accuracy": {
+        "value": 0.955801,
+        "ci_low": 0.922652,
+        "ci_high": 0.983425,
+        "n": 173,
+        "denominator": 181
+      },
+      "macro_f1": {
+        "value": 0.900297,
+        "ci_low": 0.869887,
+        "ci_high": 0.923444
+      }
+    },
+    "trudvsem_snapshot": {
+      "valid_json": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 194,
+        "denominator": 194
+      },
+      "role_precision": {
+        "value": 0.680412,
+        "ci_low": 0.613402,
+        "ci_high": 0.742268
+      },
+      "role_recall": {
+        "value": 0.680412,
+        "ci_low": 0.613402,
+        "ci_high": 0.742268
+      },
+      "role_f1": {
+        "value": 0.680412,
+        "ci_low": 0.613402,
+        "ci_high": 0.742268
+      },
+      "role_accuracy": {
+        "value": 0.680412,
+        "ci_low": 0.613402,
+        "ci_high": 0.742268,
+        "n": 132,
+        "denominator": 194
+      },
+      "role_macro_f1": {
+        "value": 0.547243,
+        "ci_low": 0.457372,
+        "ci_high": 0.6486
+      },
+      "grade_precision": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0
+      },
+      "grade_recall": {
+        "value": 0.755556,
+        "ci_low": 0.622207,
+        "ci_high": 0.878818
+      },
+      "grade_f1": {
+        "value": 0.860759,
+        "ci_low": 0.767112,
+        "ci_high": 0.935501
+      },
+      "grade_accuracy": {
+        "value": 0.943299,
+        "ci_low": 0.912371,
+        "ci_high": 0.974227,
+        "n": 183,
+        "denominator": 194
+      },
+      "work_format_precision": {
+        "value": 0.925926,
+        "ci_low": 0.809524,
+        "ci_high": 1.0
+      },
+      "work_format_recall": {
+        "value": 0.714286,
+        "ci_low": 0.558824,
+        "ci_high": 0.860465
+      },
+      "work_format_f1": {
+        "value": 0.806452,
+        "ci_low": 0.68,
+        "ci_high": 0.90625
+      },
+      "work_format_accuracy": {
+        "value": 0.943299,
+        "ci_low": 0.912371,
+        "ci_high": 0.974227,
+        "n": 183,
+        "denominator": 194
+      },
+      "employment_type_precision": {
+        "value": 0.833333,
+        "ci_low": 0.666667,
+        "ci_high": 0.961538
+      },
+      "employment_type_recall": {
+        "value": 0.952381,
+        "ci_low": 0.846094,
+        "ci_high": 1.0
+      },
+      "employment_type_f1": {
+        "value": 0.888889,
+        "ci_low": 0.774194,
+        "ci_high": 0.971429
+      },
+      "employment_type_accuracy": {
+        "value": 0.974227,
+        "ci_low": 0.948454,
+        "ci_high": 0.994845,
+        "n": 189,
+        "denominator": 194
+      },
+      "lang_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 194,
+        "denominator": 194
+      },
+      "skills_precision": {
+        "value": 0.97099,
+        "ci_low": 0.956313,
+        "ci_high": 0.984403
+      },
+      "skills_recall": {
+        "value": 0.802539,
+        "ci_low": 0.767332,
+        "ci_high": 0.838238
+      },
+      "skills_f1": {
+        "value": 0.878764,
+        "ci_low": 0.856902,
+        "ci_high": 0.899068
+      },
+      "cities_precision": {
+        "value": 0.984127,
+        "ci_low": 0.963158,
+        "ci_high": 1.0
+      },
+      "cities_recall": {
+        "value": 0.978947,
+        "ci_low": 0.957666,
+        "ci_high": 0.994792
+      },
+      "cities_f1": {
+        "value": 0.98153,
+        "ci_low": 0.961039,
+        "ci_high": 0.997375
+      },
+      "salary_precision": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0
+      },
+      "salary_recall": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0
+      },
+      "salary_f1": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0
+      },
+      "salary_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 194,
+        "denominator": 194
+      },
+      "salary_from_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 176,
+        "denominator": 176
+      },
+      "salary_to_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 176,
+        "denominator": 176
+      },
+      "salary_currency_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 176,
+        "denominator": 176
+      },
+      "salary_gross_net_accuracy": {
+        "value": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "n": 176,
+        "denominator": 176
+      },
+      "salary_period_accuracy": {
+        "value": 0.994318,
+        "ci_low": 0.982456,
+        "ci_high": 1.0,
+        "n": 175,
+        "denominator": 176
+      },
+      "experience_years_precision": {
+        "value": 0.899329,
+        "ci_low": 0.847822,
+        "ci_high": 0.945205
+      },
+      "experience_years_recall": {
+        "value": 0.875817,
+        "ci_low": 0.821192,
+        "ci_high": 0.92517
+      },
+      "experience_years_f1": {
+        "value": 0.887417,
+        "ci_low": 0.836217,
+        "ci_high": 0.932937
+      },
+      "experience_years_accuracy": {
+        "value": 0.902062,
+        "ci_low": 0.860825,
+        "ci_high": 0.943299,
+        "n": 175,
+        "denominator": 194
+      },
+      "macro_f1": {
+        "value": 0.873028,
+        "ci_low": 0.845507,
+        "ci_high": 0.897676
+      }
+    }
+  },
+  "split": "test",
+  "gold_file": "data/gold/test.jsonl",
+  "gold_sha256": "17a51c987e65680620230c1cfb9a4903d93689c677f6798488c8a84aa2856d94",
+  "n_examples": 440,
+  "bootstrap": {
+    "n_resamples": 2000,
+    "seed": 20261008,
+    "confidence": 0.95
+  },
+  "salary_rel_tol": 0.01,
+  "macro_fields": [
+    "role",
+    "grade",
+    "skills",
+    "salary",
+    "work_format",
+    "cities",
+    "experience_years",
+    "employment_type"
+  ],
+  "skill_normalization": "dictionary"
+}

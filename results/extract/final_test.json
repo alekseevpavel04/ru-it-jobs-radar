@@ -1,0 +1,4199 @@
+{
+  "source_script": "src/radar/eval/final.py",
+  "command": "python -m radar.eval.final --final-test --skip base_4b 31 s per record on test (no stop at the schema, VRAM spill), about 3 h; base models are compared on dev",
+  "commit": "7e3d99d-dirty",
+  "created_at": "2026-10-13T17:03:33+00:00",
+  "metrics": {
+    "test/regex/macro_f1": {
+      "value": 0.889745,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.874429,
+      "ci_high": 0.902955
+    },
+    "test/regex/valid_json": {
+      "value": 1.0,
+      "n": 440,
+      "denominator": 440,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "test/regex/role_f1": {
+      "value": 0.711364,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.668182,
+      "ci_high": 0.752273
+    },
+    "test/regex/role_macro_f1": {
+      "value": 0.662196,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.577524,
+      "ci_high": 0.716674
+    },
+    "test/regex/grade_f1": {
+      "value": 0.920502,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.881348,
+      "ci_high": 0.953725
+    },
+    "test/regex/skills_f1": {
+      "value": 0.853125,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.831358,
+      "ci_high": 0.872817
+    },
+    "test/regex/salary_f1": {
+      "value": 0.998621,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.995781,
+      "ci_high": 1.0
+    },
+    "test/regex/work_format_f1": {
+      "value": 0.857143,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.797646,
+      "ci_high": 0.910894
+    },
+    "test/regex/cities_f1": {
+      "value": 0.971111,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.946661,
+      "ci_high": 0.989787
+    },
+    "test/regex/experience_years_f1": {
+      "value": 0.904459,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.871158,
+      "ci_high": 0.932912
+    },
+    "test/regex/employment_type_f1": {
+      "value": 0.901639,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.84,
+      "ci_high": 0.95146
+    },
+    "test/sft_1p7b_r16_clean/macro_f1": {
+      "value": 0.896087,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.881732,
+      "ci_high": 0.908691
+    },
+    "test/sft_1p7b_r16_clean/valid_json": {
+      "value": 0.997727,
+      "n": 439,
+      "denominator": 440,
+      "ci_low": 0.993182,
+      "ci_high": 1.0
+    },
+    "test/sft_1p7b_r16_clean/role_f1": {
+      "value": 0.707622,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.665148,
+      "ci_high": 0.75
+    },
+    "test/sft_1p7b_r16_clean/role_macro_f1": {
+      "value": 0.685512,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.601201,
+      "ci_high": 0.733573
+    },
+    "test/sft_1p7b_r16_clean/grade_f1": {
+      "value": 0.938776,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.904339,
+      "ci_high": 0.968037
+    },
+    "test/sft_1p7b_r16_clean/skills_f1": {
+      "value": 0.844642,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.820125,
+      "ci_high": 0.865975
+    },
+    "test/sft_1p7b_r16_clean/salary_f1": {
+      "value": 0.998621,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.995781,
+      "ci_high": 1.0
+    },
+    "test/sft_1p7b_r16_clean/work_format_f1": {
+      "value": 0.872549,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.815903,
+      "ci_high": 0.924751
+    },
+    "test/sft_1p7b_r16_clean/cities_f1": {
+      "value": 0.968889,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.944502,
+      "ci_high": 0.987793
+    },
+    "test/sft_1p7b_r16_clean/experience_years_f1": {
+      "value": 0.922345,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.89408,
+      "ci_high": 0.948995
+    },
+    "test/sft_1p7b_r16_clean/employment_type_f1": {
+      "value": 0.915254,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.854701,
+      "ci_high": 0.962963
+    },
+    "test/sft_4b_r16/macro_f1": {
+      "value": 0.894609,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.880707,
+      "ci_high": 0.907298
+    },
+    "test/sft_4b_r16/valid_json": {
+      "value": 1.0,
+      "n": 440,
+      "denominator": 440,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "test/sft_4b_r16/role_f1": {
+      "value": 0.725,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.681818,
+      "ci_high": 0.765909
+    },
+    "test/sft_4b_r16/role_macro_f1": {
+      "value": 0.692649,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.599367,
+      "ci_high": 0.751835
+    },
+    "test/sft_4b_r16/grade_f1": {
+      "value": 0.938272,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.904972,
+      "ci_high": 0.966942
+    },
+    "test/sft_4b_r16/skills_f1": {
+      "value": 0.850875,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.829646,
+      "ci_high": 0.870636
+    },
+    "test/sft_4b_r16/salary_f1": {
+      "value": 0.998621,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.995781,
+      "ci_high": 1.0
+    },
+    "test/sft_4b_r16/work_format_f1": {
+      "value": 0.847291,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.778846,
+      "ci_high": 0.904979
+    },
+    "test/sft_4b_r16/cities_f1": {
+      "value": 0.972253,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.947823,
+      "ci_high": 0.98999
+    },
+    "test/sft_4b_r16/experience_years_f1": {
+      "value": 0.91547,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.884174,
+      "ci_high": 0.942957
+    },
+    "test/sft_4b_r16/employment_type_f1": {
+      "value": 0.909091,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.849545,
+      "ci_high": 0.956522
+    },
+    "test/base_1p7b/macro_f1": {
+      "value": 0.108097,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.081223,
+      "ci_high": 0.136015
+    },
+    "test/base_1p7b/valid_json": {
+      "value": 0.147727,
+      "n": 65,
+      "denominator": 440,
+      "ci_low": 0.115909,
+      "ci_high": 0.184091
+    },
+    "test/base_1p7b/role_f1": {
+      "value": 0.051485,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.027505,
+      "ci_high": 0.078899
+    },
+    "test/base_1p7b/role_macro_f1": {
+      "value": 0.033412,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.016732,
+      "ci_high": 0.054582
+    },
+    "test/base_1p7b/grade_f1": {
+      "value": 0.186528,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.117021,
+      "ci_high": 0.260417
+    },
+    "test/base_1p7b/skills_f1": {
+      "value": 0.085352,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.052194,
+      "ci_high": 0.12356
+    },
+    "test/base_1p7b/salary_f1": {
+      "value": 0.053191,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.022222,
+      "ci_high": 0.087861
+    },
+    "test/base_1p7b/work_format_f1": {
+      "value": 0.138728,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.07362,
+      "ci_high": 0.211208
+    },
+    "test/base_1p7b/cities_f1": {
+      "value": 0.241636,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.186912,
+      "ci_high": 0.296574
+    },
+    "test/base_1p7b/experience_years_f1": {
+      "value": 0.01108,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.027859
+    },
+    "test/base_1p7b/employment_type_f1": {
+      "value": 0.096774,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.031496,
+      "ci_high": 0.174618
+    },
+    "test/sft_1p7b_clean_f16/macro_f1": {
+      "value": 0.882051,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.866699,
+      "ci_high": 0.896938
+    },
+    "test/sft_1p7b_clean_f16/valid_json": {
+      "value": 0.997727,
+      "n": 439,
+      "denominator": 440,
+      "ci_low": 0.993182,
+      "ci_high": 1.0
+    },
+    "test/sft_1p7b_clean_f16/role_f1": {
+      "value": 0.675768,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.629545,
+      "ci_high": 0.719019
+    },
+    "test/sft_1p7b_clean_f16/role_macro_f1": {
+      "value": 0.676012,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.59098,
+      "ci_high": 0.725389
+    },
+    "test/sft_1p7b_clean_f16/grade_f1": {
+      "value": 0.935484,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.899072,
+      "ci_high": 0.965988
+    },
+    "test/sft_1p7b_clean_f16/skills_f1": {
+      "value": 0.836988,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.812513,
+      "ci_high": 0.858395
+    },
+    "test/sft_1p7b_clean_f16/salary_f1": {
+      "value": 0.998621,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.995781,
+      "ci_high": 1.0
+    },
+    "test/sft_1p7b_clean_f16/work_format_f1": {
+      "value": 0.837209,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.771282,
+      "ci_high": 0.89797
+    },
+    "test/sft_1p7b_clean_f16/cities_f1": {
+      "value": 0.973626,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.956708,
+      "ci_high": 0.988082
+    },
+    "test/sft_1p7b_clean_f16/experience_years_f1": {
+      "value": 0.924765,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.895058,
+      "ci_high": 0.95092
+    },
+    "test/sft_1p7b_clean_f16/employment_type_f1": {
+      "value": 0.87395,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.796112,
+      "ci_high": 0.942032
+    },
+    "test/sft_1p7b_clean_q8_0/macro_f1": {
+      "value": 0.881409,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.866204,
+      "ci_high": 0.895405
+    },
+    "test/sft_1p7b_clean_q8_0/valid_json": {
+      "value": 1.0,
+      "n": 440,
+      "denominator": 440,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "test/sft_1p7b_clean_q8_0/role_f1": {
+      "value": 0.672727,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.627273,
+      "ci_high": 0.718182
+    },
+    "test/sft_1p7b_clean_q8_0/role_macro_f1": {
+      "value": 0.675144,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.58909,
+      "ci_high": 0.725355
+    },
+    "test/sft_1p7b_clean_q8_0/grade_f1": {
+      "value": 0.939759,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.903704,
+      "ci_high": 0.970149
+    },
+    "test/sft_1p7b_clean_q8_0/skills_f1": {
+      "value": 0.838965,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.815136,
+      "ci_high": 0.860255
+    },
+    "test/sft_1p7b_clean_q8_0/salary_f1": {
+      "value": 0.998621,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.995781,
+      "ci_high": 1.0
+    },
+    "test/sft_1p7b_clean_q8_0/work_format_f1": {
+      "value": 0.826291,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.758621,
+      "ci_high": 0.888889
+    },
+    "test/sft_1p7b_clean_q8_0/cities_f1": {
+      "value": 0.966814,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.941548,
+      "ci_high": 0.986426
+    },
+    "test/sft_1p7b_clean_q8_0/experience_years_f1": {
+      "value": 0.924765,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.895058,
+      "ci_high": 0.95092
+    },
+    "test/sft_1p7b_clean_q8_0/employment_type_f1": {
+      "value": 0.883333,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.807675,
+      "ci_high": 0.948151
+    },
+    "test/sft_1p7b_clean_q4_k_m/macro_f1": {
+      "value": 0.883161,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.867123,
+      "ci_high": 0.899081
+    },
+    "test/sft_1p7b_clean_q4_k_m/valid_json": {
+      "value": 0.995455,
+      "n": 438,
+      "denominator": 440,
+      "ci_low": 0.988636,
+      "ci_high": 1.0
+    },
+    "test/sft_1p7b_clean_q4_k_m/role_f1": {
+      "value": 0.715262,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.671217,
+      "ci_high": 0.755404
+    },
+    "test/sft_1p7b_clean_q4_k_m/role_macro_f1": {
+      "value": 0.693214,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.604792,
+      "ci_high": 0.745048
+    },
+    "test/sft_1p7b_clean_q4_k_m/grade_f1": {
+      "value": 0.931174,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.89243,
+      "ci_high": 0.962693
+    },
+    "test/sft_1p7b_clean_q4_k_m/skills_f1": {
+      "value": 0.835703,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.808201,
+      "ci_high": 0.858722
+    },
+    "test/sft_1p7b_clean_q4_k_m/salary_f1": {
+      "value": 0.998621,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.995781,
+      "ci_high": 1.0
+    },
+    "test/sft_1p7b_clean_q4_k_m/work_format_f1": {
+      "value": 0.803828,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.729993,
+      "ci_high": 0.8738
+    },
+    "test/sft_1p7b_clean_q4_k_m/cities_f1": {
+      "value": 0.975717,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.960362,
+      "ci_high": 0.988939
+    },
+    "test/sft_1p7b_clean_q4_k_m/experience_years_f1": {
+      "value": 0.931034,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.902591,
+      "ci_high": 0.956388
+    },
+    "test/sft_1p7b_clean_q4_k_m/employment_type_f1": {
+      "value": 0.87395,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.796112,
+      "ci_high": 0.942032
+    },
+    "test/sft_1p7b_clean_awq_schema/macro_f1": {
+      "value": 0.876408,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.860292,
+      "ci_high": 0.891269
+    },
+    "test/sft_1p7b_clean_awq_schema/valid_json": {
+      "value": 1.0,
+      "n": 440,
+      "denominator": 440,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "test/sft_1p7b_clean_awq_schema/role_f1": {
+      "value": 0.65,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.604545,
+      "ci_high": 0.693182
+    },
+    "test/sft_1p7b_clean_awq_schema/role_macro_f1": {
+      "value": 0.637885,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.547436,
+      "ci_high": 0.691962
+    },
+    "test/sft_1p7b_clean_awq_schema/grade_f1": {
+      "value": 0.952756,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.918913,
+      "ci_high": 0.979424
+    },
+    "test/sft_1p7b_clean_awq_schema/skills_f1": {
+      "value": 0.838608,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.814118,
+      "ci_high": 0.859469
+    },
+    "test/sft_1p7b_clean_awq_schema/salary_f1": {
+      "value": 0.998621,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.995781,
+      "ci_high": 1.0
+    },
+    "test/sft_1p7b_clean_awq_schema/work_format_f1": {
+      "value": 0.827273,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.757436,
+      "ci_high": 0.891092
+    },
+    "test/sft_1p7b_clean_awq_schema/cities_f1": {
+      "value": 0.970166,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.953535,
+      "ci_high": 0.984129
+    },
+    "test/sft_1p7b_clean_awq_schema/experience_years_f1": {
+      "value": 0.921384,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.892793,
+      "ci_high": 0.948721
+    },
+    "test/sft_1p7b_clean_awq_schema/employment_type_f1": {
+      "value": 0.852459,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.766302,
+      "ci_high": 0.929138
+    },
+    "test/teacher_qwen/macro_f1": {
+      "value": 0.824687,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.806352,
+      "ci_high": 0.841126
+    },
+    "test/teacher_qwen/valid_json": {
+      "value": 1.0,
+      "n": 440,
+      "denominator": 440,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "test/teacher_qwen/role_f1": {
+      "value": 0.745455,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.706818,
+      "ci_high": 0.786364
+    },
+    "test/teacher_qwen/role_macro_f1": {
+      "value": 0.699272,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.629437,
+      "ci_high": 0.74785
+    },
+    "test/teacher_qwen/grade_f1": {
+      "value": 0.827586,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.769231,
+      "ci_high": 0.882372
+    },
+    "test/teacher_qwen/skills_f1": {
+      "value": 0.630916,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.597163,
+      "ci_high": 0.664001
+    },
+    "test/teacher_qwen/salary_f1": {
+      "value": 0.913103,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.884291,
+      "ci_high": 0.941682
+    },
+    "test/teacher_qwen/work_format_f1": {
+      "value": 0.868293,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.809071,
+      "ci_high": 0.923077
+    },
+    "test/teacher_qwen/cities_f1": {
+      "value": 0.965293,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.946484,
+      "ci_high": 0.980879
+    },
+    "test/teacher_qwen/experience_years_f1": {
+      "value": 0.889571,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.85623,
+      "ci_high": 0.921017
+    },
+    "test/teacher_qwen/employment_type_f1": {
+      "value": 0.757282,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.646465,
+      "ci_high": 0.845381
+    },
+    "test/teacher_yandex/macro_f1": {
+      "value": 0.804866,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.786118,
+      "ci_high": 0.821061
+    },
+    "test/teacher_yandex/valid_json": {
+      "value": 1.0,
+      "n": 440,
+      "denominator": 440,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "test/teacher_yandex/role_f1": {
+      "value": 0.679545,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.638636,
+      "ci_high": 0.722727
+    },
+    "test/teacher_yandex/role_macro_f1": {
+      "value": 0.655151,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.593935,
+      "ci_high": 0.700873
+    },
+    "test/teacher_yandex/grade_f1": {
+      "value": 0.835714,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.779407,
+      "ci_high": 0.884892
+    },
+    "test/teacher_yandex/skills_f1": {
+      "value": 0.66373,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.631768,
+      "ci_high": 0.69478
+    },
+    "test/teacher_yandex/salary_f1": {
+      "value": 0.830812,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.793011,
+      "ci_high": 0.868036
+    },
+    "test/teacher_yandex/work_format_f1": {
+      "value": 0.824074,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.754538,
+      "ci_high": 0.887029
+    },
+    "test/teacher_yandex/cities_f1": {
+      "value": 0.968237,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.944979,
+      "ci_high": 0.985667
+    },
+    "test/teacher_yandex/experience_years_f1": {
+      "value": 0.847826,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.809128,
+      "ci_high": 0.885147
+    },
+    "test/teacher_yandex/employment_type_f1": {
+      "value": 0.788991,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.693069,
+      "ci_high": 0.872194
+    },
+    "test/sft_1p7b_r16_clean_minus_regex/macro_f1": {
+      "value": 0.006342,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.004482,
+      "ci_high": 0.017311
+    },
+    "test/sft_1p7b_r16_clean_minus_regex/valid_json": {
+      "value": -0.002273,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.006818,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_r16_clean_minus_regex/role_f1": {
+      "value": -0.003741,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.031699,
+      "ci_high": 0.025861
+    },
+    "test/sft_1p7b_r16_clean_minus_regex/role_macro_f1": {
+      "value": 0.023316,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.034473,
+      "ci_high": 0.082888
+    },
+    "test/sft_1p7b_r16_clean_minus_regex/grade_f1": {
+      "value": 0.018273,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.00785,
+      "ci_high": 0.048694
+    },
+    "test/sft_1p7b_r16_clean_minus_regex/skills_f1": {
+      "value": -0.008483,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.016529,
+      "ci_high": -0.001123
+    },
+    "test/sft_1p7b_r16_clean_minus_regex/salary_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_r16_clean_minus_regex/work_format_f1": {
+      "value": 0.015406,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.032845,
+      "ci_high": 0.064975
+    },
+    "test/sft_1p7b_r16_clean_minus_regex/cities_f1": {
+      "value": -0.002222,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.007997,
+      "ci_high": 0.002318
+    },
+    "test/sft_1p7b_r16_clean_minus_regex/experience_years_f1": {
+      "value": 0.017887,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.003442,
+      "ci_high": 0.034628
+    },
+    "test/sft_1p7b_r16_clean_minus_regex/employment_type_f1": {
+      "value": 0.013615,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.023628,
+      "ci_high": 0.055797
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_qwen/macro_f1": {
+      "value": 0.0714,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.053323,
+      "ci_high": 0.090161
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_qwen/valid_json": {
+      "value": -0.002273,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.006818,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_qwen/role_f1": {
+      "value": -0.037832,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.084091,
+      "ci_high": 0.009908
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_qwen/role_macro_f1": {
+      "value": -0.01376,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.086502,
+      "ci_high": 0.034368
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_qwen/grade_f1": {
+      "value": 0.111189,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.054874,
+      "ci_high": 0.17242
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_qwen/skills_f1": {
+      "value": 0.213726,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.176361,
+      "ci_high": 0.250944
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_qwen/salary_f1": {
+      "value": 0.085517,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.057284,
+      "ci_high": 0.114209
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_qwen/work_format_f1": {
+      "value": 0.004256,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.057472,
+      "ci_high": 0.066776
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_qwen/cities_f1": {
+      "value": 0.003596,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.022555,
+      "ci_high": 0.028274
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_qwen/experience_years_f1": {
+      "value": 0.032775,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.003027,
+      "ci_high": 0.065021
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_qwen/employment_type_f1": {
+      "value": 0.157973,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.060291,
+      "ci_high": 0.268935
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_yandex/macro_f1": {
+      "value": 0.091221,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.071935,
+      "ci_high": 0.111052
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_yandex/valid_json": {
+      "value": -0.002273,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.006818,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_yandex/role_f1": {
+      "value": 0.028077,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.015909,
+      "ci_high": 0.074425
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_yandex/role_macro_f1": {
+      "value": 0.030361,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0377,
+      "ci_high": 0.071605
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_yandex/grade_f1": {
+      "value": 0.103061,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.048184,
+      "ci_high": 0.159617
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_yandex/skills_f1": {
+      "value": 0.180912,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.146943,
+      "ci_high": 0.215132
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_yandex/salary_f1": {
+      "value": 0.167809,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.131207,
+      "ci_high": 0.205133
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_yandex/work_format_f1": {
+      "value": 0.048475,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.030001,
+      "ci_high": 0.132979
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_yandex/cities_f1": {
+      "value": 0.000652,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.013383,
+      "ci_high": 0.012729
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_yandex/experience_years_f1": {
+      "value": 0.074519,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.03982,
+      "ci_high": 0.110918
+    },
+    "test/sft_1p7b_r16_clean_minus_teacher_yandex/employment_type_f1": {
+      "value": 0.126263,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.03682,
+      "ci_high": 0.224789
+    },
+    "test/sft_1p7b_r16_clean_minus_base_1p7b/macro_f1": {
+      "value": 0.78799,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.756694,
+      "ci_high": 0.817328
+    },
+    "test/sft_1p7b_r16_clean_minus_base_1p7b/valid_json": {
+      "value": 0.85,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.813636,
+      "ci_high": 0.881818
+    },
+    "test/sft_1p7b_r16_clean_minus_base_1p7b/role_f1": {
+      "value": 0.656137,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.607411,
+      "ci_high": 0.703519
+    },
+    "test/sft_1p7b_r16_clean_minus_base_1p7b/role_macro_f1": {
+      "value": 0.6521,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.565183,
+      "ci_high": 0.701653
+    },
+    "test/sft_1p7b_r16_clean_minus_base_1p7b/grade_f1": {
+      "value": 0.752247,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.668493,
+      "ci_high": 0.826851
+    },
+    "test/sft_1p7b_r16_clean_minus_base_1p7b/skills_f1": {
+      "value": 0.759291,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.71733,
+      "ci_high": 0.79929
+    },
+    "test/sft_1p7b_r16_clean_minus_base_1p7b/salary_f1": {
+      "value": 0.945429,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.910082,
+      "ci_high": 0.97542
+    },
+    "test/sft_1p7b_r16_clean_minus_base_1p7b/work_format_f1": {
+      "value": 0.733821,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.651393,
+      "ci_high": 0.81445
+    },
+    "test/sft_1p7b_r16_clean_minus_base_1p7b/cities_f1": {
+      "value": 0.727253,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.664628,
+      "ci_high": 0.785447
+    },
+    "test/sft_1p7b_r16_clean_minus_base_1p7b/experience_years_f1": {
+      "value": 0.911265,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.878459,
+      "ci_high": 0.941365
+    },
+    "test/sft_1p7b_r16_clean_minus_base_1p7b/employment_type_f1": {
+      "value": 0.81848,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.720822,
+      "ci_high": 0.904906
+    },
+    "test/sft_1p7b_r16_clean_minus_sft_4b_r16/macro_f1": {
+      "value": 0.001478,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.007471,
+      "ci_high": 0.01014
+    },
+    "test/sft_1p7b_r16_clean_minus_sft_4b_r16/valid_json": {
+      "value": -0.002273,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.006818,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_r16_clean_minus_sft_4b_r16/role_f1": {
+      "value": -0.017378,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.041558,
+      "ci_high": 0.007018
+    },
+    "test/sft_1p7b_r16_clean_minus_sft_4b_r16/role_macro_f1": {
+      "value": -0.007136,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.047083,
+      "ci_high": 0.034459
+    },
+    "test/sft_1p7b_r16_clean_minus_sft_4b_r16/grade_f1": {
+      "value": 0.000504,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.015772,
+      "ci_high": 0.017345
+    },
+    "test/sft_1p7b_r16_clean_minus_sft_4b_r16/skills_f1": {
+      "value": -0.006233,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.014487,
+      "ci_high": 0.000912
+    },
+    "test/sft_1p7b_r16_clean_minus_sft_4b_r16/salary_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_r16_clean_minus_sft_4b_r16/work_format_f1": {
+      "value": 0.025258,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.021167,
+      "ci_high": 0.07387
+    },
+    "test/sft_1p7b_r16_clean_minus_sft_4b_r16/cities_f1": {
+      "value": -0.003364,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.011137,
+      "ci_high": 0.00229
+    },
+    "test/sft_1p7b_r16_clean_minus_sft_4b_r16/experience_years_f1": {
+      "value": 0.006875,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.007031,
+      "ci_high": 0.021351
+    },
+    "test/sft_1p7b_r16_clean_minus_sft_4b_r16/employment_type_f1": {
+      "value": 0.006163,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.030023,
+      "ci_high": 0.044315
+    },
+    "test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/macro_f1": {
+      "value": -0.014036,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.02626,
+      "ci_high": -0.002263
+    },
+    "test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/role_f1": {
+      "value": -0.031854,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.054609,
+      "ci_high": -0.009112
+    },
+    "test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/role_macro_f1": {
+      "value": -0.0095,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.033208,
+      "ci_high": 0.013741
+    },
+    "test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/grade_f1": {
+      "value": -0.003292,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.026928,
+      "ci_high": 0.017575
+    },
+    "test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/skills_f1": {
+      "value": -0.007654,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.013276,
+      "ci_high": -0.002021
+    },
+    "test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/salary_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/work_format_f1": {
+      "value": -0.03534,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.096584,
+      "ci_high": 0.021646
+    },
+    "test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/cities_f1": {
+      "value": 0.004737,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.010531,
+      "ci_high": 0.026342
+    },
+    "test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/experience_years_f1": {
+      "value": 0.002419,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.013189,
+      "ci_high": 0.017531
+    },
+    "test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/employment_type_f1": {
+      "value": -0.041305,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.113212,
+      "ci_high": 0.018891
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/macro_f1": {
+      "value": -0.014678,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.027534,
+      "ci_high": -0.002323
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/valid_json": {
+      "value": 0.002273,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.006818
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/role_f1": {
+      "value": -0.034895,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.059091,
+      "ci_high": -0.012899
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/role_macro_f1": {
+      "value": -0.010368,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.034513,
+      "ci_high": 0.012371
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/grade_f1": {
+      "value": 0.000984,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.024833,
+      "ci_high": 0.024559
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/skills_f1": {
+      "value": -0.005677,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.012052,
+      "ci_high": 0.000524
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/salary_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/work_format_f1": {
+      "value": -0.046258,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.106153,
+      "ci_high": 0.008734
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/cities_f1": {
+      "value": -0.002075,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.010814,
+      "ci_high": 0.005631
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/experience_years_f1": {
+      "value": 0.002419,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.013189,
+      "ci_high": 0.017531
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/employment_type_f1": {
+      "value": -0.031921,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.105426,
+      "ci_high": 0.031713
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/macro_f1": {
+      "value": -0.012926,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.024764,
+      "ci_high": -0.001145
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/valid_json": {
+      "value": -0.002273,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.006818,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/role_f1": {
+      "value": 0.00764,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.017424,
+      "ci_high": 0.030643
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/role_macro_f1": {
+      "value": 0.007702,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.026389,
+      "ci_high": 0.035151
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/grade_f1": {
+      "value": -0.007601,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.032874,
+      "ci_high": 0.013926
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/skills_f1": {
+      "value": -0.008939,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.019714,
+      "ci_high": 8.7e-05
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/salary_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/work_format_f1": {
+      "value": -0.068721,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.128883,
+      "ci_high": -0.013304
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/cities_f1": {
+      "value": 0.006829,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.004672,
+      "ci_high": 0.026418
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/experience_years_f1": {
+      "value": 0.008689,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.00291,
+      "ci_high": 0.021039
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/employment_type_f1": {
+      "value": -0.041305,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.113212,
+      "ci_high": 0.018891
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/macro_f1": {
+      "value": -0.019679,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.03365,
+      "ci_high": -0.005808
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/valid_json": {
+      "value": 0.002273,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.006818
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/role_f1": {
+      "value": -0.057622,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.082688,
+      "ci_high": -0.03489
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/role_macro_f1": {
+      "value": -0.047628,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.080129,
+      "ci_high": -0.015771
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/grade_f1": {
+      "value": 0.01398,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.016873,
+      "ci_high": 0.044679
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/skills_f1": {
+      "value": -0.006035,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.012938,
+      "ci_high": 0.00058
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/salary_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/work_format_f1": {
+      "value": -0.045276,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.108973,
+      "ci_high": 0.012663
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/cities_f1": {
+      "value": 0.001277,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.016891,
+      "ci_high": 0.025082
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/experience_years_f1": {
+      "value": -0.000962,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.013785,
+      "ci_high": 0.012513
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/employment_type_f1": {
+      "value": -0.062795,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.141304,
+      "ci_high": 0.00301
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/macro_f1": {
+      "value": -0.000642,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.005467,
+      "ci_high": 0.004743
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/valid_json": {
+      "value": 0.002273,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.006818
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/role_f1": {
+      "value": -0.003041,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.011408,
+      "ci_high": 0.004545
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/role_macro_f1": {
+      "value": -0.000868,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.009113,
+      "ci_high": 0.008203
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/grade_f1": {
+      "value": 0.004275,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.013891
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/skills_f1": {
+      "value": 0.001977,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.002493,
+      "ci_high": 0.00672
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/salary_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/work_format_f1": {
+      "value": -0.010918,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.028263,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/cities_f1": {
+      "value": -0.006812,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.026934,
+      "ci_high": 0.006813
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/experience_years_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/employment_type_f1": {
+      "value": 0.009384,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.031038
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/macro_f1": {
+      "value": 0.00111,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.004539,
+      "ci_high": 0.006395
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/valid_json": {
+      "value": -0.002273,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.006818,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/role_f1": {
+      "value": 0.039494,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.019756,
+      "ci_high": 0.060804
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/role_macro_f1": {
+      "value": 0.017202,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.014041,
+      "ci_high": 0.045022
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/grade_f1": {
+      "value": -0.00431,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.020205,
+      "ci_high": 0.009286
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/skills_f1": {
+      "value": -0.001285,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.011872,
+      "ci_high": 0.007759
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/salary_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/work_format_f1": {
+      "value": -0.033382,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.069338,
+      "ci_high": -0.005245
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/cities_f1": {
+      "value": 0.002091,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.006567
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/experience_years_f1": {
+      "value": 0.00627,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.015798
+    },
+    "test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/employment_type_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/macro_f1": {
+      "value": -0.005643,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.015382,
+      "ci_high": 0.004464
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/valid_json": {
+      "value": 0.002273,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.006818
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/role_f1": {
+      "value": -0.025768,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.043182,
+      "ci_high": -0.009091
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/role_macro_f1": {
+      "value": -0.038128,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.068382,
+      "ci_high": -0.00839
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/grade_f1": {
+      "value": 0.017272,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.000235,
+      "ci_high": 0.039072
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/skills_f1": {
+      "value": 0.001619,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.005005,
+      "ci_high": 0.008722
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/salary_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/work_format_f1": {
+      "value": -0.009937,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.056823,
+      "ci_high": 0.032908
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/cities_f1": {
+      "value": -0.003461,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.012482,
+      "ci_high": 0.005653
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/experience_years_f1": {
+      "value": -0.003381,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.017394,
+      "ci_high": 0.010766
+    },
+    "test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/employment_type_f1": {
+      "value": -0.021491,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.068916,
+      "ci_high": 0.016607
+    },
+    "test/teacher_qwen_minus_regex/macro_f1": {
+      "value": -0.065058,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.084368,
+      "ci_high": -0.046156
+    },
+    "test/teacher_qwen_minus_regex/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/teacher_qwen_minus_regex/role_f1": {
+      "value": 0.034091,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.015909,
+      "ci_high": 0.081818
+    },
+    "test/teacher_qwen_minus_regex/role_macro_f1": {
+      "value": 0.037076,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.033598,
+      "ci_high": 0.119711
+    },
+    "test/teacher_qwen_minus_regex/grade_f1": {
+      "value": -0.092916,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.152086,
+      "ci_high": -0.038645
+    },
+    "test/teacher_qwen_minus_regex/skills_f1": {
+      "value": -0.222209,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.259271,
+      "ci_high": -0.185276
+    },
+    "test/teacher_qwen_minus_regex/salary_f1": {
+      "value": -0.085517,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.114209,
+      "ci_high": -0.057284
+    },
+    "test/teacher_qwen_minus_regex/work_format_f1": {
+      "value": 0.01115,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.052698,
+      "ci_high": 0.072122
+    },
+    "test/teacher_qwen_minus_regex/cities_f1": {
+      "value": -0.005818,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.03017,
+      "ci_high": 0.019749
+    },
+    "test/teacher_qwen_minus_regex/experience_years_f1": {
+      "value": -0.014888,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.045003,
+      "ci_high": 0.014995
+    },
+    "test/teacher_qwen_minus_regex/employment_type_f1": {
+      "value": -0.144358,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.248229,
+      "ci_high": -0.050165
+    },
+    "test/teacher_yandex_minus_regex/macro_f1": {
+      "value": -0.084879,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.105351,
+      "ci_high": -0.064532
+    },
+    "test/teacher_yandex_minus_regex/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/teacher_yandex_minus_regex/role_f1": {
+      "value": -0.031818,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.077273,
+      "ci_high": 0.015966
+    },
+    "test/teacher_yandex_minus_regex/role_macro_f1": {
+      "value": -0.007045,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.069496,
+      "ci_high": 0.072135
+    },
+    "test/teacher_yandex_minus_regex/grade_f1": {
+      "value": -0.084788,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.143003,
+      "ci_high": -0.025087
+    },
+    "test/teacher_yandex_minus_regex/skills_f1": {
+      "value": -0.189395,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.223604,
+      "ci_high": -0.156367
+    },
+    "test/teacher_yandex_minus_regex/salary_f1": {
+      "value": -0.167809,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.205133,
+      "ci_high": -0.131207
+    },
+    "test/teacher_yandex_minus_regex/work_format_f1": {
+      "value": -0.033069,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.117079,
+      "ci_high": 0.050219
+    },
+    "test/teacher_yandex_minus_regex/cities_f1": {
+      "value": -0.002875,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.014487,
+      "ci_high": 0.010461
+    },
+    "test/teacher_yandex_minus_regex/experience_years_f1": {
+      "value": -0.056633,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.092738,
+      "ci_high": -0.022048
+    },
+    "test/teacher_yandex_minus_regex/employment_type_f1": {
+      "value": -0.112649,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.208802,
+      "ci_high": -0.021163
+    },
+    "test/teacher_qwen_minus_teacher_yandex/macro_f1": {
+      "value": 0.019821,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.000897,
+      "ci_high": 0.038498
+    },
+    "test/teacher_qwen_minus_teacher_yandex/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "test/teacher_qwen_minus_teacher_yandex/role_f1": {
+      "value": 0.065909,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.027273,
+      "ci_high": 0.102273
+    },
+    "test/teacher_qwen_minus_teacher_yandex/role_macro_f1": {
+      "value": 0.044121,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.004692,
+      "ci_high": 0.083787
+    },
+    "test/teacher_qwen_minus_teacher_yandex/grade_f1": {
+      "value": -0.008128,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.072459,
+      "ci_high": 0.054014
+    },
+    "test/teacher_qwen_minus_teacher_yandex/skills_f1": {
+      "value": -0.032814,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.05655,
+      "ci_high": -0.009676
+    },
+    "test/teacher_qwen_minus_teacher_yandex/salary_f1": {
+      "value": 0.082292,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.041,
+      "ci_high": 0.124313
+    },
+    "test/teacher_qwen_minus_teacher_yandex/work_format_f1": {
+      "value": 0.044219,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.021785,
+      "ci_high": 0.112354
+    },
+    "test/teacher_qwen_minus_teacher_yandex/cities_f1": {
+      "value": -0.002944,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.025363,
+      "ci_high": 0.022343
+    },
+    "test/teacher_qwen_minus_teacher_yandex/experience_years_f1": {
+      "value": 0.041744,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.01704,
+      "ci_high": 0.069848
+    },
+    "test/teacher_qwen_minus_teacher_yandex/employment_type_f1": {
+      "value": -0.031709,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.133336,
+      "ci_high": 0.066424
+    },
+    "tg_test/regex/macro_f1": {
+      "value": 0.647288,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.612517,
+      "ci_high": 0.676725
+    },
+    "tg_test/regex/valid_json": {
+      "value": 1.0,
+      "n": 130,
+      "denominator": 130,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_test/regex/role_f1": {
+      "value": 0.653846,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.576923,
+      "ci_high": 0.730962
+    },
+    "tg_test/regex/role_macro_f1": {
+      "value": 0.604747,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.484059,
+      "ci_high": 0.675108
+    },
+    "tg_test/regex/grade_f1": {
+      "value": 0.66055,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.543689,
+      "ci_high": 0.760008
+    },
+    "tg_test/regex/skills_f1": {
+      "value": 0.762511,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.712433,
+      "ci_high": 0.804601
+    },
+    "tg_test/regex/salary_f1": {
+      "value": 0.626506,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.486486,
+      "ci_high": 0.739772
+    },
+    "tg_test/regex/work_format_f1": {
+      "value": 0.804348,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.733728,
+      "ci_high": 0.870466
+    },
+    "tg_test/regex/cities_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/regex/experience_years_f1": {
+      "value": 0.833333,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.71873,
+      "ci_high": 0.926847
+    },
+    "tg_test/regex/employment_type_f1": {
+      "value": 0.837209,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.689655,
+      "ci_high": 0.9375
+    },
+    "tg_test/sft_1p7b_r16_clean/macro_f1": {
+      "value": 0.841569,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.810404,
+      "ci_high": 0.86698
+    },
+    "tg_test/sft_1p7b_r16_clean/valid_json": {
+      "value": 1.0,
+      "n": 130,
+      "denominator": 130,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_test/sft_1p7b_r16_clean/role_f1": {
+      "value": 0.769231,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.7,
+      "ci_high": 0.838462
+    },
+    "tg_test/sft_1p7b_r16_clean/role_macro_f1": {
+      "value": 0.743154,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.635148,
+      "ci_high": 0.809131
+    },
+    "tg_test/sft_1p7b_r16_clean/grade_f1": {
+      "value": 0.75,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.647059,
+      "ci_high": 0.837619
+    },
+    "tg_test/sft_1p7b_r16_clean/skills_f1": {
+      "value": 0.820333,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.781176,
+      "ci_high": 0.854627
+    },
+    "tg_test/sft_1p7b_r16_clean/salary_f1": {
+      "value": 0.915888,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.846154,
+      "ci_high": 0.971975
+    },
+    "tg_test/sft_1p7b_r16_clean/work_format_f1": {
+      "value": 0.819512,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.74418,
+      "ci_high": 0.889952
+    },
+    "tg_test/sft_1p7b_r16_clean/cities_f1": {
+      "value": 0.932584,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.875,
+      "ci_high": 0.975908
+    },
+    "tg_test/sft_1p7b_r16_clean/experience_years_f1": {
+      "value": 0.975,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.935065,
+      "ci_high": 1.0
+    },
+    "tg_test/sft_1p7b_r16_clean/employment_type_f1": {
+      "value": 0.75,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.571429,
+      "ci_high": 0.88
+    },
+    "tg_test/sft_4b_r16/macro_f1": {
+      "value": 0.83416,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.800719,
+      "ci_high": 0.860722
+    },
+    "tg_test/sft_4b_r16/valid_json": {
+      "value": 1.0,
+      "n": 130,
+      "denominator": 130,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_test/sft_4b_r16/role_f1": {
+      "value": 0.753846,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.676923,
+      "ci_high": 0.823077
+    },
+    "tg_test/sft_4b_r16/role_macro_f1": {
+      "value": 0.71496,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.609765,
+      "ci_high": 0.780634
+    },
+    "tg_test/sft_4b_r16/grade_f1": {
+      "value": 0.75,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.646465,
+      "ci_high": 0.836395
+    },
+    "tg_test/sft_4b_r16/skills_f1": {
+      "value": 0.825933,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.791102,
+      "ci_high": 0.859272
+    },
+    "tg_test/sft_4b_r16/salary_f1": {
+      "value": 0.900901,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.824742,
+      "ci_high": 0.967213
+    },
+    "tg_test/sft_4b_r16/work_format_f1": {
+      "value": 0.84878,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.776784,
+      "ci_high": 0.914586
+    },
+    "tg_test/sft_4b_r16/cities_f1": {
+      "value": 0.94382,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.848485,
+      "ci_high": 0.995075
+    },
+    "tg_test/sft_4b_r16/experience_years_f1": {
+      "value": 0.9,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.80644,
+      "ci_high": 0.972991
+    },
+    "tg_test/sft_4b_r16/employment_type_f1": {
+      "value": 0.75,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.571429,
+      "ci_high": 0.88
+    },
+    "tg_test/base_1p7b/macro_f1": {
+      "value": 0.184066,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.129424,
+      "ci_high": 0.236627
+    },
+    "tg_test/base_1p7b/valid_json": {
+      "value": 0.246154,
+      "n": 32,
+      "denominator": 130,
+      "ci_low": 0.176731,
+      "ci_high": 0.323077
+    },
+    "tg_test/base_1p7b/role_f1": {
+      "value": 0.111111,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.049375,
+      "ci_high": 0.184971
+    },
+    "tg_test/base_1p7b/role_macro_f1": {
+      "value": 0.069306,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.02173,
+      "ci_high": 0.110249
+    },
+    "tg_test/base_1p7b/grade_f1": {
+      "value": 0.29703,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.172028,
+      "ci_high": 0.414431
+    },
+    "tg_test/base_1p7b/skills_f1": {
+      "value": 0.187995,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.112192,
+      "ci_high": 0.264073
+    },
+    "tg_test/base_1p7b/salary_f1": {
+      "value": 0.068966,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.172414
+    },
+    "tg_test/base_1p7b/work_format_f1": {
+      "value": 0.266667,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.16541,
+      "ci_high": 0.366197
+    },
+    "tg_test/base_1p7b/cities_f1": {
+      "value": 0.322581,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.194438,
+      "ci_high": 0.465546
+    },
+    "tg_test/base_1p7b/experience_years_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/base_1p7b/employment_type_f1": {
+      "value": 0.218182,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.075472,
+      "ci_high": 0.369259
+    },
+    "tg_test/sft_1p7b_clean_f16/macro_f1": {
+      "value": 0.847371,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.815087,
+      "ci_high": 0.873295
+    },
+    "tg_test/sft_1p7b_clean_f16/valid_json": {
+      "value": 1.0,
+      "n": 130,
+      "denominator": 130,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_test/sft_1p7b_clean_f16/role_f1": {
+      "value": 0.753846,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.684615,
+      "ci_high": 0.830769
+    },
+    "tg_test/sft_1p7b_clean_f16/role_macro_f1": {
+      "value": 0.70726,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.611912,
+      "ci_high": 0.768999
+    },
+    "tg_test/sft_1p7b_clean_f16/grade_f1": {
+      "value": 0.806202,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.713178,
+      "ci_high": 0.8871
+    },
+    "tg_test/sft_1p7b_clean_f16/skills_f1": {
+      "value": 0.838482,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.802043,
+      "ci_high": 0.869096
+    },
+    "tg_test/sft_1p7b_clean_f16/salary_f1": {
+      "value": 0.875,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.792057,
+      "ci_high": 0.945736
+    },
+    "tg_test/sft_1p7b_clean_f16/work_format_f1": {
+      "value": 0.801932,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.726414,
+      "ci_high": 0.876856
+    },
+    "tg_test/sft_1p7b_clean_f16/cities_f1": {
+      "value": 0.913043,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.816887,
+      "ci_high": 0.978496
+    },
+    "tg_test/sft_1p7b_clean_f16/experience_years_f1": {
+      "value": 0.926829,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.852424,
+      "ci_high": 0.985925
+    },
+    "tg_test/sft_1p7b_clean_f16/employment_type_f1": {
+      "value": 0.863636,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.727273,
+      "ci_high": 0.954562
+    },
+    "tg_test/sft_1p7b_clean_q8_0/macro_f1": {
+      "value": 0.846256,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.814553,
+      "ci_high": 0.872092
+    },
+    "tg_test/sft_1p7b_clean_q8_0/valid_json": {
+      "value": 1.0,
+      "n": 130,
+      "denominator": 130,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_test/sft_1p7b_clean_q8_0/role_f1": {
+      "value": 0.753846,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.684423,
+      "ci_high": 0.830769
+    },
+    "tg_test/sft_1p7b_clean_q8_0/role_macro_f1": {
+      "value": 0.703789,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.602745,
+      "ci_high": 0.765036
+    },
+    "tg_test/sft_1p7b_clean_q8_0/grade_f1": {
+      "value": 0.806202,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.713178,
+      "ci_high": 0.8871
+    },
+    "tg_test/sft_1p7b_clean_q8_0/skills_f1": {
+      "value": 0.839223,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.802546,
+      "ci_high": 0.870488
+    },
+    "tg_test/sft_1p7b_clean_q8_0/salary_f1": {
+      "value": 0.875,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.792057,
+      "ci_high": 0.945736
+    },
+    "tg_test/sft_1p7b_clean_q8_0/work_format_f1": {
+      "value": 0.792271,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.713568,
+      "ci_high": 0.870381
+    },
+    "tg_test/sft_1p7b_clean_q8_0/cities_f1": {
+      "value": 0.913043,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.816887,
+      "ci_high": 0.978496
+    },
+    "tg_test/sft_1p7b_clean_q8_0/experience_years_f1": {
+      "value": 0.926829,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.852424,
+      "ci_high": 0.985925
+    },
+    "tg_test/sft_1p7b_clean_q8_0/employment_type_f1": {
+      "value": 0.863636,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.727273,
+      "ci_high": 0.954562
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m/macro_f1": {
+      "value": 0.852154,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.822476,
+      "ci_high": 0.878016
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m/valid_json": {
+      "value": 1.0,
+      "n": 130,
+      "denominator": 130,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m/role_f1": {
+      "value": 0.769231,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.692308,
+      "ci_high": 0.838462
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m/role_macro_f1": {
+      "value": 0.727403,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.630726,
+      "ci_high": 0.789093
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m/grade_f1": {
+      "value": 0.796875,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.703125,
+      "ci_high": 0.878788
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m/skills_f1": {
+      "value": 0.842568,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.809355,
+      "ci_high": 0.872033
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m/salary_f1": {
+      "value": 0.872727,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.787234,
+      "ci_high": 0.947368
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m/work_format_f1": {
+      "value": 0.84058,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.76777,
+      "ci_high": 0.907319
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m/cities_f1": {
+      "value": 0.918033,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.821769,
+      "ci_high": 0.981484
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m/experience_years_f1": {
+      "value": 0.91358,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.829774,
+      "ci_high": 0.979602
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m/employment_type_f1": {
+      "value": 0.863636,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.727273,
+      "ci_high": 0.954562
+    },
+    "tg_test/sft_1p7b_clean_awq_schema/macro_f1": {
+      "value": 0.853721,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.821608,
+      "ci_high": 0.879461
+    },
+    "tg_test/sft_1p7b_clean_awq_schema/valid_json": {
+      "value": 1.0,
+      "n": 130,
+      "denominator": 130,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_test/sft_1p7b_clean_awq_schema/role_f1": {
+      "value": 0.769231,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.692308,
+      "ci_high": 0.838462
+    },
+    "tg_test/sft_1p7b_clean_awq_schema/role_macro_f1": {
+      "value": 0.709194,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.59838,
+      "ci_high": 0.77739
+    },
+    "tg_test/sft_1p7b_clean_awq_schema/grade_f1": {
+      "value": 0.850746,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.765949,
+      "ci_high": 0.922103
+    },
+    "tg_test/sft_1p7b_clean_awq_schema/skills_f1": {
+      "value": 0.827832,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.789673,
+      "ci_high": 0.860254
+    },
+    "tg_test/sft_1p7b_clean_awq_schema/salary_f1": {
+      "value": 0.899083,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.822202,
+      "ci_high": 0.963653
+    },
+    "tg_test/sft_1p7b_clean_awq_schema/work_format_f1": {
+      "value": 0.817308,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.741776,
+      "ci_high": 0.890832
+    },
+    "tg_test/sft_1p7b_clean_awq_schema/cities_f1": {
+      "value": 0.913043,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.816887,
+      "ci_high": 0.978496
+    },
+    "tg_test/sft_1p7b_clean_awq_schema/experience_years_f1": {
+      "value": 0.888889,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.790107,
+      "ci_high": 0.973684
+    },
+    "tg_test/sft_1p7b_clean_awq_schema/employment_type_f1": {
+      "value": 0.863636,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.727273,
+      "ci_high": 0.954562
+    },
+    "tg_test/teacher_qwen/macro_f1": {
+      "value": 0.790828,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.751819,
+      "ci_high": 0.824722
+    },
+    "tg_test/teacher_qwen/valid_json": {
+      "value": 1.0,
+      "n": 130,
+      "denominator": 130,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_test/teacher_qwen/role_f1": {
+      "value": 0.795367,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.725869,
+      "ci_high": 0.860465
+    },
+    "tg_test/teacher_qwen/role_macro_f1": {
+      "value": 0.763686,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.667393,
+      "ci_high": 0.825085
+    },
+    "tg_test/teacher_qwen/grade_f1": {
+      "value": 0.713178,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.601766,
+      "ci_high": 0.814299
+    },
+    "tg_test/teacher_qwen/skills_f1": {
+      "value": 0.741538,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.685604,
+      "ci_high": 0.789437
+    },
+    "tg_test/teacher_qwen/salary_f1": {
+      "value": 0.852174,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.756303,
+      "ci_high": 0.933333
+    },
+    "tg_test/teacher_qwen/work_format_f1": {
+      "value": 0.79803,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.712961,
+      "ci_high": 0.875691
+    },
+    "tg_test/teacher_qwen/cities_f1": {
+      "value": 0.928177,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.831848,
+      "ci_high": 0.9932
+    },
+    "tg_test/teacher_qwen/experience_years_f1": {
+      "value": 0.813953,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.703282,
+      "ci_high": 0.907263
+    },
+    "tg_test/teacher_qwen/employment_type_f1": {
+      "value": 0.684211,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.47049,
+      "ci_high": 0.833333
+    },
+    "tg_test/teacher_yandex/macro_f1": {
+      "value": 0.792893,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.755251,
+      "ci_high": 0.824418
+    },
+    "tg_test/teacher_yandex/valid_json": {
+      "value": 1.0,
+      "n": 130,
+      "denominator": 130,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "tg_test/teacher_yandex/role_f1": {
+      "value": 0.707692,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.630769,
+      "ci_high": 0.784615
+    },
+    "tg_test/teacher_yandex/role_macro_f1": {
+      "value": 0.701903,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.590424,
+      "ci_high": 0.766305
+    },
+    "tg_test/teacher_yandex/grade_f1": {
+      "value": 0.80315,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.710265,
+      "ci_high": 0.878788
+    },
+    "tg_test/teacher_yandex/skills_f1": {
+      "value": 0.751762,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.702916,
+      "ci_high": 0.793037
+    },
+    "tg_test/teacher_yandex/salary_f1": {
+      "value": 0.852174,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.760331,
+      "ci_high": 0.932356
+    },
+    "tg_test/teacher_yandex/work_format_f1": {
+      "value": 0.782609,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.704225,
+      "ci_high": 0.859903
+    },
+    "tg_test/teacher_yandex/cities_f1": {
+      "value": 0.835821,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.735451,
+      "ci_high": 0.909873
+    },
+    "tg_test/teacher_yandex/experience_years_f1": {
+      "value": 0.837209,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.733317,
+      "ci_high": 0.928571
+    },
+    "tg_test/teacher_yandex/employment_type_f1": {
+      "value": 0.772727,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.615385,
+      "ci_high": 0.889007
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_regex/macro_f1": {
+      "value": 0.19428,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.1635,
+      "ci_high": 0.225097
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_regex/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_regex/role_f1": {
+      "value": 0.115385,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.030769,
+      "ci_high": 0.2
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_regex/role_macro_f1": {
+      "value": 0.138407,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.047936,
+      "ci_high": 0.240018
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_regex/grade_f1": {
+      "value": 0.08945,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.004558,
+      "ci_high": 0.175439
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_regex/skills_f1": {
+      "value": 0.057822,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.025326,
+      "ci_high": 0.099814
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_regex/salary_f1": {
+      "value": 0.289382,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.173076,
+      "ci_high": 0.425313
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_regex/work_format_f1": {
+      "value": 0.015164,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.075195,
+      "ci_high": 0.104806
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_regex/cities_f1": {
+      "value": 0.932584,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.875,
+      "ci_high": 0.975908
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_regex/experience_years_f1": {
+      "value": 0.141667,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.044383,
+      "ci_high": 0.263867
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_regex/employment_type_f1": {
+      "value": -0.087209,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.215005,
+      "ci_high": 0.01786
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_qwen/macro_f1": {
+      "value": 0.05074,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.022103,
+      "ci_high": 0.079965
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_qwen/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_qwen/role_f1": {
+      "value": -0.026136,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.090701,
+      "ci_high": 0.040373
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_qwen/role_macro_f1": {
+      "value": -0.020532,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.093828,
+      "ci_high": 0.046031
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_qwen/grade_f1": {
+      "value": 0.036822,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.081488,
+      "ci_high": 0.148924
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_qwen/skills_f1": {
+      "value": 0.078795,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.029312,
+      "ci_high": 0.132902
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_qwen/salary_f1": {
+      "value": 0.063714,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.005665,
+      "ci_high": 0.144887
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_qwen/work_format_f1": {
+      "value": 0.021483,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.035221,
+      "ci_high": 0.081867
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_qwen/cities_f1": {
+      "value": 0.004407,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.043684,
+      "ci_high": 0.065935
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_qwen/experience_years_f1": {
+      "value": 0.161047,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.073453,
+      "ci_high": 0.267117
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_qwen/employment_type_f1": {
+      "value": 0.065789,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.175078
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_yandex/macro_f1": {
+      "value": 0.048676,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.024648,
+      "ci_high": 0.073037
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_yandex/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_yandex/role_f1": {
+      "value": 0.061538,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.130769
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_yandex/role_macro_f1": {
+      "value": 0.041251,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.03751,
+      "ci_high": 0.130389
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_yandex/grade_f1": {
+      "value": -0.05315,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.141269,
+      "ci_high": 0.026743
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_yandex/skills_f1": {
+      "value": 0.068571,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.028967,
+      "ci_high": 0.112916
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_yandex/salary_f1": {
+      "value": 0.063714,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.013442,
+      "ci_high": 0.119215
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_yandex/work_format_f1": {
+      "value": 0.036903,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.021736,
+      "ci_high": 0.098854
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_yandex/cities_f1": {
+      "value": 0.096763,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.045069,
+      "ci_high": 0.160359
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_yandex/experience_years_f1": {
+      "value": 0.137791,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.052139,
+      "ci_high": 0.238095
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_teacher_yandex/employment_type_f1": {
+      "value": -0.022727,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.133333,
+      "ci_high": 0.065682
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_base_1p7b/macro_f1": {
+      "value": 0.657502,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.60716,
+      "ci_high": 0.711068
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_base_1p7b/valid_json": {
+      "value": 0.753846,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.676923,
+      "ci_high": 0.823269
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_base_1p7b/role_f1": {
+      "value": 0.65812,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.567359,
+      "ci_high": 0.750627
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_base_1p7b/role_macro_f1": {
+      "value": 0.673848,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.576184,
+      "ci_high": 0.746086
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_base_1p7b/grade_f1": {
+      "value": 0.45297,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.31371,
+      "ci_high": 0.586456
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_base_1p7b/skills_f1": {
+      "value": 0.632338,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.54396,
+      "ci_high": 0.721122
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_base_1p7b/salary_f1": {
+      "value": 0.846922,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.735991,
+      "ci_high": 0.942335
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_base_1p7b/work_format_f1": {
+      "value": 0.552846,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.437481,
+      "ci_high": 0.675423
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_base_1p7b/cities_f1": {
+      "value": 0.610004,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.459033,
+      "ci_high": 0.749321
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_base_1p7b/experience_years_f1": {
+      "value": 0.975,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.935065,
+      "ci_high": 1.0
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_base_1p7b/employment_type_f1": {
+      "value": 0.531818,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.366263,
+      "ci_high": 0.69178
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_sft_4b_r16/macro_f1": {
+      "value": 0.007408,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.009265,
+      "ci_high": 0.02364
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_sft_4b_r16/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_sft_4b_r16/role_f1": {
+      "value": 0.015385,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.030769,
+      "ci_high": 0.061538
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_sft_4b_r16/role_macro_f1": {
+      "value": 0.028194,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.027805,
+      "ci_high": 0.085604
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_sft_4b_r16/grade_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.031497,
+      "ci_high": 0.030086
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_sft_4b_r16/skills_f1": {
+      "value": -0.005599,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.025683,
+      "ci_high": 0.015304
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_sft_4b_r16/salary_f1": {
+      "value": 0.014987,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.019213,
+      "ci_high": 0.050495
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_sft_4b_r16/work_format_f1": {
+      "value": -0.029268,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.067308,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_sft_4b_r16/cities_f1": {
+      "value": -0.011236,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.081237,
+      "ci_high": 0.057828
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_sft_4b_r16/experience_years_f1": {
+      "value": 0.075,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.011217,
+      "ci_high": 0.158149
+    },
+    "tg_test/sft_1p7b_r16_clean_minus_sft_4b_r16/employment_type_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/macro_f1": {
+      "value": 0.005803,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.012803,
+      "ci_high": 0.02833
+    },
+    "tg_test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/role_f1": {
+      "value": -0.015385,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.053846,
+      "ci_high": 0.023077
+    },
+    "tg_test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/role_macro_f1": {
+      "value": -0.035894,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.083563,
+      "ci_high": 0.007007
+    },
+    "tg_test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/grade_f1": {
+      "value": 0.056202,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.007627,
+      "ci_high": 0.115783
+    },
+    "tg_test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/skills_f1": {
+      "value": 0.018149,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.00548,
+      "ci_high": 0.033541
+    },
+    "tg_test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/salary_f1": {
+      "value": -0.040888,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.078676,
+      "ci_high": -0.008517
+    },
+    "tg_test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/work_format_f1": {
+      "value": -0.01758,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.059664,
+      "ci_high": 0.021117
+    },
+    "tg_test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/cities_f1": {
+      "value": -0.019541,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.075862,
+      "ci_high": 0.015585
+    },
+    "tg_test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/experience_years_f1": {
+      "value": -0.048171,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.113411,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_f16_minus_sft_1p7b_r16_clean/employment_type_f1": {
+      "value": 0.113636,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.02537,
+      "ci_high": 0.252101
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/macro_f1": {
+      "value": 0.004688,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.013785,
+      "ci_high": 0.027004
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/role_f1": {
+      "value": -0.015385,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.053846,
+      "ci_high": 0.023077
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/role_macro_f1": {
+      "value": -0.039365,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.093606,
+      "ci_high": 0.005545
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/grade_f1": {
+      "value": 0.056202,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.007627,
+      "ci_high": 0.115783
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/skills_f1": {
+      "value": 0.01889,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.006365,
+      "ci_high": 0.034693
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/salary_f1": {
+      "value": -0.040888,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.078676,
+      "ci_high": -0.008517
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/work_format_f1": {
+      "value": -0.027242,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.075082,
+      "ci_high": 0.015274
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/cities_f1": {
+      "value": -0.019541,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.075862,
+      "ci_high": 0.015585
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/experience_years_f1": {
+      "value": -0.048171,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.113411,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_r16_clean/employment_type_f1": {
+      "value": 0.113636,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.02537,
+      "ci_high": 0.252101
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/macro_f1": {
+      "value": 0.010585,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.008253,
+      "ci_high": 0.032973
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/role_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.030769,
+      "ci_high": 0.030769
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/role_macro_f1": {
+      "value": -0.01575,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.053441,
+      "ci_high": 0.02049
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/grade_f1": {
+      "value": 0.046875,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.001397,
+      "ci_high": 0.102462
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/skills_f1": {
+      "value": 0.022235,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.007624,
+      "ci_high": 0.040262
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/salary_f1": {
+      "value": -0.043161,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.093393,
+      "ci_high": -0.007703
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/work_format_f1": {
+      "value": 0.021068,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.027,
+      "ci_high": 0.070765
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/cities_f1": {
+      "value": -0.014551,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.070358,
+      "ci_high": 0.025894
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/experience_years_f1": {
+      "value": -0.06142,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.139248,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_r16_clean/employment_type_f1": {
+      "value": 0.113636,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.02537,
+      "ci_high": 0.252101
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/macro_f1": {
+      "value": 0.012153,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.009596,
+      "ci_high": 0.037451
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/role_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.046154,
+      "ci_high": 0.046154
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/role_macro_f1": {
+      "value": -0.03396,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.097856,
+      "ci_high": 0.019204
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/grade_f1": {
+      "value": 0.100746,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.027411,
+      "ci_high": 0.187721
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/skills_f1": {
+      "value": 0.007499,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.009661,
+      "ci_high": 0.026916
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/salary_f1": {
+      "value": -0.016805,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.042759,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/work_format_f1": {
+      "value": -0.002205,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.051369,
+      "ci_high": 0.047672
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/cities_f1": {
+      "value": -0.019541,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.075862,
+      "ci_high": 0.015585
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/experience_years_f1": {
+      "value": -0.086111,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.180532,
+      "ci_high": -0.012019
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_r16_clean/employment_type_f1": {
+      "value": 0.113636,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.02537,
+      "ci_high": 0.252101
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/macro_f1": {
+      "value": -0.001115,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0052,
+      "ci_high": 0.002187
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/role_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.023077,
+      "ci_high": 0.023077
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/role_macro_f1": {
+      "value": -0.003471,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.04465,
+      "ci_high": 0.012088
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/grade_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/skills_f1": {
+      "value": 0.000741,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.002405,
+      "ci_high": 0.004219
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/salary_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/work_format_f1": {
+      "value": -0.009662,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.03269,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/cities_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/experience_years_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_q8_0_minus_sft_1p7b_clean_f16/employment_type_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/macro_f1": {
+      "value": 0.004782,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.008058,
+      "ci_high": 0.016539
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/role_f1": {
+      "value": 0.015385,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.023077,
+      "ci_high": 0.053846
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/role_macro_f1": {
+      "value": 0.020143,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.01076,
+      "ci_high": 0.05594
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/grade_f1": {
+      "value": -0.009327,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.031684,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/skills_f1": {
+      "value": 0.004086,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.006914,
+      "ci_high": 0.016761
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/salary_f1": {
+      "value": -0.002273,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.050055,
+      "ci_high": 0.034255
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/work_format_f1": {
+      "value": 0.038647,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.085308
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/cities_f1": {
+      "value": 0.004989,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.017453
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/experience_years_f1": {
+      "value": -0.013249,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.075974,
+      "ci_high": 0.032789
+    },
+    "tg_test/sft_1p7b_clean_q4_k_m_minus_sft_1p7b_clean_f16/employment_type_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/macro_f1": {
+      "value": 0.00635,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.010385,
+      "ci_high": 0.021802
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/role_f1": {
+      "value": 0.015385,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.038462,
+      "ci_high": 0.061538
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/role_macro_f1": {
+      "value": 0.001934,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.061445,
+      "ci_high": 0.056101
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/grade_f1": {
+      "value": 0.044545,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.013565,
+      "ci_high": 0.104538
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/skills_f1": {
+      "value": -0.01065,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.024679,
+      "ci_high": 0.001738
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/salary_f1": {
+      "value": 0.024083,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.054897
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/work_format_f1": {
+      "value": 0.015375,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.031935,
+      "ci_high": 0.06316
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/cities_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/experience_years_f1": {
+      "value": -0.03794,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.118045,
+      "ci_high": 0.024184
+    },
+    "tg_test/sft_1p7b_clean_awq_schema_minus_sft_1p7b_clean_f16/employment_type_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/teacher_qwen_minus_regex/macro_f1": {
+      "value": 0.14354,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.10316,
+      "ci_high": 0.183895
+    },
+    "tg_test/teacher_qwen_minus_regex/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/teacher_qwen_minus_regex/role_f1": {
+      "value": 0.141521,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.046971,
+      "ci_high": 0.235766
+    },
+    "tg_test/teacher_qwen_minus_regex/role_macro_f1": {
+      "value": 0.158939,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.069099,
+      "ci_high": 0.264934
+    },
+    "tg_test/teacher_qwen_minus_regex/grade_f1": {
+      "value": 0.052628,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.095344,
+      "ci_high": 0.203019
+    },
+    "tg_test/teacher_qwen_minus_regex/skills_f1": {
+      "value": -0.020973,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.083979,
+      "ci_high": 0.041358
+    },
+    "tg_test/teacher_qwen_minus_regex/salary_f1": {
+      "value": 0.225668,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.08481,
+      "ci_high": 0.38383
+    },
+    "tg_test/teacher_qwen_minus_regex/work_format_f1": {
+      "value": -0.006318,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.106172,
+      "ci_high": 0.09271
+    },
+    "tg_test/teacher_qwen_minus_regex/cities_f1": {
+      "value": 0.928177,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.831848,
+      "ci_high": 0.9932
+    },
+    "tg_test/teacher_qwen_minus_regex/experience_years_f1": {
+      "value": -0.01938,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.132347,
+      "ci_high": 0.098408
+    },
+    "tg_test/teacher_qwen_minus_regex/employment_type_f1": {
+      "value": -0.152999,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.309678,
+      "ci_high": -0.029866
+    },
+    "tg_test/teacher_yandex_minus_regex/macro_f1": {
+      "value": 0.145605,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.110492,
+      "ci_high": 0.18184
+    },
+    "tg_test/teacher_yandex_minus_regex/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/teacher_yandex_minus_regex/role_f1": {
+      "value": 0.053846,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.046154,
+      "ci_high": 0.146154
+    },
+    "tg_test/teacher_yandex_minus_regex/role_macro_f1": {
+      "value": 0.097156,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.007521,
+      "ci_high": 0.202311
+    },
+    "tg_test/teacher_yandex_minus_regex/grade_f1": {
+      "value": 0.142599,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.035622,
+      "ci_high": 0.261998
+    },
+    "tg_test/teacher_yandex_minus_regex/skills_f1": {
+      "value": -0.010749,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.067453,
+      "ci_high": 0.045226
+    },
+    "tg_test/teacher_yandex_minus_regex/salary_f1": {
+      "value": 0.225668,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.086151,
+      "ci_high": 0.380689
+    },
+    "tg_test/teacher_yandex_minus_regex/work_format_f1": {
+      "value": -0.021739,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.120722,
+      "ci_high": 0.076718
+    },
+    "tg_test/teacher_yandex_minus_regex/cities_f1": {
+      "value": 0.835821,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.735451,
+      "ci_high": 0.909873
+    },
+    "tg_test/teacher_yandex_minus_regex/experience_years_f1": {
+      "value": 0.003876,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.106519,
+      "ci_high": 0.11734
+    },
+    "tg_test/teacher_yandex_minus_regex/employment_type_f1": {
+      "value": -0.064482,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.190499,
+      "ci_high": 0.047659
+    },
+    "tg_test/teacher_qwen_minus_teacher_yandex/macro_f1": {
+      "value": -0.002065,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.029727,
+      "ci_high": 0.025316
+    },
+    "tg_test/teacher_qwen_minus_teacher_yandex/valid_json": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "tg_test/teacher_qwen_minus_teacher_yandex/role_f1": {
+      "value": 0.087674,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.029037,
+      "ci_high": 0.149453
+    },
+    "tg_test/teacher_qwen_minus_teacher_yandex/role_macro_f1": {
+      "value": 0.061783,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.009572,
+      "ci_high": 0.14147
+    },
+    "tg_test/teacher_qwen_minus_teacher_yandex/grade_f1": {
+      "value": -0.089971,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.201082,
+      "ci_high": 0.019324
+    },
+    "tg_test/teacher_qwen_minus_teacher_yandex/skills_f1": {
+      "value": -0.010223,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.059396,
+      "ci_high": 0.03814
+    },
+    "tg_test/teacher_qwen_minus_teacher_yandex/salary_f1": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.09093,
+      "ci_high": 0.086226
+    },
+    "tg_test/teacher_qwen_minus_teacher_yandex/work_format_f1": {
+      "value": 0.015421,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.050815,
+      "ci_high": 0.08568
+    },
+    "tg_test/teacher_qwen_minus_teacher_yandex/cities_f1": {
+      "value": 0.092356,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.050072,
+      "ci_high": 0.149282
+    },
+    "tg_test/teacher_qwen_minus_teacher_yandex/experience_years_f1": {
+      "value": -0.023256,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.120928,
+      "ci_high": 0.072067
+    },
+    "tg_test/teacher_qwen_minus_teacher_yandex/employment_type_f1": {
+      "value": -0.088517,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.235156,
+      "ci_high": 0.028769
+    }
+  },
+  "systems": {
+    "regex": {
+      "kind": "regex"
+    },
+    "sft_1p7b_r16_clean": {
+      "kind": "hf",
+      "adapter": "models/sft/qwen3_1p7b_r16_clean/adapter"
+    },
+    "sft_4b_r16": {
+      "kind": "hf",
+      "adapter": "models/sft/qwen3_4b_r16/adapter"
+    },
+    "base_1p7b": {
+      "kind": "hf",
+      "model": "Qwen/Qwen3-1.7B"
+    },
+    "sft_1p7b_clean_f16": {
+      "kind": "llama",
+      "quant": "F16"
+    },
+    "sft_1p7b_clean_q8_0": {
+      "kind": "llama",
+      "quant": "Q8_0"
+    },
+    "sft_1p7b_clean_q4_k_m": {
+      "kind": "llama",
+      "quant": "Q4_K_M"
+    },
+    "sft_1p7b_clean_awq_schema": {
+      "kind": "vllm"
+    },
+    "teacher_qwen": {
+      "kind": "teacher",
+      "teacher": "qwen"
+    },
+    "teacher_yandex": {
+      "kind": "teacher",
+      "teacher": "yandex"
+    }
+  },
+  "comparisons": [
+    "sft_1p7b_r16_clean - regex",
+    "sft_1p7b_r16_clean - teacher_qwen",
+    "sft_1p7b_r16_clean - teacher_yandex",
+    "sft_1p7b_r16_clean - base_1p7b",
+    "sft_1p7b_r16_clean - sft_4b_r16",
+    "sft_1p7b_clean_f16 - sft_1p7b_r16_clean",
+    "sft_1p7b_clean_q8_0 - sft_1p7b_r16_clean",
+    "sft_1p7b_clean_q4_k_m - sft_1p7b_r16_clean",
+    "sft_1p7b_clean_awq_schema - sft_1p7b_r16_clean",
+    "sft_1p7b_clean_q8_0 - sft_1p7b_clean_f16",
+    "sft_1p7b_clean_q4_k_m - sft_1p7b_clean_f16",
+    "sft_1p7b_clean_awq_schema - sft_1p7b_clean_f16",
+    "teacher_qwen - regex",
+    "teacher_yandex - regex",
+    "teacher_qwen - teacher_yandex"
+  ],
+  "gold_sha256": {
+    "test": "17a51c987e65680620230c1cfb9a4903d93689c677f6798488c8a84aa2856d94",
+    "tg_test": "09f1b0f86b505e97680131db2a02aa5b1e2f30d06d7586f245ca1fd7494625e1"
+  },
+  "predictions_sha256": {
+    "test": {
+      "regex": "58f3f5e224e287c734192aa84565a025a80f99e24f0530584e10861f269b4f2f",
+      "sft_1p7b_r16_clean": "5de78a79245f295fa1af7153d81f9aad3a2663f4c00f8d1893792c7f17043e2e",
+      "sft_4b_r16": "7e77407afab904d81ddd04a8f4f9f4014244abcf5fbc138f84103b7c58b1c5bf",
+      "base_1p7b": "feee2fd88ea02b7292cba3c5ec8e561734209dac0b7972ea87498eaae669103e",
+      "sft_1p7b_clean_f16": "df07ca816174a6c91bde9d2c1dc0cf22bb3100fc3a7946a92a8a0bb1897e39d2",
+      "sft_1p7b_clean_q8_0": "1ec9dbad393484dc3b1fc5072e807fffbd5c6cda04d134a472ec6862723d585b",
+      "sft_1p7b_clean_q4_k_m": "22b5259655f637186eb4031f0c3a5ed2124e10f2ba6853760822c42ad08727bc",
+      "sft_1p7b_clean_awq_schema": "7956f8b2881235ca692843f6fa496f1b858b810972299ab54b2c527d2041dd47",
+      "teacher_qwen": "81080ac71f39600dddc3ae9041505a6580d959054e1a3ee4a75ebe887eb82c7f",
+      "teacher_yandex": "d45437575efcce23b958b52804e0e6fc8c51646df6dd9678c68736cd487739f1"
+    },
+    "tg_test": {
+      "regex": "ba7f1b9faf8e81ac87c251fb1d346629dfa6fc8d97a19a4dbb87ce0c734e5f9e",
+      "sft_1p7b_r16_clean": "3ca67b8ac589d13e8f67233c7269400a02b07088cbc3cf0a3afdd9911cad6c39",
+      "sft_4b_r16": "c90d51dbf25d5b880128c81fd60e870929b3366960b35901c72eed3c775a374d",
+      "base_1p7b": "059d838db2a71fa7ad9512348c5d67608c73fc4da81e3bf09281ced49da55512",
+      "sft_1p7b_clean_f16": "b0dcd75169440e5533b6f0331e4d7e82a53b676fe2c2decb9cf25490b968b2fe",
+      "sft_1p7b_clean_q8_0": "9ae6c5eb374447543162aea926c98ab7d1e462aaf227fa71ce21f94a25764e56",
+      "sft_1p7b_clean_q4_k_m": "f59eb912e35473b7a039512bfc2171d310cd599775e7b885380aa2c5425c7048",
+      "sft_1p7b_clean_awq_schema": "c490055e0339c67d29f444b461968fbb6c32c3948ec359901e482a650ee039cf",
+      "teacher_qwen": "16178232fca9e029b2686a410ffdc2d835371651c99fd5c62c20592e17ffedae",
+      "teacher_yandex": "73b3e62dda197db5cca557115e1bc42d7c8aa5c40d8a49d6cd4f0077e4ffd61a"
+    }
+  },
+  "served": {
+    "regex": {
+      "test": {
+        "backend": "rules (radar.extract.baseline)"
+      },
+      "tg_test": {
+        "backend": "rules (radar.extract.baseline)"
+      }
+    },
+    "sft_1p7b_r16_clean": {
+      "test": {
+        "adapter": "models/sft/qwen3_1p7b_r16_clean/adapter",
+        "adapter_sha256": "338478948d4b1d1b91b976cc6a88c14831f78dfde1e10653e04843218cf798c0",
+        "model": null,
+        "backend": "unsloth",
+        "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+        "decoding": {
+          "greedy": true,
+          "max_new_tokens": 512,
+          "json_schema_constrained": false
+        },
+        "batch": 8
+      },
+      "tg_test": {
+        "adapter": "models/sft/qwen3_1p7b_r16_clean/adapter",
+        "adapter_sha256": "338478948d4b1d1b91b976cc6a88c14831f78dfde1e10653e04843218cf798c0",
+        "model": null,
+        "backend": "unsloth",
+        "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+        "decoding": {
+          "greedy": true,
+          "max_new_tokens": 512,
+          "json_schema_constrained": false
+        },
+        "batch": 8
+      }
+    },
+    "sft_4b_r16": {
+      "test": {
+        "adapter": "models/sft/qwen3_4b_r16/adapter",
+        "adapter_sha256": "9d2319ac7abbabdae4be02b210fc2d2b1ada8e21fc4adb4df754c496cdbccf25",
+        "model": null,
+        "backend": "unsloth",
+        "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+        "decoding": {
+          "greedy": true,
+          "max_new_tokens": 512,
+          "json_schema_constrained": false
+        },
+        "batch": 8
+      },
+      "tg_test": {
+        "adapter": "models/sft/qwen3_4b_r16/adapter",
+        "adapter_sha256": "9d2319ac7abbabdae4be02b210fc2d2b1ada8e21fc4adb4df754c496cdbccf25",
+        "model": null,
+        "backend": "unsloth",
+        "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+        "decoding": {
+          "greedy": true,
+          "max_new_tokens": 512,
+          "json_schema_constrained": false
+        },
+        "batch": 8
+      }
+    },
+    "base_1p7b": {
+      "test": {
+        "adapter": null,
+        "adapter_sha256": null,
+        "model": "Qwen/Qwen3-1.7B",
+        "backend": "unsloth",
+        "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+        "decoding": {
+          "greedy": true,
+          "max_new_tokens": 512,
+          "json_schema_constrained": false
+        },
+        "batch": 8
+      },
+      "tg_test": {
+        "adapter": null,
+        "adapter_sha256": null,
+        "model": "Qwen/Qwen3-1.7B",
+        "backend": "unsloth",
+        "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+        "decoding": {
+          "greedy": true,
+          "max_new_tokens": 512,
+          "json_schema_constrained": false
+        },
+        "batch": 8
+      }
+    },
+    "sft_1p7b_clean_f16": {
+      "test": {
+        "backend": "llama",
+        "weights": {
+          "file": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-F16.gguf",
+          "size_mib": 3287.6,
+          "type": "F16",
+          "sha256": "0043fcc79ffb16eb9f01bf5ab2ba4aa3ddacb37f46c1d7f21240997fab7f3991"
+        },
+        "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+        "decoding": {
+          "greedy": true,
+          "max_new_tokens": 512,
+          "json_schema_constrained": false
+        },
+        "workers": 4
+      },
+      "tg_test": {
+        "backend": "llama",
+        "weights": {
+          "file": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-F16.gguf",
+          "size_mib": 3287.6,
+          "type": "F16",
+          "sha256": "0043fcc79ffb16eb9f01bf5ab2ba4aa3ddacb37f46c1d7f21240997fab7f3991"
+        },
+        "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+        "decoding": {
+          "greedy": true,
+          "max_new_tokens": 512,
+          "json_schema_constrained": false
+        },
+        "workers": 4
+      }
+    },
+    "sft_1p7b_clean_q8_0": {
+      "test": {
+        "backend": "llama",
+        "weights": {
+          "file": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q8_0.gguf",
+          "size_mib": 1749.4,
+          "type": "Q8_0",
+          "sha256": "50bf294152b8e55977b770674ee0de878782237e008286469bf8385c14d638ad"
+        },
+        "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+        "decoding": {
+          "greedy": true,
+          "max_new_tokens": 512,
+          "json_schema_constrained": false
+        },
+        "workers": 4
+      },
+      "tg_test": {
+        "backend": "llama",
+        "weights": {
+          "file": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q8_0.gguf",
+          "size_mib": 1749.4,
+          "type": "Q8_0",
+          "sha256": "50bf294152b8e55977b770674ee0de878782237e008286469bf8385c14d638ad"
+        },
+        "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+        "decoding": {
+          "greedy": true,
+          "max_new_tokens": 512,
+          "json_schema_constrained": false
+        },
+        "workers": 4
+      }
+    },
+    "sft_1p7b_clean_q4_k_m": {
+      "test": {
+        "backend": "llama",
+        "weights": {
+          "file": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q4_K_M.gguf",
+          "size_mib": 1056.1,
+          "type": "Q4_K_M",
+          "sha256": "8159abbceaa20ac01aba8305e2ce480d1c75f0bc8fd71740b4db673030a0e9f2"
+        },
+        "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+        "decoding": {
+          "greedy": true,
+          "max_new_tokens": 512,
+          "json_schema_constrained": false
+        },
+        "workers": 4
+      },
+      "tg_test": {
+        "backend": "llama",
+        "weights": {
+          "file": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q4_K_M.gguf",
+          "size_mib": 1056.1,
+          "type": "Q4_K_M",
+          "sha256": "8159abbceaa20ac01aba8305e2ce480d1c75f0bc8fd71740b4db673030a0e9f2"
+        },
+        "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+        "decoding": {
+          "greedy": true,
+          "max_new_tokens": 512,
+          "json_schema_constrained": false
+        },
+        "workers": 4
+      }
+    },
+    "sft_1p7b_clean_awq_schema": {
+      "test": {
+        "backend": "vllm",
+        "weights": {
+          "dir": "models/awq/qwen3_1p7b_r16_clean",
+          "size_mib": 1292.1,
+          "quantization": "compressed-tensors"
+        },
+        "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+        "decoding": {
+          "greedy": true,
+          "max_new_tokens": 512,
+          "json_schema_constrained": true
+        },
+        "workers": 4
+      },
+      "tg_test": {
+        "backend": "vllm",
+        "weights": {
+          "dir": "models/awq/qwen3_1p7b_r16_clean",
+          "size_mib": 1292.1,
+          "quantization": "compressed-tensors"
+        },
+        "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+        "decoding": {
+          "greedy": true,
+          "max_new_tokens": 512,
+          "json_schema_constrained": true
+        },
+        "workers": 4
+      }
+    },
+    "teacher_qwen": {
+      "test": {
+        "backend": "llama-server",
+        "model": "Qwen3-8B-Q4_K_M",
+        "prompt_sha256": "5937b5a6fdf2adeb28ed2c8541631ad7cf602fe19efa46fc9e5db06e650f8728"
+      },
+      "tg_test": {
+        "backend": "llama-server",
+        "model": "Qwen3-8B-Q4_K_M",
+        "prompt_sha256": "a41ddbf4b47b6172b5be5e12876c718d84614d9db72efe5ab243ec8afd687a62"
+      }
+    },
+    "teacher_yandex": {
+      "test": {
+        "backend": "llama-server",
+        "model": "YandexGPT-5-Lite-8B-instruct-Q4_K_M",
+        "prompt_sha256": "5937b5a6fdf2adeb28ed2c8541631ad7cf602fe19efa46fc9e5db06e650f8728"
+      },
+      "tg_test": {
+        "backend": "llama-server",
+        "model": "YandexGPT-5-Lite-8B-instruct-Q4_K_M",
+        "prompt_sha256": "a41ddbf4b47b6172b5be5e12876c718d84614d9db72efe5ab243ec8afd687a62"
+      }
+    }
+  },
+  "rescore_reason": null,
+  "method": "each system and comparison scored by `python -m radar.eval --final-test` (results/extract/<split>_<system>.json, <split>_<a>_vs_<b>.json: 95% percentile bootstrap, paired on the same gold rows, settings of configs/eval.toml); this file copies their values; <a>_minus_<b> is a - b"
+}
