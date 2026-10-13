@@ -1,0 +1,8 @@
+*
+!pyproject.toml
+!uv.lock
+!src/radar/
+!configs/
+!dbt/seeds/
+!dbt/models/marts/_marts.yml
+**/__pycache__

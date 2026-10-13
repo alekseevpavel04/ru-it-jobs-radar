@@ -189,6 +189,60 @@ services:
       test: ["CMD-SHELL", "redis-cli ping | grep -q PONG"]
     logging: *logging
 
+  # The HTTP API and the MCP server (8.2), one image. They read the marts as the
+  # read-only account and cache in Redis; no depends_on on the core profile, so `up.sh api` alone
+  # starts them and /health names whatever is missing. Extraction is the regex baseline here: the
+  # student's server runs on the host, which containers do not reach (WSL NAT), and the same holds
+  # for the analyst's LLM behind ask_market until a server listens on the VM's address.
+  api:
+    build: &api-build
+      context: ../..
+      dockerfile: infra/compose/api/Dockerfile
+    image: radar/api:0.1.0
+    profiles: [api]
+    restart: unless-stopped
+    command: ["python", "-m", "radar.api", "--host", "0.0.0.0", "--port", "8000"]
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment: &api-env
+      CLICKHOUSE_URL: http://clickhouse:8123
+      CLICKHOUSE_RO_USER: ${CLICKHOUSE_RO_USER:?set CLICKHOUSE_RO_USER in .env}
+      CLICKHOUSE_RO_PASSWORD: ${CLICKHOUSE_RO_PASSWORD:?set CLICKHOUSE_RO_PASSWORD in .env}
+      REDIS_URL: redis://redis:6379/0
+      LLM_BASE_URL: http://host.docker.internal:8080/v1
+      SALARY_MODEL_PATH: /opt/radar/models/salary/salary.pkl
+    volumes:
+      # Saved by `python -m radar.models.salary`; outside git, so mounted rather than baked in.
+      - ../../models/salary:/opt/radar/models/salary:ro
+    ports:
+      - 127.0.0.1:8000:8000
+    mem_limit: 1g
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"]
+    logging: *logging
+
+  mcp:
+    build: *api-build
+    image: radar/api:0.1.0
+    profiles: [api]
+    restart: unless-stopped
+    # Streamable HTTP at /mcp; Host headers of loopback (the published port) and of this service's
+    # name are accepted. A desktop client runs `python -m radar.mcp` over stdio on the host instead.
+    command: ["python", "-m", "radar.mcp", "--http", "--host", "0.0.0.0", "--port", "8001", "--allow-host", "mcp"]
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment: *api-env
+    volumes:
+      - ../../models/salary:/opt/radar/models/salary:ro
+    ports:
+      - 127.0.0.1:8001:8001
+    mem_limit: 1g
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 8001), 3)"]
+    logging: *logging
+
   mlflow-db:
     image: postgres:18.6-alpine
     profiles: [ml]

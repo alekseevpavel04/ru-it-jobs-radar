@@ -1,5 +1,5 @@
-"""The HTTP API: extraction, market aggregates of the marts, and the routes of the salary and
-matching models, which answer 501 until those models exist.
+"""The HTTP API: extraction, market aggregates of the marts, the salary estimate, and the
+route of the matching model, which answers 501 until that model exists.
 
     python -m radar.api                 # uvicorn on 127.0.0.1:8000, settings from .env
 """
@@ -10,6 +10,7 @@ import time
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
 from importlib.metadata import version
+from pathlib import Path
 from typing import Any, Protocol
 
 import httpx
@@ -29,6 +30,7 @@ from radar.api.models import (
     SalaryRequest,
     SalaryResponse,
 )
+from radar.api.salary import Estimator, OutOfScope, SalaryEstimator, UnknownSource
 from radar.api.settings import Settings
 from radar.extract.schema import SCHEMA_VERSION, dump
 
@@ -44,6 +46,7 @@ class Services:
     cache: Cache
     warehouse: Warehouse
     student: StudentExtractor | None
+    salary: Estimator | None
     stats_ttl_s: int
     extract_ttl_s: int
 
@@ -58,8 +61,34 @@ def services_from(settings: Settings) -> Services:
         cache=RedisCache(settings.redis_url),
         warehouse=ReadOnlyClickHouse(timeout_s=15.0),
         student=student,
+        salary=load_salary(settings.salary_model),
         stats_ttl_s=settings.stats_ttl_s,
         extract_ttl_s=settings.extract_ttl_s,
+    )
+
+
+def load_salary(path: Path) -> SalaryEstimator | None:
+    """The model artifact lives outside git (models/); without it the API serves everything else,
+    /salary answers 503 and /health names the missing model."""
+    if not path.exists():
+        log.warning("no salary model at %s: /salary answers 503", path)
+        return None
+    return SalaryEstimator.load(path)
+
+
+def salary_body(estimator: Estimator, request: SalaryRequest) -> SalaryResponse:
+    """The estimate of POST /salary and of the MCP tool estimate_salary."""
+    out = estimator.estimate(request.fields, request.source)
+    return SalaryResponse(
+        point=out["point"],
+        low=out["low"],
+        high=out["high"],
+        level=out["level"],
+        typical_from=out["typical_from"],
+        typical_to=out["typical_to"],
+        n_similar=out["n_similar"],
+        source=request.source,
+        model=out["model_version"],
     )
 
 
@@ -132,9 +161,15 @@ def create_app(services: Services) -> FastAPI:
         }
         if services.student is not None:
             checks["student"] = "ok" if services.student.ping() else "down"
+        checks["salary_model"] = "ok" if services.salary is not None else "missing"
         # Extraction works without any of them (the regex), so the service is up, maybe degraded.
         status = "ok" if all(v == "ok" for v in checks.values()) else "degraded"
-        return {"status": status, "extract_backend": "student" if services.student else "regex", "checks": checks}
+        return {
+            "status": status,
+            "extract_backend": "student" if services.student else "regex",
+            "salary_model": services.salary.version if services.salary else None,
+            "checks": checks,
+        }
 
     @app.post("/extract", response_model=ExtractResponse)
     def post_extract(body: ExtractRequest) -> dict[str, Any]:
@@ -182,9 +217,16 @@ def create_app(services: Services) -> FastAPI:
             lambda: stats.skills(query, source, role_bucket, limit),
         )
 
-    @app.post("/salary", response_model=SalaryResponse, responses={501: {"model": Problem}})
+    @app.post("/salary", response_model=SalaryResponse, responses={422: {"model": Problem}, 503: {"model": Problem}})
     def post_salary(body: SalaryRequest) -> SalaryResponse:
-        raise HTTPException(501, "salary model is not served yet")
+        """Monthly RUB estimate with its conformal interval for extraction fields; a stated salary in
+        the fields is not read."""
+        if services.salary is None:
+            raise HTTPException(503, "the salary model is not loaded on this server")
+        try:
+            return salary_body(services.salary, body)
+        except (OutOfScope, UnknownSource) as e:
+            raise HTTPException(422, str(e)) from e
 
     @app.post("/match", response_model=MatchResponse, responses={501: {"model": Problem}})
     def post_match(body: MatchRequest) -> MatchResponse:

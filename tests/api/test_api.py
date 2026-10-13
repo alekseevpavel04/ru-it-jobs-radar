@@ -2,6 +2,7 @@
 
 import json
 from collections.abc import Callable
+from pathlib import Path
 from typing import Any
 
 import httpx
@@ -11,10 +12,12 @@ from fastapi.testclient import TestClient
 
 from radar.agent.clickhouse import QueryError, Result
 from radar.api import settings as api_settings
-from radar.api.app import Services, create_app
+from radar.api.app import Services, create_app, load_salary
 from radar.api.cache import RedisCache
 from radar.api.extractors import REGEX_MODEL, StudentExtractor, spans_from_pieces
-from radar.config import ConfigError
+from radar.api.salary import Estimator, OutOfScope, UnknownSource
+from radar.config import ROOT, ConfigError
+from radar.extract.schema import VacancyFields
 
 TEXT = (
     "Python-разработчик (Middle)\n\nЗарплата от 150 000 до 200 000 руб. на руки. "
@@ -97,15 +100,41 @@ def student(transport: httpx.BaseTransport, meta: dict[str, Any] = META) -> Stud
     return StudentExtractor("http://student", meta, timeout_s=5.0, transport=transport)
 
 
+class FakeEstimator:
+    version = "salary-test"
+
+    def __init__(self, error: Exception | None = None) -> None:
+        self.error = error
+        self.calls: list[tuple[VacancyFields, str]] = []
+
+    def estimate(self, fields: VacancyFields, source: str) -> dict[str, Any]:
+        self.calls.append((fields, source))
+        if self.error is not None:
+            raise self.error
+        return {
+            "point": 150000,
+            "low": 100000,
+            "high": 220000,
+            "typical_from": 130000,
+            "typical_to": 170000,
+            "level": 0.8,
+            "n_similar": 0,
+            "source": source,
+            "model_version": "salary-test",
+        }
+
+
 def client(
     cache: MemoryCache | None = None,
     warehouse: FakeWarehouse | None = None,
     extractor: StudentExtractor | None = None,
+    salary: Estimator | None = None,
 ) -> TestClient:
     services = Services(
         cache=cache or MemoryCache(),
         warehouse=warehouse or FakeWarehouse(),
         student=extractor,
+        salary=salary,
         stats_ttl_s=3600,
         extract_ttl_s=86400,
     )
@@ -310,14 +339,74 @@ def test_warehouse_failures_map_to_gateway_errors(error: Exception, status: int)
     assert response.status_code == status and "warehouse" in response.json()["detail"]
 
 
-# --- models not served yet, health --------------------------------------------------------------
+# --- /salary, /match, health --------------------------------------------------------------------
 
 
-def test_salary_and_match_answer_501_after_validation() -> None:
+def test_salary_estimates_extraction_fields_for_the_default_source() -> None:
+    estimator = FakeEstimator()
+    response = client(salary=estimator).post("/salary", json={"fields": ANSWER})
+    assert response.status_code == 200
+    assert response.json() == {
+        "point": 150000,
+        "low": 100000,
+        "high": 220000,
+        "level": 0.8,
+        "typical_from": 130000,
+        "typical_to": 170000,
+        "n_similar": 0,
+        "source": "trudvsem",
+        "currency": "RUB",
+        "period": "month",
+        "basis": "as_stated",
+        "model": "salary-test",
+    }
+    [(fields, source)] = estimator.calls
+    assert source == "trudvsem" and fields.role == "backend" and fields.cities == []
+
+
+def test_salary_takes_the_fields_extract_returns() -> None:
+    estimator = FakeEstimator()
+    api = client(salary=estimator)
+    fields = api.post("/extract", json={"text": TEXT}).json()["fields"]
+    response = api.post("/salary", json={"fields": fields, "source": "habr"})
+    assert response.status_code == 200 and response.json()["source"] == "habr"
+    assert estimator.calls[0][0].skills == fields["skills"]
+
+
+@pytest.mark.parametrize(
+    ("error", "fragment"),
+    [
+        (OutOfScope("the salary model covers IT vacancies only"), "IT vacancies only"),
+        (UnknownSource("the salary model knows the sources habr, trudvsem, not superjob"), "not superjob"),
+    ],
+)
+def test_salary_outside_the_models_reach_is_422(error: Exception, fragment: str) -> None:
+    response = client(salary=FakeEstimator(error)).post("/salary", json={"fields": ANSWER, "source": "superjob"})
+    assert response.status_code == 422 and fragment in response.json()["detail"]
+
+
+@pytest.mark.parametrize(
+    "body",
+    [{"fields": {"role": "backend"}}, {"fields": ANSWER, "source": "hh"}, {"fields": ANSWER, "extra": 1}, {}],
+    ids=["partial_fields", "unknown_source", "extra_key", "missing"],
+)
+def test_bad_salary_input_never_reaches_the_model(body: dict[str, Any]) -> None:
+    estimator = FakeEstimator()
+    assert client(salary=estimator).post("/salary", json=body).status_code == 422
+    assert estimator.calls == []
+
+
+def test_salary_without_a_model_is_503() -> None:
+    response = client().post("/salary", json={"fields": ANSWER})
+    assert response.status_code == 503 and "not loaded" in response.json()["detail"]
+
+
+def test_a_missing_salary_model_file_leaves_the_rest_of_the_api_up(tmp_path: Path) -> None:
+    assert load_salary(tmp_path / "salary.pkl") is None
+
+
+def test_match_answers_501_after_validation() -> None:
     api = client()
-    salary = api.post("/salary", json={"fields": ANSWER})
-    assert salary.status_code == 501 and "7.1" in salary.json()["detail"]
-    assert api.post("/salary", json={"fields": {"role": "backend"}}).status_code == 422
     match = api.post("/match", json={"resume_text": "Python, SQL, 2 года", "k": 5})
     assert match.status_code == 501 and "7.4" in match.json()["detail"]
     assert api.post("/match", json={"resume_text": "Python", "k": 0}).status_code == 422
@@ -325,18 +414,20 @@ def test_salary_and_match_answer_501_after_validation() -> None:
 
 def test_health_reports_each_dependency() -> None:
     transport, _ = llama_server()
-    ok = client(extractor=student(transport)).get("/health").json()
+    ok = client(extractor=student(transport), salary=FakeEstimator()).get("/health").json()
     assert ok == {
         "status": "ok",
         "extract_backend": "student",
-        "checks": {"redis": "ok", "clickhouse": "ok", "student": "ok"},
+        "salary_model": "salary-test",
+        "checks": {"redis": "ok", "clickhouse": "ok", "student": "ok", "salary_model": "ok"},
     }
     down = client(MemoryCache(up=False), FakeWarehouse(error=httpx.ConnectError("refused"))).get("/health")
     assert down.status_code == 200
     assert down.json() == {
         "status": "degraded",
         "extract_backend": "regex",
-        "checks": {"redis": "down", "clickhouse": "down"},
+        "salary_model": None,
+        "checks": {"redis": "down", "clickhouse": "down", "salary_model": "missing"},
     }
 
 
@@ -367,10 +458,14 @@ def test_settings_need_redis_and_the_read_only_account(monkeypatch: pytest.Monke
         "STUDENT_TIMEOUT_S": "",
         "STUDENT_LLM_URL": "",
         "STUDENT_ADAPTER_DIR": "",
+        "SALARY_MODEL_PATH": "",
     }.items():
         monkeypatch.setenv(name, value)
     loaded = api_settings.from_env()
     assert loaded.student_url is None and loaded.student_timeout_s == 60.0
+    assert loaded.salary_model == ROOT / "models" / "salary" / "salary.pkl"
+    monkeypatch.setenv("SALARY_MODEL_PATH", "elsewhere/salary.pkl")
+    assert api_settings.from_env().salary_model == ROOT / "elsewhere" / "salary.pkl"
     monkeypatch.setenv("STUDENT_TIMEOUT_S", "soon")
     with pytest.raises(ConfigError, match="STUDENT_TIMEOUT_S"):
         api_settings.from_env()

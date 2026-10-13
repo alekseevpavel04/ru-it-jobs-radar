@@ -3,7 +3,8 @@
 from dataclasses import dataclass
 from pathlib import Path
 
-from radar.config import ConfigError, optional, require
+from radar.api.salary import DEFAULT_MODEL_PATH
+from radar.config import ROOT, ConfigError, optional, require
 
 
 def _number(name: str, default: float) -> float:
@@ -27,8 +28,16 @@ class Settings:
     # A run's adapter directory with dataset_meta.json; None: the prompt and input cap of data/sft/meta.json.
     student_adapter: Path | None
     student_timeout_s: float
+    # The pickled SalaryModel (radar.models.salary); a relative path is taken from the repo root.
+    salary_model: Path
     stats_ttl_s: int
     extract_ttl_s: int
+
+
+def salary_model_path() -> Path:
+    """SALARY_MODEL_PATH, relative to the repo root, or the artifact `python -m radar.models.salary` saves."""
+    path = Path(optional("SALARY_MODEL_PATH") or DEFAULT_MODEL_PATH)
+    return path if path.is_absolute() else ROOT / path
 
 
 def from_env() -> Settings:
@@ -40,6 +49,7 @@ def from_env() -> Settings:
         student_url=optional("STUDENT_LLM_URL"),
         student_adapter=Path(adapter) if adapter else None,
         student_timeout_s=_number("STUDENT_TIMEOUT_S", 60.0),
+        salary_model=salary_model_path(),
         stats_ttl_s=int(_number("API_STATS_TTL_S", 3600)),
         extract_ttl_s=int(_number("API_EXTRACT_TTL_S", 86400)),
     )
