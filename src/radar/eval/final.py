@@ -64,7 +64,7 @@ MERGED_NAME = "qwen3_1p7b_r16_clean"
 DEV_OF = {"test": "dev", "tg_test": "tg_dev"}
 GPU_FREE_MIB = 1500
 WSL_DISTRO = os.environ.get("RADAR_WSL_DISTRO", "radar")
-PORTS = {"llama": 8093, "vllm": 8095, "teacher": 8090}
+PORTS = {"llama": 8093, "vllm": 8095, "teacher": 8096}  # 8090 is the Airflow API of the stack
 TEACHER_CTX_PER_SLOT = "8192"  # the teacher prompt is about 6 500 tokens (scripts/llm_server.sh)
 PROMPT_FILE = "configs/teacher_prompt.md"
 
