@@ -65,15 +65,21 @@ def rows_for_trainer(pairs: Sequence[Mapping[str, Any]], tokenizer: Any, system:
     ]
 
 
-def pair_length(p: Mapping[str, Any]) -> int:
-    return len(p["user"]) + max(len(p["chosen"]), len(p["rejected"]))
+def fitting_rows(rows: list[dict[str, str]], tokenizer: Any, max_len: int) -> tuple[list[dict[str, str]], int]:
+    """Rows whose prompt plus longer answer fit `max_len` tokens, and how many were dropped. A cut answer
+    would teach a broken JSON; a few long pairs set the peak VRAM (99% are under 1 300 tokens, 13.10)."""
+
+    def tokens(text: str) -> int:
+        return len(tokenizer(text, add_special_tokens=False)["input_ids"])
+
+    kept = [r for r in rows if tokens(r["prompt"]) + max(tokens(r["chosen"]), tokens(r["rejected"])) <= max_len]
+    return kept, len(rows) - len(kept)
 
 
-def probe_pairs(pairs: list[dict[str, Any]], n: int, batch: int) -> list[dict[str, Any]]:
-    """`n` pairs for the probe: the 2 * batch longest first, so the peak VRAM is near the worst case."""
-    longest = sorted(pairs, key=lambda p: -pair_length(p))[: 2 * batch]
-    ids = {p["id"] for p in longest}
-    return longest + [p for p in pairs if p["id"] not in ids][: max(n - len(longest), 0)]
+def probe_rows(rows: list[dict[str, str]], n: int, batch: int) -> list[dict[str, str]]:
+    """`n` trainer rows for the probe: the 2 * batch longest first, so the peak VRAM is near the worst case."""
+    by_length = sorted(rows, key=lambda r: -len(r["prompt"]) - max(len(r["chosen"]), len(r["rejected"])))
+    return by_length[: max(n, 2 * batch)]
 
 
 def loss_settings(sft_weight: float) -> tuple[list[str], list[float] | None]:
@@ -190,7 +196,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.dry_run:
         train, val = train[:DRY_RUN_PAIRS], val[: DRY_RUN_PAIRS // 2]
     elif args.probe:
-        train, val = probe_pairs(train, args.probe, t.batch), []
+        val = []
 
     load_dotenv()
     uri = None if args.no_mlflow else optional("MLFLOW_TRACKING_URI")
@@ -252,11 +258,24 @@ def main(argv: list[str] | None = None) -> int:
     system = adapter_meta["system_prompt"]
     guard = StepGuard(limit, cfg.guard.step_time_factor, cfg.guard.reference_steps, cfg.guard.patience)
     watch = make_callback(guard, tracker, out, adapter_meta, tokenizer, cpu, save=save_policy)
+    train_rows, dropped_train = fitting_rows(rows_for_trainer(train, tokenizer, system), tokenizer, t.max_seq_len)
+    val_rows, dropped_val = fitting_rows(rows_for_trainer(val, tokenizer, system), tokenizer, t.max_seq_len)
+    if args.probe:
+        train_rows = probe_rows(train_rows, args.probe, t.batch)
+    log.info(
+        "pairs over %d tokens dropped: train %d of %d, eval %d of %d",
+        t.max_seq_len,
+        dropped_train,
+        len(train),
+        dropped_val,
+        len(val),
+    )
+    tracker.set_tags({"dropped_long_train": str(dropped_train), "dropped_long_eval": str(dropped_val)})
     trainer = DPOTrainer(
         model=model,
         args=dpo_args,
-        train_dataset=Dataset.from_list(rows_for_trainer(train, tokenizer, system)),
-        eval_dataset=Dataset.from_list(rows_for_trainer(val, tokenizer, system)) if val else None,
+        train_dataset=Dataset.from_list(train_rows),
+        eval_dataset=Dataset.from_list(val_rows) if val_rows else None,
         processing_class=tokenizer,
         callbacks=[watch],
     )
@@ -296,6 +315,7 @@ def main(argv: list[str] | None = None) -> int:
             "epoch": trainer.state.epoch or 0.0,
             "step_seconds_median": statistics.median(watch.seconds[1:] or watch.seconds or [0.0]),
             "guard_peak_reserved_mib": guard.peak_reserved_mib,
+            "pairs_dropped_over_max_seq_len": {"train": dropped_train, "eval": dropped_val},
         }
         if not cpu:
             summary["peak_reserved_mib"] = torch.cuda.max_memory_reserved() / 2**20

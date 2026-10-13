@@ -26,7 +26,7 @@ drop_field = 50
 broken_json = 50
 
 [train]
-max_seq_len = 2048
+max_seq_len = 1280
 epochs = 2
 lr = 2e-5
 beta = 0.1

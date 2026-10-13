@@ -10,7 +10,7 @@ from radar.train.dpo import (
     forecast_from_probe,
     last_logged,
     loss_settings,
-    probe_pairs,
+    probe_rows,
     rows_for_trainer,
 )
 
@@ -67,11 +67,11 @@ def test_loss_adds_the_nll_term_only_with_a_weight() -> None:
     assert loss_settings(0.0) == (["sigmoid"], None)
 
 
-def test_probe_takes_the_longest_pairs_first() -> None:
-    pairs = [pair(i, 10 + i) for i in range(20)]
-    rows = probe_pairs(pairs, 6, batch=2)
-    assert [r["id"] for r in rows[:4]] == ["p19", "p18", "p17", "p16"]
-    assert len({r["id"] for r in rows}) == 6
+def test_probe_takes_the_longest_rows_first() -> None:
+    rows = [{"prompt": "x" * (10 + i), "chosen": "a", "rejected": "b"} for i in range(20)]
+    out = probe_rows(rows, 6, batch=2)
+    assert [len(r["prompt"]) for r in out[:4]] == [29, 28, 27, 26]
+    assert len(out) == 6
 
 
 def test_forecast_from_one_pair_steps() -> None:
