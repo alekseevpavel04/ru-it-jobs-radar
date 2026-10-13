@@ -1,7 +1,8 @@
 """results/dbt/build.json: what the last `dbt build` did and what staging holds; results/dbt/history.json:
 what the vacancy history (models/history) found; results/dbt/marts.json: rows of the marts, what they
 stand on and leave out, and the headline numbers README and the site cite, each with its denominator.
-history.json and marts.json also carry the memory (and marts.json the time) of their models in that build.
+history.json and marts.json also carry the memory (and marts.json the time) of their models in that build;
+results/dbt/extracted_marts.json: rows and coverage of the marts on extracted fields, when they are built.
 
 Reads dbt/target/build_results.json (kept by scripts/dbt.sh after each build) and, when present,
 dbt/target/sources.json of the last freshness check; counts rows in ClickHouse. Run it through the
@@ -16,6 +17,8 @@ from collections import Counter
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
+
+import yaml
 
 from radar.config import ROOT, load_dotenv
 from radar.results import write_result
@@ -33,8 +36,22 @@ MARTS = (
     "mart_skills_weekly",
     "mart_lifetime",
 )
+EXTRACTED_MARTS = (
+    "mart_extracted_skills_weekly",
+    "mart_extracted_fields_weekly",
+    "mart_extracted_salaries",
+    "mart_extraction_coverage",
+)
 # Models and seeds of the marts, for their build time and memory.
-MART_MODELS = ("stg_telegram", "int_vacancy_", "mart_", "skill_dictionary", "telegram_channels", "role_groups")
+MART_MODELS = (
+    "stg_telegram",
+    "int_vacancy_",
+    "int_extracted_",
+    "mart_",
+    "skill_dictionary",
+    "telegram_channels",
+    "role_groups",
+)
 IT_DATA = ("ml_ds", "data_engineering", "data_analytics")
 
 
@@ -298,8 +315,10 @@ def marts_metrics(ch: ClickHouse) -> dict[str, dict[str, Any]]:
     for source in ("trudvsem_snapshot", "trudvsem", "habr", "superjob"):
         for week, days, data, ml, total in rows(
             ch,
-            f"SELECT week, any(days_collected), sumIf(vacancies_active, role_bucket IN ({it_data_buckets()})), "
-            "sumIf(vacancies_active, role_bucket = 'ml_ds'), sum(vacancies_active) "
+            # vacancies_active is Nullable: a sum over no matching rows is NULL, not 0.
+            f"SELECT week, any(days_collected), "
+            f"ifNull(sumIf(vacancies_active, role_bucket IN ({it_data_buckets()})), 0), "
+            "ifNull(sumIf(vacancies_active, role_bucket = 'ml_ds'), 0), ifNull(sum(vacancies_active), 0) "
             f"FROM marts.mart_weekly_dynamics WHERE source = '{source}' "
             f"AND week = (SELECT max(week) FROM marts.mart_weekly_dynamics WHERE source = '{source}') GROUP BY week",
         ):
@@ -369,6 +388,35 @@ def marts_metrics(ch: ClickHouse) -> dict[str, dict[str, Any]]:
     return out
 
 
+def extraction_model(run: dict[str, Any]) -> str:
+    """var extraction_model of the build: a --vars override, else dbt_project.yml."""
+    override = (run.get("args") or {}).get("vars") or {}
+    if isinstance(override, dict) and "extraction_model" in override:
+        return str(override["extraction_model"])
+    project = yaml.safe_load((ROOT / "dbt" / "dbt_project.yml").read_text(encoding="utf-8"))
+    return str(project["vars"]["extraction_model"])
+
+
+def extracted_metrics(ch: ClickHouse) -> dict[str, dict[str, Any]]:
+    """The marts on extracted fields (models/extracted): rows, and per source how many of the units they
+    count have fields, valid fields and IT roles, and how many skill spellings the dictionary v1 maps."""
+    out: dict[str, dict[str, Any]] = {}
+    for mart in EXTRACTED_MARTS:
+        out[f"rows_{mart}"] = {"value": ch.scalar(f"SELECT count() FROM marts.{mart}")}
+    for source, units, with_fields, valid, it, linking_habr, written, in_dictionary in rows(
+        ch,
+        "SELECT source, units, units_with_fields, units_valid, units_it, units_linking_habr, skills_written, "
+        "skills_in_dictionary FROM marts.mart_extraction_coverage WHERE level = 'source' ORDER BY source",
+    ):
+        out[f"coverage_{source}"] = share(int(with_fields), int(units))
+        out[f"valid_{source}"] = share(int(valid), int(with_fields))
+        out[f"it_{source}"] = share(int(it), int(valid))
+        out[f"skills_in_dictionary_{source}"] = share(int(in_dictionary), int(written))
+        if source == "telegram":
+            out["telegram_linking_habr"] = share(int(linking_habr), int(units))
+    return out
+
+
 def main() -> int:
     build_path = TARGET / "build_results.json"
     if not build_path.exists():
@@ -381,6 +429,13 @@ def main() -> int:
         metrics |= staging_metrics(ch)
         history = history_metrics(ch) | peak_memory(ch, run, ("hist_",))
         marts = marts_metrics(ch) | model_seconds(run, MART_MODELS) | peak_memory(ch, run, MART_MODELS)
+        extracted = (
+            extracted_metrics(ch)
+            if ch.scalar(
+                "SELECT count() FROM system.tables WHERE database = 'marts' AND name = 'mart_extraction_coverage'"
+            )
+            else None
+        )
     history_path = write_result(
         "dbt/history.json",
         history,
@@ -417,6 +472,28 @@ def main() -> int:
         },
     )
     print(marts_path)
+    if extracted is not None:
+        extracted_path = write_result(
+            "dbt/extracted_marts.json",
+            extracted,
+            source_script="dbt/report.py",
+            dbt_version=run["metadata"]["dbt_version"],
+            build_finished_at=run["metadata"]["generated_at"],
+            extraction_model=extraction_model(run),
+            notes={
+                "units": "portal vacancies (dedup entities; all_portals counts a vacancy on several portals once) "
+                "and Telegram single-vacancy posts after the weekly cross-post dedup, each once over the period "
+                "(mart_extraction_coverage level source)",
+                "coverage": "units with extracted fields, of units; Telegram digests and link stubs are never "
+                "extracted, so its coverage stays below 1",
+                "valid": "units whose answer passed the schema, of units with fields",
+                "it": "valid units with a role other than non_it, of valid units",
+                "skills_in_dictionary": "extracted skill spellings whose lookup key is in the dictionary v1, "
+                "of all spellings written for the units",
+                "telegram_linking_habr": "Telegram units that link a Habr Career vacancy, of Telegram units",
+            },
+        )
+        print(extracted_path)
     path = write_result(
         "dbt/build.json",
         metrics,

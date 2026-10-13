@@ -112,7 +112,7 @@ def check_file(path: Path, results_dir: Path, write: bool) -> tuple[int, list[st
 
     new_text = MARKER.sub(replace, text)
     if write and new_text != text:
-        path.write_text(new_text, encoding="utf-8")
+        path.write_text(new_text, encoding="utf-8", newline="")
     return count, errors
 
 

@@ -1,0 +1,515 @@
+version: 2
+
+# Marts on the fields the fine-tuned extractor took from vacancy texts, next to the rule
+# marts of models/marts: those read source fields, the role buckets and the v0 skill dictionary; these
+# read extract.vacancy_fields of var extraction_model through int_vacancy_fields. Both stay, so
+# the two can be compared on the same units. Off while extraction_model is empty.
+#
+# Common to all of them:
+# - Units. A portal vacancy is a dedup entity: within its source family for the rows of a source
+#   (as in the rule marts), across families for all_portals, where a vacancy the dedup found on
+#   trudvsem and on Habr counts once. A Telegram unit is a single-vacancy post after the weekly
+#   cross-post dedup; Telegram is never added to a portal row. The Habr Career reposts of the
+#   habr_career and progjob channels stay in Telegram and are counted in mart_extraction_coverage
+#   (units_linking_habr).
+# - Fields. The fields of a portal vacancy are those of its latest record; a record changed after the
+#   last corpus run keeps the fields of its latest extracted version (int_extracted_fields).
+# - IT. A vacancy is IT unless the extractor says non_it; a NULL role stays IT (the record passed its
+#   source's IT filter). The rule filter role_bucket is not used here.
+# - Partial coverage. Every unit is counted whether or not it has fields yet; each row carries the
+#   units with fields as its denominator, and mart_extraction_coverage says how many of the units
+#   have fields per source and week. While the corpus run is still on Telegram, older weeks have
+#   fewer units with fields; within a week the run takes posts in a fixed random order, so a share
+#   over the units with fields stands for the week, a count does not.
+# - Telegram texts are never stored here (DECISIONS 2), only counts.
+
+models:
+  - name: int_extracted_fields
+    description: >
+      One row per vacancy record of int_vacancy_fields (portal IT records, single-vacancy Telegram
+      posts), materialized, with the fields the marts read. Fields of the latest version when the
+      corpus run has extracted it, else of the latest extracted version (fields_from_older_version),
+      else none (has_fields false). Enumerations as strings; skills mapped to the dictionary v1
+      (seed skill_dictionary_v1) by the lookup key of each spelling, the first step of
+      radar.extract.skills.normalize. Its inflection patterns and version, vendor and plural rules
+      are not applied here, nor the rule that a 1С configuration implies 1С; a spelling they would
+      resolve counts in skills_written_n and not in skills_in_dictionary_n.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source, source_id]
+    columns:
+      - name: source
+        description: trudvsem, trudvsem_snapshot, habr, superjob or telegram.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [trudvsem, trudvsem_snapshot, habr, superjob, telegram]
+      - name: source_id
+        description: Vacancy id at the source; for Telegram <channel>/<post id>.
+        data_tests: [not_null]
+      - name: dt
+        description: Raw partition of the record's latest version.
+      - name: is_extracted
+        description: The latest version is extracted (int_vacancy_fields).
+      - name: has_fields
+        description: Some version of the record is extracted.
+      - name: fields_from_older_version
+        description: The fields come from an older version than the latest.
+      - name: valid
+        description: The extracted answer passed the schema; false without fields.
+      - name: is_it
+        description: Valid fields and a role other than non_it.
+      - name: role
+        description: Extracted role or NULL.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: &roles [ml_engineer, data_scientist, mlops, data_engineer, data_analyst, business_analyst,
+                  system_analyst, backend, frontend, fullstack, mobile, software_engineer, developer_1c, embedded,
+                  devops, qa, sysadmin, support, security, designer, manager, other_it, non_it]
+      - name: grade
+        description: intern, junior, middle, senior, lead or NULL.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: &grades [intern, junior, middle, senior, lead]
+      - name: skills_written_n
+        description: Skills as the extractor wrote them.
+      - name: skills_in_dictionary_n
+        description: Of them, spellings whose lookup key is a name or alias of the dictionary v1.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: skills_written_n
+      - name: skills
+        description: Dictionary v1 names of those spellings, distinct and sorted.
+      - name: salary_from
+        description: Lower bound of the extracted salary, in its currency and period.
+      - name: salary_to
+        description: Upper bound.
+      - name: salary_currency
+        description: RUB, USD, EUR, KZT, BYN, UZS, CNY, GBP or NULL (not named in the text).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [RUB, USD, EUR, KZT, BYN, UZS, CNY, GBP]
+      - name: salary_gross_net
+        description: gross, net or NULL.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [gross, net]
+      - name: salary_period
+        description: month, year, day, hour or NULL.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [month, year, day, hour]
+      - name: work_format
+        description: office, hybrid, remote or NULL.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: &formats [office, hybrid, remote]
+      - name: experience_min
+        description: Required years of experience, lower bound.
+      - name: experience_max
+        description: Required years of experience, upper bound.
+      - name: experience_band
+        description: &experience_band >
+          Band of the required experience (macro experience_band): none (min 0, «без опыта», or only
+          an upper bound), under_1 (0 < min < 1), 1_3, 3_6, 6_plus (by min), unknown (not stated or no
+          fields).
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: &bands [none, under_1, '1_3', '3_6', 6_plus, unknown]
+      - name: employment_type
+        description: labor_contract, gph, self_employed, internship or NULL.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: &employment [labor_contract, gph, self_employed, internship]
+      - name: lang
+        description: ru, en, other; NULL without valid fields.
+
+  - name: int_extracted_entities
+    description: >
+      One row per portal vacancy (dedup entity) and scope with the fields of the record that stands for
+      it. Scope trudvsem, habr or superjob: the family entity of int_vacancy_entities and its latest
+      record. Scope all_portals: the entity across families, with its latest record in any family
+      (latest staged day, the API before the snapshot, then the id); families counts the families it
+      was seen in.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [scope, entity_id]
+    columns:
+      - name: scope
+        description: trudvsem, habr, superjob or all_portals.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [trudvsem, habr, superjob, all_portals]
+      - name: entity_id
+        description: Dedup entity (int_vacancy_records entity_id).
+        data_tests: [not_null]
+      - name: record_source
+        description: Source of the record the fields come from.
+      - name: record_source_id
+        description: Its id.
+      - name: families
+        description: Source families the entity was seen in (1 for a family scope).
+      - name: first_seen
+        description: First day any record of the entity in the scope was seen open.
+      - name: last_seen
+        description: Last day any record was seen open.
+      - name: has_fields
+        description: The record has extracted fields.
+      - name: is_it
+        description: Valid fields and a role other than non_it.
+
+  - name: int_extracted_weekly_units
+    description: >
+      The units the weekly marts on extracted fields count, one row per source, ISO week and unit:
+      trudvsem_snapshot, trudvsem (API), habr, superjob: a dedup entity of the family seen open in
+      that source on a collected day of the week, as in mart_weekly_dynamics; all_portals: an entity
+      seen open in any portal source that week, once; telegram: a single-vacancy post published that
+      week (Moscow time), after the weekly cross-post dedup. Every unit has a row, with fields or not.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source, week, unit_id]
+    columns:
+      - name: source
+        description: &weekly_sources trudvsem_snapshot, trudvsem (API), habr, superjob, all_portals or telegram.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: &weekly_source_values [trudvsem_snapshot, trudvsem, habr, superjob, all_portals, telegram]
+      - name: week
+        description: Monday of the ISO week.
+        data_tests: [not_null]
+      - name: unit_id
+        description: Dedup entity, or the Telegram post id.
+        data_tests: [not_null]
+      - name: record_source
+        description: Source of the record the fields come from.
+      - name: record_source_id
+        description: Its id.
+      - name: links_to_habr
+        description: A Telegram post that links a Habr Career vacancy; false for portals.
+
+  - name: mart_extracted_skills_weekly
+    description: >
+      Skill demand by ISO week, source and skill on the extracted skills (dictionary v1 names): IT
+      vacancies (Telegram: posts) of the week that name the skill, of the IT vacancies of the week
+      with fields. The series for the skill demand forecast and the weekly digest; mart_skills_weekly
+      is the same on the v0 dictionary searched in the texts. Only skills with a mention get a row.
+      Shares are vacancies_mentioning / vacancies_it; vacancies_with_fields / vacancies_in_week is the
+      coverage of the week (mart_extraction_coverage).
+    data_tests:
+      - has_rows
+      - unique_combination:
+          arguments:
+            columns: [source, week, skill]
+    columns:
+      - name: week
+        description: Monday of the ISO week (Moscow time for Telegram posts, the collected day otherwise).
+        data_tests: [not_null]
+      - name: source
+        description: *weekly_sources
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: *weekly_source_values
+      - name: skill
+        description: Canonical skill name of the dictionary v1 (configs/skills.toml).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('skill_dictionary_v1')
+                field: skill
+      - name: skill_category
+        description: Category of the skill in the dictionary v1 (language, framework, database, ml, ...).
+        data_tests: [not_null]
+      - name: skill_parent
+        description: Broader skill the dictionary rolls the name up to (Ubuntu to Linux), or NULL; not applied to the counts.
+      - name: vacancies_mentioning
+        description: IT vacancies (posts) of the week whose extracted skills name the skill.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies_it
+      - name: vacancies_it
+        description: IT vacancies (posts) of the week with valid fields, the denominator of the share.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies_with_fields
+      - name: vacancies_with_fields
+        description: Vacancies (posts) of the week with valid fields, IT or not.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies_in_week
+      - name: vacancies_in_week
+        description: All units of the source in the week, with fields or not.
+
+  - name: mart_extracted_fields_weekly
+    description: >
+      Distributions of extracted fields by ISO week and source, one row per field and value. role is
+      counted over every vacancy (post) of the week with valid fields, non_it included; grade,
+      work_format, employment_type and experience (bands) over the IT ones. A field not stated reads
+      unknown, so the rows of a field add up to vacancies_base; values with no vacancy have no row.
+      The extractor sees trudvsem's experience field only when it is above 0 (a 0 is shown on senior
+      vacancies too, radar.extract.inputs), so experience none on trudvsem is what the text says; the
+      field itself is counted by mart_junior.
+    data_tests:
+      - has_rows
+      - unique_combination:
+          arguments:
+            columns: [source, week, field, value]
+    columns:
+      - name: week
+        description: Monday of the ISO week.
+        data_tests: [not_null]
+      - name: source
+        description: *weekly_sources
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: *weekly_source_values
+      - name: field
+        description: role, grade, work_format, employment_type or experience.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [role, grade, work_format, employment_type, experience]
+      - name: value
+        description: >
+          A value of the field in the extraction schema, an experience band (see
+          int_extracted_fields experience_band) or unknown; checked per field by
+          assert_extracted_field_values.
+        data_tests: [not_null]
+      - name: vacancies
+        description: Vacancies (posts) of the week with this value.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies_base
+      - name: vacancies_base
+        description: The denominator of the field, the same on all its rows of the week; valid fields for role, IT with valid fields otherwise.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies_in_week
+      - name: vacancies_in_week
+        description: All units of the source in the week, with fields or not.
+
+  - name: mart_extracted_salaries
+    description: >
+      Salaries from the extracted salary fields by extracted role and grade, next to mart_salaries
+      (salaries as the sources state them in their own fields, rule role buckets; that mart stays as
+      is). IT vacancies with valid fields: portal vacancies of the whole collection period per family
+      (trudvsem: API and snapshots), all_portals (a vacancy on several portals once), Telegram posts
+      of the last 100 days before the newest post. Quantiles (linear interpolation) over RUB amounts
+      per month: currency RUB and period month or not stated (the annotation guide leaves the monthly
+      default to normalization); another currency or period is counted, not converted; net and gross
+      as stated, counted in with_net and with_gross. NULL when fewer than 5 vacancies state that
+      bound. Levels (GROUPING SETS, each over the vacancies of its group): cell (role x grade), role,
+      grade, source; 'all' where a level does not split. The rows of one level cover every vacancy of
+      the source once.
+    data_tests:
+      - has_rows
+      - unique_combination:
+          arguments:
+            columns: [source, level, role, grade]
+    columns:
+      - name: source
+        description: trudvsem, habr, superjob, all_portals or telegram.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [trudvsem, habr, superjob, all_portals, telegram]
+      - name: level
+        description: cell, role, grade or source.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [cell, role, grade, source]
+      - name: role
+        description: Extracted role (non_it left out), unknown when not stated, all on levels without role.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [ml_engineer, data_scientist, mlops, data_engineer, data_analyst, business_analyst,
+                  system_analyst, backend, frontend, fullstack, mobile, software_engineer, developer_1c, embedded,
+                  devops, qa, sysadmin, support, security, designer, manager, other_it, unknown, all]
+      - name: grade
+        description: Extracted grade, unknown when not stated, all on levels without grade.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [intern, junior, middle, senior, lead, unknown, all]
+      - name: vacancies
+        description: IT vacancies (posts) with valid fields in the group, the denominator of every count of the row.
+      - name: with_salary
+        description: Vacancies stating any amount.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: vacancies
+      - name: with_salary_rub_month
+        description: Vacancies stating a RUB amount per month (or without a period), the base of the quantiles.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: with_salary
+      - name: with_salary_other_currency
+        description: Vacancies stating an amount in another currency or without a currency.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: with_salary
+      - name: with_salary_other_period
+        description: RUB amounts per year, day or hour.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: with_salary
+      - name: with_net
+        description: Of with_salary_rub_month, amounts stated net.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: with_salary_rub_month
+      - name: with_gross
+        description: Of with_salary_rub_month, amounts stated gross.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: with_salary_rub_month
+      - name: with_from
+        description: Vacancies with a RUB monthly lower bound, the base of the salary_from quantiles.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: with_salary_rub_month
+      - name: with_to
+        description: Vacancies with a RUB monthly upper bound, the base of the salary_to quantiles.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: with_salary_rub_month
+      - name: salary_from_p25
+        description: 25th percentile of the lower bound, RUB per month.
+      - name: salary_from_median
+        description: Median of the lower bound, RUB per month.
+      - name: salary_from_p75
+        description: 75th percentile of the lower bound, RUB per month.
+      - name: salary_to_p25
+        description: 25th percentile of the upper bound, RUB per month.
+      - name: salary_to_median
+        description: Median of the upper bound, RUB per month.
+      - name: salary_to_p75
+        description: 75th percentile of the upper bound, RUB per month.
+      - name: period_from
+        description: First day a vacancy of the source was seen (Telegram, the first post date in the window).
+      - name: period_to
+        description: Last day a vacancy of the source was seen (Telegram, the newest post date).
+
+  - name: mart_extraction_coverage
+    description: >
+      Extraction coverage of the units the extracted marts count, per source: level week, one row per
+      ISO week; level source, each unit of the collection period once (week is the source's first
+      week). coverage = units_with_fields / units; valid_share = units_valid / units_with_fields, the
+      valid JSON share. The Telegram corpus never extracts digests and posts with almost no text of
+      their own, so Telegram coverage stays below 1; units_linking_habr counts the Telegram posts
+      that repost a Habr Career vacancy. skills_in_dictionary / skills_written is the share of
+      extracted skill spellings the dictionary v1 maps.
+    data_tests:
+      - has_rows
+      - unique_combination:
+          arguments:
+            columns: [source, level, week]
+    columns:
+      - name: level
+        description: week or source.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [week, source]
+      - name: source
+        description: *weekly_sources
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: *weekly_source_values
+      - name: week
+        description: Monday of the ISO week; on level source the first week of the source.
+        data_tests: [not_null]
+      - name: units
+        description: Units (vacancies, Telegram posts) the extracted marts count.
+      - name: units_with_fields
+        description: Units with extracted fields (any version of the record).
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: units
+          # The portals are extracted in full; a drop means a new model_id or a skipped corpus run.
+          - share_at_least:
+              arguments:
+                denominator: units
+                min_share: 0.95
+              config:
+                where: "level = 'source' AND source != 'telegram'"
+                severity: warn
+          - share_at_least:
+              arguments:
+                denominator: units
+                min_share: 0.5
+              config:
+                where: "level = 'source' AND source != 'telegram'"
+      - name: units_from_older_version
+        description: Units whose fields come from an older version of the record than the latest.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: units_with_fields
+      - name: units_valid
+        description: Units whose extracted answer passed the schema.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: units_with_fields
+      - name: units_it
+        description: Valid units with a role other than non_it.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: units_valid
+      - name: units_linking_habr
+        description: Telegram posts that link a Habr Career vacancy; 0 for portals.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: units
+      - name: coverage
+        description: units_with_fields / units, 4 decimals.
+      - name: valid_share
+        description: units_valid / units_with_fields, 4 decimals; NULL without fields.
+      - name: skills_written
+        description: Skill spellings the extractor wrote for the units with fields.
+      - name: skills_in_dictionary
+        description: Of them, spellings the dictionary v1 maps by their lookup key.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: skills_written

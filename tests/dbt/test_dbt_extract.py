@@ -1,31 +1,38 @@
-"""The models over extract.vacancy_fields stay off until var extraction_model names the
-extractor the marts read, and parse into staging views with their grain tested once it does.
+"""The models over extract.vacancy_fields: the extract views and the marts on extracted
+fields (models/extracted) are off while var extraction_model is empty; with a model named they parse
+into staging and marts with their grain, bounds and enumerations tested, and the skill seed matches
+the dictionary v1.
 
 `dbt parse` with placeholder credentials, as in conftest.py; no ClickHouse is contacted.
 """
 
+import ast
+import importlib.util
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
-from typing import Any
+from typing import Any, get_args
 
 import pytest
 
+from radar.extract import schema
+
 ROOT = Path(__file__).resolve().parents[2]
 EXTRACT = {"stg_vacancy_fields", "int_vacancy_fields"}
+INTERMEDIATE = {"int_extracted_fields", "int_extracted_entities", "int_extracted_weekly_units"}
+MARTS = {
+    "mart_extracted_skills_weekly": ["source", "week", "skill"],
+    "mart_extracted_fields_weekly": ["source", "week", "field", "value"],
+    "mart_extracted_salaries": ["source", "level", "role", "grade"],
+    "mart_extraction_coverage": ["source", "level", "week"],
+}
+SINGULAR = {"assert_extracted_marts_consistent", "assert_extracted_field_values"}
 
 
-def _extract_models(manifest: dict[str, Any]) -> dict[str, dict[str, Any]]:
-    return {
-        n["name"]: n for n in manifest["nodes"].values() if n["resource_type"] == "model" and n["fqn"][1] == "extract"
-    }
-
-
-@pytest.fixture(scope="module")
-def manifest_on(tmp_path_factory: pytest.TempPathFactory) -> dict[str, Any]:
-    out = tmp_path_factory.mktemp("dbt_extract")
+def _parse(out: Path, extraction_model: str) -> dict[str, Any]:
     env = os.environ | {
         "CLICKHOUSE_URL": "http://localhost:1",
         "CLICKHOUSE_USER": "parse_only",
@@ -38,7 +45,7 @@ def manifest_on(tmp_path_factory: pytest.TempPathFactory) -> dict[str, Any]:
         "parse",
         "--no-partial-parse",
         "--vars",
-        "{extraction_model: student-q4}",
+        json.dumps({"extraction_model": extraction_model}),
         "--target-path",
         str(out / "target"),
         "--log-path",
@@ -58,14 +65,47 @@ def manifest_on(tmp_path_factory: pytest.TempPathFactory) -> dict[str, Any]:
     return doc
 
 
-def test_extract_models_are_off_by_default(manifest: dict[str, Any]) -> None:
-    assert not _extract_models(manifest)
-    disabled = {n[0]["name"] for n in manifest["disabled"].values() if n[0]["resource_type"] == "model"}
-    assert disabled >= EXTRACT
+@pytest.fixture(scope="module")
+def manifest_on(tmp_path_factory: pytest.TempPathFactory) -> dict[str, Any]:
+    return _parse(tmp_path_factory.mktemp("dbt_extract_on"), "student-q4")
+
+
+@pytest.fixture(scope="module")
+def manifest_off(tmp_path_factory: pytest.TempPathFactory) -> dict[str, Any]:
+    return _parse(tmp_path_factory.mktemp("dbt_extract_off"), "")
+
+
+def _models(manifest: dict[str, Any], folder: str) -> dict[str, dict[str, Any]]:
+    return {n["name"]: n for n in manifest["nodes"].values() if n["resource_type"] == "model" and n["fqn"][1] == folder}
+
+
+def _tests(manifest: dict[str, Any], name: str) -> list[dict[str, Any]]:
+    return [
+        n
+        for n in manifest["nodes"].values()
+        if n["resource_type"] == "test" and n.get("test_metadata", {}).get("name") == name
+    ]
+
+
+def _accepted(manifest: dict[str, Any], model: str, column: str) -> set[str]:
+    found = [
+        n["test_metadata"]["kwargs"]["values"]
+        for n in _tests(manifest, "accepted_values")
+        if n["attached_node"].endswith(f".{model}") and n["test_metadata"]["kwargs"]["column_name"] == column
+    ]
+    assert len(found) == 1, (model, column)
+    return {str(v) for v in found[0]}
+
+
+def test_extract_models_are_off_without_an_extraction_model(manifest_off: dict[str, Any]) -> None:
+    assert not _models(manifest_off, "extract")
+    assert not _models(manifest_off, "extracted")
+    disabled = {n[0]["name"] for n in manifest_off["disabled"].values()}
+    assert disabled >= EXTRACT | INTERMEDIATE | set(MARTS) | SINGULAR
 
 
 def test_extract_models_are_staging_views_with_their_grain(manifest_on: dict[str, Any]) -> None:
-    models = _extract_models(manifest_on)
+    models = _models(manifest_on, "extract")
     assert set(models) == EXTRACT
     for name, model in models.items():
         assert model["schema"] == "staging", name
@@ -73,10 +113,104 @@ def test_extract_models_are_staging_views_with_their_grain(manifest_on: dict[str
         assert model["description"].strip() and model["columns"], name
     grain = {
         (n["attached_node"].rsplit(".", 1)[-1], tuple(n["test_metadata"]["kwargs"]["columns"]))
-        for n in manifest_on["nodes"].values()
-        if n["resource_type"] == "test" and n.get("test_metadata", {}).get("name") == "unique_combination"
+        for n in _tests(manifest_on, "unique_combination")
     }
     assert ("stg_vacancy_fields", ("source", "source_id", "content_hash", "model_id")) in grain
     assert ("int_vacancy_fields", ("source", "source_id")) in grain
     sources = {s["name"] for s in manifest_on["sources"].values() if s["source_name"] == "extract"}
     assert sources == {"vacancy_fields"}
+
+
+def test_extracted_marts_land_in_marts_with_their_grain_tested(manifest_on: dict[str, Any]) -> None:
+    models = _models(manifest_on, "extracted")
+    assert set(models) == INTERMEDIATE | set(MARTS)
+    for name, model in models.items():
+        # the read-only account sees only marts, so nothing intermediate may land there
+        assert model["schema"] == ("marts" if name in MARTS else "staging"), name
+        assert model["config"]["materialized"] == "table", name
+        assert model["description"].strip() and model["columns"], name
+    grains = {
+        (n["attached_node"].rsplit(".", 1)[-1], tuple(n["test_metadata"]["kwargs"]["columns"]))
+        for n in _tests(manifest_on, "unique_combination")
+    }
+    non_empty = {n["attached_node"].rsplit(".", 1)[-1] for n in _tests(manifest_on, "has_rows")}
+    for name, grain in MARTS.items():
+        assert (name, tuple(grain)) in grains, name
+        assert name in non_empty, name
+    singular = {
+        n["name"] for n in manifest_on["nodes"].values() if n["resource_type"] == "test" and "test_metadata" not in n
+    }
+    assert singular >= SINGULAR | {"assert_skill_key_matches_seed"}
+
+
+def test_counts_never_exceed_their_denominators_and_portals_stay_covered(manifest_on: dict[str, Any]) -> None:
+    checked = {
+        (n["attached_node"].rsplit(".", 1)[-1], n["test_metadata"]["kwargs"]["column_name"])
+        for n in _tests(manifest_on, "not_above")
+    }
+    for pair in [
+        ("mart_extracted_skills_weekly", "vacancies_mentioning"),
+        ("mart_extracted_skills_weekly", "vacancies_with_fields"),
+        ("mart_extracted_fields_weekly", "vacancies"),
+        ("mart_extracted_salaries", "with_salary_rub_month"),
+        ("mart_extraction_coverage", "units_with_fields"),
+        ("mart_extraction_coverage", "units_valid"),
+        ("mart_extraction_coverage", "skills_in_dictionary"),
+    ]:
+        assert pair in checked, pair
+    bounds = {
+        (n["test_metadata"]["kwargs"]["min_share"], n["config"]["severity"].lower(), n["config"]["where"])
+        for n in _tests(manifest_on, "share_at_least")
+    }
+    portals = "level = 'source' AND source != 'telegram'"
+    assert bounds == {(0.95, "warn", portals), (0.5, "error", portals)}
+
+
+def test_enumerations_are_those_of_the_extraction_schema(manifest_on: dict[str, Any]) -> None:
+    enums = {
+        "role": schema.ROLES,
+        "grade": schema.GRADES,
+        "work_format": get_args(schema.WorkFormat),
+        "employment_type": get_args(schema.EmploymentType),
+        "salary_currency": get_args(schema.Currency),
+        "salary_gross_net": get_args(schema.GrossNet),
+        "salary_period": get_args(schema.Period),
+    }
+    for column, values in enums.items():
+        assert _accepted(manifest_on, "int_extracted_fields", column) == set(values), column
+    assert _accepted(manifest_on, "mart_extracted_salaries", "role") == set(schema.ROLES) - {"non_it"} | {
+        "unknown",
+        "all",
+    }
+    assert _accepted(manifest_on, "mart_extracted_salaries", "grade") == set(schema.GRADES) | {"unknown", "all"}
+
+    # the macro that the field-value test and the bands read
+    text = (ROOT / "dbt" / "macros" / "extracted.sql").read_text(encoding="utf-8")
+    block = text[text.index("{% macro extraction_enums()") : text.index("{% macro experience_bands()")]
+    macro = {k: ast.literal_eval(v) for k, v in re.findall(r"'(\w+)': (\[[^\]]*\])", block)}
+    assert macro == {
+        "role": list(schema.ROLES),
+        "grade": list(schema.GRADES),
+        "work_format": list(get_args(schema.WorkFormat)),
+        "employment_type": list(get_args(schema.EmploymentType)),
+        "currency": list(get_args(schema.Currency)),
+        "gross_net": list(get_args(schema.GrossNet)),
+        "period": list(get_args(schema.Period)),
+        "lang": list(get_args(schema.Lang)),
+    }
+    bands = _accepted(manifest_on, "int_extracted_fields", "experience_band")
+    assert bands == {"none", "under_1", "1_3", "3_6", "6_plus", "unknown"}
+
+
+def test_skill_seed_matches_the_dictionary_v1() -> None:
+    spec = importlib.util.spec_from_file_location("skill_seed", ROOT / "dbt" / "skill_seed.py")
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    rows = module.seed_rows()
+    assert module.SEED.read_text(encoding="utf-8") == module.render(rows), "python dbt/skill_seed.py"
+    from radar.extract import skills
+
+    d = skills.load()
+    assert {r["skill"] for r in rows} == set(d.skills)
+    assert {r["spelling_key"]: r["skill"] for r in rows} == d.by_key

@@ -14,3 +14,12 @@ SELECT {{ column_name }}, {{ denominator }}
 FROM {{ model }}
 WHERE {{ column_name }} > {{ denominator }}
 {% endtest %}
+
+
+{#- A count is at least this share of its denominator: a coverage bound. Rows with a zero denominator
+    pass. -#}
+{% test share_at_least(model, column_name, denominator, min_share) %}
+SELECT {{ column_name }}, {{ denominator }}
+FROM {{ model }}
+WHERE {{ denominator }} > 0 AND {{ column_name }} < {{ min_share }} * {{ denominator }}
+{% endtest %}

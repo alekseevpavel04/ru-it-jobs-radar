@@ -1,0 +1,164 @@
+{
+  "source_script": "dbt/report.py",
+  "command": "python dbt/report.py",
+  "commit": "2ff7e25-dirty",
+  "created_at": "2026-10-13T08:03:17+00:00",
+  "metrics": {
+    "rows_mart_extracted_skills_weekly": {
+      "value": 43169,
+      "n": null,
+      "denominator": null
+    },
+    "rows_mart_extracted_fields_weekly": {
+      "value": 6109,
+      "n": null,
+      "denominator": null
+    },
+    "rows_mart_extracted_salaries": {
+      "value": 678,
+      "n": null,
+      "denominator": null
+    },
+    "rows_mart_extraction_coverage": {
+      "value": 602,
+      "n": null,
+      "denominator": null
+    },
+    "coverage_all_portals": {
+      "value": 1.0,
+      "n": 21126,
+      "denominator": 21126
+    },
+    "valid_all_portals": {
+      "value": 0.9999,
+      "n": 21124,
+      "denominator": 21126
+    },
+    "it_all_portals": {
+      "value": 0.5233,
+      "n": 11055,
+      "denominator": 21124
+    },
+    "skills_in_dictionary_all_portals": {
+      "value": 0.9743,
+      "n": 41780,
+      "denominator": 42882
+    },
+    "coverage_habr": {
+      "value": 1.0,
+      "n": 1069,
+      "denominator": 1069
+    },
+    "valid_habr": {
+      "value": 1.0,
+      "n": 1069,
+      "denominator": 1069
+    },
+    "it_habr": {
+      "value": 0.8007,
+      "n": 856,
+      "denominator": 1069
+    },
+    "skills_in_dictionary_habr": {
+      "value": 0.9661,
+      "n": 7744,
+      "denominator": 8016
+    },
+    "coverage_superjob": {
+      "value": 1.0,
+      "n": 676,
+      "denominator": 676
+    },
+    "valid_superjob": {
+      "value": 1.0,
+      "n": 676,
+      "denominator": 676
+    },
+    "it_superjob": {
+      "value": 0.4645,
+      "n": 314,
+      "denominator": 676
+    },
+    "skills_in_dictionary_superjob": {
+      "value": 0.948,
+      "n": 1913,
+      "denominator": 2018
+    },
+    "coverage_telegram": {
+      "value": 0.157,
+      "n": 36036,
+      "denominator": 229518
+    },
+    "valid_telegram": {
+      "value": 0.9985,
+      "n": 35983,
+      "denominator": 36036
+    },
+    "it_telegram": {
+      "value": 0.9031,
+      "n": 32498,
+      "denominator": 35983
+    },
+    "skills_in_dictionary_telegram": {
+      "value": 0.941,
+      "n": 139677,
+      "denominator": 148430
+    },
+    "telegram_linking_habr": {
+      "value": 0.2697,
+      "n": 61905,
+      "denominator": 229518
+    },
+    "coverage_trudvsem": {
+      "value": 1.0,
+      "n": 8465,
+      "denominator": 8465
+    },
+    "valid_trudvsem": {
+      "value": 0.9998,
+      "n": 8463,
+      "denominator": 8465
+    },
+    "it_trudvsem": {
+      "value": 0.4711,
+      "n": 3987,
+      "denominator": 8463
+    },
+    "skills_in_dictionary_trudvsem": {
+      "value": 0.9767,
+      "n": 13890,
+      "denominator": 14222
+    },
+    "coverage_trudvsem_snapshot": {
+      "value": 1.0,
+      "n": 19545,
+      "denominator": 19545
+    },
+    "valid_trudvsem_snapshot": {
+      "value": 0.9999,
+      "n": 19543,
+      "denominator": 19545
+    },
+    "it_trudvsem_snapshot": {
+      "value": 0.5088,
+      "n": 9943,
+      "denominator": 19543
+    },
+    "skills_in_dictionary_trudvsem_snapshot": {
+      "value": 0.9779,
+      "n": 32458,
+      "denominator": 33192
+    }
+  },
+  "dbt_version": "1.12.5",
+  "build_finished_at": "2026-10-13T07:57:11.821413Z",
+  "extraction_model": "qwen3_1p7b_r16_clean-awq",
+  "notes": {
+    "units": "portal vacancies (dedup entities; all_portals counts a vacancy on several portals once) and Telegram single-vacancy posts after the weekly cross-post dedup, each once over the period (mart_extraction_coverage level source)",
+    "coverage": "units with extracted fields, of units; Telegram digests and link stubs are never extracted, so its coverage stays below 1",
+    "valid": "units whose answer passed the schema, of units with fields",
+    "it": "valid units with a role other than non_it, of valid units",
+    "skills_in_dictionary": "extracted skill spellings whose lookup key is in the dictionary v1, of all spellings written for the units",
+    "telegram_linking_habr": "Telegram units that link a Habr Career vacancy, of Telegram units"
+  }
+}

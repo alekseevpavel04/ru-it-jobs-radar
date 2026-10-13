@@ -82,3 +82,33 @@ seeds:
           - accepted_values:
               arguments:
                 values: ['', ru]
+
+  - name: skill_dictionary_v1
+    description: >
+      Every spelling (name and aliases) of the skill dictionary v1, configs/skills.toml, by
+      its lookup key, for the marts on extracted fields: the extractor writes a skill as it read it,
+      and the marts map it to its name by the key (macro skill_key, the folding of
+      radar.extract.skills.key). Written by `python dbt/skill_seed.py`; tests/dbt fails when it is
+      stale. The inflection patterns and normalization rules of radar.extract.skills are not in it.
+    config:
+      column_types:
+        spelling_key: String
+        spelling: String
+        skill: String
+        category: String
+        parent: String
+    columns:
+      - name: spelling_key
+        description: Lookup key of the spelling (lowercase, ё as е, no spaces, hyphens, underscores or dots).
+        data_tests: [unique, not_null]
+      - name: spelling
+        description: The spelling as the dictionary lists it.
+        data_tests: [not_null]
+      - name: skill
+        description: Canonical skill name.
+        data_tests: [not_null]
+      - name: category
+        description: Category of the skill in configs/skills.toml.
+        data_tests: [not_null]
+      - name: parent
+        description: Broader skill of [parents] (Ubuntu to Linux); empty when none.
