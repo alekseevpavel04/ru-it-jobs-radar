@@ -1,0 +1,250 @@
+{
+  "source_script": "src/radar/train/dpo_pairs.py",
+  "command": "python -m radar.train.dpo_pairs build --config configs/dpo/qwen3_1p7b_clean.toml",
+  "commit": "4c820b9-dirty",
+  "created_at": "2026-10-13T13:18:20+00:00",
+  "metrics": {
+    "pairs_train": {
+      "value": 716,
+      "n": null,
+      "denominator": null
+    },
+    "pairs_eval": {
+      "value": 75,
+      "n": null,
+      "denominator": null
+    },
+    "train.broken_json.telegram": {
+      "value": 18,
+      "n": null,
+      "denominator": null
+    },
+    "train.broken_json.trudvsem_habr": {
+      "value": 22,
+      "n": null,
+      "denominator": null
+    },
+    "train.drop_field.telegram": {
+      "value": 21,
+      "n": null,
+      "denominator": null
+    },
+    "train.drop_field.trudvsem_habr": {
+      "value": 22,
+      "n": null,
+      "denominator": null
+    },
+    "train.role.telegram": {
+      "value": 90,
+      "n": null,
+      "denominator": null
+    },
+    "train.role.trudvsem_habr": {
+      "value": 89,
+      "n": null,
+      "denominator": null
+    },
+    "train.student.telegram": {
+      "value": 199,
+      "n": null,
+      "denominator": null
+    },
+    "train.student.trudvsem_habr": {
+      "value": 73,
+      "n": null,
+      "denominator": null
+    },
+    "train.work_format.telegram": {
+      "value": 91,
+      "n": null,
+      "denominator": null
+    },
+    "train.work_format.trudvsem_habr": {
+      "value": 91,
+      "n": null,
+      "denominator": null
+    },
+    "eval.broken_json.telegram": {
+      "value": 7,
+      "n": null,
+      "denominator": null
+    },
+    "eval.broken_json.trudvsem_habr": {
+      "value": 3,
+      "n": null,
+      "denominator": null
+    },
+    "eval.drop_field.telegram": {
+      "value": 4,
+      "n": null,
+      "denominator": null
+    },
+    "eval.drop_field.trudvsem_habr": {
+      "value": 3,
+      "n": null,
+      "denominator": null
+    },
+    "eval.role.telegram": {
+      "value": 10,
+      "n": null,
+      "denominator": null
+    },
+    "eval.role.trudvsem_habr": {
+      "value": 11,
+      "n": null,
+      "denominator": null
+    },
+    "eval.student.telegram": {
+      "value": 13,
+      "n": null,
+      "denominator": null
+    },
+    "eval.student.trudvsem_habr": {
+      "value": 6,
+      "n": null,
+      "denominator": null
+    },
+    "eval.work_format.telegram": {
+      "value": 9,
+      "n": null,
+      "denominator": null
+    },
+    "eval.work_format.trudvsem_habr": {
+      "value": 9,
+      "n": null,
+      "denominator": null
+    },
+    "student_disagrees.train.trudvsem_habr.any": {
+      "value": 0.048,
+      "n": 48,
+      "denominator": 1000
+    },
+    "student_disagrees.train.trudvsem_habr.role": {
+      "value": 0.027,
+      "n": 27,
+      "denominator": 1000
+    },
+    "student_disagrees.train.trudvsem_habr.work_format": {
+      "value": 0.006,
+      "n": 6,
+      "denominator": 1000
+    },
+    "student_disagrees.train.trudvsem_habr.grade": {
+      "value": 0.015,
+      "n": 15,
+      "denominator": 1000
+    },
+    "student_disagrees.train.trudvsem_habr.employment_type": {
+      "value": 0.001,
+      "n": 1,
+      "denominator": 1000
+    },
+    "student_disagrees.train.trudvsem_habr.invalid_json": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1000
+    },
+    "student_disagrees.train.telegram.any": {
+      "value": 0.151,
+      "n": 151,
+      "denominator": 1000
+    },
+    "student_disagrees.train.telegram.role": {
+      "value": 0.062,
+      "n": 62,
+      "denominator": 1000
+    },
+    "student_disagrees.train.telegram.work_format": {
+      "value": 0.028,
+      "n": 28,
+      "denominator": 1000
+    },
+    "student_disagrees.train.telegram.grade": {
+      "value": 0.06,
+      "n": 60,
+      "denominator": 1000
+    },
+    "student_disagrees.train.telegram.employment_type": {
+      "value": 0.009,
+      "n": 9,
+      "denominator": 1000
+    },
+    "student_disagrees.train.telegram.invalid_json": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1000
+    },
+    "student_disagrees.val.trudvsem_habr.any": {
+      "value": 0.1103,
+      "n": 31,
+      "denominator": 281
+    },
+    "student_disagrees.val.trudvsem_habr.role": {
+      "value": 0.0854,
+      "n": 24,
+      "denominator": 281
+    },
+    "student_disagrees.val.trudvsem_habr.work_format": {
+      "value": 0.0142,
+      "n": 4,
+      "denominator": 281
+    },
+    "student_disagrees.val.trudvsem_habr.grade": {
+      "value": 0.0142,
+      "n": 4,
+      "denominator": 281
+    },
+    "student_disagrees.val.trudvsem_habr.employment_type": {
+      "value": 0.0071,
+      "n": 2,
+      "denominator": 281
+    },
+    "student_disagrees.val.trudvsem_habr.invalid_json": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 281
+    },
+    "student_disagrees.val.telegram.any": {
+      "value": 0.2179,
+      "n": 61,
+      "denominator": 280
+    },
+    "student_disagrees.val.telegram.role": {
+      "value": 0.1214,
+      "n": 34,
+      "denominator": 280
+    },
+    "student_disagrees.val.telegram.work_format": {
+      "value": 0.0393,
+      "n": 11,
+      "denominator": 280
+    },
+    "student_disagrees.val.telegram.grade": {
+      "value": 0.0571,
+      "n": 16,
+      "denominator": 280
+    },
+    "student_disagrees.val.telegram.employment_type": {
+      "value": 0.0143,
+      "n": 4,
+      "denominator": 280
+    },
+    "student_disagrees.val.telegram.invalid_json": {
+      "value": 0.0036,
+      "n": 1,
+      "denominator": 280
+    }
+  },
+  "config_file": "configs/dpo/qwen3_1p7b_clean.toml",
+  "config_sha256": "7a5ded0b4be4cf7a0aa0449875ca42ab65baf48cb49c720f7eda86d18cc5195d",
+  "sft_adapter": "models/sft/qwen3_1p7b_r16_clean/adapter",
+  "sft_train_sha256": "6f738b2217fca74829c99fb9aa946c0f7c7196a07065cf5874bb7de81bd541d1",
+  "sft_val_sha256": "5e808123ba5fb8dc55b28804b9212da96c70bf8c72a08aa8da78ade3dc920e0e",
+  "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
+  "student_inputs_sha256": "55ebacf0355ffe2034bc7bfa7d327da7be9164dbb87481d0ba2a59400e5c3f9b",
+  "student_answers_sha256": "744b8cecd24449e3dd6da85a7ab3f2001d217de4c7230ae6d5d5f6a4f9fbfba6",
+  "student_answers_adapter_sha256": "338478948d4b1d1b91b976cc6a88c14831f78dfde1e10653e04843218cf798c0",
+  "train_sha256": "3946c1ed4d0c92fe4c3f4d76ecbe9c05bd8760e36fa9750131c00ea44fba84ce",
+  "val_sha256": "5222b718e1d8b3ce0717f689338904852eb2452a2126255f105f7ccd46fdfc2e",
+  "method": "chosen: the silver label of a data/sft row; rejected: the SFT student's greedy answer where it differs on role, work_format, grade, employment_type or is invalid (student_disagrees.* over the answered rows of each part and family), or a corrupted copy of the label (work_format swap, role swap to a neighbouring role, one key dropped, JSON cut short) on train rows without a student pair; pairs_eval: groups held out by a seeded hash"
+}

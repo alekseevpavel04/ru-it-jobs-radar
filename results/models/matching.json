@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/models/matching.py",
   "command": "python -m radar.models.matching evaluate",
-  "commit": "7b7e95d-dirty",
-  "created_at": "2026-10-13T09:07:04+00:00",
+  "commit": "5a4b594-dirty",
+  "created_at": "2026-10-13T14:21:29+00:00",
   "metrics": {
     "dev.bm25.ndcg": {
       "value": 0.3553,
@@ -88,47 +88,89 @@
       "ci_low": 0.3449,
       "ci_high": 0.4076
     },
-    "dev.diff.bm25.minus.fusion_e5-small@70.ndcg": {
-      "value": -0.0677,
+    "dev.dense_e5-base.ndcg": {
+      "value": 0.3692,
       "n": null,
       "denominator": null,
-      "ci_low": -0.0808,
-      "ci_high": -0.0558
+      "ci_low": 0.3465,
+      "ci_high": 0.3915
     },
-    "dev.diff.bm25.minus.fusion_e5-small@70.mrr": {
-      "value": -0.0566,
+    "dev.dense_e5-base.mrr": {
+      "value": 0.5533,
       "n": null,
       "denominator": null,
-      "ci_low": -0.0878,
-      "ci_high": -0.027
+      "ci_low": 0.5064,
+      "ci_high": 0.5974
     },
-    "dev.diff.bm25.minus.fusion_e5-small@70.recall": {
-      "value": -0.036,
+    "dev.dense_e5-base.recall": {
+      "value": 0.3242,
       "n": null,
       "denominator": null,
-      "ci_low": -0.0504,
-      "ci_high": -0.0221
+      "ci_low": 0.2959,
+      "ci_high": 0.3551
     },
-    "dev.diff.dense_e5-small.minus.fusion_e5-small@70.ndcg": {
-      "value": -0.0628,
+    "dev.rrf_e5-base.ndcg": {
+      "value": 0.4035,
       "n": null,
       "denominator": null,
-      "ci_low": -0.0798,
-      "ci_high": -0.0465
+      "ci_low": 0.3824,
+      "ci_high": 0.4236
     },
-    "dev.diff.dense_e5-small.minus.fusion_e5-small@70.mrr": {
-      "value": -0.2361,
+    "dev.rrf_e5-base.mrr": {
+      "value": 0.771,
       "n": null,
       "denominator": null,
-      "ci_low": -0.2791,
-      "ci_high": -0.1901
+      "ci_low": 0.7295,
+      "ci_high": 0.8082
     },
-    "dev.diff.dense_e5-small.minus.fusion_e5-small@70.recall": {
-      "value": -0.0684,
+    "dev.rrf_e5-base.recall": {
+      "value": 0.384,
       "n": null,
       "denominator": null,
-      "ci_low": -0.089,
-      "ci_high": -0.0494
+      "ci_low": 0.3532,
+      "ci_high": 0.4148
+    },
+    "dev.fusion_e5-base@80.ndcg": {
+      "value": 0.4298,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.4088,
+      "ci_high": 0.4505
+    },
+    "dev.fusion_e5-base@80.mrr": {
+      "value": 0.8041,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.7662,
+      "ci_high": 0.8399
+    },
+    "dev.fusion_e5-base@80.recall": {
+      "value": 0.382,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3508,
+      "ci_high": 0.4138
+    },
+    "dev.diff.bm25.minus.fusion_e5-base@80.ndcg": {
+      "value": -0.0745,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0916,
+      "ci_high": -0.0576
+    },
+    "dev.diff.bm25.minus.fusion_e5-base@80.mrr": {
+      "value": -0.0172,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0535,
+      "ci_high": 0.0192
+    },
+    "dev.diff.bm25.minus.fusion_e5-base@80.recall": {
+      "value": -0.0419,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0595,
+      "ci_high": -0.0248
     },
     "dev.diff.dense_e5-small.minus.bm25.ndcg": {
       "value": 0.0049,
@@ -151,26 +193,26 @@
       "ci_low": -0.0572,
       "ci_high": -0.0079
     },
-    "dev.diff.rrf_e5-small.minus.fusion_e5-small@70.ndcg": {
-      "value": -0.0223,
+    "dev.diff.dense_e5-small.minus.fusion_e5-base@80.ndcg": {
+      "value": -0.0696,
       "n": null,
       "denominator": null,
-      "ci_low": -0.032,
-      "ci_high": -0.0133
+      "ci_low": -0.0894,
+      "ci_high": -0.0507
     },
-    "dev.diff.rrf_e5-small.minus.fusion_e5-small@70.mrr": {
-      "value": -0.0584,
+    "dev.diff.dense_e5-small.minus.fusion_e5-base@80.mrr": {
+      "value": -0.1967,
       "n": null,
       "denominator": null,
-      "ci_low": -0.0858,
-      "ci_high": -0.0305
+      "ci_low": -0.2414,
+      "ci_high": -0.1489
     },
-    "dev.diff.rrf_e5-small.minus.fusion_e5-small@70.recall": {
-      "value": -0.0106,
+    "dev.diff.dense_e5-small.minus.fusion_e5-base@80.recall": {
+      "value": -0.0743,
       "n": null,
       "denominator": null,
-      "ci_low": -0.0168,
-      "ci_high": -0.005
+      "ci_low": -0.0956,
+      "ci_high": -0.0537
     },
     "dev.diff.rrf_e5-small.minus.bm25.ndcg": {
       "value": 0.0454,
@@ -193,6 +235,27 @@
       "ci_low": 0.0115,
       "ci_high": 0.0402
     },
+    "dev.diff.rrf_e5-small.minus.fusion_e5-base@80.ndcg": {
+      "value": -0.0291,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0436,
+      "ci_high": -0.0138
+    },
+    "dev.diff.rrf_e5-small.minus.fusion_e5-base@80.mrr": {
+      "value": -0.019,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0597,
+      "ci_high": 0.0211
+    },
+    "dev.diff.rrf_e5-small.minus.fusion_e5-base@80.recall": {
+      "value": -0.0166,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0309,
+      "ci_high": -0.002
+    },
     "dev.diff.fusion_e5-small@70.minus.bm25.ndcg": {
       "value": 0.0677,
       "n": null,
@@ -213,6 +276,205 @@
       "denominator": null,
       "ci_low": 0.0221,
       "ci_high": 0.0504
+    },
+    "dev.diff.fusion_e5-small@70.minus.fusion_e5-base@80.ndcg": {
+      "value": -0.0068,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0207,
+      "ci_high": 0.006
+    },
+    "dev.diff.fusion_e5-small@70.minus.fusion_e5-base@80.mrr": {
+      "value": 0.0394,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0059,
+      "ci_high": 0.0721
+    },
+    "dev.diff.fusion_e5-small@70.minus.fusion_e5-base@80.recall": {
+      "value": -0.0059,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0197,
+      "ci_high": 0.0083
+    },
+    "dev.diff.dense_e5-base.minus.bm25.ndcg": {
+      "value": 0.014,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0106,
+      "ci_high": 0.038
+    },
+    "dev.diff.dense_e5-base.minus.bm25.mrr": {
+      "value": -0.2336,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.2853,
+      "ci_high": -0.1842
+    },
+    "dev.diff.dense_e5-base.minus.bm25.recall": {
+      "value": -0.0159,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0428,
+      "ci_high": 0.0103
+    },
+    "dev.diff.dense_e5-base.minus.fusion_e5-base@80.ndcg": {
+      "value": -0.0605,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0747,
+      "ci_high": -0.0469
+    },
+    "dev.diff.dense_e5-base.minus.fusion_e5-base@80.mrr": {
+      "value": -0.2508,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.2898,
+      "ci_high": -0.2123
+    },
+    "dev.diff.dense_e5-base.minus.fusion_e5-base@80.recall": {
+      "value": -0.0578,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0772,
+      "ci_high": -0.0401
+    },
+    "dev.diff.rrf_e5-base.minus.bm25.ndcg": {
+      "value": 0.0483,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0317,
+      "ci_high": 0.0644
+    },
+    "dev.diff.rrf_e5-base.minus.bm25.mrr": {
+      "value": -0.0159,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0599,
+      "ci_high": 0.0282
+    },
+    "dev.diff.rrf_e5-base.minus.bm25.recall": {
+      "value": 0.0439,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0284,
+      "ci_high": 0.0598
+    },
+    "dev.diff.rrf_e5-base.minus.fusion_e5-base@80.ndcg": {
+      "value": -0.0262,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0345,
+      "ci_high": -0.0181
+    },
+    "dev.diff.rrf_e5-base.minus.fusion_e5-base@80.mrr": {
+      "value": -0.0331,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0577,
+      "ci_high": -0.008
+    },
+    "dev.diff.rrf_e5-base.minus.fusion_e5-base@80.recall": {
+      "value": 0.002,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0046,
+      "ci_high": 0.0092
+    },
+    "dev.diff.fusion_e5-base@80.minus.bm25.ndcg": {
+      "value": 0.0745,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0576,
+      "ci_high": 0.0916
+    },
+    "dev.diff.fusion_e5-base@80.minus.bm25.mrr": {
+      "value": 0.0172,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0192,
+      "ci_high": 0.0535
+    },
+    "dev.diff.fusion_e5-base@80.minus.bm25.recall": {
+      "value": 0.0419,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0248,
+      "ci_high": 0.0595
+    },
+    "dev.rerank.queries": {
+      "value": 100,
+      "n": null,
+      "denominator": null
+    },
+    "dev.rerank.seconds_per_query_median": {
+      "value": 24.8,
+      "n": null,
+      "denominator": null
+    },
+    "dev.rerank.first_stage.ndcg": {
+      "value": 0.4068,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3743,
+      "ci_high": 0.4401
+    },
+    "dev.rerank.reranked.ndcg": {
+      "value": 0.4205,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.385,
+      "ci_high": 0.4583
+    },
+    "dev.rerank.diff.ndcg": {
+      "value": 0.0137,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0116,
+      "ci_high": 0.0378
+    },
+    "dev.rerank.first_stage.mrr": {
+      "value": 0.8536,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.7979,
+      "ci_high": 0.9035
+    },
+    "dev.rerank.reranked.mrr": {
+      "value": 0.7203,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.6528,
+      "ci_high": 0.7882
+    },
+    "dev.rerank.diff.mrr": {
+      "value": -0.1333,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.211,
+      "ci_high": -0.052
+    },
+    "dev.rerank.first_stage.recall": {
+      "value": 0.3612,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3096,
+      "ci_high": 0.4173
+    },
+    "dev.rerank.reranked.recall": {
+      "value": 0.3612,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3096,
+      "ci_high": 0.4173
+    },
+    "dev.rerank.diff.recall": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0,
+      "ci_high": 0.0
     },
     "data.pool": {
       "value": 11124,
@@ -255,18 +517,24 @@
     "Вес слияния выбран на dev, поэтому число fusion на dev оптимистично на величину выбора; тест считается один раз."
   ],
   "config": "configs/matching.toml",
-  "best_dev": "fusion_e5-small@70",
+  "best_dev": "fusion_e5-base@80",
   "served": "fusion_e5-small@70",
   "selection": {
     "tuned_fusion": {
-      "fusion_e5-small": "fusion_e5-small@70"
+      "fusion_e5-small": "fusion_e5-small@70",
+      "fusion_e5-base": "fusion_e5-base@80"
     },
     "fusion_grid_ndcg": {
       "fusion_e5-small@50": 0.3979,
       "fusion_e5-small@60": 0.4091,
       "fusion_e5-small@70": 0.423,
       "fusion_e5-small@80": 0.4222,
-      "fusion_e5-small@90": 0.4099
+      "fusion_e5-small@90": 0.4099,
+      "fusion_e5-base@50": 0.4036,
+      "fusion_e5-base@60": 0.4148,
+      "fusion_e5-base@70": 0.4261,
+      "fusion_e5-base@80": 0.4298,
+      "fusion_e5-base@90": 0.4199
     }
   },
   "embeddings": {
@@ -289,7 +557,27 @@
       },
       "pool_ids_sha256": "b654eb3789bd32fe4d57feb2224fc76a085e81ad0842b55e81151bf3af0449de",
       "query_ids_sha256": "a7f181afaaf74a9399be695b0883041d76aab5a9ae16fa30049b4e709054822c"
+    },
+    "intfloat/multilingual-e5-base": {
+      "model": "intfloat/multilingual-e5-base",
+      "max_length": 512,
+      "device": "cpu",
+      "dtype": "float32",
+      "pool": {
+        "texts": 11124,
+        "truncated": 1846,
+        "seconds": 2785.9,
+        "prefix": "passage: "
+      },
+      "queries": {
+        "texts": 600,
+        "truncated": 0,
+        "seconds": 25.7,
+        "prefix": "query: "
+      },
+      "pool_ids_sha256": "b654eb3789bd32fe4d57feb2224fc76a085e81ad0842b55e81151bf3af0449de",
+      "query_ids_sha256": "a7f181afaaf74a9399be695b0883041d76aab5a9ae16fa30049b4e709054822c"
     }
   },
-  "model_version": "match-fusion_e5-small@70-7b7e95d-dirty"
+  "model_version": "match-fusion_e5-small@70-5a4b594-dirty"
 }

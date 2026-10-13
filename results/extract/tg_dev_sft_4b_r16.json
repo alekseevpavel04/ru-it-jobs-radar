@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/eval/cli.py",
-  "command": "python -m radar.eval --system sft_4b_r16 --split tg_dev --compare sft_1p7b_r16",
-  "commit": "49ccd05-dirty",
-  "created_at": "2026-10-12T13:18:24+00:00",
+  "command": "python -m radar.eval --system sft_4b_r16 --split tg_dev --compare base_4b",
+  "commit": "a528f88-dirty",
+  "created_at": "2026-10-13T12:11:56+00:00",
   "metrics": {
     "valid_json": {
       "value": 1.0,
