@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/models/matching.py",
   "command": "python -m radar.models.matching evaluate",
-  "commit": "5a4b594-dirty",
-  "created_at": "2026-10-13T14:21:29+00:00",
+  "commit": "51f30ca-dirty",
+  "created_at": "2026-10-13T14:35:56+00:00",
   "metrics": {
     "dev.bm25.ndcg": {
       "value": 0.3553,
@@ -172,27 +172,6 @@
       "ci_low": -0.0595,
       "ci_high": -0.0248
     },
-    "dev.diff.dense_e5-small.minus.bm25.ndcg": {
-      "value": 0.0049,
-      "n": null,
-      "denominator": null,
-      "ci_low": -0.0184,
-      "ci_high": 0.0272
-    },
-    "dev.diff.dense_e5-small.minus.bm25.mrr": {
-      "value": -0.1795,
-      "n": null,
-      "denominator": null,
-      "ci_low": -0.2321,
-      "ci_high": -0.1244
-    },
-    "dev.diff.dense_e5-small.minus.bm25.recall": {
-      "value": -0.0324,
-      "n": null,
-      "denominator": null,
-      "ci_low": -0.0572,
-      "ci_high": -0.0079
-    },
     "dev.diff.dense_e5-small.minus.fusion_e5-base@80.ndcg": {
       "value": -0.0696,
       "n": null,
@@ -214,26 +193,26 @@
       "ci_low": -0.0956,
       "ci_high": -0.0537
     },
-    "dev.diff.rrf_e5-small.minus.bm25.ndcg": {
-      "value": 0.0454,
+    "dev.diff.dense_e5-small.minus.bm25.ndcg": {
+      "value": 0.0049,
       "n": null,
       "denominator": null,
-      "ci_low": 0.0288,
-      "ci_high": 0.062
+      "ci_low": -0.0184,
+      "ci_high": 0.0272
     },
-    "dev.diff.rrf_e5-small.minus.bm25.mrr": {
-      "value": -0.0018,
+    "dev.diff.dense_e5-small.minus.bm25.mrr": {
+      "value": -0.1795,
       "n": null,
       "denominator": null,
-      "ci_low": -0.0445,
-      "ci_high": 0.0412
+      "ci_low": -0.2321,
+      "ci_high": -0.1244
     },
-    "dev.diff.rrf_e5-small.minus.bm25.recall": {
-      "value": 0.0254,
+    "dev.diff.dense_e5-small.minus.bm25.recall": {
+      "value": -0.0324,
       "n": null,
       "denominator": null,
-      "ci_low": 0.0115,
-      "ci_high": 0.0402
+      "ci_low": -0.0572,
+      "ci_high": -0.0079
     },
     "dev.diff.rrf_e5-small.minus.fusion_e5-base@80.ndcg": {
       "value": -0.0291,
@@ -256,26 +235,26 @@
       "ci_low": -0.0309,
       "ci_high": -0.002
     },
-    "dev.diff.fusion_e5-small@70.minus.bm25.ndcg": {
-      "value": 0.0677,
+    "dev.diff.rrf_e5-small.minus.bm25.ndcg": {
+      "value": 0.0454,
       "n": null,
       "denominator": null,
-      "ci_low": 0.0558,
-      "ci_high": 0.0808
+      "ci_low": 0.0288,
+      "ci_high": 0.062
     },
-    "dev.diff.fusion_e5-small@70.minus.bm25.mrr": {
-      "value": 0.0566,
+    "dev.diff.rrf_e5-small.minus.bm25.mrr": {
+      "value": -0.0018,
       "n": null,
       "denominator": null,
-      "ci_low": 0.027,
-      "ci_high": 0.0878
+      "ci_low": -0.0445,
+      "ci_high": 0.0412
     },
-    "dev.diff.fusion_e5-small@70.minus.bm25.recall": {
-      "value": 0.036,
+    "dev.diff.rrf_e5-small.minus.bm25.recall": {
+      "value": 0.0254,
       "n": null,
       "denominator": null,
-      "ci_low": 0.0221,
-      "ci_high": 0.0504
+      "ci_low": 0.0115,
+      "ci_high": 0.0402
     },
     "dev.diff.fusion_e5-small@70.minus.fusion_e5-base@80.ndcg": {
       "value": -0.0068,
@@ -298,26 +277,26 @@
       "ci_low": -0.0197,
       "ci_high": 0.0083
     },
-    "dev.diff.dense_e5-base.minus.bm25.ndcg": {
-      "value": 0.014,
+    "dev.diff.fusion_e5-small@70.minus.bm25.ndcg": {
+      "value": 0.0677,
       "n": null,
       "denominator": null,
-      "ci_low": -0.0106,
-      "ci_high": 0.038
+      "ci_low": 0.0558,
+      "ci_high": 0.0808
     },
-    "dev.diff.dense_e5-base.minus.bm25.mrr": {
-      "value": -0.2336,
+    "dev.diff.fusion_e5-small@70.minus.bm25.mrr": {
+      "value": 0.0566,
       "n": null,
       "denominator": null,
-      "ci_low": -0.2853,
-      "ci_high": -0.1842
+      "ci_low": 0.027,
+      "ci_high": 0.0878
     },
-    "dev.diff.dense_e5-base.minus.bm25.recall": {
-      "value": -0.0159,
+    "dev.diff.fusion_e5-small@70.minus.bm25.recall": {
+      "value": 0.036,
       "n": null,
       "denominator": null,
-      "ci_low": -0.0428,
-      "ci_high": 0.0103
+      "ci_low": 0.0221,
+      "ci_high": 0.0504
     },
     "dev.diff.dense_e5-base.minus.fusion_e5-base@80.ndcg": {
       "value": -0.0605,
@@ -340,26 +319,26 @@
       "ci_low": -0.0772,
       "ci_high": -0.0401
     },
-    "dev.diff.rrf_e5-base.minus.bm25.ndcg": {
-      "value": 0.0483,
+    "dev.diff.dense_e5-base.minus.bm25.ndcg": {
+      "value": 0.014,
       "n": null,
       "denominator": null,
-      "ci_low": 0.0317,
-      "ci_high": 0.0644
+      "ci_low": -0.0106,
+      "ci_high": 0.038
     },
-    "dev.diff.rrf_e5-base.minus.bm25.mrr": {
+    "dev.diff.dense_e5-base.minus.bm25.mrr": {
+      "value": -0.2336,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.2853,
+      "ci_high": -0.1842
+    },
+    "dev.diff.dense_e5-base.minus.bm25.recall": {
       "value": -0.0159,
       "n": null,
       "denominator": null,
-      "ci_low": -0.0599,
-      "ci_high": 0.0282
-    },
-    "dev.diff.rrf_e5-base.minus.bm25.recall": {
-      "value": 0.0439,
-      "n": null,
-      "denominator": null,
-      "ci_low": 0.0284,
-      "ci_high": 0.0598
+      "ci_low": -0.0428,
+      "ci_high": 0.0103
     },
     "dev.diff.rrf_e5-base.minus.fusion_e5-base@80.ndcg": {
       "value": -0.0262,
@@ -381,6 +360,27 @@
       "denominator": null,
       "ci_low": -0.0046,
       "ci_high": 0.0092
+    },
+    "dev.diff.rrf_e5-base.minus.bm25.ndcg": {
+      "value": 0.0483,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0317,
+      "ci_high": 0.0644
+    },
+    "dev.diff.rrf_e5-base.minus.bm25.mrr": {
+      "value": -0.0159,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0599,
+      "ci_high": 0.0282
+    },
+    "dev.diff.rrf_e5-base.minus.bm25.recall": {
+      "value": 0.0439,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0284,
+      "ci_high": 0.0598
     },
     "dev.diff.fusion_e5-base@80.minus.bm25.ndcg": {
       "value": 0.0745,
@@ -579,5 +579,5 @@
       "query_ids_sha256": "a7f181afaaf74a9399be695b0883041d76aab5a9ae16fa30049b4e709054822c"
     }
   },
-  "model_version": "match-fusion_e5-small@70-5a4b594-dirty"
+  "model_version": "match-fusion_e5-small@70-51f30ca-dirty"
 }
