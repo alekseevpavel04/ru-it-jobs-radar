@@ -1,7 +1,8 @@
 """The main path against the running stack (scripts/e2e.sh brings it up): health, extraction of a
-vacancy by the student, market aggregates, the salary estimate of the extracted fields, and the same
-estimate as an MCP tool over streamable HTTP. Reads only; the vacancy below is made up, and a code
-unique to the run keeps its extraction out of the Redis cache, so the student really answers it.
+vacancy by the student, market aggregates, the salary estimate of the extracted fields, open vacancies
+matched to a resume, and the same estimate as an MCP tool over streamable HTTP. Reads only; the
+vacancy below is made up, and a code unique to the run keeps its extraction out of the Redis cache,
+so the student really answers it.
 
     bash scripts/e2e.sh                      up the core and api profiles, then these tests
     pytest -m slow tests/api/test_e2e.py     against what is running
@@ -52,6 +53,7 @@ def test_health_sees_clickhouse_redis_the_student_and_the_salary_model(api: http
     assert body["status"] == "ok", body
     assert body["extract_backend"] == "student", body
     assert body["salary_model"].startswith("salary-")
+    assert body["match_model"].startswith("match-")
 
 
 def test_extract_is_answered_by_the_student(extracted: dict[str, Any], capsys: pytest.CaptureFixture[str]) -> None:
@@ -92,6 +94,20 @@ def test_salary_estimates_the_extracted_fields(api: httpx.Client, extracted: dic
     body = response.json()
     assert 0 < body["low"] <= body["point"] <= body["high"]
     assert body["n_similar"] >= 0 and body["model"].startswith("salary-")
+
+
+def test_match_lists_open_vacancies_under_the_publication_rules(api: httpx.Client) -> None:
+    resume = "Junior ML-инженер, опыт 1 год. Python, PyTorch, OpenCV, SQL, Docker. Москва, гибрид."
+    response = api.post("/match", json={"resume_text": resume, "k": 10})
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert body["model"].startswith("match-") and body["items"]
+    assert [i["rank"] for i in body["items"]] == list(range(1, len(body["items"]) + 1))
+    for item in body["items"]:
+        if item["source"] != "trudvsem":
+            assert item["title"] is None and item["employer_name"] is None, item["vacancy_entity_id"]
+        if item["source"] == "superjob":
+            assert item["url"] is None, item["vacancy_entity_id"]
 
 
 def test_metrics_count_the_requests_of_this_run(api: httpx.Client) -> None:

@@ -1,23 +1,28 @@
 """The API with an in-memory cache, a scripted warehouse and a mocked llama-server: no network."""
 
 import json
+import pickle
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
 import httpx
+import numpy as np
 import pytest
 import redis
 from fastapi.testclient import TestClient
 
 from radar.agent.clickhouse import QueryError, Result
 from radar.api import settings as api_settings
-from radar.api.app import Services, create_app, load_salary
+from radar.api import vacancies
+from radar.api.app import Services, create_app, load_match_index, load_salary
 from radar.api.cache import RedisCache
 from radar.api.extractors import REGEX_MODEL, StudentExtractor, spans_from_pieces
 from radar.api.salary import Estimator, OutOfScope, UnknownSource
 from radar.config import ROOT, ConfigError
 from radar.extract.schema import VacancyFields
+from radar.models import matching
+from radar.models.matching import BM25, MatchIndex
 
 TEXT = (
     "Python-разработчик (Middle)\n\nЗарплата от 150 000 до 200 000 руб. на руки. "
@@ -129,6 +134,7 @@ def client(
     warehouse: FakeWarehouse | None = None,
     extractor: StudentExtractor | None = None,
     salary: Estimator | None = None,
+    match_index: MatchIndex | None = None,
 ) -> TestClient:
     services = Services(
         cache=cache or MemoryCache(),
@@ -137,6 +143,7 @@ def client(
         salary=salary,
         stats_ttl_s=3600,
         extract_ttl_s=86400,
+        match_index=match_index,
     )
     return TestClient(create_app(services), raise_server_exceptions=False)
 
@@ -405,11 +412,140 @@ def test_a_missing_salary_model_file_leaves_the_rest_of_the_api_up(tmp_path: Pat
     assert load_salary(tmp_path / "salary.pkl") is None
 
 
-def test_match_answers_501_after_validation() -> None:
-    api = client()
-    match = api.post("/match", json={"resume_text": "Python, SQL, 2 года", "k": 5})
-    assert match.status_code == 501 and "7.4" in match.json()["detail"]
-    assert api.post("/match", json={"resume_text": "Python", "k": 0}).status_code == 422
+# --- /match -------------------------------------------------------------------------------------
+
+# The pool of a BM25-only index (no encoder to load); trudvsem:4 was closed on the index's build day.
+POOL = {
+    "trudvsem:1": ("Python-разработчик, Django и PostgreSQL", True),
+    "habr:2": ("ML-инженер: Python, PyTorch, компьютерное зрение", True),
+    "superjob:3": ("Frontend-разработчик React TypeScript", True),
+    "trudvsem:4": ("ML-инженер PyTorch CUDA", False),
+}
+OPEN_COLUMNS = [
+    "vacancy_entity_id",
+    "source",
+    "title",
+    "employer_name",
+    "role_bucket",
+    "grade",
+    "region_group",
+    "work_format",
+    "skills",
+    "salary_from",
+    "salary_to",
+    "url",
+    "first_seen",
+    "last_seen",
+]
+MART_ROWS = {
+    "trudvsem:1": ["trudvsem:1", "trudvsem", "Программист Python", "ООО Ромашка", "backend", "middle", "moscow",
+                   "office", ["Python", "Django"], 150000, None, "https://trudvsem.ru/vacancy/1",
+                   "2026-10-01", "2026-10-13"],
+    "habr:2": ["habr:2", "habr", None, None, "ml_ds", "junior", "remote", "remote", ["Python", "PyTorch"],
+               None, None, "https://career.habr.com/vacancies/2", "2026-10-05", "2026-10-13"],
+    "superjob:3": ["superjob:3", "superjob", None, None, "frontend", "middle", "spb", "hybrid", ["React"],
+                   120000, 180000, None, "2026-09-20", "2026-10-12"],
+}  # fmt: skip
+
+
+def fake_index() -> MatchIndex:
+    ids = list(POOL)
+    return MatchIndex(
+        system="bm25",
+        model=None,
+        fusion_weight=None,
+        bm25=BM25(k1=1.2, b=0.75).fit([text for text, _ in POOL.values()]),
+        vectors=None,
+        max_length=512,
+        items=[{"vacancy_entity_id": i, "source": i.split(":")[0], "is_open_now": POOL[i][1]} for i in ids],
+        open_now=np.array([POOL[i][1] for i in ids]),
+        version="match-bm25-test",
+        built_at="2026-10-13T00:00:00+00:00",
+    )
+
+
+def open_mart(*ids: str) -> FakeWarehouse:
+    rows = [MART_ROWS[i] for i in ids]
+    return FakeWarehouse({"mart_open_vacancies": Result(OPEN_COLUMNS, ["String"] * len(OPEN_COLUMNS), rows)})
+
+
+def test_match_ranks_open_vacancies_and_shows_them_as_the_mart_does() -> None:
+    warehouse = open_mart("trudvsem:1", "habr:2", "superjob:3")
+    response = client(warehouse=warehouse, match_index=fake_index()).post(
+        "/match", json={"resume_text": "ML-инженер, Python, PyTorch", "k": 2}
+    )
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert body["model"] == "match-bm25-test"
+    assert [(i["vacancy_entity_id"], i["rank"]) for i in body["items"]] == [("habr:2", 1), ("trudvsem:1", 2)]
+    assert body["items"][0]["score"] > body["items"][1]["score"]
+    habr, trudvsem = body["items"]
+    assert habr["title"] is None and habr["employer_name"] is None and habr["skills"] == ["Python", "PyTorch"]
+    assert trudvsem["title"] == "Программист Python" and trudvsem["salary_from"] == 150000
+    [(sql, params)] = warehouse.calls
+    assert "FROM marts.mart_open_vacancies" in sql and "{ids:Array(String)}" in sql
+    # Closed on the build day, so never asked for, although it shares the most words with the resume.
+    assert "trudvsem:4" not in params["ids"] and "'habr:2'" in params["ids"]
+
+
+def test_match_skips_vacancies_closed_since_the_index_was_built() -> None:
+    api = client(warehouse=open_mart("trudvsem:1", "superjob:3"), match_index=fake_index())
+    items = api.post("/match", json={"resume_text": "ML-инженер, Python, PyTorch", "k": 2}).json()["items"]
+    assert [(i["vacancy_entity_id"], i["rank"]) for i in items] == [("trudvsem:1", 1), ("superjob:3", 2)]
+    assert items[1]["url"] is None
+
+
+@pytest.mark.parametrize(
+    "body",
+    [
+        {"resume_text": "Python", "k": 0},
+        {"resume_text": "Python", "k": 51},
+        {"resume_text": "   "},
+        {"resume_text": "x" * 30_001},
+        {"resume_text": "Python", "open_only": False},
+    ],
+    ids=["zero_k", "huge_k", "blank", "too_long", "extra_key"],
+)
+def test_bad_match_input_never_reaches_the_warehouse(body: dict[str, Any]) -> None:
+    warehouse = open_mart("trudvsem:1")
+    assert client(warehouse=warehouse, match_index=fake_index()).post("/match", json=body).status_code == 422
+    assert warehouse.calls == []
+
+
+def test_match_without_an_index_is_503() -> None:
+    response = client().post("/match", json={"resume_text": "Python, SQL"})
+    assert response.status_code == 503 and "not loaded" in response.json()["detail"]
+
+
+def test_match_names_a_mart_that_is_not_built() -> None:
+    warehouse = FakeWarehouse(error=QueryError("Code: 60. Unknown table", vacancies.UNKNOWN_TABLE))
+    response = client(warehouse=warehouse, match_index=fake_index()).post("/match", json={"resume_text": "Python"})
+    assert response.status_code == 503 and "not built" in response.json()["detail"]
+
+
+def test_match_index_is_loaded_from_its_pickle_or_reported_missing(tmp_path: Path) -> None:
+    path = tmp_path / "index.pkl"
+    assert load_match_index(path) is None
+    path.write_bytes(pickle.dumps(fake_index()))
+    loaded = load_match_index(path)
+    assert loaded is not None and loaded.version == "match-bm25-test"
+
+
+def test_an_encoder_that_does_not_load_leaves_match_503(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    def no_torch(model: str, max_length: int) -> Any:
+        raise ImportError("No module named 'torch'")
+
+    monkeypatch.setattr(matching, "load_encoder", no_torch)
+    index = fake_index()
+    index.system, index.model, index.fusion_weight = "fusion_e5-small@70", "intfloat/multilingual-e5-small", 0.7
+    index.vectors = np.ones((len(POOL), 4), dtype=np.float32)
+    path = tmp_path / "index.pkl"
+    path.write_bytes(pickle.dumps(index))
+    assert load_match_index(path) is None
+
+
+def test_ids_reach_clickhouse_quoted() -> None:
+    assert vacancies._array(["habr:1", "a'b", "c\\d"]) == r"['habr:1','a\'b','c\\d']"
 
 
 def test_metrics_count_requests_by_route_template() -> None:
@@ -424,12 +560,13 @@ def test_metrics_count_requests_by_route_template() -> None:
 
 def test_health_reports_each_dependency() -> None:
     transport, _ = llama_server()
-    ok = client(extractor=student(transport), salary=FakeEstimator()).get("/health").json()
-    assert ok == {
+    ok = client(extractor=student(transport), salary=FakeEstimator(), match_index=fake_index()).get("/health")
+    assert ok.json() == {
         "status": "ok",
         "extract_backend": "student",
         "salary_model": "salary-test",
-        "checks": {"redis": "ok", "clickhouse": "ok", "student": "ok", "salary_model": "ok"},
+        "match_model": "match-bm25-test",
+        "checks": {"redis": "ok", "clickhouse": "ok", "student": "ok", "salary_model": "ok", "match_index": "ok"},
     }
     down = client(MemoryCache(up=False), FakeWarehouse(error=httpx.ConnectError("refused"))).get("/health")
     assert down.status_code == 200
@@ -437,7 +574,8 @@ def test_health_reports_each_dependency() -> None:
         "status": "degraded",
         "extract_backend": "regex",
         "salary_model": None,
-        "checks": {"redis": "down", "clickhouse": "down", "salary_model": "missing"},
+        "match_model": None,
+        "checks": {"redis": "down", "clickhouse": "down", "salary_model": "missing", "match_index": "missing"},
     }
 
 

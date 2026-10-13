@@ -1,5 +1,4 @@
-"""Request and response bodies of the API, shared with the MCP server. /match is fixed here
-ahead of its model."""
+"""Request and response bodies of the API, shared with the MCP server."""
 
 from typing import Annotated, Literal
 
@@ -82,6 +81,7 @@ class VacancyItem(BaseModel):
     grade: str
     region_group: str
     work_format: str
+    skills: list[str]
     salary_from: float | None = Field(description="RUB per month as stated")
     salary_to: float | None = Field(description="RUB per month as stated")
     url: str | None
@@ -98,11 +98,13 @@ class MatchRequest(BaseModel):
 
 class MatchItem(VacancyItem):
     rank: int = Field(ge=1)
-    score: float = Field(description="relevance of the vacancy to the resume, higher is closer")
+    score: float = Field(
+        description="relevance of the vacancy to the resume, higher is closer; comparable within one answer only"
+    )
 
 
 class MatchResponse(BaseModel):
-    items: list[MatchItem]
+    items: list[MatchItem] = Field(description="open vacancies, the closest first; fewer than k when fewer are open")
     model: str
 
 

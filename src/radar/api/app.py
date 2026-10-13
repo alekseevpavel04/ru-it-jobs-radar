@@ -1,5 +1,5 @@
-"""The HTTP API: extraction, market aggregates of the marts, the salary estimate, and the
-route of the matching model, which answers 501 until that model exists.
+"""The HTTP API: extraction, market aggregates of the marts, the salary estimate and open
+vacancies matched to a resume.
 
     python -m radar.api                 # uvicorn on 127.0.0.1:8000, settings from .env
 """
@@ -18,12 +18,13 @@ from fastapi import FastAPI, HTTPException, Query, Request, Response
 from fastapi.responses import JSONResponse
 
 from radar.agent.clickhouse import QueryError, ReadOnlyClickHouse, Result
-from radar.api import stats
+from radar.api import stats, vacancies
 from radar.api.cache import Cache, RedisCache, key
 from radar.api.extractors import Extraction, StudentExtractor, extract
 from radar.api.models import (
     ExtractRequest,
     ExtractResponse,
+    MatchItem,
     MatchRequest,
     MatchResponse,
     Problem,
@@ -33,6 +34,8 @@ from radar.api.models import (
 from radar.api.salary import Estimator, OutOfScope, SalaryEstimator, UnknownSource
 from radar.api.settings import Settings
 from radar.extract.schema import SCHEMA_VERSION, dump
+from radar.models import matching
+from radar.models.matching import MatchIndex
 from radar.monitor.api_metrics import instrument
 
 log = logging.getLogger("radar.api")
@@ -50,6 +53,7 @@ class Services:
     salary: Estimator | None
     stats_ttl_s: int
     extract_ttl_s: int
+    match_index: MatchIndex | None = None
 
 
 def services_from(settings: Settings) -> Services:
@@ -65,6 +69,7 @@ def services_from(settings: Settings) -> Services:
         salary=load_salary(settings.salary_model),
         stats_ttl_s=settings.stats_ttl_s,
         extract_ttl_s=settings.extract_ttl_s,
+        match_index=load_match_index(settings.match_index),
     )
 
 
@@ -90,6 +95,38 @@ def salary_body(estimator: Estimator, request: SalaryRequest) -> SalaryResponse:
         n_similar=out["n_similar"],
         source=request.source,
         model=out["model_version"],
+    )
+
+
+def load_match_index(path: Path) -> MatchIndex | None:
+    """Outside git like the salary model: without it /match answers 503. The encoder is loaded here
+    rather than on the first request, so that request is not slow and the process's memory shows it."""
+    if not path.exists():
+        log.warning("no match index at %s: /match answers 503", path)
+        return None
+    index = matching.load_index(path)
+    try:
+        index.scores("Python")
+    except (ImportError, OSError) as e:  # torch or the encoder's files are not in this environment
+        log.error("the encoder of %s does not load (%s): /match answers 503", index.system, e)
+        return None
+    return index
+
+
+# The index marks the vacancies open on the day it was built, the mart those open now: candidates
+# beyond k stand in for the ones closed since.
+OVERFETCH = 3
+
+
+def match_body(index: MatchIndex, query: stats.Query, resume_text: str, k: int) -> MatchResponse:
+    """The answer of POST /match and of the MCP tool match_resume: the index's closest vacancies that
+    are still open in marts.mart_open_vacancies, with the fields as that mart publishes them."""
+    found = matching.match(resume_text, k=k * OVERFETCH, open_only=True, index=index)
+    rows = vacancies.by_id(query, [item["vacancy_entity_id"] for item in found["items"]])
+    kept = [(rows[i["vacancy_entity_id"]], i["score"]) for i in found["items"] if i["vacancy_entity_id"] in rows]
+    return MatchResponse(
+        items=[MatchItem(**row, rank=rank, score=score) for rank, (row, score) in enumerate(kept[:k], start=1)],
+        model=found["model_version"],
     )
 
 
@@ -162,12 +199,14 @@ def create_app(services: Services) -> FastAPI:
         if services.student is not None:
             checks["student"] = "ok" if services.student.ping() else "down"
         checks["salary_model"] = "ok" if services.salary is not None else "missing"
+        checks["match_index"] = "ok" if services.match_index is not None else "missing"
         # Extraction works without any of them (the regex), so the service is up, maybe degraded.
         status = "ok" if all(v == "ok" for v in checks.values()) else "degraded"
         return {
             "status": status,
             "extract_backend": "student" if services.student else "regex",
             "salary_model": services.salary.version if services.salary else None,
+            "match_model": services.match_index.version if services.match_index else None,
             "checks": checks,
         }
 
@@ -228,9 +267,16 @@ def create_app(services: Services) -> FastAPI:
         except (OutOfScope, UnknownSource) as e:
             raise HTTPException(422, str(e)) from e
 
-    @app.post("/match", response_model=MatchResponse, responses={501: {"model": Problem}})
+    @app.post("/match", response_model=MatchResponse, responses={503: {"model": Problem}})
     def post_match(body: MatchRequest) -> MatchResponse:
-        raise HTTPException(501, "vacancy matching is not served yet")
+        """Open vacancies closest to a resume text, the closest first. Titles, employers and links only
+        where the source's terms allow publishing them, as in marts.mart_open_vacancies."""
+        if services.match_index is None:
+            raise HTTPException(503, "the match index is not loaded on this server")
+        try:
+            return match_body(services.match_index, query, body.resume_text, body.k)
+        except vacancies.MartMissing as e:
+            raise HTTPException(503, str(e)) from e
 
     instrument(app)  # GET /metrics: request counts and latency per route (9.3)
     return app
