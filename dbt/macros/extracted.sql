@@ -69,6 +69,32 @@
 {%- endmacro %}
 
 
+{#- Skills the marts keep only when the text names them outside a link ([text_check] of
+    configs/skills.toml): dictionary name -> its spellings, lowercase. tests/dbt checks they match the
+    dictionary. A spelling is used in a regex as is, so it holds only letters and digits. -#}
+{% macro skills_named_outside_links() -%}
+    {{ return({'HTTP': ['http'], 'HTTPS': ['https']}) }}
+{%- endmacro %}
+
+
+{#- The text as radar.extract.skills.named_outside_links searches it: lowercase, ё as е, every link
+    (http://, https://, www. up to the next whitespace) replaced by a space. -#}
+{% macro link_free_text(expr) -%}
+    replaceRegexpAll({{ rule_text(expr) }}, '(https?://|www\\.)[^ \\t\\n\\r\\f]+', ' ')
+{%- endmacro %}
+
+
+{#- The names of skills_named_outside_links that a link-free text names. -#}
+{% macro named_outside_links(link_free) -%}
+    {%- set checked = skills_named_outside_links() -%}
+    arrayFilter(n -> multiIf(
+        {%- for name, spellings in checked.items() %}
+        n = '{{ name }}', match({{ link_free }}, '{{ words_pattern(spellings) }}'),
+        {%- endfor %}
+        false), {{ checked.keys() | list | tojson | replace('"', "'") }})
+{%- endmacro %}
+
+
 {#- WITH expressions over the seed: skill_map (key hash -> dictionary names, [] for a non-skill or an
     unknown spelling), skill_status (key hash -> known, non_skill, unknown) and dictionary_keys (hashes of
     the dictionary's own names and aliases). A hash in neither map is a spelling the seed has not seen. -#}

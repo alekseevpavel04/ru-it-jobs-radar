@@ -223,6 +223,40 @@ def test_loader_rejects_unknown_names(tmp_path: Path) -> None:
         toy(tmp_path, '[skills.os]\n"Ubuntu" = []\n[search]\nnames_not_searched = ["Linux"]\n')
 
 
+def test_loader_rejects_an_unknown_text_check_name(tmp_path: Path) -> None:
+    with pytest.raises(ValueError, match="text_check"):
+        toy(tmp_path, '[skills.network]\n"HTTP" = []\n[text_check]\noutside_links = ["HTTPS"]\n')
+
+
+def test_http_and_https_stay_skills_checked_against_links() -> None:
+    d = sk.load()
+    assert d.outside_links == {"HTTP", "HTTPS"}
+    assert sk.normalize_list(["HTTPS", "HTTP"], d) == ["HTTPS", "HTTP"]
+    # scoring keeps comparing the extractor's own answer
+    assert sk.eval_key("HTTPS") == "https"
+
+
+@pytest.mark.parametrize(
+    ("text", "named"),
+    [
+        ("Откликнуться: https://example.com/jobs", set()),
+        ("Отклик: HTTPS://EXAMPLE.COM/A и www.example.com/https", set()),
+        ("Понимание протоколов HTTP/HTTPS, TCP", {"HTTP", "HTTPS"}),
+        ("HTTP-запросы; анкета https://example.com/form?x=http", {"HTTP"}),
+        ("aiohttp, httpx, OkHttp", set()),
+        ("Ссылка http://example.com\nзнание HTTPS", {"HTTPS"}),
+    ],
+)
+def test_named_outside_links(text: str, named: set[str]) -> None:
+    assert {n for n in ("HTTP", "HTTPS") if sk.named_outside_links(n, text)} == named
+
+
+def test_named_outside_links_reads_aliases(tmp_path: Path) -> None:
+    d = toy(tmp_path, '[skills.network]\n"HTTP" = ["хттп"]\n[text_check]\noutside_links = ["HTTP"]\n')
+    assert sk.named_outside_links("HTTP", "протокол ХТТП", d)
+    assert not sk.named_outside_links("HTTP", "https://example.com/хттп", d)
+
+
 def test_without_drops_entries(tmp_path: Path) -> None:
     d = toy(tmp_path, '[skills.os]\n"Ubuntu" = ["убунту"]\n"Linux" = []\n[patterns]\n"Ubuntu" = [\'убунт[а-я]*\']\n')
     smaller = d.without(["Ubuntu"])

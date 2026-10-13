@@ -1,21 +1,21 @@
 {
   "source_script": "dbt/report.py",
   "command": "python dbt/report.py",
-  "commit": "2ff7e25-dirty",
-  "created_at": "2026-10-13T08:03:17+00:00",
+  "commit": "005d3b3-dirty",
+  "created_at": "2026-10-13T18:35:32+00:00",
   "metrics": {
     "rows_mart_extracted_skills_weekly": {
-      "value": 43169,
+      "value": 105711,
       "n": null,
       "denominator": null
     },
     "rows_mart_extracted_fields_weekly": {
-      "value": 6109,
+      "value": 18733,
       "n": null,
       "denominator": null
     },
     "rows_mart_extracted_salaries": {
-      "value": 678,
+      "value": 680,
       "n": null,
       "denominator": null
     },
@@ -25,6 +25,11 @@
       "denominator": null
     },
     "coverage_all_portals": {
+      "value": 1.0,
+      "n": 21126,
+      "denominator": 21126
+    },
+    "coverage_extractable_all_portals": {
       "value": 1.0,
       "n": 21126,
       "denominator": 21126
@@ -39,12 +44,32 @@
       "n": 11055,
       "denominator": 21124
     },
-    "skills_in_dictionary_all_portals": {
+    "skills_by_spelling_all_portals": {
       "value": 0.9743,
       "n": 41780,
       "denominator": 42882
     },
+    "skills_in_dictionary_all_portals": {
+      "value": 0.9799,
+      "n": 42018,
+      "denominator": 42882
+    },
+    "skills_non_skill_all_portals": {
+      "value": 0.001,
+      "n": 42,
+      "denominator": 42882
+    },
+    "skills_unchecked_all_portals": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 42882
+    },
     "coverage_habr": {
+      "value": 1.0,
+      "n": 1069,
+      "denominator": 1069
+    },
+    "coverage_extractable_habr": {
       "value": 1.0,
       "n": 1069,
       "denominator": 1069
@@ -59,12 +84,32 @@
       "n": 856,
       "denominator": 1069
     },
-    "skills_in_dictionary_habr": {
+    "skills_by_spelling_habr": {
       "value": 0.9661,
       "n": 7744,
       "denominator": 8016
     },
+    "skills_in_dictionary_habr": {
+      "value": 0.9683,
+      "n": 7762,
+      "denominator": 8016
+    },
+    "skills_non_skill_habr": {
+      "value": 0.003,
+      "n": 24,
+      "denominator": 8016
+    },
+    "skills_unchecked_habr": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 8016
+    },
     "coverage_superjob": {
+      "value": 1.0,
+      "n": 676,
+      "denominator": 676
+    },
+    "coverage_extractable_superjob": {
       "value": 1.0,
       "n": 676,
       "denominator": 676
@@ -79,37 +124,82 @@
       "n": 314,
       "denominator": 676
     },
-    "skills_in_dictionary_superjob": {
+    "skills_by_spelling_superjob": {
       "value": 0.948,
       "n": 1913,
       "denominator": 2018
     },
+    "skills_in_dictionary_superjob": {
+      "value": 0.9812,
+      "n": 1980,
+      "denominator": 2018
+    },
+    "skills_non_skill_superjob": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 2018
+    },
+    "skills_unchecked_superjob": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 2018
+    },
     "coverage_telegram": {
-      "value": 0.157,
-      "n": 36036,
+      "value": 0.6581,
+      "n": 151038,
       "denominator": 229518
     },
+    "coverage_extractable_telegram": {
+      "value": 0.745,
+      "n": 151038,
+      "denominator": 202724
+    },
     "valid_telegram": {
-      "value": 0.9985,
-      "n": 35983,
-      "denominator": 36036
+      "value": 0.9984,
+      "n": 150797,
+      "denominator": 151038
     },
     "it_telegram": {
-      "value": 0.9031,
-      "n": 32498,
-      "denominator": 35983
+      "value": 0.9011,
+      "n": 135884,
+      "denominator": 150797
+    },
+    "skills_by_spelling_telegram": {
+      "value": 0.9365,
+      "n": 563115,
+      "denominator": 601307
     },
     "skills_in_dictionary_telegram": {
-      "value": 0.941,
-      "n": 139677,
-      "denominator": 148430
+      "value": 0.939,
+      "n": 564644,
+      "denominator": 601307
+    },
+    "skills_non_skill_telegram": {
+      "value": 0.0109,
+      "n": 6553,
+      "denominator": 601307
+    },
+    "skills_unchecked_telegram": {
+      "value": 0.0002,
+      "n": 117,
+      "denominator": 601307
     },
     "telegram_linking_habr": {
       "value": 0.2697,
       "n": 61905,
       "denominator": 229518
     },
+    "telegram_not_extractable": {
+      "value": 0.1167,
+      "n": 26794,
+      "denominator": 229518
+    },
     "coverage_trudvsem": {
+      "value": 1.0,
+      "n": 8465,
+      "denominator": 8465
+    },
+    "coverage_extractable_trudvsem": {
       "value": 1.0,
       "n": 8465,
       "denominator": 8465
@@ -124,12 +214,32 @@
       "n": 3987,
       "denominator": 8463
     },
-    "skills_in_dictionary_trudvsem": {
+    "skills_by_spelling_trudvsem": {
       "value": 0.9767,
       "n": 13890,
       "denominator": 14222
     },
+    "skills_in_dictionary_trudvsem": {
+      "value": 0.9809,
+      "n": 13950,
+      "denominator": 14222
+    },
+    "skills_non_skill_trudvsem": {
+      "value": 0.0005,
+      "n": 7,
+      "denominator": 14222
+    },
+    "skills_unchecked_trudvsem": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 14222
+    },
     "coverage_trudvsem_snapshot": {
+      "value": 1.0,
+      "n": 19545,
+      "denominator": 19545
+    },
+    "coverage_extractable_trudvsem_snapshot": {
       "value": 1.0,
       "n": 19545,
       "denominator": 19545
@@ -144,21 +254,41 @@
       "n": 9943,
       "denominator": 19543
     },
-    "skills_in_dictionary_trudvsem_snapshot": {
+    "skills_by_spelling_trudvsem_snapshot": {
       "value": 0.9779,
       "n": 32458,
+      "denominator": 33192
+    },
+    "skills_in_dictionary_trudvsem_snapshot": {
+      "value": 0.9825,
+      "n": 32612,
+      "denominator": 33192
+    },
+    "skills_non_skill_trudvsem_snapshot": {
+      "value": 0.0005,
+      "n": 18,
+      "denominator": 33192
+    },
+    "skills_unchecked_trudvsem_snapshot": {
+      "value": 0.0,
+      "n": 0,
       "denominator": 33192
     }
   },
   "dbt_version": "1.12.5",
-  "build_finished_at": "2026-10-13T07:57:11.821413Z",
+  "build_finished_at": "2026-10-13T18:35:13.358648Z",
   "extraction_model": "qwen3_1p7b_r16_clean-awq",
   "notes": {
     "units": "portal vacancies (dedup entities; all_portals counts a vacancy on several portals once) and Telegram single-vacancy posts after the weekly cross-post dedup, each once over the period (mart_extraction_coverage level source)",
-    "coverage": "units with extracted fields, of units; Telegram digests and link stubs are never extracted, so its coverage stays below 1",
+    "coverage": "units with extracted fields, of units; Telegram digests, link stubs and posts outside their channel's language are never extracted, so its coverage stays below 1",
+    "coverage_extractable": "units with extracted fields, of units the corpus rules do not drop (extract.vacancy_dropped, python -m radar.extract.corpus_run dropped)",
+    "telegram_not_extractable": "Telegram units without fields the corpus rules drop, of Telegram units",
     "valid": "units whose answer passed the schema, of units with fields",
     "it": "valid units with a role other than non_it, of valid units",
-    "skills_in_dictionary": "extracted skill spellings whose lookup key is in the dictionary v1, of all spellings written for the units",
+    "skills_by_spelling": "extracted skill spellings that are a dictionary v1 name or alias up to case and separators, of all spellings written for the units",
+    "skills_in_dictionary": "spellings mapped to a dictionary v1 name, by spelling or by radar.extract.skills.normalize_list (seed by dbt/skill_seed.py), of all spellings",
+    "skills_non_skill": "spellings normalize_list drops as not a skill, of all spellings",
+    "skills_unchecked": "spellings written after the seed was made, of all spellings",
     "telegram_linking_habr": "Telegram units that link a Habr Career vacancy, of Telegram units"
   }
 }

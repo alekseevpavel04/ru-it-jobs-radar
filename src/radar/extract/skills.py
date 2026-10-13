@@ -89,6 +89,7 @@ class Dictionary:
     english_words: frozenset[str]
     gold_only: dict[str, str]
     rejected: frozenset[str]
+    outside_links: frozenset[str] = frozenset()
 
     def lookup(self, spelling: str) -> str | None:
         """Canonical name, `_NON_SKILL`, or None for an unknown spelling."""
@@ -120,6 +121,7 @@ class Dictionary:
             english_words=self.english_words,
             gold_only={n: v for n, v in self.gold_only.items() if n not in drop},
             rejected=self.rejected,
+            outside_links=self.outside_links - drop,
         )
 
 
@@ -168,6 +170,9 @@ def load(path: Path = DICTIONARY) -> Dictionary:
     gold_only: dict[str, str] = raw.get("provenance", {}).get("gold_only", {})
     if not gold_only.keys() <= skills.keys():
         raise ValueError(f"[provenance] names unknown skills: {sorted(gold_only.keys() - skills.keys())}")
+    outside_links = frozenset(raw.get("text_check", {}).get("outside_links", []))
+    if not outside_links <= skills.keys():
+        raise ValueError(f"[text_check] names unknown skills: {sorted(outside_links - skills.keys())}")
 
     return Dictionary(
         skills=skills,
@@ -180,6 +185,7 @@ def load(path: Path = DICTIONARY) -> Dictionary:
         english_words=frozenset(search.get("english_words", [])),
         gold_only=gold_only,
         rejected=frozenset(key(r) for r in raw.get("review", {}).get("rejected", [])),
+        outside_links=outside_links,
     )
 
 
@@ -299,6 +305,21 @@ def normalize_list(raws: Iterable[str], dictionary: Dictionary | None = None) ->
         if name is not None:
             out.append(name)
     return complete(list(dict.fromkeys(out)))
+
+
+# A link runs to the next whitespace. The marts apply the same regexes in RE2 (macro
+# link_free_text of dbt/macros/extracted.sql), hence the explicit classes instead of \S and \b.
+_LINK = re.compile(r"(?:https?://|www\.)[^ \t\n\r\f]+")
+_WORD_EDGE = "[^a-zа-я0-9]"
+
+
+def named_outside_links(name: str, text: str, dictionary: Dictionary | None = None) -> bool:
+    """The text names the skill (its name or an alias, as a whole word, any case) once links are
+    cut out: "протоколы HTTP/HTTPS" names HTTPS, "https://example.com/jobs" alone does not."""
+    d = dictionary or load()
+    body = _LINK.sub(" ", text.lower().replace("ё", "е"))
+    words = "|".join(re.escape(s.lower().replace("ё", "е")) for s in (name, *d.skills[name].aliases))
+    return re.search(f"(?:^|{_WORD_EDGE})(?:{words})(?:{_WORD_EDGE}|$)", body) is not None
 
 
 def eval_key(raw: str) -> str:

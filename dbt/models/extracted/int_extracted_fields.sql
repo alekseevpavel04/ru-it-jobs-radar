@@ -20,8 +20,11 @@
 -- Skills are mapped to the dictionary v1 names through the seed skill_dictionary_v1, which holds the
 -- dictionary's spellings and every corpus spelling resolved by radar.extract.skills.normalize_list
 -- (dbt/skill_seed.py), keyed by the hash of the lookup key (macros skill_key, skill_hash). The counts
--- say how each written spelling fared. dropped_reason is the rule
+-- say how each written spelling fared. A skill of skills_named_outside_links (HTTP, HTTPS) stays only
+-- when the text the extractor read names it outside a link: the extractor takes "https://t.me/..."
+-- for HTTPS, and the spelling alone cannot tell the two apart. dropped_reason is the rule
 -- by which the corpus run never extracts the latest version (extract.vacancy_dropped, its latest check).
+{%- set checked = skills_named_outside_links().keys() | list | tojson | replace('"', "'") %}
 WITH {{ skill_seed_maps() }},
 
 latest AS (
@@ -42,6 +45,38 @@ dropped AS (
     WHERE check_id = (SELECT max(check_id) FROM {{ source('extract', 'vacancy_dropped') }})
 ),
 
+-- Extracted versions whose skills map to a checked skill, and the checked skills their text names
+-- outside links. The text is what the extractor read: title and text, and a portal's skill tags.
+link_candidates AS (
+    SELECT DISTINCT source, source_id, content_hash
+    FROM {{ ref('stg_vacancy_fields') }}
+    WHERE model_id = '{{ var("extraction_model") }}'
+        AND arrayExists(s -> hasAny(skill_map[{{ skill_hash('s') }}], {{ checked }}), skills)
+),
+
+link_texts AS (
+    SELECT source AS link_source, source_id AS link_source_id, content_hash AS link_hash,
+        {{ named_outside_links(link_free_text('body')) }} AS named
+    FROM (
+        SELECT source, source_id, content_hash,
+            concat(coalesce(title, ''), '\n', coalesce(text, ''), '\n', arrayStringConcat(skills, ' | ')) AS body
+        FROM {{ ref('stg_vacancies') }}
+        WHERE (source, source_id, content_hash) IN (
+            SELECT source, source_id, content_hash FROM link_candidates WHERE source != 'telegram'
+        )
+        LIMIT 1 BY source, source_id, content_hash
+
+        UNION ALL
+
+        SELECT source, source_id, content_hash, concat(coalesce(title, ''), '\n', coalesce(text, '')) AS body
+        FROM {{ source('raw', 'telegram') }}
+        WHERE source = 'telegram' AND (source_id, content_hash) IN (
+            SELECT source_id, content_hash FROM link_candidates WHERE source = 'telegram'
+        )
+        LIMIT 1 BY source_id, content_hash
+    )
+),
+
 -- Without join_use_nulls an unmatched model_id is '' and an unmatched reason too.
 picked AS (
     SELECT
@@ -52,11 +87,13 @@ picked AS (
         l.is_extracted OR o.model_id != '' AS has_fields,
         NOT l.is_extracted AND o.model_id != '' AS fields_from_older_version,
         d.reason AS dropped_reason,
+        if(l.is_extracted, l.content_hash, o.content_hash) AS fields_hash,
         if(l.is_extracted, l.valid, o.valid) AS valid,
         CAST(if(l.is_extracted, l.role, o.role) AS Nullable(String)) AS role,
         CAST(if(l.is_extracted, l.grade, o.grade) AS Nullable(String)) AS grade,
         if(l.is_extracted, l.skills, o.skills) AS skills_written,
         arrayMap(s -> {{ skill_hash('s') }}, skills_written) AS written_hashes,
+        arrayDistinct(arrayFlatten(arrayMap(h -> skill_map[h], written_hashes))) AS mapped,
         if(l.is_extracted, l.salary_from, o.salary_from) AS salary_from,
         if(l.is_extracted, l.salary_to, o.salary_to) AS salary_to,
         CAST(if(l.is_extracted, l.salary_currency, o.salary_currency) AS Nullable(String)) AS salary_currency,
@@ -91,7 +128,9 @@ SELECT
     toUInt16(length(arrayFilter(h -> notEmpty(skill_map[h]), written_hashes))) AS skills_in_dictionary_n,
     toUInt16(countEqual(arrayMap(h -> skill_status[h], written_hashes), 'non_skill')) AS skills_non_skill_n,
     toUInt16(length(arrayFilter(h -> NOT mapContains(skill_status, h), written_hashes))) AS skills_unchecked_n,
-    arraySort(arrayDistinct(arrayFlatten(arrayMap(h -> skill_map[h], written_hashes)))) AS skills,
+    -- Without join_use_nulls a version without a text row has named [] and loses its checked skills.
+    toUInt16(length(arrayFilter(n -> has({{ checked }}, n) AND NOT has(t.named, n), mapped))) AS skills_link_only_n,
+    arraySort(arrayFilter(n -> NOT has({{ checked }}, n) OR has(t.named, n), mapped)) AS skills,
     salary_from,
     salary_to,
     CAST(salary_currency AS LowCardinality(Nullable(String))) AS salary_currency,
@@ -103,4 +142,6 @@ SELECT
     CAST({{ experience_band('experience_min', 'experience_max') }} AS LowCardinality(String)) AS experience_band,
     CAST(employment_type AS LowCardinality(Nullable(String))) AS employment_type,
     CAST(lang AS LowCardinality(Nullable(String))) AS lang
-FROM picked
+FROM picked AS p
+LEFT JOIN link_texts AS t
+    ON p.source = t.link_source AND p.source_id = t.link_source_id AND p.fields_hash = t.link_hash

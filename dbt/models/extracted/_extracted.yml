@@ -102,8 +102,14 @@ models:
         description: >
           Spellings the seed has not seen (written after dbt/skill_seed.py last ran);
           assert_skill_seed_covers_extracted_spellings warns while any are left.
+      - name: skills_link_only_n
+        description: >
+          Names of skills_named_outside_links (HTTP, HTTPS) the spellings map to but the text the
+          extractor read names only inside links ("https://t.me/..."); they are left out of skills.
       - name: skills
-        description: Dictionary v1 names of those spellings, distinct and sorted.
+        description: >
+          Dictionary v1 names of those spellings, distinct and sorted, without the link-only names of
+          skills_link_only_n.
       - name: salary_from
         description: Lower bound of the extracted salary, in its currency and period.
       - name: salary_to

@@ -19,7 +19,7 @@ from typing import Any, get_args
 import pytest
 
 from radar.api import vacancies
-from radar.extract import schema
+from radar.extract import schema, skills
 
 ROOT = Path(__file__).resolve().parents[2]
 EXTRACT = {"stg_vacancy_fields", "int_vacancy_fields"}
@@ -238,8 +238,6 @@ def _skill_seed() -> Any:
 
 
 def test_skill_seed_dictionary_rows_match_the_dictionary_v1() -> None:
-    from radar.extract import skills
-
     module = _skill_seed()
     assert module.main(["--check"]) == 0, "python dbt/skill_seed.py"
     seed = module.read_seed()
@@ -251,8 +249,6 @@ def test_skill_seed_dictionary_rows_match_the_dictionary_v1() -> None:
 
 
 def test_skill_seed_corpus_rows_hold_hashes_and_dictionary_names_only() -> None:
-    from radar.extract import skills
-
     seed = _skill_seed().read_seed()
     corpus = [r for r in seed if r["origin"] == "corpus"]
     names = set(skills.load().skills)
@@ -273,3 +269,24 @@ def test_corpus_spellings_resolve_by_normalize_list() -> None:
     by_hash = {r["key_hash"]: r for r in rows if r["origin"] == "corpus"}
     python = module.key_hash(module.skills.key("Python 3.10"))
     assert by_hash[python]["skill"] == "Python" and conflicts == 0
+
+
+def test_link_check_of_the_marts_is_that_of_the_dictionary() -> None:
+    d = skills.load()
+    text = (ROOT / "dbt" / "macros" / "extracted.sql").read_text(encoding="utf-8")
+    block = text[text.index("{% macro skills_named_outside_links()") : text.index("{% macro link_free_text(")]
+    found_macro = re.search(r"return\((\{.*\})\)", block)
+    assert found_macro is not None
+    macro = ast.literal_eval(found_macro.group(1))
+    assert macro == {n: [s.lower() for s in (n, *d.skills[n].aliases)] for n in sorted(d.outside_links)}
+    assert all(re.fullmatch(r"[a-z0-9]+", s) for spellings in macro.values() for s in spellings)
+
+    cases = re.findall(
+        r"\('([^']*)', '([A-Z,]*)'\)",
+        (ROOT / "dbt" / "tests" / "assert_link_check_matches_cases.sql").read_text(encoding="utf-8"),
+    )
+    assert len(cases) >= 10
+    for body, expected in cases:
+        body = body.replace("\\n", "\n")
+        found = [n for n in macro if skills.named_outside_links(n, body, d)]
+        assert ",".join(found) == expected, body

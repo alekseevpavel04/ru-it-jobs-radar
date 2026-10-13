@@ -20,6 +20,7 @@
 #   (ё as е) and searched in texts by the baseline.
 # [parents]: a broader skill the marts may roll a name up to (Ubuntu to Linux). Not used in scoring.
 # [non_skills]: what the guide says is not a skill; normalization maps these to None.
+# [text_check]: skills counted only when the text names them outside a link (see there).
 # [search]: what the baseline does not search for in texts (see there).
 # [review]: train_pool candidates looked at and left out.
 
@@ -1224,6 +1225,17 @@ patterns = [
     'английск[а-я]*(?: язык[а-я]*)?(?: (?:a|b|c)[12]| intermediate| upper[- ]intermediate)?',
     '(?:pre-|upper[- ])?intermediate|[abc][12]',
 ]
+
+[text_check]
+# Skills the marts keep only when the vacancy text names them outside a link. The extractor reads
+# "https://t.me/..." as the skill HTTPS, which made HTTPS look several times more frequent in
+# Telegram, where almost every post ends with links, than on the portals. The spelling cannot tell
+# the two apart (the extractor writes "HTTPS" both times), the text can, so HTTP and HTTPS stay
+# skills (the guide counts the protocols, the gold labels name them) and the check reads the text:
+# radar.extract.skills.named_outside_links, and for the marts the macro skills_named_outside_links
+# of dbt/macros/extracted.sql (tests/dbt checks that the two agree). Scoring (radar.eval) compares
+# the extractor's own answer and does not apply it.
+outside_links = ["HTTP", "HTTPS"]
 
 [search]
 # Canonical spellings the rule baseline does not look for in texts by themselves, because the bare
