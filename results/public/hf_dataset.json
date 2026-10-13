@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/hf_dataset.py",
   "command": "python -m radar.site.hf_dataset",
-  "commit": "2cea881",
-  "created_at": "2026-10-13T17:38:15+00:00",
+  "commit": "7e8ef44-dirty",
+  "created_at": "2026-10-13T19:50:59+00:00",
   "metrics": {
     "trudvsem.rows": {
       "value": 25818,
@@ -110,14 +110,14 @@
       "denominator": null
     },
     "telegram.posts": {
-      "value": 131615,
+      "value": 204179,
       "n": null,
       "denominator": null
     },
     "telegram.extraction_valid": {
-      "value": 0.9982,
-      "n": 131375,
-      "denominator": 131615
+      "value": 0.9986,
+      "n": 203886,
+      "denominator": 204179
     },
     "telegram.channels": {
       "value": 58,
@@ -125,27 +125,27 @@
       "denominator": null
     },
     "telegram.cells": {
-      "value": 27925,
+      "value": 48670,
       "n": null,
       "denominator": null
     },
     "telegram.cells_dropped_below_min": {
-      "value": 72107,
+      "value": 122534,
       "n": null,
       "denominator": null
     },
     "telegram.role_in_published_cells": {
-      "value": 0.9928,
-      "n": 130432,
-      "denominator": 131375
+      "value": 0.9752,
+      "n": 198837,
+      "denominator": 203886
     },
     "telegram.role_in_cells_per_channel_week": {
-      "value": 0.6061,
-      "n": 79625,
-      "denominator": 131375
+      "value": 0.6532,
+      "n": 133177,
+      "denominator": 203886
     },
     "telegram.first_week": {
-      "value": "2017-10-09",
+      "value": "2016-11-07",
       "n": null,
       "denominator": null
     },
@@ -192,5 +192,5 @@
       "storage/hf/dataset/aggregates/telegram_weekly.parquet"
     ]
   },
-  "exported_at": "2026-10-13T17:38:15+00:00"
+  "exported_at": "2026-10-13T19:50:58+00:00"
 }

@@ -1,0 +1,10 @@
+{
+  "name": "radar-space",
+  "private": true,
+  "type": "module",
+  "description": "Pins of the browser libraries the static Space vendors (python -m radar.site.hf_space assemble copies them)",
+  "dependencies": {
+    "@huggingface/tokenizers": "0.2.0",
+    "@wllama/wllama": "3.6.1"
+  }
+}

@@ -30,3 +30,9 @@ artifact = "models/salary/salary.pkl"
 result = "models/salary.json"
 # The market the Space asks the salary model for
 source = "trudvsem"
+
+[space]
+# The revision of the model repo the page downloads the GGUF from, and the page's own address outside
+# the huggingface.co frame (there the browser can give it several threads).
+gguf_revision = "main"
+direct_url = "https://alekseevpavel04-ru-it-jobs-radar.static.hf.space"

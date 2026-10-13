@@ -1,12 +1,11 @@
 import json
-import shutil
-import subprocess
-import sys
+import math
 from collections import Counter
 from datetime import date
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 import pytest
 
 from radar.config import ROOT
@@ -77,37 +76,44 @@ def test_card_templates_have_no_long_dash(card: str) -> None:
 # --- space ----------------------------------------------------------------------------------------
 
 
-def test_vendored_modules_import_on_their_own(tmp_path: Path) -> None:
-    files = hf_space.vendored()
-    assert "radar/models/salary.py" in files and "radar/train/dataset.py" in files
-    assert not any(f.startswith(("radar/collect/", "radar/stream/", "radar/api/")) for f in files)
-    for rel in files:
-        dst = tmp_path / rel
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(ROOT / "src" / rel, dst)
-    code = (
-        f"import sys; sys.path.insert(0, {str(tmp_path)!r}); "
-        + "; ".join(f"import {m}" for m in hf_space.ENTRY_MODULES)
-        + "; import radar; print(radar.__file__)"
-    )
-    out = subprocess.run([sys.executable, "-I", "-c", code], capture_output=True, text=True, check=False)
-    assert out.returncode == 0, out.stderr
-    assert Path(out.stdout.strip()).is_relative_to(tmp_path)
+def walk(trees: dict[str, Any], x: list[float]) -> float:
+    """SalaryModel.raw of hf/space/js/salary.js, in Python."""
+    bounds = {"inf": math.inf, "-inf": -math.inf}
+    out = float(trees["baseline"])
+    for tree in trees["trees"]:
+        node = tree[0]
+        while len(node) != 1:
+            feature, split, nan_left, left, right = node
+            v = x[feature]
+            if math.isnan(v):
+                go_left = nan_left == 1
+            elif isinstance(split, list):
+                go_left = v in split
+            else:
+                go_left = v <= bounds.get(split, split)
+            node = tree[left if go_left else right]
+        out += node[0]
+    return out
 
 
-def test_module_imports_reads_module_level_imports_only(tmp_path: Path) -> None:
-    src = tmp_path / "src"
-    (src / "radar" / "models").mkdir(parents=True)
-    (src / "radar" / "__init__.py").write_text("", encoding="utf-8")
-    (src / "radar" / "models" / "__init__.py").write_text("", encoding="utf-8")
-    (src / "radar" / "models" / "a.py").write_text("", encoding="utf-8")
-    module = src / "radar" / "models" / "b.py"
-    module.write_text(
-        "import json\nfrom radar.models import a\nfrom radar.config import ROOT\n"
-        "def f():\n    from radar.stream import clickhouse\n",
-        encoding="utf-8",
-    )
-    assert hf_space.module_imports(module, src) == {"radar.models", "radar.models.a", "radar.config"}
+@pytest.mark.parametrize("loss", [{"loss": "absolute_error"}, {"loss": "quantile", "quantile": 0.9}])
+def test_salary_trees_walk_like_sklearn(loss: dict[str, Any]) -> None:
+    from sklearn.ensemble import HistGradientBoostingRegressor
+
+    rng = np.random.default_rng(0)
+    n = 600
+    # Level 4 of the categorical column exists in the encoder but not in these training rows.
+    cat = rng.integers(0, 4, n).astype(float)
+    num = rng.normal(size=n)
+    num[rng.random(n) < 0.1] = np.nan
+    y = cat * 0.5 + np.nan_to_num(num) + rng.normal(scale=0.1, size=n)
+    model = HistGradientBoostingRegressor(max_iter=30, categorical_features=[True, False], random_state=0, **loss)
+    model.fit(np.column_stack([cat, num]), y)
+    trees = json.loads(json.dumps(hf_space.hgb_trees(model, [5, 0]), allow_nan=False))
+
+    rows = [[c, v] for c in (0.0, 1.0, 2.0, 3.0, 4.0, math.nan) for v in (-1.0, 0.0, 0.3, math.nan)]
+    want = model.predict(np.array(rows))
+    assert [walk(trees, r) for r in rows] == want.tolist()
 
 
 def test_fields_of_row_rebuilds_the_schema_shape() -> None:
@@ -117,10 +123,6 @@ def test_fields_of_row_rebuilds_the_schema_shape() -> None:
     assert fields["experience_years"] == {"min": 3.0, "max": None}
     empty = hf_space.fields_of_row({**row, "salary_from": None, "salary_currency": None, "salary_period": None})
     assert empty["salary"] is None
-
-
-def test_wsl_path() -> None:
-    assert hf_space.wsl_path(Path("D:/VScode_projects/x/y.gguf")) == "/mnt/d/VScode_projects/x/y.gguf"
 
 
 # --- model ----------------------------------------------------------------------------------------
@@ -301,7 +303,10 @@ def test_card_headers_match_the_layout() -> None:
 
     repos = load_config()["repos"]
     space = front_matter("space")
-    assert space["sdk"] == "docker" and space["app_port"] == hf_space.PORT
+    assert space["sdk"] == "static" and space["app_file"] == "index.html"
+    # wllama runs several threads only on a cross-origin isolated page
+    assert space["custom_headers"]["cross-origin-embedder-policy"] == "require-corp"
+    assert space["custom_headers"]["cross-origin-opener-policy"] == "same-origin"
     assert space["models"] == [repos["model"]] and space["datasets"] == [repos["dataset"]]
     assert len(space["short_description"]) <= 60
     model = front_matter("model")

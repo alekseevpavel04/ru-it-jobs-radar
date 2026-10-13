@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Радар IT-вакансий: поля вакансии и оценка зарплаты</title>
+<style>
+  :root {
+    --fg: #1b1e23;
+    --muted: #5b6370;
+    --line: #d9dde3;
+    --bg: #ffffff;
+    --panel: #f6f7f9;
+    --accent: #2457c5;
+    --warn: #9a3412;
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--fg);
+    background: var(--bg);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  main { max-width: 1080px; margin: 0 auto; padding: 20px 20px 40px; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  h2 { font-size: 15px; margin: 0 0 10px; }
+  .slice { font-size: 13px; color: var(--muted); margin: 0 0 14px; max-width: 860px; }
+  .lead { margin: 0 0 12px; max-width: 860px; }
+  .model { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; margin: 0 0 18px; }
+  .model p { margin: 0 0 10px; font-size: 14px; max-width: 860px; }
+  .model .actions { margin-top: 0; }
+  progress { width: 220px; height: 10px; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+  textarea {
+    width: 100%; min-height: 360px; padding: 10px; border: 1px solid var(--line); border-radius: 6px;
+    font: 14px/1.45 system-ui, sans-serif; resize: vertical;
+  }
+  .actions { display: flex; gap: 10px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
+  button {
+    font: inherit; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--accent); cursor: pointer;
+    background: var(--accent); color: #fff;
+  }
+  button.secondary { background: #fff; color: var(--accent); }
+  button:disabled { opacity: 0.55; cursor: default; }
+  .status { font-size: 13px; color: var(--muted); }
+  .status.error { color: var(--warn); }
+  .warn { color: var(--warn); }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px; margin-bottom: 16px; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 5px 8px 5px 0; border-bottom: 1px solid var(--line); }
+  th { width: 38%; font-weight: 500; color: var(--muted); }
+  tr:last-child th, tr:last-child td { border-bottom: 0; }
+  .empty { color: var(--muted); }
+  .big { font-size: 24px; font-weight: 600; }
+  .note { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .tags span { display: inline-block; background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; margin: 0 4px 4px 0; font-size: 13px; }
+  details { margin-top: 4px; }
+  pre { white-space: pre-wrap; word-break: break-word; font-size: 12px; background: #fff; border: 1px solid var(--line); padding: 8px; border-radius: 4px; }
+  footer { margin-top: 28px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+  footer p { margin: 0 0 6px; }
+  a { color: var(--accent); }
+  @media (max-width: 760px) {
+    main { padding: 14px 12px 32px; }
+    .grid { grid-template-columns: minmax(0, 1fr); }
+    textarea { min-height: 220px; }
+    h1 { font-size: 19px; }
+    progress { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Поля вакансии и оценка зарплаты</h1>
+  <p class="slice" id="slice">Срез рынка проекта: «Работа в России» (trudvsem), Хабр Карьера, SuperJob и публичные Telegram-каналы. hh.ru в выборку не входит.</p>
+  <p class="lead">Вставьте текст IT-вакансии. Модель извлечения вернёт роль, грейд, навыки, зарплату из текста, формат работы, города, опыт и тип занятости. По этим полям модель зарплаты даст оценку с интервалом.</p>
+
+  <section class="model">
+    <p id="model-note">Модель работает в вашем браузере на процессоре, текст никуда не отправляется.</p>
+    <p id="thread-note" class="warn" hidden></p>
+    <div class="actions">
+      <button id="load" disabled>Скачать модель и запустить</button>
+      <progress id="progress" value="0" max="1" hidden></progress>
+      <span id="load-status" class="status"></span>
+    </div>
+  </section>
+
+  <div class="grid">
+    <section>
+      <label for="text" class="status">Текст вакансии</label>
+      <textarea id="text" maxlength="20000" placeholder="Название, требования, условия, зарплата, город..."></textarea>
+      <div class="actions">
+        <button id="run" disabled>Извлечь</button>
+        <button id="example" class="secondary" disabled>Пример из «Работы в России»</button>
+        <span id="status" class="status"></span>
+      </div>
+      <p class="note" id="example-source"></p>
+    </section>
+
+    <section id="out">
+      <div class="panel">
+        <h2>Извлечённые поля</h2>
+        <div id="fields"><p class="empty">Здесь появятся поля после запуска.</p></div>
+      </div>
+      <div class="panel">
+        <h2>Оценка зарплаты</h2>
+        <div id="salary"><p class="empty">Оценка строится по извлечённым полям.</p></div>
+      </div>
+      <details>
+        <summary class="status">Ответ модели в JSON</summary>
+        <pre id="json"></pre>
+      </details>
+    </section>
+  </div>
+
+  <footer id="footer"></footer>
+</main>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

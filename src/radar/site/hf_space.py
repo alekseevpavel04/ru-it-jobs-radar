@@ -1,46 +1,61 @@
-"""The Space: assemble its files, pick texts for a local run, run it in Docker with 2 CPUs.
+"""The Space: a static page that runs the extraction and the salary model in the visitor's browser.
 
     python -m radar.site.hf_space pick        20 trudvsem texts outside the gold set -> data/hf/space_bench.jsonl,
                                                3 short ones as the page's examples -> data/hf/space_examples.json
-    python -m radar.site.hf_space assemble    storage/hf/space: hf/space, the vendored radar modules, the
-                                               tokenizer, the salary model, assets/space.json, the card
-    python -m radar.site.hf_space bench       build the image in WSL, start it with --cpus 2, check the prompt
-                                               rendering on dev, time 20 requests -> results/public/space_local.json
+    python -m radar.site.hf_space assemble    storage/hf/space: the page, the pinned browser libraries, the
+                                               tokenizer, the salary trees, assets/space.json, the card
+    python -m radar.site.hf_space check       the page's JavaScript against the Python it repeats, in node
+    python -m radar.site.hf_space bench       check, then the assembled Space in Chromium from a local server:
+                                               model load, 10 extractions -> results/public/space_static_local.json,
+                                               screenshots docs/img/space_<width>.png
 
-The image runs the GGUF with llama-server and renders prompts with radar.train.dataset, so a few
-modules of this package travel with it: the entry modules and everything they import from radar at
-module level (`vendored`), so a new import in the salary model reaches the image without an edit here.
-The assembled tree is the Space repo as it would be uploaded.
-On Hugging Face the GGUF is downloaded from the model repo at start; locally it is mounted.
+Why static. A Space with its own server (Docker, Gradio) on the free CPU tier now needs a paid
+account; a static Space is free. The page loads the Q4_K_M GGUF of the student from the model repo
+into wllama (llama.cpp compiled to WebAssembly) and keeps it in the browser's storage, so the
+visitor's processor does the work and the text never leaves the browser.
+
+What the browser repeats, and how it is checked (`check`, in node with the same files the page loads):
+- the prompt: radar.train.dataset cuts the input after max_input_tokens tokens of the training
+  tokenizer and wraps it in the system prompt and the Qwen3 chat template with thinking off; the page
+  does it with tokenizers.js (js/prompt.js) and must render the dev prompts the quantized student was
+  scored on, character for character, and cut texts where the Python tokenizer cuts them;
+- the answer check of radar.extract.schema (js/schema.js), on gold answers and broken variants of them;
+- the salary model: radar.models.salary_features.feature_row and the HistGradientBoosting trees of
+  radar.models.salary, exported as plain trees (`salary_trees`), on rows of the salary dev split and on
+  the gold dev fields. sklearn's ONNX converter does not take native categorical splits, which the
+  model uses for seven columns, hence the trees and not ONNX.
+Decoding is greedy with the extraction JSON schema as the grammar, as the student was scored on dev
+(sft_1p7b_clean_q4_k_m_schema); wllama 3 runs llama.cpp's server code, which turns `json_schema`
+into a grammar the same way llama-server does.
 
 Texts. Only trudvsem texts are publishable (DECISIONS 2), and only those not reposted from other
 sites (source_type "Вакансия интернет ресурса"). The local run uses IT candidates of the latest
 snapshot, in a fixed hash order, whose vacancy id is not in any gold split, and that the corpus
-extraction (6.7) already answered and read as IT: the Space's answer is compared with it.
-
-The host is shared (the corpus extraction and other jobs run in the same WSL distro), so the run
-records the load average of the distro before and after the requests next to the timings.
+extraction (6.7) already answered and read as IT: the page's answer is compared with it.
 """
 
 import argparse
-import ast
 import json
 import logging
+import math
 import shutil
 import subprocess
 import sys
-import time
-from collections.abc import Sequence
+import tempfile
+from collections.abc import Callable, Sequence
 from datetime import UTC, datetime
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 from typing import Any
 
-import httpx
+import numpy as np
+import pandas as pd
 
 from radar.config import ROOT, data_dir, load_dotenv
 from radar.extract.inputs import input_for_record
-from radar.extract.schema import dump, try_parse
-from radar.models.salary import load_model
+from radar.extract.schema import dump, json_schema, try_parse
+from radar.models.salary import ROUND_RUB, SalaryModel, load_model, predict
+from radar.models.salary_data import DEV, STUDENT, records_of, with_features
+from radar.models.salary_features import CATEGORICAL, NUMERIC, ROLE_BUCKET, ROLE_GROUP, OutOfScope
 from radar.results import write_result
 from radar.site.hf_common import HF, LICENSES, STORAGE, load_config, render_card, results_doc, shown, write_json
 from radar.stream.clickhouse import ClickHouse
@@ -51,54 +66,30 @@ SPACE_SRC = HF / "space"
 OUT = STORAGE / "space"
 BENCH = data_dir() / "hf" / "space_bench.jsonl"
 EXAMPLES = data_dir() / "hf" / "space_examples.json"
-RESULT = "public/space_local.json"
-# What the app imports from this package; their module-level radar imports follow (vendored).
-ENTRY_MODULES = ("radar.models.salary", "radar.extract.schema", "radar.train.dataset")
-TOKENIZER_FILES = ("tokenizer.json", "tokenizer_config.json", "chat_template.jinja", "dataset_meta.json")
+WORK = ROOT / "logs" / "hf_space"
+RESULT = "public/space_static_local.json"
+NODE = Path("D:/VScode_projects/assets/tools/nodejs/node.exe")
+CHECK_SCRIPT = ROOT / "scripts" / "hf_space_check.mjs"
+BENCH_SCRIPT = ROOT / "scripts" / "hf_space_bench.mjs"
+# What the Space repo holds from hf/space; package.json pins the vendored libraries and is not published.
+PAGE_FILES = ("index.html", "NOTICE.md")
+PAGE_DIRS = ("js",)
+# Browser libraries, from hf/space/node_modules at the versions of hf/space/package.json.
+VENDOR = {
+    "wllama": ("@wllama/wllama", ("esm/index.js", "esm/wasm/wllama.wasm", "LICENCE")),
+    "tokenizers": ("@huggingface/tokenizers", ("dist/tokenizers.min.mjs", "LICENSE")),
+}
+TOKENIZER_FILES = ("tokenizer.json", "tokenizer_config.json")
+SALARY_MODELS = ("point", "lower", "upper", "bound_from", "bound_to")
 REPOSTED = "Вакансия интернет ресурса"
 N_BENCH = 20
 N_EXAMPLES = 3
 EXAMPLE_MAX_CHARS = 1800
-DISTRO = "radar"
-IMAGE = "radar/space:local"
-CONTAINER = "radar-space-bench"
-PORT = 7860
-CPUS = "2"
-MEMORY = "16g"
-
-
-def module_file(name: str, src: Path) -> Path:
-    base = src.joinpath(*name.split("."))
-    return base / "__init__.py" if base.is_dir() else base.with_suffix(".py")
-
-
-def module_imports(path: Path, src: Path) -> set[str]:
-    """radar modules imported at module level of `path` (imports inside functions run only when called)."""
-    found: set[str] = set()
-    for node in ast.parse(path.read_text(encoding="utf-8")).body:
-        if isinstance(node, ast.Import):
-            found |= {a.name for a in node.names if a.name.split(".")[0] == "radar"}
-        elif isinstance(node, ast.ImportFrom) and node.level == 0 and node.module and node.module.startswith("radar"):
-            found.add(node.module)
-            # `from radar.models import salary` imports a module, not a name
-            names = (f"{node.module}.{a.name}" for a in node.names)
-            found |= {name for name in names if module_file(name, src).exists()}
-    return found
-
-
-def vendored(entries: Sequence[str] = ENTRY_MODULES, src: Path = ROOT / "src") -> list[str]:
-    """Files under src/ the entry modules need: their radar imports, recursively, with every package __init__."""
-    seen: set[str] = set()
-    todo = list(entries)
-    while todo:
-        name = todo.pop()
-        if name in seen:
-            continue
-        seen.add(name)
-        parts = name.split(".")
-        todo += [".".join(parts[:i]) for i in range(1, len(parts))]
-        todo += sorted(module_imports(module_file(name, src), src))
-    return sorted(module_file(n, src).relative_to(src).as_posix() for n in seen)
+MAX_NEW_TOKENS = 512
+N_CTX = 4096
+# Budgets the input cut is checked at besides max_input_tokens: few dev texts reach the real one.
+CUT_BUDGETS = (32, 128, 512)
+N_SALARY_ROWS = 50
 
 
 def gguf_repo_path(name: str, quant: str) -> str:
@@ -112,6 +103,15 @@ def gguf_entry(name: str, quant: str) -> dict[str, Any]:
         if entry["type"] == quant:
             return {**entry, "manifest_created_at": manifest["created_at"]}
     raise KeyError(f"models/gguf/{name}/manifest.json has no {quant}")
+
+
+def tokenizer_dir(cfg: dict[str, Any]) -> Path:
+    return ROOT / "models" / "merged" / str(cfg["model"]["name"])
+
+
+def dataset_meta(cfg: dict[str, Any]) -> dict[str, Any]:
+    meta: dict[str, Any] = json.loads((tokenizer_dir(cfg) / "dataset_meta.json").read_text(encoding="utf-8"))
+    return meta
 
 
 # --- pick ---------------------------------------------------------------------------------------
@@ -235,7 +235,91 @@ def cmd_pick(model_id: str) -> int:
     return 0
 
 
+# --- salary trees -------------------------------------------------------------------------------
+
+
+def _in_bitset(bitsets: np.ndarray, row: int, value: int) -> bool:
+    return bool((int(bitsets[row, value // 32]) >> (value % 32)) & 1)
+
+
+def hgb_trees(hgb: Any, n_levels: Sequence[int]) -> dict[str, Any]:
+    """A fitted HistGradientBoostingRegressor with identity link as plain trees over the columns of
+    Encoder.tree_matrix (js/salary.js walks them).
+
+    sklearn routes a categorical value through its own OrdinalEncoder, then left if the category is in
+    the node's bitset, right if the model saw it in training, else as missing. That decision depends on
+    the encoder level only, so it is resolved here into the list of level codes that go left."""
+    pre = hgb._preprocessor
+    columns = {name: np.flatnonzero(cols) for name, _, cols in pre.transformers_ if name in pre.output_indices_}
+    original = np.empty(pre.n_features_in_, dtype=int)
+    for name, out in pre.output_indices_.items():
+        original[out] = columns.get(name, np.array([], dtype=int))
+    encoder = pre.named_transformers_["encoder"]
+    ordinal = {
+        int(col): {int(v): i for i, v in enumerate(cats) if not np.isnan(v)}
+        for col, cats in zip(columns["encoder"], encoder.categories_, strict=True)
+    }
+    known, f_idx_map = hgb._bin_mapper.make_known_categories_bitsets()
+
+    def goes_left(node: Any, raw_left: np.ndarray, code: int) -> bool:
+        o = ordinal[int(original[node["feature_idx"]])].get(code)
+        if o is not None and _in_bitset(raw_left, int(node["bitset_idx"]), o):
+            return True
+        if o is not None and _in_bitset(known, int(f_idx_map[node["feature_idx"]]), o):
+            return False
+        return bool(node["missing_go_to_left"])
+
+    trees = []
+    for (predictor,) in hgb._predictors:
+        nodes = []
+        for node in predictor.nodes:
+            if node["is_leaf"]:
+                nodes.append([float(node["value"])])
+                continue
+            col = int(original[node["feature_idx"]])
+            if node["is_categorical"]:
+                split: Any = [c for c in range(n_levels[col]) if goes_left(node, predictor.raw_left_cat_bitsets, c)]
+            else:
+                # A split that sends every number left has an infinite threshold, which JSON cannot hold.
+                threshold = float(node["num_threshold"])
+                split = threshold if math.isfinite(threshold) else ("inf" if threshold > 0 else "-inf")
+            nodes.append([col, split, int(node["missing_go_to_left"]), int(node["left"]), int(node["right"])])
+        trees.append(nodes)
+    return {"baseline": float(np.ravel(hgb._baseline_prediction)[0]), "trees": trees}
+
+
+def salary_trees(model: SalaryModel) -> dict[str, Any]:
+    """What js/salary.js needs to repeat radar.models.salary.predict: encoder, trees, margin, cells."""
+    n_levels = [len(model.encoder.levels[c]) for c in CATEGORICAL]
+    for name in SALARY_MODELS:
+        if getattr(model, name)._loss.__class__.__name__ not in ("AbsoluteError", "PinballLoss"):
+            raise TypeError(f"{name}: the export assumes an identity link")
+    return {
+        "version": model.version,
+        "trained_at": model.trained_at,
+        "level": model.level,
+        "margin": model.margin,
+        "round_rub": ROUND_RUB,
+        "maps": {"role_bucket": ROLE_BUCKET, "role_group": ROLE_GROUP},
+        "encoder": {
+            "categorical": [[c, list(model.encoder.levels[c])] for c in CATEGORICAL],
+            "numeric": list(NUMERIC),
+            "skill_vocab": list(model.encoder.skill_vocab),
+        },
+        "models": {name: hgb_trees(getattr(model, name), n_levels) for name in SALARY_MODELS},
+        "n_similar": {"|".join(k): v[0] for k, v in model.cells.tables[0].items()},
+    }
+
+
 # --- assemble -----------------------------------------------------------------------------------
+
+
+def package_version(package: str) -> str:
+    doc = json.loads((SPACE_SRC / "node_modules" / package / "package.json").read_text(encoding="utf-8"))
+    pinned = json.loads((SPACE_SRC / "package.json").read_text(encoding="utf-8"))["dependencies"][package]
+    if doc["version"] != pinned:
+        raise SystemExit(f"{package} {doc['version']} in hf/space/node_modules, {pinned} pinned: run npm ci there")
+    return str(doc["version"])
 
 
 def space_info(cfg: dict[str, Any]) -> dict[str, Any]:
@@ -253,22 +337,33 @@ def space_info(cfg: dict[str, Any]) -> dict[str, Any]:
             f"{cfg['salary']['artifact']} is {salary.version}: rerun the salary model first"
         )
     sm = salary_result["metrics"]
-    meta = json.loads((ROOT / "models" / "merged" / name / "dataset_meta.json").read_text(encoding="utf-8"))
+    meta = dataset_meta(cfg)
     entry = gguf_entry(name, quant)
     examples = json.loads(EXAMPLES.read_text(encoding="utf-8"))["examples"]
     repos = cfg["repos"]
+    gguf_file = gguf_repo_path(name, quant)
+    revision = cfg["space"]["gguf_revision"]
     return {
         "model": {
             "name": name,
             "base": cfg["model"]["base"],
             "gguf_type": quant,
             "gguf_sha256": entry["sha256"],
+            "gguf_size_bytes": entry["size_bytes"],
             "gguf_size_mib": entry["size_mib"],
             "built_at": entry["manifest_created_at"][:10],
-            "max_input_tokens": meta["max_input_tokens"],
             "prompt_sha256": meta["prompt_sha256"],
         },
-        "gguf": {"repo": repos["model"], "file": gguf_repo_path(name, quant), "revision": None},
+        "gguf": {
+            "repo": repos["model"],
+            "file": gguf_file,
+            "revision": revision,
+            "url": f"https://huggingface.co/{repos['model']}/resolve/{revision}/{gguf_file}",
+        },
+        "prompt": {"system_prompt": meta["system_prompt"], "max_input_tokens": meta["max_input_tokens"]},
+        "decoding": {"max_new_tokens": MAX_NEW_TOKENS, "n_ctx": N_CTX, "temperature": 0},
+        "json_schema": json_schema(),
+        "libraries": {pkg: package_version(pkg) for pkg, _ in VENDOR.values()},
         "dev": {
             "system": system,
             "n_examples": dev["n_examples"],
@@ -296,6 +391,7 @@ def space_info(cfg: dict[str, Any]) -> dict[str, Any]:
             "github": repos["github"],
             "model": f"https://huggingface.co/{repos['model']}",
             "dataset": f"https://huggingface.co/datasets/{repos['dataset']}",
+            "space_direct": cfg["space"]["direct_url"],
         },
         "examples": examples,
         "speed": speed(),
@@ -303,16 +399,19 @@ def space_info(cfg: dict[str, Any]) -> dict[str, Any]:
 
 
 def speed() -> dict[str, Any] | None:
-    """The local run's answer time and the host load it was measured under, for the page's wait note."""
+    """The local browser run's numbers, for the page's wait note."""
     path = ROOT / "results" / RESULT
     if not path.exists():
         return None
     doc = json.loads(path.read_text(encoding="utf-8"))
+    m = doc["metrics"]
     return {
-        "p50_s": doc["metrics"]["latency_p50_s"]["value"],
-        "p95_s": doc["metrics"]["latency_p95_s"]["value"],
-        "host_load_1min": doc["metrics"]["host_load_1min"]["value"],
-        "host_cpus": doc["metrics"]["host_cpus"]["value"],
+        "extract_p50_s": m["extract_p50_s"]["value"],
+        "extract_single_thread_p50_s": m["extract_single_thread_p50_s"]["value"],
+        "first_extract_s": m["first_extract_s"]["value"],
+        "threads": m["threads"]["value"],
+        "load_cached_s": m["load_cached_s"]["value"],
+        "cpu": doc["setup"]["host_cpu"],
         "measured_at": doc["measured_at"][:10],
         "source": f"results/{RESULT}",
     }
@@ -320,21 +419,29 @@ def speed() -> dict[str, Any] | None:
 
 def cmd_assemble() -> int:
     cfg = load_config()
-    name = cfg["model"]["name"]
     if OUT.exists():
         shutil.rmtree(OUT)
-    shutil.copytree(SPACE_SRC, OUT, ignore=shutil.ignore_patterns("__pycache__", "README.md.in"))
+    OUT.mkdir(parents=True)
+    for file in PAGE_FILES:
+        shutil.copy2(SPACE_SRC / file, OUT / file)
+    for folder in PAGE_DIRS:
+        shutil.copytree(SPACE_SRC / folder, OUT / folder)
     shutil.copytree(LICENSES, OUT / "licenses")
-    for rel in vendored():
-        dst = OUT / "vendor" / rel
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(ROOT / "src" / rel, dst)
+    for name, (package, files) in VENDOR.items():
+        package_version(package)
+        for rel in files:
+            dst = OUT / "vendor" / name / Path(rel).name
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(SPACE_SRC / "node_modules" / package / rel, dst)
     for file in TOKENIZER_FILES:
         dst = OUT / "assets" / "tokenizer" / file
         dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(ROOT / "models" / "merged" / name / file, dst)
-    (OUT / "assets" / "salary").mkdir(parents=True)
-    shutil.copy2(ROOT / cfg["salary"]["artifact"], OUT / "assets" / "salary" / "salary.pkl")
+        shutil.copy2(tokenizer_dir(cfg) / file, dst)
+    salary = load_model(ROOT / cfg["salary"]["artifact"])
+    (OUT / "assets" / "salary.json").write_text(
+        json.dumps(salary_trees(salary), ensure_ascii=False, separators=(",", ":"), allow_nan=False),
+        encoding="utf-8",
+    )
     write_json(OUT / "assets" / "space.json", space_info(cfg))
     card = render_card((SPACE_SRC / "README.md.in").read_text(encoding="utf-8"))
     (OUT / "README.md").write_text(card.published, encoding="utf-8", newline="\n")
@@ -342,19 +449,180 @@ def cmd_assemble() -> int:
     return 0
 
 
+# --- check --------------------------------------------------------------------------------------
+
+
+def jsonl(path: Path) -> list[dict[str, Any]]:
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+
+
+def python_cut(tokenizer: Any, text: str, budget: int) -> str:
+    """radar.train.dataset.cap_input with the offsets of the training tokenizer."""
+    offsets = tokenizer.encode(text, add_special_tokens=False).offsets
+    return text if len(offsets) <= budget else text[: offsets[budget - 1][1]]
+
+
+def broken_answers(fields: dict[str, Any]) -> list[str]:
+    """Variants of a valid answer that radar.extract.schema rejects, or accepts after a fix-up (stripped
+    items, the field name `from_`), so the page's check is compared on both sides of each rule."""
+    salary = {"from": 100000, "to": 150000, "currency": "RUB", "gross_net": None, "period": "month"}
+    variants: list[dict[str, Any]] = [
+        {**fields, "salary": {**salary, "from": 200000}},
+        {**fields, "salary": {**salary, "from": None, "to": None}},
+        {**fields, "salary": {**salary, "from": 0}},
+        {**fields, "salary": {**salary, "from": 1500.5}},
+        {**fields, "salary": {**salary, "from": 1500.0}},
+        {**fields, "salary": {k if k != "from" else "from_": v for k, v in salary.items()}},
+        {**fields, "salary": {**salary, "currency": "rub"}},
+        {**fields, "experience_years": {"min": 5, "max": 2}},
+        {**fields, "experience_years": {"min": None, "max": None}},
+        {**fields, "experience_years": {"min": 51, "max": None}},
+        {**fields, "experience_years": {"min": 1.5, "max": 3}},
+        {**fields, "grade": "master"},
+        {**fields, "lang": None},
+        {**fields, "skills": ["  Python  ", "SQL"]},
+        {**fields, "skills": [" "]},
+        {**fields, "skills": ["x" * 81]},
+        {**fields, "cities": [f"c{i}" for i in range(31)]},
+        {**fields, "extra": 1},
+        {k: v for k, v in fields.items() if k != "lang"},
+    ]
+    return [json.dumps(v, ensure_ascii=False) for v in variants] + ["", "{", "[]", "null"]
+
+
+def salary_dev_rows(n: int) -> list[dict[str, Any]]:
+    """The first n rows of the salary dev split by entity id, with the student features the model uses."""
+    frame = pd.read_parquet(data_dir() / "salary" / "frame.parquet")
+    dev = with_features(frame[frame["split"] == DEV].sort_values("entity_id").head(n), STUDENT)
+    rows = []
+    for r in records_of(dev):
+        exp = r["experience_min"]
+        rows.append(
+            {
+                "role_bucket": r["role_bucket"],
+                "role_group": r["role_group"],
+                "grade": r["grade"],
+                "region_group": r["region_group"],
+                "work_format": r["work_format"],
+                "employment_type": r["employment_type"],
+                "source": r["source"],
+                "experience_min": None if exp is None or math.isnan(exp) else float(exp),
+                "skills": sorted(str(s) for s in r["skills"]),
+            }
+        )
+    return rows
+
+
+def node(script: Path, *args: str) -> None:
+    """Run a node script with its output in logs/hf_space/<script>.log (the browser run takes half an hour)."""
+    WORK.mkdir(parents=True, exist_ok=True)
+    path = WORK / f"{script.stem}.log"
+    with path.open("w", encoding="utf-8") as out:
+        done = subprocess.run([str(NODE), str(script), *args], cwd=ROOT, stdout=out, stderr=subprocess.STDOUT)
+    if done.returncode != 0:
+        tail = path.read_text(encoding="utf-8").splitlines()[-30:]
+        raise RuntimeError(f"{script.name}: exit {done.returncode}, {shown(path)}:\n" + "\n".join(tail))
+
+
+def share(n: int, d: int) -> dict[str, Any]:
+    return {"value": round(n / d, 4) if d else None, "n": n, "denominator": d}
+
+
+def run_check(cfg: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    """The page's prompt rendering, input cut, answer check and salary model against the Python
+    they repeat; the JavaScript runs in node on the files the assembled Space serves."""
+    from tokenizers import Tokenizer
+
+    gold = data_dir() / "gold"
+    prompts = tokenizer_dir(cfg) / "prompts"
+    rendered = {s: {r["id"]: r for r in jsonl(prompts / f"{s}.jsonl")} for s in ("dev", "tg_dev")}
+    inputs = {s: jsonl(gold / f"{s}_inputs.jsonl") for s in ("dev", "tg_dev")}
+    tokenizer = Tokenizer.from_file(str(OUT / "assets" / "tokenizer" / "tokenizer.json"))
+    texts = [r for s in ("dev", "tg_dev") for r in inputs[s]]
+    cut_cases = [{"id": r["id"], "input": r["input"], "budget": b} for r in texts for b in CUT_BUDGETS]
+
+    gold_fields = [r["fields"] for r in jsonl(gold / "dev.jsonl")]
+    answers = []
+    for f in gold_fields:
+        parsed = try_parse(json.dumps(f, ensure_ascii=False))
+        if parsed is None:
+            raise ValueError(f"a gold answer does not parse: {f}")
+        answers.append(json.dumps(dump(parsed), ensure_ascii=False))
+    answers += broken_answers(json.loads(answers[0]))
+
+    model = load_model(ROOT / cfg["salary"]["artifact"])
+    rows = salary_dev_rows(N_SALARY_ROWS)
+    source = cfg["salary"]["source"]
+    cases = {
+        "space": str(OUT),
+        "prompts": [{"id": r["id"], "input": r["input"]} for r in texts],
+        "cuts": cut_cases,
+        "answers": answers,
+        "salary_rows": rows,
+        "salary_fields": [{"fields": f, "source": source} for f in gold_fields],
+    }
+    WORK.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=WORK) as tmp:
+        cases_path, out_path = Path(tmp) / "cases.json", Path(tmp) / "out.json"
+        cases_path.write_text(json.dumps(cases, ensure_ascii=False), encoding="utf-8")
+        node(CHECK_SCRIPT, str(cases_path), str(out_path))
+        js = json.loads(out_path.read_text(encoding="utf-8"))
+
+    metrics: dict[str, dict[str, Any]] = {}
+    for split in ("dev", "tg_dev"):
+        ids = [r["id"] for r in inputs[split]]
+        same = sum(js["prompts"][i]["prompt"] == rendered[split][i]["prompt"] for i in ids)
+        flag = sum(js["prompts"][i]["truncated"] == rendered[split][i]["truncated_input"] for i in ids)
+        metrics[f"{split}_prompt_render_match"] = share(same, len(ids))
+        metrics[f"{split}_prompt_truncated_flag_match"] = share(flag, len(ids))
+        metrics[f"{split}_prompts_truncated"] = {"value": sum(rendered[split][i]["truncated_input"] for i in ids)}
+    by_text = {r["id"]: r["input"] for r in texts}
+    cut_same = sum(
+        js["cuts"][k] == python_cut(tokenizer, by_text[c["id"]], c["budget"]) for k, c in enumerate(cut_cases)
+    )
+    n_tokens = {i: len(tokenizer.encode(t, add_special_tokens=False).ids) for i, t in by_text.items()}
+    cut_cut = sum(n_tokens[c["id"]] > c["budget"] for c in cut_cases)
+    metrics["input_cut_match"] = share(cut_same, len(cut_cases)) | {"budgets": list(CUT_BUDGETS), "cut": cut_cut}
+
+    expected = [(dump(p) if (p := try_parse(a)) is not None else None) for a in answers]
+    same_answers = sum(e == g for e, g in zip(expected, js["answers"], strict=True))
+    metrics["answer_check_match"] = share(same_answers, len(answers))
+    metrics["answer_check_valid"] = {"value": sum(e is not None for e in expected)}
+
+    X = model.predict_rows(rows)
+    keys = ("point", "low", "high", "from", "to")
+    raw_diff = max(abs(float(X[k][i]) - js["salary_rows"][i][k]) for i in range(len(rows)) for k in keys)
+    metrics["salary_rows_max_abs_diff_rub"] = {"value": raw_diff, "n_rows": len(rows), "outputs": list(keys)}
+    want: list[dict[str, Any] | None] = []
+    for f in gold_fields:
+        try:
+            want.append(predict(f, source, model=model))
+        except OutOfScope:
+            want.append(None)
+    got = js["salary_fields"]
+    metrics["salary_fields_match"] = share(sum(w == g for w, g in zip(want, got, strict=True)), len(want))
+    metrics["salary_fields_out_of_scope"] = {"value": sum(w is None for w in want)}
+    return metrics
+
+
+def cmd_check() -> int:
+    for name, m in run_check(load_config()).items():
+        log.info("%s %s", name, {k: v for k, v in m.items() if k in ("value", "n", "denominator")})
+    return 0
+
+
 # --- bench --------------------------------------------------------------------------------------
 
 
-def wsl_path(path: Path) -> str:
-    drive, rest = path.resolve().drive, path.resolve().as_posix()[2:]
-    return str(PurePosixPath("/mnt", drive.rstrip(":").lower()) / rest.lstrip("/"))
-
-
-def wsl(*args: str, check: bool = True, capture: bool = True) -> str:
-    out = subprocess.run(["wsl", "-d", DISTRO, "--", *args], capture_output=capture, text=True, encoding="utf-8")
-    if check and out.returncode != 0:
-        raise RuntimeError(f"{' '.join(args[:3])}: exit {out.returncode}\n{out.stderr}")
-    return out.stdout or ""
+def windows_cpu_load(samples: int = 5) -> float:
+    """Mean processor load of the host over `samples` seconds, percent (Win32_Processor.LoadPercentage;
+    the performance counters are not readable on this machine)."""
+    script = (
+        f"$v = 1..{samples} | ForEach-Object {{ (Get-CimInstance Win32_Processor).LoadPercentage; Start-Sleep 1 }}; "
+        "[string]($v | Measure-Object -Average).Average"
+    )
+    out = subprocess.run(["powershell", "-NoProfile", "-Command", script], capture_output=True, text=True, check=True)
+    return round(float(out.stdout.strip().replace(",", ".")), 1)
 
 
 def quantile(values: Sequence[float], q: float) -> float:
@@ -363,180 +631,129 @@ def quantile(values: Sequence[float], q: float) -> float:
     return nearest_rank(values, q)
 
 
-def wait_ready(client: httpx.Client, timeout_s: float = 600.0) -> float:
-    started = time.perf_counter()
-    while time.perf_counter() - started < timeout_s:
-        # wsl.exe itself now and then exits with -1 and no output; only a docker answer counts.
-        state = subprocess.run(
-            ["wsl", "-d", DISTRO, "--", "docker", "inspect", "-f", "{{.State.Running}}", CONTAINER],
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-        )
-        if state.returncode == 0 and state.stdout.strip() != "true":
-            logs = wsl("docker", "logs", "--tail", "40", CONTAINER)
-            raise RuntimeError(f"the container stopped:\n{logs}")
-        try:
-            if client.get("/health").status_code == 200:
-                return time.perf_counter() - started
-        except httpx.TransportError:
-            pass
-        time.sleep(0.5)
-    raise TimeoutError(f"the Space did not answer /health in {timeout_s:.0f} s")
+def timed(values: Sequence[dict[str, Any]], q: float, pick: Callable[[dict[str, Any]], float]) -> float:
+    return round(quantile([pick(v) for v in values], q), 2)
 
 
-def container_memory_mib() -> float:
-    usage = wsl("docker", "stats", "--no-stream", "--format", "{{.MemUsage}}", CONTAINER).split("/")[0].strip()
-    number, unit = float(usage[:-3]), usage[-3:]
-    return round(number * {"KiB": 1 / 1024, "MiB": 1.0, "GiB": 1024.0}[unit], 1)
-
-
-def cmd_bench(build: bool) -> int:
+def cmd_bench(n_texts: int, n_single: int, reuse: bool) -> int:
     cfg = load_config()
+    if not (OUT / "assets" / "space.json").exists():
+        raise SystemExit("assemble the Space first: python -m radar.site.hf_space assemble")
+    checks = run_check(cfg)
     name, quant = cfg["model"]["name"], cfg["model"]["space_gguf"]
     gguf = ROOT / "models" / "gguf" / name / f"{name}-{quant}.gguf"
-    rows = [json.loads(line) for line in BENCH.read_text(encoding="utf-8").splitlines() if line.strip()]
-    examples = json.loads(EXAMPLES.read_text(encoding="utf-8"))["examples"]
-    # The GGUF is read from the distro's own disk: a model mapped over /mnt/d would time the 9p share.
-    cache = "/var/tmp/radar-space"
-    wsl("mkdir", "-p", cache)
-    wsl("cp", "-u", wsl_path(gguf), f"{cache}/model.gguf")
-    if build:
-        started = time.perf_counter()
-        wsl("docker", "build", "-t", IMAGE, wsl_path(OUT), capture=False)
-        log.info("image built in %.0f s", time.perf_counter() - started)
-    image_bytes = int(wsl("docker", "image", "inspect", IMAGE, "--format", "{{.Size}}").strip())
-    wsl("docker", "rm", "-f", CONTAINER, check=False)
-    prompts = ROOT / "models" / "merged" / name / "prompts" / "dev.jsonl"
-    inputs = data_dir() / "gold" / "dev_inputs.jsonl"
-    started = time.perf_counter()
-    wsl(
-        "docker", "run", "-d", "--name", CONTAINER, "--cpus", CPUS, "--memory", MEMORY, "-p", f"{PORT}:{PORT}",
-        "-v", f"{cache}/model.gguf:/models/model.gguf:ro",
-        "-v", f"{wsl_path(prompts)}:/check/prompts.jsonl:ro",
-        "-v", f"{wsl_path(inputs)}:/check/inputs.jsonl:ro",
-        "-e", "GGUF_PATH=/models/model.gguf", IMAGE,
-    )  # fmt: skip
-    client = httpx.Client(base_url=f"http://127.0.0.1:{PORT}", timeout=httpx.Timeout(600.0, connect=5.0))
-    try:
-        ready = wait_ready(client)
-        cold_start = time.perf_counter() - started
-        log.info("ready in %.1f s (health polled for %.1f s)", cold_start, ready)
-        render = json.loads(
-            wsl("docker", "exec", CONTAINER, "python", "-m", "app.prompt", "check",
-                "/check/inputs.jsonl", "/check/prompts.jsonl").strip().splitlines()[-1]
-        )  # fmt: skip
-        log.info("prompt rendering on dev: %s", render)
-        load_before = float(wsl("cat", "/proc/loadavg").split()[0])
-        t0 = time.perf_counter()
-        first = client.post("/api/extract", json={"text": examples[0]["text"]})
-        first.raise_for_status()
-        first_s = time.perf_counter() - t0
-        answers = []
-        for row in rows:
-            t0 = time.perf_counter()
-            r = client.post("/api/extract", json={"text": row["input"]})
-            r.raise_for_status()
-            answers.append({"id": row["id"], "wall_s": round(time.perf_counter() - t0, 3), **r.json()})
-            log.info("%s %.2f s", row["id"], answers[-1]["wall_s"])
-        memory = container_memory_mib()
-        load_after = float(wsl("cat", "/proc/loadavg").split()[0])
-        cpu = wsl("bash", "-c", "grep -m1 'model name' /proc/cpuinfo | cut -d: -f2").strip()
-        cpus = int(wsl("nproc").strip())
-    finally:
-        wsl("docker", "rm", "-f", CONTAINER, check=False)
+    rows = jsonl(BENCH)[:n_texts]
+    WORK.mkdir(parents=True, exist_ok=True)
+    texts_path, raw_path = WORK / "bench_texts.json", WORK / "bench_raw.json"
+    texts_path.write_text(json.dumps([{"id": r["id"], "input": r["input"]} for r in rows], ensure_ascii=False),
+                          encoding="utf-8")  # fmt: skip
+    if not reuse:
+        load_before = windows_cpu_load()
+        node(BENCH_SCRIPT, "--space", str(OUT), "--gguf", str(gguf), "--texts", str(texts_path), "--out",
+             str(raw_path), "--single", str(n_single), "--shots", str(ROOT / "docs" / "img"))  # fmt: skip
+        raw = json.loads(raw_path.read_text(encoding="utf-8"))
+        raw["host_cpu_load_pct"] = {"before": load_before, "after": windows_cpu_load()}
+        raw_path.write_text(json.dumps(raw, ensure_ascii=False, indent=1), encoding="utf-8")
+    raw = json.loads(raw_path.read_text(encoding="utf-8"))
+    load_before, load_after = raw["host_cpu_load_pct"]["before"], raw["host_cpu_load_pct"]["after"]
 
-    n = len(answers)
-    wall = [a["wall_s"] for a in answers]
-    model_s = [a["seconds"]["model"] for a in answers]
-    valid = sum(a["valid"] for a in answers)
-    same_tokens = sum(a["prompt_tokens"] == a["prompt_tokens_tokenizer"] for a in answers)
     by_id = {r["id"]: r for r in rows}
-    same_fields = sum(a["valid"] and a["fields"] == by_id[a["id"]]["corpus_fields"] for a in answers)
-    with_salary = sum(a["salary"] is not None for a in answers)
+    multi, single = raw["multi"], raw["single"]
+    n = len(multi)
+    valid = sum(a["valid"] for a in multi)
+    same = sum(a["valid"] and a["fields"] == by_id[a["id"]]["corpus_fields"] for a in multi)
+    with_salary = sum(a["salary"] is not None for a in multi)
+    single_same = sum(a["fields"] == m["fields"] for a, m in zip(single, multi, strict=False))
+
+    def wall(a: dict[str, Any]) -> float:
+        return float(a["wall_s"])
+
     metrics: dict[str, dict[str, Any]] = {
-        "latency_p50_s": {"value": round(quantile(wall, 0.5), 2)},
-        "latency_p95_s": {"value": round(quantile(wall, 0.95), 2)},
-        "latency_max_s": {"value": round(max(wall), 2)},
-        "model_p50_s": {"value": round(quantile(model_s, 0.5), 2)},
-        "model_p95_s": {"value": round(quantile(model_s, 0.95), 2)},
-        "prompt_p50_s": {"value": round(quantile([a["seconds"]["prompt"] for a in answers], 0.5), 2)},
-        "generate_p50_s": {"value": round(quantile([a["seconds"]["generate"] for a in answers], 0.5), 2)},
-        "host_load_1min": {"value": round(max(load_before, load_after), 1), "before": load_before, "after": load_after},
-        "host_cpus": {"value": cpus},
-        "first_request_s": {"value": round(first_s, 2)},
-        "cold_start_s": {"value": round(cold_start, 1)},
-        "valid_json": {"value": round(valid / n, 4), "n": valid, "denominator": n},
-        "salary_estimates": {"value": round(with_salary / n, 4), "n": with_salary, "denominator": n},
-        "same_fields_as_corpus_awq": {"value": round(same_fields / n, 4), "n": same_fields, "denominator": n},
-        "prompt_tokens_match": {"value": round(same_tokens / n, 4), "n": same_tokens, "denominator": n},
-        "dev_prompt_render_match": {
-            "value": round(render["prompt_match"] / render["records"], 4),
-            "n": render["prompt_match"],
-            "denominator": render["records"],
+        "load_cold_s": {"value": round(raw["load"]["cold_s"], 1)},
+        "load_cached_s": {"value": round(raw["load"]["cached_s"], 1)},
+        "first_extract_s": {"value": round(raw["first"]["wall_s"], 1)},
+        "first_extract_single_thread_s": {"value": round(raw["first_single"]["wall_s"], 1)},
+        "extract_p50_s": {"value": timed(multi, 0.5, wall)},
+        "extract_p95_s": {"value": timed(multi, 0.95, wall)},
+        "extract_max_s": {"value": round(max(wall(a) for a in multi), 2)},
+        "prompt_p50_s": {"value": timed(multi, 0.5, lambda a: a["prompt_ms"] / 1000)},
+        "generate_p50_s": {"value": timed(multi, 0.5, lambda a: a["predicted_ms"] / 1000)},
+        "prompt_tokens_per_s_p50": {"value": timed(multi, 0.5, lambda a: a["prompt_n"] / a["prompt_ms"] * 1000)},
+        "generate_tokens_per_s_p50": {
+            "value": timed(multi, 0.5, lambda a: a["predicted_n"] / a["predicted_ms"] * 1000)
         },
-        "dev_prompt_tokens_match": {
-            "value": round(render["prompt_tokens_match"] / render["records"], 4),
-            "n": render["prompt_tokens_match"],
-            "denominator": render["records"],
-        },
-        "input_truncated": {"value": sum(a["input_truncated"] for a in answers)},
-        "container_memory_mib": {"value": memory},
-        "image_size_mib": {"value": round(image_bytes / 2**20)},
+        "threads": {"value": raw["threads"]},
+        "extract_single_thread_p50_s": {"value": timed(single, 0.5, wall), "texts": len(single)},
+        "single_thread_same_fields": share(single_same, len(single)),
+        "valid_json": share(valid, n),
+        "salary_estimates": share(with_salary, n),
+        "same_fields_as_corpus_awq": share(same, n),
+        "grammar_enforced": {"value": raw["grammar_enforced"]},
+        "host_cpu_load_pct": {"value": max(load_before, load_after), "before": load_before, "after": load_after},
+        **checks,
     }
     write_result(
         RESULT,
         metrics,
         source_script="src/radar/site/hf_space.py",
         setup={
-            "docker": f"--cpus {CPUS} --memory {MEMORY}, WSL distro {DISTRO}",
-            "host_cpu": cpu,
-            "gguf": f"models/gguf/{name}/{name}-{quant}.gguf",
-            "requests": "sequential, one in flight; wall time as the client saw it, model time inside the app",
-            "first_request": "one example text before the measured ones, not counted in the quantiles",
-            "cold_start": "docker run to the first 200 of /health (llama-server loaded the model)",
-            "texts": "trudvsem snapshot IT candidates outside the gold set, fixed hash order (python -m "
-            "radar.site.hf_space pick); same_fields_as_corpus_awq compares with the 6.7 corpus answer of the "
-            "AWQ checkpoint of the same model",
-            "dev_prompt_render": "app.prompt check inside the image against models/merged/<name>/prompts/dev.jsonl",
+            "browser": raw["browser"],
+            "host_cpu": raw["host_cpu"],
+            "logical_cpus": raw["logical_cpus"],
+            "wllama": raw["wllama"],
+            "libllama": raw["libllama"],
+            "gguf": f"models/gguf/{name}/{name}-{quant}.gguf, served by a local HTTP server in place of the model repo",
+            "load_cold": "the page's startModel (what the load button calls) in a fresh browser profile, to the model "
+            "ready: the GGUF read from the local server into the browser storage, then into WebAssembly",
+            "load_cached": "a press of the load button in a new page of the same profile: the GGUF read from the "
+            "browser storage",
+            "extract": "wall time of the page's run function (what the run button calls) from the call to the fields "
+            "and the salary on the page, one text at a time; prompt and generate are llama.cpp's own timings",
+            "first_extract": "the page's first example right after the load, not in the quantiles: it also reads the "
+            "system prompt, which later texts find in the KV cache (cache_prompt)",
+            "single_thread": "the page served without the cross-origin isolation headers, as when the browser refuses "
+            "them: wllama falls back to one thread",
+            "texts": "trudvsem snapshot IT candidates outside the gold set (python -m radar.site.hf_space pick); "
+            "same_fields_as_corpus_awq compares with the 6.7 corpus answer of the AWQ checkpoint of the same model",
+            "host_cpu_load_pct": "Windows processor load over 5 s before and after the browser run; other jobs ran on "
+            "the machine (the project's services in WSL, the corpus extraction with vLLM, the editor, a browser)",
+            "checks": "python -m radar.site.hf_space check: the page's JavaScript in node against its Python",
         },
-        per_request=[
-            {
-                "id": a["id"],
-                "wall_s": a["wall_s"],
-                "model_s": a["seconds"]["model"],
-                "prompt_s": a["seconds"]["prompt"],
-                "generate_s": a["seconds"]["generate"],
-                "prompt_tokens": a["prompt_tokens"],
-                "completion_tokens": a["completion_tokens"],
-                "valid": a["valid"],
-                "same_fields_as_corpus": a["valid"] and a["fields"] == by_id[a["id"]]["corpus_fields"],
-            }
-            for a in answers
+        per_text=[
+            {k: a[k] for k in ("id", "wall_s", "prompt_ms", "predicted_ms", "prompt_n", "predicted_n", "valid")}
+            | {"same_fields_as_corpus": a["valid"] and a["fields"] == by_id[a["id"]]["corpus_fields"]}
+            for a in multi
         ],
         measured_at=datetime.now(UTC).isoformat(timespec="seconds"),
     )
-    log.info("p50 %.2f s, p95 %.2f s, valid %d of %d -> results/%s", quantile(wall, 0.5), quantile(wall, 0.95),
-             valid, n, RESULT)  # fmt: skip
+    log.info("load %.1f s cold, %.1f s cached; extract p50 %.1f s (%d threads), one thread p50 %.1f s -> results/%s",
+             raw["load"]["cold_s"], raw["load"]["cached_s"], metrics["extract_p50_s"]["value"], raw["threads"],
+             metrics["extract_single_thread_p50_s"]["value"], RESULT)  # fmt: skip
     return 0
 
 
 def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
-    logging.getLogger("httpx").setLevel(logging.WARNING)
     ap = argparse.ArgumentParser(prog="python -m radar.site.hf_space", description=__doc__.splitlines()[0])
     sub = ap.add_subparsers(dest="command", required=True)
     pick = sub.add_parser("pick", help="texts for the local run and the page's examples (ClickHouse)")
     pick.add_argument("--model-id", help="corpus extraction to compare with; default [dataset] model_id of hf.toml")
     sub.add_parser("assemble", help="lay out storage/hf/space")
-    bench = sub.add_parser("bench", help="build and run the image in WSL with 2 CPUs, time 20 requests")
-    bench.add_argument("--no-build", action="store_true", help="reuse the image built before")
+    sub.add_parser("check", help="the page's JavaScript against the Python it repeats (node)")
+    bench = sub.add_parser("bench", help="check, then the Space in Chromium from a local server")
+    bench.add_argument("--texts", type=int, default=10, help="texts timed with all threads")
+    bench.add_argument("--single", type=int, default=5, help="of them, timed again with one thread")
+    bench.add_argument(
+        "--reuse", action="store_true", help="the result from logs/hf_space/bench_raw.json, no browser run"
+    )
     args = ap.parse_args(argv)
     if args.command == "pick":
         return cmd_pick(args.model_id or load_config()["dataset"]["model_id"])
     if args.command == "assemble":
         return cmd_assemble()
-    return cmd_bench(build=not args.no_build)
+    if args.command == "check":
+        return cmd_check()
+    return cmd_bench(args.texts, args.single, args.reuse)
 
 
 if __name__ == "__main__":

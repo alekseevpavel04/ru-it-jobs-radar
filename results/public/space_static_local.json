@@ -1,0 +1,299 @@
+{
+  "source_script": "src/radar/site/hf_space.py",
+  "command": "python -m radar.site.hf_space bench",
+  "commit": "7e8ef44-dirty",
+  "created_at": "2026-10-13T19:44:21+00:00",
+  "metrics": {
+    "load_cold_s": {
+      "value": 9.2,
+      "n": null,
+      "denominator": null
+    },
+    "load_cached_s": {
+      "value": 7.9,
+      "n": null,
+      "denominator": null
+    },
+    "first_extract_s": {
+      "value": 68.2,
+      "n": null,
+      "denominator": null
+    },
+    "first_extract_single_thread_s": {
+      "value": 291.9,
+      "n": null,
+      "denominator": null
+    },
+    "extract_p50_s": {
+      "value": 54.76,
+      "n": null,
+      "denominator": null
+    },
+    "extract_p95_s": {
+      "value": 87.5,
+      "n": null,
+      "denominator": null
+    },
+    "extract_max_s": {
+      "value": 87.5,
+      "n": null,
+      "denominator": null
+    },
+    "prompt_p50_s": {
+      "value": 33.97,
+      "n": null,
+      "denominator": null
+    },
+    "generate_p50_s": {
+      "value": 20.21,
+      "n": null,
+      "denominator": null
+    },
+    "prompt_tokens_per_s_p50": {
+      "value": 8.4,
+      "n": null,
+      "denominator": null
+    },
+    "generate_tokens_per_s_p50": {
+      "value": 3.83,
+      "n": null,
+      "denominator": null
+    },
+    "threads": {
+      "value": 6,
+      "n": null,
+      "denominator": null
+    },
+    "extract_single_thread_p50_s": {
+      "value": 232.69,
+      "n": null,
+      "denominator": null,
+      "texts": 5
+    },
+    "single_thread_same_fields": {
+      "value": 1.0,
+      "n": 5,
+      "denominator": 5
+    },
+    "valid_json": {
+      "value": 1.0,
+      "n": 10,
+      "denominator": 10
+    },
+    "salary_estimates": {
+      "value": 1.0,
+      "n": 10,
+      "denominator": 10
+    },
+    "same_fields_as_corpus_awq": {
+      "value": 0.9,
+      "n": 9,
+      "denominator": 10
+    },
+    "grammar_enforced": {
+      "value": 1.0,
+      "n": null,
+      "denominator": null
+    },
+    "host_cpu_load_pct": {
+      "value": 66.8,
+      "n": null,
+      "denominator": null,
+      "before": 49.4,
+      "after": 66.8
+    },
+    "dev_prompt_render_match": {
+      "value": 1.0,
+      "n": 165,
+      "denominator": 165
+    },
+    "dev_prompt_truncated_flag_match": {
+      "value": 1.0,
+      "n": 165,
+      "denominator": 165
+    },
+    "dev_prompts_truncated": {
+      "value": 2,
+      "n": null,
+      "denominator": null
+    },
+    "tg_dev_prompt_render_match": {
+      "value": 1.0,
+      "n": 60,
+      "denominator": 60
+    },
+    "tg_dev_prompt_truncated_flag_match": {
+      "value": 1.0,
+      "n": 60,
+      "denominator": 60
+    },
+    "tg_dev_prompts_truncated": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "input_cut_match": {
+      "value": 1.0,
+      "n": 675,
+      "denominator": 675,
+      "budgets": [
+        32,
+        128,
+        512
+      ],
+      "cut": 505
+    },
+    "answer_check_match": {
+      "value": 1.0,
+      "n": 188,
+      "denominator": 188
+    },
+    "answer_check_valid": {
+      "value": 169,
+      "n": null,
+      "denominator": null
+    },
+    "salary_rows_max_abs_diff_rub": {
+      "value": 2.9103830456733704e-11,
+      "n": null,
+      "denominator": null,
+      "n_rows": 50,
+      "outputs": [
+        "point",
+        "low",
+        "high",
+        "from",
+        "to"
+      ]
+    },
+    "salary_fields_match": {
+      "value": 1.0,
+      "n": 165,
+      "denominator": 165
+    },
+    "salary_fields_out_of_scope": {
+      "value": 39,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "setup": {
+    "browser": "Chrome/151.0.7922.34",
+    "host_cpu": "AMD Ryzen 5 5600X 6-Core Processor",
+    "logical_cpus": 12,
+    "wllama": "3.6.1",
+    "libllama": "b10663-83d855c",
+    "gguf": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q4_K_M.gguf, served by a local HTTP server in place of the model repo",
+    "load_cold": "the page's startModel (what the load button calls) in a fresh browser profile, to the model ready: the GGUF read from the local server into the browser storage, then into WebAssembly",
+    "load_cached": "a press of the load button in a new page of the same profile: the GGUF read from the browser storage",
+    "extract": "wall time of the page's run function (what the run button calls) from the call to the fields and the salary on the page, one text at a time; prompt and generate are llama.cpp's own timings",
+    "first_extract": "the page's first example right after the load, not in the quantiles: it also reads the system prompt, which later texts find in the KV cache (cache_prompt)",
+    "single_thread": "the page served without the cross-origin isolation headers, as when the browser refuses them: wllama falls back to one thread",
+    "texts": "trudvsem snapshot IT candidates outside the gold set (python -m radar.site.hf_space pick); same_fields_as_corpus_awq compares with the 6.7 corpus answer of the AWQ checkpoint of the same model",
+    "host_cpu_load_pct": "Windows processor load over 5 s before and after the browser run; other jobs ran on the machine (the project's services in WSL, the corpus extraction with vLLM, the editor, a browser)",
+    "checks": "python -m radar.site.hf_space check: the page's JavaScript in node against its Python"
+  },
+  "per_text": [
+    {
+      "id": "trudvsem_snapshot:623eafca-7780-11f0-a9f5-d549be31d974",
+      "wall_s": 54.799,
+      "prompt_ms": 33973.434,
+      "predicted_ms": 20784.776,
+      "prompt_n": 335,
+      "predicted_n": 92,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:dcffff16-bd94-11f1-aa68-7523fb122f6d",
+      "wall_s": 54.762,
+      "prompt_ms": 35286.414,
+      "predicted_ms": 19403.156,
+      "prompt_n": 332,
+      "predicted_n": 85,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:61684158-b0ce-11f1-987b-b1d3bf2d14ab",
+      "wall_s": 87.501,
+      "prompt_ms": 62621.424,
+      "predicted_ms": 24781.006,
+      "prompt_n": 590,
+      "predicted_n": 103,
+      "valid": true,
+      "same_fields_as_corpus": false
+    },
+    {
+      "id": "trudvsem_snapshot:a76a5020-4479-11f1-aa71-659f9ad1813b",
+      "wall_s": 58.121,
+      "prompt_ms": 37916.834,
+      "predicted_ms": 20114.516,
+      "prompt_n": 340,
+      "predicted_n": 78,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:7363ea28-b00c-11f1-b99e-4972ddb33ebb",
+      "wall_s": 43.702,
+      "prompt_ms": 22501.471,
+      "predicted_ms": 21150.049,
+      "prompt_n": 194,
+      "predicted_n": 81,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:722a4908-688c-11f1-a95e-05a97d193f2d",
+      "wall_s": 34.706,
+      "prompt_ms": 17025.475,
+      "predicted_ms": 17663.374,
+      "prompt_n": 142,
+      "predicted_n": 71,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:58173708-3569-11f0-9d0b-e7d0d2cf29b1",
+      "wall_s": 48.428,
+      "prompt_ms": 29651.62,
+      "predicted_ms": 18753.195,
+      "prompt_n": 249,
+      "predicted_n": 71,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:44448886-be71-11f1-9dff-97d306130813",
+      "wall_s": 71.977,
+      "prompt_ms": 47387.839,
+      "predicted_ms": 24554.786,
+      "prompt_n": 398,
+      "predicted_n": 89,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:2bf568c8-a531-11f1-aa6f-e58ffaa23423",
+      "wall_s": 49.353,
+      "prompt_ms": 28107.749,
+      "predicted_ms": 21158.321,
+      "prompt_n": 236,
+      "predicted_n": 81,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:1a91b578-faa5-11f0-8628-a3cca5294b78",
+      "wall_s": 59.176,
+      "prompt_ms": 38924.645,
+      "predicted_ms": 20206.04,
+      "prompt_n": 326,
+      "predicted_n": 76,
+      "valid": true,
+      "same_fields_as_corpus": true
+    }
+  ],
+  "measured_at": "2026-10-13T19:44:20+00:00"
+}

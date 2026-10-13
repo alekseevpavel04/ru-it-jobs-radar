@@ -1,102 +1,5 @@
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Радар IT-вакансий: поля вакансии и оценка зарплаты</title>
-<style>
-  :root {
-    --fg: #1b1e23;
-    --muted: #5b6370;
-    --line: #d9dde3;
-    --bg: #ffffff;
-    --panel: #f6f7f9;
-    --accent: #2457c5;
-    --warn: #9a3412;
-    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    color: var(--fg);
-    background: var(--bg);
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; }
-  main { max-width: 1080px; margin: 0 auto; padding: 20px 20px 40px; }
-  h1 { font-size: 22px; margin: 0 0 6px; }
-  h2 { font-size: 15px; margin: 0 0 10px; }
-  .slice { font-size: 13px; color: var(--muted); margin: 0 0 14px; max-width: 860px; }
-  .lead { margin: 0 0 16px; max-width: 860px; }
-  .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
-  textarea {
-    width: 100%; min-height: 360px; padding: 10px; border: 1px solid var(--line); border-radius: 6px;
-    font: 14px/1.45 system-ui, sans-serif; resize: vertical;
-  }
-  .actions { display: flex; gap: 10px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
-  button {
-    font: inherit; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--accent); cursor: pointer;
-    background: var(--accent); color: #fff;
-  }
-  button.secondary { background: #fff; color: var(--accent); }
-  button:disabled { opacity: 0.55; cursor: default; }
-  .status { font-size: 13px; color: var(--muted); }
-  .status.error { color: var(--warn); }
-  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px; margin-bottom: 16px; }
-  table { border-collapse: collapse; width: 100%; }
-  th, td { text-align: left; vertical-align: top; padding: 5px 8px 5px 0; border-bottom: 1px solid var(--line); }
-  th { width: 38%; font-weight: 500; color: var(--muted); }
-  tr:last-child th, tr:last-child td { border-bottom: 0; }
-  .empty { color: var(--muted); }
-  .big { font-size: 24px; font-weight: 600; }
-  .note { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
-  .tags span { display: inline-block; background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; margin: 0 4px 4px 0; font-size: 13px; }
-  details { margin-top: 4px; }
-  pre { white-space: pre-wrap; word-break: break-word; font-size: 12px; background: #fff; border: 1px solid var(--line); padding: 8px; border-radius: 4px; }
-  footer { margin-top: 28px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
-  footer p { margin: 0 0 6px; }
-  a { color: var(--accent); }
-  @media (max-width: 760px) {
-    main { padding: 14px 12px 32px; }
-    .grid { grid-template-columns: minmax(0, 1fr); }
-    textarea { min-height: 220px; }
-    h1 { font-size: 19px; }
-  }
-</style>
-</head>
-<body>
-<main>
-  <h1>Поля вакансии и оценка зарплаты</h1>
-  <p class="slice" id="slice">Срез рынка проекта: «Работа в России» (trudvsem), Хабр Карьера, SuperJob и публичные Telegram-каналы. hh.ru в выборку не входит.</p>
-  <p class="lead">Вставьте текст IT-вакансии. Модель извлечения вернёт роль, грейд, навыки, зарплату из текста, формат работы, города, опыт и тип занятости. По этим полям модель зарплаты даст оценку с интервалом. Текст никуда не сохраняется.</p>
+import {extract, isCached, isLoaded, loadInfo, loadModel} from "./extract.js";
 
-  <div class="grid">
-    <section>
-      <label for="text" class="status">Текст вакансии</label>
-      <textarea id="text" maxlength="20000" placeholder="Название, требования, условия, зарплата, город..."></textarea>
-      <div class="actions">
-        <button id="run">Извлечь</button>
-        <button id="example" class="secondary">Пример из «Работы в России»</button>
-        <span id="status" class="status"></span>
-      </div>
-      <p class="note" id="example-source"></p>
-    </section>
-
-    <section id="out">
-      <div class="panel">
-        <h2>Извлечённые поля</h2>
-        <div id="fields"><p class="empty">Здесь появятся поля после запуска.</p></div>
-      </div>
-      <div class="panel">
-        <h2>Оценка зарплаты</h2>
-        <div id="salary"><p class="empty">Оценка строится по извлечённым полям.</p></div>
-      </div>
-      <details>
-        <summary class="status">Ответ модели в JSON</summary>
-        <pre id="json"></pre>
-      </details>
-    </section>
-  </div>
-
-  <footer id="footer"></footer>
-</main>
-<script>
 const ROLE = {
   ml_engineer: "ML-инженер", data_scientist: "Data Scientist", mlops: "MLOps", data_engineer: "Инженер данных",
   data_analyst: "Аналитик данных", business_analyst: "Бизнес-аналитик", system_analyst: "Системный аналитик",
@@ -120,10 +23,16 @@ const none = '<span class="empty">не указано</span>';
 const longDate = (iso) => new Date(iso.length === 10 ? iso + "T00:00:00Z" : iso)
   .toLocaleDateString("ru-RU", {day: "numeric", month: "long", year: "numeric", timeZone: "UTC"}).replace(/\s*г\.$/, "");
 const dec = (x, d) => x.toFixed(d).replace(".", ",");
+const mib = (bytes) => nf.format(Math.round(bytes / 2 ** 20));
 
 let info = null;
-let examples = [];
 let exampleIndex = 0;
+let busy = false;
+
+function setStatus(id, text, error = false) {
+  $(id).className = error ? "status error" : "status";
+  $(id).textContent = text;
+}
 
 function salaryText(s) {
   if (!s) return none;
@@ -166,7 +75,9 @@ function showFields(r) {
     ["Язык текста", esc(LANG[f.lang])]
   ];
   let html = "<table>" + rows.map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join("") + "</table>";
-  if (r.input_truncated) html += `<p class="note">Текст длиннее контекста модели: прочитано начало, ${nf.format(info.model.max_input_tokens)} токенов.</p>`;
+  if (r.input_truncated) {
+    html += `<p class="note">Текст длиннее, чем модель читает: прочитано начало, ${nf.format(info.prompt.max_input_tokens)} токенов.</p>`;
+  }
   $("fields").innerHTML = html;
 }
 
@@ -190,37 +101,96 @@ function showSalary(r) {
     На dev-выборке модели интервал ${level}% накрыл ${nf.format(info.salary.dev_coverage.n)} из ${nf.format(info.salary.dev_coverage.denominator)} вакансий.</p>`;
 }
 
+export async function runOn(text) {
+  const r = await extract(text);
+  showFields(r);
+  showSalary(r);
+  $("json").textContent = JSON.stringify({fields: r.fields, salary: r.salary}, null, 2);
+  return r;
+}
+
 async function run() {
   const text = $("text").value.trim();
-  if (!text) { $("status").textContent = "Вставьте текст вакансии."; return; }
+  if (!text) {
+    setStatus("status", "Вставьте текст вакансии.");
+    return;
+  }
+  if (busy || !isLoaded()) return;
+  busy = true;
   $("run").disabled = true;
-  $("status").className = "status";
-  $("status").textContent = "Модель читает текст на процессоре." +
-    (info && info.speed ? ` В локальной проверке на двух ядрах половина ответов пришла быстрее ${Math.round(info.speed.p50_s)} с, длинный текст дольше.` +
-      ` Замер шёл на машине с другими задачами (средняя нагрузка до ${dec(info.speed.host_load_1min, 1)} при ${info.speed.host_cpus} ядрах), процессор Space другой, и время на нём другое.` : "");
+  const started = performance.now();
+  const tick = () => setStatus("status", `Модель читает текст и пишет ответ, прошло ${Math.round((performance.now() - started) / 1000)} с.`);
+  tick();
+  const timer = setInterval(tick, 1000);
   try {
-    const resp = await fetch("api/extract", {
-      method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({text})
-    });
-    const r = await resp.json();
-    if (!resp.ok) throw new Error(r.detail || resp.statusText);
-    showFields(r);
-    showSalary(r);
-    $("json").textContent = JSON.stringify({fields: r.fields, salary: r.salary}, null, 2);
-    $("status").textContent = `Ответ за ${dec(r.seconds.total, 1)} с.`;
+    const r = await runOn(text);
+    clearInterval(timer);
+    setStatus("status", `Ответ за ${dec(r.seconds.total, 1)} с.`);
   } catch (e) {
-    $("status").className = "status error";
-    $("status").textContent = "Ошибка: " + e.message;
+    clearInterval(timer);
+    setStatus("status", "Ошибка: " + e.message, true);
   } finally {
+    busy = false;
     $("run").disabled = false;
   }
 }
 
+export async function startModel() {
+  $("load").disabled = true;
+  const started = performance.now();
+  const progress = $("progress");
+  progress.hidden = false;
+  try {
+    const cached = await isCached();
+    setStatus("load-status", cached ? "Модель читается из хранилища браузера." : "Скачивается модель.");
+    const state = await loadModel(({loaded, total}) => {
+      if (!total) return;
+      progress.max = total;
+      progress.value = loaded;
+      setStatus("load-status", `Скачано ${mib(loaded)} из ${mib(total)} МиБ.`);
+    });
+    progress.hidden = true;
+    const seconds = (performance.now() - started) / 1000;
+    const threads = state.multithread ? `потоков: ${state.threads}` : "один поток";
+    setStatus("load-status", `Модель готова за ${dec(seconds, 1)} с, ${threads}.`);
+    $("load").hidden = true;
+    $("run").disabled = false;
+    return {seconds, ...state, cached};
+  } catch (e) {
+    const quota = e.name === "QuotaExceededError" || /quota/i.test(e.message);
+    setStatus(
+      "load-status",
+      quota
+        ? `Браузер не дал места под файл модели. Нужно около ${dec(info.model.gguf_size_bytes / 1e9, 1)} ГБ свободного места на диске; в режиме инкогнито хранилище браузера меньше.`
+        : "Модель не загрузилась: " + e.message,
+      true
+    );
+    $("load").disabled = false;
+    throw e;
+  }
+}
+
 function nextExample() {
+  const examples = info.examples;
   if (!examples.length) return;
   const ex = examples[exampleIndex++ % examples.length];
   $("text").value = ex.text;
   $("example-source").innerHTML = `Источник: портал «Работа в России», trudvsem.ru, открытые данные Роструда${ex.url ? `, <a href="${esc(ex.url)}" rel="noopener">вакансия</a>` : ""}.`;
+}
+
+function describe(cached) {
+  const size = nf.format(Math.round(info.model.gguf_size_mib));
+  $("load").textContent = cached ? "Запустить модель из хранилища браузера" : `Скачать модель (${size} МиБ) и запустить`;
+  let text = `Модель работает в вашем браузере на процессоре, текст никуда не отправляется. При первом запуске браузер скачает файл модели, ${size} МиБ, и сохранит его у себя, следующие запуски берут его оттуда. На телефоне загрузка и ответ могут идти очень долго, а памяти может не хватить.`;
+  const s = info.speed;
+  if (s) {
+    text += ` В проверке на настольном процессоре (${s.cpu}, Chromium, ${s.threads} потоков) половина ответов пришла быстрее ${Math.round(s.extract_p50_s)} с, первый ответ после загрузки дольше, около ${Math.round(s.first_extract_s)} с: модель впервые читает инструкцию. В один поток половина ответов шла дольше ${Math.round(s.extract_single_thread_p50_s)} с. На другом компьютере время будет другим.`;
+  }
+  $("model-note").textContent = text;
+  if (!self.crossOriginIsolated) {
+    $("thread-note").hidden = false;
+    $("thread-note").innerHTML = `Браузер не разрешил этой странице несколько потоков, модель будет работать в один поток. Так бывает внутри окна huggingface.co; страница напрямую: <a href="${esc(info.links.space_direct)}" rel="noopener">${esc(info.links.space_direct.replace("https://", ""))}</a>.`;
+  }
 }
 
 function footer() {
@@ -228,17 +198,21 @@ function footer() {
   const links = info.links;
   $("slice").textContent = `Срез рынка проекта: «Работа в России» (trudvsem), Хабр Карьера, SuperJob и публичные Telegram-каналы. hh.ru в выборку не входит. Модель извлечения собрана ${longDate(info.model.built_at)}, модель зарплаты обучена ${longDate(info.salary.trained_at)}.`;
   $("footer").innerHTML = `
-    <p>Модель извлечения: ${esc(info.model.base)}, дообученная (LoRA) на разметке двух моделей-учителей, ${esc(info.model.gguf_type)} GGUF на процессоре через llama.cpp.
+    <p>Модель извлечения: ${esc(info.model.base)}, дообученная (LoRA) на разметке двух моделей-учителей, ${esc(info.model.gguf_type)} GGUF в браузере через wllama ${esc(info.libraries["@wllama/wllama"])} (llama.cpp в WebAssembly).
     На dev-выборке эталона (${nf.format(d.n_examples)} вакансий «Работы в России» и Хабр Карьеры, предразметка LLM и ручная проверка) macro F1 ${dec(d.macro_f1, 3)} [${dec(d.ci_low, 3)}; ${dec(d.ci_high, 3)}], валидный JSON ${d.valid_json.n} из ${d.valid_json.denominator}.</p>
     <p>Модель зарплаты: ${esc(info.salary.version)}, градиентный бустинг с конформным интервалом ${Math.round(info.salary.level * 100)}%, обучена на ${nf.format(info.salary.rows_train)} IT-вакансиях с зарплатой в рублях, интервал откалиброван ещё на ${nf.format(info.salary.rows_calib)}.</p>
-    <p><a href="${links.site}">Сайт с рынком</a> · <a href="${links.github}">Код и методика</a> · <a href="${links.model}">Модель</a> · <a href="${links.dataset}">Датасет</a></p>`;
+    <p><a href="${links.site}">Сайт с рынком</a> · <a href="${links.github}">Код и методика</a> · <a href="${links.model}">Модель</a> · <a href="${links.dataset}">Датасет</a> · <a href="NOTICE.md">Лицензии</a></p>`;
 }
 
 $("run").addEventListener("click", run);
+$("load").addEventListener("click", () => startModel().catch(() => {}));
 $("example").addEventListener("click", nextExample);
-$("text").addEventListener("keydown", (e) => { if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) run(); });
+$("text").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) run();
+});
 
-fetch("api/info").then((r) => r.json()).then((x) => { info = x; examples = x.examples || []; footer(); });
-</script>
-</body>
-</html>
+info = await loadInfo();
+footer();
+describe(await isCached().catch(() => false));
+$("load").disabled = false;
+$("example").disabled = false;
