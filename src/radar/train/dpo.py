@@ -232,6 +232,9 @@ def main(argv: list[str] | None = None) -> int:
         use_cpu=cpu,
         max_length=t.max_seq_len,
         beta=t.beta,
+        # The reference adapter is frozen: its log-probs once before training keep its forward pass out
+        # of each step, which pushed the probe over the 8 GB card (7 360 MiB reserved on 13.10).
+        precompute_ref_log_probs=True,
         loss_type=loss_type,
         loss_weights=loss_weights,
         gradient_checkpointing=not cpu,
