@@ -23,3 +23,12 @@ SELECT {{ column_name }}, {{ denominator }}
 FROM {{ model }}
 WHERE {{ denominator }} > 0 AND {{ column_name }} < {{ min_share }} * {{ denominator }}
 {% endtest %}
+
+
+{#- The column is empty on the rows of the test's where config: a field the publication rules forbid
+    for those sources. -#}
+{% test is_null(model, column_name) %}
+SELECT {{ column_name }}
+FROM {{ model }}
+WHERE {{ column_name }} IS NOT NULL
+{% endtest %}

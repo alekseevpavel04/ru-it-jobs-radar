@@ -559,3 +559,106 @@ models:
         description: Spellings normalize_list drops as not a skill.
       - name: skills_unchecked
         description: Spellings written after the seed was made (dbt/skill_seed.py), so not resolved yet.
+
+  - name: mart_open_vacancies
+    description: >
+      One row per portal vacancy open now (dedup entity), the list the MCP tool find_vacancies reads
+      (radar.api.vacancies). Open and IT as in the rule marts: is_open_now of int_vacancy_entities (not
+      closed, seen within 7 days of the family's latest collected day) and a rule role bucket other
+      than not_it, so a filter's count agrees with mart_employers. An entity open in two families is
+      one row, from trudvsem when open there, else from the family seen last; first_seen and last_seen
+      span its open families. Telegram has no rows: its posts belong to no entity and are published
+      as weekly aggregates only (DECISIONS 2 and 10). Field precedence, per column below: a value the
+      source states in its own field, then the student's extracted field (int_extracted_entities, valid
+      answers only), then the rule on the title and text (int_vacancy_records). The student reads the
+      source's own facts in its input header (radar.extract.inputs), so its value also covers fields
+      such as Habr's remote flag. Publication (docs/sources.md): title and employer_name for trudvsem
+      only, NULL for Habr and SuperJob (texts and employer names of these allow aggregates only); url
+      for trudvsem and Habr, NULL for SuperJob (no links to single vacancies).
+    data_tests:
+      - has_rows
+      - unique_combination:
+          arguments:
+            columns: [vacancy_entity_id]
+    columns:
+      - name: vacancy_entity_id
+        description: Dedup entity (int_vacancy_records entity_id), unique across families.
+        data_tests: [not_null]
+      - name: source
+        description: Source family of the row, trudvsem (API and snapshots), habr or superjob.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [trudvsem, habr, superjob]
+      - name: title
+        description: Job title of the latest record; trudvsem only, NULL elsewhere.
+        data_tests:
+          - is_null:
+              config:
+                where: "source != 'trudvsem'"
+      - name: employer_name
+        description: >
+          Employer name of the latest record as the raw cleaner left it («ИП» for a sole proprietor);
+          trudvsem only, NULL elsewhere (radar.agent.sqlcheck masks the same names in mart_employers).
+        data_tests:
+          - is_null:
+              config:
+                where: "source != 'trudvsem'"
+      - name: role_bucket
+        description: Rule role bucket of the title (macros/marts.sql); the student's role uses another taxonomy.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [ml_ds, data_engineering, data_analytics, developer_1c, business_system_analysis,
+                  security, devops, qa, mobile, fullstack, backend, frontend, embedded, sysadmin_support, design,
+                  management, software_engineer, other_it]
+      - name: grade
+        description: >
+          Habr's stated qualification; else the student's grade; else the title rule (and trudvsem's
+          «Стажировка» employment); else unknown.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [intern, junior, middle, senior, lead, unknown]
+      - name: region_group
+        description: >
+          moscow, spb, other, remote or unknown from the source's region (trudvsem) or cities (Habr,
+          SuperJob), remote when work_format is remote (macro region_group).
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [moscow, spb, other, remote, unknown]
+      - name: work_format
+        description: The student's work format; else the rule (source remote flag and text); else unknown.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [office, hybrid, remote, unknown]
+      - name: skills
+        description: >
+          The student's skills as dictionary v1 names; for a record without a valid extraction, the
+          rule's dictionary v0 names (most v0 names are v1 names too).
+      - name: salary_from
+        description: >
+          Lower bound, RUB per month: the source's salary field when it states one (NULL when that is
+          in another currency), else the student's amount when in RUB per month or without a period;
+          gross or net as stated.
+      - name: salary_to
+        description: Upper bound, by the same rule as salary_from.
+      - name: url
+        description: Link to the vacancy at the source; trudvsem and Habr, NULL for SuperJob.
+        data_tests:
+          - is_null:
+              config:
+                where: "source = 'superjob'"
+      - name: first_seen
+        description: First day any record of the entity was seen open, over its open families.
+        data_tests: [not_null]
+      - name: last_seen
+        description: Last day any record of the entity was seen open.
+        data_tests: [not_null]

@@ -18,6 +18,7 @@ from typing import Any, get_args
 
 import pytest
 
+from radar.api import vacancies
 from radar.extract import schema
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -28,8 +29,10 @@ MARTS = {
     "mart_extracted_fields_weekly": ["source", "week", "field", "value"],
     "mart_extracted_salaries": ["source", "level", "role", "grade"],
     "mart_extraction_coverage": ["source", "level", "week"],
+    "mart_open_vacancies": ["vacancy_entity_id"],
 }
 SINGULAR = {
+    "assert_open_vacancies_match_entities",
     "assert_extracted_marts_consistent",
     "assert_extracted_field_values",
     "assert_skill_seed_covers_extracted_spellings",
@@ -168,6 +171,26 @@ def test_counts_never_exceed_their_denominators_and_portals_stay_covered(manifes
     }
     portals = "level = 'source' AND source != 'telegram'"
     assert bounds == {(0.95, "warn", portals), (0.5, "error", portals)}
+
+
+def test_open_vacancies_publish_names_and_links_only_where_the_rules_allow(manifest_on: dict[str, Any]) -> None:
+    # docs/sources.md: titles and employer names of the open data only, no SuperJob links
+    guarded = {
+        (n["test_metadata"]["kwargs"]["column_name"], n["config"]["where"])
+        for n in _tests(manifest_on, "is_null")
+        if n["attached_node"].endswith(".mart_open_vacancies")
+    }
+    assert guarded == {
+        ("title", "source != 'trudvsem'"),
+        ("employer_name", "source != 'trudvsem'"),
+        ("url", "source = 'superjob'"),
+    }
+    assert _accepted(manifest_on, "mart_open_vacancies", "source") == {"trudvsem", "habr", "superjob"}
+    columns = set(_models(manifest_on, "extracted")["mart_open_vacancies"]["columns"])
+    selected = re.search(r"SELECT (.*?)\s+FROM", vacancies.SEARCH_SQL, re.S)
+    assert selected is not None
+    read = {c.strip().split(" AS ")[-1] for c in selected.group(1).split(",")}
+    assert read | {"skills"} == columns
 
 
 def test_enumerations_are_those_of_the_extraction_schema(manifest_on: dict[str, Any]) -> None:
