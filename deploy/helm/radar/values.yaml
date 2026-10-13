@@ -1,0 +1,112 @@
+# One image for every process: the API image (infra/compose/api/Dockerfile) carries the code and
+# the dependencies of the API, the MCP server, the model fetcher and the data exporter.
+image:
+  repository: radar/api
+  tag: "0.1.0"
+  # A local cluster gets the image with `kind load docker-image`, not from a registry.
+  pullPolicy: IfNotPresent
+
+# Services the chart does not run: the compose stack, or whatever a cluster provides.
+clickhouse:
+  url: http://clickhouse:8123
+redis:
+  url: redis://redis:6379/0
+mlflow:
+  trackingUri: http://mlflow:5000
+# The student behind llama-server (STUDENT_LLM_URL, root URL without /v1); empty: regex extraction.
+studentUrl: ""
+
+# Secret with CLICKHOUSE_RO_USER and CLICKHOUSE_RO_PASSWORD (API, MCP: the read-only account, marts
+# only) and CLICKHOUSE_USER and CLICKHOUSE_PASSWORD (exporter: raw and system tables). Created outside
+# the chart (scripts/k8s_smoke.sh does it from .env), so no password goes through values.
+secretName: radar-clickhouse
+
+# The salary model is pulled from the MLflow registry by an init container before the API starts:
+# the version the alias points at, checked against its fingerprint (radar.monitor.fetch_model).
+salaryModel:
+  enabled: true
+  registeredModel: radar-salary
+  alias: champion
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 65534
+  runAsGroup: 65534
+  fsGroup: 65534
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop: [ALL]
+
+api:
+  replicas: 1
+  port: 8000
+  resources:
+    requests:
+      cpu: 100m
+      memory: 384Mi
+    limits:
+      memory: 1Gi
+  # /health answers 200 while Redis or ClickHouse is down (status "degraded"): extraction still
+  # works through the regex, so the pod stays in the Service.
+  startupProbe:
+    httpGet:
+      path: /health
+      port: http
+    periodSeconds: 2
+    failureThreshold: 30
+  readinessProbe:
+    httpGet:
+      path: /health
+      port: http
+    periodSeconds: 10
+    timeoutSeconds: 5
+  livenessProbe:
+    httpGet:
+      path: /health
+      port: http
+    periodSeconds: 20
+    timeoutSeconds: 5
+    failureThreshold: 3
+
+mcp:
+  enabled: true
+  replicas: 1
+  port: 8001
+  resources:
+    requests:
+      cpu: 50m
+      memory: 256Mi
+    limits:
+      memory: 768Mi
+  readinessProbe:
+    tcpSocket:
+      port: http
+    periodSeconds: 10
+  livenessProbe:
+    tcpSocket:
+      port: http
+    periodSeconds: 20
+
+exporter:
+  enabled: true
+  port: 9188
+  resources:
+    requests:
+      cpu: 20m
+      memory: 64Mi
+    limits:
+      memory: 192Mi
+  # A TCP probe: an HTTP request would run the ClickHouse queries of a scrape.
+  readinessProbe:
+    tcpSocket:
+      port: metrics
+    periodSeconds: 10
+  livenessProbe:
+    tcpSocket:
+      port: metrics
+    periodSeconds: 30

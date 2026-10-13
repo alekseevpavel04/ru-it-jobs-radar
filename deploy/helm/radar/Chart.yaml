@@ -1,0 +1,6 @@
+apiVersion: v2
+name: radar
+description: API, MCP server and data exporter of the radar of Russian IT vacancies; ClickHouse, Redis and MLflow stay outside the chart
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

@@ -1,0 +1,70 @@
+# What the MLflow model registry holds, applied by `python -m radar.monitor.registry`.
+#
+# Each [[version]] becomes one run of the radar-registry experiment (model files under model/, the
+# result files of its metrics under results/, provenance under provenance/) and one version of its
+# registered model. A registered entry is immutable and its local files are not read again, so the
+# paths may hold the next version by then; that version gets its own entry with a new key.
+#
+# Aliases are set exactly as written here, and an alias absent from this file is removed from the
+# model. champion is the version in service; challenger is a candidate measured against it.
+
+[models.radar-extractor]
+description = "Vacancy text to the extraction schema v1: Qwen3 student, QLoRA on silver labels (rules for the portals, agreement of the teachers for Telegram). One version holds the adapter and the two serving formats: GGUF Q4_K_M for llama-server and the Space, AWQ W4A16 for vLLM."
+headline = [
+  "dev/macro_f1",
+  "dev/valid_json",
+  "dev/sft_1p7b_clean_q4_k_m/macro_f1",
+  "dev/sft_1p7b_clean_awq/macro_f1",
+  "tg_dev/sft_1p7b_clean_awq/macro_f1",
+]
+
+[models.radar-salary]
+description = "Monthly salary in RUB with an interval: gradient boosting on the log of the midpoint, conformalized quantiles (CQR) at the configured level. radar.models.salary.load_model reads model/salary.pkl."
+headline = [
+  "dev_gbm_cqr_mae_rub",
+  "dev_gbm_cqr_mape",
+  "dev_gbm_cqr_coverage",
+  "dev_gbm_cqr_width_rel",
+]
+
+[[version]]
+model = "radar-extractor"
+key = "qwen3_1p7b_r16_clean"
+alias = "champion"
+description = "Qwen3-1.7B, LoRA r16, two epochs (the recipe of E9) on the silver set after the refresh of 12.10 (E13); quantized in E14. Experiment ids refer to docs/EXPERIMENTS.md."
+train_run_id_file = "models/sft/qwen3_1p7b_r16_clean/mlflow_run_id.txt"
+artifacts = [
+  { path = "models/sft/qwen3_1p7b_r16_clean/adapter", dest = "adapter" },
+  { path = "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q4_K_M.gguf", dest = "gguf" },
+  { path = "models/awq/qwen3_1p7b_r16_clean", dest = "awq" },
+]
+results = [
+  { path = "results/extract/dev_sft_1p7b_r16_clean.json", prefix = "dev/" },
+  { path = "results/extract/tg_dev_sft_1p7b_r16_clean.json", prefix = "tg_dev/" },
+  { path = "results/extract/quant_summary.json", include = [
+    "dev/sft_1p7b_clean_q4_k_m/",
+    "dev/sft_1p7b_clean_awq/",
+    "tg_dev/sft_1p7b_clean_q4_k_m/",
+    "tg_dev/sft_1p7b_clean_awq/",
+  ] },
+]
+provenance = [
+  "models/sft/qwen3_1p7b_r16_clean/run.json",
+  "models/gguf/qwen3_1p7b_r16_clean/manifest.json",
+  "models/awq/qwen3_1p7b_r16_clean/awq.json",
+]
+
+[[version]]
+model = "radar-salary"
+key = "salary-v0-faa6ddc"
+alias = "champion"
+description = "Features v0 from the rule fields of the marts; trained on the train part, interval calibrated on calib, scored once on dev."
+artifacts = [
+  { path = "models/salary/salary.pkl", dest = "." },
+]
+results = [
+  { path = "results/models/salary.json", include = ["dev_"] },
+]
+provenance = [
+  "configs/salary.toml",
+]

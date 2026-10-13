@@ -1,0 +1,81 @@
+{{- if .Values.mcp.enabled -}}
+{{- $name := printf "%s-mcp" (include "radar.fullname" .) -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}
+  labels:
+    {{- include "radar.labels" . | nindent 4 }}
+    app.kubernetes.io/component: mcp
+spec:
+  replicas: {{ .Values.mcp.replicas }}
+  selector:
+    matchLabels:
+      {{- include "radar.selector" (dict "root" . "component" "mcp") | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "radar.selector" (dict "root" . "component" "mcp") | nindent 8 }}
+    spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.salaryModel.enabled }}
+      initContainers:
+        {{- include "radar.fetchModel" . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: mcp
+          image: {{ include "radar.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          # Streamable HTTP at /mcp; the Host header of the Service name is accepted besides loopback.
+          command:
+            - python
+            - -m
+            - radar.mcp
+            - --http
+            - --host
+            - 0.0.0.0
+            - --port
+            - "{{ .Values.mcp.port }}"
+            - --allow-host
+            - {{ $name }}
+          env:
+            {{- include "radar.readerEnv" . | nindent 12 }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.mcp.port }}
+          readinessProbe:
+            {{- toYaml .Values.mcp.readinessProbe | nindent 12 }}
+          livenessProbe:
+            {{- toYaml .Values.mcp.livenessProbe | nindent 12 }}
+          resources:
+            {{- toYaml .Values.mcp.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          volumeMounts:
+            - name: models
+              mountPath: /models
+              readOnly: true
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: models
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $name }}
+  labels:
+    {{- include "radar.labels" . | nindent 4 }}
+    app.kubernetes.io/component: mcp
+spec:
+  selector:
+    {{- include "radar.selector" (dict "root" . "component" "mcp") | nindent 4 }}
+  ports:
+    - name: http
+      port: {{ .Values.mcp.port }}
+      targetPort: http
+{{- end }}

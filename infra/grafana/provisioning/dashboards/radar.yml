@@ -1,0 +1,13 @@
+apiVersion: 1
+
+# The dashboards are the JSON files in infra/grafana/dashboards, mounted read-only. Grafana rereads
+# them every 30 s, and edits made in the UI cannot be saved: change the file instead.
+providers:
+  - name: radar
+    folder: Радар
+    type: file
+    disableDeletion: true
+    allowUiUpdates: false
+    updateIntervalSeconds: 30
+    options:
+      path: /etc/grafana/dashboards

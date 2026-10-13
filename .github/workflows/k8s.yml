@@ -1,0 +1,74 @@
+name: k8s
+
+# the Helm chart on a kind cluster in the runner. The data stack is not there, so the
+# release gets a Redis of its own, no ClickHouse and no salary model (salaryModel.enabled=false):
+# the job checks that the chart lints and renders, the pods become ready and the API answers
+# /health, /extract (regex extraction) and /metrics through its Service. The full smoke against the
+# local stack is scripts/k8s_smoke.sh.
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - deploy/**
+      - infra/compose/api/**
+      - src/**
+      - uv.lock
+      - .github/workflows/k8s.yml
+
+permissions:
+  contents: read
+
+jobs:
+  kind:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: azure/setup-helm@9bc31f4ebc9c6b171d7bfbaa5d006ae7abdb4310 # v5.0.1
+        with:
+          version: v4.3.0
+      - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7.6.0
+        with:
+          version: "0.10.5"
+          enable-cache: true
+      - run: uv python install 3.11
+      - run: uv sync --frozen
+      - name: Chart tests, helm lint and helm template included
+        run: uv run --frozen pytest -q tests/deploy
+      - uses: helm/kind-action@1544676c07bb3570fcb70166beaa07c4528fd4aa # v1.15.1
+        with:
+          cluster_name: radar
+          version: v0.33.0
+          kubectl_version: v1.37.1
+      - name: Build the API image and load it into the cluster
+        run: |
+          docker build --file infra/compose/api/Dockerfile --tag radar/api:0.1.0 .
+          kind load docker-image radar/api:0.1.0 --name radar
+      - name: Install the chart
+        run: |
+          kubectl create namespace radar
+          kubectl --namespace radar create deployment redis --image=redis:8.10.2-alpine --port=6379
+          kubectl --namespace radar expose deployment redis --port=6379
+          kubectl --namespace radar create secret generic radar-clickhouse \
+            --from-literal=CLICKHOUSE_USER=ci --from-literal=CLICKHOUSE_PASSWORD=ci \
+            --from-literal=CLICKHOUSE_RO_USER=ci --from-literal=CLICKHOUSE_RO_PASSWORD=ci
+          helm install radar deploy/helm/radar --namespace radar \
+            --set salaryModel.enabled=false --wait --timeout 5m
+      - name: Call the API through its Service
+        run: |
+          kubectl --namespace radar port-forward service/radar-api 18000:8000 >/dev/null &
+          for _ in $(seq 30); do
+            curl --silent --fail --output /dev/null http://127.0.0.1:18000/health && break
+            sleep 1
+          done
+          curl --silent --fail http://127.0.0.1:18000/health
+          curl --silent --fail --header 'Content-Type: application/json' \
+            --data '{"text": "Python-разработчик (middle), удалённо, 250 000 руб. на руки. Django, PostgreSQL."}' \
+            http://127.0.0.1:18000/extract | grep '"role"'
+          curl --silent --fail http://127.0.0.1:18000/metrics | grep '^radar_api_requests_total{'
+      - name: State of the release
+        if: failure()
+        run: |
+          kubectl --namespace radar get pods --output wide
+          kubectl --namespace radar describe pods
+          kubectl --namespace radar logs --all-containers --prefix --selector app.kubernetes.io/name=radar --tail 100

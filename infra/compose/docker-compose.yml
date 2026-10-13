@@ -466,6 +466,89 @@ services:
       test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:5678/healthz"]
     logging: *logging
 
+  # Metrics of the stack, configured by files only: Prometheus (infra/prometheus) scrapes
+  # the API, Airflow's statsd-exporter, Redpanda and radar-exporter; Grafana shows the dashboards of
+  # infra/grafana. No depends_on on the targets: a target whose profile is down shows as down, and
+  # starting these never recreates a core service. `scripts/up.sh mlops` or, without n8n,
+  # `docker compose --profile mlops up -d radar-exporter prometheus grafana`.
+  radar-exporter:
+    build: ./exporter
+    image: radar/exporter:0.26.0
+    profiles: [mlops]
+    restart: unless-stopped
+    command: ["python", "-m", "radar.monitor.exporter", "--port", "9188"]
+    environment:
+      CLICKHOUSE_URL: http://clickhouse:8123
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER:?set CLICKHOUSE_USER in .env}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:?set CLICKHOUSE_PASSWORD in .env}
+      PYTHONPATH: /opt/radar/src
+      PYTHONDONTWRITEBYTECODE: "1"
+    volumes:
+      - ../../src:/opt/radar/src:ro
+    ports:
+      - 127.0.0.1:9188:9188
+    mem_limit: 128m
+    healthcheck:
+      <<: *healthcheck
+      # A TCP connect: an HTTP request would run the ClickHouse queries of a scrape every 10 s.
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 9188), 2)"]
+    logging: *logging
+
+  prometheus:
+    image: prom/prometheus:v3.15.0
+    profiles: [mlops]
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=90d
+      - --storage.tsdb.retention.size=2GB
+      # POST /-/reload rereads prometheus.yml and rules.yml without a restart.
+      - --web.enable-lifecycle
+    volumes:
+      - ../prometheus:/etc/prometheus:ro
+      - prometheus-data:/prometheus
+    ports:
+      - 127.0.0.1:9090:9090
+    mem_limit: 512m
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:9090/-/ready"]
+    logging: *logging
+
+  # Anonymous viewers only, behind 127.0.0.1: the login form and basic auth are off, so the admin
+  # account is unreachable and nothing is changed through the UI. Dashboards change in their files.
+  grafana:
+    image: grafana/grafana:13.2.3
+    profiles: [mlops]
+    restart: unless-stopped
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+      GF_AUTH_BASIC_ENABLED: "false"
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/dashboards/radar-data.json
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+      GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES: "false"
+      GF_NEWS_NEWS_FEED_ENABLED: "false"
+      # Grafana would download its preinstalled plugins at every start; the dashboards use none.
+      GF_PLUGINS_PREINSTALL_DISABLED: "true"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ../grafana/provisioning:/etc/grafana/provisioning:ro
+      - ../grafana/dashboards:/etc/grafana/dashboards:ro
+    # 3000 is the site's preview server on the host.
+    ports:
+      - 127.0.0.1:3030:3000
+    # About 250 MiB with the three dashboards open.
+    mem_limit: 512m
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:3000/api/health"]
+    logging: *logging
+
   # Superset over the marts. Datasets, charts and dashboards are code in
   # infra/superset/assets; scripts/superset_import.sh loads them and connects ClickHouse with the
   # read-only account (marts only), so the service itself needs no ClickHouse credentials and no
@@ -506,4 +589,6 @@ volumes:
   airflow-dbt-target:
   airflow-dbt-logs:
   n8n-data:
+  prometheus-data:
+  grafana-data:
   superset-home:

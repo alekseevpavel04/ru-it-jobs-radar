@@ -1,0 +1,70 @@
+{{- if .Values.exporter.enabled -}}
+{{- $name := printf "%s-exporter" (include "radar.fullname" .) -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}
+  labels:
+    {{- include "radar.labels" . | nindent 4 }}
+    app.kubernetes.io/component: exporter
+spec:
+  # Every replica would query ClickHouse on every scrape: one is the design, not a default.
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "radar.selector" (dict "root" . "component" "exporter") | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "radar.selector" (dict "root" . "component" "exporter") | nindent 8 }}
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: {{ .Values.exporter.port | quote }}
+    spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: exporter
+          image: {{ include "radar.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["python", "-m", "radar.monitor.exporter", "--port", "{{ .Values.exporter.port }}"]
+          env:
+            - name: CLICKHOUSE_URL
+              value: {{ .Values.clickhouse.url | quote }}
+            - name: CLICKHOUSE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretName }}
+                  key: CLICKHOUSE_USER
+            - name: CLICKHOUSE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretName }}
+                  key: CLICKHOUSE_PASSWORD
+          ports:
+            - name: metrics
+              containerPort: {{ .Values.exporter.port }}
+          readinessProbe:
+            {{- toYaml .Values.exporter.readinessProbe | nindent 12 }}
+          livenessProbe:
+            {{- toYaml .Values.exporter.livenessProbe | nindent 12 }}
+          resources:
+            {{- toYaml .Values.exporter.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $name }}
+  labels:
+    {{- include "radar.labels" . | nindent 4 }}
+    app.kubernetes.io/component: exporter
+spec:
+  selector:
+    {{- include "radar.selector" (dict "root" . "component" "exporter") | nindent 4 }}
+  ports:
+    - name: metrics
+      port: {{ .Values.exporter.port }}
+      targetPort: metrics
+{{- end }}

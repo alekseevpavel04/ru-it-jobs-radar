@@ -1,0 +1,49 @@
+# Recording rules the dashboards read and alerts shown on the Alerts page of Prometheus and in
+# Grafana. There is no Alertmanager: nothing is sent anywhere.
+groups:
+  - name: radar-data
+    rules:
+      - record: radar:raw_partition_age_days
+        expr: (time() - radar_raw_latest_partition_timestamp_seconds) / 86400
+      - record: radar:extract_rows_per_minute
+        expr: sum by (model_id) (deriv(radar_extract_rows[10m])) * 60
+      - record: radar:kafka_consumer_lag
+        expr: >
+          sum by (redpanda_topic) (redpanda_kafka_max_offset{redpanda_namespace="kafka", redpanda_topic=~"raw\\..+"})
+          - sum by (redpanda_topic) (redpanda_kafka_consumer_group_committed_offset{redpanda_group="clickhouse_raw"})
+
+      # Age counts from midnight UTC of dt, so a source collected every day stays below 2 days (it
+      # drops each time the day's partition lands). Above 3, a whole day of collection is missing.
+      - alert: RawSourceStale
+        expr: radar:raw_partition_age_days > 3
+        for: 1h
+        labels:
+          severity: warning
+        annotations:
+          summary: "No raw partition of {{ $labels.source }} for {{ $value | printf \"%.1f\" }} days"
+      - alert: ClickHouseUnreachable
+        expr: radar_clickhouse_up == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: The data exporter gets no answers from ClickHouse
+      - alert: KafkaConsumerStalled
+        expr: sum(radar:kafka_consumer_lag) > 0 and sum(rate(radar_kafka_consumer_messages_read_total[15m])) == 0
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: Redpanda holds unread raw messages and the ClickHouse consumer reads nothing
+
+  - name: radar-api
+    rules:
+      - alert: ApiErrors
+        expr: >
+          sum(rate(radar_api_requests_total{status=~"5.."}[5m]))
+          / sum(rate(radar_api_requests_total[5m])) > 0.05
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: More than 5% of API requests end in a server error
