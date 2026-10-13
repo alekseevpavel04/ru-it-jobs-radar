@@ -1,0 +1,279 @@
+{
+  "source_script": "jobs/spark/bench.py",
+  "command": "python jobs/spark/bench.py",
+  "commit": "b03bea0-dirty",
+  "created_at": "2026-10-13T20:37:45+00:00",
+  "metrics": {
+    "raw_rows": {
+      "value": 54969344,
+      "n": null,
+      "denominator": null
+    },
+    "duplicate_vacancy_days": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "spark_observations_s": {
+      "value": 1423.54,
+      "n": null,
+      "denominator": null
+    },
+    "spark_history_s": {
+      "value": 8.75,
+      "n": null,
+      "denominator": null
+    },
+    "spark_peak_rss_mib": {
+      "value": 2848,
+      "n": null,
+      "denominator": null
+    },
+    "clickhouse_observations_s": {
+      "value": 1494.68,
+      "n": null,
+      "denominator": null
+    },
+    "clickhouse_peak_query_memory_mib": {
+      "value": 995,
+      "n": null,
+      "denominator": null
+    },
+    "clickhouse_history_s": {
+      "value": 1.64,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_clickhouse.rows_left": {
+      "value": 995762,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_clickhouse.rows_right": {
+      "value": 995762,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_clickhouse.matched": {
+      "value": 1.0,
+      "n": 995762,
+      "denominator": 995762
+    },
+    "observations_spark_vs_clickhouse.only_left": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_clickhouse.only_right": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_dbt.rows_left": {
+      "value": 995762,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_dbt.rows_right": {
+      "value": 995764,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_dbt.matched": {
+      "value": 0.999998,
+      "n": 995762,
+      "denominator": 995764
+    },
+    "observations_spark_vs_dbt.only_left": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_dbt.only_right": {
+      "value": 2,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_dbt.only_right_not_in_raw": {
+      "value": 2,
+      "n": null,
+      "denominator": null
+    },
+    "scd2_spark_vs_clickhouse.rows_left": {
+      "value": 38730,
+      "n": null,
+      "denominator": null
+    },
+    "scd2_spark_vs_clickhouse.rows_right": {
+      "value": 38731,
+      "n": null,
+      "denominator": null
+    },
+    "scd2_spark_vs_clickhouse.matched": {
+      "value": 0.999974,
+      "n": 38730,
+      "denominator": 38731
+    },
+    "scd2_spark_vs_clickhouse.only_left": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "scd2_spark_vs_clickhouse.only_right": {
+      "value": 1,
+      "n": null,
+      "denominator": null
+    },
+    "scd2_spark_vs_clickhouse.only_right_not_in_raw": {
+      "value": 1,
+      "n": null,
+      "denominator": null
+    },
+    "scd2_clickhouse_vs_dbt.rows_left": {
+      "value": 38731,
+      "n": null,
+      "denominator": null
+    },
+    "scd2_clickhouse_vs_dbt.rows_right": {
+      "value": 38731,
+      "n": null,
+      "denominator": null
+    },
+    "scd2_clickhouse_vs_dbt.matched": {
+      "value": 1.0,
+      "n": 38731,
+      "denominator": 38731
+    },
+    "scd2_clickhouse_vs_dbt.only_left": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "scd2_clickhouse_vs_dbt.only_right": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "lifetime_spark_vs_clickhouse.rows_left": {
+      "value": 25796,
+      "n": null,
+      "denominator": null
+    },
+    "lifetime_spark_vs_clickhouse.rows_right": {
+      "value": 25797,
+      "n": null,
+      "denominator": null
+    },
+    "lifetime_spark_vs_clickhouse.matched": {
+      "value": 0.999961,
+      "n": 25796,
+      "denominator": 25797
+    },
+    "lifetime_spark_vs_clickhouse.only_left": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "lifetime_spark_vs_clickhouse.only_right": {
+      "value": 1,
+      "n": null,
+      "denominator": null
+    },
+    "lifetime_spark_vs_clickhouse.only_right_not_in_raw": {
+      "value": 1,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "setup": {
+    "snapshot_days": 105,
+    "first_day": "2026-06-30",
+    "last_day": "2026-10-12",
+    "raw_parquet_bytes": 38968450815,
+    "lake": "/mnt/d/VScode_projects/ru-it-jobs-radar/data/raw/trudvsem_snapshot",
+    "cores": 4,
+    "spark_driver_memory": "2g",
+    "spark": "4.2.0",
+    "java": "/home/radar/.local/opt/jdk-21.0.12.1+1-jre",
+    "clickhouse": "26.8.20.9",
+    "history_rules": {
+      "complete_day_ratio": 0.9,
+      "absent_days_to_close": 7,
+      "max_step_days": 2
+    }
+  },
+  "clickhouse": {
+    "observations_s": 1494.68,
+    "observations_queries": {
+      "queries": 105,
+      "peak_memory_bytes": 1043390113,
+      "server_time_ms": 1494481
+    },
+    "history_s": 1.64,
+    "history_queries": {
+      "queries": 2,
+      "peak_memory_bytes": 279841723,
+      "server_time_ms": 1645
+    },
+    "version": "26.8.20.9"
+  },
+  "spark": {
+    "rules": {
+      "complete_day_ratio": 0.9,
+      "absent_days_to_close": 7,
+      "max_step_days": 2
+    },
+    "raw_rows": 54969344,
+    "duplicate_vacancy_days": 0,
+    "observations_s": 1423.54,
+    "history_s": 8.75,
+    "observations_peak_rss_bytes": 2986381312,
+    "history_peak_rss_bytes": 2220740608
+  },
+  "diffs": {
+    "observations_spark_vs_clickhouse": {
+      "rows_left": 995762,
+      "rows_right": 995762,
+      "only_left": 0,
+      "only_right": 0
+    },
+    "observations_spark_vs_dbt": {
+      "rows_left": 995762,
+      "rows_right": 995764,
+      "only_left": 0,
+      "only_right": 2,
+      "only_right_source_ids": [
+        "00000000-0000-4000-8000-0000000000a1",
+        "00000000-0000-4000-8000-0000000000a1"
+      ],
+      "only_right_not_in_raw": 2
+    },
+    "scd2_spark_vs_clickhouse": {
+      "rows_left": 38730,
+      "rows_right": 38731,
+      "only_left": 0,
+      "only_right": 1,
+      "only_right_source_ids": [
+        "00000000-0000-4000-8000-0000000000a1"
+      ],
+      "only_right_not_in_raw": 1
+    },
+    "scd2_clickhouse_vs_dbt": {
+      "rows_left": 38731,
+      "rows_right": 38731,
+      "only_left": 0,
+      "only_right": 0
+    },
+    "lifetime_spark_vs_clickhouse": {
+      "rows_left": 25796,
+      "rows_right": 25797,
+      "only_left": 0,
+      "only_right": 1,
+      "only_right_source_ids": [
+        "00000000-0000-4000-8000-0000000000a1"
+      ],
+      "only_right_not_in_raw": 1
+    }
+  },
+  "notes": "Spark reads Parquet from the Windows disk through WSL (/mnt/d); ClickHouse reads its own MergeTree on the WSL disk. Memory: Spark is the peak resident set of the driver process tree, ClickHouse the largest memory_usage of one query in system.query_log. text_hash is compared as presence only (xxhash64 in Spark, cityHash64 in ClickHouse)."
+}

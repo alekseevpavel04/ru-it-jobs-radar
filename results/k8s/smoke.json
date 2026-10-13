@@ -1,0 +1,78 @@
+{
+  "started_at": "2026-10-13T18:18:42Z",
+  "status": "passed",
+  "failed_step": null,
+  "cluster": {
+    "name": "radar",
+    "context": "kind-radar",
+    "created_by_this_run": true,
+    "deleted_at_end": true
+  },
+  "versions": {
+    "kind": "v0.33.0",
+    "kubectl": "v1.37.1",
+    "helm": "v4.3.0+gbec5b06",
+    "kubernetes_server": "v1.37.0"
+  },
+  "image": {
+    "name": "radar/api:0.1.0",
+    "id": "sha256:a4b0fd9366b7e5c57d937d36de6a8910c639b8490dbdf568b9d325b5bb0209f8"
+  },
+  "steps_s": {
+    "create_cluster": 52.458,
+    "load_image": 71.527,
+    "helm_install_wait": 16.781,
+    "port_forward_ready": 1.087,
+    "delete_cluster": 9.07
+  },
+  "checks": [
+    {
+      "name": "health: salary model from the registry",
+      "ok": true,
+      "time_s": 0.025
+    },
+    {
+      "name": "health: ClickHouse through the read-only account",
+      "ok": true,
+      "time_s": 0.033
+    },
+    {
+      "name": "extract",
+      "ok": true,
+      "time_s": 0.028
+    },
+    {
+      "name": "api metrics",
+      "ok": true,
+      "time_s": 0.029
+    },
+    {
+      "name": "exporter reaches ClickHouse",
+      "ok": true,
+      "time_s": 0.421
+    }
+  ],
+  "checks_passed": 5,
+  "checks_total": 5,
+  "pods": [
+    {
+      "name": "radar-api-755c578464-9ptqx",
+      "phase": "Running",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "name": "radar-exporter-7dcb87b97c-2qrmm",
+      "phase": "Running",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "name": "radar-mcp-6fcf7b7bf9-d8g5f",
+      "phase": "Running",
+      "ready": true,
+      "restarts": 0
+    }
+  ],
+  "node_memory_usage": "2.023GiB / 11.68GiB"
+}

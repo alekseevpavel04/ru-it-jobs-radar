@@ -1,0 +1,157 @@
+{
+  "source_script": "jobs/spark/bench.py",
+  "command": "python jobs/spark/bench.py --days 3 --lake /home/radar/spark-lake/trudvsem_snapshot --result probe_ext4.json",
+  "commit": "e297065-dirty",
+  "created_at": "2026-10-13T20:41:52+00:00",
+  "metrics": {
+    "raw_rows": {
+      "value": 1660545,
+      "n": null,
+      "denominator": null
+    },
+    "duplicate_vacancy_days": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "spark_observations_s": {
+      "value": 43.66,
+      "n": null,
+      "denominator": null
+    },
+    "spark_history_s": {
+      "value": 3.95,
+      "n": null,
+      "denominator": null
+    },
+    "spark_peak_rss_mib": {
+      "value": 2708,
+      "n": null,
+      "denominator": null
+    },
+    "clickhouse_observations_s": {
+      "value": 29.9,
+      "n": null,
+      "denominator": null
+    },
+    "clickhouse_peak_query_memory_mib": {
+      "value": 1005,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_clickhouse.rows_left": {
+      "value": 28618,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_clickhouse.rows_right": {
+      "value": 28618,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_clickhouse.matched": {
+      "value": 1.0,
+      "n": 28618,
+      "denominator": 28618
+    },
+    "observations_spark_vs_clickhouse.only_left": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_clickhouse.only_right": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_dbt.rows_left": {
+      "value": 28618,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_dbt.rows_right": {
+      "value": 28620,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_dbt.matched": {
+      "value": 0.99993,
+      "n": 28618,
+      "denominator": 28620
+    },
+    "observations_spark_vs_dbt.only_left": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_dbt.only_right": {
+      "value": 2,
+      "n": null,
+      "denominator": null
+    },
+    "observations_spark_vs_dbt.only_right_not_in_raw": {
+      "value": 2,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "setup": {
+    "snapshot_days": 3,
+    "first_day": "2026-06-30",
+    "last_day": "2026-07-02",
+    "raw_parquet_bytes": 1179522445,
+    "lake": "/home/radar/spark-lake/trudvsem_snapshot",
+    "cores": 4,
+    "spark_driver_memory": "2g",
+    "spark": "4.2.0",
+    "java": "/home/radar/.local/opt/jdk-21.0.12.1+1-jre",
+    "clickhouse": "26.8.20.9",
+    "history_rules": {
+      "complete_day_ratio": 0.9,
+      "absent_days_to_close": 7,
+      "max_step_days": 2
+    }
+  },
+  "clickhouse": {
+    "observations_s": 29.9,
+    "observations_queries": {
+      "queries": 3,
+      "peak_memory_bytes": 1053528588,
+      "server_time_ms": 29864
+    },
+    "version": "26.8.20.9"
+  },
+  "spark": {
+    "rules": {
+      "complete_day_ratio": 0.9,
+      "absent_days_to_close": 7,
+      "max_step_days": 2
+    },
+    "raw_rows": 1660545,
+    "duplicate_vacancy_days": 0,
+    "observations_s": 43.66,
+    "history_s": 3.95,
+    "observations_peak_rss_bytes": 2839527424,
+    "history_peak_rss_bytes": 1431400448
+  },
+  "diffs": {
+    "observations_spark_vs_clickhouse": {
+      "rows_left": 28618,
+      "rows_right": 28618,
+      "only_left": 0,
+      "only_right": 0
+    },
+    "observations_spark_vs_dbt": {
+      "rows_left": 28618,
+      "rows_right": 28620,
+      "only_left": 0,
+      "only_right": 2,
+      "only_right_source_ids": [
+        "00000000-0000-4000-8000-0000000000a1",
+        "00000000-0000-4000-8000-0000000000a1"
+      ],
+      "only_right_not_in_raw": 2
+    }
+  },
+  "notes": "Spark reads Parquet from the Windows disk through WSL (/mnt/d); ClickHouse reads its own MergeTree on the WSL disk. Memory: Spark is the peak resident set of the driver process tree, ClickHouse the largest memory_usage of one query in system.query_log. text_hash is compared as presence only (xxhash64 in Spark, cityHash64 in ClickHouse)."
+}
