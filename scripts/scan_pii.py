@@ -66,6 +66,8 @@ SKIP_GLOBS = (
     "*package-lock.json",
     "uv.lock",
     "*/tokenizer.json",
+    "storage/hf/space/vendor/*",
+    "scripts/pii_allowlist.tsv",
 )
 MAX_TEXT_BYTES = 50 * 2**20
 PROJECT_HANDLES = {"alekseevpavel04"}
@@ -123,6 +125,10 @@ def _code_noise(text: str, start: int, end: int) -> bool:
     return not text[line_start:start].strip() or text[start + 1 : end].lower() in _AT_WORDS
 
 
+# A system name such as "fusion_e5-small@70" in result keys: no mail host starts with a number-only label.
+_NUMERIC_HOST = re.compile(r"\d+(\.|$)")
+
+
 def _decimal(text: str, start: int) -> bool:
     """Digits after a decimal point (0.3333333333) are a fraction, not a phone."""
     return start > 0 and text[start - 1] in ".,"
@@ -136,6 +142,8 @@ def scan_string(text: str, keep: frozenset[str], code: bool = False) -> Iterator
         if f.kind == "phone" and _decimal(text, f.start):
             continue
         if f.kind == "profile_link" and _PREVIEW.search(text[f.start : f.end]):
+            continue
+        if f.kind == "email" and _NUMERIC_HOST.match(text[f.start : f.end].split("@", 1)[1]):
             continue
         yield f.start, f.kind, f.rule, text[f.start : f.end]
     if any(c.isdigit() for c in text):
