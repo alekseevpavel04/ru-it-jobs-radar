@@ -5,6 +5,14 @@
 # A monthly midpoint below this is a part-time or per-shift amount that slipped past the schedule
 # filter (the minimum wage of 2026 is about 27 000); the dropped count is reported.
 min_monthly_rub = 10000
+# Extractor whose fields form the student feature set (staging.stg_vacancy_fields.model_id).
+extraction_model = "qwen3_1p7b_r16_clean-awq"
+
+[selection]
+# Written before the first run on student fields. The set with lower dev MAE wins when the paired
+# interval of the difference excludes zero; otherwise this one, because /salary receives fields from
+# /extract, that is from the student, and a model fitted on the same kind of input has no train/serve gap.
+on_tie = "student"
 
 [split]
 # Shares of the leak-free groups (radar.models.salary_data); the gold test and dev groups of
@@ -41,3 +49,5 @@ ridge_alpha = [0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
 
 [importance]
 repeats = 10
+# Train rows behind the exact SHAP values (every dev row is explained against all of them).
+shap_background = 100

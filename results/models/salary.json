@@ -1,16 +1,26 @@
 {
   "source_script": "src/radar/models/salary.py",
-  "command": "python -m radar.models.salary --frame data/salary/frame_v0.parquet",
-  "commit": "faa6ddc-dirty",
-  "created_at": "2026-10-12T17:45:07+00:00",
+  "command": "python -m radar.models.salary",
+  "commit": "2ff7e25-dirty",
+  "created_at": "2026-10-13T08:04:05+00:00",
   "metrics": {
     "data_entities_it_rub_salary": {
-      "value": 10249,
+      "value": 10499,
       "n": null,
       "denominator": null
     },
     "data_part_time": {
-      "value": 573,
+      "value": 579,
+      "n": null,
+      "denominator": null
+    },
+    "data_student_missing": {
+      "value": 2,
+      "n": null,
+      "denominator": null
+    },
+    "data_student_non_it": {
+      "value": 780,
       "n": null,
       "denominator": null
     },
@@ -25,340 +35,452 @@
       "denominator": null
     },
     "data_withheld_near_gold": {
-      "value": 80,
+      "value": 79,
       "n": null,
       "denominator": null
     },
     "data_rows": {
-      "value": 9594,
+      "value": 9057,
       "n": null,
       "denominator": null
     },
     "data_groups": {
-      "value": 8254,
+      "value": 7704,
       "n": null,
       "denominator": null
     },
     "data_rows_train": {
-      "value": 4807,
+      "value": 4581,
       "n": null,
       "denominator": null
     },
     "data_groups_train": {
-      "value": 4138,
+      "value": 3871,
       "n": null,
       "denominator": null
     },
     "data_rows_calib": {
-      "value": 1593,
+      "value": 1508,
       "n": null,
       "denominator": null
     },
     "data_groups_calib": {
-      "value": 1418,
+      "value": 1326,
       "n": null,
       "denominator": null
     },
     "data_rows_dev": {
-      "value": 1449,
+      "value": 1340,
       "n": null,
       "denominator": null
     },
     "data_groups_dev": {
-      "value": 1271,
+      "value": 1167,
       "n": null,
       "denominator": null
     },
     "data_rows_test": {
-      "value": 1745,
+      "value": 1628,
       "n": null,
       "denominator": null
     },
     "data_groups_test": {
-      "value": 1427,
+      "value": 1340,
       "n": null,
       "denominator": null
     },
     "data_largest_group": {
-      "value": 49,
+      "value": 50,
       "n": null,
       "denominator": null
     },
     "data_habr_share": {
       "value": 0.0121,
-      "n": 116,
-      "denominator": 9594
+      "n": 110,
+      "denominator": 9057
+    },
+    "data_superjob_share": {
+      "value": 0.0136,
+      "n": 123,
+      "denominator": 9057
     },
     "gbm_conformal_margin_log": {
-      "value": 0.03838,
+      "value": 0.02236,
       "n": null,
       "denominator": null
     },
     "dev_global_median_mae_rub": {
-      "value": 38814.087,
+      "value": 38100.2996,
       "n": null,
       "denominator": null,
-      "ci_low": 36040.4455,
-      "ci_high": 41556.1631
+      "ci_low": 35462.085,
+      "ci_high": 40930.2758
     },
     "dev_global_median_mape": {
-      "value": 0.4714,
+      "value": 0.4759,
       "n": null,
       "denominator": null,
-      "ci_low": 0.4477,
-      "ci_high": 0.496
+      "ci_low": 0.4506,
+      "ci_high": 0.5022
     },
     "dev_global_median_within_20pct": {
-      "value": 0.2464,
-      "n": 357,
-      "denominator": 1449,
-      "ci_low": 0.2196,
-      "ci_high": 0.2747
+      "value": 0.2522,
+      "n": 338,
+      "denominator": 1340,
+      "ci_low": 0.2227,
+      "ci_high": 0.2818
     },
     "dev_cell_median_mae_rub": {
-      "value": 31460.4486,
+      "value": 30753.3354,
       "n": null,
       "denominator": null,
-      "ci_low": 29152.6798,
-      "ci_high": 33902.167
+      "ci_low": 28293.6074,
+      "ci_high": 33324.6878
     },
     "dev_cell_median_mape": {
-      "value": 0.3848,
+      "value": 0.3889,
       "n": null,
       "denominator": null,
-      "ci_low": 0.3627,
-      "ci_high": 0.4083
+      "ci_low": 0.3613,
+      "ci_high": 0.4167
     },
     "dev_cell_median_within_20pct": {
-      "value": 0.3313,
-      "n": 480,
-      "denominator": 1449,
-      "ci_low": 0.299,
-      "ci_high": 0.3648
+      "value": 0.3373,
+      "n": 452,
+      "denominator": 1340,
+      "ci_low": 0.3043,
+      "ci_high": 0.3723
     },
     "dev_cell_median_coverage": {
-      "value": 0.7633,
-      "n": 1106,
-      "denominator": 1449,
-      "ci_low": 0.7381,
-      "ci_high": 0.7871
+      "value": 0.7672,
+      "n": 1028,
+      "denominator": 1340,
+      "ci_low": 0.7415,
+      "ci_high": 0.7932
     },
     "dev_cell_median_width_rub": {
-      "value": 92441.0235,
+      "value": 90991.8283,
       "n": null,
       "denominator": null,
-      "ci_low": 89500.8925,
-      "ci_high": 95615.6262
+      "ci_low": 87075.2178,
+      "ci_high": 94382.4757
     },
     "dev_cell_median_width_rel": {
-      "value": 1.3492,
+      "value": 1.3158,
       "n": null,
       "denominator": null,
-      "ci_low": 1.318,
-      "ci_high": 1.3836
+      "ci_low": 1.2862,
+      "ci_high": 1.3418
     },
     "dev_ridge_mae_rub": {
-      "value": 30435.1474,
+      "value": 29886.751,
       "n": null,
       "denominator": null,
-      "ci_low": 28522.5882,
-      "ci_high": 32415.5668
+      "ci_low": 28000.0331,
+      "ci_high": 31863.9192
     },
     "dev_ridge_mape": {
-      "value": 0.4042,
+      "value": 0.3954,
       "n": null,
       "denominator": null,
-      "ci_low": 0.3762,
-      "ci_high": 0.4399
+      "ci_low": 0.3723,
+      "ci_high": 0.419
     },
     "dev_ridge_within_20pct": {
-      "value": 0.3078,
-      "n": 446,
-      "denominator": 1449,
-      "ci_low": 0.2805,
-      "ci_high": 0.3347
+      "value": 0.3052,
+      "n": 409,
+      "denominator": 1340,
+      "ci_low": 0.2776,
+      "ci_high": 0.3351
     },
     "dev_ridge_coverage": {
-      "value": 0.7598,
-      "n": 1101,
-      "denominator": 1449,
-      "ci_low": 0.7237,
-      "ci_high": 0.79
+      "value": 0.7731,
+      "n": 1036,
+      "denominator": 1340,
+      "ci_low": 0.7416,
+      "ci_high": 0.8024
     },
     "dev_ridge_width_rub": {
-      "value": 83755.3036,
+      "value": 85250.4661,
       "n": null,
       "denominator": null,
-      "ci_low": 81522.0756,
-      "ci_high": 86091.063
+      "ci_low": 82994.1134,
+      "ci_high": 87488.2171
     },
     "dev_ridge_width_rel": {
-      "value": 1.1289,
+      "value": 1.1751,
       "n": null,
       "denominator": null,
-      "ci_low": 1.1289,
-      "ci_high": 1.1289
+      "ci_low": 1.1751,
+      "ci_high": 1.1751
     },
     "dev_gbm_quantile_mae_rub": {
-      "value": 29081.3311,
+      "value": 28468.7739,
       "n": null,
       "denominator": null,
-      "ci_low": 27216.9038,
-      "ci_high": 31058.4342
+      "ci_low": 26271.2483,
+      "ci_high": 30739.5058
     },
     "dev_gbm_quantile_mape": {
-      "value": 0.3844,
+      "value": 0.3737,
       "n": null,
       "denominator": null,
-      "ci_low": 0.3601,
-      "ci_high": 0.4116
+      "ci_low": 0.3472,
+      "ci_high": 0.4023
     },
     "dev_gbm_quantile_within_20pct": {
-      "value": 0.3347,
-      "n": 485,
-      "denominator": 1449,
-      "ci_low": 0.3052,
-      "ci_high": 0.3641
+      "value": 0.353,
+      "n": 473,
+      "denominator": 1340,
+      "ci_low": 0.3188,
+      "ci_high": 0.3904
     },
     "dev_gbm_quantile_coverage": {
-      "value": 0.735,
-      "n": 1065,
-      "denominator": 1449,
-      "ci_low": 0.7044,
-      "ci_high": 0.7638
+      "value": 0.7381,
+      "n": 989,
+      "denominator": 1340,
+      "ci_low": 0.7093,
+      "ci_high": 0.7671
     },
     "dev_gbm_quantile_width_rub": {
-      "value": 80603.5789,
+      "value": 79905.2149,
       "n": null,
       "denominator": null,
-      "ci_low": 78226.2785,
-      "ci_high": 83163.0046
+      "ci_low": 76899.3956,
+      "ci_high": 82747.9282
     },
     "dev_gbm_quantile_width_rel": {
-      "value": 1.0898,
+      "value": 1.1043,
       "n": null,
       "denominator": null,
-      "ci_low": 1.0747,
-      "ci_high": 1.1044
+      "ci_low": 1.0854,
+      "ci_high": 1.1247
     },
     "dev_gbm_cqr_mae_rub": {
-      "value": 29081.3311,
+      "value": 28468.7739,
       "n": null,
       "denominator": null,
-      "ci_low": 27216.9038,
-      "ci_high": 31058.4342
+      "ci_low": 26271.2483,
+      "ci_high": 30739.5058
     },
     "dev_gbm_cqr_mape": {
-      "value": 0.3844,
+      "value": 0.3737,
       "n": null,
       "denominator": null,
-      "ci_low": 0.3601,
-      "ci_high": 0.4116
+      "ci_low": 0.3472,
+      "ci_high": 0.4023
     },
     "dev_gbm_cqr_within_20pct": {
-      "value": 0.3347,
-      "n": 485,
-      "denominator": 1449,
-      "ci_low": 0.3052,
-      "ci_high": 0.3641
+      "value": 0.353,
+      "n": 473,
+      "denominator": 1340,
+      "ci_low": 0.3188,
+      "ci_high": 0.3904
     },
     "dev_gbm_cqr_coverage": {
-      "value": 0.7999,
-      "n": 1159,
-      "denominator": 1449,
-      "ci_low": 0.7739,
-      "ci_high": 0.8238
+      "value": 0.7769,
+      "n": 1041,
+      "denominator": 1340,
+      "ci_low": 0.7483,
+      "ci_high": 0.8045
     },
     "dev_gbm_cqr_width_rub": {
-      "value": 87073.5322,
+      "value": 83626.6891,
       "n": null,
       "denominator": null,
-      "ci_low": 84564.6161,
-      "ci_high": 89780.6249
+      "ci_low": 80502.6533,
+      "ci_high": 86563.9035
     },
     "dev_gbm_cqr_width_rel": {
-      "value": 1.1792,
+      "value": 1.157,
       "n": null,
       "denominator": null,
-      "ci_low": 1.1636,
-      "ci_high": 1.1944
+      "ci_low": 1.1377,
+      "ci_high": 1.1777
     },
     "dev_gbm_from_mae_rub": {
-      "value": 26830.2421,
+      "value": 26352.5311,
       "n": null,
       "denominator": null,
-      "ci_low": 25070.7747,
-      "ci_high": 28744.282,
-      "rows": 1437
+      "ci_low": 24233.6772,
+      "ci_high": 28627.0898,
+      "rows": 1329
     },
     "dev_gbm_to_mae_rub": {
-      "value": 30885.9341,
+      "value": 29845.0761,
       "n": null,
       "denominator": null,
-      "ci_low": 28777.2854,
-      "ci_high": 33091.8305,
-      "rows": 1379
+      "ci_low": 27427.9368,
+      "ci_high": 32301.5653,
+      "rows": 1277
     },
     "dev_diff_gbm_cqr_minus_ridge_mae_rub": {
-      "value": -1353.8162,
+      "value": -1417.9771,
       "n": null,
       "denominator": null,
-      "ci_low": -2436.7085,
-      "ci_high": -309.4965
+      "ci_low": -2595.4486,
+      "ci_high": -289.5498
     },
     "dev_diff_gbm_cqr_minus_ridge_mape": {
-      "value": -0.0198,
+      "value": -0.0217,
       "n": null,
       "denominator": null,
-      "ci_low": -0.0388,
-      "ci_high": -0.003
+      "ci_low": -0.0479,
+      "ci_high": 0.0001
     },
     "dev_diff_gbm_cqr_minus_cell_median_mae_rub": {
-      "value": -2379.1174,
+      "value": -2284.5615,
       "n": null,
       "denominator": null,
-      "ci_low": -3982.8624,
-      "ci_high": -775.7519
+      "ci_low": -3560.6641,
+      "ci_high": -1019.5992
     },
     "dev_diff_gbm_cqr_minus_cell_median_mape": {
-      "value": -0.0004,
+      "value": -0.0152,
       "n": null,
       "denominator": null,
-      "ci_low": -0.0263,
-      "ci_high": 0.0319
+      "ci_low": -0.0374,
+      "ci_high": 0.006
     },
     "dev_diff_ridge_minus_cell_median_mae_rub": {
-      "value": -1025.3012,
+      "value": -866.5844,
       "n": null,
       "denominator": null,
-      "ci_low": -2777.7057,
-      "ci_high": 915.2303
+      "ci_low": -2328.6885,
+      "ci_high": 621.5774
     },
     "dev_diff_ridge_minus_cell_median_mape": {
-      "value": 0.0194,
+      "value": 0.0065,
       "n": null,
       "denominator": null,
-      "ci_low": -0.0159,
-      "ci_high": 0.0655
+      "ci_low": -0.0225,
+      "ci_high": 0.0379
     },
     "dev_diff_cell_median_minus_global_median_mae_rub": {
-      "value": -7353.6384,
+      "value": -7346.9643,
       "n": null,
       "denominator": null,
-      "ci_low": -8958.4402,
-      "ci_high": -5650.0103
+      "ci_low": -9060.4943,
+      "ci_high": -5646.8975
     },
     "dev_diff_cell_median_minus_global_median_mape": {
-      "value": -0.0866,
+      "value": -0.087,
       "n": null,
       "denominator": null,
-      "ci_low": -0.118,
-      "ci_high": -0.0596
+      "ci_low": -0.1233,
+      "ci_high": -0.055
+    },
+    "dev_rules_gbm_cqr_mae_rub": {
+      "value": 28548.8558,
+      "n": null,
+      "denominator": null,
+      "ci_low": 26545.8198,
+      "ci_high": 30550.197
+    },
+    "dev_rules_gbm_cqr_mape": {
+      "value": 0.3841,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3555,
+      "ci_high": 0.4156
+    },
+    "dev_rules_gbm_cqr_within_20pct": {
+      "value": 0.3269,
+      "n": 438,
+      "denominator": 1340,
+      "ci_low": 0.2957,
+      "ci_high": 0.3591
+    },
+    "dev_rules_gbm_cqr_coverage": {
+      "value": 0.7761,
+      "n": 1040,
+      "denominator": 1340,
+      "ci_low": 0.7458,
+      "ci_high": 0.8036
+    },
+    "dev_rules_gbm_cqr_width_rub": {
+      "value": 85647.6323,
+      "n": null,
+      "denominator": null,
+      "ci_low": 82823.1951,
+      "ci_high": 88494.4595
+    },
+    "dev_student_gbm_cqr_mae_rub": {
+      "value": 28468.7739,
+      "n": null,
+      "denominator": null,
+      "ci_low": 26271.2483,
+      "ci_high": 30739.5058
+    },
+    "dev_student_gbm_cqr_mape": {
+      "value": 0.3737,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3472,
+      "ci_high": 0.4023
+    },
+    "dev_student_gbm_cqr_within_20pct": {
+      "value": 0.353,
+      "n": 473,
+      "denominator": 1340,
+      "ci_low": 0.3188,
+      "ci_high": 0.3904
+    },
+    "dev_student_gbm_cqr_coverage": {
+      "value": 0.7769,
+      "n": 1041,
+      "denominator": 1340,
+      "ci_low": 0.7483,
+      "ci_high": 0.8045
+    },
+    "dev_student_gbm_cqr_width_rub": {
+      "value": 83626.6891,
+      "n": null,
+      "denominator": null,
+      "ci_low": 80502.6533,
+      "ci_high": 86563.9035
+    },
+    "dev_diff_student_minus_rules_gbm_cqr_mae_rub": {
+      "value": -80.0819,
+      "n": null,
+      "denominator": null,
+      "ci_low": -1535.0132,
+      "ci_high": 1368.0854
+    },
+    "dev_diff_student_minus_rules_gbm_cqr_mape": {
+      "value": -0.0104,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0438,
+      "ci_high": 0.0163
+    },
+    "dev_diff_student_minus_rules_gbm_cqr_within_20pct": {
+      "value": 0.0261,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.009,
+      "ci_high": 0.0684
+    },
+    "dev_diff_student_minus_rules_gbm_cqr_coverage": {
+      "value": 0.0007,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0286,
+      "ci_high": 0.0346
+    },
+    "dev_diff_student_minus_rules_gbm_cqr_width_rub": {
+      "value": -2020.9433,
+      "n": null,
+      "denominator": null,
+      "ci_low": -4700.7996,
+      "ci_high": 342.7577
     }
   },
   "definitions": {
-    "target": "Midpoint of the stated range in RUB per month; a single stated bound stands for itself. Amounts as the source states them: no period or gross/net field exists in trudvsem or Habr Career.",
-    "population": "IT dedup entities (rule role bucket not not_it) of trudvsem and Habr Career with a RUB salary, latest record of each entity, part-time vacancies left out.",
+    "target": "Midpoint of the stated range in RUB per month; a single stated bound stands for itself. Amounts as the source states them: no period or gross/net field exists in trudvsem, Habr Career or SuperJob.",
+    "population": "IT dedup entities (rule role bucket not not_it) of trudvsem, Habr Career and SuperJob with a RUB salary, latest record of each entity, part-time vacancies left out, the latest record extracted by the model named in the config with a role other than non_it.",
+    "feature_sets": "rules: role, grade, skills, region and experience of the marts rules; student: the same schema fields as the fine-tuned extractor gave them. Same rows, split and models for both.",
+    "selection": "The feature set of /salary is the one with lower dev MAE of boosting with CQR when the paired bootstrap interval of the difference excludes zero, otherwise selection.on_tie of the config.",
     "split": "Connected components over entity, dedup text cluster, extraction-corpus group and employer with one normalized title lie in one split; corpus gold test and dev groups pinned; calib is part of train.",
     "mae_rub": "Mean absolute error of the point against the midpoint, RUB per month.",
     "mape": "Mean of |point - midpoint| / midpoint.",
@@ -367,364 +489,366 @@
     "width_rub": "Mean high - low, RUB per month.",
     "width_rel": "Mean (high - low) / point.",
     "ci": "Percentile bootstrap over dev groups (whole components), resamples and seed in configs/eval.toml; differences are paired on the same resamples.",
-    "importance": "Rise of dev MAE of the boosting point when the columns of one input are shuffled across dev rows; shuffling breaks correlated inputs together only within a block."
+    "importance": "Rise of dev MAE of the boosting point when the columns of one input are shuffled across dev rows; shuffling breaks correlated inputs together only within a block.",
+    "shap": "Exact Shapley values of the boosting point model (log salary) with the eight inputs of BLOCKS as players, interventional over a background sample of train rows; pct is exp(mean SHAP) - 1."
   },
   "limits_ru": [
-    "Признаки v0 взяты из правил витрин (роль по заголовку, грейд по заголовку, навыки по словарю), а не из извлечения студентом; после разметки всего корпуса студентом модель переобучается на извлечённых полях.",
+    "Поля студента содержат ошибки извлечения, правила витрин свои ошибки; сравнение наборов признаков отвечает на вопрос, какой вход лучше для этой модели, а не какой экстрактор точнее.",
     "Gross или net источники не указывают, суммы взяты как опубликованы; источник стоит признаком.",
-    "Почти все строки из trudvsem (портал «Работа России»), Хабр Карьера даёт десятки вакансий: оценка для source=habr опирается на малую выборку.",
-    "Цель это середина опубликованной вилки; вилка «от X» без верхней границы считается как X."
+    "Почти все строки из trudvsem (портал «Работа России»), Хабр Карьера и SuperJob дают сотни вакансий: оценка для source=habr и source=superjob опирается на малую выборку.",
+    "Цель это середина опубликованной вилки; вилка «от X» без верхней границы считается как X.",
+    "SHAP описывает модель, а не рынок: вклад признака в прогноз при остальных признаках из фона, без причинного смысла (сдвиг вилки от навыка оценивается отдельно в skill_effects.json)."
   ],
   "breakdown_dev": {
     "role_group": {
       "analyst": {
-        "rows": 41,
-        "groups": 30,
+        "rows": 44,
+        "groups": 32,
         "gbm_cqr_mae_rub": {
-          "value": 34065.8518,
-          "ci_low": 21930.5003,
-          "ci_high": 53901.5819
+          "value": 39345.2914,
+          "ci_low": 27426.3519,
+          "ci_high": 56190.3313
         },
         "gbm_cqr_mape": {
-          "value": 0.3087,
-          "ci_low": 0.2107,
-          "ci_high": 0.4693
+          "value": 0.3486,
+          "ci_low": 0.2499,
+          "ci_high": 0.5139
         },
         "gbm_cqr_coverage": {
-          "value": 0.8049,
-          "ci_low": 0.6286,
-          "ci_high": 0.925,
-          "n": 33,
-          "denominator": 41
+          "value": 0.7273,
+          "ci_low": 0.5357,
+          "ci_high": 0.875,
+          "n": 32,
+          "denominator": 44
         },
         "gbm_cqr_width_rub": {
-          "value": 115166.637,
-          "ci_low": 102310.7009,
-          "ci_high": 128789.1579
+          "value": 115700.1052,
+          "ci_low": 102132.3383,
+          "ci_high": 132159.3384
         },
         "ridge_mae_rub": {
-          "value": 39274.8976,
-          "ci_low": 25138.7562,
-          "ci_high": 61823.9218
+          "value": 43267.3744,
+          "ci_low": 30488.9705,
+          "ci_high": 61564.2649
         },
         "ridge_mape": {
-          "value": 0.3577,
-          "ci_low": 0.2412,
-          "ci_high": 0.5574
+          "value": 0.3659,
+          "ci_low": 0.2736,
+          "ci_high": 0.5086
         },
         "ridge_coverage": {
-          "value": 0.8293,
-          "ci_low": 0.6667,
-          "ci_high": 0.9375,
-          "n": 34,
-          "denominator": 41
+          "value": 0.8182,
+          "ci_low": 0.6512,
+          "ci_high": 0.9311,
+          "n": 36,
+          "denominator": 44
         },
         "ridge_width_rub": {
-          "value": 118976.5017,
-          "ci_low": 106713.2209,
-          "ci_high": 133320.7967
+          "value": 127722.3949,
+          "ci_low": 116347.9258,
+          "ci_high": 140437.284
         },
         "cell_median_mae_rub": {
-          "value": 43150.4611,
-          "ci_low": 29985.6958,
-          "ci_high": 61985.7974
+          "value": 45298.6672,
+          "ci_low": 31675.1937,
+          "ci_high": 65327.7946
         },
         "cell_median_mape": {
-          "value": 0.4452,
-          "ci_low": 0.3015,
-          "ci_high": 0.6573
+          "value": 0.4245,
+          "ci_low": 0.3107,
+          "ci_high": 0.5949
         },
         "cell_median_coverage": {
-          "value": 0.8293,
-          "ci_low": 0.6667,
-          "ci_high": 0.94,
-          "n": 34,
-          "denominator": 41
+          "value": 0.75,
+          "ci_low": 0.5714,
+          "ci_high": 0.8833,
+          "n": 33,
+          "denominator": 44
         },
         "cell_median_width_rub": {
-          "value": 130576.0542,
-          "ci_low": 121803.551,
-          "ci_high": 139489.9718
+          "value": 131537.3019,
+          "ci_low": 120119.8626,
+          "ci_high": 143899.6113
         }
       },
       "dev": {
-        "rows": 559,
-        "groups": 499,
+        "rows": 503,
+        "groups": 436,
         "gbm_cqr_mae_rub": {
-          "value": 29524.2911,
-          "ci_low": 26530.4145,
-          "ci_high": 33147.8022
+          "value": 31385.8582,
+          "ci_low": 27561.3722,
+          "ci_high": 35198.4304
         },
         "gbm_cqr_mape": {
-          "value": 0.3993,
-          "ci_low": 0.3578,
-          "ci_high": 0.446
+          "value": 0.4212,
+          "ci_low": 0.3676,
+          "ci_high": 0.4792
         },
         "gbm_cqr_coverage": {
-          "value": 0.8086,
-          "ci_low": 0.7648,
-          "ci_high": 0.8472,
-          "n": 452,
-          "denominator": 559
+          "value": 0.7455,
+          "ci_low": 0.6927,
+          "ci_high": 0.7955,
+          "n": 375,
+          "denominator": 503
         },
         "gbm_cqr_width_rub": {
-          "value": 94666.0998,
-          "ci_low": 90380.6388,
-          "ci_high": 99245.9682
+          "value": 91830.6094,
+          "ci_low": 87588.5756,
+          "ci_high": 96050.3926
         },
         "ridge_mae_rub": {
-          "value": 31546.5758,
-          "ci_low": 28690.4477,
-          "ci_high": 34848.8931
+          "value": 31748.2011,
+          "ci_low": 28530.3875,
+          "ci_high": 34964.7176
         },
         "ridge_mape": {
-          "value": 0.421,
-          "ci_low": 0.3876,
-          "ci_high": 0.4605
+          "value": 0.4261,
+          "ci_low": 0.3878,
+          "ci_high": 0.4656
         },
         "ridge_coverage": {
-          "value": 0.7424,
-          "ci_low": 0.6967,
-          "ci_high": 0.7832,
-          "n": 415,
-          "denominator": 559
+          "value": 0.7356,
+          "ci_low": 0.6874,
+          "ci_high": 0.7844,
+          "n": 370,
+          "denominator": 503
         },
         "ridge_width_rub": {
-          "value": 82982.9948,
-          "ci_low": 79296.7954,
-          "ci_high": 86995.6004
+          "value": 87238.3374,
+          "ci_low": 83583.6305,
+          "ci_high": 91032.4674
         },
         "cell_median_mae_rub": {
-          "value": 31348.4474,
-          "ci_low": 27978.1996,
-          "ci_high": 35021.2001
+          "value": 33248.1728,
+          "ci_low": 29241.3267,
+          "ci_high": 37548.9094
         },
         "cell_median_mape": {
-          "value": 0.3909,
-          "ci_low": 0.3588,
-          "ci_high": 0.4237
+          "value": 0.4172,
+          "ci_low": 0.366,
+          "ci_high": 0.476
         },
         "cell_median_coverage": {
-          "value": 0.7889,
-          "ci_low": 0.75,
-          "ci_high": 0.8245,
-          "n": 441,
-          "denominator": 559
+          "value": 0.7555,
+          "ci_low": 0.709,
+          "ci_high": 0.7992,
+          "n": 380,
+          "denominator": 503
         },
         "cell_median_width_rub": {
-          "value": 103438.8993,
-          "ci_low": 98161.0275,
-          "ci_high": 108885.882
+          "value": 95965.8527,
+          "ci_low": 90854.0449,
+          "ci_high": 101191.4355
         }
       },
       "ml_ds_data": {
-        "rows": 32,
-        "groups": 22,
+        "rows": 110,
+        "groups": 62,
         "gbm_cqr_mae_rub": {
-          "value": 58188.2638,
-          "ci_low": 35290.4367,
-          "ci_high": 100106.1099
+          "value": 30146.0353,
+          "ci_low": 19895.3,
+          "ci_high": 46848.2655
         },
         "gbm_cqr_mape": {
-          "value": 0.4737,
-          "ci_low": 0.3044,
-          "ci_high": 0.77
+          "value": 0.34,
+          "ci_low": 0.2503,
+          "ci_high": 0.4873
         },
         "gbm_cqr_coverage": {
-          "value": 0.75,
-          "ci_low": 0.4706,
-          "ci_high": 0.9123,
-          "n": 24,
-          "denominator": 32
+          "value": 0.8091,
+          "ci_low": 0.6579,
+          "ci_high": 0.9012,
+          "n": 89,
+          "denominator": 110
         },
         "gbm_cqr_width_rub": {
-          "value": 145475.6257,
-          "ci_low": 126774.3863,
-          "ci_high": 178427.0738
+          "value": 94483.6982,
+          "ci_low": 73880.7735,
+          "ci_high": 124055.8926
         },
         "ridge_mae_rub": {
-          "value": 58930.4459,
-          "ci_low": 37304.9558,
-          "ci_high": 97895.0963
+          "value": 37350.4907,
+          "ci_low": 29819.0302,
+          "ci_high": 50117.3843
         },
         "ridge_mape": {
-          "value": 0.507,
-          "ci_low": 0.292,
-          "ci_high": 0.9007
+          "value": 0.5276,
+          "ci_low": 0.3782,
+          "ci_high": 0.6478
         },
         "ridge_coverage": {
-          "value": 0.6562,
-          "ci_low": 0.4,
-          "ci_high": 0.8205,
-          "n": 21,
-          "denominator": 32
+          "value": 0.5364,
+          "ci_low": 0.4054,
+          "ci_high": 0.7143,
+          "n": 59,
+          "denominator": 110
         },
         "ridge_width_rub": {
-          "value": 145766.1698,
-          "ci_low": 123953.4084,
-          "ci_high": 182036.1983
+          "value": 89714.5849,
+          "ci_low": 80744.3159,
+          "ci_high": 102969.1705
         },
         "cell_median_mae_rub": {
-          "value": 65539.7815,
-          "ci_low": 40050.3428,
-          "ci_high": 112550.0791
+          "value": 29653.8239,
+          "ci_low": 18996.2371,
+          "ci_high": 45986.8292
         },
         "cell_median_mape": {
-          "value": 0.5033,
-          "ci_low": 0.329,
-          "ci_high": 0.8024
+          "value": 0.3471,
+          "ci_low": 0.2317,
+          "ci_high": 0.5276
         },
         "cell_median_coverage": {
-          "value": 0.625,
-          "ci_low": 0.4167,
-          "ci_high": 0.7719,
-          "n": 20,
-          "denominator": 32
+          "value": 0.8455,
+          "ci_low": 0.7167,
+          "ci_high": 0.9186,
+          "n": 93,
+          "denominator": 110
         },
         "cell_median_width_rub": {
-          "value": 131902.731,
-          "ci_low": 109747.7387,
-          "ci_high": 168638.35
+          "value": 99398.2302,
+          "ci_low": 71897.6424,
+          "ci_high": 136031.1301
         }
       },
       "other_it": {
-        "rows": 312,
-        "groups": 254,
+        "rows": 132,
+        "groups": 126,
         "gbm_cqr_mae_rub": {
-          "value": 32322.6602,
-          "ci_low": 27915.7271,
-          "ci_high": 37470.9791
+          "value": 34866.3545,
+          "ci_low": 27848.3864,
+          "ci_high": 43086.7227
         },
         "gbm_cqr_mape": {
-          "value": 0.428,
-          "ci_low": 0.3659,
-          "ci_high": 0.4973
+          "value": 0.3712,
+          "ci_low": 0.3205,
+          "ci_high": 0.4301
         },
         "gbm_cqr_coverage": {
-          "value": 0.7949,
-          "ci_low": 0.7391,
-          "ci_high": 0.8437,
-          "n": 248,
-          "denominator": 312
+          "value": 0.8333,
+          "ci_low": 0.7692,
+          "ci_high": 0.8906,
+          "n": 110,
+          "denominator": 132
         },
         "gbm_cqr_width_rub": {
-          "value": 89107.8958,
-          "ci_low": 82793.8567,
-          "ci_high": 95879.2296
+          "value": 98817.7907,
+          "ci_low": 87949.6125,
+          "ci_high": 109808.0756
         },
         "ridge_mae_rub": {
-          "value": 34527.7144,
-          "ci_low": 29740.6731,
-          "ci_high": 39663.9982
+          "value": 37073.8824,
+          "ci_low": 29115.2382,
+          "ci_high": 46643.3168
         },
         "ridge_mape": {
-          "value": 0.4733,
-          "ci_low": 0.3769,
-          "ci_high": 0.5909
+          "value": 0.3813,
+          "ci_low": 0.336,
+          "ci_high": 0.4315
         },
         "ridge_coverage": {
-          "value": 0.6635,
-          "ci_low": 0.5579,
-          "ci_high": 0.7593,
-          "n": 207,
-          "denominator": 312
+          "value": 0.7727,
+          "ci_low": 0.7021,
+          "ci_high": 0.8392,
+          "n": 102,
+          "denominator": 132
         },
         "ridge_width_rub": {
-          "value": 84937.9818,
-          "ci_low": 80696.5501,
-          "ci_high": 89341.4329
+          "value": 87589.7499,
+          "ci_low": 81307.0292,
+          "ci_high": 93830.9619
         },
         "cell_median_mae_rub": {
-          "value": 33765.1707,
-          "ci_low": 26956.6703,
-          "ci_high": 41048.7098
+          "value": 40074.7445,
+          "ci_low": 31885.9025,
+          "ci_high": 49649.4409
         },
         "cell_median_mape": {
-          "value": 0.3738,
-          "ci_low": 0.3127,
-          "ci_high": 0.439
+          "value": 0.4223,
+          "ci_low": 0.3625,
+          "ci_high": 0.4945
         },
         "cell_median_coverage": {
-          "value": 0.7564,
-          "ci_low": 0.6895,
-          "ci_high": 0.8163,
-          "n": 236,
-          "denominator": 312
+          "value": 0.7197,
+          "ci_low": 0.6383,
+          "ci_high": 0.7934,
+          "n": 95,
+          "denominator": 132
         },
         "cell_median_width_rub": {
-          "value": 93514.6803,
-          "ci_low": 85351.2469,
-          "ci_high": 102253.9547
+          "value": 105356.8426,
+          "ci_low": 92850.722,
+          "ci_high": 118262.992
         }
       },
       "qa_devops_sys": {
-        "rows": 505,
-        "groups": 467,
+        "rows": 551,
+        "groups": 514,
         "gbm_cqr_mae_rub": {
-          "value": 24339.3579,
-          "ci_low": 21913.7169,
-          "ci_high": 27002.5447
+          "value": 23069.791,
+          "ci_low": 20911.449,
+          "ci_high": 25554.4198
         },
         "gbm_cqr_mape": {
-          "value": 0.3415,
-          "ci_low": 0.3148,
-          "ci_high": 0.3716
+          "value": 0.3397,
+          "ci_low": 0.315,
+          "ci_high": 0.3655
         },
         "gbm_cqr_coverage": {
-          "value": 0.796,
-          "ci_low": 0.7549,
-          "ci_high": 0.8333,
-          "n": 402,
-          "denominator": 505
+          "value": 0.7895,
+          "ci_low": 0.7496,
+          "ci_high": 0.8281,
+          "n": 435,
+          "denominator": 551
         },
         "gbm_cqr_width_rub": {
-          "value": 71430.6588,
-          "ci_low": 68695.4598,
-          "ci_high": 74392.0443
+          "value": 67769.5228,
+          "ci_low": 65306.1317,
+          "ci_high": 70214.3566
         },
         "ridge_mae_rub": {
-          "value": 24153.0707,
-          "ci_low": 21714.2607,
-          "ci_high": 26939.6501
+          "value": 23907.1329,
+          "ci_low": 21672.4485,
+          "ci_high": 26494.8408
         },
         "ridge_mape": {
-          "value": 0.3403,
-          "ci_low": 0.313,
-          "ci_high": 0.3688
+          "value": 0.3468,
+          "ci_low": 0.3218,
+          "ci_high": 0.373
         },
         "ridge_coverage": {
-          "value": 0.8396,
-          "ci_low": 0.8037,
-          "ci_high": 0.8732,
-          "n": 424,
-          "denominator": 505
+          "value": 0.8512,
+          "ci_low": 0.8196,
+          "ci_high": 0.8807,
+          "n": 469,
+          "denominator": 551
         },
         "ridge_width_rub": {
-          "value": 77090.5672,
-          "ci_low": 73952.7434,
-          "ci_high": 80521.205
+          "value": 78592.5666,
+          "ci_low": 75964.5589,
+          "ci_high": 81467.5911
         },
         "cell_median_mae_rub": {
-          "value": 27051.946,
-          "ci_low": 24318.5874,
-          "ci_high": 30286.2632
+          "value": 25300.7445,
+          "ci_low": 22847.2019,
+          "ci_high": 28037.518
         },
         "cell_median_mape": {
-          "value": 0.3725,
-          "ci_low": 0.3451,
-          "ci_high": 0.4032
+          "value": 0.3607,
+          "ci_low": 0.3354,
+          "ci_high": 0.3869
         },
         "cell_median_coverage": {
-          "value": 0.7426,
-          "ci_low": 0.7008,
-          "ci_high": 0.7837,
-          "n": 375,
-          "denominator": 505
+          "value": 0.775,
+          "ci_low": 0.736,
+          "ci_high": 0.8144,
+          "n": 427,
+          "denominator": 551
         },
         "cell_median_width_rub": {
-          "value": 74007.1534,
-          "ci_low": 71677.196,
-          "ci_high": 76557.0602
+          "value": 78093.7862,
+          "ci_low": 76005.1925,
+          "ci_high": 80220.2189
         }
       }
     },
@@ -733,14 +857,14 @@
         "rows": 5,
         "groups": 5,
         "gbm_cqr_mae_rub": {
-          "value": 18104.8211,
-          "ci_low": 7262.104,
-          "ci_high": 31852.7
+          "value": 26950.2647,
+          "ci_low": 6051.7717,
+          "ci_high": 63050.9815
         },
         "gbm_cqr_mape": {
-          "value": 0.577,
-          "ci_low": 0.2337,
-          "ci_high": 1.1663
+          "value": 0.9463,
+          "ci_low": 0.1774,
+          "ci_high": 2.5081
         },
         "gbm_cqr_coverage": {
           "value": 0.6,
@@ -750,19 +874,19 @@
           "denominator": 5
         },
         "gbm_cqr_width_rub": {
-          "value": 68567.8777,
-          "ci_low": 38930.356,
-          "ci_high": 96154.1902
+          "value": 68572.1936,
+          "ci_low": 26786.0527,
+          "ci_high": 123083.8138
         },
         "ridge_mae_rub": {
-          "value": 29967.3511,
-          "ci_low": 10107.1453,
-          "ci_high": 67183.9889
+          "value": 22855.6072,
+          "ci_low": 10392.5857,
+          "ci_high": 46553.3414
         },
         "ridge_mape": {
-          "value": 1.0454,
-          "ci_low": 0.3238,
-          "ci_high": 2.6003
+          "value": 0.7866,
+          "ci_low": 0.2878,
+          "ci_high": 1.8001
         },
         "ridge_coverage": {
           "value": 0.8,
@@ -772,19 +896,19 @@
           "denominator": 5
         },
         "ridge_width_rub": {
-          "value": 72949.709,
-          "ci_low": 44291.1004,
-          "ci_high": 109715.7897
+          "value": 67576.8906,
+          "ci_low": 46610.4573,
+          "ci_high": 91253.632
         },
         "cell_median_mae_rub": {
-          "value": 39030.0,
-          "ci_low": 17575.0,
-          "ci_high": 56200.0
+          "value": 32389.7122,
+          "ci_low": 15235.1828,
+          "ci_high": 55619.1177
         },
         "cell_median_mape": {
-          "value": 1.1745,
-          "ci_low": 0.6113,
-          "ci_high": 1.9353
+          "value": 0.8712,
+          "ci_low": 0.5333,
+          "ci_high": 1.2358
         },
         "cell_median_coverage": {
           "value": 0.0,
@@ -794,776 +918,1214 @@
           "denominator": 5
         },
         "cell_median_width_rub": {
-          "value": 79359.888,
-          "ci_low": 41345.7043,
-          "ci_high": 127406.0634
+          "value": 84675.7984,
+          "ci_low": 51573.6325,
+          "ci_high": 121400.0453
         }
       },
       "junior": {
-        "rows": 13,
-        "groups": 13,
+        "rows": 12,
+        "groups": 12,
         "gbm_cqr_mae_rub": {
-          "value": 38004.6835,
-          "ci_low": 20959.7579,
-          "ci_high": 60562.4036
+          "value": 41414.1264,
+          "ci_low": 20058.0296,
+          "ci_high": 68915.011
         },
         "gbm_cqr_mape": {
-          "value": 0.4678,
-          "ci_low": 0.2645,
-          "ci_high": 0.7622
+          "value": 0.5715,
+          "ci_low": 0.2697,
+          "ci_high": 0.9277
         },
         "gbm_cqr_coverage": {
-          "value": 0.7692,
-          "ci_low": 0.5,
+          "value": 0.75,
+          "ci_low": 0.4545,
           "ci_high": 1.0,
-          "n": 10,
-          "denominator": 13
+          "n": 9,
+          "denominator": 12
         },
         "gbm_cqr_width_rub": {
-          "value": 105418.8504,
-          "ci_low": 80095.1976,
-          "ci_high": 136985.3029
+          "value": 94969.2753,
+          "ci_low": 62791.8065,
+          "ci_high": 135388.6547
         },
         "ridge_mae_rub": {
-          "value": 27487.9233,
-          "ci_low": 15377.538,
-          "ci_high": 41705.8046
+          "value": 27706.7769,
+          "ci_low": 18710.9311,
+          "ci_high": 37142.3354
         },
         "ridge_mape": {
-          "value": 0.342,
-          "ci_low": 0.2092,
-          "ci_high": 0.5064
+          "value": 0.3829,
+          "ci_low": 0.2587,
+          "ci_high": 0.5164
         },
         "ridge_coverage": {
-          "value": 0.8462,
-          "ci_low": 0.6,
+          "value": 0.9167,
+          "ci_low": 0.7143,
           "ci_high": 1.0,
           "n": 11,
-          "denominator": 13
+          "denominator": 12
         },
         "ridge_width_rub": {
-          "value": 101104.2197,
-          "ci_low": 78741.6331,
-          "ci_high": 125938.3763
+          "value": 96991.8578,
+          "ci_low": 76907.9073,
+          "ci_high": 120372.6227
         },
         "cell_median_mae_rub": {
-          "value": 30318.6147,
-          "ci_low": 13904.4667,
-          "ci_high": 48429.0653
+          "value": 33867.1804,
+          "ci_low": 18902.5723,
+          "ci_high": 51043.3633
         },
         "cell_median_mape": {
-          "value": 0.4481,
-          "ci_low": 0.1941,
-          "ci_high": 0.7436
+          "value": 0.5136,
+          "ci_low": 0.2493,
+          "ci_high": 0.8237
         },
         "cell_median_coverage": {
-          "value": 0.7692,
-          "ci_low": 0.5,
-          "ci_high": 1.0,
-          "n": 10,
-          "denominator": 13
+          "value": 0.6667,
+          "ci_low": 0.375,
+          "ci_high": 0.9333,
+          "n": 8,
+          "denominator": 12
         },
         "cell_median_width_rub": {
-          "value": 125916.55,
-          "ci_low": 94471.9855,
-          "ci_high": 161025.8264
+          "value": 107560.5152,
+          "ci_low": 72129.8355,
+          "ci_high": 146482.3988
         }
       },
       "lead": {
-        "rows": 62,
-        "groups": 61,
+        "rows": 42,
+        "groups": 42,
         "gbm_cqr_mae_rub": {
-          "value": 55459.1161,
-          "ci_low": 41525.1787,
-          "ci_high": 71887.8463
+          "value": 61269.3187,
+          "ci_low": 43071.8743,
+          "ci_high": 81889.8097
         },
         "gbm_cqr_mape": {
-          "value": 0.4981,
-          "ci_low": 0.3831,
-          "ci_high": 0.6363
+          "value": 0.4793,
+          "ci_low": 0.3227,
+          "ci_high": 0.6633
         },
         "gbm_cqr_coverage": {
-          "value": 0.629,
-          "ci_low": 0.5079,
-          "ci_high": 0.75,
-          "n": 39,
-          "denominator": 62
+          "value": 0.619,
+          "ci_low": 0.4737,
+          "ci_high": 0.76,
+          "n": 26,
+          "denominator": 42
         },
         "gbm_cqr_width_rub": {
-          "value": 114373.6553,
-          "ci_low": 101049.1182,
-          "ci_high": 129069.4117
+          "value": 127773.4857,
+          "ci_low": 108538.5466,
+          "ci_high": 150411.6352
         },
         "ridge_mae_rub": {
-          "value": 58861.4038,
-          "ci_low": 43797.8922,
-          "ci_high": 76015.6801
+          "value": 65535.2932,
+          "ci_low": 46237.776,
+          "ci_high": 87073.3073
         },
         "ridge_mape": {
-          "value": 0.5142,
-          "ci_low": 0.3792,
-          "ci_high": 0.6768
+          "value": 0.4987,
+          "ci_low": 0.3496,
+          "ci_high": 0.7001
         },
         "ridge_coverage": {
-          "value": 0.6452,
-          "ci_low": 0.5246,
-          "ci_high": 0.76,
-          "n": 40,
-          "denominator": 62
+          "value": 0.6429,
+          "ci_low": 0.4889,
+          "ci_high": 0.7838,
+          "n": 27,
+          "denominator": 42
         },
         "ridge_width_rub": {
-          "value": 116471.9034,
-          "ci_low": 102805.392,
-          "ci_high": 131361.908
+          "value": 118146.8924,
+          "ci_low": 105870.3319,
+          "ci_high": 132019.4109
         },
         "cell_median_mae_rub": {
-          "value": 62607.0333,
-          "ci_low": 46304.8109,
-          "ci_high": 81105.2025
+          "value": 71040.3948,
+          "ci_low": 50627.99,
+          "ci_high": 94788.4655
         },
         "cell_median_mape": {
-          "value": 0.5469,
-          "ci_low": 0.4158,
-          "ci_high": 0.7045
+          "value": 0.5164,
+          "ci_low": 0.3795,
+          "ci_high": 0.6794
         },
         "cell_median_coverage": {
-          "value": 0.4839,
-          "ci_low": 0.3593,
-          "ci_high": 0.6053,
-          "n": 30,
-          "denominator": 62
+          "value": 0.5952,
+          "ci_low": 0.4418,
+          "ci_high": 0.7368,
+          "n": 25,
+          "denominator": 42
         },
         "cell_median_width_rub": {
-          "value": 106580.05,
-          "ci_low": 92461.3725,
-          "ci_high": 123047.0492
+          "value": 116090.8715,
+          "ci_low": 100976.2578,
+          "ci_high": 134317.0825
         }
       },
       "middle": {
-        "rows": 16,
+        "rows": 17,
         "groups": 14,
         "gbm_cqr_mae_rub": {
-          "value": 56822.5066,
-          "ci_low": 34668.6491,
-          "ci_high": 84329.6137
+          "value": 51065.2842,
+          "ci_low": 31233.3529,
+          "ci_high": 79919.6642
         },
         "gbm_cqr_mape": {
-          "value": 0.468,
-          "ci_low": 0.2809,
-          "ci_high": 0.7026
+          "value": 0.4405,
+          "ci_low": 0.2297,
+          "ci_high": 0.621
         },
         "gbm_cqr_coverage": {
-          "value": 0.8125,
-          "ci_low": 0.5714,
-          "ci_high": 1.0,
-          "n": 13,
-          "denominator": 16
+          "value": 0.5294,
+          "ci_low": 0.25,
+          "ci_high": 0.8751,
+          "n": 9,
+          "denominator": 17
         },
         "gbm_cqr_width_rub": {
-          "value": 167290.4066,
-          "ci_low": 144644.0182,
-          "ci_high": 194890.9026
+          "value": 137949.5608,
+          "ci_low": 114414.5665,
+          "ci_high": 173021.9843
         },
         "ridge_mae_rub": {
-          "value": 60828.6626,
-          "ci_low": 37848.3364,
-          "ci_high": 93671.4314
+          "value": 59080.9713,
+          "ci_low": 36459.3716,
+          "ci_high": 94167.0882
         },
         "ridge_mape": {
-          "value": 0.4737,
-          "ci_low": 0.2895,
-          "ci_high": 0.7271
+          "value": 0.4641,
+          "ci_low": 0.2883,
+          "ci_high": 0.6864
         },
         "ridge_coverage": {
-          "value": 0.875,
-          "ci_low": 0.6667,
+          "value": 0.8235,
+          "ci_low": 0.6364,
           "ci_high": 1.0,
           "n": 14,
-          "denominator": 16
+          "denominator": 17
         },
         "ridge_width_rub": {
-          "value": 182802.5139,
-          "ci_low": 144420.3248,
-          "ci_high": 236433.0281
+          "value": 175986.7946,
+          "ci_low": 135508.4994,
+          "ci_high": 233927.8717
         },
         "cell_median_mae_rub": {
-          "value": 71262.3232,
-          "ci_low": 32004.496,
-          "ci_high": 118066.7118
+          "value": 61863.9754,
+          "ci_low": 30442.884,
+          "ci_high": 113838.0182
         },
         "cell_median_mape": {
-          "value": 0.4054,
+          "value": 0.3401,
           "ci_low": 0.233,
-          "ci_high": 0.5916
+          "ci_high": 0.4867
         },
         "cell_median_coverage": {
-          "value": 0.75,
+          "value": 0.7647,
           "ci_low": 0.4615,
-          "ci_high": 0.9474,
-          "n": 12,
-          "denominator": 16
+          "ci_high": 0.9695,
+          "n": 13,
+          "denominator": 17
         },
         "cell_median_width_rub": {
-          "value": 153076.3599,
-          "ci_low": 115050.4109,
-          "ci_high": 202814.1861
+          "value": 143701.7142,
+          "ci_low": 109895.907,
+          "ci_high": 190855.8942
         }
       },
       "senior": {
-        "rows": 191,
-        "groups": 173,
+        "rows": 169,
+        "groups": 155,
         "gbm_cqr_mae_rub": {
-          "value": 34664.8397,
-          "ci_low": 29499.6555,
-          "ci_high": 41226.2082
+          "value": 31488.1046,
+          "ci_low": 27125.6929,
+          "ci_high": 36541.6315
         },
         "gbm_cqr_mape": {
-          "value": 0.3822,
-          "ci_low": 0.3276,
-          "ci_high": 0.4467
+          "value": 0.3569,
+          "ci_low": 0.3044,
+          "ci_high": 0.4124
         },
         "gbm_cqr_coverage": {
-          "value": 0.7592,
-          "ci_low": 0.6882,
-          "ci_high": 0.8235,
-          "n": 145,
-          "denominator": 191
+          "value": 0.8107,
+          "ci_low": 0.7386,
+          "ci_high": 0.875,
+          "n": 137,
+          "denominator": 169
         },
         "gbm_cqr_width_rub": {
-          "value": 95141.4296,
-          "ci_low": 88263.8292,
-          "ci_high": 102392.1378
+          "value": 100375.2835,
+          "ci_low": 92841.4814,
+          "ci_high": 108177.0544
         },
         "ridge_mae_rub": {
-          "value": 34457.8352,
-          "ci_low": 28858.6635,
-          "ci_high": 40936.4006
+          "value": 33148.4119,
+          "ci_low": 28481.2757,
+          "ci_high": 38575.9813
         },
         "ridge_mape": {
-          "value": 0.3812,
-          "ci_low": 0.3245,
-          "ci_high": 0.4425
+          "value": 0.3735,
+          "ci_low": 0.3191,
+          "ci_high": 0.4295
         },
         "ridge_coverage": {
-          "value": 0.7644,
-          "ci_low": 0.6914,
-          "ci_high": 0.8333,
-          "n": 146,
-          "denominator": 191
+          "value": 0.7574,
+          "ci_low": 0.6812,
+          "ci_high": 0.8291,
+          "n": 128,
+          "denominator": 169
         },
         "ridge_width_rub": {
-          "value": 95124.9705,
-          "ci_low": 88457.2568,
-          "ci_high": 102196.0753
+          "value": 98044.3113,
+          "ci_low": 91427.1267,
+          "ci_high": 105077.4747
         },
         "cell_median_mae_rub": {
-          "value": 41297.3414,
-          "ci_low": 34860.2794,
-          "ci_high": 49254.1113
+          "value": 36532.9648,
+          "ci_low": 30292.7912,
+          "ci_high": 43257.2746
         },
         "cell_median_mape": {
-          "value": 0.4285,
-          "ci_low": 0.3699,
-          "ci_high": 0.4938
+          "value": 0.4249,
+          "ci_low": 0.3254,
+          "ci_high": 0.5614
         },
         "cell_median_coverage": {
-          "value": 0.7225,
-          "ci_low": 0.6526,
-          "ci_high": 0.7865,
-          "n": 138,
-          "denominator": 191
+          "value": 0.7692,
+          "ci_low": 0.6982,
+          "ci_high": 0.8389,
+          "n": 130,
+          "denominator": 169
         },
         "cell_median_width_rub": {
-          "value": 102120.9828,
-          "ci_low": 95068.0715,
-          "ci_high": 109499.2586
+          "value": 100500.3598,
+          "ci_low": 91905.8164,
+          "ci_high": 109851.8862
         }
       },
       "unknown": {
-        "rows": 1162,
-        "groups": 1009,
+        "rows": 1095,
+        "groups": 943,
         "gbm_cqr_mae_rub": {
-          "value": 26321.5612,
-          "ci_low": 24423.9968,
-          "ci_high": 28456.5045
+          "value": 26258.9272,
+          "ci_low": 23789.931,
+          "ci_high": 28629.0761
         },
         "gbm_cqr_mape": {
-          "value": 0.3758,
-          "ci_low": 0.3479,
-          "ci_high": 0.4065
+          "value": 0.3664,
+          "ci_low": 0.3366,
+          "ci_high": 0.3991
         },
         "gbm_cqr_coverage": {
-          "value": 0.8167,
-          "ci_low": 0.7895,
-          "ci_high": 0.8433,
-          "n": 949,
-          "denominator": 1162
+          "value": 0.7826,
+          "ci_low": 0.7491,
+          "ci_high": 0.8125,
+          "n": 857,
+          "denominator": 1095
         },
         "gbm_cqr_width_rub": {
-          "value": 83060.6175,
-          "ci_low": 80203.3825,
-          "ci_high": 85999.5677
+          "value": 78449.5153,
+          "ci_low": 75051.0846,
+          "ci_high": 81507.3429
         },
         "ridge_mae_rub": {
-          "value": 27873.6976,
-          "ci_low": 26021.3618,
-          "ci_high": 30002.2984
+          "value": 27618.7639,
+          "ci_low": 25500.5607,
+          "ci_high": 29740.6977
         },
         "ridge_mape": {
-          "value": 0.3991,
-          "ci_low": 0.3663,
-          "ci_high": 0.4425
+          "value": 0.3921,
+          "ci_low": 0.3646,
+          "ci_high": 0.4197
         },
         "ridge_coverage": {
-          "value": 0.7625,
-          "ci_low": 0.719,
-          "ci_high": 0.7985,
-          "n": 886,
-          "denominator": 1162
+          "value": 0.7781,
+          "ci_low": 0.7415,
+          "ci_high": 0.812,
+          "n": 852,
+          "denominator": 1095
         },
         "ridge_width_rub": {
-          "value": 78629.4009,
-          "ci_low": 76342.9206,
-          "ci_high": 80898.7717
+          "value": 80557.4468,
+          "ci_low": 78298.6547,
+          "ci_high": 82860.3024
         },
         "cell_median_mae_rub": {
-          "value": 27613.8318,
-          "ci_low": 25287.6028,
-          "ci_high": 30010.7119
+          "value": 27791.4698,
+          "ci_low": 25216.5576,
+          "ci_high": 30272.3739
         },
         "cell_median_mape": {
-          "value": 0.3646,
-          "ci_low": 0.3406,
-          "ci_high": 0.3884
+          "value": 0.3757,
+          "ci_low": 0.3493,
+          "ci_high": 0.4023
         },
         "cell_median_coverage": {
-          "value": 0.7883,
-          "ci_low": 0.7613,
-          "ci_high": 0.8153,
-          "n": 916,
-          "denominator": 1162
+          "value": 0.7781,
+          "ci_low": 0.7484,
+          "ci_high": 0.8077,
+          "n": 852,
+          "denominator": 1095
         },
         "cell_median_width_rub": {
-          "value": 88942.3716,
-          "ci_low": 85621.9517,
-          "ci_high": 92511.7566
+          "value": 87590.5372,
+          "ci_low": 83202.9654,
+          "ci_high": 91197.4019
         }
       }
     },
     "source": {
       "habr": {
-        "rows": 23,
-        "groups": 23,
+        "rows": 19,
+        "groups": 19,
         "gbm_cqr_mae_rub": {
-          "value": 83188.2363,
-          "ci_low": 57795.2032,
-          "ci_high": 115024.9331
+          "value": 63921.2372,
+          "ci_low": 40557.7125,
+          "ci_high": 92020.9122
         },
         "gbm_cqr_mape": {
-          "value": 0.5525,
-          "ci_low": 0.3729,
-          "ci_high": 0.762
+          "value": 0.6395,
+          "ci_low": 0.3056,
+          "ci_high": 1.0761
         },
         "gbm_cqr_coverage": {
-          "value": 0.6087,
-          "ci_low": 0.4,
-          "ci_high": 0.8,
+          "value": 0.7368,
+          "ci_low": 0.5294,
+          "ci_high": 0.9286,
           "n": 14,
-          "denominator": 23
+          "denominator": 19
         },
         "gbm_cqr_width_rub": {
-          "value": 179787.0217,
-          "ci_low": 162219.8412,
-          "ci_high": 200288.7096
+          "value": 183117.7699,
+          "ci_low": 158256.5724,
+          "ci_high": 211004.3036
         },
         "ridge_mae_rub": {
-          "value": 85534.8847,
-          "ci_low": 55723.1245,
-          "ci_high": 121513.4265
+          "value": 69580.7597,
+          "ci_low": 50173.0687,
+          "ci_high": 93079.0254
         },
         "ridge_mape": {
-          "value": 0.599,
-          "ci_low": 0.3419,
-          "ci_high": 0.9553
+          "value": 0.5496,
+          "ci_low": 0.3244,
+          "ci_high": 0.8367
         },
         "ridge_coverage": {
-          "value": 0.6957,
-          "ci_low": 0.5,
-          "ci_high": 0.8696,
+          "value": 0.8421,
+          "ci_low": 0.6667,
+          "ci_high": 1.0,
           "n": 16,
-          "denominator": 23
+          "denominator": 19
         },
         "ridge_width_rub": {
-          "value": 186387.7968,
-          "ci_low": 161001.4246,
-          "ci_high": 218349.1788
+          "value": 207393.0793,
+          "ci_low": 179176.3389,
+          "ci_high": 239530.0086
         },
         "cell_median_mae_rub": {
-          "value": 100897.1602,
-          "ci_low": 66106.6079,
-          "ci_high": 144459.8272
+          "value": 72679.5817,
+          "ci_low": 51725.1391,
+          "ci_high": 97674.3596
         },
         "cell_median_mape": {
-          "value": 0.5716,
-          "ci_low": 0.3974,
-          "ci_high": 0.7846
+          "value": 0.465,
+          "ci_low": 0.3533,
+          "ci_high": 0.585
         },
         "cell_median_coverage": {
-          "value": 0.5652,
-          "ci_low": 0.35,
-          "ci_high": 0.7778,
+          "value": 0.6842,
+          "ci_low": 0.4582,
+          "ci_high": 0.8846,
           "n": 13,
-          "denominator": 23
+          "denominator": 19
         },
         "cell_median_width_rub": {
-          "value": 163949.1456,
-          "ci_low": 139235.497,
-          "ci_high": 194106.1758
+          "value": 169400.3873,
+          "ci_low": 141295.8499,
+          "ci_high": 197917.8953
+        }
+      },
+      "superjob": {
+        "rows": 7,
+        "groups": 7,
+        "gbm_cqr_mae_rub": {
+          "value": 36605.8022,
+          "ci_low": 11422.5021,
+          "ci_high": 65986.2501
+        },
+        "gbm_cqr_mape": {
+          "value": 0.2832,
+          "ci_low": 0.0979,
+          "ci_high": 0.5273
+        },
+        "gbm_cqr_coverage": {
+          "value": 0.7143,
+          "ci_low": 0.3333,
+          "ci_high": 1.0,
+          "n": 5,
+          "denominator": 7
+        },
+        "gbm_cqr_width_rub": {
+          "value": 110886.269,
+          "ci_low": 95403.1702,
+          "ci_high": 129488.0068
+        },
+        "ridge_mae_rub": {
+          "value": 62586.5707,
+          "ci_low": 35518.737,
+          "ci_high": 87617.0151
+        },
+        "ridge_mape": {
+          "value": 0.5935,
+          "ci_low": 0.2654,
+          "ci_high": 1.0262
+        },
+        "ridge_coverage": {
+          "value": 0.7143,
+          "ci_low": 0.3317,
+          "ci_high": 1.0,
+          "n": 5,
+          "denominator": 7
+        },
+        "ridge_width_rub": {
+          "value": 186006.6033,
+          "ci_low": 160924.0216,
+          "ci_high": 216890.6625
+        },
+        "cell_median_mae_rub": {
+          "value": 64414.2857,
+          "ci_low": 18079.5714,
+          "ci_high": 113512.5
+        },
+        "cell_median_mape": {
+          "value": 0.39,
+          "ci_low": 0.1724,
+          "ci_high": 0.5941
+        },
+        "cell_median_coverage": {
+          "value": 0.5714,
+          "ci_low": 0.1994,
+          "ci_high": 1.0,
+          "n": 4,
+          "denominator": 7
+        },
+        "cell_median_width_rub": {
+          "value": 103070.4168,
+          "ci_low": 78816.8899,
+          "ci_high": 135613.3174
         }
       },
       "trudvsem": {
-        "rows": 1426,
-        "groups": 1248,
+        "rows": 1314,
+        "groups": 1144,
         "gbm_cqr_mae_rub": {
-          "value": 28208.6391,
-          "ci_low": 26414.3078,
-          "ci_high": 30145.379
+          "value": 27912.7952,
+          "ci_low": 25739.7264,
+          "ci_high": 30138.9435
         },
         "gbm_cqr_mape": {
-          "value": 0.3817,
-          "ci_low": 0.3567,
-          "ci_high": 0.409
+          "value": 0.3703,
+          "ci_low": 0.3443,
+          "ci_high": 0.3988
         },
         "gbm_cqr_coverage": {
-          "value": 0.8029,
-          "ci_low": 0.7769,
-          "ci_high": 0.8269,
-          "n": 1145,
-          "denominator": 1426
+          "value": 0.7778,
+          "ci_low": 0.7494,
+          "ci_high": 0.8061,
+          "n": 1022,
+          "denominator": 1314
         },
         "gbm_cqr_width_rub": {
-          "value": 85578.1533,
-          "ci_low": 83062.1459,
-          "ci_high": 88332.5119
+          "value": 82042.8629,
+          "ci_low": 78993.5105,
+          "ci_high": 84949.7878
         },
         "ridge_mae_rub": {
-          "value": 29546.4419,
-          "ci_low": 27735.1457,
-          "ci_high": 31513.5682
+          "value": 29138.5889,
+          "ci_low": 27259.273,
+          "ci_high": 31063.5874
         },
         "ridge_mape": {
-          "value": 0.4011,
-          "ci_low": 0.3729,
-          "ci_high": 0.4374
+          "value": 0.3921,
+          "ci_low": 0.369,
+          "ci_high": 0.4164
         },
         "ridge_coverage": {
-          "value": 0.7609,
-          "ci_low": 0.7247,
-          "ci_high": 0.7906,
-          "n": 1085,
-          "denominator": 1426
+          "value": 0.7725,
+          "ci_low": 0.7402,
+          "ci_high": 0.8027,
+          "n": 1015,
+          "denominator": 1314
         },
         "ridge_width_rub": {
-          "value": 82099.9408,
-          "ci_low": 79914.0014,
-          "ci_high": 84347.8145
+          "value": 82947.5722,
+          "ci_low": 80896.4265,
+          "ci_high": 85029.0534
         },
         "cell_median_mae_rub": {
-          "value": 30340.5016,
-          "ci_low": 28127.395,
-          "ci_high": 32632.8601
+          "value": 29967.7758,
+          "ci_low": 27551.7747,
+          "ci_high": 32338.3613
         },
         "cell_median_mape": {
-          "value": 0.3818,
-          "ci_low": 0.3598,
-          "ci_high": 0.4059
+          "value": 0.3878,
+          "ci_low": 0.3602,
+          "ci_high": 0.416
         },
         "cell_median_coverage": {
-          "value": 0.7665,
-          "ci_low": 0.7415,
-          "ci_high": 0.7901,
-          "n": 1093,
-          "denominator": 1426
+          "value": 0.7694,
+          "ci_low": 0.7434,
+          "ci_high": 0.7959,
+          "n": 1011,
+          "denominator": 1314
         },
         "cell_median_width_rub": {
-          "value": 91287.6666,
-          "ci_low": 88308.5799,
-          "ci_high": 94450.0799
+          "value": 89793.7212,
+          "ci_low": 85797.4956,
+          "ci_high": 93139.8103
         }
       }
     }
   },
   "importance_dev": {
     "region": {
-      "mae_rise_rub": 5578.5,
-      "sd": 440.9
-    },
-    "experience": {
-      "mae_rise_rub": 3404.5,
-      "sd": 336.0
+      "mae_rise_rub": 5883.5,
+      "sd": 343.7
     },
     "role": {
-      "mae_rise_rub": 3216.7,
-      "sd": 433.3
+      "mae_rise_rub": 3423.1,
+      "sd": 146.3
+    },
+    "experience": {
+      "mae_rise_rub": 2693.3,
+      "sd": 214.3
     },
     "skills": {
-      "mae_rise_rub": 2296.2,
-      "sd": 160.6
+      "mae_rise_rub": 1750.6,
+      "sd": 162.7
     },
     "grade": {
-      "mae_rise_rub": 614.0,
-      "sd": 197.6
+      "mae_rise_rub": 1040.2,
+      "sd": 161.5
     },
     "source": {
-      "mae_rise_rub": 29.3,
-      "sd": 10.5
-    },
-    "employment_type": {
-      "mae_rise_rub": 0.0,
-      "sd": 0.0
+      "mae_rise_rub": 526.6,
+      "sd": 142.3
     },
     "work_format": {
-      "mae_rise_rub": -64.9,
-      "sd": 57.8
+      "mae_rise_rub": 96.7,
+      "sd": 30.3
+    },
+    "employment_type": {
+      "mae_rise_rub": 38.4,
+      "sd": 22.5
     }
+  },
+  "shap_dev": {
+    "blocks": {
+      "region": {
+        "mean_abs_log": 0.1433,
+        "mean_abs_pct": 15.6
+      },
+      "experience": {
+        "mean_abs_log": 0.1097,
+        "mean_abs_pct": 11.1
+      },
+      "role": {
+        "mean_abs_log": 0.1054,
+        "mean_abs_pct": 10.9
+      },
+      "skills": {
+        "mean_abs_log": 0.0895,
+        "mean_abs_pct": 9.5
+      },
+      "grade": {
+        "mean_abs_log": 0.042,
+        "mean_abs_pct": 4.3
+      },
+      "source": {
+        "mean_abs_log": 0.0283,
+        "mean_abs_pct": 3.0
+      },
+      "work_format": {
+        "mean_abs_log": 0.008,
+        "mean_abs_pct": 0.8
+      },
+      "employment_type": {
+        "mean_abs_log": 0.006,
+        "mean_abs_pct": 0.6
+      }
+    },
+    "per_level": {
+      "role_bucket": {
+        "management": {
+          "rows": 15,
+          "mean_log": 0.4167,
+          "pct": 51.7
+        },
+        "embedded": {
+          "rows": 34,
+          "mean_log": 0.3213,
+          "pct": 37.9
+        },
+        "business_system_analysis": {
+          "rows": 44,
+          "mean_log": 0.275,
+          "pct": 31.7
+        },
+        "design": {
+          "rows": 13,
+          "mean_log": 0.1879,
+          "pct": 20.7
+        },
+        "qa": {
+          "rows": 29,
+          "mean_log": 0.161,
+          "pct": 17.5
+        },
+        "data_analytics": {
+          "rows": 54,
+          "mean_log": 0.1319,
+          "pct": 14.1
+        },
+        "developer_1c": {
+          "rows": 90,
+          "mean_log": 0.122,
+          "pct": 13.0
+        },
+        "security": {
+          "rows": 191,
+          "mean_log": 0.036,
+          "pct": 3.7
+        },
+        "backend": {
+          "rows": 66,
+          "mean_log": 0.0047,
+          "pct": 0.5
+        },
+        "other_it": {
+          "rows": 104,
+          "mean_log": -0.015,
+          "pct": -1.5
+        },
+        "sysadmin_support": {
+          "rows": 325,
+          "mean_log": -0.0475,
+          "pct": -4.6
+        },
+        "ml_ds": {
+          "rows": 52,
+          "mean_log": -0.1204,
+          "pct": -11.3
+        },
+        "software_engineer": {
+          "rows": 296,
+          "mean_log": -0.1349,
+          "pct": -12.6
+        }
+      },
+      "grade": {
+        "middle": {
+          "rows": 17,
+          "mean_log": 0.2408,
+          "pct": 27.2
+        },
+        "lead": {
+          "rows": 42,
+          "mean_log": 0.1454,
+          "pct": 15.6
+        },
+        "senior": {
+          "rows": 169,
+          "mean_log": 0.0952,
+          "pct": 10.0
+        },
+        "unknown": {
+          "rows": 1095,
+          "mean_log": -0.026,
+          "pct": -2.6
+        },
+        "junior": {
+          "rows": 12,
+          "mean_log": -0.0997,
+          "pct": -9.5
+        }
+      },
+      "region_group": {
+        "moscow": {
+          "rows": 173,
+          "mean_log": 0.3632,
+          "pct": 43.8
+        },
+        "spb": {
+          "rows": 108,
+          "mean_log": 0.3133,
+          "pct": 36.8
+        },
+        "remote": {
+          "rows": 109,
+          "mean_log": 0.0577,
+          "pct": 5.9
+        },
+        "unknown": {
+          "rows": 31,
+          "mean_log": -0.083,
+          "pct": -8.0
+        },
+        "other": {
+          "rows": 919,
+          "mean_log": -0.0864,
+          "pct": -8.3
+        }
+      },
+      "work_format": {
+        "office": {
+          "rows": 26,
+          "mean_log": 0.0648,
+          "pct": 6.7
+        },
+        "hybrid": {
+          "rows": 40,
+          "mean_log": 0.0556,
+          "pct": 5.7
+        },
+        "unknown": {
+          "rows": 1165,
+          "mean_log": -0.0041,
+          "pct": -0.4
+        },
+        "remote": {
+          "rows": 109,
+          "mean_log": -0.0118,
+          "pct": -1.2
+        }
+      },
+      "employment_type": {
+        "labor_contract": {
+          "rows": 95,
+          "mean_log": 0.0251,
+          "pct": 2.5
+        },
+        "unknown": {
+          "rows": 1237,
+          "mean_log": -0.004,
+          "pct": -0.4
+        }
+      },
+      "source": {
+        "habr": {
+          "rows": 19,
+          "mean_log": 0.4057,
+          "pct": 50.0
+        },
+        "trudvsem": {
+          "rows": 1314,
+          "mean_log": -0.0208,
+          "pct": -2.1
+        }
+      }
+    },
+    "rows": 1340,
+    "background_rows": 100,
+    "base_log": 11.0843,
+    "additivity_max_error_log": 7.11e-15,
+    "figure": "results/models/figures/salary_shap.png"
   },
   "temporal_dev": {
     "cutoff": "2026-09-14",
-    "train_rows": 4217,
-    "calib_rows": 1398,
+    "train_rows": 3916,
+    "calib_rows": 1304,
     "refit_before_cutoff": {
       "mae_rub": {
-        "value": 37499.8236,
-        "ci_low": 29751.8758,
-        "ci_high": 46672.4406
+        "value": 34218.8981,
+        "ci_low": 27687.8343,
+        "ci_high": 41187.0681
       },
       "mape": {
-        "value": 0.3619,
-        "ci_low": 0.313,
-        "ci_high": 0.4204
+        "value": 0.3493,
+        "ci_low": 0.2993,
+        "ci_high": 0.4029
       },
       "within_20pct": {
-        "value": 0.3842,
-        "ci_low": 0.3086,
-        "ci_high": 0.4551,
-        "n": 68,
-        "denominator": 177
+        "value": 0.3779,
+        "ci_low": 0.3023,
+        "ci_high": 0.452,
+        "n": 65,
+        "denominator": 172
       },
       "coverage": {
-        "value": 0.7684,
-        "ci_low": 0.7029,
-        "ci_high": 0.8286,
-        "n": 136,
-        "denominator": 177
+        "value": 0.75,
+        "ci_low": 0.6802,
+        "ci_high": 0.8129,
+        "n": 129,
+        "denominator": 172
       },
       "width_rub": {
-        "value": 94503.144,
-        "ci_low": 86309.9403,
-        "ci_high": 102664.9989
+        "value": 94714.5615,
+        "ci_low": 87095.7972,
+        "ci_high": 102892.3614
       },
       "width_rel": {
-        "value": 1.132,
-        "ci_low": 1.0905,
-        "ci_high": 1.1727
+        "value": 1.1789,
+        "ci_low": 1.1345,
+        "ci_high": 1.2264
       }
     },
     "main_model": {
       "mae_rub": {
-        "value": 37190.7602,
-        "ci_low": 30245.8081,
-        "ci_high": 45238.0191
+        "value": 33844.5834,
+        "ci_low": 28173.4756,
+        "ci_high": 39783.8269
       },
       "mape": {
-        "value": 0.3666,
-        "ci_low": 0.3181,
-        "ci_high": 0.4197
+        "value": 0.3802,
+        "ci_low": 0.3177,
+        "ci_high": 0.4473
       },
       "within_20pct": {
-        "value": 0.3672,
-        "ci_low": 0.2938,
-        "ci_high": 0.4382,
-        "n": 65,
-        "denominator": 177
+        "value": 0.3663,
+        "ci_low": 0.2934,
+        "ci_high": 0.4419,
+        "n": 63,
+        "denominator": 172
       },
       "coverage": {
-        "value": 0.8192,
-        "ci_low": 0.7611,
-        "ci_high": 0.8722,
-        "n": 145,
-        "denominator": 177
+        "value": 0.8023,
+        "ci_low": 0.7389,
+        "ci_high": 0.858,
+        "n": 138,
+        "denominator": 172
       },
       "width_rub": {
-        "value": 101856.6062,
-        "ci_low": 93037.0451,
-        "ci_high": 110992.2804
+        "value": 99734.3779,
+        "ci_low": 91386.5352,
+        "ci_high": 108920.304
       },
       "width_rel": {
-        "value": 1.1543,
-        "ci_low": 1.1132,
-        "ci_high": 1.1925
+        "value": 1.1439,
+        "ci_low": 1.1026,
+        "ci_high": 1.1866
       }
     },
-    "dev_rows_after_cutoff": 177
+    "dev_rows_after_cutoff": 172
   },
   "selection": {
-    "gbm_params": {
-      "l2_regularization": 0.0,
-      "learning_rate": 0.05,
-      "max_leaf_nodes": 31,
-      "min_samples_leaf": 20
-    },
-    "gbm_cv": [
-      {
-        "l2_regularization": 0.0,
-        "learning_rate": 0.05,
-        "max_leaf_nodes": 15,
-        "min_samples_leaf": 20,
-        "cv_mae_log": 0.34489
+    "feature_set": "student",
+    "reason": "interval of the difference covers zero, tie rule picks student",
+    "on_tie": "student",
+    "per_set": {
+      "rules": {
+        "gbm_params": {
+          "l2_regularization": 1.0,
+          "learning_rate": 0.1,
+          "max_leaf_nodes": 15,
+          "min_samples_leaf": 50
+        },
+        "gbm_cv": [
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.35307
+          },
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.35148
+          },
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.35131
+          },
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.35151
+          },
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.3518
+          },
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.35158
+          },
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.35182
+          },
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.35092
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.35231
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.35212
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.35124
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.35242
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.35273
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.35062
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.35186
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.3511
+          }
+        ],
+        "ridge_alpha": 30.0,
+        "ridge_cv": [
+          {
+            "alpha": 0.3,
+            "cv_mae_log": 0.36596
+          },
+          {
+            "alpha": 1.0,
+            "cv_mae_log": 0.36538
+          },
+          {
+            "alpha": 3.0,
+            "cv_mae_log": 0.36418
+          },
+          {
+            "alpha": 10.0,
+            "cv_mae_log": 0.36219
+          },
+          {
+            "alpha": 30.0,
+            "cv_mae_log": 0.36125
+          },
+          {
+            "alpha": 100.0,
+            "cv_mae_log": 0.36378
+          }
+        ],
+        "skill_features": 108
       },
-      {
-        "l2_regularization": 0.0,
-        "learning_rate": 0.05,
-        "max_leaf_nodes": 15,
-        "min_samples_leaf": 50,
-        "cv_mae_log": 0.34773
-      },
-      {
-        "l2_regularization": 0.0,
-        "learning_rate": 0.05,
-        "max_leaf_nodes": 31,
-        "min_samples_leaf": 20,
-        "cv_mae_log": 0.34441
-      },
-      {
-        "l2_regularization": 0.0,
-        "learning_rate": 0.05,
-        "max_leaf_nodes": 31,
-        "min_samples_leaf": 50,
-        "cv_mae_log": 0.34798
-      },
-      {
-        "l2_regularization": 0.0,
-        "learning_rate": 0.1,
-        "max_leaf_nodes": 15,
-        "min_samples_leaf": 20,
-        "cv_mae_log": 0.34463
-      },
-      {
-        "l2_regularization": 0.0,
-        "learning_rate": 0.1,
-        "max_leaf_nodes": 15,
-        "min_samples_leaf": 50,
-        "cv_mae_log": 0.34849
-      },
-      {
-        "l2_regularization": 0.0,
-        "learning_rate": 0.1,
-        "max_leaf_nodes": 31,
-        "min_samples_leaf": 20,
-        "cv_mae_log": 0.34647
-      },
-      {
-        "l2_regularization": 0.0,
-        "learning_rate": 0.1,
-        "max_leaf_nodes": 31,
-        "min_samples_leaf": 50,
-        "cv_mae_log": 0.34923
-      },
-      {
-        "l2_regularization": 1.0,
-        "learning_rate": 0.05,
-        "max_leaf_nodes": 15,
-        "min_samples_leaf": 20,
-        "cv_mae_log": 0.34559
-      },
-      {
-        "l2_regularization": 1.0,
-        "learning_rate": 0.05,
-        "max_leaf_nodes": 15,
-        "min_samples_leaf": 50,
-        "cv_mae_log": 0.34798
-      },
-      {
-        "l2_regularization": 1.0,
-        "learning_rate": 0.05,
-        "max_leaf_nodes": 31,
-        "min_samples_leaf": 20,
-        "cv_mae_log": 0.34564
-      },
-      {
-        "l2_regularization": 1.0,
-        "learning_rate": 0.05,
-        "max_leaf_nodes": 31,
-        "min_samples_leaf": 50,
-        "cv_mae_log": 0.34908
-      },
-      {
-        "l2_regularization": 1.0,
-        "learning_rate": 0.1,
-        "max_leaf_nodes": 15,
-        "min_samples_leaf": 20,
-        "cv_mae_log": 0.34689
-      },
-      {
-        "l2_regularization": 1.0,
-        "learning_rate": 0.1,
-        "max_leaf_nodes": 15,
-        "min_samples_leaf": 50,
-        "cv_mae_log": 0.34834
-      },
-      {
-        "l2_regularization": 1.0,
-        "learning_rate": 0.1,
-        "max_leaf_nodes": 31,
-        "min_samples_leaf": 20,
-        "cv_mae_log": 0.34641
-      },
-      {
-        "l2_regularization": 1.0,
-        "learning_rate": 0.1,
-        "max_leaf_nodes": 31,
-        "min_samples_leaf": 50,
-        "cv_mae_log": 0.34999
+      "student": {
+        "gbm_params": {
+          "l2_regularization": 0.0,
+          "learning_rate": 0.05,
+          "max_leaf_nodes": 31,
+          "min_samples_leaf": 20
+        },
+        "gbm_cv": [
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.3644
+          },
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.3638
+          },
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.36009
+          },
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.36295
+          },
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.36657
+          },
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.3651
+          },
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.36174
+          },
+          {
+            "l2_regularization": 0.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.36575
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.36521
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.3626
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.36045
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.36259
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.36463
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 15,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.36414
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 20,
+            "cv_mae_log": 0.36195
+          },
+          {
+            "l2_regularization": 1.0,
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 50,
+            "cv_mae_log": 0.36048
+          }
+        ],
+        "ridge_alpha": 30.0,
+        "ridge_cv": [
+          {
+            "alpha": 0.3,
+            "cv_mae_log": 0.37385
+          },
+          {
+            "alpha": 1.0,
+            "cv_mae_log": 0.3728
+          },
+          {
+            "alpha": 3.0,
+            "cv_mae_log": 0.37085
+          },
+          {
+            "alpha": 10.0,
+            "cv_mae_log": 0.36803
+          },
+          {
+            "alpha": 30.0,
+            "cv_mae_log": 0.36608
+          },
+          {
+            "alpha": 100.0,
+            "cv_mae_log": 0.36747
+          }
+        ],
+        "skill_features": 121
       }
-    ],
-    "ridge_alpha": 30.0,
-    "ridge_cv": [
-      {
-        "alpha": 0.3,
-        "cv_mae_log": 0.36114
-      },
-      {
-        "alpha": 1.0,
-        "cv_mae_log": 0.36052
-      },
-      {
-        "alpha": 3.0,
-        "cv_mae_log": 0.35936
-      },
-      {
-        "alpha": 10.0,
-        "cv_mae_log": 0.35766
-      },
-      {
-        "alpha": 30.0,
-        "cv_mae_log": 0.35713
-      },
-      {
-        "alpha": 100.0,
-        "cv_mae_log": 0.35975
-      }
-    ],
-    "skill_features": 108
+    }
   },
   "split_sha256": {
-    "train": "f2c8ef8c0db222de90f1ae6278facbc94ca0ca8e1b2f7f205a06fd68162764e6",
-    "calib": "68ee03b3f7b04f337cecd60a43f5233ced206b359827e8d6866d47b5442ba10c",
-    "dev": "55f5b25177dd4809b703c4d81ce1cf67428f6b0ef3bf6ff057b58e0c4d9db05d",
-    "test": "d096592e1236b1c7c0f9432f7621925ed0e22f17216067ec8af87b5dfb7b6e0f"
+    "train": "7b855d1608f1f79c78325ec70a43af8b2eb1516f00da09563b2c2b9054f20ff2",
+    "calib": "8978e82fe4b9ce075d4260a156e7b5718e94ea2bf5607644115edbbfc900ae8d",
+    "dev": "41e31578f68cfa0e886c48fdcb6e5c1f2b76d28287de5c94bf0814e0e23874ad",
+    "test": "6c39228141e699743e0f8abeb4576d3bf3baea88f5276e609b08e995faa3e316"
   },
-  "frame_sha256": "6a0cf944f05fb8c1030a5d21e3965bed09f3f002ef479970b42f82f70e55d419",
-  "model_version": "salary-v0-faa6ddc-dirty",
-  "feature_version": "v0",
+  "frame_sha256": "b985142480b527cd1b8c0fed39e3386ba8cb32d66e80c54670a43a29af6ec6c9",
+  "model_version": "salary-student-2ff7e25-dirty",
+  "feature_version": "student",
+  "extraction_model": "qwen3_1p7b_r16_clean-awq",
   "level": 0.8,
   "config": "configs/salary.toml"
 }

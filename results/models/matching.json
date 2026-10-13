@@ -1,0 +1,295 @@
+{
+  "source_script": "src/radar/models/matching.py",
+  "command": "python -m radar.models.matching evaluate",
+  "commit": "7b7e95d-dirty",
+  "created_at": "2026-10-13T09:07:04+00:00",
+  "metrics": {
+    "dev.bm25.ndcg": {
+      "value": 0.3553,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3361,
+      "ci_high": 0.3758
+    },
+    "dev.bm25.mrr": {
+      "value": 0.7869,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.7482,
+      "ci_high": 0.8252
+    },
+    "dev.bm25.recall": {
+      "value": 0.3401,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3082,
+      "ci_high": 0.3714
+    },
+    "dev.dense_e5-small.ndcg": {
+      "value": 0.3601,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3402,
+      "ci_high": 0.3803
+    },
+    "dev.dense_e5-small.mrr": {
+      "value": 0.6074,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.5606,
+      "ci_high": 0.6525
+    },
+    "dev.dense_e5-small.recall": {
+      "value": 0.3078,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.2765,
+      "ci_high": 0.3383
+    },
+    "dev.rrf_e5-small.ndcg": {
+      "value": 0.4007,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3822,
+      "ci_high": 0.4195
+    },
+    "dev.rrf_e5-small.mrr": {
+      "value": 0.7851,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.7455,
+      "ci_high": 0.8224
+    },
+    "dev.rrf_e5-small.recall": {
+      "value": 0.3655,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3347,
+      "ci_high": 0.3954
+    },
+    "dev.fusion_e5-small@70.ndcg": {
+      "value": 0.423,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.4045,
+      "ci_high": 0.4421
+    },
+    "dev.fusion_e5-small@70.mrr": {
+      "value": 0.8434,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.8089,
+      "ci_high": 0.8761
+    },
+    "dev.fusion_e5-small@70.recall": {
+      "value": 0.3761,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.3449,
+      "ci_high": 0.4076
+    },
+    "dev.diff.bm25.minus.fusion_e5-small@70.ndcg": {
+      "value": -0.0677,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0808,
+      "ci_high": -0.0558
+    },
+    "dev.diff.bm25.minus.fusion_e5-small@70.mrr": {
+      "value": -0.0566,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0878,
+      "ci_high": -0.027
+    },
+    "dev.diff.bm25.minus.fusion_e5-small@70.recall": {
+      "value": -0.036,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0504,
+      "ci_high": -0.0221
+    },
+    "dev.diff.dense_e5-small.minus.fusion_e5-small@70.ndcg": {
+      "value": -0.0628,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0798,
+      "ci_high": -0.0465
+    },
+    "dev.diff.dense_e5-small.minus.fusion_e5-small@70.mrr": {
+      "value": -0.2361,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.2791,
+      "ci_high": -0.1901
+    },
+    "dev.diff.dense_e5-small.minus.fusion_e5-small@70.recall": {
+      "value": -0.0684,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.089,
+      "ci_high": -0.0494
+    },
+    "dev.diff.dense_e5-small.minus.bm25.ndcg": {
+      "value": 0.0049,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0184,
+      "ci_high": 0.0272
+    },
+    "dev.diff.dense_e5-small.minus.bm25.mrr": {
+      "value": -0.1795,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.2321,
+      "ci_high": -0.1244
+    },
+    "dev.diff.dense_e5-small.minus.bm25.recall": {
+      "value": -0.0324,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0572,
+      "ci_high": -0.0079
+    },
+    "dev.diff.rrf_e5-small.minus.fusion_e5-small@70.ndcg": {
+      "value": -0.0223,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.032,
+      "ci_high": -0.0133
+    },
+    "dev.diff.rrf_e5-small.minus.fusion_e5-small@70.mrr": {
+      "value": -0.0584,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0858,
+      "ci_high": -0.0305
+    },
+    "dev.diff.rrf_e5-small.minus.fusion_e5-small@70.recall": {
+      "value": -0.0106,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0168,
+      "ci_high": -0.005
+    },
+    "dev.diff.rrf_e5-small.minus.bm25.ndcg": {
+      "value": 0.0454,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0288,
+      "ci_high": 0.062
+    },
+    "dev.diff.rrf_e5-small.minus.bm25.mrr": {
+      "value": -0.0018,
+      "n": null,
+      "denominator": null,
+      "ci_low": -0.0445,
+      "ci_high": 0.0412
+    },
+    "dev.diff.rrf_e5-small.minus.bm25.recall": {
+      "value": 0.0254,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0115,
+      "ci_high": 0.0402
+    },
+    "dev.diff.fusion_e5-small@70.minus.bm25.ndcg": {
+      "value": 0.0677,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0558,
+      "ci_high": 0.0808
+    },
+    "dev.diff.fusion_e5-small@70.minus.bm25.mrr": {
+      "value": 0.0566,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.027,
+      "ci_high": 0.0878
+    },
+    "dev.diff.fusion_e5-small@70.minus.bm25.recall": {
+      "value": 0.036,
+      "n": null,
+      "denominator": null,
+      "ci_low": 0.0221,
+      "ci_high": 0.0504
+    },
+    "data.pool": {
+      "value": 11124,
+      "n": null,
+      "denominator": null
+    },
+    "data.pool_open_now": {
+      "value": 6124,
+      "n": null,
+      "denominator": null
+    },
+    "data.queries_dev": {
+      "value": 300,
+      "n": null,
+      "denominator": null
+    },
+    "data.relevant_median": {
+      "value": 154.5,
+      "n": null,
+      "denominator": null
+    },
+    "data.highly_relevant_median": {
+      "value": 12.5,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "definitions": {
+    "pool": "IT dedup entities of trudvsem, Habr Career and SuperJob whose latest record has valid fields of the extraction model with a role other than non_it; text is the extractor input of that record.",
+    "queries": "Synthetic resumes rendered by templates from the extracted fields of a seed vacancy (role title, grade, experience, 60-100% of its skills plus up to 2 common skills of the role, city, remote); seeds with at least 3 skills, split dev/test by a salted hash of the entity id.",
+    "relevance": "2: same role bucket, grade within one step, place fits and the resume covers at least half of the vacancy's extracted skills; 1: the same without the skill condition; 0 otherwise.",
+    "ndcg": "nDCG@10 with gains 2^rel - 1 against the ideal ranking of the whole pool.",
+    "mrr": "Reciprocal rank of the first vacancy with relevance 2.",
+    "recall": "Vacancies with relevance 2 in the top 50 divided by min(their number, 50).",
+    "ci": "Percentile bootstrap over resumes, resamples and seed in configs/eval.toml; differences paired."
+  },
+  "limits_ru": [
+    "Резюме синтетические: шаблон из полей вакансии, короткий и перечисляющий навыки. Настоящие резюме длиннее и написаны свободным текстом, на них лексический поиск теряет преимущество совпадения слов.",
+    "Релевантность задана правилом по извлечённым полям, а не оценкой человека; ошибки извлечения становятся ошибками разметки.",
+    "Вес слияния выбран на dev, поэтому число fusion на dev оптимистично на величину выбора; тест считается один раз."
+  ],
+  "config": "configs/matching.toml",
+  "best_dev": "fusion_e5-small@70",
+  "served": "fusion_e5-small@70",
+  "selection": {
+    "tuned_fusion": {
+      "fusion_e5-small": "fusion_e5-small@70"
+    },
+    "fusion_grid_ndcg": {
+      "fusion_e5-small@50": 0.3979,
+      "fusion_e5-small@60": 0.4091,
+      "fusion_e5-small@70": 0.423,
+      "fusion_e5-small@80": 0.4222,
+      "fusion_e5-small@90": 0.4099
+    }
+  },
+  "embeddings": {
+    "intfloat/multilingual-e5-small": {
+      "model": "intfloat/multilingual-e5-small",
+      "max_length": 512,
+      "device": "cpu",
+      "dtype": "float32",
+      "pool": {
+        "texts": 11124,
+        "truncated": 1846,
+        "seconds": 2770.5,
+        "prefix": "passage: "
+      },
+      "queries": {
+        "texts": 600,
+        "truncated": 0,
+        "seconds": 11.3,
+        "prefix": "query: "
+      },
+      "pool_ids_sha256": "b654eb3789bd32fe4d57feb2224fc76a085e81ad0842b55e81151bf3af0449de",
+      "query_ids_sha256": "a7f181afaaf74a9399be695b0883041d76aab5a9ae16fa30049b4e709054822c"
+    }
+  },
+  "model_version": "match-fusion_e5-small@70-7b7e95d-dirty"
+}

@@ -1,9 +1,17 @@
-"""Training frame of the salary model, v0 features, and a split without near-duplicate leakage.
+"""Training frame of the salary model, two feature sets, and a split without near-duplicate leakage.
 
 Population: IT dedup entities (staging.int_vacancy_entities, role bucket not `not_it`) of trudvsem
-(API and snapshots, one portal) and Habr Career with a stated RUB salary, one row per entity, fields
-of its latest record. Part-time vacancies are left out (trudvsem schedule «Неполный рабочий день» or
-employment «Частичная занятость», Habr part_time): the target is a full-time monthly amount.
+(API and snapshots, one portal), Habr Career and SuperJob with a stated RUB salary, one row per
+entity, fields of its latest record. Part-time vacancies are left out (trudvsem schedule «Неполный
+рабочий день» or employment «Частичная занятость», Habr part_time, SuperJob type of work «Неполный
+рабочий день» or «Частичная занятость / Совместительство»): the target is a full-time monthly amount.
+The latest record must also carry valid fields of the extraction model named in the config and a
+role other than `non_it` there, so that both feature sets describe the same rows.
+
+Feature sets, both through `salary_features.feature_row` keys: `rules` are the rule fields of the
+marts (role and grade by title, skills by dictionary), `student` the fields the fine-tuned extractor
+gave the same record. The frame keeps both as `rules_<key>` and `student_<key>`;
+`with_features` puts one set under the plain keys the models read.
 
 Target: the midpoint of the stated range in RUB per month; a single bound stands for itself. Both
 sources publish monthly amounts without a period or gross/net field, so amounts stay as stated, as
@@ -32,12 +40,25 @@ import pandas as pd
 import pyarrow.parquet as pq
 
 from radar.dedup.normalize import normalize_title
-from radar.models.salary_features import ROLE_GROUP, UNKNOWN
+from radar.models.salary_features import ROLE_GROUP, UNKNOWN, OutOfScope, feature_row
 
 log = logging.getLogger("radar.models.salary_data")
 
 TRAIN, CALIB, DEV, TEST, WITHHELD = "train", "calib", "dev", "test", "withheld"
-PART_TIME_SCHEDULE = "Неполный рабочий день"
+RULES, STUDENT = "rules", "student"
+FEATURE_SETS = (RULES, STUDENT)
+FEATURE_KEYS = (
+    "role_bucket",
+    "role_group",
+    "grade",
+    "region_group",
+    "work_format",
+    "employment_type",
+    "source",
+    "experience_min",
+    "skills",
+)
+PART_TIME_SCHEDULE = ("Неполный рабочий день", "Частичная занятость")
 PART_TIME_EMPLOYMENT = ("Частичная занятость", "part_time")
 INTERNSHIP_EMPLOYMENT = "Стажировка"
 NUMBERS = ("salary_from", "salary_to", "experience_min_years")
@@ -72,11 +93,18 @@ terms AS (
     FROM staging.stg_habr
     WHERE (source_id, dt) IN (SELECT latest_source_id, latest_dt FROM latest WHERE latest_source = 'habr')
     LIMIT 1 BY source_id, dt
+    UNION ALL
+    SELECT 'superjob' AS source, source_id, dt, CAST(NULL AS Nullable(String)) AS employment,
+        CAST(type_of_work AS Nullable(String)) AS schedule
+    FROM staging.stg_superjob
+    WHERE (source_id, dt) IN (SELECT latest_source_id, latest_dt FROM latest WHERE latest_source = 'superjob')
+    LIMIT 1 BY source_id, dt
 ),
 titles AS (
     SELECT source, source_id, title FROM staging.int_vacancy_records WHERE entity_id IN ({_SALARIED})
 )
-SELECT l.entity_id AS entity_id, l.family AS family, l.first_seen AS first_seen,
+SELECT l.entity_id AS entity_id, l.family AS family, l.latest_source AS latest_source,
+    l.latest_source_id AS latest_source_id, l.first_seen AS first_seen,
     l.employer_key AS employer_key, ti.title AS title,
     l.salary_from AS salary_from, l.salary_to AS salary_to,
     l.role_bucket AS role_bucket, l.grade AS grade, l.work_format AS work_format,
@@ -103,6 +131,21 @@ SETTINGS join_use_nulls = 1
 FORMAT TabSeparatedWithNames
 """
 
+# Fields of the extraction model for the latest record of each entity; the newest extracted version
+# of that record when the record changed after the run.
+STUDENT_SQL = f"""
+SELECT source, source_id, valid, role, grade, arrayStringConcat(skills, '|') AS skills, work_format,
+    arrayStringConcat(cities, '|') AS cities, experience_min, experience_max, employment_type
+FROM staging.stg_vacancy_fields
+WHERE model_id = {{model:String}}
+    AND (source, source_id) IN (
+        SELECT latest_source, latest_source_id FROM staging.int_vacancy_entities WHERE entity_id IN ({_SALARIED})
+    )
+ORDER BY dt DESC, created_at DESC
+LIMIT 1 BY source, source_id
+FORMAT TabSeparatedWithNames
+"""
+
 
 def _tsv(text: str) -> pd.DataFrame:
     return pd.read_csv(
@@ -110,12 +153,18 @@ def _tsv(text: str) -> pd.DataFrame:
     )
 
 
-def load_clickhouse() -> tuple[pd.DataFrame, pd.DataFrame]:
+def load_clickhouse(extraction_model: str) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     from radar.stream.clickhouse import ClickHouse
 
     with ClickHouse() as ch:
         entities = _tsv(ch.query(ENTITIES_SQL))
         records = _tsv(ch.query(RECORDS_SQL))
+        student = _tsv(ch.query(STUDENT_SQL, model=extraction_model))
+    for column in student.columns:
+        student[column] = [v if isinstance(v, str) else None for v in student[column]]
+    student["valid"] = student["valid"].map({"true": True, "1": True, "false": False, "0": False})
+    for column in ("experience_min", "experience_max"):
+        student[column] = pd.to_numeric(student[column])
     for column in entities.columns:
         if column not in NUMBERS:
             entities[column] = [v if isinstance(v, str) else None for v in entities[column]]
@@ -123,7 +172,7 @@ def load_clickhouse() -> tuple[pd.DataFrame, pd.DataFrame]:
         entities[column] = pd.to_numeric(entities[column])
     entities["no_experience"] = entities["no_experience"].map({"1": True, "0": False})
     entities["first_seen"] = pd.to_datetime(entities["first_seen"], errors="coerce").dt.date
-    return entities, records
+    return entities, records, student
 
 
 def load_corpus_groups(path: Path) -> dict[str, tuple[str, str]]:
@@ -147,6 +196,33 @@ def midpoint(salary_from: float | None, salary_to: float | None) -> float:
 
 def is_part_time(employment: str | None, schedule: str | None) -> bool:
     return employment in PART_TIME_EMPLOYMENT or bool(schedule and schedule.startswith(PART_TIME_SCHEDULE))
+
+
+def _number(value: Any) -> float | None:
+    if value is None or (isinstance(value, float) and np.isnan(value)):
+        return None
+    return float(value)
+
+
+def student_fields(rec: Mapping[str, Any]) -> dict[str, Any]:
+    """Extraction fields from one row of STUDENT_SQL."""
+    low, high = _number(rec["experience_min"]), _number(rec["experience_max"])
+    return {
+        "role": rec["role"],
+        "grade": rec["grade"],
+        "skills": rec["skills"].split("|") if rec["skills"] else [],
+        "work_format": rec["work_format"],
+        "cities": rec["cities"].split("|") if rec["cities"] else [],
+        "experience_years": None if low is None and high is None else {"min": low, "max": high},
+        "employment_type": rec["employment_type"],
+    }
+
+
+def with_features(frame: pd.DataFrame, feature_set: str) -> pd.DataFrame:
+    """The frame with one feature set under the plain keys of `feature_row`."""
+    renamed = frame.rename(columns={f"{feature_set}_{k}": k for k in FEATURE_KEYS})
+    others = [f"{s}_{k}" for s in FEATURE_SETS if s != feature_set for k in FEATURE_KEYS]
+    return renamed.drop(columns=[c for c in others if c in renamed.columns])
 
 
 def v0_feature_row(rec: Mapping[str, Any]) -> dict[str, Any]:
@@ -246,11 +322,15 @@ def group_links(
 def build_frame(
     entities: pd.DataFrame,
     records: pd.DataFrame,
+    student: pd.DataFrame,
     corpus: Mapping[str, tuple[str, str]],
     shares: SplitShares,
     min_monthly: float,
 ) -> tuple[pd.DataFrame, dict[str, int]]:
-    """Rows of the model with features, target, group and split; counts of every filter step."""
+    """Rows of the model with both feature sets, target, group and split; counts of every filter step.
+
+    Splits are drawn over all entities before any filter, so a filter never moves a vacancy between
+    splits."""
     counts = {"entities_it_rub_salary": len(entities)}
     comp = components(group_links(entities, records, corpus), entities["entity_id"])
     pinned: dict[str, set[str]] = {}
@@ -258,11 +338,21 @@ def build_frame(
         if rid in corpus:
             pinned.setdefault(comp[e], set()).add(corpus[rid][1])
     split_of = {c: assign(c, pinned.get(c, set()), shares) for c in set(comp.values())}
+    fields_of = {(r["source"], r["source_id"]): r for r in records_of(student) if r["valid"] is True}
 
     rows = []
     for rec in records_of(entities):
         mid = midpoint(rec["salary_from"], rec["salary_to"])
         group = comp[rec["entity_id"]]
+        extracted = fields_of.get((rec["latest_source"], rec["latest_source_id"]))
+        student_row: dict[str, Any] = {}
+        status = "missing"
+        if extracted is not None:
+            try:
+                student_row = feature_row(student_fields(extracted), rec["family"])
+                status = "ok"
+            except OutOfScope:
+                status = "non_it"
         rows.append(
             {
                 "entity_id": rec["entity_id"],
@@ -273,12 +363,19 @@ def build_frame(
                 "salary_to": rec["salary_to"],
                 "salary_mid": mid,
                 "part_time": is_part_time(rec["employment"], rec["schedule"]),
-                **v0_feature_row(rec),
+                "student_status": status,
+                **{f"{RULES}_{k}": v for k, v in v0_feature_row(rec).items()},
+                **{f"{STUDENT}_{k}": student_row.get(k) for k in FEATURE_KEYS},
             }
         )
     frame = pd.DataFrame(rows)
     counts["part_time"] = int(frame["part_time"].sum())
     frame = frame[~frame["part_time"]]
+    for status in ("missing", "non_it"):
+        dropped = frame["student_status"] == status
+        counts[f"student_{status}"] = int(dropped.sum())
+        frame = frame[~dropped]
+    frame = frame.drop(columns=["student_status"])
     # A bound stored as NaN rather than NULL passes the SQL filter and carries no amount.
     no_amount = frame["salary_mid"].isna()
     counts["no_amount"] = int(no_amount.sum())

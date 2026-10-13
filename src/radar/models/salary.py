@@ -1,8 +1,8 @@
-"""Salary estimate for an IT vacancy: point and interval in RUB per month (v0 features).
+"""Salary estimate for an IT vacancy: point and interval in RUB per month.
 
-Data, target and the leak-free split: `radar.models.salary_data`. Features, defined on the extraction
-schema so that the student's fields (6.7) replace the v0 rule fields without touching the models:
-`radar.models.salary_features`.
+Data, target, the two feature sets and the leak-free split: `radar.models.salary_data`. Features are
+defined on the extraction schema (`radar.models.salary_features`), so the same models run on the rule
+fields of the marts (`rules`, v0) and on the fields of the fine-tuned extractor (`student`, 6.7).
 
 Models, all on the log of the monthly midpoint and fitted on the `train` part only:
 - global median and a cell median (role bucket x grade x region, backing off to coarser cells below
@@ -10,11 +10,12 @@ Models, all on the log of the monthly midpoint and fitted on the `train` part on
 - ridge on one-hot features, interval by split conformal on absolute residuals;
 - gradient boosting (sklearn HistGradientBoosting): a median model for the point and two quantile
   models, the interval conformalized on `calib` (CQR) to the nominal level.
-Hyperparameters come from grouped cross-validation inside `train`; dev is scored once per run and
-nothing is chosen on it. Confidence intervals of the metrics are percentile bootstraps over dev
-groups (a group of near-duplicates is drawn as a whole), paired between models.
+Hyperparameters come from grouped cross-validation inside `train`. Every model is fitted once per
+feature set; the boosting models of the two sets are compared on dev with a paired bootstrap, and
+the set is chosen by the rule written in the config before the run. Confidence intervals are
+percentile bootstraps over dev groups (a group of near-duplicates is drawn as a whole).
 
-    python -m radar.models.salary                    query, save data/salary/frame_v0.parquet, fit, score dev,
+    python -m radar.models.salary                    query, save data/salary/frame.parquet, fit, score dev,
                                                      write results and models/salary/
     python -m radar.models.salary --frame PATH       same on a saved frame instead of ClickHouse
     python -m radar.models.salary --final-test       saved models on test of the saved frame (once)
@@ -46,6 +47,9 @@ from radar.config import RESULTS, ROOT, data_dir, load_dotenv
 from radar.models.salary_data import (
     CALIB,
     DEV,
+    FEATURE_SETS,
+    RULES,
+    STUDENT,
     TEST,
     TRAIN,
     SplitShares,
@@ -54,8 +58,10 @@ from radar.models.salary_data import (
     load_clickhouse,
     load_corpus_groups,
     records_of,
+    with_features,
 )
 from radar.models.salary_features import BLOCKS, Encoder, feature_row
+from radar.models.salary_shap import block_shap, summary
 from radar.results import git_commit, invocation, write_result
 
 log = logging.getLogger("radar.models.salary")
@@ -68,9 +74,11 @@ MODEL_DIR = ROOT / "models" / "salary"
 ARTIFACT = "salary.pkl"
 # Everything fitted in the run, baselines included, so the test is scored on exactly these models.
 EVAL_ARTIFACT = "salary_eval.pkl"
-FEATURE_VERSION = "v0"
 RESULT = "models/salary.json"
 RESULT_TEST = "models/salary_test.json"
+SHAP_FIGURE = RESULTS / "models" / "figures" / "salary_shap.png"
+# Paired differences reported between the feature sets (student minus rules).
+COMPARED = ("mae_rub", "mape", "within_20pct", "coverage", "width_rub")
 CELL_LEVELS: tuple[tuple[str, ...], ...] = (
     ("role_bucket", "grade", "region_group"),
     ("role_bucket", "region_group"),
@@ -98,12 +106,17 @@ class Config:
     n_resamples: int
     bootstrap_seed: int
     confidence: float
+    extraction_model: str = ""
+    on_tie: str = STUDENT
+    shap_background: int = 100
 
 
 def load_config(path: Path = CONFIG, eval_path: Path = EVAL_CONFIG) -> Config:
     raw = tomllib.loads(path.read_text(encoding="utf-8"))
     boot = tomllib.loads(eval_path.read_text(encoding="utf-8"))["bootstrap"]
     s, m = raw["split"], raw["model"]
+    if raw["selection"]["on_tie"] not in FEATURE_SETS:
+        raise ValueError(f"selection.on_tie must be one of {FEATURE_SETS}")
     return Config(
         min_monthly=float(raw["data"]["min_monthly_rub"]),
         shares=SplitShares(s["salt"], s["dev_share"], s["test_share"], s["calib_share"]),
@@ -120,6 +133,9 @@ def load_config(path: Path = CONFIG, eval_path: Path = EVAL_CONFIG) -> Config:
         n_resamples=int(boot["n_resamples"]),
         bootstrap_seed=int(boot["seed"]),
         confidence=float(boot["confidence"]),
+        extraction_model=str(raw["data"]["extraction_model"]),
+        on_tie=str(raw["selection"]["on_tie"]),
+        shap_background=int(raw["importance"]["shap_background"]),
     )
 
 
@@ -365,8 +381,10 @@ def fit_all(
     cfg: Config,
     params: dict[str, float] | None = None,
     alpha: float | None = None,
+    feature_set: str = STUDENT,
 ) -> Fitted:
-    """Every model on `train`, intervals calibrated on `calib`; given params and alpha skip the search."""
+    """Every model on `train`, intervals calibrated on `calib`; given params and alpha skip the search.
+    `feature_set` only names the model version: the frames carry the features already."""
     rows_t, rows_c = records_of(train), records_of(calib)
     y_t, y_c = np.log(train["salary_mid"].to_numpy()), np.log(calib["salary_mid"].to_numpy())
     groups = train["group_id"].to_numpy().astype(str)
@@ -413,7 +431,7 @@ def fit_all(
         margin=margin,
         level=cfg.level,
         cells=cells,
-        version=f"salary-{FEATURE_VERSION}-{git_commit()}",
+        version=f"salary-{feature_set}-{git_commit()}",
         trained_at=datetime.now(UTC).isoformat(timespec="seconds"),
     )
     return Fitted(model, ridge, ridge_margin, fill, float(np.median(y_t)), params, gbm_cv, alpha, ridge_cv)
@@ -497,7 +515,14 @@ def evaluate(fitted: Fitted, frame: pd.DataFrame, cfg: Config, split: str) -> di
                 if metric in ("mae_rub", "mape", "coverage", "width_rub")
             }
         breakdown[dim] = table
-    return {"metrics": metrics, "breakdown": breakdown, "rows": len(frame), "groups": int(frame["group_id"].nunique())}
+    return {
+        "metrics": metrics,
+        "breakdown": breakdown,
+        "rows": len(frame),
+        "groups": int(frame["group_id"].nunique()),
+        "per_row": per_row,
+        "weights": W,
+    }
 
 
 def importance(model: SalaryModel, frame: pd.DataFrame, cfg: Config) -> dict[str, dict[str, float]]:
@@ -527,7 +552,7 @@ def temporal_check(frame: pd.DataFrame, fitted: Fitted, cfg: Config) -> dict[str
     train = frame[before & (frame["split"] == TRAIN)]
     calib = frame[before & (frame["split"] == CALIB)]
     dev_late = frame[after & (frame["split"] == DEV)]
-    refit = fit_all(train, calib, cfg, params=fitted.gbm_params, alpha=fitted.ridge_alpha)
+    refit = fit_all(train, calib, cfg, params=fitted.gbm_params, alpha=fitted.ridge_alpha, feature_set="temporal")
     W = group_weights(dev_late["group_id"].astype(str).tolist(), cfg.n_resamples, cfg.bootstrap_seed)
     y = dev_late["salary_mid"].to_numpy(dtype=float)
     out: dict[str, Any] = {"cutoff": cfg.cutoff.isoformat(), "train_rows": len(train), "calib_rows": len(calib)}
@@ -543,11 +568,98 @@ def _share(n: int, d: int) -> dict[str, Any]:
     return {"value": round(n / d, 4) if d else 0.0, "n": n, "denominator": d}
 
 
+def compare(evals: Mapping[str, dict[str, Any]], cfg: Config, split: str) -> dict[str, dict[str, Any]]:
+    """Boosting with CQR of each feature set on the same rows, and student minus rules paired."""
+    out: dict[str, dict[str, Any]] = {}
+    for fs in FEATURE_SETS:
+        for metric in COMPARED:
+            out[f"{split}_{fs}_gbm_cqr_{metric}"] = evals[fs]["metrics"][f"{split}_gbm_cqr_{metric}"]
+    W = evals[STUDENT]["weights"]
+    a, b = evals[STUDENT]["per_row"]["gbm_cqr"], evals[RULES]["per_row"]["gbm_cqr"]
+    for metric in COMPARED:
+        out[f"{split}_diff_student_minus_rules_gbm_cqr_{metric}"] = paired(a[metric], b[metric], W, cfg.confidence)
+    return out
+
+
+def choose(diff: Mapping[str, float], on_tie: str) -> tuple[str, str]:
+    """Feature set by the paired dev difference of MAE (student minus rules) and the tie rule."""
+    if diff["ci_high"] < 0:
+        return STUDENT, "student MAE lower, the whole interval of the difference below zero"
+    if diff["ci_low"] > 0:
+        return RULES, "rules MAE lower, the whole interval of the difference above zero"
+    return on_tie, f"interval of the difference covers zero, tie rule picks {on_tie}"
+
+
+SHAP_LEVELS = {
+    "role_bucket": "role",
+    "grade": "grade",
+    "region_group": "region",
+    "work_format": "work_format",
+    "employment_type": "employment_type",
+    "source": "source",
+}
+
+
+def shap_values(
+    model: SalaryModel, train: pd.DataFrame, frame: pd.DataFrame, cfg: Config, figure: Path | None = None
+) -> dict[str, Any]:
+    """Exact block SHAP of the boosting point model on `frame`, background drawn from `train`."""
+    enc = model.encoder
+    X = enc.tree_matrix(enc.encode(records_of(frame)))
+    rng = np.random.default_rng(cfg.seed)
+    picked = rng.choice(len(train), size=min(cfg.shap_background, len(train)), replace=False)
+    background = enc.tree_matrix(enc.encode(records_of(train.iloc[np.sort(picked)])))
+    names = list(BLOCKS)
+    phi, base = block_shap(model.point.predict, X, background, [enc.block_columns(b) for b in names])
+    gap = np.abs(phi.sum(axis=1) + base - model.point.predict(X))
+    levels = {c: frame[c].astype(str).to_numpy() for c in SHAP_LEVELS}
+    out = summary(phi, names, levels, SHAP_LEVELS) | {
+        "rows": len(frame),
+        "background_rows": len(background),
+        "base_log": round(float(np.mean(base)), 4),
+        "additivity_max_error_log": float(f"{gap.max():.2e}"),
+    }
+    if figure is not None:
+        plot_shap(out, figure)
+        out["figure"] = figure.relative_to(ROOT).as_posix()
+    return out
+
+
+def plot_shap(out: Mapping[str, Any], path: Path) -> None:
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    fig, axes = plt.subplots(1, 3, figsize=(15, 5), gridspec_kw={"width_ratios": [1, 1, 1.2]})
+    blocks = out["blocks"]
+    names = list(blocks)[::-1]
+    axes[0].barh(names, [blocks[n]["mean_abs_log"] for n in names], color="#4c72b0")
+    axes[0].set_title("mean |SHAP|, log salary")
+    for ax, column in ((axes[1], "grade"), (axes[2], "role_bucket")):
+        table = out["per_level"][column]
+        levels = list(table)[::-1]
+        values = [table[k]["pct"] for k in levels]
+        labels = [f"{k} ({table[k]['rows']})" for k in levels]
+        ax.barh(labels, values, color=["#c44e52" if v < 0 else "#55a868" for v in values])
+        ax.axvline(0, color="black", linewidth=0.8)
+        ax.set_title(f"mean SHAP by {column} (dev rows), %")
+    fig.tight_layout()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(path, dpi=120)
+    plt.close(fig)
+
+
 DEFINITIONS = {
     "target": "Midpoint of the stated range in RUB per month; a single stated bound stands for itself. "
-    "Amounts as the source states them: no period or gross/net field exists in trudvsem or Habr Career.",
-    "population": "IT dedup entities (rule role bucket not not_it) of trudvsem and Habr Career with a RUB "
-    "salary, latest record of each entity, part-time vacancies left out.",
+    "Amounts as the source states them: no period or gross/net field exists in trudvsem, Habr Career or SuperJob.",
+    "population": "IT dedup entities (rule role bucket not not_it) of trudvsem, Habr Career and SuperJob with a "
+    "RUB salary, latest record of each entity, part-time vacancies left out, the latest record extracted by the "
+    "model named in the config with a role other than non_it.",
+    "feature_sets": "rules: role, grade, skills, region and experience of the marts rules; student: the same "
+    "schema fields as the fine-tuned extractor gave them. Same rows, split and models for both.",
+    "selection": "The feature set of /salary is the one with lower dev MAE of boosting with CQR when the paired "
+    "bootstrap interval of the difference excludes zero, otherwise selection.on_tie of the config.",
     "split": "Connected components over entity, dedup text cluster, extraction-corpus group and employer "
     "with one normalized title lie in one split; corpus gold test and dev groups pinned; calib is part of train.",
     "mae_rub": "Mean absolute error of the point against the midpoint, RUB per month.",
@@ -560,48 +672,74 @@ DEFINITIONS = {
     "differences are paired on the same resamples.",
     "importance": "Rise of dev MAE of the boosting point when the columns of one input are shuffled across "
     "dev rows; shuffling breaks correlated inputs together only within a block.",
+    "shap": "Exact Shapley values of the boosting point model (log salary) with the eight inputs of BLOCKS as "
+    "players, interventional over a background sample of train rows; pct is exp(mean SHAP) - 1.",
 }
 
 LIMITS_RU = [
-    "Признаки v0 взяты из правил витрин (роль по заголовку, грейд по заголовку, навыки по словарю), "
-    "а не из извлечения студентом; после разметки всего корпуса студентом модель переобучается на извлечённых полях.",
+    "Поля студента содержат ошибки извлечения, правила витрин свои ошибки; сравнение наборов признаков "
+    "отвечает на вопрос, какой вход лучше для этой модели, а не какой экстрактор точнее.",
     "Gross или net источники не указывают, суммы взяты как опубликованы; источник стоит признаком.",
-    "Почти все строки из trudvsem (портал «Работа России»), Хабр Карьера даёт десятки вакансий: оценка "
-    "для source=habr опирается на малую выборку.",
+    "Почти все строки из trudvsem (портал «Работа России»), Хабр Карьера и SuperJob дают сотни вакансий: "
+    "оценка для source=habr и source=superjob опирается на малую выборку.",
     "Цель это середина опубликованной вилки; вилка «от X» без верхней границы считается как X.",
+    "SHAP описывает модель, а не рынок: вклад признака в прогноз при остальных признаках из фона, "
+    "без причинного смысла (сдвиг вилки от навыка оценивается отдельно в skill_effects.json).",
 ]
 
 
 def run(frame: pd.DataFrame, counts: dict[str, int], cfg: Config, out_dir: Path) -> dict[str, Any]:
-    train, calib, dev = (frame[frame["split"] == s] for s in (TRAIN, CALIB, DEV))
-    fitted = fit_all(train, calib, cfg)
+    fits: dict[str, Fitted] = {}
+    evals: dict[str, dict[str, Any]] = {}
+    for fs in FEATURE_SETS:
+        view = with_features(frame, fs)
+        train, calib, dev = (view[view["split"] == s] for s in (TRAIN, CALIB, DEV))
+        log.info("feature set %s", fs)
+        fits[fs] = fit_all(train, calib, cfg, feature_set=fs)
+        evals[fs] = evaluate(fits[fs], dev, cfg, DEV)
+    comparison = compare(evals, cfg, DEV)
+    chosen, reason = choose(comparison[f"{DEV}_diff_student_minus_rules_gbm_cqr_mae_rub"], cfg.on_tie)
+    log.info("chosen %s: %s", chosen, reason)
+    fitted = fits[chosen]
     out_dir.mkdir(parents=True, exist_ok=True)
-    for name, obj in ((ARTIFACT, fitted.model), (EVAL_ARTIFACT, fitted)):
+    for name, obj in ((ARTIFACT, fitted.model), (EVAL_ARTIFACT, {"chosen": chosen, "fitted": fits})):
         with (out_dir / name).open("wb") as f:
             pickle.dump(obj, f)
     log.info("saved %s", out_dir)
 
-    result = evaluate(fitted, dev, cfg, DEV)
+    view = with_features(frame, chosen)
+    train, dev = view[view["split"] == TRAIN], view[view["split"] == DEV]
     metrics: dict[str, dict[str, Any]] = {f"data_{k}": {"value": v} for k, v in counts.items()}
-    metrics["data_habr_share"] = _share(int((frame["source"] == "habr").sum()), len(frame))
+    for source in ("habr", "superjob"):
+        metrics[f"data_{source}_share"] = _share(int((view["source"] == source).sum()), len(view))
     metrics["gbm_conformal_margin_log"] = {"value": round(fitted.model.margin, 5)}
-    metrics |= result["metrics"]
+    metrics |= evals[chosen]["metrics"] | comparison
     return {
         "metrics": metrics,
-        "breakdown_dev": result["breakdown"],
+        "breakdown_dev": evals[chosen]["breakdown"],
         "importance_dev": importance(fitted.model, dev, cfg),
-        "temporal_dev": temporal_check(frame, fitted, cfg),
+        "shap_dev": shap_values(fitted.model, train, dev, cfg, SHAP_FIGURE),
+        "temporal_dev": temporal_check(view, fitted, cfg),
         "selection": {
-            "gbm_params": fitted.gbm_params,
-            "gbm_cv": fitted.gbm_cv,
-            "ridge_alpha": fitted.ridge_alpha,
-            "ridge_cv": fitted.ridge_cv,
-            "skill_features": len(fitted.model.encoder.skill_vocab),
+            "feature_set": chosen,
+            "reason": reason,
+            "on_tie": cfg.on_tie,
+            "per_set": {
+                fs: {
+                    "gbm_params": fit.gbm_params,
+                    "gbm_cv": fit.gbm_cv,
+                    "ridge_alpha": fit.ridge_alpha,
+                    "ridge_cv": fit.ridge_cv,
+                    "skill_features": len(fit.model.encoder.skill_vocab),
+                }
+                for fs, fit in fits.items()
+            },
         },
         "split_sha256": {s: ids_sha256(frame.loc[frame["split"] == s, "entity_id"]) for s in (TRAIN, CALIB, DEV, TEST)},
         "frame_sha256": frame_digest(frame),
         "model_version": fitted.model.version,
-        "feature_version": FEATURE_VERSION,
+        "feature_version": chosen,
+        "extraction_model": cfg.extraction_model,
         "level": cfg.level,
         "config": str(CONFIG.relative_to(ROOT).as_posix()),
     }
@@ -616,14 +754,23 @@ def log_test_run() -> None:
 
 
 def run_test(frame: pd.DataFrame, cfg: Config, model_dir: Path) -> dict[str, Any]:
-    """Score the models saved by the dev run on test, unchanged."""
+    """Score the models saved by the dev run on test, unchanged: the chosen set in full, both compared."""
     with (model_dir / EVAL_ARTIFACT).open("rb") as f:
-        fitted = pickle.load(f)
-    if not isinstance(fitted, Fitted):
-        raise TypeError(f"{model_dir / EVAL_ARTIFACT} does not hold fitted salary models")
+        saved = pickle.load(f)
+    if not (isinstance(saved, dict) and all(isinstance(saved["fitted"].get(fs), Fitted) for fs in FEATURE_SETS)):
+        raise TypeError(f"{model_dir / EVAL_ARTIFACT} does not hold fitted salary models of both feature sets")
     log_test_run()
-    result = evaluate(fitted, frame[frame["split"] == TEST], cfg, TEST)
-    return {"metrics": result["metrics"], "breakdown_test": result["breakdown"], "model_version": fitted.model.version}
+    evals = {}
+    for fs in FEATURE_SETS:
+        view = with_features(frame, fs)
+        evals[fs] = evaluate(saved["fitted"][fs], view[view["split"] == TEST], cfg, TEST)
+    chosen = saved["chosen"]
+    return {
+        "metrics": evals[chosen]["metrics"] | compare(evals, cfg, TEST),
+        "breakdown_test": evals[chosen]["breakdown"],
+        "feature_version": chosen,
+        "model_version": saved["fitted"][chosen].model.version,
+    }
 
 
 def frame_digest(frame: pd.DataFrame) -> str:
@@ -634,7 +781,7 @@ def frame_digest(frame: pd.DataFrame) -> str:
 
 
 def frame_path() -> Path:
-    return data_dir() / "salary" / f"frame_{FEATURE_VERSION}.parquet"
+    return data_dir() / "salary" / "frame.parquet"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -654,9 +801,9 @@ def main(argv: list[str] | None = None) -> int:
         frame = pd.read_parquet(path)
         counts = json.loads(path.with_suffix(".counts.json").read_text(encoding="utf-8"))
     else:
-        entities, records = load_clickhouse()
+        entities, records, student = load_clickhouse(cfg.extraction_model)
         corpus = load_corpus_groups(data_dir() / "corpus" / "split.parquet")
-        frame, counts = build_frame(entities, records, corpus, cfg.shares, cfg.min_monthly)
+        frame, counts = build_frame(entities, records, student, corpus, cfg.shares, cfg.min_monthly)
         path = frame_path()
         path.parent.mkdir(parents=True, exist_ok=True)
         frame.to_parquet(path, index=False)

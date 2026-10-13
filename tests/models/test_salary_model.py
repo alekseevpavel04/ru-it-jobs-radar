@@ -11,6 +11,7 @@ from radar.models.salary import (
     Config,
     Fitted,
     SalaryModel,
+    choose,
     conformal_quantile,
     evaluate,
     fit_all,
@@ -19,6 +20,7 @@ from radar.models.salary import (
     load_model,
     predict,
     score,
+    shap_values,
     temporal_check,
 )
 from radar.models.salary_data import (
@@ -34,9 +36,12 @@ from radar.models.salary_data import (
     is_part_time,
     midpoint,
     records_of,
+    student_fields,
     v0_feature_row,
+    with_features,
 )
 from radar.models.salary_features import BLOCKS, Encoder, OutOfScope, feature_row, region_group
+from radar.models.salary_shap import block_shap, summary
 
 ROLE_BASE = {"backend": 11.6, "sysadmin_support": 10.9, "ml_ds": 11.9, "qa": 11.2}
 GRADE_SHIFT = {"junior": -0.4, "unknown": 0.0, "senior": 0.35}
@@ -147,6 +152,7 @@ def test_midpoint_and_part_time() -> None:
     assert is_part_time("Частичная занятость", None)
     assert is_part_time(None, "Неполный рабочий день/неполная рабочая неделя")
     assert is_part_time("part_time", None)
+    assert is_part_time(None, "Частичная занятость / Совместительство")
     assert not is_part_time("Полная занятость", "Полный рабочий день")
 
 
@@ -192,6 +198,8 @@ def test_build_frame_keeps_groups_in_one_split() -> None:
         {
             "entity_id": [f"e{i}" for i in range(n)],
             "family": "trudvsem",
+            "latest_source": "trudvsem_snapshot",
+            "latest_source_id": [f"t{i}" for i in range(n)],
             "first_seen": date(2026, 9, 1),
             "employer_key": [f"inn{i % 40}" for i in range(n)],
             "title": ["Программист 1С" if i % 3 else f"Инженер {i}" for i in range(n)],
@@ -215,9 +223,33 @@ def test_build_frame_keeps_groups_in_one_split() -> None:
             "text_cluster_id": [f"c{i % 100}" for i in range(n)],
         }
     )
+    # Record 3 is not extracted, record 4 is non-IT by the student, record 6 failed validation.
+    student = pd.DataFrame(
+        {
+            "source": "trudvsem_snapshot",
+            "source_id": [f"t{i}" for i in range(n) if i != 3],
+            "valid": [i != 6 for i in range(n) if i != 3],
+            "role": ["non_it" if i == 4 else "developer_1c" for i in range(n) if i != 3],
+            "grade": "middle",
+            "skills": "1С|SQL",
+            "work_format": None,
+            "cities": "Москва",
+            "experience_min": 3.0,
+            "experience_max": None,
+            "employment_type": None,
+        }
+    )
     corpus = {"trudvsem:7": ("grp_a", "test"), "trudvsem:8": ("grp_b", "withheld")}
-    frame, counts = build_frame(entities, records, corpus, SplitShares("s", 0.2, 0.2, 0.25), 10000)
+    frame, counts = build_frame(entities, records, student, corpus, SplitShares("s", 0.2, 0.2, 0.25), 10000)
     assert counts["part_time"] == 1
+    assert counts["student_missing"] == 2
+    assert counts["student_non_it"] == 1
+    assert not {"e3", "e4", "e6"} & set(frame["entity_id"])
+    view = with_features(frame, "student")
+    assert view.iloc[0]["region_group"] == "moscow"
+    assert view.iloc[0]["skills"] == ["1С", "SQL"]
+    assert with_features(frame, "rules").iloc[0]["region_group"] == "other"
+    assert not any(c.startswith(("rules_", "student_")) for c in view.columns)
     assert (frame.groupby("group_id")["split"].nunique() == 1).all()
     assert "e7" not in set(frame.loc[frame["split"] != TEST, "entity_id"])
     assert "e8" not in set(frame["entity_id"])
@@ -304,3 +336,67 @@ def test_typical_bounds_are_ordered(fitted_run: tuple[Fitted, pd.DataFrame]) -> 
     out = fitted.model.predict_rows(records_of(frame))
     assert (out["from"] <= out["to"]).all()
     assert (out["low"] <= out["point"]).all() and (out["point"] <= out["high"]).all()
+
+
+def test_student_fields_read_the_extraction_row() -> None:
+    rec = {
+        "role": "backend",
+        "grade": None,
+        "skills": "Go|SQL",
+        "work_format": "remote",
+        "cities": "",
+        "experience_min": float("nan"),
+        "experience_max": 3.0,
+        "employment_type": None,
+    }
+    fields = student_fields(rec)
+    assert fields["skills"] == ["Go", "SQL"]
+    assert fields["cities"] == []
+    assert fields["experience_years"] == {"min": None, "max": 3.0}
+    assert student_fields(rec | {"experience_max": None})["experience_years"] is None
+    assert feature_row(fields, "habr")["region_group"] == "remote"
+
+
+def test_choose_follows_the_interval_then_the_tie_rule() -> None:
+    assert choose({"value": -900.0, "ci_low": -1500.0, "ci_high": -100.0}, "rules")[0] == "student"
+    assert choose({"value": 900.0, "ci_low": 100.0, "ci_high": 1500.0}, "student")[0] == "rules"
+    assert choose({"value": -100.0, "ci_low": -600.0, "ci_high": 400.0}, "student")[0] == "student"
+    assert choose({"value": -100.0, "ci_low": -600.0, "ci_high": 400.0}, "rules")[0] == "rules"
+
+
+def test_linear_model_gets_its_textbook_shapley_values() -> None:
+    rng = np.random.default_rng(0)
+    w = np.array([1.0, -2.0, 0.5, 3.0])
+    X, background = rng.normal(size=(20, 4)), rng.normal(size=(30, 4))
+    phi, base = block_shap(lambda Z: Z @ w, X, background, [[0], [1, 2], [3]])
+    centered = (X - background.mean(axis=0)) * w
+    assert np.allclose(phi[:, 0], centered[:, 0])
+    assert np.allclose(phi[:, 1], centered[:, 1] + centered[:, 2])
+    assert np.allclose(phi.sum(axis=1) + base, X @ w)
+
+
+def test_interaction_is_split_equally() -> None:
+    X, background = np.array([[1.0, 1.0]]), np.array([[0.0, 0.0]])
+    phi, _ = block_shap(lambda Z: Z[:, 0] * Z[:, 1], X, background, [[0], [1]])
+    assert np.allclose(phi, [[0.5, 0.5]])
+
+
+def test_summary_orders_blocks_and_skips_rare_levels() -> None:
+    phi = np.column_stack([np.r_[np.full(12, 0.2), np.full(3, -0.1)], np.zeros(15)])
+    levels = {"grade": np.array(["senior"] * 12 + ["intern"] * 3)}
+    out = summary(phi, ["grade", "role"], levels, {"grade": "grade"})
+    assert list(out["blocks"]) == ["grade", "role"]
+    assert list(out["per_level"]["grade"]) == ["senior"]
+    assert out["per_level"]["grade"]["senior"]["pct"] == round(float(np.expm1(0.2)) * 100, 1)
+
+
+def test_shap_of_the_fitted_model_adds_up(fitted_run: tuple[Fitted, pd.DataFrame]) -> None:
+    fitted, frame = fitted_run
+    out = shap_values(
+        fitted.model, frame[frame["split"] == TRAIN], frame[frame["split"] == DEV], cfg(shap_background=20)
+    )
+    assert set(out["blocks"]) == set(BLOCKS)
+    assert out["additivity_max_error_log"] < 1e-6
+    assert out["blocks"]["employment_type"]["mean_abs_log"] == 0
+    grade = out["per_level"]["grade"]
+    assert grade["senior"]["mean_log"] > grade["junior"]["mean_log"]

@@ -1,0 +1,56 @@
+# Settings for `python -m radar.models.matching`. Changing any value changes every reported
+# number: record the change in docs/EXPERIMENTS.md.
+
+[pool]
+# Extractor whose fields describe the pool (labels and filters), as in configs/salary.toml.
+extraction_model = "qwen3_1p7b_r16_clean-awq"
+
+[queries]
+# Synthetic resumes are written from the fields of a seed vacancy; seeds are split by a salted hash of
+# the entity id. Everything is chosen on dev; test is scored once, with --final-test.
+salt = "matching-v1"
+dev = 300
+test = 300
+# A seed needs this many extracted skills, so the resume has something to list.
+min_skills = 3
+# Share of the seed's skills the resume keeps (uniform in [keep_min, keep_max]) and how many skills
+# common for the role it adds on top.
+keep_min = 0.6
+keep_max = 1.0
+extra_max = 2
+# Extra skills are drawn from this many most frequent skills of the seed's role in the pool.
+extra_pool = 30
+
+[relevance]
+# A vacancy is relevant (1) when role bucket, grade (at most grade_gap steps apart, unknown matches
+# anything) and place (remote, unknown, or the resume's city) fit; highly relevant (2) when also at
+# least `coverage` of its extracted skills are on the resume.
+grade_gap = 1
+coverage = 0.5
+
+[embed]
+models = ["intfloat/multilingual-e5-small", "intfloat/multilingual-e5-base", "BAAI/bge-m3"]
+max_length = 512
+batch_size = 16
+chunk = 512
+
+[retrieval]
+bm25_k1 = 1.2
+bm25_b = 0.75
+rrf_k = 60
+# Weight of the dense score in the linear fusion with BM25, chosen on dev.
+fusion_weights = [0.5, 0.6, 0.7, 0.8, 0.9]
+# Candidates the cross-encoder re-scores per resume, and on how many dev resumes: on a shared CPU it
+# took about 96 s per resume at depth 30 (probe of 3, 13.10), so it runs as an ablation on a subset.
+rerank_depth = 20
+rerank_queries = 100
+reranker = "BAAI/bge-reranker-v2-m3"
+
+[serving]
+# Encoders /match may load: the api container has mem_limit 1g (infra/compose), and e5-small in float32
+# takes about 0.5 GB while e5-base takes 1.1 GB. The best system overall is reported either way.
+models = ["intfloat/multilingual-e5-small"]
+
+[metrics]
+ndcg_k = 10
+recall_k = 50
