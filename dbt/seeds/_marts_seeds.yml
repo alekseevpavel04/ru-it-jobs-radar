@@ -85,30 +85,53 @@ seeds:
 
   - name: skill_dictionary_v1
     description: >
-      Every spelling (name and aliases) of the skill dictionary v1, configs/skills.toml, by
-      its lookup key, for the marts on extracted fields: the extractor writes a skill as it read it,
-      and the marts map it to its name by the key (macro skill_key, the folding of
-      radar.extract.skills.key). Written by `python dbt/skill_seed.py`; tests/dbt fails when it is
-      stale. The inflection patterns and normalization rules of radar.extract.skills are not in it.
+      Skill spellings mapped to the names of the skill dictionary v1, configs/skills.toml,
+      for the marts on extracted fields, keyed by the hash of the lookup key (macros skill_key and
+      skill_hash, the folding of radar.extract.skills.key). Origin dictionary: every name and alias,
+      with the spelling. Origin corpus: every other spelling the extraction model wrote, resolved by
+      radar.extract.skills.normalize_list, stored as the hash only (the spellings come from Habr and
+      Telegram texts). One row per key and skill; a spelling that maps to several skills (a glued
+      list such as C# and .NET) has several rows. Written by `python dbt/skill_seed.py` (reads
+      ClickHouse); tests/dbt fails when the dictionary rows are stale, and
+      assert_skill_seed_covers_extracted_spellings warns when the corpus has spellings the seed has
+      not seen.
     config:
       column_types:
+        key_hash: String
         spelling_key: String
         spelling: String
         skill: String
         category: String
         parent: String
+        status: String
+        origin: String
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [key_hash, skill]
     columns:
+      - name: key_hash
+        description: First 16 hex digits of sha256 of the lookup key (lowercase, ё as е, no spaces, hyphens, underscores or dots).
+        data_tests: [not_null]
       - name: spelling_key
-        description: Lookup key of the spelling (lowercase, ё as е, no spaces, hyphens, underscores or dots).
-        data_tests: [unique, not_null]
+        description: The lookup key; empty for corpus rows.
       - name: spelling
-        description: The spelling as the dictionary lists it.
-        data_tests: [not_null]
+        description: The spelling as the dictionary lists it; empty for corpus rows.
       - name: skill
-        description: Canonical skill name.
-        data_tests: [not_null]
+        description: Canonical skill name; empty for a non-skill or an unknown spelling.
       - name: category
         description: Category of the skill in configs/skills.toml.
-        data_tests: [not_null]
       - name: parent
         description: Broader skill of [parents] (Ubuntu to Linux); empty when none.
+      - name: status
+        description: known (maps to the skill), non_skill (the annotation guide does not count it) or unknown (the dictionary lacks it).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [known, non_skill, unknown]
+      - name: origin
+        description: dictionary (a name or alias) or corpus (a spelling the extraction model wrote).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [dictionary, corpus]

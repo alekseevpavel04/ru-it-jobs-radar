@@ -63,6 +63,7 @@ SELECT
     false AS links_to_habr,
     e.has_fields AS has_fields,
     e.fields_from_older_version AS fields_from_older_version,
+    false AS not_extractable,
     e.valid AS valid,
     e.is_it AS is_it,
     e.role AS role,
@@ -72,7 +73,10 @@ SELECT
     e.experience_band AS experience_band,
     e.skills AS skills,
     e.skills_written_n AS skills_written_n,
-    e.skills_in_dictionary_n AS skills_in_dictionary_n
+    e.skills_by_spelling_n AS skills_by_spelling_n,
+    e.skills_in_dictionary_n AS skills_in_dictionary_n,
+    e.skills_non_skill_n AS skills_non_skill_n,
+    e.skills_unchecked_n AS skills_unchecked_n
 FROM portal_units AS u
 INNER JOIN entities AS e ON u.scope = e.scope AND u.entity_id = e.entity_id
 
@@ -87,6 +91,7 @@ SELECT
     t.links_to_habr,
     coalesce(f.has_fields, false),
     coalesce(f.fields_from_older_version, false),
+    f.dropped_reason IS NOT NULL AND NOT coalesce(f.has_fields, false),
     coalesce(f.valid, false),
     coalesce(f.is_it, false),
     f.role,
@@ -96,6 +101,9 @@ SELECT
     coalesce(f.experience_band, 'unknown'),
     f.skills,
     coalesce(f.skills_written_n, 0),
-    coalesce(f.skills_in_dictionary_n, 0)
+    coalesce(f.skills_by_spelling_n, 0),
+    coalesce(f.skills_in_dictionary_n, 0),
+    coalesce(f.skills_non_skill_n, 0),
+    coalesce(f.skills_unchecked_n, 0)
 FROM telegram AS t
 LEFT JOIN telegram_fields AS f ON t.source_id = f.source_id

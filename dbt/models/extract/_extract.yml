@@ -14,6 +14,11 @@ sources:
     tables:
       - name: vacancy_fields
         description: ReplacingMergeTree keyed by (source, source_id, content_hash, model_id); read with FINAL.
+      - name: vacancy_dropped
+        description: >
+          Telegram versions the corpus run never extracts and why (digest, link_stub, channel_lang),
+          written by `python -m radar.extract.corpus_run dropped` (radar.extract.corpus_drops, DDL
+          infra/clickhouse/003_extract_vacancy_dropped.sql). Read the rows of max(check_id).
 
 models:
   - name: stg_vacancy_fields

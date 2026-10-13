@@ -29,7 +29,11 @@ MARTS = {
     "mart_extracted_salaries": ["source", "level", "role", "grade"],
     "mart_extraction_coverage": ["source", "level", "week"],
 }
-SINGULAR = {"assert_extracted_marts_consistent", "assert_extracted_field_values"}
+SINGULAR = {
+    "assert_extracted_marts_consistent",
+    "assert_extracted_field_values",
+    "assert_skill_seed_covers_extracted_spellings",
+}
 
 
 def _parse(out: Path, extraction_model: str) -> dict[str, Any]:
@@ -118,7 +122,7 @@ def test_extract_models_are_staging_views_with_their_grain(manifest_on: dict[str
     assert ("stg_vacancy_fields", ("source", "source_id", "content_hash", "model_id")) in grain
     assert ("int_vacancy_fields", ("source", "source_id")) in grain
     sources = {s["name"] for s in manifest_on["sources"].values() if s["source_name"] == "extract"}
-    assert sources == {"vacancy_fields"}
+    assert sources == {"vacancy_fields", "vacancy_dropped"}
 
 
 def test_extracted_marts_land_in_marts_with_their_grain_tested(manifest_on: dict[str, Any]) -> None:
@@ -202,15 +206,47 @@ def test_enumerations_are_those_of_the_extraction_schema(manifest_on: dict[str, 
     assert bands == {"none", "under_1", "1_3", "3_6", "6_plus", "unknown"}
 
 
-def test_skill_seed_matches_the_dictionary_v1() -> None:
+def _skill_seed() -> Any:
     spec = importlib.util.spec_from_file_location("skill_seed", ROOT / "dbt" / "skill_seed.py")
     assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    rows = module.seed_rows()
-    assert module.SEED.read_text(encoding="utf-8") == module.render(rows), "python dbt/skill_seed.py"
+    return module
+
+
+def test_skill_seed_dictionary_rows_match_the_dictionary_v1() -> None:
     from radar.extract import skills
 
+    module = _skill_seed()
+    assert module.main(["--check"]) == 0, "python dbt/skill_seed.py"
+    seed = module.read_seed()
     d = skills.load()
-    assert {r["skill"] for r in rows} == set(d.skills)
-    assert {r["spelling_key"]: r["skill"] for r in rows} == d.by_key
+    dictionary = [r for r in seed if r["origin"] == "dictionary"]
+    assert {r["skill"] for r in dictionary} == set(d.skills)
+    assert {r["spelling_key"]: r["skill"] for r in dictionary} == d.by_key
+    assert all(r["key_hash"] == module.key_hash(r["spelling_key"]) for r in dictionary)
+
+
+def test_skill_seed_corpus_rows_hold_hashes_and_dictionary_names_only() -> None:
+    from radar.extract import skills
+
+    seed = _skill_seed().read_seed()
+    corpus = [r for r in seed if r["origin"] == "corpus"]
+    names = set(skills.load().skills)
+    # the spellings come from Habr and Telegram texts, which are not published
+    assert all(r["spelling"] == "" and r["spelling_key"] == "" for r in corpus)
+    assert all(re.fullmatch(r"[0-9a-f]{16}", r["key_hash"]) for r in seed)
+    assert all((r["skill"] in names) == (r["status"] == "known") for r in corpus)
+    assert all(r["status"] in ("known", "non_skill", "unknown") for r in corpus)
+    pairs = [(r["key_hash"], r["skill"]) for r in seed]
+    assert len(pairs) == len(set(pairs))
+
+
+def test_corpus_spellings_resolve_by_normalize_list() -> None:
+    module = _skill_seed()
+    rows, conflicts = module.seed_rows(["Python 3.10", "Microsoft SQL Server 2019", "C#/.NET", "Soft Skills", "Xyzzy"])
+    corpus = {(r["skill"], r["status"]) for r in rows if r["origin"] == "corpus"}
+    assert {("C#", "known"), (".NET", "known"), ("", "non_skill"), ("", "unknown")} <= corpus
+    by_hash = {r["key_hash"]: r for r in rows if r["origin"] == "corpus"}
+    python = module.key_hash(module.skills.key("Python 3.10"))
+    assert by_hash[python]["skill"] == "Python" and conflicts == 0

@@ -38,6 +38,7 @@ harder stop is cut off before the next run reads the file. The same command resu
         --backend-opt base_url=http://127.0.0.1:8095 --workers 8
     python -m radar.extract.corpus_run sync --model-id <model_id>
     python -m radar.extract.corpus_run report --model-id <model_id>
+    python -m radar.extract.corpus_run dropped        (radar.extract.corpus_drops)
 """
 
 import argparse
@@ -958,6 +959,7 @@ def main(argv: list[str] | None = None) -> int:
     for name, text in (("sync", "insert file rows missing from the table"), ("report", "valid JSON share")):
         p = sub.add_parser(name, help=text)
         p.add_argument("--model-id", required=True)
+    sub.add_parser("dropped", help="Telegram versions the run never extracts, with the reason (corpus_drops)")
 
     args = ap.parse_args(argv)
     load_dotenv()
@@ -973,6 +975,12 @@ def main(argv: list[str] | None = None) -> int:
             return cmd_sync(args, store)
         if args.command == "report":
             return cmd_report(args, store)
+        if args.command == "dropped":
+            from radar.extract import corpus_drops
+
+            for line in corpus_drops.write_report(corpus_drops.run(store, ch, TELEGRAM_SLICES)):
+                print(line)
+            return 0
         backend = load_backend(args.backend, parse_options(args.backend_opt))
         signal.signal(signal.SIGTERM, stop_on_signal)
         return cmd_run(args, store, backend, load_config().seed)

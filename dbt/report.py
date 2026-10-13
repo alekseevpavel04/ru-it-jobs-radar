@@ -403,17 +403,26 @@ def extracted_metrics(ch: ClickHouse) -> dict[str, dict[str, Any]]:
     out: dict[str, dict[str, Any]] = {}
     for mart in EXTRACTED_MARTS:
         out[f"rows_{mart}"] = {"value": ch.scalar(f"SELECT count() FROM marts.{mart}")}
-    for source, units, with_fields, valid, it, linking_habr, written, in_dictionary in rows(
+    for (
+        source, units, with_fields, not_extractable, valid, it, linking_habr,
+        written, by_spelling, in_dictionary, non_skill, unchecked,
+    ) in rows(
         ch,
-        "SELECT source, units, units_with_fields, units_valid, units_it, units_linking_habr, skills_written, "
-        "skills_in_dictionary FROM marts.mart_extraction_coverage WHERE level = 'source' ORDER BY source",
-    ):
+        "SELECT source, units, units_with_fields, units_not_extractable, units_valid, units_it, units_linking_habr, "
+        "skills_written, skills_by_spelling, skills_in_dictionary, skills_non_skill, skills_unchecked "
+        "FROM marts.mart_extraction_coverage WHERE level = 'source' ORDER BY source",
+    ):  # fmt: skip
         out[f"coverage_{source}"] = share(int(with_fields), int(units))
+        out[f"coverage_extractable_{source}"] = share(int(with_fields), int(units) - int(not_extractable))
         out[f"valid_{source}"] = share(int(valid), int(with_fields))
         out[f"it_{source}"] = share(int(it), int(valid))
+        out[f"skills_by_spelling_{source}"] = share(int(by_spelling), int(written))
         out[f"skills_in_dictionary_{source}"] = share(int(in_dictionary), int(written))
+        out[f"skills_non_skill_{source}"] = share(int(non_skill), int(written))
+        out[f"skills_unchecked_{source}"] = share(int(unchecked), int(written))
         if source == "telegram":
             out["telegram_linking_habr"] = share(int(linking_habr), int(units))
+            out["telegram_not_extractable"] = share(int(not_extractable), int(units))
     return out
 
 
@@ -484,12 +493,19 @@ def main() -> int:
                 "units": "portal vacancies (dedup entities; all_portals counts a vacancy on several portals once) "
                 "and Telegram single-vacancy posts after the weekly cross-post dedup, each once over the period "
                 "(mart_extraction_coverage level source)",
-                "coverage": "units with extracted fields, of units; Telegram digests and link stubs are never "
-                "extracted, so its coverage stays below 1",
+                "coverage": "units with extracted fields, of units; Telegram digests, link stubs and posts outside "
+                "their channel's language are never extracted, so its coverage stays below 1",
+                "coverage_extractable": "units with extracted fields, of units the corpus rules do not drop "
+                "(extract.vacancy_dropped, python -m radar.extract.corpus_run dropped)",
+                "telegram_not_extractable": "Telegram units without fields the corpus rules drop, of Telegram units",
                 "valid": "units whose answer passed the schema, of units with fields",
                 "it": "valid units with a role other than non_it, of valid units",
-                "skills_in_dictionary": "extracted skill spellings whose lookup key is in the dictionary v1, "
-                "of all spellings written for the units",
+                "skills_by_spelling": "extracted skill spellings that are a dictionary v1 name or alias up to case "
+                "and separators, of all spellings written for the units",
+                "skills_in_dictionary": "spellings mapped to a dictionary v1 name, by spelling or by "
+                "radar.extract.skills.normalize_list (seed by dbt/skill_seed.py), of all spellings",
+                "skills_non_skill": "spellings normalize_list drops as not a skill, of all spellings",
+                "skills_unchecked": "spellings written after the seed was made, of all spellings",
                 "telegram_linking_habr": "Telegram units that link a Habr Career vacancy, of Telegram units",
             },
         )

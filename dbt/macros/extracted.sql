@@ -63,7 +63,27 @@
 {%- endmacro %}
 
 
-{#- The seed skill_dictionary_v1 as a Map from spelling key to skill name (and to category). -#}
-{% macro skill_v1_map(value='skill') -%}
-    (SELECT mapFromArrays(groupArray(spelling_key), groupArray({{ value }})) FROM {{ ref('skill_dictionary_v1') }})
+{#- The hash the seed skill_dictionary_v1 keys a spelling by (dbt/skill_seed.py key_hash). -#}
+{% macro skill_hash(expr) -%}
+    substring(lower(hex(SHA256({{ skill_key(expr) }}))), 1, 16)
+{%- endmacro %}
+
+
+{#- WITH expressions over the seed: skill_map (key hash -> dictionary names, [] for a non-skill or an
+    unknown spelling), skill_status (key hash -> known, non_skill, unknown) and dictionary_keys (hashes of
+    the dictionary's own names and aliases). A hash in neither map is a spelling the seed has not seen. -#}
+{% macro skill_seed_maps() -%}
+    (
+        SELECT mapFromArrays(groupArray(key_hash), groupArray(names))
+        FROM (
+            SELECT key_hash, arraySort(arrayFilter(x -> x != '', groupArray(skill))) AS names
+            FROM {{ ref('skill_dictionary_v1') }}
+            GROUP BY key_hash
+        )
+    ) AS skill_map,
+    (
+        SELECT mapFromArrays(groupArray(key_hash), groupArray(status))
+        FROM (SELECT key_hash, any(status) AS status FROM {{ ref('skill_dictionary_v1') }} GROUP BY key_hash)
+    ) AS skill_status,
+    (SELECT groupArray(key_hash) FROM {{ ref('skill_dictionary_v1') }} WHERE origin = 'dictionary') AS dictionary_keys
 {%- endmacro %}

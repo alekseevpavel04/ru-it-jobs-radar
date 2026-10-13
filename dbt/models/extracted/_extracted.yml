@@ -29,11 +29,10 @@ models:
       One row per vacancy record of int_vacancy_fields (portal IT records, single-vacancy Telegram
       posts), materialized, with the fields the marts read. Fields of the latest version when the
       corpus run has extracted it, else of the latest extracted version (fields_from_older_version),
-      else none (has_fields false). Enumerations as strings; skills mapped to the dictionary v1
-      (seed skill_dictionary_v1) by the lookup key of each spelling, the first step of
-      radar.extract.skills.normalize. Its inflection patterns and version, vendor and plural rules
-      are not applied here, nor the rule that a 1С configuration implies 1С; a spelling they would
-      resolve counts in skills_written_n and not in skills_in_dictionary_n.
+      else none (has_fields false). Enumerations as strings; skills mapped to the dictionary v1 names
+      through the seed skill_dictionary_v1, where dbt/skill_seed.py resolved every spelling of the
+      corpus with radar.extract.skills.normalize_list (patterns, version, vendor and generic-word rules,
+      glued lists, 1С configurations). The skills_*_n columns say how each written spelling fared.
     data_tests:
       - unique_combination:
           arguments:
@@ -57,6 +56,14 @@ models:
         description: Some version of the record is extracted.
       - name: fields_from_older_version
         description: The fields come from an older version than the latest.
+      - name: dropped_reason
+        description: >
+          Why the corpus run never extracts the latest version (Telegram only; extract.vacancy_dropped,
+          its latest check): digest, link_stub or channel_lang; NULL when it does.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [digest, link_stub, channel_lang]
       - name: valid
         description: The extracted answer passed the schema; false without fields.
       - name: is_it
@@ -77,12 +84,24 @@ models:
                 values: &grades [intern, junior, middle, senior, lead]
       - name: skills_written_n
         description: Skills as the extractor wrote them.
+      - name: skills_by_spelling_n
+        description: Of them, spellings that are a name or alias of the dictionary v1 up to case and separators.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: skills_in_dictionary_n
       - name: skills_in_dictionary_n
-        description: Of them, spellings whose lookup key is a name or alias of the dictionary v1.
+        description: Of them, spellings that map to at least one dictionary name, by spelling or by normalize_list.
         data_tests:
           - not_above:
               arguments:
                 denominator: skills_written_n
+      - name: skills_non_skill_n
+        description: Spellings normalize_list drops as not a skill (annotation guide).
+      - name: skills_unchecked_n
+        description: >
+          Spellings the seed has not seen (written after dbt/skill_seed.py last ran);
+          assert_skill_seed_covers_extracted_spellings warns while any are left.
       - name: skills
         description: Dictionary v1 names of those spellings, distinct and sorted.
       - name: salary_from
@@ -204,6 +223,8 @@ models:
         description: Its id.
       - name: links_to_habr
         description: A Telegram post that links a Habr Career vacancy; false for portals.
+      - name: not_extractable
+        description: A Telegram post without fields whose latest version the corpus run drops by rule (dropped_reason).
 
   - name: mart_extracted_skills_weekly
     description: >
@@ -429,11 +450,16 @@ models:
     description: >
       Extraction coverage of the units the extracted marts count, per source: level week, one row per
       ISO week; level source, each unit of the collection period once (week is the source's first
-      week). coverage = units_with_fields / units; valid_share = units_valid / units_with_fields, the
-      valid JSON share. The Telegram corpus never extracts digests and posts with almost no text of
-      their own, so Telegram coverage stays below 1; units_linking_habr counts the Telegram posts
-      that repost a Habr Career vacancy. skills_in_dictionary / skills_written is the share of
-      extracted skill spellings the dictionary v1 maps.
+      week). coverage = units_with_fields / units; coverage_extractable = units_with_fields / (units -
+      units_not_extractable), the share of what the run will ever extract that it has; valid_share =
+      units_valid / units_with_fields, the valid JSON share. The Telegram corpus never extracts
+      digests, posts with almost no text of their own and posts outside their channel's language
+      (extract.vacancy_dropped, refreshed by `python -m radar.extract.corpus_run dropped`), so plain
+      Telegram coverage stays below 1; units_linking_habr counts the Telegram posts that repost a Habr
+      Career vacancy. Of the extracted skill spellings (skills_written),
+      skills_by_spelling are a dictionary v1 name or alias as written, skills_in_dictionary map to a
+      name after normalize_list, skills_non_skill are not skills, skills_unchecked are newer than the
+      seed; the rest is what the dictionary lacks.
     data_tests:
       - has_rows
       - unique_combination:
@@ -483,6 +509,14 @@ models:
           - not_above:
               arguments:
                 denominator: units_with_fields
+      - name: units_not_extractable
+        description: >
+          Units without fields that the corpus run drops by rule (digest, link_stub, channel_lang);
+          Telegram only, 0 for portals.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: units - units_with_fields
       - name: units_valid
         description: Units whose extracted answer passed the schema.
         data_tests:
@@ -503,13 +537,25 @@ models:
                 denominator: units
       - name: coverage
         description: units_with_fields / units, 4 decimals.
+      - name: coverage_extractable
+        description: units_with_fields / (units - units_not_extractable), 4 decimals; NULL when nothing is extractable.
       - name: valid_share
         description: units_valid / units_with_fields, 4 decimals; NULL without fields.
       - name: skills_written
         description: Skill spellings the extractor wrote for the units with fields.
-      - name: skills_in_dictionary
-        description: Of them, spellings the dictionary v1 maps by their lookup key.
+      - name: skills_by_spelling
+        description: Of them, spellings that are a dictionary v1 name or alias up to case and separators.
         data_tests:
           - not_above:
               arguments:
-                denominator: skills_written
+                denominator: skills_in_dictionary
+      - name: skills_in_dictionary
+        description: Of them, spellings that map to a dictionary v1 name, by spelling or by normalize_list.
+        data_tests:
+          - not_above:
+              arguments:
+                denominator: skills_written - skills_non_skill - skills_unchecked
+      - name: skills_non_skill
+        description: Spellings normalize_list drops as not a skill.
+      - name: skills_unchecked
+        description: Spellings written after the seed was made (dbt/skill_seed.py), so not resolved yet.

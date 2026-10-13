@@ -17,9 +17,12 @@
 -- The fields are those of the record's latest version when var('extraction_model') has extracted it;
 -- a record changed since the last corpus run keeps the fields of its latest extracted version
 -- (fields_from_older_version), so a day of new edits does not empty the marts until the next run.
--- Skills are mapped to the dictionary v1 by their lookup key (seed skill_dictionary_v1, macro skill_key);
--- a spelling outside it is counted in skills_written_n but not in skills.
-WITH {{ skill_v1_map() }} AS skill_map,
+-- Skills are mapped to the dictionary v1 names through the seed skill_dictionary_v1, which holds the
+-- dictionary's spellings and every corpus spelling resolved by radar.extract.skills.normalize_list
+-- (dbt/skill_seed.py), keyed by the hash of the lookup key (macros skill_key, skill_hash). The counts
+-- say how each written spelling fared. dropped_reason is the rule
+-- by which the corpus run never extracts the latest version (extract.vacancy_dropped, its latest check).
+WITH {{ skill_seed_maps() }},
 
 latest AS (
     SELECT * FROM {{ ref('int_vacancy_fields') }}
@@ -33,7 +36,13 @@ older AS (
     LIMIT 1 BY source, source_id
 ),
 
--- Without join_use_nulls an unmatched model_id is '', which is what has_older says.
+dropped AS (
+    SELECT source, source_id, content_hash, reason
+    FROM {{ source('extract', 'vacancy_dropped') }} FINAL
+    WHERE check_id = (SELECT max(check_id) FROM {{ source('extract', 'vacancy_dropped') }})
+),
+
+-- Without join_use_nulls an unmatched model_id is '' and an unmatched reason too.
 picked AS (
     SELECT
         l.source AS source,
@@ -42,10 +51,12 @@ picked AS (
         l.is_extracted AS is_extracted,
         l.is_extracted OR o.model_id != '' AS has_fields,
         NOT l.is_extracted AND o.model_id != '' AS fields_from_older_version,
+        d.reason AS dropped_reason,
         if(l.is_extracted, l.valid, o.valid) AS valid,
         CAST(if(l.is_extracted, l.role, o.role) AS Nullable(String)) AS role,
         CAST(if(l.is_extracted, l.grade, o.grade) AS Nullable(String)) AS grade,
         if(l.is_extracted, l.skills, o.skills) AS skills_written,
+        arrayMap(s -> {{ skill_hash('s') }}, skills_written) AS written_hashes,
         if(l.is_extracted, l.salary_from, o.salary_from) AS salary_from,
         if(l.is_extracted, l.salary_to, o.salary_to) AS salary_to,
         CAST(if(l.is_extracted, l.salary_currency, o.salary_currency) AS Nullable(String)) AS salary_currency,
@@ -58,6 +69,8 @@ picked AS (
         CAST(if(l.is_extracted, l.lang, o.lang) AS Nullable(String)) AS lang
     FROM latest AS l
     LEFT JOIN older AS o ON l.source = o.source AND l.source_id = o.source_id
+    LEFT JOIN dropped AS d
+        ON l.source = d.source AND l.source_id = d.source_id AND l.content_hash = d.content_hash
 )
 
 SELECT
@@ -67,18 +80,18 @@ SELECT
     is_extracted,
     has_fields,
     fields_from_older_version,
+    CAST(nullIf(dropped_reason, '') AS LowCardinality(Nullable(String))) AS dropped_reason,
     has_fields AND valid AS valid,
     -- The record passed its source's IT filter; the extractor's non_it overrules it, a NULL role does not.
     has_fields AND valid AND coalesce(role, '') != 'non_it' AS is_it,
     CAST(role AS LowCardinality(Nullable(String))) AS role,
     CAST(grade AS LowCardinality(Nullable(String))) AS grade,
-    toUInt16(length(skills_written)) AS skills_written_n,
-    toUInt16(length(arrayFilter(s -> mapContains(skill_map, {{ skill_key('s') }}), skills_written)))
-        AS skills_in_dictionary_n,
-    arraySort(arrayDistinct(arrayFilter(
-        s -> s != '',
-        arrayMap(s -> skill_map[{{ skill_key('s') }}], skills_written)
-    ))) AS skills,
+    toUInt16(length(written_hashes)) AS skills_written_n,
+    toUInt16(length(arrayFilter(h -> has(dictionary_keys, h), written_hashes))) AS skills_by_spelling_n,
+    toUInt16(length(arrayFilter(h -> notEmpty(skill_map[h]), written_hashes))) AS skills_in_dictionary_n,
+    toUInt16(countEqual(arrayMap(h -> skill_status[h], written_hashes), 'non_skill')) AS skills_non_skill_n,
+    toUInt16(length(arrayFilter(h -> NOT mapContains(skill_status, h), written_hashes))) AS skills_unchecked_n,
+    arraySort(arrayDistinct(arrayFlatten(arrayMap(h -> skill_map[h], written_hashes)))) AS skills,
     salary_from,
     salary_to,
     CAST(salary_currency AS LowCardinality(Nullable(String))) AS salary_currency,

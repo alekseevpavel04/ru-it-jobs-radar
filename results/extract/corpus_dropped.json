@@ -1,0 +1,35 @@
+{
+  "source_script": "src/radar/extract/corpus_drops.py",
+  "command": "python -m radar.extract.corpus_run dropped",
+  "commit": "d9d444e-dirty",
+  "created_at": "2026-10-13T08:40:37+00:00",
+  "metrics": {
+    "telegram_posts_checked": {
+      "value": 252954,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_channel_lang": {
+      "value": 0.0002,
+      "n": 41,
+      "denominator": 252954
+    },
+    "telegram_digest": {
+      "value": 0.0236,
+      "n": 5959,
+      "denominator": 252954
+    },
+    "telegram_kept": {
+      "value": 0.8692,
+      "n": 219863,
+      "denominator": 252954
+    },
+    "telegram_link_stub": {
+      "value": 0.1071,
+      "n": 27091,
+      "denominator": 252954
+    }
+  },
+  "table": "extract.vacancy_dropped",
+  "method": "latest version of every Telegram vacancy post with one vacancy, as corpus_run run enumerates them; drop_reason of radar.extract.telegram_corpus with configs/telegram_sample.toml and the channel languages; kept is what the run extracts"
+}
