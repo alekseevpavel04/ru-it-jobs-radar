@@ -1,0 +1,137 @@
+{
+  "source_script": "src/radar/site/hf_model.py",
+  "command": "python -m radar.site.hf_model",
+  "commit": "d9d444e-dirty",
+  "created_at": "2026-10-13T08:37:31+00:00",
+  "metrics": {
+    "files": {
+      "value": 15,
+      "n": null,
+      "denominator": null
+    },
+    "total_mib": {
+      "value": 6175.7,
+      "n": null,
+      "denominator": null
+    },
+    "merged_safetensors_mib": {
+      "value": 3281.8,
+      "n": null,
+      "denominator": null
+    },
+    "adapter_safetensors_mib": {
+      "value": 66.5,
+      "n": null,
+      "denominator": null
+    },
+    "gguf_q4_k_m_mib": {
+      "value": 1056.1,
+      "n": null,
+      "denominator": null
+    },
+    "gguf_q8_0_mib": {
+      "value": 1749.4,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "model": "qwen3_1p7b_r16_clean",
+  "files": [
+    {
+      "file": "adapter/adapter_config.json",
+      "size_bytes": 1307,
+      "size_mib": 0.0,
+      "sha256": "41b6b60125cc35585d33bcf251194559b8779546483f73187e61b1a0ca070638"
+    },
+    {
+      "file": "adapter/adapter_model.safetensors",
+      "size_bytes": 69782384,
+      "size_mib": 66.5,
+      "sha256": "338478948d4b1d1b91b976cc6a88c14831f78dfde1e10653e04843218cf798c0"
+    },
+    {
+      "file": "adapter/chat_template.jinja",
+      "size_bytes": 4168,
+      "size_mib": 0.0,
+      "sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8"
+    },
+    {
+      "file": "adapter/dataset_meta.json",
+      "size_bytes": 1733,
+      "size_mib": 0.0,
+      "sha256": "4115ad9081f0f2ba82ffdc9f0498a664e4f92845afc283c0648b438b0bd8552a"
+    },
+    {
+      "file": "adapter/tokenizer.json",
+      "size_bytes": 11422924,
+      "size_mib": 10.9,
+      "sha256": "476870a1f2fb6f6a2759a6ede2383bf9d5d738f17844563b65c91965b722ae09"
+    },
+    {
+      "file": "adapter/tokenizer_config.json",
+      "size_bytes": 5444,
+      "size_mib": 0.0,
+      "sha256": "36669253121be9940341ba3f80ab1ce790c1703f54dbff083a3dd377d4f4b206"
+    },
+    {
+      "file": "chat_template.jinja",
+      "size_bytes": 4168,
+      "size_mib": 0.0,
+      "sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8"
+    },
+    {
+      "file": "config.json",
+      "size_bytes": 1417,
+      "size_mib": 0.0,
+      "sha256": "db21e5529322523f48341a67b677e772ab7818e06226e145e8cec40b22197269"
+    },
+    {
+      "file": "dataset_meta.json",
+      "size_bytes": 1733,
+      "size_mib": 0.0,
+      "sha256": "4115ad9081f0f2ba82ffdc9f0498a664e4f92845afc283c0648b438b0bd8552a"
+    },
+    {
+      "file": "generation_config.json",
+      "size_bytes": 214,
+      "size_mib": 0.0,
+      "sha256": "893b0dccf83626cdfdc498e5b2a255a935b4c3c693350aed18f7003c1a3f3de9"
+    },
+    {
+      "file": "gguf/qwen3_1p7b_r16_clean-Q4_K_M.gguf",
+      "size_bytes": 1107408576,
+      "size_mib": 1056.1,
+      "sha256": "8159abbceaa20ac01aba8305e2ce480d1c75f0bc8fd71740b4db673030a0e9f2"
+    },
+    {
+      "file": "gguf/qwen3_1p7b_r16_clean-Q8_0.gguf",
+      "size_bytes": 1834426048,
+      "size_mib": 1749.4,
+      "sha256": "50bf294152b8e55977b770674ee0de878782237e008286469bf8385c14d638ad"
+    },
+    {
+      "file": "model.safetensors",
+      "size_bytes": 3441185608,
+      "size_mib": 3281.8,
+      "sha256": "ab8e4279dd18ee5a98a35a917bc20d0c0e84983d2b4809a87d91e1128119557b"
+    },
+    {
+      "file": "tokenizer.json",
+      "size_bytes": 11422924,
+      "size_mib": 10.9,
+      "sha256": "476870a1f2fb6f6a2759a6ede2383bf9d5d738f17844563b65c91965b722ae09"
+    },
+    {
+      "file": "tokenizer_config.json",
+      "size_bytes": 5444,
+      "size_mib": 0.0,
+      "sha256": "36669253121be9940341ba3f80ab1ce790c1703f54dbff083a3dd377d4f4b206"
+    }
+  ],
+  "pending": [
+    "extract/final_test.json:metrics.test/sft_1p7b_r16_clean/macro_f1.value",
+    "extract/final_test.json:metrics.test/sft_1p7b_clean_q4_k_m/macro_f1.value",
+    "extract/final_test.json:metrics.tg_test/sft_1p7b_r16_clean/macro_f1.value",
+    "extract/final_test.json:metrics.tg_test/sft_1p7b_clean_q4_k_m/macro_f1.value"
+  ]
+}

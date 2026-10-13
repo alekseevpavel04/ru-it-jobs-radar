@@ -1,0 +1,275 @@
+{
+  "source_script": "src/radar/site/hf_scan.py",
+  "command": "python -m radar.site.hf_scan",
+  "commit": "d9d444e-dirty",
+  "created_at": "2026-10-13T08:49:47+00:00",
+  "metrics": {
+    "files_scanned": {
+      "value": 35,
+      "n": null,
+      "denominator": null
+    },
+    "items_scanned": {
+      "value": 81255,
+      "n": null,
+      "denominator": null
+    },
+    "findings": {
+      "value": 0,
+      "n": null,
+      "denominator": null,
+      "by_kind": {}
+    }
+  },
+  "root": "storage/hf",
+  "files": [
+    {
+      "file": "storage/hf/dataset/aggregates/habr_monthly.parquet",
+      "scanned_as": "rows",
+      "items": 426,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/superjob/2026.parquet",
+      "scanned_as": "rows",
+      "items": 764,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/telegram/2017.parquet",
+      "scanned_as": "rows",
+      "items": 2,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/telegram/2018.parquet",
+      "scanned_as": "rows",
+      "items": 3,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/telegram/2019.parquet",
+      "scanned_as": "rows",
+      "items": 8,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/telegram/2020.parquet",
+      "scanned_as": "rows",
+      "items": 6,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/telegram/2021.parquet",
+      "scanned_as": "rows",
+      "items": 21,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/telegram/2022.parquet",
+      "scanned_as": "rows",
+      "items": 18,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/telegram/2023.parquet",
+      "scanned_as": "rows",
+      "items": 34,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/telegram/2024.parquet",
+      "scanned_as": "rows",
+      "items": 29,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/telegram/2025.parquet",
+      "scanned_as": "rows",
+      "items": 32769,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/telegram/2026.parquet",
+      "scanned_as": "rows",
+      "items": 21346,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/trudvsem/2015.parquet",
+      "scanned_as": "rows",
+      "items": 2,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/trudvsem/2016.parquet",
+      "scanned_as": "rows",
+      "items": 1,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/trudvsem/2017.parquet",
+      "scanned_as": "rows",
+      "items": 5,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/trudvsem/2018.parquet",
+      "scanned_as": "rows",
+      "items": 3,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/trudvsem/2019.parquet",
+      "scanned_as": "rows",
+      "items": 3,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/trudvsem/2020.parquet",
+      "scanned_as": "rows",
+      "items": 8,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/trudvsem/2021.parquet",
+      "scanned_as": "rows",
+      "items": 30,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/trudvsem/2022.parquet",
+      "scanned_as": "rows",
+      "items": 215,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/trudvsem/2023.parquet",
+      "scanned_as": "rows",
+      "items": 242,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/trudvsem/2024.parquet",
+      "scanned_as": "rows",
+      "items": 423,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/trudvsem/2025.parquet",
+      "scanned_as": "rows",
+      "items": 2251,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/data/trudvsem/2026.parquet",
+      "scanned_as": "rows",
+      "items": 22635,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/LICENSE.md",
+      "scanned_as": "text",
+      "items": 1,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/dataset/README.md",
+      "scanned_as": "text",
+      "items": 1,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/model/adapter/adapter_config.json",
+      "scanned_as": "json",
+      "items": 1,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/model/adapter/dataset_meta.json",
+      "scanned_as": "json",
+      "items": 1,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/model/config.json",
+      "scanned_as": "json",
+      "items": 1,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/model/dataset_meta.json",
+      "scanned_as": "json",
+      "items": 1,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/model/generation_config.json",
+      "scanned_as": "json",
+      "items": 1,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/model/README.md",
+      "scanned_as": "text",
+      "items": 1,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/space/assets/space.json",
+      "scanned_as": "json",
+      "items": 1,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/space/assets/tokenizer/dataset_meta.json",
+      "scanned_as": "json",
+      "items": 1,
+      "findings": {}
+    },
+    {
+      "file": "storage/hf/space/README.md",
+      "scanned_as": "text",
+      "items": 1,
+      "findings": {}
+    }
+  ],
+  "skipped": [
+    "storage/hf/model/adapter/adapter_model.safetensors",
+    "storage/hf/model/adapter/chat_template.jinja",
+    "storage/hf/model/adapter/tokenizer.json",
+    "storage/hf/model/adapter/tokenizer_config.json",
+    "storage/hf/model/chat_template.jinja",
+    "storage/hf/model/gguf/qwen3_1p7b_r16_clean-Q4_K_M.gguf",
+    "storage/hf/model/gguf/qwen3_1p7b_r16_clean-Q8_0.gguf",
+    "storage/hf/model/model.safetensors",
+    "storage/hf/model/tokenizer.json",
+    "storage/hf/model/tokenizer_config.json",
+    "storage/hf/space/app/config.py",
+    "storage/hf/space/app/fetch.py",
+    "storage/hf/space/app/main.py",
+    "storage/hf/space/app/prompt.py",
+    "storage/hf/space/app/static/index.html",
+    "storage/hf/space/assets/salary/salary.pkl",
+    "storage/hf/space/assets/tokenizer/chat_template.jinja",
+    "storage/hf/space/assets/tokenizer/tokenizer.json",
+    "storage/hf/space/assets/tokenizer/tokenizer_config.json",
+    "storage/hf/space/Dockerfile",
+    "storage/hf/space/requirements.txt",
+    "storage/hf/space/start.sh",
+    "storage/hf/space/vendor/radar/__init__.py",
+    "storage/hf/space/vendor/radar/config.py",
+    "storage/hf/space/vendor/radar/dedup/__init__.py",
+    "storage/hf/space/vendor/radar/dedup/normalize.py",
+    "storage/hf/space/vendor/radar/extract/__init__.py",
+    "storage/hf/space/vendor/radar/extract/schema.py",
+    "storage/hf/space/vendor/radar/models/__init__.py",
+    "storage/hf/space/vendor/radar/models/salary.py",
+    "storage/hf/space/vendor/radar/models/salary_data.py",
+    "storage/hf/space/vendor/radar/models/salary_features.py",
+    "storage/hf/space/vendor/radar/models/salary_shap.py",
+    "storage/hf/space/vendor/radar/results.py",
+    "storage/hf/space/vendor/radar/train/__init__.py",
+    "storage/hf/space/vendor/radar/train/dataset.py"
+  ]
+}

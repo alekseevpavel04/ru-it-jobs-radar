@@ -1,0 +1,343 @@
+{
+  "source_script": "src/radar/site/hf_space.py",
+  "command": "python -m radar.site.hf_space bench",
+  "commit": "d9d444e-dirty",
+  "created_at": "2026-10-13T08:45:48+00:00",
+  "metrics": {
+    "latency_p50_s": {
+      "value": 25.56,
+      "n": null,
+      "denominator": null
+    },
+    "latency_p95_s": {
+      "value": 45.15,
+      "n": null,
+      "denominator": null
+    },
+    "latency_max_s": {
+      "value": 54.45,
+      "n": null,
+      "denominator": null
+    },
+    "model_p50_s": {
+      "value": 25.42,
+      "n": null,
+      "denominator": null
+    },
+    "model_p95_s": {
+      "value": 45.02,
+      "n": null,
+      "denominator": null
+    },
+    "prompt_p50_s": {
+      "value": 11.04,
+      "n": null,
+      "denominator": null
+    },
+    "generate_p50_s": {
+      "value": 12.67,
+      "n": null,
+      "denominator": null
+    },
+    "host_load_1min": {
+      "value": 19.6,
+      "n": null,
+      "denominator": null,
+      "before": 19.57,
+      "after": 18.25
+    },
+    "host_cpus": {
+      "value": 10,
+      "n": null,
+      "denominator": null
+    },
+    "first_request_s": {
+      "value": 26.59,
+      "n": null,
+      "denominator": null
+    },
+    "cold_start_s": {
+      "value": 14.2,
+      "n": null,
+      "denominator": null
+    },
+    "valid_json": {
+      "value": 1.0,
+      "n": 20,
+      "denominator": 20
+    },
+    "salary_estimates": {
+      "value": 1.0,
+      "n": 20,
+      "denominator": 20
+    },
+    "same_fields_as_corpus_awq": {
+      "value": 0.85,
+      "n": 17,
+      "denominator": 20
+    },
+    "prompt_tokens_match": {
+      "value": 1.0,
+      "n": 20,
+      "denominator": 20
+    },
+    "dev_prompt_render_match": {
+      "value": 1.0,
+      "n": 165,
+      "denominator": 165
+    },
+    "dev_prompt_tokens_match": {
+      "value": 1.0,
+      "n": 165,
+      "denominator": 165
+    },
+    "input_truncated": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "container_memory_mib": {
+      "value": 1752.1,
+      "n": null,
+      "denominator": null
+    },
+    "image_size_mib": {
+      "value": 1182,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "setup": {
+    "docker": "--cpus 2 --memory 16g, WSL distro radar",
+    "host_cpu": "AMD Ryzen 5 5600X 6-Core Processor",
+    "gguf": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-Q4_K_M.gguf",
+    "requests": "sequential, one in flight; wall time as the client saw it, model time inside the app",
+    "first_request": "one example text before the measured ones, not counted in the quantiles",
+    "cold_start": "docker run to the first 200 of /health (llama-server loaded the model)",
+    "texts": "trudvsem snapshot IT candidates outside the gold set, fixed hash order (python -m radar.site.hf_space pick); same_fields_as_corpus_awq compares with the 6.7 corpus answer of the AWQ checkpoint of the same model",
+    "dev_prompt_render": "app.prompt check inside the image against models/merged/<name>/prompts/dev.jsonl"
+  },
+  "per_request": [
+    {
+      "id": "trudvsem_snapshot:623eafca-7780-11f0-a9f5-d549be31d974",
+      "wall_s": 30.717,
+      "model_s": 30.482,
+      "prompt_s": 14.123,
+      "generate_s": 16.266,
+      "prompt_tokens": 630,
+      "completion_tokens": 92,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:dcffff16-bd94-11f1-aa68-7523fb122f6d",
+      "wall_s": 25.558,
+      "model_s": 25.422,
+      "prompt_s": 12.532,
+      "generate_s": 12.672,
+      "prompt_tokens": 627,
+      "completion_tokens": 85,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:61684158-b0ce-11f1-987b-b1d3bf2d14ab",
+      "wall_s": 45.148,
+      "model_s": 45.02,
+      "prompt_s": 24.712,
+      "generate_s": 20.139,
+      "prompt_tokens": 885,
+      "completion_tokens": 103,
+      "valid": true,
+      "same_fields_as_corpus": false
+    },
+    {
+      "id": "trudvsem_snapshot:a76a5020-4479-11f1-aa71-659f9ad1813b",
+      "wall_s": 27.455,
+      "model_s": 27.316,
+      "prompt_s": 13.522,
+      "generate_s": 13.529,
+      "prompt_tokens": 636,
+      "completion_tokens": 78,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:7363ea28-b00c-11f1-b99e-4972ddb33ebb",
+      "wall_s": 17.537,
+      "model_s": 17.29,
+      "prompt_s": 7.895,
+      "generate_s": 9.206,
+      "prompt_tokens": 489,
+      "completion_tokens": 81,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:722a4908-688c-11f1-a95e-05a97d193f2d",
+      "wall_s": 14.261,
+      "model_s": 14.021,
+      "prompt_s": 5.284,
+      "generate_s": 8.692,
+      "prompt_tokens": 437,
+      "completion_tokens": 71,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:58173708-3569-11f0-9d0b-e7d0d2cf29b1",
+      "wall_s": 20.53,
+      "model_s": 20.217,
+      "prompt_s": 9.572,
+      "generate_s": 10.595,
+      "prompt_tokens": 544,
+      "completion_tokens": 71,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:44448886-be71-11f1-9dff-97d306130813",
+      "wall_s": 27.645,
+      "model_s": 27.577,
+      "prompt_s": 14.543,
+      "generate_s": 12.897,
+      "prompt_tokens": 693,
+      "completion_tokens": 89,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:2bf568c8-a531-11f1-aa6f-e58ffaa23423",
+      "wall_s": 17.652,
+      "model_s": 17.611,
+      "prompt_s": 8.392,
+      "generate_s": 9.102,
+      "prompt_tokens": 531,
+      "completion_tokens": 81,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:1a91b578-faa5-11f0-8628-a3cca5294b78",
+      "wall_s": 23.377,
+      "model_s": 22.807,
+      "prompt_s": 13.185,
+      "generate_s": 9.505,
+      "prompt_tokens": 621,
+      "completion_tokens": 76,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:c1a852a2-927b-11ed-b2dd-93f7cc862eb6",
+      "wall_s": 21.454,
+      "model_s": 21.221,
+      "prompt_s": 11.045,
+      "generate_s": 10.031,
+      "prompt_tokens": 578,
+      "completion_tokens": 77,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:03858bd8-43a3-11f1-8e97-0164d64c91c4",
+      "wall_s": 54.449,
+      "model_s": 54.286,
+      "prompt_s": 36.832,
+      "generate_s": 17.086,
+      "prompt_tokens": 1078,
+      "completion_tokens": 114,
+      "valid": true,
+      "same_fields_as_corpus": false
+    },
+    {
+      "id": "trudvsem_snapshot:769471d8-a287-11f0-8bdd-abd4f0e64f6f",
+      "wall_s": 20.887,
+      "model_s": 20.805,
+      "prompt_s": 9.517,
+      "generate_s": 11.088,
+      "prompt_tokens": 531,
+      "completion_tokens": 71,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:4016bb60-a500-11f0-a18c-bdc82d0d5dcd",
+      "wall_s": 25.892,
+      "model_s": 25.754,
+      "prompt_s": 9.675,
+      "generate_s": 15.933,
+      "prompt_tokens": 499,
+      "completion_tokens": 80,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:283c63e8-b80f-11ed-91ba-7dbf5d2a6230",
+      "wall_s": 28.822,
+      "model_s": 28.727,
+      "prompt_s": 11.628,
+      "generate_s": 17.022,
+      "prompt_tokens": 532,
+      "completion_tokens": 81,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:588bac08-90cd-11f1-9d62-2f50b9e6b1e0",
+      "wall_s": 28.894,
+      "model_s": 28.383,
+      "prompt_s": 8.329,
+      "generate_s": 19.925,
+      "prompt_tokens": 494,
+      "completion_tokens": 84,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:a55b92c1-c15c-11f1-aa68-7523fb122f6d",
+      "wall_s": 40.993,
+      "model_s": 40.851,
+      "prompt_s": 16.938,
+      "generate_s": 23.75,
+      "prompt_tokens": 731,
+      "completion_tokens": 147,
+      "valid": true,
+      "same_fields_as_corpus": false
+    },
+    {
+      "id": "trudvsem_snapshot:0ca79d18-afec-11f1-987b-b1d3bf2d14ab",
+      "wall_s": 43.176,
+      "model_s": 43.079,
+      "prompt_s": 26.717,
+      "generate_s": 13.826,
+      "prompt_tokens": 967,
+      "completion_tokens": 82,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:6eccbd58-a353-11f0-a18c-bdc82d0d5dcd",
+      "wall_s": 10.517,
+      "model_s": 10.41,
+      "prompt_s": 0.236,
+      "generate_s": 8.715,
+      "prompt_tokens": 531,
+      "completion_tokens": 71,
+      "valid": true,
+      "same_fields_as_corpus": true
+    },
+    {
+      "id": "trudvsem_snapshot:76bf32d8-5817-11f1-aec1-4103e3ed6448",
+      "wall_s": 19.227,
+      "model_s": 19.19,
+      "prompt_s": 10.144,
+      "generate_s": 8.93,
+      "prompt_tokens": 563,
+      "completion_tokens": 75,
+      "valid": true,
+      "same_fields_as_corpus": true
+    }
+  ],
+  "measured_at": "2026-10-13T08:45:48+00:00"
+}

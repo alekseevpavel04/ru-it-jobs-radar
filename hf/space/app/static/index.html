@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Радар IT-вакансий: поля вакансии и оценка зарплаты</title>
+<style>
+  :root {
+    --fg: #1b1e23;
+    --muted: #5b6370;
+    --line: #d9dde3;
+    --bg: #ffffff;
+    --panel: #f6f7f9;
+    --accent: #2457c5;
+    --warn: #9a3412;
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--fg);
+    background: var(--bg);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  main { max-width: 1080px; margin: 0 auto; padding: 20px 20px 40px; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  h2 { font-size: 15px; margin: 0 0 10px; }
+  .slice { font-size: 13px; color: var(--muted); margin: 0 0 14px; max-width: 860px; }
+  .lead { margin: 0 0 16px; max-width: 860px; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+  textarea {
+    width: 100%; min-height: 360px; padding: 10px; border: 1px solid var(--line); border-radius: 6px;
+    font: 14px/1.45 system-ui, sans-serif; resize: vertical;
+  }
+  .actions { display: flex; gap: 10px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
+  button {
+    font: inherit; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--accent); cursor: pointer;
+    background: var(--accent); color: #fff;
+  }
+  button.secondary { background: #fff; color: var(--accent); }
+  button:disabled { opacity: 0.55; cursor: default; }
+  .status { font-size: 13px; color: var(--muted); }
+  .status.error { color: var(--warn); }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px; margin-bottom: 16px; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 5px 8px 5px 0; border-bottom: 1px solid var(--line); }
+  th { width: 38%; font-weight: 500; color: var(--muted); }
+  tr:last-child th, tr:last-child td { border-bottom: 0; }
+  .empty { color: var(--muted); }
+  .big { font-size: 24px; font-weight: 600; }
+  .note { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .tags span { display: inline-block; background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; margin: 0 4px 4px 0; font-size: 13px; }
+  details { margin-top: 4px; }
+  pre { white-space: pre-wrap; word-break: break-word; font-size: 12px; background: #fff; border: 1px solid var(--line); padding: 8px; border-radius: 4px; }
+  footer { margin-top: 28px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+  footer p { margin: 0 0 6px; }
+  a { color: var(--accent); }
+  @media (max-width: 760px) {
+    main { padding: 14px 12px 32px; }
+    .grid { grid-template-columns: minmax(0, 1fr); }
+    textarea { min-height: 220px; }
+    h1 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Поля вакансии и оценка зарплаты</h1>
+  <p class="slice" id="slice">Срез рынка проекта: «Работа в России» (trudvsem), Хабр Карьера, SuperJob и публичные Telegram-каналы. hh.ru в выборку не входит.</p>
+  <p class="lead">Вставьте текст IT-вакансии. Модель извлечения вернёт роль, грейд, навыки, зарплату из текста, формат работы, города, опыт и тип занятости. По этим полям модель зарплаты даст оценку с интервалом. Текст никуда не сохраняется.</p>
+
+  <div class="grid">
+    <section>
+      <label for="text" class="status">Текст вакансии</label>
+      <textarea id="text" maxlength="20000" placeholder="Название, требования, условия, зарплата, город..."></textarea>
+      <div class="actions">
+        <button id="run">Извлечь</button>
+        <button id="example" class="secondary">Пример из «Работы в России»</button>
+        <span id="status" class="status"></span>
+      </div>
+      <p class="note" id="example-source"></p>
+    </section>
+
+    <section id="out">
+      <div class="panel">
+        <h2>Извлечённые поля</h2>
+        <div id="fields"><p class="empty">Здесь появятся поля после запуска.</p></div>
+      </div>
+      <div class="panel">
+        <h2>Оценка зарплаты</h2>
+        <div id="salary"><p class="empty">Оценка строится по извлечённым полям.</p></div>
+      </div>
+      <details>
+        <summary class="status">Ответ модели в JSON</summary>
+        <pre id="json"></pre>
+      </details>
+    </section>
+  </div>
+
+  <footer id="footer"></footer>
+</main>
+<script>
+const ROLE = {
+  ml_engineer: "ML-инженер", data_scientist: "Data Scientist", mlops: "MLOps", data_engineer: "Инженер данных",
+  data_analyst: "Аналитик данных", business_analyst: "Бизнес-аналитик", system_analyst: "Системный аналитик",
+  backend: "Backend", frontend: "Frontend", fullstack: "Fullstack", mobile: "Мобильная разработка",
+  software_engineer: "Программист без уточнения", developer_1c: "Разработчик 1С", embedded: "Встраиваемые системы",
+  devops: "DevOps", qa: "Тестирование", sysadmin: "Системный администратор", support: "Техподдержка",
+  security: "Информационная безопасность", designer: "Дизайн", manager: "Управление", other_it: "Прочее IT",
+  non_it: "Не IT"
+};
+const GRADE = {intern: "стажёр", junior: "junior", middle: "middle", senior: "senior", lead: "lead"};
+const FORMAT = {office: "офис", hybrid: "гибрид", remote: "удалённо"};
+const EMPLOYMENT = {labor_contract: "трудовой договор", gph: "ГПХ", self_employed: "самозанятость", internship: "стажировка"};
+const LANG = {ru: "русский", en: "английский", other: "другой"};
+const PERIOD = {month: "в месяц", year: "в год", day: "в день", hour: "в час"};
+const GROSS = {gross: "до вычета налога", net: "на руки"};
+
+const $ = (id) => document.getElementById(id);
+const nf = new Intl.NumberFormat("ru-RU");
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const none = '<span class="empty">не указано</span>';
+const longDate = (iso) => new Date(iso.length === 10 ? iso + "T00:00:00Z" : iso)
+  .toLocaleDateString("ru-RU", {day: "numeric", month: "long", year: "numeric", timeZone: "UTC"}).replace(/\s*г\.$/, "");
+const dec = (x, d) => x.toFixed(d).replace(".", ",");
+
+let info = null;
+let examples = [];
+let exampleIndex = 0;
+
+function salaryText(s) {
+  if (!s) return none;
+  const parts = [];
+  if (s.from != null && s.to != null) parts.push(`от ${nf.format(s.from)} до ${nf.format(s.to)}`);
+  else if (s.from != null) parts.push(`от ${nf.format(s.from)}`);
+  else if (s.to != null) parts.push(`до ${nf.format(s.to)}`);
+  if (s.currency) parts.push(s.currency);
+  if (s.period) parts.push(PERIOD[s.period]);
+  if (s.gross_net) parts.push(GROSS[s.gross_net]);
+  return esc(parts.join(" ")) || none;
+}
+
+function experienceText(e) {
+  if (!e) return none;
+  if (e.min != null && e.max != null) return `от ${e.min} до ${e.max} лет`;
+  if (e.min != null) return `от ${e.min} лет`;
+  return `до ${e.max} лет`;
+}
+
+function tags(list) {
+  return list.length ? `<div class="tags">${list.map((x) => `<span>${esc(x)}</span>`).join("")}</div>` : none;
+}
+
+function showFields(r) {
+  if (!r.valid) {
+    $("fields").innerHTML = '<p class="status error">Ответ модели не прошёл проверку схемы, поля не извлечены.</p>';
+    return;
+  }
+  const f = r.fields;
+  const rows = [
+    ["Роль", f.role ? esc(ROLE[f.role]) : none],
+    ["Грейд", f.grade ? esc(GRADE[f.grade]) : none],
+    ["Навыки", tags(f.skills)],
+    ["Зарплата в тексте", salaryText(f.salary)],
+    ["Формат работы", f.work_format ? esc(FORMAT[f.work_format]) : none],
+    ["Города", tags(f.cities)],
+    ["Опыт", experienceText(f.experience_years)],
+    ["Занятость", f.employment_type ? esc(EMPLOYMENT[f.employment_type]) : none],
+    ["Язык текста", esc(LANG[f.lang])]
+  ];
+  let html = "<table>" + rows.map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join("") + "</table>";
+  if (r.input_truncated) html += `<p class="note">Текст длиннее контекста модели: прочитано начало, ${nf.format(info.model.max_input_tokens)} токенов.</p>`;
+  $("fields").innerHTML = html;
+}
+
+function showSalary(r) {
+  if (r.salary_note === "non_it") {
+    $("salary").innerHTML = '<p class="empty">Модель зарплаты оценивает только IT-вакансии, а эта размечена как не IT.</p>';
+    return;
+  }
+  if (!r.salary) {
+    $("salary").innerHTML = '<p class="empty">Без извлечённых полей оценки нет.</p>';
+    return;
+  }
+  const s = r.salary;
+  const level = Math.round(s.level * 100);
+  $("salary").innerHTML = `
+    <div class="big">${nf.format(s.point)} ₽ в месяц</div>
+    <p>Интервал ${level}%: от ${nf.format(s.low)} до ${nf.format(s.high)} ₽.<br>
+    Типичная вилка в таких вакансиях: от ${nf.format(s.typical_from)} до ${nf.format(s.typical_to)} ₽.</p>
+    <p class="note">Похожих вакансий в обучении (роль, грейд, регион): ${nf.format(s.n_similar)}.
+    Оценка по рынку вакансий «Работы в России» с указанной зарплатой: середина опубликованной вилки, суммы как их публикует источник (gross или net он не указывает). Зарплата из текста в оценку не входит.
+    На dev-выборке модели интервал ${level}% накрыл ${nf.format(info.salary.dev_coverage.n)} из ${nf.format(info.salary.dev_coverage.denominator)} вакансий.</p>`;
+}
+
+async function run() {
+  const text = $("text").value.trim();
+  if (!text) { $("status").textContent = "Вставьте текст вакансии."; return; }
+  $("run").disabled = true;
+  $("status").className = "status";
+  $("status").textContent = "Модель читает текст на процессоре." +
+    (info && info.speed ? ` На двух ядрах ответ обычно приходит за ${Math.round(info.speed.p50_s)} с, длинный текст дольше.` : "");
+  try {
+    const resp = await fetch("api/extract", {
+      method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({text})
+    });
+    const r = await resp.json();
+    if (!resp.ok) throw new Error(r.detail || resp.statusText);
+    showFields(r);
+    showSalary(r);
+    $("json").textContent = JSON.stringify({fields: r.fields, salary: r.salary}, null, 2);
+    $("status").textContent = `Ответ за ${dec(r.seconds.total, 1)} с.`;
+  } catch (e) {
+    $("status").className = "status error";
+    $("status").textContent = "Ошибка: " + e.message;
+  } finally {
+    $("run").disabled = false;
+  }
+}
+
+function nextExample() {
+  if (!examples.length) return;
+  const ex = examples[exampleIndex++ % examples.length];
+  $("text").value = ex.text;
+  $("example-source").innerHTML = `Источник: портал «Работа в России», trudvsem.ru, открытые данные Роструда${ex.url ? `, <a href="${esc(ex.url)}" rel="noopener">вакансия</a>` : ""}.`;
+}
+
+function footer() {
+  const d = info.dev;
+  const links = info.links;
+  $("slice").textContent = `Срез рынка проекта: «Работа в России» (trudvsem), Хабр Карьера, SuperJob и публичные Telegram-каналы. hh.ru в выборку не входит. Модель извлечения собрана ${longDate(info.model.built_at)}, модель зарплаты обучена ${longDate(info.salary.trained_at)}.`;
+  $("footer").innerHTML = `
+    <p>Модель извлечения: ${esc(info.model.base)}, дообученная (LoRA) на разметке двух моделей-учителей, ${esc(info.model.gguf_type)} GGUF на процессоре через llama.cpp.
+    На dev-выборке эталона (${nf.format(d.n_examples)} вакансий «Работы в России» и Хабр Карьеры, предразметка LLM и ручная проверка) macro F1 ${dec(d.macro_f1, 3)} [${dec(d.ci_low, 3)}; ${dec(d.ci_high, 3)}], валидный JSON ${d.valid_json.n} из ${d.valid_json.denominator}.</p>
+    <p>Модель зарплаты: ${esc(info.salary.version)}, градиентный бустинг с конформным интервалом ${Math.round(info.salary.level * 100)}%, обучена на ${nf.format(info.salary.rows_train)} IT-вакансиях с зарплатой в рублях, интервал откалиброван ещё на ${nf.format(info.salary.rows_calib)}.</p>
+    <p><a href="${links.site}">Сайт с рынком</a> · <a href="${links.github}">Код и методика</a> · <a href="${links.model}">Модель</a> · <a href="${links.dataset}">Датасет</a></p>`;
+}
+
+$("run").addEventListener("click", run);
+$("example").addEventListener("click", nextExample);
+$("text").addEventListener("keydown", (e) => { if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) run(); });
+
+fetch("api/info").then((r) => r.json()).then((x) => { info = x; examples = x.examples || []; footer(); });
+</script>
+</body>
+</html>

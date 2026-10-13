@@ -1,0 +1,122 @@
+---
+license: apache-2.0
+language:
+  - ru
+base_model: Qwen/Qwen3-1.7B
+pipeline_tag: text-generation
+library_name: transformers
+tags:
+  - information-extraction
+  - job-postings
+  - lora
+  - gguf
+  - qwen3
+datasets:
+  - alekseevpavel04/ru-it-vacancies
+---
+
+# Извлечение полей из IT-вакансий: Qwen3-1.7B, LoRA
+
+Модель читает текст вакансии на русском (портал, сайт или пост в Telegram) и отвечает одним JSON-объектом: роль, грейд, навыки, зарплата из текста, формат работы, города, требуемый опыт, тип занятости, язык текста. Не найдено в тексте, значит `null` или пустой список: модель обучена не угадывать.
+
+Часть проекта [ru-it-jobs-radar](https://github.com/alekseevpavel04/ru-it-jobs-radar): ежедневный сбор IT-вакансий России из «Работы в России» (trudvsem), Хабр Карьеры, SuperJob и публичных Telegram-каналов, без hh.ru. Этой моделью размечен весь корпус проекта, по её полям строятся витрины и [сайт с рынком](https://alekseevpavel04.github.io/ru-it-jobs-radar/). Попробовать на своём тексте можно в [Space](https://huggingface.co/spaces/alekseevpavel04/ru-it-jobs-radar).
+
+## Файлы
+
+| Файл | Что | МиБ |
+|---|---|---|
+| `model.safetensors` и конфиги в корне | веса после слияния LoRA с базой, bf16 | <!--n:public/hf_model.json:metrics.merged_safetensors_mib.value:,.0f|ru-->3 282<!--/n--> |
+| `adapter/` | LoRA-адаптер для `Qwen/Qwen3-1.7B` (PEFT) | <!--n:public/hf_model.json:metrics.adapter_safetensors_mib.value:,.0f|ru-->66<!--/n--> |
+| `gguf/qwen3_1p7b_r16_clean-Q8_0.gguf` | llama.cpp, 8 бит | <!--n:public/hf_model.json:metrics.gguf_q8_0_mib.value:,.0f|ru-->1 749<!--/n--> |
+| `gguf/qwen3_1p7b_r16_clean-Q4_K_M.gguf` | llama.cpp, 4 бита, на нём работает Space | <!--n:public/hf_model.json:metrics.gguf_q4_k_m_mib.value:,.0f|ru-->1 056<!--/n--> |
+| `dataset_meta.json` | системный промпт, длина входа, хэши обучающих данных | |
+
+GGUF собраны llama.cpp b11052 из слитых весов без imatrix.
+
+## Схема ответа
+
+```json
+{"role": "data_scientist", "grade": "middle", "skills": ["Python", "SQL", "PyTorch"],
+ "salary": {"from": 250000, "to": 350000, "currency": "RUB", "gross_net": "net", "period": "month"},
+ "work_format": "hybrid", "cities": ["Москва"], "experience_years": {"min": 3, "max": null},
+ "employment_type": "labor_contract", "lang": "ru"}
+```
+
+Роли: ml_engineer, data_scientist, mlops, data_engineer, data_analyst, business_analyst, system_analyst, backend, frontend, fullstack, mobile, software_engineer, developer_1c, embedded, devops, qa, sysadmin, support, security, designer, manager, other_it, non_it. Полное описание полей и правила разметки: [docs/annotation_guide.md](https://github.com/alekseevpavel04/ru-it-jobs-radar/blob/main/docs/annotation_guide.md).
+
+## Как запускать
+
+Промпт должен быть ровно таким, как при обучении: системный промпт из `dataset_meta.json`, шаблон чата Qwen3 с выключенным thinking, вход обрезан до первых <!--n:sft/train_qwen3_1p7b_r16_clean.json:params.max_input_tokens:,d|ru-->1 536<!--/n--> токенов. Декодирование жадное, до 512 новых токенов.
+
+```python
+import json
+from huggingface_hub import hf_hub_download
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+repo = "alekseevpavel04/ru-it-vacancy-extractor-qwen3-1.7b"
+tok = AutoTokenizer.from_pretrained(repo)
+model = AutoModelForCausalLM.from_pretrained(repo, dtype="auto")
+meta = json.load(open(hf_hub_download(repo, "dataset_meta.json"), encoding="utf-8"))
+
+text = "Python-разработчик в команду данных. Москва, гибрид. Опыт от 3 лет, SQL, Airflow. 250-300 тыс. руб."
+ids = tok(text, add_special_tokens=False, return_offsets_mapping=True)
+if len(ids.input_ids) > meta["max_input_tokens"]:
+    text = text[: ids.offset_mapping[meta["max_input_tokens"] - 1][1]]
+messages = [{"role": "system", "content": meta["system_prompt"]}, {"role": "user", "content": text}]
+prompt = tok.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=False)
+inputs = tok(prompt, return_tensors="pt", add_special_tokens=False)
+out = model.generate(**inputs, max_new_tokens=512, do_sample=False)
+print(tok.decode(out[0, inputs.input_ids.shape[1] :], skip_special_tokens=True))
+```
+
+С llama.cpp: `llama-server -m qwen3_1p7b_r16_clean-Q4_K_M.gguf`, промпт собирается так же и отправляется текстом в `/completion` с `temperature: 0`.
+
+## Как обучена
+
+- База `Qwen/Qwen3-1.7B`, QLoRA: ранг <!--n:sft/train_qwen3_1p7b_r16_clean.json:params.lora.r:d-->16<!--/n-->, все линейные слои внимания и MLP, <!--n:sft/train_qwen3_1p7b_r16_clean.json:params.train.epochs:d-->2<!--/n--> эпохи, одна RTX 3070 на 8 ГБ, <!--n:sft/train_qwen3_1p7b_r16_clean.json:metrics.train_seconds.value:,.0f|ru-->3 773<!--/n--> с обучения.
+- <!--n:sft/dataset.json:metrics.train_examples.n:,d|ru-->10 866<!--/n--> обучающих примеров из <!--n:sft/dataset.json:metrics.silver_records.value:,d|ru-->11 427<!--/n--> размеченных автоматически (серебряная разметка): <!--n:sft/dataset.json:metrics.trudvsem_habr.train_examples.value:,d|ru-->5 719<!--/n--> вакансий «Работы в России» и Хабр Карьеры и <!--n:sft/dataset.json:metrics.telegram.train_examples.value:,d|ru-->5 147<!--/n--> постов Telegram.
+- Разметка порталов: правила и регулярки по тексту и структурным полям источника. Разметка Telegram: значения, в которых согласились две модели-учителя (Qwen3-8B и YandexGPT-5-Lite-8B), иначе правила. Состав выбран на dev, где каждая из четырёх заранее заданных схем сравнивалась с правилами.
+- Вакансии и посты эталона и их дубли в обучение не попали.
+
+## Качество
+
+Эталон: вакансии и посты, предразмеченные LLM в два независимых прохода по одной инструкции с третьим проходом по расхождениям и проверенные мной вручную целиком. Ниже dev-выборки, на которых подбиралось всё; test считается один раз в конце. Macro F1 по полям схемы, в скобках 95% бутстрап-интервал.
+
+dev: <!--n:extract/dev_sft_1p7b_r16_clean.json:n_examples:d-->165<!--/n--> вакансий «Работы в России» и Хабр Карьеры.
+
+| Система | Macro F1 | Валидный JSON |
+|---|---|---|
+| Эта модель, bf16 | <!--n:extract/dev_sft_1p7b_r16_clean.json:metrics.macro_f1.value:.3f|ru-->0,899<!--/n--> [<!--n:extract/dev_sft_1p7b_r16_clean.json:metrics.macro_f1.ci_low:.3f|ru-->0,878<!--/n-->; <!--n:extract/dev_sft_1p7b_r16_clean.json:metrics.macro_f1.ci_high:.3f|ru-->0,918<!--/n-->] | <!--n:extract/dev_sft_1p7b_r16_clean.json:metrics.valid_json.n:d-->165<!--/n--> из <!--n:extract/dev_sft_1p7b_r16_clean.json:metrics.valid_json.denominator:d-->165<!--/n--> |
+| Эта модель, GGUF Q8_0 | <!--n:extract/dev_sft_1p7b_clean_q8_0.json:metrics.macro_f1.value:.3f|ru-->0,912<!--/n--> [<!--n:extract/dev_sft_1p7b_clean_q8_0.json:metrics.macro_f1.ci_low:.3f|ru-->0,890<!--/n-->; <!--n:extract/dev_sft_1p7b_clean_q8_0.json:metrics.macro_f1.ci_high:.3f|ru-->0,932<!--/n-->] | <!--n:extract/dev_sft_1p7b_clean_q8_0.json:metrics.valid_json.n:d-->165<!--/n--> из <!--n:extract/dev_sft_1p7b_clean_q8_0.json:metrics.valid_json.denominator:d-->165<!--/n--> |
+| Эта модель, GGUF Q4_K_M | <!--n:extract/dev_sft_1p7b_clean_q4_k_m.json:metrics.macro_f1.value:.3f|ru-->0,904<!--/n--> [<!--n:extract/dev_sft_1p7b_clean_q4_k_m.json:metrics.macro_f1.ci_low:.3f|ru-->0,881<!--/n-->; <!--n:extract/dev_sft_1p7b_clean_q4_k_m.json:metrics.macro_f1.ci_high:.3f|ru-->0,925<!--/n-->] | <!--n:extract/dev_sft_1p7b_clean_q4_k_m.json:metrics.valid_json.n:d-->165<!--/n--> из <!--n:extract/dev_sft_1p7b_clean_q4_k_m.json:metrics.valid_json.denominator:d-->165<!--/n--> |
+| Правила и регулярки | <!--n:extract/dev_regex.json:metrics.macro_f1.value:.3f|ru-->0,900<!--/n--> [<!--n:extract/dev_regex.json:metrics.macro_f1.ci_low:.3f|ru-->0,878<!--/n-->; <!--n:extract/dev_regex.json:metrics.macro_f1.ci_high:.3f|ru-->0,918<!--/n-->] | |
+| Учитель Qwen3-8B Q4_K_M | <!--n:extract/dev_teacher_qwen.json:metrics.macro_f1.value:.3f|ru-->0,822<!--/n--> [<!--n:extract/dev_teacher_qwen.json:metrics.macro_f1.ci_low:.3f|ru-->0,785<!--/n-->; <!--n:extract/dev_teacher_qwen.json:metrics.macro_f1.ci_high:.3f|ru-->0,855<!--/n-->] | <!--n:extract/dev_teacher_qwen.json:metrics.valid_json.n:d-->164<!--/n--> из <!--n:extract/dev_teacher_qwen.json:metrics.valid_json.denominator:d-->165<!--/n--> |
+| Учитель YandexGPT-5-Lite-8B Q4_K_M | <!--n:extract/dev_teacher_yandex.json:metrics.macro_f1.value:.3f|ru-->0,826<!--/n--> [<!--n:extract/dev_teacher_yandex.json:metrics.macro_f1.ci_low:.3f|ru-->0,795<!--/n-->; <!--n:extract/dev_teacher_yandex.json:metrics.macro_f1.ci_high:.3f|ru-->0,853<!--/n-->] | <!--n:extract/dev_teacher_yandex.json:metrics.valid_json.n:d-->165<!--/n--> из <!--n:extract/dev_teacher_yandex.json:metrics.valid_json.denominator:d-->165<!--/n--> |
+
+tg_dev: <!--n:extract/tg_dev_sft_1p7b_r16_clean.json:n_examples:d-->54<!--/n--> поста Telegram.
+
+| Система | Macro F1 |
+|---|---|
+| Эта модель, bf16 | <!--n:extract/tg_dev_sft_1p7b_r16_clean.json:metrics.macro_f1.value:.3f|ru-->0,832<!--/n--> [<!--n:extract/tg_dev_sft_1p7b_r16_clean.json:metrics.macro_f1.ci_low:.3f|ru-->0,760<!--/n-->; <!--n:extract/tg_dev_sft_1p7b_r16_clean.json:metrics.macro_f1.ci_high:.3f|ru-->0,879<!--/n-->] |
+| Эта модель, GGUF Q4_K_M | <!--n:extract/tg_dev_sft_1p7b_clean_q4_k_m.json:metrics.macro_f1.value:.3f|ru-->0,847<!--/n--> [<!--n:extract/tg_dev_sft_1p7b_clean_q4_k_m.json:metrics.macro_f1.ci_low:.3f|ru-->0,787<!--/n-->; <!--n:extract/tg_dev_sft_1p7b_clean_q4_k_m.json:metrics.macro_f1.ci_high:.3f|ru-->0,891<!--/n-->] |
+| Правила и регулярки | <!--n:extract/tg_dev_regex.json:metrics.macro_f1.value:.3f|ru-->0,653<!--/n--> [<!--n:extract/tg_dev_regex.json:metrics.macro_f1.ci_low:.3f|ru-->0,582<!--/n-->; <!--n:extract/tg_dev_regex.json:metrics.macro_f1.ci_high:.3f|ru-->0,706<!--/n-->] |
+| Учитель Qwen3-8B Q4_K_M | <!--n:extract/tg_dev_teacher_qwen.json:metrics.macro_f1.value:.3f|ru-->0,818<!--/n--> [<!--n:extract/tg_dev_teacher_qwen.json:metrics.macro_f1.ci_low:.3f|ru-->0,745<!--/n-->; <!--n:extract/tg_dev_teacher_qwen.json:metrics.macro_f1.ci_high:.3f|ru-->0,867<!--/n-->] |
+
+Test, один запуск после всех решений:
+
+| Выборка | Эта модель, bf16 | GGUF Q4_K_M |
+|---|---|---|
+| test (вакансии порталов) | <!--pending:extract/final_test.json:metrics.test/sft_1p7b_r16_clean/macro_f1.value:.3f|ru-->ждёт финального теста<!--/pending--> | <!--pending:extract/final_test.json:metrics.test/sft_1p7b_clean_q4_k_m/macro_f1.value:.3f|ru-->ждёт финального теста<!--/pending--> |
+| tg_test (посты Telegram) | <!--pending:extract/final_test.json:metrics.tg_test/sft_1p7b_r16_clean/macro_f1.value:.3f|ru-->ждёт финального теста<!--/pending--> | <!--pending:extract/final_test.json:metrics.tg_test/sft_1p7b_clean_q4_k_m/macro_f1.value:.3f|ru-->ждёт финального теста<!--/pending--> |
+
+Как читать. На вакансиях порталов модель на уровне правил, потому что для порталов её обучающая разметка и есть правила: там у вакансии есть структурные поля, и правила их читают надёжно. Выигрыш модели на свободном тексте постов Telegram, где правила слабы. Учителя на 8B на dev порталов ниже и ученика, и правил.
+
+## Ограничения
+
+- Эталон предразмечен LLM и проверен вручную одним человеком. Dev маленький, интервалы широкие: варианты квантизации отличаются от bf16 в пределах интервалов.
+- Модель видела вакансии и посты с одной вакансией. Резюме, статьи и посты с несколькими вакансиями в обучение не входили.
+- Модель знает только то, что написано во входе. Зарплата без валюты остаётся без валюты, gross или net не угадывается.
+
+## Данные и лицензия
+
+Веса производные от `Qwen/Qwen3-1.7B` (Apache 2.0) и распространяются под той же лицензией. Тексты обучающих примеров не публикуются: открытые данные «Работы в России» лежат в [датасете проекта](https://huggingface.co/datasets/alekseevpavel04/ru-it-vacancies), тексты Хабр Карьеры и Telegram остаются только в локальном хранилище проекта.

@@ -1,0 +1,96 @@
+---
+license: other
+license_name: mixed
+license_link: LICENSE.md
+language:
+  - ru
+pretty_name: IT-вакансии России из открытых источников
+size_categories:
+  - 10K<n<100K
+task_categories:
+  - text-generation
+tags:
+  - job-postings
+  - information-extraction
+  - labor-market
+configs:
+  - config_name: trudvsem
+    default: true
+    data_files: data/trudvsem/*.parquet
+  - config_name: superjob
+    data_files: data/superjob/*.parquet
+  - config_name: telegram
+    data_files: data/telegram/*.parquet
+  - config_name: habr_aggregates
+    data_files: aggregates/habr_monthly.parquet
+---
+
+# IT-вакансии России из открытых источников
+
+Вакансии и посты с вакансиями, которые проект [ru-it-jobs-radar](https://github.com/alekseevpavel04/ru-it-jobs-radar) собирает каждый день, и поля, извлечённые из них дообученной моделью [ru-it-vacancy-extractor-qwen3-1.7b](https://huggingface.co/alekseevpavel04/ru-it-vacancy-extractor-qwen3-1.7b): роль, грейд, навыки, зарплата, формат работы, города, опыт, тип занятости, язык.
+
+Срез рынка: «Работа в России» (trudvsem), SuperJob, публичные Telegram-каналы и Хабр Карьера. hh.ru не используется. Срез смещён в сторону вакансий, которые попадают в эти источники, и это не весь рынок IT в России.
+
+## Что в наборе
+
+| Конфигурация | Строк | Что в строке |
+|---|---|---|
+| `trudvsem` | <!--n:public/hf_dataset.json:metrics.trudvsem.rows.value:,d|ru-->25 818<!--/n--> | вакансия: заголовок, текст, ссылка, поля портала и извлечённые поля |
+| `superjob` | <!--n:public/hf_dataset.json:metrics.superjob.rows.value:,d|ru-->764<!--/n--> | только извлечённые поля и дата публикации |
+| `telegram` | <!--n:public/hf_dataset.json:metrics.telegram.rows.value:,d|ru-->54 236<!--/n--> | только извлечённые поля, канал и дата поста |
+| `habr_aggregates` | <!--n:public/hf_dataset.json:metrics.habr.cells.value:,d|ru-->426<!--/n--> | агрегат: месяц, поле, значение, число вакансий и знаменатель месяца |
+
+Тексты есть только у «Работы в России»: <!--n:public/hf_dataset.json:metrics.trudvsem.with_text.n:,d|ru-->18 864<!--/n--> из <!--n:public/hf_dataset.json:metrics.trudvsem.with_text.denominator:,d|ru-->25 818<!--/n--> вакансий. Ещё <!--n:public/hf_dataset.json:metrics.trudvsem.text_withheld_reposted.n:,d|ru-->6 952<!--/n--> портал помечает как «Вакансия интернет ресурса»: это перепубликация с других сайтов, их заголовок и текст не выкладываются. Тексты SuperJob, Telegram и Хабр Карьеры хранятся только в локальном сыром слое проекта.
+
+Хабр Карьера представлена только агрегатами по месяцам (<!--n:public/hf_dataset.json:metrics.habr.vacancies.value:,d|ru-->1 141<!--/n--> вакансий): число вакансий по роли, грейду, формату работы, типу занятости и навыку. Ячейка меньше <!--n:public/hf_dataset.json:metrics.habr.min_cell.value:d-->5<!--/n--> вакансий не публикуется, таких ячеек <!--n:public/hf_dataset.json:metrics.habr.cells_dropped_below_min.value:,d|ru-->736<!--/n-->.
+
+## Деление по времени
+
+Каждая конфигурация разбита на файлы по году публикации: `data/<источник>/<ГГГГ>.parquet`, точная дата в `published_date`. Если источник даты публикации не даёт, берётся дата версии в сыром слое. Для оценки моделей без утечки из будущего берите последние месяцы как тест. «Работа в России» с <!--n:public/hf_dataset.json:metrics.trudvsem.first_month.value:s-->2015-09<!--/n--> по <!--n:public/hf_dataset.json:metrics.trudvsem.last_month.value:s-->2026-10<!--/n-->, SuperJob с <!--n:public/hf_dataset.json:metrics.superjob.first_month.value:s-->2026-10<!--/n--> по <!--n:public/hf_dataset.json:metrics.superjob.last_month.value:s-->2026-10<!--/n-->, Telegram с <!--n:public/hf_dataset.json:metrics.telegram.first_month.value:s-->2017-10<!--/n--> по <!--n:public/hf_dataset.json:metrics.telegram.last_month.value:s-->2026-10<!--/n-->.
+
+## Поля
+
+Общие для `trudvsem`, `superjob`, `telegram`:
+
+| Поле | Тип | Смысл |
+|---|---|---|
+| `extraction_valid` | bool | ответ модели прошёл схему; если нет, все поля ниже пустые |
+| `role` | string | ml_engineer, data_scientist, mlops, data_engineer, data_analyst, business_analyst, system_analyst, backend, frontend, fullstack, mobile, software_engineer, developer_1c, embedded, devops, qa, sysadmin, support, security, designer, manager, other_it, non_it |
+| `grade` | string | intern, junior, middle, senior, lead |
+| `skills` | list[string] | навыки, как их назвала модель |
+| `salary_from`, `salary_to` | int | вилка из текста, как написана |
+| `salary_currency` | string | RUB, USD, EUR, KZT, BYN, UZS, CNY, GBP |
+| `salary_gross_net` | string | gross или net, если сказано в тексте |
+| `salary_period` | string | month, year, day, hour |
+| `work_format` | string | office, hybrid, remote |
+| `cities` | list[string] | города из текста |
+| `experience_min`, `experience_max` | float | требуемый опыт в годах |
+| `employment_type` | string | labor_contract, gph, self_employed, internship |
+| `lang` | string | ru, en, other |
+| `published_date` | date | дата публикации у источника; у SuperJob это дата последнего поднятия |
+
+Не найдено в тексте: `null` или пустой список, модель не угадывает. Правила полей: [docs/annotation_guide.md](https://github.com/alekseevpavel04/ru-it-jobs-radar/blob/main/docs/annotation_guide.md).
+
+Только в `trudvsem`: `vacancy_id` (id портала), `feed` (`trudvsem` это API, `trudvsem_snapshot` это ежедневный снимок набора открытых данных), `version_date`, `url`, `title`, `text`, `text_withheld` (почему текста нет), `source_type`, `region`, `employer_name`, `stated_salary_from` и `stated_salary_to` (вилка из полей портала). Только в `telegram`: `channel`, публичный канал.
+
+## Как собрано
+
+- Одна строка на вакансию: последняя версия, для которой есть извлечённые поля. Вакансия, которая пришла и через API, и в снимках, идёт одной строкой с более поздней версией. Из API <!--n:public/hf_dataset.json:metrics.trudvsem.from_api_feed.n:,d|ru-->469<!--/n--> из <!--n:public/hf_dataset.json:metrics.trudvsem.from_api_feed.denominator:,d|ru-->25 818<!--/n-->.
+- В выборку попадают кандидаты в IT по правилам staging проекта, у Telegram только посты с одной вакансией и с собственным текстом. Поле `role` = `non_it` значит, что модель сочла вакансию не IT.
+- Поля извлечены моделью, а не людьми: AWQ-квантованием той же модели в vLLM, ответ ограничен грамматикой JSON-схемы. Её качество на эталоне (предразметка LLM и ручная проверка): macro F1 <!--n:extract/dev_sft_1p7b_clean_awq_schema.json:metrics.macro_f1.value:.3f|ru-->0,903<!--/n--> на dev вакансий порталов (<!--n:extract/dev_sft_1p7b_clean_awq_schema.json:n_examples:d-->165<!--/n--> вакансий) и <!--n:extract/tg_dev_sft_1p7b_clean_awq_schema.json:metrics.macro_f1.value:.3f|ru-->0,857<!--/n--> на dev постов Telegram (<!--n:extract/tg_dev_sft_1p7b_clean_awq_schema.json:n_examples:d-->54<!--/n--> поста). Ответ прошёл схему у <!--n:public/hf_dataset.json:metrics.trudvsem.extraction_valid.n:,d|ru-->25 816<!--/n--> из <!--n:public/hf_dataset.json:metrics.trudvsem.extraction_valid.denominator:,d|ru-->25 818<!--/n--> вакансий «Работы в России» и <!--n:public/hf_dataset.json:metrics.telegram.extraction_valid.n:,d|ru-->54 144<!--/n--> из <!--n:public/hf_dataset.json:metrics.telegram.extraction_valid.denominator:,d|ru-->54 236<!--/n--> постов.
+- Telegram размечается от новых постов к старым, разметка корпуса ещё идёт: число постов в следующих версиях набора вырастет.
+
+## Персональные данные
+
+Персональные данные вырезаются до записи в сырой слой проекта (152-ФЗ): ФИО контактов, телефоны, почты, ники, а у работодателей-ИП имя, ИНН, ОГРНИП и адрес. Хэши контактов тоже не хранятся. При выгрузке каждый заголовок и текст проверяется ещё раз, найденное заменяется меткой вида `[phone]`; при этой выгрузке заменено <!--n:public/hf_dataset.json:metrics.pii_replaced_on_export.value:,d|ru-->0<!--/n-->. У работодателя-человека название в выгрузку не идёт (<!--n:public/hf_dataset.json:metrics.trudvsem.employer_name_removed_person.value:,d|ru-->526<!--/n--> вакансий). Если вы нашли в наборе персональные данные, напишите в issue репозитория, строка будет удалена.
+
+## Лицензии по источникам
+
+| Источник | Что опубликовано | Условия |
+|---|---|---|
+| «Работа в России» (trudvsem.ru) | тексты, поля портала, извлечённые поля | открытые данные Роструда, «информация, которая находится в свободном доступе в сети Интернет для использования без ограничений»; ссылка на trudvsem.ru обязательна. Атрибуция: «Источник: портал «Работа в России», trudvsem.ru, открытые данные Роструда» |
+| SuperJob | извлечённые поля без текста и ссылок | база вакансий SuperJob охраняется как база данных, поэтому тексты не публикуются; извлечённые поля это производные данные проекта |
+| Telegram | извлечённые поля без текста, канал и дата | тексты постов принадлежат авторам каналов и не публикуются; извлечённые поля это производные данные проекта |
+| Хабр Карьера | месячные агрегаты | тексты и построчные поля не публикуются |
+
+Извлечённые поля и агрегаты распространяются под лицензией из [LICENSE.md](LICENSE.md). Подробности о каждом источнике, условиях и замерах: [docs/sources.md](https://github.com/alekseevpavel04/ru-it-jobs-radar/blob/main/docs/sources.md).

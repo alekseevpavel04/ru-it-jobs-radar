@@ -1,0 +1,32 @@
+# What goes to Hugging Face and under which names. The assemblers in radar.site.hf_*
+# read this file; nothing is uploaded by them.
+
+[repos]
+# Repository names.
+model = "alekseevpavel04/ru-it-vacancy-extractor-qwen3-1.7b"
+dataset = "alekseevpavel04/ru-it-vacancies"
+space = "alekseevpavel04/ru-it-jobs-radar"
+site = "https://alekseevpavel04.github.io/ru-it-jobs-radar/"
+github = "https://github.com/alekseevpavel04/ru-it-jobs-radar"
+
+[model]
+# models/merged/<name>, models/gguf/<name>, models/sft/<name>/adapter
+name = "qwen3_1p7b_r16_clean"
+base = "Qwen/Qwen3-1.7B"
+# Eval system names of the published weights (results/extract/<split>_<system>.json, quant_summary)
+system_bf16 = "sft_1p7b_r16_clean"
+system_q4 = "sft_1p7b_clean_q4_k_m"
+system_q8 = "sft_1p7b_clean_q8_0"
+# The GGUF the Space serves and the eval system that scored it the way the Space decodes it
+space_gguf = "Q4_K_M"
+space_system = "sft_1p7b_clean_q4_k_m_schema"
+
+[dataset]
+# extract.vacancy_fields.model_id whose fields are exported
+model_id = "qwen3_1p7b_r16_clean-awq"
+
+[salary]
+artifact = "models/salary/salary.pkl"
+result = "models/salary.json"
+# The market the Space asks the salary model for
+source = "trudvsem"
