@@ -14,7 +14,9 @@ from radar.models.forecast import (
     boosting,
     bootstrap_index,
     compare,
+    coverage_by_year,
     ets,
+    link_check,
     load_config,
     mase,
     moving_average,
@@ -132,3 +134,20 @@ def test_noise_floor_is_the_binomial_mean_absolute_deviation() -> None:
     bt = Backtest(origins=[0, 1], actual=actual, forecast={}, scale=np.full((1, 2), 0.01))
     floor = noise_floor(bt, np.full(10, 300.0))
     assert np.allclose(floor, np.sqrt(2 / np.pi) * np.sqrt(0.25 * 0.75 / 300) / 0.01)
+
+
+def test_coverage_by_year_counts_only_weeks_that_are_over() -> None:
+    w = weeks(date(2021, 12, 20), 4)  # two weeks of 2021, two of 2022
+    cov = pd.DataFrame({"week": w, "units_it": [10.0, 30, 500, 700], "coverage_extractable": [1.0, np.nan, 1, 1]})
+    years = coverage_by_year(cov, 0.85, w[-1] + timedelta(days=3))
+    assert years == {
+        "2021": {"value": 20.0, "weeks": 2, "weeks_covered": 1},
+        "2022": {"value": 500.0, "weeks": 1, "weeks_covered": 1},
+    }
+
+
+def test_link_check_shares_of_the_series_weeks() -> None:
+    w = weeks(date(2025, 1, 6), 3)
+    links = pd.DataFrame({"week": w, "it_units": [100, 100, 50], "link_only": [10, 20, 50], "named": [1, 1, 5]})
+    entry = link_check(links, w[:2])
+    assert entry == {"value": 0.15, "n": 30, "denominator": 200, "named_value": 0.01, "named_n": 2}

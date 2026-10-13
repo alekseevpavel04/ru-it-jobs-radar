@@ -65,6 +65,20 @@ WHERE level = 'week' AND source IN {sources:Array(String)}
 FORMAT TSVWithNames
 """
 
+# IT units of the week whose extracted HTTP or HTTPS the marts dropped because the text names them only
+# in links (configs/skills.toml [text_check]), and the units that keep the reported skill.
+LINK_SQL = """
+SELECT u.source AS source, u.week AS week, countIf(u.is_it) AS it_units,
+    countIf(u.is_it AND f.skills_link_only_n > 0) AS link_only,
+    countIf(u.is_it AND has(u.skills, {skill:String})) AS named
+FROM staging.int_extracted_weekly_units AS u
+LEFT JOIN staging.int_extracted_fields AS f ON f.source = u.record_source AND f.source_id = u.record_source_id
+WHERE u.source IN {sources:Array(String)}
+GROUP BY source, week
+FORMAT TSVWithNames
+SETTINGS join_use_nulls = 1
+"""
+
 
 @dataclass(frozen=True)
 class Config:
@@ -75,6 +89,7 @@ class Config:
     min_median_mentions: float
     exclude: tuple[str, ...]
     reference_source: str
+    link_report: str
     horizon: int
     min_train: int
     min_origins: int
@@ -114,6 +129,7 @@ def load_config(path: Path = CONFIG) -> Config:
         min_median_mentions=float(s["min_median_mentions"]),
         exclude=tuple(s["exclude"]),
         reference_source=s["reference_source"],
+        link_report=s["link_report"],
         horizon=int(b["horizon"]),
         min_train=int(b["min_train"]),
         min_origins=int(b["min_origins"]),
@@ -421,18 +437,39 @@ def _tsv(text: str) -> pd.DataFrame:
     return frame
 
 
-def load(sources: tuple[str, ...]) -> tuple[pd.DataFrame, pd.DataFrame]:
+def load(sources: tuple[str, ...], link_report: str) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     from radar.stream.clickhouse import ClickHouse
 
     arg = "[" + ",".join(f"'{s}'" for s in sources) + "]"
     with ClickHouse() as ch:
         series = _tsv(ch.query(SERIES_SQL, sources=arg))
         coverage = _tsv(ch.query(COVERAGE_SQL, sources=arg))
-    return series, coverage
+        links = _tsv(ch.query(LINK_SQL, sources=arg, skill=link_report))
+    return series, coverage, links
 
 
 def _share(n: float, d: float) -> dict[str, Any]:
     return {"value": round(n / d, 4) if d else 0.0, "n": int(n), "denominator": int(d)}
+
+
+def coverage_by_year(cov: pd.DataFrame, min_coverage: float, today: date) -> dict[str, dict[str, Any]]:
+    """Per calendar year of the week's Monday: weeks over, weeks extracted enough, median weekly IT units."""
+    over = cov[cov["week"].map(lambda w: w + timedelta(days=7) <= today)]
+    years: dict[str, dict[str, Any]] = {}
+    for year, g in over.groupby(over["week"].map(lambda w: w.year)):
+        years[str(year)] = {
+            "value": float(np.median(g["units_it"])),
+            "weeks": len(g),
+            "weeks_covered": int((g["coverage_extractable"].fillna(0.0) >= min_coverage).sum()),
+        }
+    return years
+
+
+def link_check(links: pd.DataFrame, weeks: list[date]) -> dict[str, Any]:
+    rows = links[links["week"].isin(weeks)]
+    it = rows["it_units"].sum()
+    named = _share(rows["named"].sum(), it)
+    return _share(rows["link_only"].sum(), it) | {f"named_{k}": v for k, v in named.items() if k != "denominator"}
 
 
 DEFINITIONS = {
@@ -456,8 +493,8 @@ DEFINITIONS = {
 }
 
 LIMITS_RU = [
-    "Ряд Telegram начинается 6 января 2025 года, до этого посты не извлекались: меньше двух лет недель, "
-    "поэтому годовой сезон проверяется только на последних точках.",
+    "Ряд Telegram начинается 3 января 2022 года: раньше IT-постов в неделю заметно меньше, и шум доли "
+    "навыка в ранних неделях был бы другим, чем в поздних.",
     "Набор каналов менялся (каналы появлялись и затихали), доля навыка отражает и состав каналов, а не "
     "только спрос рынка.",
     "Навыки извлечены моделью из текста и содержат ошибки, ошибка извлечения входит в ряд как шум.",
@@ -505,7 +542,7 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
     cfg = load_config(args.config)
     load_dotenv()
-    series, coverage = load(cfg.sources)
+    series, coverage, links = load(cfg.sources, cfg.link_report)
     today = datetime.now(ZoneInfo("Europe/Moscow")).date()
     run_started = time.perf_counter()
 
@@ -522,13 +559,10 @@ def main(argv: list[str] | None = None) -> int:
             "eligible": eligible,
             "min_weeks": cfg.min_weeks,
         }
-        first = cfg.first_week.get(source)
-        if first is not None:
-            # Why the series starts there: extraction coverage of the 52 weeks before it.
-            before = cov[(cov["week"] < first) & (cov["week"] >= first - timedelta(weeks=52))]
-            metrics[f"data.{source}.year_before_first_week"] = _share(
-                before["units_with_fields"].sum(), before["units"].sum()
-            )
+        if source in cfg.first_week:
+            # Why the series starts there: extraction coverage and weekly volume of every year.
+            for year, entry in coverage_by_year(cov, cfg.min_coverage, today).items():
+                metrics[f"data.{source}.years.{year}"] = entry
         if weeks:
             panels[source] = build_panel(source, series[series["source"] == source], cov, weeks)
         log.info("%s: %d usable weeks, eligible %s", source, len(weeks), eligible)
@@ -551,6 +585,9 @@ def main(argv: list[str] | None = None) -> int:
                     r = _share(ref.mentions[ref.skills.index(skill)].sum(), ref.it_units.sum())
                     entry |= {"reference_source": cfg.reference_source} | {f"reference_{k}": v for k, v in r.items()}
                 metrics[f"excluded.{source}.{skill}"] = entry
+        for name in (source, cfg.reference_source):
+            if name in panels:
+                metrics[f"link_check.{name}"] = link_check(links[links["source"] == name], panels[name].weeks)
         for target in cfg.targets:
             started = time.perf_counter()
             target_metrics, served[f"{source}.{target}"] = run_target(panel, rows, target, cfg)

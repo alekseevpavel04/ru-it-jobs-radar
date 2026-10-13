@@ -7,9 +7,11 @@
 # usable run of weeks is at least min_train + horizon + min_origins - 1 long; the others are reported
 # with their length.
 sources = ["telegram", "all_portals", "trudvsem_snapshot", "trudvsem", "habr", "superjob"]
-# The Telegram corpus run extracted every post from 2025-01-01 on and almost nothing before (2024: 122
-# of 36 746 posts). The week of 2024-12-30 holds only its 2025 days, so the series starts a week later.
-first_week = { telegram = "2025-01-06" }
+# Telegram posts are extracted back to 2016 and every week from February 2017 on is covered, but the
+# weekly volume grows: median IT posts per week 87 in 2018, 212 in 2019, 370 in 2021, 528 to 629 from
+# 2022 on (data.telegram.years of the result). From 2022 the volume, and with it the sampling noise of
+# a share, stays at one level, so the series starts with the first ISO week of 2022.
+first_week = { telegram = "2022-01-03" }
 # A week is used when this share of the units the run can extract has fields (coverage_extractable)
 # and the week is over (its Sunday is before the run date, Moscow time).
 min_coverage = 0.85
@@ -22,11 +24,13 @@ targets = ["share", "count"]
 # binomial noise of a weekly share is at most about 1/sqrt(20) = 22% of its level; below it the
 # series is mostly sampling noise and every method reduces to smoothing.
 min_median_mentions = 20
-# HTTPS: 16% of Telegram IT posts against 3% on Habr Career and under 1% on trudvsem; the extractor
-# most likely reads the links of a post as the skill. Not a demand series.
-exclude = ["HTTPS"]
-# Reference source for the shares reported next to an excluded skill.
+# Empty: HTTPS was excluded while the extractor's links counted as the skill; the marts now keep it only
+# where the text names it outside a link (configs/skills.toml [text_check]).
+exclude = []
+# Reference source for the shares reported next to an excluded skill and for the link check.
 reference_source = "habr"
+# Skill whose share is reported next to the posts whose HTTP or HTTPS the link rule dropped.
+link_report = "HTTPS"
 
 [backtest]
 horizon = 4
