@@ -33,7 +33,16 @@ from radar.config import RESULTS, ROOT
 from radar.results import ResultFile
 
 MARKER = re.compile(r"<!--n:(?P<path>[^:]+):(?P<key>[^:]+):(?P<fmt>[^>]*?)-->(?P<text>.*?)<!--/n-->", re.S)
-DEFAULT_TARGETS = ["README.md", "docs", "site/src"]
+# Hugging Face card templates by name: hf/space also holds node_modules.
+DEFAULT_TARGETS = [
+    "README.md",
+    "docs",
+    "site/src",
+    "hf/model/README.md.in",
+    "hf/dataset/README.md.in",
+    "hf/space/README.md.in",
+    "hf/space/index.html",
+]
 TEXT_SUFFIXES = {".md", ".html", ".svelte", ".js", ".ts"}
 
 
