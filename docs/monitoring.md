@@ -59,6 +59,26 @@ docker compose -f infra/compose/docker-compose.yml --env-file .env --profile mlo
 
 Собственный эндпоинт Prometheus у ClickHouse выключен: он требует файла в `config.d` и пересоздания сервера. Пока его нет, те же `system.metrics` и `system.events` отдаёт `radar-exporter` с префиксами эндпоинта ClickHouse.
 
+## Дрейф и качество извлечения (Evidently)
+
+DAG `radar_drift` по понедельникам в 10:00 UTC строит три отчёта по последней полной неделе каждого источника против его первых четырёх полных недель.
+
+| Отчёт | Что сравнивается | Результат |
+|---|---|---|
+| Входящие вакансии ([`drift.py`](../src/radar/monitor/drift.py)) | признаки витрин у новых вакансий без дублей: роль, грейд, формат, регион, зарплата, опыт, навыки, длина текста; плюс объём по дням и доля пустых полей | `results/monitor/drift.json` |
+| Выходы модели ([`drift_output.py`](../src/radar/monitor/drift_output.py)) | поля, которые выдал студент: роль, грейд, формат, тип занятости, язык, есть ли зарплата и опыт, число навыков и городов, валидный JSON | `results/monitor/drift_output.json` |
+| Согласие с учителем ([`drift_quality.py`](../src/radar/monitor/drift_quality.py)) | по 100 случайных новых вакансий окна на группу (порталы, Telegram), ответы студента против Qwen3-8B на том же входе, интервалы бутстрепом | `results/monitor/extraction_quality.json` |
+
+Методы фиксированные, чтобы недели разного объёма судились одинаково: нормированное расстояние Вассерштейна для чисел, расстояние Йенсена-Шеннона для категорий, дрейф от 0,1. Рядом с каждым признаком записан наибольший разброс самих эталонных недель между собой: дрейф ниже этого разброса шумом считается честнее, чем сигналом.
+
+Учитель работает в llama-server на хосте (`LLAMA_PORT=8096 bash scripts/llm_server.sh qwen 3`, порт 8090 занят Airflow), контейнер Airflow до него не достаёт. Поэтому ответы учителя кэшируются в `reports/evidently/teacher/`, задача в DAG читает кэш, а окно, которого в кэше нет, получает статус `teacher_unreachable` без числа. HTML-отчёты лежат локально в `reports/evidently/<неделя>/` (около 4 МБ каждый), в репозиторий идут только сводки.
+
+![Evidently: дрейф входящих постов Telegram](img/evidently_telegram.png)
+
+![Evidently: дрейф выходов модели на Telegram](img/evidently_output_telegram.png)
+
+Скриншоты: `node scripts/evidently_screenshot.mjs [--week 2026-10-05]`.
+
 ## Kubernetes: Helm-чарт и проверка в kind
 
 Чарт `deploy/helm/radar` ставит три Deployment с Service из одного образа API (`radar/api`): API, MCP-сервер и экспортёр данных. ClickHouse, Redis и MLflow остаются снаружи, их адреса в `values.yaml`. Пароли ClickHouse приходят из Secret `radar-clickhouse`, который чарт не создаёт. У API и MCP init-контейнер скачивает из реестра модель зарплаты по алиасу `champion` с проверкой отпечатка, так что смена модели в работе это перенос алиаса и перезапуск Deployment. Контейнеры работают от `nobody` с корневой файловой системой только для чтения.

@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/monitor/drift.py",
   "command": "python -m radar.monitor.drift",
-  "commit": "5c49ad6-dirty",
-  "created_at": "2026-10-12T17:35:48+00:00",
+  "commit": "3dc7c3f-dirty",
+  "created_at": "2026-10-14T08:23:50+00:00",
   "metrics": {
     "trudvsem_snapshot.drifted_features": {
       "value": 0.0909,
@@ -15,32 +15,32 @@
       "denominator": 7
     },
     "trudvsem_snapshot.duplicates_current": {
-      "value": 0.4352,
-      "n": 490,
+      "value": 0.4361,
+      "n": 491,
       "denominator": 1126
     },
     "trudvsem_snapshot.new_vacancies_current": {
-      "value": 636,
+      "value": 635,
       "n": null,
       "denominator": null
     },
     "telegram.drifted_features": {
-      "value": 0.2857,
-      "n": 2,
+      "value": 0.1429,
+      "n": 1,
       "denominator": 7
     },
     "telegram.volume_anomaly_days": {
-      "value": 0.4286,
-      "n": 3,
+      "value": 0.0,
+      "n": 0,
       "denominator": 7
     },
     "telegram.duplicates_current": {
-      "value": 0.0595,
-      "n": 32,
-      "denominator": 538
+      "value": 0.0773,
+      "n": 61,
+      "denominator": 789
     },
     "telegram.new_vacancies_current": {
-      "value": 506,
+      "value": 728,
       "n": null,
       "denominator": null
     }
@@ -58,7 +58,7 @@
   "sources": {
     "trudvsem_snapshot": {
       "first_day": "2026-06-30",
-      "last_day": "2026-10-11",
+      "last_day": "2026-10-13",
       "complete_weeks": 14,
       "reference_weeks": [
         "2026-07-06",
@@ -143,18 +143,18 @@
           }
         },
         "new_vacancies": {
-          "reference_per_week": 745.5,
-          "current": 636
+          "reference_per_week": 745.8,
+          "current": 635
         },
         "duplicates": {
           "reference": {
-            "value": 0.2987,
-            "n": 1270,
+            "value": 0.2984,
+            "n": 1269,
             "denominator": 4252
           },
           "current": {
-            "value": 0.4352,
-            "n": 490,
+            "value": 0.4361,
+            "n": 491,
             "denominator": 1126
           }
         },
@@ -164,12 +164,12 @@
             "reference": {
               "value": 0.0392,
               "n": 117,
-              "denominator": 2982
+              "denominator": 2983
             },
             "current": {
               "value": 0.0252,
               "n": 16,
-              "denominator": 636
+              "denominator": 635
             },
             "jump": false
           },
@@ -178,12 +178,12 @@
             "reference": {
               "value": 0.003,
               "n": 9,
-              "denominator": 2982
+              "denominator": 2983
             },
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 636
+              "denominator": 635
             },
             "jump": false
           },
@@ -192,12 +192,12 @@
             "reference": {
               "value": 0.0,
               "n": 0,
-              "denominator": 2982
+              "denominator": 2983
             },
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 636
+              "denominator": 635
             },
             "jump": false
           },
@@ -206,12 +206,12 @@
             "reference": {
               "value": 0.0,
               "n": 0,
-              "denominator": 2982
+              "denominator": 2983
             },
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 636
+              "denominator": 635
             },
             "jump": false
           },
@@ -220,12 +220,12 @@
             "reference": {
               "value": 0.0,
               "n": 0,
-              "denominator": 2982
+              "denominator": 2983
             },
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 636
+              "denominator": 635
             },
             "jump": false
           },
@@ -234,12 +234,12 @@
             "reference": {
               "value": 0.0,
               "n": 0,
-              "denominator": 2982
+              "denominator": 2983
             },
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 636
+              "denominator": 635
             },
             "jump": false
           },
@@ -248,12 +248,12 @@
             "reference": {
               "value": 0.0,
               "n": 0,
-              "denominator": 2982
+              "denominator": 2983
             },
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 636
+              "denominator": 635
             },
             "jump": false
           },
@@ -262,12 +262,12 @@
             "reference": {
               "value": 0.0,
               "n": 0,
-              "denominator": 2982
+              "denominator": 2983
             },
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 636
+              "denominator": 635
             },
             "jump": false
           },
@@ -276,12 +276,12 @@
             "reference": {
               "value": 0.0,
               "n": 0,
-              "denominator": 2982
+              "denominator": 2983
             },
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 636
+              "denominator": 635
             },
             "jump": false
           },
@@ -290,12 +290,12 @@
             "reference": {
               "value": 0.0,
               "n": 0,
-              "denominator": 2982
+              "denominator": 2983
             },
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 636
+              "denominator": 635
             },
             "jump": false
           },
@@ -304,20 +304,20 @@
             "reference": {
               "value": 0.003,
               "n": 9,
-              "denominator": 2982
+              "denominator": 2983
             },
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 636
+              "denominator": 635
             },
             "jump": false
           }
         ]
       },
       "units": {
-        "reference": 2982,
-        "current": 636
+        "reference": 2983,
+        "current": 635
       },
       "status": "ok",
       "not_available": [],
@@ -337,17 +337,17 @@
             "feature": "salary_mid_rub",
             "type": "numerical",
             "method": "wasserstein",
-            "score": 0.0673,
+            "score": 0.0676,
             "threshold": 0.1,
             "drifted": false,
-            "reference_spread": 0.1283,
+            "reference_spread": 0.1287,
             "beyond_spread": false
           },
           {
             "feature": "experience_min_years",
             "type": "numerical",
             "method": "wasserstein",
-            "score": 0.0642,
+            "score": 0.063,
             "threshold": 0.1,
             "drifted": false,
             "reference_spread": 0.1318,
@@ -357,67 +357,67 @@
             "feature": "n_skills",
             "type": "numerical",
             "method": "wasserstein",
-            "score": 0.0337,
+            "score": 0.035,
             "threshold": 0.1,
             "drifted": false,
-            "reference_spread": 0.1915,
+            "reference_spread": 0.1908,
             "beyond_spread": false
           },
           {
             "feature": "text_len",
             "type": "numerical",
             "method": "wasserstein",
-            "score": 0.0474,
+            "score": 0.0467,
             "threshold": 0.1,
             "drifted": false,
-            "reference_spread": 0.2137,
+            "reference_spread": 0.2138,
             "beyond_spread": false
           },
           {
             "feature": "role_bucket",
             "type": "categorical",
             "method": "jensenshannon",
-            "score": 0.071,
+            "score": 0.0711,
             "threshold": 0.1,
             "drifted": false,
-            "reference_spread": 0.1093,
+            "reference_spread": 0.1094,
             "beyond_spread": false
           },
           {
             "feature": "grade",
             "type": "categorical",
             "method": "jensenshannon",
-            "score": 0.0426,
+            "score": 0.0413,
             "threshold": 0.1,
             "drifted": false,
-            "reference_spread": 0.079,
+            "reference_spread": 0.0791,
             "beyond_spread": false
           },
           {
             "feature": "work_format",
             "type": "categorical",
             "method": "jensenshannon",
-            "score": 0.0361,
+            "score": 0.0329,
             "threshold": 0.1,
             "drifted": false,
-            "reference_spread": 0.0813,
+            "reference_spread": 0.0814,
             "beyond_spread": false
           },
           {
             "feature": "region_group",
             "type": "categorical",
             "method": "jensenshannon",
-            "score": 0.0289,
+            "score": 0.026,
             "threshold": 0.1,
             "drifted": false,
-            "reference_spread": 0.0641,
+            "reference_spread": 0.0642,
             "beyond_spread": false
           },
           {
             "feature": "region",
             "type": "categorical",
             "method": "jensenshannon",
-            "score": 0.1751,
+            "score": 0.1744,
             "threshold": 0.1,
             "drifted": true,
             "reference_spread": 0.2153,
@@ -427,7 +427,7 @@
             "feature": "has_salary_rub",
             "type": "categorical",
             "method": "jensenshannon",
-            "score": 0.0283,
+            "score": 0.0282,
             "threshold": 0.1,
             "drifted": false,
             "reference_spread": 0.0838,
@@ -437,10 +437,10 @@
             "feature": "no_experience",
             "type": "categorical",
             "method": "jensenshannon",
-            "score": 0.0335,
+            "score": 0.0333,
             "threshold": 0.1,
             "drifted": false,
-            "reference_spread": 0.0405,
+            "reference_spread": 0.0403,
             "beyond_spread": false
           }
         ]
@@ -450,23 +450,27 @@
     "trudvsem": {
       "status": "insufficient_history",
       "first_day": "2026-10-08",
-      "last_day": "2026-10-11",
+      "last_day": "2026-10-13",
       "complete_weeks": 0,
       "needed_weeks": 3
     },
     "habr": {
       "status": "insufficient_history",
       "first_day": "2026-10-08",
-      "last_day": "2026-10-11",
+      "last_day": "2026-10-13",
       "complete_weeks": 0,
       "needed_weeks": 3
     },
     "superjob": {
-      "status": "no_data"
+      "status": "insufficient_history",
+      "first_day": "2026-10-12",
+      "last_day": "2026-10-13",
+      "complete_weeks": 0,
+      "needed_weeks": 3
     },
     "telegram": {
       "first_day": "2026-06-30",
-      "last_day": "2026-10-11",
+      "last_day": "2026-10-13",
       "complete_weeks": 14,
       "reference_weeks": [
         "2026-07-06",
@@ -483,44 +487,28 @@
             "denominator": 28
           },
           "current": {
-            "value": 0.5714,
-            "n": 4,
+            "value": 1.0,
+            "n": 7,
             "denominator": 7
           }
         },
         "rows": {
           "reference": 2442,
-          "current": 506
+          "current": 728
         },
         "volume": {
           "reference_median_rows": 99.5,
           "reference_sigma_rows": 29.7,
           "days": {
-            "value": 0.4286,
-            "n": 3,
+            "value": 0.0,
+            "n": 0,
             "denominator": 7
           },
-          "flagged": [
-            {
-              "day": "2026-10-09",
-              "rows": 0,
-              "kind": "missing"
-            },
-            {
-              "day": "2026-10-10",
-              "rows": 0,
-              "kind": "missing"
-            },
-            {
-              "day": "2026-10-11",
-              "rows": 0,
-              "kind": "missing"
-            }
-          ]
+          "flagged": []
         },
         "new_vacancies": {
           "reference_per_week": 610.5,
-          "current": 506
+          "current": 728
         },
         "duplicates": {
           "reference": {
@@ -529,9 +517,9 @@
             "denominator": 2641
           },
           "current": {
-            "value": 0.0595,
-            "n": 32,
-            "denominator": 538
+            "value": 0.0773,
+            "n": 61,
+            "denominator": 789
           }
         },
         "feature_nulls": [
@@ -545,7 +533,7 @@
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 506
+              "denominator": 728
             },
             "jump": false
           },
@@ -559,7 +547,7 @@
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 506
+              "denominator": 728
             },
             "jump": false
           },
@@ -573,7 +561,7 @@
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 506
+              "denominator": 728
             },
             "jump": false
           },
@@ -587,7 +575,7 @@
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 506
+              "denominator": 728
             },
             "jump": false
           },
@@ -601,7 +589,7 @@
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 506
+              "denominator": 728
             },
             "jump": false
           },
@@ -615,7 +603,7 @@
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 506
+              "denominator": 728
             },
             "jump": false
           },
@@ -629,7 +617,7 @@
             "current": {
               "value": 0.0,
               "n": 0,
-              "denominator": 506
+              "denominator": 728
             },
             "jump": false
           }
@@ -637,19 +625,19 @@
       },
       "units": {
         "reference": 2442,
-        "current": 506
+        "current": 728
       },
       "status": "ok",
       "not_available": [],
       "drift": {
         "drifted_features": {
-          "value": 0.2857,
-          "n": 2,
+          "value": 0.1429,
+          "n": 1,
           "denominator": 7
         },
         "drifted_beyond_spread": {
-          "value": 0.2857,
-          "n": 2,
+          "value": 0.1429,
+          "n": 1,
           "denominator": 7
         },
         "features": [
@@ -657,7 +645,7 @@
             "feature": "n_skills",
             "type": "numerical",
             "method": "wasserstein",
-            "score": 0.2387,
+            "score": 0.1613,
             "threshold": 0.1,
             "drifted": true,
             "reference_spread": 0.0594,
@@ -667,9 +655,9 @@
             "feature": "role_bucket",
             "type": "categorical",
             "method": "jensenshannon",
-            "score": 0.1153,
+            "score": 0.0968,
             "threshold": 0.1,
-            "drifted": true,
+            "drifted": false,
             "reference_spread": 0.069,
             "beyond_spread": true
           },
@@ -677,7 +665,7 @@
             "feature": "grade",
             "type": "categorical",
             "method": "jensenshannon",
-            "score": 0.0309,
+            "score": 0.0291,
             "threshold": 0.1,
             "drifted": false,
             "reference_spread": 0.0421,
@@ -687,7 +675,7 @@
             "feature": "work_format",
             "type": "categorical",
             "method": "jensenshannon",
-            "score": 0.0648,
+            "score": 0.0849,
             "threshold": 0.1,
             "drifted": false,
             "reference_spread": 0.0303,
@@ -697,7 +685,7 @@
             "feature": "no_experience",
             "type": "categorical",
             "method": "jensenshannon",
-            "score": 0.0234,
+            "score": 0.0206,
             "threshold": 0.1,
             "drifted": false,
             "reference_spread": 0.0165,
@@ -707,7 +695,7 @@
             "feature": "is_multi_vacancy",
             "type": "categorical",
             "method": "jensenshannon",
-            "score": 0.0094,
+            "score": 0.001,
             "threshold": 0.1,
             "drifted": false,
             "reference_spread": 0.0256,
@@ -717,7 +705,7 @@
             "feature": "channel_topic",
             "type": "categorical",
             "method": "jensenshannon",
-            "score": 0.0955,
+            "score": 0.0837,
             "threshold": 0.1,
             "drifted": false,
             "reference_spread": 0.0771,
