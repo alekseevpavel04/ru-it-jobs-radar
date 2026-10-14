@@ -1,0 +1,2373 @@
+{
+  "source_script": "src/radar/site/market_facts.py",
+  "command": "python -m radar.site.market_facts",
+  "commit": "57a5e00-dirty",
+  "created_at": "2026-10-14T09:45:31+00:00",
+  "metrics": {
+    "ml_ds.habr.vacancies": {
+      "value": 54,
+      "n": null,
+      "denominator": null
+    },
+    "ml_ds.habr.open_to_junior": {
+      "value": 0.037,
+      "n": 2,
+      "denominator": 54
+    },
+    "ml_ds.habr.graded_junior": {
+      "value": 0.0465,
+      "n": 2,
+      "denominator": 43
+    },
+    "ml_ds.habr.graded_senior": {
+      "value": 0.6279,
+      "n": 27,
+      "denominator": 43
+    },
+    "ml_ds.superjob.vacancies": {
+      "value": 9,
+      "n": null,
+      "denominator": null
+    },
+    "ml_ds.superjob.open_to_junior": {
+      "value": 0.4444,
+      "n": 4,
+      "denominator": 9
+    },
+    "ml_ds.superjob.graded_junior": {
+      "value": 0.6,
+      "n": 3,
+      "denominator": 5
+    },
+    "ml_ds.superjob.graded_senior": {
+      "value": 0.2,
+      "n": 1,
+      "denominator": 5
+    },
+    "ml_ds.telegram.vacancies": {
+      "value": 582,
+      "n": null,
+      "denominator": null
+    },
+    "ml_ds.telegram.open_to_junior": {
+      "value": 0.1787,
+      "n": 104,
+      "denominator": 582
+    },
+    "ml_ds.telegram.graded_junior": {
+      "value": 0.2601,
+      "n": 97,
+      "denominator": 373
+    },
+    "ml_ds.telegram.graded_senior": {
+      "value": 0.4772,
+      "n": 178,
+      "denominator": 373
+    },
+    "ml_ds.trudvsem.vacancies": {
+      "value": 55,
+      "n": null,
+      "denominator": null
+    },
+    "ml_ds.trudvsem.open_to_junior": {
+      "value": 0.2545,
+      "n": 14,
+      "denominator": 55
+    },
+    "ml_ds.trudvsem.graded_junior": {
+      "value": 0.1364,
+      "n": 3,
+      "denominator": 22
+    },
+    "ml_ds.trudvsem.graded_senior": {
+      "value": 0.7273,
+      "n": 16,
+      "denominator": 22
+    },
+    "ml_ds_skill.habr.Python": {
+      "value": 0.9074,
+      "n": 49,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.Machine learning": {
+      "value": 0.8704,
+      "n": 47,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.LLM": {
+      "value": 0.7037,
+      "n": 38,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.SQL": {
+      "value": 0.5,
+      "n": 27,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.Docker": {
+      "value": 0.4074,
+      "n": 22,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.Kubernetes": {
+      "value": 0.3704,
+      "n": 20,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.PyTorch": {
+      "value": 0.3333,
+      "n": 18,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.Algorithms": {
+      "value": 0.3148,
+      "n": 17,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.Git": {
+      "value": 0.3148,
+      "n": 17,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.NLP": {
+      "value": 0.3148,
+      "n": 17,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.Deep learning": {
+      "value": 0.2963,
+      "n": 16,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.English": {
+      "value": 0.2778,
+      "n": 15,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.CI/CD": {
+      "value": 0.2593,
+      "n": 14,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.RAG": {
+      "value": 0.2593,
+      "n": 14,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.Fine-tuning": {
+      "value": 0.2407,
+      "n": 13,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.Excel": {
+      "value": 0.037,
+      "n": 2,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.Figma": {
+      "value": 0.0185,
+      "n": 1,
+      "denominator": 54
+    },
+    "ml_ds_skill.habr.JavaScript": {
+      "value": 0.0741,
+      "n": 4,
+      "denominator": 54
+    },
+    "ml_ds_junior_skill.habr.Python": {
+      "value": 1.0,
+      "n": 2,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.Machine learning": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.LLM": {
+      "value": 1.0,
+      "n": 2,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.SQL": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.Docker": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.Kubernetes": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.PyTorch": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.Algorithms": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.Git": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.NLP": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.Deep learning": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.English": {
+      "value": 1.0,
+      "n": 2,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.CI/CD": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.RAG": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.Fine-tuning": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.Excel": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.Figma": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    },
+    "ml_ds_junior_skill.habr.JavaScript": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    },
+    "ml_ds_skill.superjob.Machine learning": {
+      "value": 0.8889,
+      "n": 8,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.Python": {
+      "value": 0.7778,
+      "n": 7,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.SQL": {
+      "value": 0.6667,
+      "n": 6,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.Algorithms": {
+      "value": 0.5556,
+      "n": 5,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.LLM": {
+      "value": 0.4444,
+      "n": 4,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.API integration": {
+      "value": 0.3333,
+      "n": 3,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.English": {
+      "value": 0.3333,
+      "n": 3,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.NLP": {
+      "value": 0.3333,
+      "n": 3,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.PyTorch": {
+      "value": 0.3333,
+      "n": 3,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.RAG": {
+      "value": 0.3333,
+      "n": 3,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.Big Data": {
+      "value": 0.2222,
+      "n": 2,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.Deep learning": {
+      "value": 0.2222,
+      "n": 2,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.Docker": {
+      "value": 0.2222,
+      "n": 2,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.ETL": {
+      "value": 0.2222,
+      "n": 2,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.Excel": {
+      "value": 0.2222,
+      "n": 2,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.Statistics": {
+      "value": 0.2222,
+      "n": 2,
+      "denominator": 9
+    },
+    "ml_ds_skill.superjob.Communication": {
+      "value": 0.1111,
+      "n": 1,
+      "denominator": 9
+    },
+    "ml_ds_junior_skill.superjob.Machine learning": {
+      "value": 0.6667,
+      "n": 2,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.Python": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.SQL": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.Algorithms": {
+      "value": 0.3333,
+      "n": 1,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.LLM": {
+      "value": 0.6667,
+      "n": 2,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.API integration": {
+      "value": 0.3333,
+      "n": 1,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.English": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.NLP": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.PyTorch": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.RAG": {
+      "value": 0.3333,
+      "n": 1,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.Big Data": {
+      "value": 0.3333,
+      "n": 1,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.Deep learning": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.Docker": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.ETL": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.Excel": {
+      "value": 0.3333,
+      "n": 1,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.Statistics": {
+      "value": 0.6667,
+      "n": 2,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.superjob.Communication": {
+      "value": 0.3333,
+      "n": 1,
+      "denominator": 3
+    },
+    "ml_ds_skill.telegram.Machine learning": {
+      "value": 0.5687,
+      "n": 331,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.Python": {
+      "value": 0.4433,
+      "n": 258,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.LLM": {
+      "value": 0.323,
+      "n": 188,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.SQL": {
+      "value": 0.201,
+      "n": 117,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.API integration": {
+      "value": 0.1426,
+      "n": 83,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.Docker": {
+      "value": 0.1409,
+      "n": 82,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.Algorithms": {
+      "value": 0.1323,
+      "n": 77,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.RAG": {
+      "value": 0.1186,
+      "n": 69,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.PyTorch": {
+      "value": 0.1082,
+      "n": 63,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.Kubernetes": {
+      "value": 0.0997,
+      "n": 58,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.NLP": {
+      "value": 0.0979,
+      "n": 57,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.CI/CD": {
+      "value": 0.0945,
+      "n": 55,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.Airflow": {
+      "value": 0.0825,
+      "n": 48,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.Git": {
+      "value": 0.0808,
+      "n": 47,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.PostgreSQL": {
+      "value": 0.079,
+      "n": 46,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.Statistics": {
+      "value": 0.0739,
+      "n": 43,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.Deep learning": {
+      "value": 0.0722,
+      "n": 42,
+      "denominator": 582
+    },
+    "ml_ds_skill.telegram.English": {
+      "value": 0.0687,
+      "n": 40,
+      "denominator": 582
+    },
+    "ml_ds_junior_skill.telegram.Machine learning": {
+      "value": 0.5773,
+      "n": 56,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.Python": {
+      "value": 0.5567,
+      "n": 54,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.LLM": {
+      "value": 0.268,
+      "n": 26,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.SQL": {
+      "value": 0.2371,
+      "n": 23,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.API integration": {
+      "value": 0.1134,
+      "n": 11,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.Docker": {
+      "value": 0.0825,
+      "n": 8,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.Algorithms": {
+      "value": 0.1237,
+      "n": 12,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.RAG": {
+      "value": 0.0619,
+      "n": 6,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.PyTorch": {
+      "value": 0.0515,
+      "n": 5,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.Kubernetes": {
+      "value": 0.0206,
+      "n": 2,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.NLP": {
+      "value": 0.0619,
+      "n": 6,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.CI/CD": {
+      "value": 0.0515,
+      "n": 5,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.Airflow": {
+      "value": 0.0309,
+      "n": 3,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.Git": {
+      "value": 0.1134,
+      "n": 11,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.PostgreSQL": {
+      "value": 0.0206,
+      "n": 2,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.Statistics": {
+      "value": 0.1443,
+      "n": 14,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.Deep learning": {
+      "value": 0.134,
+      "n": 13,
+      "denominator": 97
+    },
+    "ml_ds_junior_skill.telegram.English": {
+      "value": 0.1134,
+      "n": 11,
+      "denominator": 97
+    },
+    "ml_ds_skill.trudvsem.Python": {
+      "value": 0.8182,
+      "n": 45,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.Machine learning": {
+      "value": 0.6727,
+      "n": 37,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.LLM": {
+      "value": 0.4727,
+      "n": 26,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.SQL": {
+      "value": 0.4727,
+      "n": 26,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.Git": {
+      "value": 0.4,
+      "n": 22,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.PyTorch": {
+      "value": 0.4,
+      "n": 22,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.RAG": {
+      "value": 0.3636,
+      "n": 20,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.Algorithms": {
+      "value": 0.3455,
+      "n": 19,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.Docker": {
+      "value": 0.3273,
+      "n": 18,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.Pandas": {
+      "value": 0.3091,
+      "n": 17,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.NumPy": {
+      "value": 0.2909,
+      "n": 16,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.scikit-learn": {
+      "value": 0.2909,
+      "n": 16,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.Prompt engineering": {
+      "value": 0.2727,
+      "n": 15,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.API integration": {
+      "value": 0.2545,
+      "n": 14,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.CI/CD": {
+      "value": 0.2545,
+      "n": 14,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.Deep learning": {
+      "value": 0.2545,
+      "n": 14,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.Oracle": {
+      "value": 0.0545,
+      "n": 3,
+      "denominator": 55
+    },
+    "ml_ds_skill.trudvsem.Statistics": {
+      "value": 0.1636,
+      "n": 9,
+      "denominator": 55
+    },
+    "ml_ds_junior_skill.trudvsem.Python": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.Machine learning": {
+      "value": 0.6667,
+      "n": 2,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.LLM": {
+      "value": 0.3333,
+      "n": 1,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.SQL": {
+      "value": 1.0,
+      "n": 3,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.Git": {
+      "value": 0.3333,
+      "n": 1,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.PyTorch": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.RAG": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.Algorithms": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.Docker": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.Pandas": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.NumPy": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.scikit-learn": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.Prompt engineering": {
+      "value": 0.3333,
+      "n": 1,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.API integration": {
+      "value": 0.3333,
+      "n": 1,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.CI/CD": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.Deep learning": {
+      "value": 0.6667,
+      "n": 2,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.Oracle": {
+      "value": 0.6667,
+      "n": 2,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.Statistics": {
+      "value": 0.6667,
+      "n": 2,
+      "denominator": 3
+    },
+    "salary_ml_cell.all_portals.data_scientist.intern.stated": {
+      "value": 0.25,
+      "n": 1,
+      "denominator": 4
+    },
+    "salary_ml_cell.all_portals.ml_engineer.intern.stated": {
+      "value": 0.3333,
+      "n": 2,
+      "denominator": 6
+    },
+    "salary_ml_cell.all_portals.ml_engineer.junior.stated": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1
+    },
+    "salary_ml_cell.habr.ml_engineer.intern.stated": {
+      "value": 1.0,
+      "n": 1,
+      "denominator": 1
+    },
+    "salary_ml_cell.habr.ml_engineer.junior.stated": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1
+    },
+    "salary.habr.intern.stated": {
+      "value": 0.2143,
+      "n": 6,
+      "denominator": 28
+    },
+    "salary.habr.intern.from_median": {
+      "value": 33500,
+      "n": null,
+      "denominator": null,
+      "rows": 6
+    },
+    "salary.habr.junior.stated": {
+      "value": 0.3171,
+      "n": 13,
+      "denominator": 41
+    },
+    "salary.habr.junior.from_median": {
+      "value": 75000,
+      "n": null,
+      "denominator": null,
+      "rows": 10
+    },
+    "salary.habr.junior.to_median": {
+      "value": 100000,
+      "n": null,
+      "denominator": null,
+      "rows": 11
+    },
+    "salary.habr.middle.stated": {
+      "value": 0.1949,
+      "n": 38,
+      "denominator": 195
+    },
+    "salary.habr.middle.from_median": {
+      "value": 150000,
+      "n": null,
+      "denominator": null,
+      "rows": 32
+    },
+    "salary.habr.middle.to_median": {
+      "value": 184000,
+      "n": null,
+      "denominator": null,
+      "rows": 30
+    },
+    "salary.habr.senior.stated": {
+      "value": 0.186,
+      "n": 53,
+      "denominator": 285
+    },
+    "salary.habr.senior.from_median": {
+      "value": 250000,
+      "n": null,
+      "denominator": null,
+      "rows": 42
+    },
+    "salary.habr.senior.to_median": {
+      "value": 270000,
+      "n": null,
+      "denominator": null,
+      "rows": 52
+    },
+    "salary_ml_cell.superjob.data_scientist.intern.stated": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 2
+    },
+    "salary_ml_cell.superjob.ml_engineer.intern.stated": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3
+    },
+    "salary_ml_cell.telegram.data_scientist.intern.stated": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 17
+    },
+    "salary_ml_cell.telegram.data_scientist.junior.stated": {
+      "value": 0.0667,
+      "n": 1,
+      "denominator": 15
+    },
+    "salary_ml_cell.telegram.ml_engineer.intern.stated": {
+      "value": 0.0385,
+      "n": 1,
+      "denominator": 26
+    },
+    "salary_ml_cell.telegram.ml_engineer.junior.stated": {
+      "value": 0.1538,
+      "n": 4,
+      "denominator": 26
+    },
+    "salary_ml_cell.telegram.mlops.junior.stated": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1
+    },
+    "salary.telegram.intern.stated": {
+      "value": 0.1034,
+      "n": 40,
+      "denominator": 387
+    },
+    "salary.telegram.intern.from_median": {
+      "value": 68000,
+      "n": null,
+      "denominator": null,
+      "rows": 36
+    },
+    "salary.telegram.intern.to_median": {
+      "value": 75000,
+      "n": null,
+      "denominator": null,
+      "rows": 20
+    },
+    "salary.telegram.junior.stated": {
+      "value": 0.1918,
+      "n": 159,
+      "denominator": 829
+    },
+    "salary.telegram.junior.from_median": {
+      "value": 80000,
+      "n": null,
+      "denominator": null,
+      "rows": 146
+    },
+    "salary.telegram.junior.to_median": {
+      "value": 120000,
+      "n": null,
+      "denominator": null,
+      "rows": 115
+    },
+    "salary.telegram.middle.stated": {
+      "value": 0.1988,
+      "n": 223,
+      "denominator": 1122
+    },
+    "salary.telegram.middle.from_median": {
+      "value": 180000,
+      "n": null,
+      "denominator": null,
+      "rows": 196
+    },
+    "salary.telegram.middle.to_median": {
+      "value": 210000,
+      "n": null,
+      "denominator": null,
+      "rows": 161
+    },
+    "salary.telegram.senior.stated": {
+      "value": 0.1307,
+      "n": 226,
+      "denominator": 1729
+    },
+    "salary.telegram.senior.from_median": {
+      "value": 250000,
+      "n": null,
+      "denominator": null,
+      "rows": 217
+    },
+    "salary.telegram.senior.to_median": {
+      "value": 300000,
+      "n": null,
+      "denominator": null,
+      "rows": 167
+    },
+    "salary_ml_cell.trudvsem.data_scientist.intern.stated": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    },
+    "salary_ml_cell.trudvsem.ml_engineer.intern.stated": {
+      "value": 0.5,
+      "n": 1,
+      "denominator": 2
+    },
+    "salary.trudvsem.intern.stated": {
+      "value": 0.8333,
+      "n": 50,
+      "denominator": 60
+    },
+    "salary.trudvsem.intern.from_median": {
+      "value": 41425,
+      "n": null,
+      "denominator": null,
+      "rows": 48
+    },
+    "salary.trudvsem.intern.to_median": {
+      "value": 46700,
+      "n": null,
+      "denominator": null,
+      "rows": 45
+    },
+    "salary.trudvsem.junior.stated": {
+      "value": 0.9677,
+      "n": 90,
+      "denominator": 93
+    },
+    "salary.trudvsem.junior.from_median": {
+      "value": 50000,
+      "n": null,
+      "denominator": null,
+      "rows": 87
+    },
+    "salary.trudvsem.junior.to_median": {
+      "value": 58000,
+      "n": null,
+      "denominator": null,
+      "rows": 83
+    },
+    "salary.trudvsem.middle.stated": {
+      "value": 0.7536,
+      "n": 52,
+      "denominator": 69
+    },
+    "salary.trudvsem.middle.from_median": {
+      "value": 100000,
+      "n": null,
+      "denominator": null,
+      "rows": 49
+    },
+    "salary.trudvsem.middle.to_median": {
+      "value": 180000,
+      "n": null,
+      "denominator": null,
+      "rows": 39
+    },
+    "salary.trudvsem.senior.stated": {
+      "value": 0.9768,
+      "n": 1093,
+      "denominator": 1119
+    },
+    "salary.trudvsem.senior.from_median": {
+      "value": 71000,
+      "n": null,
+      "denominator": null,
+      "rows": 1091
+    },
+    "salary.trudvsem.senior.to_median": {
+      "value": 80000,
+      "n": null,
+      "denominator": null,
+      "rows": 1026
+    },
+    "telegram_panel.channels": {
+      "value": 0.6724,
+      "n": 39,
+      "denominator": 58
+    },
+    "telegram_year.2019.it_posts": {
+      "value": 9621,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_year.2019.ml_posts": {
+      "value": 0.016,
+      "n": 154,
+      "denominator": 9621
+    },
+    "telegram_year.2019.junior_posts": {
+      "value": 0.0498,
+      "n": 479,
+      "denominator": 9621
+    },
+    "telegram_year.2019.junior_of_graded": {
+      "value": 0.0907,
+      "n": 479,
+      "denominator": 5279
+    },
+    "telegram_ml_skill.2019.Python": {
+      "value": 0.6039,
+      "n": 93,
+      "denominator": 154
+    },
+    "telegram_ml_skill.2019.SQL": {
+      "value": 0.2143,
+      "n": 33,
+      "denominator": 154
+    },
+    "telegram_ml_skill.2019.pandas": {
+      "value": 0.1948,
+      "n": 30,
+      "denominator": 154
+    },
+    "telegram_ml_skill.2019.NumPy": {
+      "value": 0.1623,
+      "n": 25,
+      "denominator": 154
+    },
+    "telegram_ml_skill.2019.scikit-learn": {
+      "value": 0.1364,
+      "n": 21,
+      "denominator": 154
+    },
+    "telegram_ml_skill.2019.TensorFlow": {
+      "value": 0.1623,
+      "n": 25,
+      "denominator": 154
+    },
+    "telegram_ml_skill.2019.PyTorch": {
+      "value": 0.0649,
+      "n": 10,
+      "denominator": 154
+    },
+    "telegram_ml_skill.2019.Spark": {
+      "value": 0.0844,
+      "n": 13,
+      "denominator": 154
+    },
+    "telegram_ml_skill.2019.Docker": {
+      "value": 0.0519,
+      "n": 8,
+      "denominator": 154
+    },
+    "telegram_ml_skill.2019.Kubernetes": {
+      "value": 0.026,
+      "n": 4,
+      "denominator": 154
+    },
+    "telegram_ml_skill.2019.Airflow": {
+      "value": 0.0195,
+      "n": 3,
+      "denominator": 154
+    },
+    "telegram_ml_skill.2019.MLOps": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 154
+    },
+    "telegram_ml_skill.2019.FastAPI": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 154
+    },
+    "telegram_ml_skill.2019.RAG": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 154
+    },
+    "telegram_ml_skill.2019.LangChain": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 154
+    },
+    "telegram_year.2020.it_posts": {
+      "value": 12234,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_year.2020.ml_posts": {
+      "value": 0.0232,
+      "n": 284,
+      "denominator": 12234
+    },
+    "telegram_year.2020.junior_posts": {
+      "value": 0.0519,
+      "n": 635,
+      "denominator": 12234
+    },
+    "telegram_year.2020.junior_of_graded": {
+      "value": 0.0797,
+      "n": 635,
+      "denominator": 7972
+    },
+    "telegram_ml_skill.2020.Python": {
+      "value": 0.5669,
+      "n": 161,
+      "denominator": 284
+    },
+    "telegram_ml_skill.2020.SQL": {
+      "value": 0.2394,
+      "n": 68,
+      "denominator": 284
+    },
+    "telegram_ml_skill.2020.pandas": {
+      "value": 0.162,
+      "n": 46,
+      "denominator": 284
+    },
+    "telegram_ml_skill.2020.NumPy": {
+      "value": 0.1127,
+      "n": 32,
+      "denominator": 284
+    },
+    "telegram_ml_skill.2020.scikit-learn": {
+      "value": 0.1197,
+      "n": 34,
+      "denominator": 284
+    },
+    "telegram_ml_skill.2020.TensorFlow": {
+      "value": 0.2007,
+      "n": 57,
+      "denominator": 284
+    },
+    "telegram_ml_skill.2020.PyTorch": {
+      "value": 0.1901,
+      "n": 54,
+      "denominator": 284
+    },
+    "telegram_ml_skill.2020.Spark": {
+      "value": 0.0739,
+      "n": 21,
+      "denominator": 284
+    },
+    "telegram_ml_skill.2020.Docker": {
+      "value": 0.0739,
+      "n": 21,
+      "denominator": 284
+    },
+    "telegram_ml_skill.2020.Kubernetes": {
+      "value": 0.0211,
+      "n": 6,
+      "denominator": 284
+    },
+    "telegram_ml_skill.2020.Airflow": {
+      "value": 0.0211,
+      "n": 6,
+      "denominator": 284
+    },
+    "telegram_ml_skill.2020.MLOps": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 284
+    },
+    "telegram_ml_skill.2020.FastAPI": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 284
+    },
+    "telegram_ml_skill.2020.RAG": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 284
+    },
+    "telegram_ml_skill.2020.LangChain": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 284
+    },
+    "telegram_year.2021.it_posts": {
+      "value": 19279,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_year.2021.ml_posts": {
+      "value": 0.0236,
+      "n": 455,
+      "denominator": 19279
+    },
+    "telegram_year.2021.junior_posts": {
+      "value": 0.0622,
+      "n": 1200,
+      "denominator": 19279
+    },
+    "telegram_year.2021.junior_of_graded": {
+      "value": 0.0926,
+      "n": 1200,
+      "denominator": 12953
+    },
+    "telegram_ml_skill.2021.Python": {
+      "value": 0.578,
+      "n": 263,
+      "denominator": 455
+    },
+    "telegram_ml_skill.2021.SQL": {
+      "value": 0.2198,
+      "n": 100,
+      "denominator": 455
+    },
+    "telegram_ml_skill.2021.pandas": {
+      "value": 0.1956,
+      "n": 89,
+      "denominator": 455
+    },
+    "telegram_ml_skill.2021.NumPy": {
+      "value": 0.167,
+      "n": 76,
+      "denominator": 455
+    },
+    "telegram_ml_skill.2021.scikit-learn": {
+      "value": 0.1648,
+      "n": 75,
+      "denominator": 455
+    },
+    "telegram_ml_skill.2021.TensorFlow": {
+      "value": 0.1912,
+      "n": 87,
+      "denominator": 455
+    },
+    "telegram_ml_skill.2021.PyTorch": {
+      "value": 0.1956,
+      "n": 89,
+      "denominator": 455
+    },
+    "telegram_ml_skill.2021.Spark": {
+      "value": 0.0967,
+      "n": 44,
+      "denominator": 455
+    },
+    "telegram_ml_skill.2021.Docker": {
+      "value": 0.1495,
+      "n": 68,
+      "denominator": 455
+    },
+    "telegram_ml_skill.2021.Kubernetes": {
+      "value": 0.0681,
+      "n": 31,
+      "denominator": 455
+    },
+    "telegram_ml_skill.2021.Airflow": {
+      "value": 0.0615,
+      "n": 28,
+      "denominator": 455
+    },
+    "telegram_ml_skill.2021.MLOps": {
+      "value": 0.0176,
+      "n": 8,
+      "denominator": 455
+    },
+    "telegram_ml_skill.2021.FastAPI": {
+      "value": 0.0132,
+      "n": 6,
+      "denominator": 455
+    },
+    "telegram_ml_skill.2021.RAG": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 455
+    },
+    "telegram_ml_skill.2021.LangChain": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 455
+    },
+    "telegram_year.2022.it_posts": {
+      "value": 27514,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_year.2022.ml_posts": {
+      "value": 0.0197,
+      "n": 542,
+      "denominator": 27514
+    },
+    "telegram_year.2022.junior_posts": {
+      "value": 0.0825,
+      "n": 2271,
+      "denominator": 27514
+    },
+    "telegram_year.2022.junior_of_graded": {
+      "value": 0.1339,
+      "n": 2271,
+      "denominator": 16966
+    },
+    "telegram_ml_skill.2022.Python": {
+      "value": 0.5018,
+      "n": 272,
+      "denominator": 542
+    },
+    "telegram_ml_skill.2022.SQL": {
+      "value": 0.2306,
+      "n": 125,
+      "denominator": 542
+    },
+    "telegram_ml_skill.2022.pandas": {
+      "value": 0.1107,
+      "n": 60,
+      "denominator": 542
+    },
+    "telegram_ml_skill.2022.NumPy": {
+      "value": 0.0923,
+      "n": 50,
+      "denominator": 542
+    },
+    "telegram_ml_skill.2022.scikit-learn": {
+      "value": 0.0996,
+      "n": 54,
+      "denominator": 542
+    },
+    "telegram_ml_skill.2022.TensorFlow": {
+      "value": 0.0923,
+      "n": 50,
+      "denominator": 542
+    },
+    "telegram_ml_skill.2022.PyTorch": {
+      "value": 0.1531,
+      "n": 83,
+      "denominator": 542
+    },
+    "telegram_ml_skill.2022.Spark": {
+      "value": 0.0959,
+      "n": 52,
+      "denominator": 542
+    },
+    "telegram_ml_skill.2022.Docker": {
+      "value": 0.1365,
+      "n": 74,
+      "denominator": 542
+    },
+    "telegram_ml_skill.2022.Kubernetes": {
+      "value": 0.0572,
+      "n": 31,
+      "denominator": 542
+    },
+    "telegram_ml_skill.2022.Airflow": {
+      "value": 0.0775,
+      "n": 42,
+      "denominator": 542
+    },
+    "telegram_ml_skill.2022.MLOps": {
+      "value": 0.0775,
+      "n": 42,
+      "denominator": 542
+    },
+    "telegram_ml_skill.2022.FastAPI": {
+      "value": 0.0148,
+      "n": 8,
+      "denominator": 542
+    },
+    "telegram_ml_skill.2022.RAG": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 542
+    },
+    "telegram_ml_skill.2022.LangChain": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 542
+    },
+    "telegram_year.2023.it_posts": {
+      "value": 31206,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_year.2023.ml_posts": {
+      "value": 0.0333,
+      "n": 1038,
+      "denominator": 31206
+    },
+    "telegram_year.2023.junior_posts": {
+      "value": 0.1199,
+      "n": 3742,
+      "denominator": 31206
+    },
+    "telegram_year.2023.junior_of_graded": {
+      "value": 0.182,
+      "n": 3742,
+      "denominator": 20561
+    },
+    "telegram_ml_skill.2023.Python": {
+      "value": 0.4682,
+      "n": 486,
+      "denominator": 1038
+    },
+    "telegram_ml_skill.2023.SQL": {
+      "value": 0.2062,
+      "n": 214,
+      "denominator": 1038
+    },
+    "telegram_ml_skill.2023.pandas": {
+      "value": 0.1127,
+      "n": 117,
+      "denominator": 1038
+    },
+    "telegram_ml_skill.2023.NumPy": {
+      "value": 0.0963,
+      "n": 100,
+      "denominator": 1038
+    },
+    "telegram_ml_skill.2023.scikit-learn": {
+      "value": 0.0829,
+      "n": 86,
+      "denominator": 1038
+    },
+    "telegram_ml_skill.2023.TensorFlow": {
+      "value": 0.0973,
+      "n": 101,
+      "denominator": 1038
+    },
+    "telegram_ml_skill.2023.PyTorch": {
+      "value": 0.184,
+      "n": 191,
+      "denominator": 1038
+    },
+    "telegram_ml_skill.2023.Spark": {
+      "value": 0.0626,
+      "n": 65,
+      "denominator": 1038
+    },
+    "telegram_ml_skill.2023.Docker": {
+      "value": 0.1252,
+      "n": 130,
+      "denominator": 1038
+    },
+    "telegram_ml_skill.2023.Kubernetes": {
+      "value": 0.0578,
+      "n": 60,
+      "denominator": 1038
+    },
+    "telegram_ml_skill.2023.Airflow": {
+      "value": 0.078,
+      "n": 81,
+      "denominator": 1038
+    },
+    "telegram_ml_skill.2023.MLOps": {
+      "value": 0.0568,
+      "n": 59,
+      "denominator": 1038
+    },
+    "telegram_ml_skill.2023.FastAPI": {
+      "value": 0.025,
+      "n": 26,
+      "denominator": 1038
+    },
+    "telegram_ml_skill.2023.RAG": {
+      "value": 0.001,
+      "n": 1,
+      "denominator": 1038
+    },
+    "telegram_ml_skill.2023.LangChain": {
+      "value": 0.0164,
+      "n": 17,
+      "denominator": 1038
+    },
+    "telegram_year.2024.it_posts": {
+      "value": 31817,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_year.2024.ml_posts": {
+      "value": 0.0561,
+      "n": 1786,
+      "denominator": 31817
+    },
+    "telegram_year.2024.junior_posts": {
+      "value": 0.1231,
+      "n": 3916,
+      "denominator": 31817
+    },
+    "telegram_year.2024.junior_of_graded": {
+      "value": 0.1942,
+      "n": 3916,
+      "denominator": 20163
+    },
+    "telegram_ml_skill.2024.Python": {
+      "value": 0.5022,
+      "n": 897,
+      "denominator": 1786
+    },
+    "telegram_ml_skill.2024.SQL": {
+      "value": 0.2212,
+      "n": 395,
+      "denominator": 1786
+    },
+    "telegram_ml_skill.2024.pandas": {
+      "value": 0.1226,
+      "n": 219,
+      "denominator": 1786
+    },
+    "telegram_ml_skill.2024.NumPy": {
+      "value": 0.0963,
+      "n": 172,
+      "denominator": 1786
+    },
+    "telegram_ml_skill.2024.scikit-learn": {
+      "value": 0.1064,
+      "n": 190,
+      "denominator": 1786
+    },
+    "telegram_ml_skill.2024.TensorFlow": {
+      "value": 0.1041,
+      "n": 186,
+      "denominator": 1786
+    },
+    "telegram_ml_skill.2024.PyTorch": {
+      "value": 0.2044,
+      "n": 365,
+      "denominator": 1786
+    },
+    "telegram_ml_skill.2024.Spark": {
+      "value": 0.0733,
+      "n": 131,
+      "denominator": 1786
+    },
+    "telegram_ml_skill.2024.Docker": {
+      "value": 0.1439,
+      "n": 257,
+      "denominator": 1786
+    },
+    "telegram_ml_skill.2024.Kubernetes": {
+      "value": 0.056,
+      "n": 100,
+      "denominator": 1786
+    },
+    "telegram_ml_skill.2024.Airflow": {
+      "value": 0.0879,
+      "n": 157,
+      "denominator": 1786
+    },
+    "telegram_ml_skill.2024.MLOps": {
+      "value": 0.061,
+      "n": 109,
+      "denominator": 1786
+    },
+    "telegram_ml_skill.2024.FastAPI": {
+      "value": 0.0336,
+      "n": 60,
+      "denominator": 1786
+    },
+    "telegram_ml_skill.2024.RAG": {
+      "value": 0.0269,
+      "n": 48,
+      "denominator": 1786
+    },
+    "telegram_ml_skill.2024.LangChain": {
+      "value": 0.028,
+      "n": 50,
+      "denominator": 1786
+    },
+    "telegram_year.2025.it_posts": {
+      "value": 27794,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_year.2025.ml_posts": {
+      "value": 0.0676,
+      "n": 1880,
+      "denominator": 27794
+    },
+    "telegram_year.2025.junior_posts": {
+      "value": 0.1567,
+      "n": 4354,
+      "denominator": 27794
+    },
+    "telegram_year.2025.junior_of_graded": {
+      "value": 0.2549,
+      "n": 4354,
+      "denominator": 17079
+    },
+    "telegram_ml_skill.2025.Python": {
+      "value": 0.4963,
+      "n": 933,
+      "denominator": 1880
+    },
+    "telegram_ml_skill.2025.SQL": {
+      "value": 0.1899,
+      "n": 357,
+      "denominator": 1880
+    },
+    "telegram_ml_skill.2025.pandas": {
+      "value": 0.1261,
+      "n": 237,
+      "denominator": 1880
+    },
+    "telegram_ml_skill.2025.NumPy": {
+      "value": 0.1138,
+      "n": 214,
+      "denominator": 1880
+    },
+    "telegram_ml_skill.2025.scikit-learn": {
+      "value": 0.1122,
+      "n": 211,
+      "denominator": 1880
+    },
+    "telegram_ml_skill.2025.TensorFlow": {
+      "value": 0.0957,
+      "n": 180,
+      "denominator": 1880
+    },
+    "telegram_ml_skill.2025.PyTorch": {
+      "value": 0.1989,
+      "n": 374,
+      "denominator": 1880
+    },
+    "telegram_ml_skill.2025.Spark": {
+      "value": 0.0564,
+      "n": 106,
+      "denominator": 1880
+    },
+    "telegram_ml_skill.2025.Docker": {
+      "value": 0.1601,
+      "n": 301,
+      "denominator": 1880
+    },
+    "telegram_ml_skill.2025.Kubernetes": {
+      "value": 0.0846,
+      "n": 159,
+      "denominator": 1880
+    },
+    "telegram_ml_skill.2025.Airflow": {
+      "value": 0.0665,
+      "n": 125,
+      "denominator": 1880
+    },
+    "telegram_ml_skill.2025.MLOps": {
+      "value": 0.0654,
+      "n": 123,
+      "denominator": 1880
+    },
+    "telegram_ml_skill.2025.FastAPI": {
+      "value": 0.0676,
+      "n": 127,
+      "denominator": 1880
+    },
+    "telegram_ml_skill.2025.RAG": {
+      "value": 0.0984,
+      "n": 185,
+      "denominator": 1880
+    },
+    "telegram_ml_skill.2025.LangChain": {
+      "value": 0.066,
+      "n": 124,
+      "denominator": 1880
+    },
+    "telegram_year.2026.it_posts": {
+      "value": 18606,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_year.2026.ml_posts": {
+      "value": 0.077,
+      "n": 1433,
+      "denominator": 18606
+    },
+    "telegram_year.2026.junior_posts": {
+      "value": 0.1728,
+      "n": 3215,
+      "denominator": 18606
+    },
+    "telegram_year.2026.junior_of_graded": {
+      "value": 0.2564,
+      "n": 3215,
+      "denominator": 12539
+    },
+    "telegram_ml_skill.2026.Python": {
+      "value": 0.5534,
+      "n": 793,
+      "denominator": 1433
+    },
+    "telegram_ml_skill.2026.SQL": {
+      "value": 0.2149,
+      "n": 308,
+      "denominator": 1433
+    },
+    "telegram_ml_skill.2026.pandas": {
+      "value": 0.0754,
+      "n": 108,
+      "denominator": 1433
+    },
+    "telegram_ml_skill.2026.NumPy": {
+      "value": 0.0677,
+      "n": 97,
+      "denominator": 1433
+    },
+    "telegram_ml_skill.2026.scikit-learn": {
+      "value": 0.0614,
+      "n": 88,
+      "denominator": 1433
+    },
+    "telegram_ml_skill.2026.TensorFlow": {
+      "value": 0.0342,
+      "n": 49,
+      "denominator": 1433
+    },
+    "telegram_ml_skill.2026.PyTorch": {
+      "value": 0.15,
+      "n": 215,
+      "denominator": 1433
+    },
+    "telegram_ml_skill.2026.Spark": {
+      "value": 0.0565,
+      "n": 81,
+      "denominator": 1433
+    },
+    "telegram_ml_skill.2026.Docker": {
+      "value": 0.1814,
+      "n": 260,
+      "denominator": 1433
+    },
+    "telegram_ml_skill.2026.Kubernetes": {
+      "value": 0.1221,
+      "n": 175,
+      "denominator": 1433
+    },
+    "telegram_ml_skill.2026.Airflow": {
+      "value": 0.0803,
+      "n": 115,
+      "denominator": 1433
+    },
+    "telegram_ml_skill.2026.MLOps": {
+      "value": 0.1103,
+      "n": 158,
+      "denominator": 1433
+    },
+    "telegram_ml_skill.2026.FastAPI": {
+      "value": 0.0879,
+      "n": 126,
+      "denominator": 1433
+    },
+    "telegram_ml_skill.2026.RAG": {
+      "value": 0.1438,
+      "n": 206,
+      "denominator": 1433
+    },
+    "telegram_ml_skill.2026.LangChain": {
+      "value": 0.0865,
+      "n": 124,
+      "denominator": 1433
+    },
+    "telegram_panel_year.2022.it_posts": {
+      "value": 27514,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_panel_year.2022.ml_posts": {
+      "value": 0.0197,
+      "n": 542,
+      "denominator": 27514
+    },
+    "telegram_panel_year.2022.junior_posts": {
+      "value": 0.0825,
+      "n": 2271,
+      "denominator": 27514
+    },
+    "telegram_panel_year.2022.junior_of_graded": {
+      "value": 0.1339,
+      "n": 2271,
+      "denominator": 16966
+    },
+    "telegram_panel_ml_skill.2022.Python": {
+      "value": 0.5018,
+      "n": 272,
+      "denominator": 542
+    },
+    "telegram_panel_ml_skill.2022.SQL": {
+      "value": 0.2306,
+      "n": 125,
+      "denominator": 542
+    },
+    "telegram_panel_ml_skill.2022.pandas": {
+      "value": 0.1107,
+      "n": 60,
+      "denominator": 542
+    },
+    "telegram_panel_ml_skill.2022.NumPy": {
+      "value": 0.0923,
+      "n": 50,
+      "denominator": 542
+    },
+    "telegram_panel_ml_skill.2022.scikit-learn": {
+      "value": 0.0996,
+      "n": 54,
+      "denominator": 542
+    },
+    "telegram_panel_ml_skill.2022.TensorFlow": {
+      "value": 0.0923,
+      "n": 50,
+      "denominator": 542
+    },
+    "telegram_panel_ml_skill.2022.PyTorch": {
+      "value": 0.1531,
+      "n": 83,
+      "denominator": 542
+    },
+    "telegram_panel_ml_skill.2022.Spark": {
+      "value": 0.0959,
+      "n": 52,
+      "denominator": 542
+    },
+    "telegram_panel_ml_skill.2022.Docker": {
+      "value": 0.1365,
+      "n": 74,
+      "denominator": 542
+    },
+    "telegram_panel_ml_skill.2022.Kubernetes": {
+      "value": 0.0572,
+      "n": 31,
+      "denominator": 542
+    },
+    "telegram_panel_ml_skill.2022.Airflow": {
+      "value": 0.0775,
+      "n": 42,
+      "denominator": 542
+    },
+    "telegram_panel_ml_skill.2022.MLOps": {
+      "value": 0.0775,
+      "n": 42,
+      "denominator": 542
+    },
+    "telegram_panel_ml_skill.2022.FastAPI": {
+      "value": 0.0148,
+      "n": 8,
+      "denominator": 542
+    },
+    "telegram_panel_ml_skill.2022.RAG": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 542
+    },
+    "telegram_panel_ml_skill.2022.LangChain": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 542
+    },
+    "telegram_panel_year.2023.it_posts": {
+      "value": 29768,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_panel_year.2023.ml_posts": {
+      "value": 0.0302,
+      "n": 899,
+      "denominator": 29768
+    },
+    "telegram_panel_year.2023.junior_posts": {
+      "value": 0.1131,
+      "n": 3366,
+      "denominator": 29768
+    },
+    "telegram_panel_year.2023.junior_of_graded": {
+      "value": 0.1701,
+      "n": 3366,
+      "denominator": 19785
+    },
+    "telegram_panel_ml_skill.2023.Python": {
+      "value": 0.4327,
+      "n": 389,
+      "denominator": 899
+    },
+    "telegram_panel_ml_skill.2023.SQL": {
+      "value": 0.1935,
+      "n": 174,
+      "denominator": 899
+    },
+    "telegram_panel_ml_skill.2023.pandas": {
+      "value": 0.1001,
+      "n": 90,
+      "denominator": 899
+    },
+    "telegram_panel_ml_skill.2023.NumPy": {
+      "value": 0.0868,
+      "n": 78,
+      "denominator": 899
+    },
+    "telegram_panel_ml_skill.2023.scikit-learn": {
+      "value": 0.0712,
+      "n": 64,
+      "denominator": 899
+    },
+    "telegram_panel_ml_skill.2023.TensorFlow": {
+      "value": 0.0868,
+      "n": 78,
+      "denominator": 899
+    },
+    "telegram_panel_ml_skill.2023.PyTorch": {
+      "value": 0.1702,
+      "n": 153,
+      "denominator": 899
+    },
+    "telegram_panel_ml_skill.2023.Spark": {
+      "value": 0.059,
+      "n": 53,
+      "denominator": 899
+    },
+    "telegram_panel_ml_skill.2023.Docker": {
+      "value": 0.1101,
+      "n": 99,
+      "denominator": 899
+    },
+    "telegram_panel_ml_skill.2023.Kubernetes": {
+      "value": 0.0501,
+      "n": 45,
+      "denominator": 899
+    },
+    "telegram_panel_ml_skill.2023.Airflow": {
+      "value": 0.0723,
+      "n": 65,
+      "denominator": 899
+    },
+    "telegram_panel_ml_skill.2023.MLOps": {
+      "value": 0.059,
+      "n": 53,
+      "denominator": 899
+    },
+    "telegram_panel_ml_skill.2023.FastAPI": {
+      "value": 0.02,
+      "n": 18,
+      "denominator": 899
+    },
+    "telegram_panel_ml_skill.2023.RAG": {
+      "value": 0.0011,
+      "n": 1,
+      "denominator": 899
+    },
+    "telegram_panel_ml_skill.2023.LangChain": {
+      "value": 0.0178,
+      "n": 16,
+      "denominator": 899
+    },
+    "telegram_panel_year.2024.it_posts": {
+      "value": 27198,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_panel_year.2024.ml_posts": {
+      "value": 0.0382,
+      "n": 1039,
+      "denominator": 27198
+    },
+    "telegram_panel_year.2024.junior_posts": {
+      "value": 0.1242,
+      "n": 3378,
+      "denominator": 27198
+    },
+    "telegram_panel_year.2024.junior_of_graded": {
+      "value": 0.1906,
+      "n": 3378,
+      "denominator": 17725
+    },
+    "telegram_panel_ml_skill.2024.Python": {
+      "value": 0.4283,
+      "n": 445,
+      "denominator": 1039
+    },
+    "telegram_panel_ml_skill.2024.SQL": {
+      "value": 0.1617,
+      "n": 168,
+      "denominator": 1039
+    },
+    "telegram_panel_ml_skill.2024.pandas": {
+      "value": 0.0972,
+      "n": 101,
+      "denominator": 1039
+    },
+    "telegram_panel_ml_skill.2024.NumPy": {
+      "value": 0.0703,
+      "n": 73,
+      "denominator": 1039
+    },
+    "telegram_panel_ml_skill.2024.scikit-learn": {
+      "value": 0.0674,
+      "n": 70,
+      "denominator": 1039
+    },
+    "telegram_panel_ml_skill.2024.TensorFlow": {
+      "value": 0.1001,
+      "n": 104,
+      "denominator": 1039
+    },
+    "telegram_panel_ml_skill.2024.PyTorch": {
+      "value": 0.1742,
+      "n": 181,
+      "denominator": 1039
+    },
+    "telegram_panel_ml_skill.2024.Spark": {
+      "value": 0.0481,
+      "n": 50,
+      "denominator": 1039
+    },
+    "telegram_panel_ml_skill.2024.Docker": {
+      "value": 0.1357,
+      "n": 141,
+      "denominator": 1039
+    },
+    "telegram_panel_ml_skill.2024.Kubernetes": {
+      "value": 0.052,
+      "n": 54,
+      "denominator": 1039
+    },
+    "telegram_panel_ml_skill.2024.Airflow": {
+      "value": 0.0808,
+      "n": 84,
+      "denominator": 1039
+    },
+    "telegram_panel_ml_skill.2024.MLOps": {
+      "value": 0.0587,
+      "n": 61,
+      "denominator": 1039
+    },
+    "telegram_panel_ml_skill.2024.FastAPI": {
+      "value": 0.0356,
+      "n": 37,
+      "denominator": 1039
+    },
+    "telegram_panel_ml_skill.2024.RAG": {
+      "value": 0.0231,
+      "n": 24,
+      "denominator": 1039
+    },
+    "telegram_panel_ml_skill.2024.LangChain": {
+      "value": 0.0269,
+      "n": 28,
+      "denominator": 1039
+    },
+    "telegram_panel_year.2025.it_posts": {
+      "value": 22944,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_panel_year.2025.ml_posts": {
+      "value": 0.0541,
+      "n": 1242,
+      "denominator": 22944
+    },
+    "telegram_panel_year.2025.junior_posts": {
+      "value": 0.1513,
+      "n": 3471,
+      "denominator": 22944
+    },
+    "telegram_panel_year.2025.junior_of_graded": {
+      "value": 0.2423,
+      "n": 3471,
+      "denominator": 14325
+    },
+    "telegram_panel_ml_skill.2025.Python": {
+      "value": 0.5105,
+      "n": 634,
+      "denominator": 1242
+    },
+    "telegram_panel_ml_skill.2025.SQL": {
+      "value": 0.1707,
+      "n": 212,
+      "denominator": 1242
+    },
+    "telegram_panel_ml_skill.2025.pandas": {
+      "value": 0.1248,
+      "n": 155,
+      "denominator": 1242
+    },
+    "telegram_panel_ml_skill.2025.NumPy": {
+      "value": 0.1135,
+      "n": 141,
+      "denominator": 1242
+    },
+    "telegram_panel_ml_skill.2025.scikit-learn": {
+      "value": 0.1063,
+      "n": 132,
+      "denominator": 1242
+    },
+    "telegram_panel_ml_skill.2025.TensorFlow": {
+      "value": 0.0942,
+      "n": 117,
+      "denominator": 1242
+    },
+    "telegram_panel_ml_skill.2025.PyTorch": {
+      "value": 0.1948,
+      "n": 242,
+      "denominator": 1242
+    },
+    "telegram_panel_ml_skill.2025.Spark": {
+      "value": 0.0564,
+      "n": 70,
+      "denominator": 1242
+    },
+    "telegram_panel_ml_skill.2025.Docker": {
+      "value": 0.1586,
+      "n": 197,
+      "denominator": 1242
+    },
+    "telegram_panel_ml_skill.2025.Kubernetes": {
+      "value": 0.095,
+      "n": 118,
+      "denominator": 1242
+    },
+    "telegram_panel_ml_skill.2025.Airflow": {
+      "value": 0.0676,
+      "n": 84,
+      "denominator": 1242
+    },
+    "telegram_panel_ml_skill.2025.MLOps": {
+      "value": 0.0612,
+      "n": 76,
+      "denominator": 1242
+    },
+    "telegram_panel_ml_skill.2025.FastAPI": {
+      "value": 0.0692,
+      "n": 86,
+      "denominator": 1242
+    },
+    "telegram_panel_ml_skill.2025.RAG": {
+      "value": 0.087,
+      "n": 108,
+      "denominator": 1242
+    },
+    "telegram_panel_ml_skill.2025.LangChain": {
+      "value": 0.0531,
+      "n": 66,
+      "denominator": 1242
+    },
+    "telegram_panel_year.2026.it_posts": {
+      "value": 15046,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_panel_year.2026.ml_posts": {
+      "value": 0.0637,
+      "n": 959,
+      "denominator": 15046
+    },
+    "telegram_panel_year.2026.junior_posts": {
+      "value": 0.1717,
+      "n": 2584,
+      "denominator": 15046
+    },
+    "telegram_panel_year.2026.junior_of_graded": {
+      "value": 0.2492,
+      "n": 2584,
+      "denominator": 10371
+    },
+    "telegram_panel_ml_skill.2026.Python": {
+      "value": 0.5454,
+      "n": 523,
+      "denominator": 959
+    },
+    "telegram_panel_ml_skill.2026.SQL": {
+      "value": 0.1867,
+      "n": 179,
+      "denominator": 959
+    },
+    "telegram_panel_ml_skill.2026.pandas": {
+      "value": 0.0772,
+      "n": 74,
+      "denominator": 959
+    },
+    "telegram_panel_ml_skill.2026.NumPy": {
+      "value": 0.0719,
+      "n": 69,
+      "denominator": 959
+    },
+    "telegram_panel_ml_skill.2026.scikit-learn": {
+      "value": 0.0636,
+      "n": 61,
+      "denominator": 959
+    },
+    "telegram_panel_ml_skill.2026.TensorFlow": {
+      "value": 0.0386,
+      "n": 37,
+      "denominator": 959
+    },
+    "telegram_panel_ml_skill.2026.PyTorch": {
+      "value": 0.1616,
+      "n": 155,
+      "denominator": 959
+    },
+    "telegram_panel_ml_skill.2026.Spark": {
+      "value": 0.0501,
+      "n": 48,
+      "denominator": 959
+    },
+    "telegram_panel_ml_skill.2026.Docker": {
+      "value": 0.1856,
+      "n": 178,
+      "denominator": 959
+    },
+    "telegram_panel_ml_skill.2026.Kubernetes": {
+      "value": 0.1199,
+      "n": 115,
+      "denominator": 959
+    },
+    "telegram_panel_ml_skill.2026.Airflow": {
+      "value": 0.074,
+      "n": 71,
+      "denominator": 959
+    },
+    "telegram_panel_ml_skill.2026.MLOps": {
+      "value": 0.1074,
+      "n": 103,
+      "denominator": 959
+    },
+    "telegram_panel_ml_skill.2026.FastAPI": {
+      "value": 0.0938,
+      "n": 90,
+      "denominator": 959
+    },
+    "telegram_panel_ml_skill.2026.RAG": {
+      "value": 0.1314,
+      "n": 126,
+      "denominator": 959
+    },
+    "telegram_panel_ml_skill.2026.LangChain": {
+      "value": 0.0845,
+      "n": 81,
+      "denominator": 959
+    },
+    "window.telegram.from": {
+      "value": "2026-07-06",
+      "n": null,
+      "denominator": null
+    },
+    "window.telegram.to": {
+      "value": "2026-10-13",
+      "n": null,
+      "denominator": null
+    },
+    "window.trudvsem.from": {
+      "value": "2026-06-30",
+      "n": null,
+      "denominator": null
+    },
+    "window.trudvsem.to": {
+      "value": "2026-10-13",
+      "n": null,
+      "denominator": null
+    },
+    "window.superjob.from": {
+      "value": "2026-10-12",
+      "n": null,
+      "denominator": null
+    },
+    "window.superjob.to": {
+      "value": "2026-10-13",
+      "n": null,
+      "denominator": null
+    },
+    "window.habr.from": {
+      "value": "2026-10-08",
+      "n": null,
+      "denominator": null
+    },
+    "window.habr.to": {
+      "value": "2026-10-13",
+      "n": null,
+      "denominator": null
+    },
+    "telegram_year.last_week": {
+      "value": "2026-10-12",
+      "n": null,
+      "denominator": null
+    }
+  },
+  "definitions": {
+    "ml_ds": "Rule bucket ml_ds of mart_junior: vacancies (Telegram: posts) of the collection window; graded_junior and graded_senior are of the vacancies whose grade the title rule found (grade_known).",
+    "ml_ds_skill": "Vacancies of the bucket naming the skill (rule dictionary), of the bucket; ml_ds_junior_skill of those graded intern or junior.",
+    "salary": "mart_extracted_salaries, level grade: stated = vacancies with a RUB monthly amount of the grade's vacancies; from_median and to_median are medians of the posted bounds, rows = vacancies with that bound.",
+    "salary_ml_cell": "mart_extracted_salaries, level cell: ML role x junior grade, vacancies stating a RUB monthly amount.",
+    "telegram_year": "Single-vacancy IT posts after the weekly cross-post dedup, by year of the week's Monday, extracted fields; ml_posts: role data_scientist, ml_engineer or mlops; junior_posts: grade intern or junior; junior_of_graded: of the posts with a grade.",
+    "telegram_ml_skill": "ML posts of the year naming the skill (extracted skills), of the year's ML posts.",
+    "window": "Collection window of the cross-sectional marts per source (mart_skills period_from, period_to).",
+    "telegram_panel": "The same over the channels with IT posts in every year 2022-2026."
+  },
+  "ml_roles": [
+    "data_scientist",
+    "ml_engineer",
+    "mlops"
+  ],
+  "panel_years": [
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ]
+}
