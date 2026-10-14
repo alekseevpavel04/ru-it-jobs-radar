@@ -28,7 +28,7 @@
             "uid": "prometheus"
           },
           "refId": "A",
-          "expr": "sum by (dag_id) (increase(airflow_dagrun_duration_success_count[$__range]))",
+          "expr": "sum by (dag_id) (round((increase(airflow_dagrun_duration_success_count[$__range]) and airflow_dagrun_duration_success_count offset $__range) or airflow_dagrun_duration_success_count))",
           "legendFormat": "{{dag_id}}",
           "instant": true
         }
@@ -83,7 +83,7 @@
             "uid": "prometheus"
           },
           "refId": "A",
-          "expr": "sum by (dag_id) (increase(airflow_dagrun_duration_failed_count[$__range])) or vector(0)",
+          "expr": "sum by (dag_id) (round((increase(airflow_dagrun_duration_failed_count[$__range]) and airflow_dagrun_duration_failed_count offset $__range) or airflow_dagrun_duration_failed_count)) or vector(0)",
           "legendFormat": "{{dag_id}}",
           "instant": true
         }
@@ -283,7 +283,7 @@
             "uid": "prometheus"
           },
           "refId": "A",
-          "expr": "sum by (dag_id) (increase(airflow_operator_successes[1h]))",
+          "expr": "sum by (dag_id) (round((increase(airflow_operator_successes[1h]) and airflow_operator_successes offset 1h) or airflow_operator_successes))",
           "legendFormat": "{{dag_id}} успех"
         },
         {
@@ -292,7 +292,7 @@
             "uid": "prometheus"
           },
           "refId": "B",
-          "expr": "sum by (dag_id) (increase(airflow_operator_failures[1h]))",
+          "expr": "sum by (dag_id) (round((increase(airflow_operator_failures[1h]) and airflow_operator_failures offset 1h) or airflow_operator_failures))",
           "legendFormat": "{{dag_id}} отказ"
         }
       ],
