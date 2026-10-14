@@ -95,16 +95,18 @@ WITH units AS (
 )
 """
 WORK_FORMAT_SQL = f"""
-SELECT toYear(week) AS year, grade IN {JUNIOR_GRADES} AS junior, work_format, count() AS posts
+SELECT toYear(week) AS year, role IN {ML_ROLES} AS ml, grade IN {JUNIOR_GRADES} AS junior, work_format,
+    count() AS posts
 FROM staging.int_extracted_weekly_units
 WHERE source = 'telegram' AND is_it AND grade IS NOT NULL AND work_format IS NOT NULL
-GROUP BY year, junior, work_format
+GROUP BY year, ml, junior, work_format
 """
 CHANNEL_YEAR_SQL = (
     _UNITS
     + """
 SELECT year, channel, count() AS it_posts, countIf(is_ml) AS ml_posts, countIf(is_junior) AS junior_posts,
-    countIf(is_graded) AS graded_posts
+    countIf(is_graded) AS graded_posts, countIf(is_ml AND is_junior) AS ml_junior_posts,
+    countIf(is_ml AND is_graded) AS ml_graded_posts
 FROM units GROUP BY year, channel
 """
 )
@@ -214,7 +216,7 @@ def telegram_years(
     for r in channel_years:
         scopes = ["all", "panel"] if r["channel"] in panel else ["all"]
         for scope in scopes:
-            for k in ("it_posts", "ml_posts", "junior_posts", "graded_posts"):
+            for k in ("it_posts", "ml_posts", "junior_posts", "graded_posts", "ml_junior_posts", "ml_graded_posts"):
                 totals[scope, int(r["year"])][k] += int(r[k])
     skills: dict[tuple[str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
     for r in channel_skills:
@@ -229,6 +231,7 @@ def telegram_years(
             metrics[f"{prefix}_year.{y}.ml_posts"] = share(t["ml_posts"], t["it_posts"])
             metrics[f"{prefix}_year.{y}.junior_posts"] = share(t["junior_posts"], t["it_posts"])
             metrics[f"{prefix}_year.{y}.junior_of_graded"] = share(t["junior_posts"], t["graded_posts"])
+            metrics[f"{prefix}_year.{y}.ml_junior_of_graded"] = share(t["ml_junior_posts"], t["ml_graded_posts"])
             for skill in TRACKED_SKILLS:
                 n = skills[scope, y].get(skill, 0)
                 if n > t["ml_posts"]:
@@ -243,15 +246,19 @@ def fetch(ch: ClickHouse, sql: str) -> Rows:
 
 
 def work_formats(rows: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
-    """Share of each work format among graded Telegram IT posts with a stated format, juniors against the rest."""
-    cells: dict[tuple[int, str], Counter[str]] = defaultdict(Counter)
+    """Share of each work format among graded Telegram IT posts with a stated format, juniors against the rest,
+    for all IT posts and for the ML roles alone."""
+    cells: dict[tuple[str, int, str], Counter[str]] = defaultdict(Counter)
     for r in rows:
-        cells[(int(r["year"]), "junior" if r["junior"] else "other")][str(r["work_format"])] += int(r["posts"])
+        group = "junior" if r["junior"] else "other"
+        scopes = ["telegram_work_format", "telegram_ml_work_format"] if r.get("ml") else ["telegram_work_format"]
+        for scope in scopes:
+            cells[(scope, int(r["year"]), group)][str(r["work_format"])] += int(r["posts"])
     out: dict[str, Any] = {}
-    for (year, group), formats in sorted(cells.items()):
+    for (scope, year, group), formats in sorted(cells.items()):
         total = sum(formats.values())
         for fmt, n in sorted(formats.items()):
-            out[f"telegram_work_format.{year}.{group}.{fmt}"] = share(n, total)
+            out[f"{scope}.{year}.{group}.{fmt}"] = share(n, total)
     return out
 
 
@@ -281,10 +288,11 @@ DEFINITIONS = {
     "vacancies stating a RUB monthly amount.",
     "telegram_year": "Single-vacancy IT posts after the weekly cross-post dedup, by year of the week's Monday, "
     "extracted fields; ml_posts: role data_scientist, ml_engineer or mlops; junior_posts: grade intern or junior; "
-    "junior_of_graded: of the posts with a grade.",
+    "junior_of_graded: of the posts with a grade; ml_junior_of_graded: the same within the ML roles.",
     "telegram_ml_skill": "ML posts of the year naming the skill (extracted skills), of the year's ML posts.",
     "telegram_work_format": "Single-vacancy IT posts with an extracted grade and work format, by year of the week's "
-    "Monday; junior: grade intern or junior, other: the other grades; share of the group's posts with a format.",
+    "Monday; junior: grade intern or junior, other: the other grades; share of the group's posts with a format; "
+    "telegram_ml_work_format: the same within the ML roles.",
     "window": "Collection window of the cross-sectional marts per source (mart_skills period_from, period_to).",
     "telegram_panel": f"The same over the channels with IT posts in every year {PANEL_YEARS[0]}-{PANEL_YEARS[-1]}.",
 }

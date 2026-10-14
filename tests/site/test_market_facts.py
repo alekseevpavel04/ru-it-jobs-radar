@@ -90,7 +90,14 @@ def test_salaries_keep_grade_rows_and_ml_junior_cells() -> None:
 
 
 def channel_year(year: int, channel: str, it: int, ml: int = 0, junior: int = 0) -> dict[str, object]:
-    counts = {"it_posts": it, "ml_posts": ml, "junior_posts": junior, "graded_posts": it // 2}
+    counts = {
+        "it_posts": it,
+        "ml_posts": ml,
+        "junior_posts": junior,
+        "graded_posts": it // 2,
+        "ml_junior_posts": min(ml, junior),
+        "ml_graded_posts": ml,
+    }
     return {"year": year, "channel": channel, **counts}
 
 
@@ -114,6 +121,7 @@ def test_telegram_years_split_all_and_panel() -> None:
     assert m["telegram_year.2023.ml_posts"] == {"value": 0.5, "n": 10, "denominator": 20}
     assert m["telegram_panel_year.2023.ml_posts"] == {"value": 0.2, "n": 2, "denominator": 10}
     assert m["telegram_year.2022.junior_of_graded"] == {"value": 0.4, "n": 2, "denominator": 5}
+    assert m["telegram_year.2023.ml_junior_of_graded"] == {"value": 0.1, "n": 1, "denominator": 10}
     assert m["telegram_ml_skill.2023.RAG"] == {"value": 0.5, "n": 5, "denominator": 10}
     assert m["telegram_panel_ml_skill.2023.RAG"] == {"value": 0.5, "n": 1, "denominator": 2}
     assert m["telegram_ml_skill.2022.RAG"]["n"] == 0
@@ -125,8 +133,12 @@ def test_work_formats_split_juniors_from_the_rest() -> None:
         {"year": 2026, "junior": 1, "work_format": "office", "posts": 46},
         {"year": 2026, "junior": 0, "work_format": "remote", "posts": 7},
         {"year": 2026, "junior": 0, "work_format": "hybrid", "posts": 3},
+        {"year": 2026, "ml": 1, "junior": 1, "work_format": "remote", "posts": 2},
+        {"year": 2026, "ml": 1, "junior": 1, "work_format": "office", "posts": 2},
     ]
     out = work_formats(rows)
-    assert out["telegram_work_format.2026.junior.remote"] == {"value": 0.54, "n": 54, "denominator": 100}
+    assert out["telegram_work_format.2026.junior.remote"] == {"value": 0.5385, "n": 56, "denominator": 104}
+    assert out["telegram_ml_work_format.2026.junior.remote"] == {"value": 0.5, "n": 2, "denominator": 4}
+    assert "telegram_ml_work_format.2026.other.remote" not in out
     assert out["telegram_work_format.2026.other.remote"]["n"] == 7
     assert out["telegram_work_format.2026.other.remote"]["denominator"] == 10

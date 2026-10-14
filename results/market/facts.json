@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/market_facts.py",
   "command": "python -m radar.site.market_facts",
-  "commit": "6d94049-dirty",
-  "created_at": "2026-10-14T10:19:35+00:00",
+  "commit": "d2054bb-dirty",
+  "created_at": "2026-10-14T12:32:24+00:00",
   "metrics": {
     "ml_ds.habr.vacancies": {
       "value": 54,
@@ -1087,6 +1087,11 @@
       "n": 479,
       "denominator": 5279
     },
+    "telegram_year.2019.ml_junior_of_graded": {
+      "value": 0.1094,
+      "n": 7,
+      "denominator": 64
+    },
     "telegram_ml_skill.2019.Python": {
       "value": 0.6039,
       "n": 93,
@@ -1181,6 +1186,11 @@
       "value": 0.0797,
       "n": 635,
       "denominator": 7972
+    },
+    "telegram_year.2020.ml_junior_of_graded": {
+      "value": 0.1379,
+      "n": 24,
+      "denominator": 174
     },
     "telegram_ml_skill.2020.Python": {
       "value": 0.5669,
@@ -1277,6 +1287,11 @@
       "n": 1200,
       "denominator": 12953
     },
+    "telegram_year.2021.ml_junior_of_graded": {
+      "value": 0.1155,
+      "n": 32,
+      "denominator": 277
+    },
     "telegram_ml_skill.2021.Python": {
       "value": 0.578,
       "n": 263,
@@ -1371,6 +1386,11 @@
       "value": 0.1339,
       "n": 2271,
       "denominator": 16966
+    },
+    "telegram_year.2022.ml_junior_of_graded": {
+      "value": 0.1471,
+      "n": 50,
+      "denominator": 340
     },
     "telegram_ml_skill.2022.Python": {
       "value": 0.5018,
@@ -1467,6 +1487,11 @@
       "n": 3742,
       "denominator": 20561
     },
+    "telegram_year.2023.ml_junior_of_graded": {
+      "value": 0.1832,
+      "n": 135,
+      "denominator": 737
+    },
     "telegram_ml_skill.2023.Python": {
       "value": 0.4682,
       "n": 486,
@@ -1561,6 +1586,11 @@
       "value": 0.1942,
       "n": 3916,
       "denominator": 20163
+    },
+    "telegram_year.2024.ml_junior_of_graded": {
+      "value": 0.1672,
+      "n": 196,
+      "denominator": 1172
     },
     "telegram_ml_skill.2024.Python": {
       "value": 0.5022,
@@ -1657,6 +1687,11 @@
       "n": 4354,
       "denominator": 17079
     },
+    "telegram_year.2025.ml_junior_of_graded": {
+      "value": 0.1955,
+      "n": 236,
+      "denominator": 1207
+    },
     "telegram_ml_skill.2025.Python": {
       "value": 0.4963,
       "n": 933,
@@ -1751,6 +1786,11 @@
       "value": 0.2564,
       "n": 3215,
       "denominator": 12539
+    },
+    "telegram_year.2026.ml_junior_of_graded": {
+      "value": 0.2086,
+      "n": 208,
+      "denominator": 997
     },
     "telegram_ml_skill.2026.Python": {
       "value": 0.5534,
@@ -1847,6 +1887,11 @@
       "n": 2271,
       "denominator": 16966
     },
+    "telegram_panel_year.2022.ml_junior_of_graded": {
+      "value": 0.1471,
+      "n": 50,
+      "denominator": 340
+    },
     "telegram_panel_ml_skill.2022.Python": {
       "value": 0.5018,
       "n": 272,
@@ -1941,6 +1986,11 @@
       "value": 0.1701,
       "n": 3366,
       "denominator": 19785
+    },
+    "telegram_panel_year.2023.ml_junior_of_graded": {
+      "value": 0.1799,
+      "n": 120,
+      "denominator": 667
     },
     "telegram_panel_ml_skill.2023.Python": {
       "value": 0.4327,
@@ -2037,6 +2087,11 @@
       "n": 3378,
       "denominator": 17725
     },
+    "telegram_panel_year.2024.ml_junior_of_graded": {
+      "value": 0.1662,
+      "n": 128,
+      "denominator": 770
+    },
     "telegram_panel_ml_skill.2024.Python": {
       "value": 0.4283,
       "n": 445,
@@ -2131,6 +2186,11 @@
       "value": 0.2423,
       "n": 3471,
       "denominator": 14325
+    },
+    "telegram_panel_year.2025.ml_junior_of_graded": {
+      "value": 0.1947,
+      "n": 162,
+      "denominator": 832
     },
     "telegram_panel_ml_skill.2025.Python": {
       "value": 0.5105,
@@ -2227,6 +2287,11 @@
       "n": 2584,
       "denominator": 10371
     },
+    "telegram_panel_year.2026.ml_junior_of_graded": {
+      "value": 0.1892,
+      "n": 130,
+      "denominator": 687
+    },
     "telegram_panel_ml_skill.2026.Python": {
       "value": 0.5454,
       "n": 523,
@@ -2301,6 +2366,241 @@
       "value": 0.0845,
       "n": 81,
       "denominator": 959
+    },
+    "telegram_ml_work_format.2018.other.office": {
+      "value": 1.0,
+      "n": 1,
+      "denominator": 1
+    },
+    "telegram_ml_work_format.2019.junior.hybrid": {
+      "value": 0.25,
+      "n": 1,
+      "denominator": 4
+    },
+    "telegram_ml_work_format.2019.junior.office": {
+      "value": 0.75,
+      "n": 3,
+      "denominator": 4
+    },
+    "telegram_ml_work_format.2019.other.office": {
+      "value": 0.381,
+      "n": 8,
+      "denominator": 21
+    },
+    "telegram_ml_work_format.2019.other.remote": {
+      "value": 0.619,
+      "n": 13,
+      "denominator": 21
+    },
+    "telegram_ml_work_format.2020.junior.hybrid": {
+      "value": 0.0769,
+      "n": 1,
+      "denominator": 13
+    },
+    "telegram_ml_work_format.2020.junior.office": {
+      "value": 0.4615,
+      "n": 6,
+      "denominator": 13
+    },
+    "telegram_ml_work_format.2020.junior.remote": {
+      "value": 0.4615,
+      "n": 6,
+      "denominator": 13
+    },
+    "telegram_ml_work_format.2020.other.hybrid": {
+      "value": 0.1183,
+      "n": 11,
+      "denominator": 93
+    },
+    "telegram_ml_work_format.2020.other.office": {
+      "value": 0.2366,
+      "n": 22,
+      "denominator": 93
+    },
+    "telegram_ml_work_format.2020.other.remote": {
+      "value": 0.6452,
+      "n": 60,
+      "denominator": 93
+    },
+    "telegram_ml_work_format.2021.junior.hybrid": {
+      "value": 0.2,
+      "n": 5,
+      "denominator": 25
+    },
+    "telegram_ml_work_format.2021.junior.office": {
+      "value": 0.24,
+      "n": 6,
+      "denominator": 25
+    },
+    "telegram_ml_work_format.2021.junior.remote": {
+      "value": 0.56,
+      "n": 14,
+      "denominator": 25
+    },
+    "telegram_ml_work_format.2021.other.hybrid": {
+      "value": 0.1685,
+      "n": 31,
+      "denominator": 184
+    },
+    "telegram_ml_work_format.2021.other.office": {
+      "value": 0.125,
+      "n": 23,
+      "denominator": 184
+    },
+    "telegram_ml_work_format.2021.other.remote": {
+      "value": 0.7065,
+      "n": 130,
+      "denominator": 184
+    },
+    "telegram_ml_work_format.2022.junior.hybrid": {
+      "value": 0.2619,
+      "n": 11,
+      "denominator": 42
+    },
+    "telegram_ml_work_format.2022.junior.office": {
+      "value": 0.2857,
+      "n": 12,
+      "denominator": 42
+    },
+    "telegram_ml_work_format.2022.junior.remote": {
+      "value": 0.4524,
+      "n": 19,
+      "denominator": 42
+    },
+    "telegram_ml_work_format.2022.other.hybrid": {
+      "value": 0.2512,
+      "n": 54,
+      "denominator": 215
+    },
+    "telegram_ml_work_format.2022.other.office": {
+      "value": 0.0326,
+      "n": 7,
+      "denominator": 215
+    },
+    "telegram_ml_work_format.2022.other.remote": {
+      "value": 0.7163,
+      "n": 154,
+      "denominator": 215
+    },
+    "telegram_ml_work_format.2023.junior.hybrid": {
+      "value": 0.2936,
+      "n": 32,
+      "denominator": 109
+    },
+    "telegram_ml_work_format.2023.junior.office": {
+      "value": 0.2477,
+      "n": 27,
+      "denominator": 109
+    },
+    "telegram_ml_work_format.2023.junior.remote": {
+      "value": 0.4587,
+      "n": 50,
+      "denominator": 109
+    },
+    "telegram_ml_work_format.2023.other.hybrid": {
+      "value": 0.2652,
+      "n": 144,
+      "denominator": 543
+    },
+    "telegram_ml_work_format.2023.other.office": {
+      "value": 0.0534,
+      "n": 29,
+      "denominator": 543
+    },
+    "telegram_ml_work_format.2023.other.remote": {
+      "value": 0.6814,
+      "n": 370,
+      "denominator": 543
+    },
+    "telegram_ml_work_format.2024.junior.hybrid": {
+      "value": 0.253,
+      "n": 42,
+      "denominator": 166
+    },
+    "telegram_ml_work_format.2024.junior.office": {
+      "value": 0.2108,
+      "n": 35,
+      "denominator": 166
+    },
+    "telegram_ml_work_format.2024.junior.remote": {
+      "value": 0.5361,
+      "n": 89,
+      "denominator": 166
+    },
+    "telegram_ml_work_format.2024.other.hybrid": {
+      "value": 0.3322,
+      "n": 300,
+      "denominator": 903
+    },
+    "telegram_ml_work_format.2024.other.office": {
+      "value": 0.1019,
+      "n": 92,
+      "denominator": 903
+    },
+    "telegram_ml_work_format.2024.other.remote": {
+      "value": 0.5659,
+      "n": 511,
+      "denominator": 903
+    },
+    "telegram_ml_work_format.2025.junior.hybrid": {
+      "value": 0.2889,
+      "n": 52,
+      "denominator": 180
+    },
+    "telegram_ml_work_format.2025.junior.office": {
+      "value": 0.1944,
+      "n": 35,
+      "denominator": 180
+    },
+    "telegram_ml_work_format.2025.junior.remote": {
+      "value": 0.5167,
+      "n": 93,
+      "denominator": 180
+    },
+    "telegram_ml_work_format.2025.other.hybrid": {
+      "value": 0.316,
+      "n": 268,
+      "denominator": 848
+    },
+    "telegram_ml_work_format.2025.other.office": {
+      "value": 0.0578,
+      "n": 49,
+      "denominator": 848
+    },
+    "telegram_ml_work_format.2025.other.remote": {
+      "value": 0.6262,
+      "n": 531,
+      "denominator": 848
+    },
+    "telegram_ml_work_format.2026.junior.hybrid": {
+      "value": 0.3529,
+      "n": 48,
+      "denominator": 136
+    },
+    "telegram_ml_work_format.2026.junior.office": {
+      "value": 0.2353,
+      "n": 32,
+      "denominator": 136
+    },
+    "telegram_ml_work_format.2026.junior.remote": {
+      "value": 0.4118,
+      "n": 56,
+      "denominator": 136
+    },
+    "telegram_ml_work_format.2026.other.hybrid": {
+      "value": 0.2997,
+      "n": 208,
+      "denominator": 694
+    },
+    "telegram_ml_work_format.2026.other.office": {
+      "value": 0.0677,
+      "n": 47,
+      "denominator": 694
+    },
+    "telegram_ml_work_format.2026.other.remote": {
+      "value": 0.6326,
+      "n": 439,
+      "denominator": 694
     },
     "telegram_work_format.2017.junior.hybrid": {
       "value": 0.075,
@@ -2653,9 +2953,9 @@
     "ml_ds_skill": "Vacancies of the bucket naming the skill (rule dictionary), of the bucket; ml_ds_junior_skill of those graded intern or junior.",
     "salary": "mart_extracted_salaries, level grade: stated = vacancies with a RUB monthly amount of the grade's vacancies; from_median and to_median are medians of the posted bounds, rows = vacancies with that bound.",
     "salary_ml_cell": "mart_extracted_salaries, level cell: ML role x junior grade, vacancies stating a RUB monthly amount.",
-    "telegram_year": "Single-vacancy IT posts after the weekly cross-post dedup, by year of the week's Monday, extracted fields; ml_posts: role data_scientist, ml_engineer or mlops; junior_posts: grade intern or junior; junior_of_graded: of the posts with a grade.",
+    "telegram_year": "Single-vacancy IT posts after the weekly cross-post dedup, by year of the week's Monday, extracted fields; ml_posts: role data_scientist, ml_engineer or mlops; junior_posts: grade intern or junior; junior_of_graded: of the posts with a grade; ml_junior_of_graded: the same within the ML roles.",
     "telegram_ml_skill": "ML posts of the year naming the skill (extracted skills), of the year's ML posts.",
-    "telegram_work_format": "Single-vacancy IT posts with an extracted grade and work format, by year of the week's Monday; junior: grade intern or junior, other: the other grades; share of the group's posts with a format.",
+    "telegram_work_format": "Single-vacancy IT posts with an extracted grade and work format, by year of the week's Monday; junior: grade intern or junior, other: the other grades; share of the group's posts with a format; telegram_ml_work_format: the same within the ML roles.",
     "window": "Collection window of the cross-sectional marts per source (mart_skills period_from, period_to).",
     "telegram_panel": "The same over the channels with IT posts in every year 2022-2026."
   },
