@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/monitor/drift.py",
   "command": "python -m radar.monitor.drift",
-  "commit": "3dc7c3f-dirty",
+  "commit": "c7f5127-dirty",
   "created_at": "2026-10-14T08:23:50+00:00",
   "metrics": {
     "trudvsem_snapshot.drifted_features": {

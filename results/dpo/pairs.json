@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/train/dpo_pairs.py",
   "command": "python -m radar.train.dpo_pairs build --config configs/dpo/qwen3_1p7b_clean.toml",
-  "commit": "4c820b9-dirty",
+  "commit": "5e2289b-dirty",
   "created_at": "2026-10-13T13:18:20+00:00",
   "metrics": {
     "pairs_train": {

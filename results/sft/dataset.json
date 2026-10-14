@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/train/dataset.py",
   "command": "python -m radar.train.dataset",
-  "commit": "e5478ad-dirty",
+  "commit": "25c56c9-dirty",
   "created_at": "2026-10-12T13:20:34+00:00",
   "metrics": {
     "silver_records": {

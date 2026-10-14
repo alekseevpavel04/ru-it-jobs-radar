@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/stream/verify.py",
   "command": "python -m radar.stream.verify trudvsem habr trudvsem_snapshot:2026-06-30 trudvsem_snapshot:2026-07-01",
-  "commit": "4de3000-dirty",
+  "commit": "c177481-dirty",
   "created_at": "2026-10-08T13:45:29+00:00",
   "metrics": {
     "targets_matched": {

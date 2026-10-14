@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/train/sft.py",
   "command": "python -m radar.train.sft --config configs/sft/qwen3_1p7b.toml --probe 50",
-  "commit": "185b5a1",
+  "commit": "0164595",
   "created_at": "2026-10-11T20:32:46+00:00",
   "metrics": {
     "train_seconds": {

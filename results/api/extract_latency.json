@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/api/latency.py",
   "command": "python -m radar.api.latency",
-  "commit": "d9d444e-dirty",
+  "commit": "b591d7e-dirty",
   "created_at": "2026-10-13T08:40:55+00:00",
   "metrics": {
     "extract_latency_p50_s": {

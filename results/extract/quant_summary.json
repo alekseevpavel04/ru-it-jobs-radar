@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/train/quantize.py",
   "command": "python -m radar.train.quantize summary --name qwen3_1p7b_r16_clean --reference sft_1p7b_r16_clean --systems sft_1p7b_clean_f16 sft_1p7b_clean_q8_0 sft_1p7b_clean_q4_k_m sft_1p7b_clean_q4_k_m_schema sft_1p7b_clean_awq sft_1p7b_clean_awq_schema --bench data/inference/bench/sft_1p7b_clean_q4_k_m_w1.meta.json data/inference/bench/sft_1p7b_clean_q4_k_m_w2.meta.json data/inference/bench/sft_1p7b_clean_q4_k_m_w8.meta.json data/inference/bench/sft_1p7b_clean_awq_w1.meta.json data/inference/bench/sft_1p7b_clean_awq_w8.meta.json",
-  "commit": "032281c-dirty",
+  "commit": "26c9b4a-dirty",
   "created_at": "2026-10-12T19:06:09+00:00",
   "metrics": {
     "dev/sft_1p7b_r16_clean/macro_f1": {

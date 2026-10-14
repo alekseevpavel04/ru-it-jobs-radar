@@ -2,6 +2,7 @@
   "source_script": "training/smoke_collect.py",
   "command": "smoke_collect.py",
   "commit": "1b190bd-dirty",
+  "commit_note": "1b190bd was dropped when the history was rewritten on 2026-10-10; the smoke parts in logs/gpu_smoke were measured on that tree with driver 595.79",
   "created_at": "2026-10-08T11:51:20+00:00",
   "metrics": {
     "qlora_1p7b_peak_vram_mib": {

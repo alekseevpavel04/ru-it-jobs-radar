@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/models/skill_effects.py",
   "command": "python -m radar.models.skill_effects",
-  "commit": "51f30ca-dirty",
+  "commit": "e2610d8-dirty",
   "created_at": "2026-10-13T14:35:45+00:00",
   "metrics": {
     "data_rows": {
