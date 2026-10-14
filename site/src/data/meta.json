@@ -1,37 +1,37 @@
 {
-  "exported_at": "2026-10-12T16:56:16Z",
-  "commit": "b86274a",
-  "data_through": "2026-10-11",
+  "exported_at": "2026-10-14T08:47:51Z",
+  "commit": "d44f60a-dirty",
+  "data_through": "2026-10-13",
   "periods": {
     "habr": {
       "period_from": "2026-10-08",
-      "period_to": "2026-10-11"
+      "period_to": "2026-10-13"
     },
     "telegram": {
-      "period_from": "2026-07-01",
-      "period_to": "2026-10-08"
+      "period_from": "2026-07-06",
+      "period_to": "2026-10-13"
     },
     "trudvsem": {
       "period_from": "2026-06-30",
-      "period_to": "2026-10-11"
+      "period_to": "2026-10-13"
     }
   },
   "snapshot_first_week": "2026-06-29",
-  "snapshot_last_week": "2026-10-05",
-  "telegram_first_week_shown": "2024-10-14",
+  "snapshot_last_week": "2026-10-12",
+  "telegram_first_week_shown": "2024-10-21",
   "telegram_weeks_shown": 104,
   "skill_min_mentions": 3,
   "salary_min_n": 9,
   "salary_min_n_coverage": 0.9609,
   "files": {
-    "weekly_vacancies.json": 306,
+    "weekly_vacancies.json": 357,
     "weekly_telegram.json": 1936,
-    "skills.json": 749,
-    "skills_by_role.json": 3117,
-    "skills_junior.json": 444,
+    "skills.json": 754,
+    "skills_by_role.json": 3170,
+    "skills_junior.json": 448,
     "work_format.json": 199,
     "junior.json": 55,
-    "salaries.json": 791,
+    "salaries.json": 799,
     "lifetime_observed.json": 12
   }
 }

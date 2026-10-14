@@ -1,11 +1,11 @@
 {
   "source_script": "src/radar/site/export.py",
   "command": "python -m radar.site.export",
-  "commit": "b86274a-dirty",
-  "created_at": "2026-10-12T16:56:16+00:00",
+  "commit": "d44f60a-dirty",
+  "created_at": "2026-10-14T08:47:51+00:00",
   "metrics": {
     "bytes_meta": {
-      "value": 911,
+      "value": 917,
       "n": null,
       "denominator": null
     },
@@ -15,12 +15,12 @@
       "denominator": null
     },
     "rows_weekly_vacancies": {
-      "value": 306,
+      "value": 357,
       "n": null,
       "denominator": null
     },
     "bytes_weekly_vacancies": {
-      "value": 53849,
+      "value": 62531,
       "n": null,
       "denominator": null
     },
@@ -30,37 +30,37 @@
       "denominator": null
     },
     "bytes_weekly_telegram": {
-      "value": 227802,
+      "value": 227781,
       "n": null,
       "denominator": null
     },
     "rows_skills": {
-      "value": 749,
+      "value": 754,
       "n": null,
       "denominator": null
     },
     "bytes_skills": {
-      "value": 82204,
+      "value": 82731,
       "n": null,
       "denominator": null
     },
     "rows_skills_by_role": {
-      "value": 3117,
+      "value": 3170,
       "n": null,
       "denominator": null
     },
     "bytes_skills_by_role": {
-      "value": 435248,
+      "value": 442719,
       "n": null,
       "denominator": null
     },
     "rows_skills_junior": {
-      "value": 444,
+      "value": 448,
       "n": null,
       "denominator": null
     },
     "bytes_skills_junior": {
-      "value": 51807,
+      "value": 52273,
       "n": null,
       "denominator": null
     },
@@ -70,7 +70,7 @@
       "denominator": null
     },
     "bytes_work_format": {
-      "value": 22471,
+      "value": 22480,
       "n": null,
       "denominator": null
     },
@@ -80,17 +80,17 @@
       "denominator": null
     },
     "bytes_junior": {
-      "value": 10792,
+      "value": 10797,
       "n": null,
       "denominator": null
     },
     "rows_salaries": {
-      "value": 791,
+      "value": 799,
       "n": null,
       "denominator": null
     },
     "bytes_salaries": {
-      "value": 285697,
+      "value": 288628,
       "n": null,
       "denominator": null
     },
@@ -100,12 +100,12 @@
       "denominator": null
     },
     "bytes_lifetime_observed": {
-      "value": 4599,
+      "value": 4600,
       "n": null,
       "denominator": null
     },
     "data_through": {
-      "value": "2026-10-11",
+      "value": "2026-10-13",
       "n": null,
       "denominator": null
     }

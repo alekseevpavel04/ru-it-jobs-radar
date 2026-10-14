@@ -1,8 +1,8 @@
 {
   "source_script": "dbt/report.py",
   "command": "python dbt/report.py",
-  "commit": "c6d6469-dirty",
-  "created_at": "2026-10-14T07:30:30+00:00",
+  "commit": "d44f60a-dirty",
+  "created_at": "2026-10-14T08:47:17+00:00",
   "metrics": {
     "rows_mart_weekly_dynamics": {
       "value": 9170,
@@ -466,28 +466,28 @@
       "n": 38,
       "denominator": 100
     },
-    "build_seconds_role_groups": {
-      "value": 0.17,
+    "build_seconds_skill_dictionary": {
+      "value": 0.07,
       "n": null,
       "denominator": null
     },
-    "build_seconds_skill_dictionary": {
-      "value": 0.22,
+    "build_seconds_role_groups": {
+      "value": 0.24,
       "n": null,
       "denominator": null
     },
     "build_seconds_skill_dictionary_v1": {
-      "value": 0.25,
+      "value": 0.19,
       "n": null,
       "denominator": null
     },
     "build_seconds_telegram_channels": {
-      "value": 0.13,
+      "value": 0.15,
       "n": null,
       "denominator": null
     },
     "build_seconds_stg_telegram": {
-      "value": 12.83,
+      "value": 13.67,
       "n": null,
       "denominator": null
     },
@@ -497,22 +497,22 @@
       "denominator": null
     },
     "build_seconds_int_extracted_fields": {
-      "value": 49.27,
+      "value": 46.7,
       "n": null,
       "denominator": null
     },
     "build_seconds_int_vacancy_records": {
-      "value": 52.04,
+      "value": 50.96,
       "n": null,
       "denominator": null
     },
     "build_seconds_int_vacancy_entities": {
-      "value": 0.35,
+      "value": 0.34,
       "n": null,
       "denominator": null
     },
     "build_seconds_mart_lifetime": {
-      "value": 0.43,
+      "value": 0.36,
       "n": null,
       "denominator": null
     },
@@ -522,32 +522,32 @@
       "denominator": null
     },
     "build_seconds_int_extracted_entities": {
-      "value": 0.35,
+      "value": 0.37,
       "n": null,
       "denominator": null
     },
     "build_seconds_mart_junior": {
-      "value": 0.27,
+      "value": 0.29,
       "n": null,
       "denominator": null
     },
     "build_seconds_mart_salaries": {
-      "value": 0.3,
+      "value": 0.29,
       "n": null,
       "denominator": null
     },
     "build_seconds_mart_skills": {
-      "value": 0.3,
+      "value": 0.27,
       "n": null,
       "denominator": null
     },
     "build_seconds_mart_skills_weekly": {
-      "value": 0.88,
+      "value": 0.72,
       "n": null,
       "denominator": null
     },
     "build_seconds_mart_weekly_dynamics": {
-      "value": 0.77,
+      "value": 0.71,
       "n": null,
       "denominator": null
     },
@@ -557,22 +557,22 @@
       "denominator": null
     },
     "build_seconds_mart_extracted_salaries": {
-      "value": 0.34,
+      "value": 0.29,
       "n": null,
       "denominator": null
     },
     "build_seconds_mart_open_vacancies": {
-      "value": 0.3,
+      "value": 0.32,
       "n": null,
       "denominator": null
     },
     "build_seconds_int_extracted_weekly_units": {
-      "value": 1.35,
+      "value": 1.43,
       "n": null,
       "denominator": null
     },
     "build_seconds_mart_extracted_fields_weekly": {
-      "value": 0.25,
+      "value": 0.26,
       "n": null,
       "denominator": null
     },
@@ -587,7 +587,7 @@
       "denominator": null
     },
     "build_seconds_total": {
-      "value": 122.1,
+      "value": 119.0,
       "n": null,
       "denominator": null
     },
@@ -598,37 +598,37 @@
       "statements": 2
     },
     "peak_memory_mib_int_extracted_fields": {
-      "value": 701.1,
+      "value": 759.9,
       "n": null,
       "denominator": null,
       "statements": 2
     },
     "peak_memory_mib_int_extracted_weekly_units": {
-      "value": 428.0,
+      "value": 428.5,
       "n": null,
       "denominator": null,
       "statements": 2
     },
     "peak_memory_mib_int_vacancy_entities": {
-      "value": 32.0,
+      "value": 31.5,
       "n": null,
       "denominator": null,
-      "statements": 2
+      "statements": 1
     },
     "peak_memory_mib_int_vacancy_records": {
-      "value": 864.8,
+      "value": 750.3,
       "n": null,
       "denominator": null,
-      "statements": 2
+      "statements": 1
     },
     "peak_memory_mib_mart_employers": {
       "value": 11.3,
       "n": null,
       "denominator": null,
-      "statements": 2
+      "statements": 1
     },
     "peak_memory_mib_mart_extracted_fields_weekly": {
-      "value": 15.0,
+      "value": 15.5,
       "n": null,
       "denominator": null,
       "statements": 2
@@ -646,7 +646,7 @@
       "statements": 2
     },
     "peak_memory_mib_mart_extraction_coverage": {
-      "value": 99.4,
+      "value": 98.4,
       "n": null,
       "denominator": null,
       "statements": 2
@@ -655,16 +655,16 @@
       "value": 5.0,
       "n": null,
       "denominator": null,
-      "statements": 2
+      "statements": 1
     },
     "peak_memory_mib_mart_lifetime": {
-      "value": 16.6,
+      "value": 12.2,
       "n": null,
       "denominator": null,
-      "statements": 2
+      "statements": 1
     },
     "peak_memory_mib_mart_open_vacancies": {
-      "value": 42.3,
+      "value": 42.2,
       "n": null,
       "denominator": null,
       "statements": 2
@@ -673,41 +673,41 @@
       "value": 6.4,
       "n": null,
       "denominator": null,
-      "statements": 2
+      "statements": 1
     },
     "peak_memory_mib_mart_skills": {
-      "value": 17.9,
+      "value": 17.8,
       "n": null,
       "denominator": null,
-      "statements": 2
+      "statements": 1
     },
     "peak_memory_mib_mart_skills_weekly": {
-      "value": 101.9,
+      "value": 94.8,
       "n": null,
       "denominator": null,
-      "statements": 2
+      "statements": 1
     },
     "peak_memory_mib_mart_weekly_dynamics": {
-      "value": 58.5,
+      "value": 49.6,
       "n": null,
       "denominator": null,
-      "statements": 2
+      "statements": 1
     },
     "peak_memory_mib_mart_work_format": {
       "value": 4.8,
       "n": null,
       "denominator": null,
-      "statements": 2
+      "statements": 1
     },
     "peak_memory_mib_stg_telegram": {
-      "value": 1028.0,
+      "value": 1032.2,
       "n": null,
       "denominator": null,
       "statements": 1
     }
   },
   "dbt_version": "1.12.5",
-  "build_finished_at": "2026-10-14T07:30:02.024052Z",
+  "build_finished_at": "2026-10-14T08:47:10.184156Z",
   "notes": {
     "rules": "role bucket, grade, work format, region group, skill dictionary: dbt/macros/marts.sql",
     "vacancies": "dedup entities within a source family (trudvsem = API and snapshots), latest record",

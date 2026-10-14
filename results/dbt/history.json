@@ -1,8 +1,8 @@
 {
   "source_script": "dbt/report.py",
   "command": "python dbt/report.py",
-  "commit": "c6d6469-dirty",
-  "created_at": "2026-10-14T07:30:30+00:00",
+  "commit": "d44f60a-dirty",
+  "created_at": "2026-10-14T08:47:17+00:00",
   "metrics": {
     "collected_days_habr": {
       "value": 6,
@@ -481,7 +481,7 @@
       "statements": 1
     },
     "peak_memory_mib_hist_snapshot_days": {
-      "value": 54.5,
+      "value": 53.9,
       "n": null,
       "denominator": null,
       "statements": 1
@@ -493,14 +493,14 @@
       "statements": 1
     },
     "peak_memory_mib_hist_vacancy_scd2": {
-      "value": 342.2,
+      "value": 346.4,
       "n": null,
       "denominator": null,
       "statements": 1
     }
   },
   "dbt_version": "1.12.5",
-  "build_finished_at": "2026-10-14T07:30:02.024052Z",
+  "build_finished_at": "2026-10-14T08:47:10.184156Z",
   "notes": {
     "rules": "closure, grace and repost window: dbt/macros/history.sql",
     "closed": "vacancies with a closure observed, of vacancies tracked; trudvsem (API) never closes by absence",
