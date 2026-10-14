@@ -1,7 +1,7 @@
 import pytest
 
 from radar.results import Metric
-from radar.site.market_facts import ml_ds_buckets, ml_ds_skills, panel_channels, salaries, telegram_years
+from radar.site.market_facts import ml_ds_buckets, ml_ds_skills, panel_channels, salaries, telegram_years, work_formats
 
 JUNIOR = [
     {
@@ -117,3 +117,16 @@ def test_telegram_years_split_all_and_panel() -> None:
     assert m["telegram_ml_skill.2023.RAG"] == {"value": 0.5, "n": 5, "denominator": 10}
     assert m["telegram_panel_ml_skill.2023.RAG"] == {"value": 0.5, "n": 1, "denominator": 2}
     assert m["telegram_ml_skill.2022.RAG"]["n"] == 0
+
+
+def test_work_formats_split_juniors_from_the_rest() -> None:
+    rows = [
+        {"year": 2026, "junior": 1, "work_format": "remote", "posts": 54},
+        {"year": 2026, "junior": 1, "work_format": "office", "posts": 46},
+        {"year": 2026, "junior": 0, "work_format": "remote", "posts": 7},
+        {"year": 2026, "junior": 0, "work_format": "hybrid", "posts": 3},
+    ]
+    out = work_formats(rows)
+    assert out["telegram_work_format.2026.junior.remote"] == {"value": 0.54, "n": 54, "denominator": 100}
+    assert out["telegram_work_format.2026.other.remote"]["n"] == 7
+    assert out["telegram_work_format.2026.other.remote"]["denominator"] == 10

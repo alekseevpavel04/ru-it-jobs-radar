@@ -21,7 +21,7 @@ Writes results/market/facts.json, aggregates only, every share with its denomina
 import argparse
 import json
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from collections.abc import Iterable, Mapping
 from typing import Any
 
@@ -93,6 +93,12 @@ WITH units AS (
         ON u.record_source_id = t.source_id
     WHERE u.source = 'telegram' AND u.is_it
 )
+"""
+WORK_FORMAT_SQL = f"""
+SELECT toYear(week) AS year, grade IN {JUNIOR_GRADES} AS junior, work_format, count() AS posts
+FROM staging.int_extracted_weekly_units
+WHERE source = 'telegram' AND is_it AND grade IS NOT NULL AND work_format IS NOT NULL
+GROUP BY year, junior, work_format
 """
 CHANNEL_YEAR_SQL = (
     _UNITS
@@ -236,12 +242,26 @@ def fetch(ch: ClickHouse, sql: str) -> Rows:
     return [json.loads(line) for line in body.splitlines() if line]
 
 
+def work_formats(rows: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
+    """Share of each work format among graded Telegram IT posts with a stated format, juniors against the rest."""
+    cells: dict[tuple[int, str], Counter[str]] = defaultdict(Counter)
+    for r in rows:
+        cells[(int(r["year"]), "junior" if r["junior"] else "other")][str(r["work_format"])] += int(r["posts"])
+    out: dict[str, Any] = {}
+    for (year, group), formats in sorted(cells.items()):
+        total = sum(formats.values())
+        for fmt, n in sorted(formats.items()):
+            out[f"telegram_work_format.{year}.{group}.{fmt}"] = share(n, total)
+    return out
+
+
 def build(ch: ClickHouse) -> dict[str, Any]:
     junior = fetch(ch, JUNIOR_SQL)
     metrics = ml_ds_buckets(junior, fetch(ch, GRADE_SQL))
     metrics |= ml_ds_skills(fetch(ch, SKILL_SQL), junior)
     metrics |= salaries(fetch(ch, SALARY_SQL))
     metrics |= telegram_years(fetch(ch, CHANNEL_YEAR_SQL), fetch(ch, CHANNEL_SKILL_SQL))
+    metrics |= work_formats(fetch(ch, WORK_FORMAT_SQL))
     for r in fetch(ch, WINDOW_SQL):
         metrics[f"window.{r['source']}.from"] = {"value": r["period_from"]}
         metrics[f"window.{r['source']}.to"] = {"value": r["period_to"]}
@@ -263,6 +283,8 @@ DEFINITIONS = {
     "extracted fields; ml_posts: role data_scientist, ml_engineer or mlops; junior_posts: grade intern or junior; "
     "junior_of_graded: of the posts with a grade.",
     "telegram_ml_skill": "ML posts of the year naming the skill (extracted skills), of the year's ML posts.",
+    "telegram_work_format": "Single-vacancy IT posts with an extracted grade and work format, by year of the week's "
+    "Monday; junior: grade intern or junior, other: the other grades; share of the group's posts with a format.",
     "window": "Collection window of the cross-sectional marts per source (mart_skills period_from, period_to).",
     "telegram_panel": f"The same over the channels with IT posts in every year {PANEL_YEARS[0]}-{PANEL_YEARS[-1]}.",
 }
