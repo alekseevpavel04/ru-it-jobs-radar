@@ -109,3 +109,13 @@ def test_main_exits_one_on_open_findings_and_never_prints_values(
     fp = scanner.fingerprint("hr@example.com")
     empty.write_text(f"*doc.md\temail\t{fp}\tsynthetic\n", encoding="utf-8")
     assert scanner.main([str(tmp_path), "--allowlist", str(empty)]) == 0
+
+
+def test_history_keys_keep_the_allowlist_of_their_path(scanner: Any) -> None:
+    hit = scanner.Hit("tests/a.py@0123abcd", "line 3", "phone", "-", "f" * 12, "")
+    exact = scanner.Allow("tests/a.py", "phone", "f" * 12, "synthetic")
+    placed = scanner.Allow("data/x.parquet::row * text", "*", "*", "synthetic")
+    assert not exact.covers(hit)
+    assert scanner.replace(exact, glob=scanner._versioned(exact.glob)).covers(hit)
+    assert scanner._versioned(placed.glob) == "data/x.parquet@*::row * text"
+    assert scanner._versioned("tests/fixtures/*") == "tests/fixtures/*"

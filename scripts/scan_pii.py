@@ -20,6 +20,7 @@ Exit 1 when a finding is not allowlisted.
     python scripts/scan_pii.py                         # git-tracked files, site/dist, storage/hf
     python scripts/scan_pii.py storage/hf/dataset      # only these paths
     python scripts/scan_pii.py --report logs/pii_scan.json --show-values
+    python scripts/scan_pii.py --history logs/pii_history     # versions of the history HEAD dropped
 """
 
 import argparse
@@ -32,7 +33,7 @@ import sys
 import tomllib
 from collections import Counter
 from collections.abc import Iterable, Iterator
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from pathlib import Path
 from typing import Any
 
@@ -254,16 +255,20 @@ def files_under(paths: Iterable[str]) -> list[str]:
     return found
 
 
-def scan(rels: Iterable[str], keep: frozenset[str]) -> tuple[list[Hit], Counter[str], list[str]]:
+def scan(
+    rels: Iterable[str], keep: frozenset[str], files: dict[str, Path] | None = None
+) -> tuple[list[Hit], Counter[str], list[str]]:
+    """Scan files by their repo path; `files` maps a path to where its content lies when not in ROOT."""
     hits: list[Hit] = []
     skipped: Counter[str] = Counter()
     images: list[str] = []
     for rel in sorted(set(rels)):
-        path = ROOT / rel
+        path = files[rel] if files is not None else ROOT / rel
         suffix = path.suffix.lower()
         if not path.is_file():
             continue
-        if any(fnmatch.fnmatch(rel, g) or fnmatch.fnmatch(f"/{rel}", g) for g in SKIP_GLOBS):
+        name = rel.partition("@")[0]
+        if any(fnmatch.fnmatch(name, g) or fnmatch.fnmatch(f"/{name}", g) for g in SKIP_GLOBS):
             skipped["third_party_or_vocabulary"] += 1
         elif suffix in IMAGES:
             images.append(rel)
@@ -278,6 +283,38 @@ def scan(rels: Iterable[str], keep: frozenset[str]) -> tuple[list[Hit], Counter[
     return hits, skipped, images
 
 
+def history_blobs(out_dir: Path) -> dict[str, Path]:
+    """Every file version in the history of any ref that the HEAD tree no longer has, written out.
+
+    Keys are "<path>@<first 8 hex of the blob>", so the allowlist globs of the path still apply (a glob
+    ending in a name gets "*" appended by the caller). A blob reachable under several paths is listed
+    under the first one git reports.
+    """
+
+    def git(*a: str) -> bytes:
+        return subprocess.run(["git", *a], cwd=ROOT, capture_output=True, check=True).stdout
+
+    head = {line.split()[2] for line in git("ls-tree", "-r", "HEAD").decode("utf-8").splitlines()}
+    files: dict[str, Path] = {}
+    for line in git("rev-list", "--objects", "--all").decode("utf-8").splitlines():
+        sha, _, rel = line.partition(" ")
+        if not rel or sha in head:
+            continue
+        if git("cat-file", "-t", sha).strip() != b"blob":
+            continue
+        target = out_dir / sha / Path(rel).name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(git("cat-file", "blob", sha))
+        files[f"{rel}@{sha[:8]}"] = target
+    return files
+
+
+def _versioned(glob: str) -> str:
+    """An allowlist path glob that also matches "<path>@<blob>" keys of --history."""
+    path_glob, sep, where_glob = glob.partition("::")
+    return f"{path_glob}@*{sep}{where_glob}" if not path_glob.endswith("*") else glob
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument(
@@ -286,11 +323,23 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--allowlist", type=Path, default=ALLOWLIST)
     ap.add_argument("--report", type=Path, help="JSON with every finding (no values) and the counts")
     ap.add_argument("--show-values", action="store_true", help="print the found values (terminal only)")
+    ap.add_argument(
+        "--history",
+        type=Path,
+        metavar="DIR",
+        help="scan the file versions of the git history that HEAD no longer has, written out into DIR",
+    )
     args = ap.parse_args(argv)
 
-    rels = files_under(args.paths) if args.paths else tracked_files() + files_under(EXTRA_ROOTS)
     allow = load_allowlist(args.allowlist)
-    hits, skipped, images = scan(rels, keep_handles())
+    if args.history:
+        files = history_blobs(args.history)
+        rels = list(files)
+        allow = [replace(a, glob=_versioned(a.glob)) for a in allow]
+        hits, skipped, images = scan(rels, keep_handles(), files)
+    else:
+        rels = files_under(args.paths) if args.paths else tracked_files() + files_under(EXTRA_ROOTS)
+        hits, skipped, images = scan(rels, keep_handles())
     open_hits = [h for h in hits if not any(a.covers(h) for a in allow)]
     allowed = len(hits) - len(open_hits)
 

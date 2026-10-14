@@ -193,3 +193,12 @@ tests/site/test_hf.py	phone	dbae582ee1f3	synthetic value of a test
 *	nick	b5fb1d89ab31	npm scope of the wllama package, not a person
 *	nick	03a833004458	npm scope of the huggingface tokenizers package, not a person
 scripts/scan_pii.py	nick	dd09ab543b04	wording in the scanner docstring and a file-suffix set, not a handle
+# Older versions in the git history (scan_pii.py --history).
+docs/sources.md	phone	b57110ef605e	placeholder number of a format example
+docs/sources.md	nick	297f3e455ff9	placeholder handle of a format example
+tests/collect/test_telegram.py	phone	cd10f495423f	synthetic value of a test
+tests/fixtures/telegram/*.html	nick	39b432119d89	public channel, not a person
+tests/fixtures/telegram/*.html	profile_link	2ad36985f773	public channel, not a person
+tests/fixtures/telegram/*.html	nick	d343822fa692	public channel, not a person
+tests/fixtures/telegram/*.html	profile_link	0cbcb0a45a60	public channel, not a person
+docs/DECISIONS.md	person_name	63c2c03c21d7	first name of the project author
