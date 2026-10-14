@@ -1,338 +1,353 @@
 {
   "source_script": "dbt/report.py",
   "command": "python dbt/report.py",
-  "commit": "b03bea0-dirty",
-  "created_at": "2026-10-13T20:39:09+00:00",
+  "commit": "c6d6469-dirty",
+  "created_at": "2026-10-14T07:30:30+00:00",
   "metrics": {
     "collected_days_habr": {
-      "value": 5,
+      "value": 6,
       "n": null,
       "denominator": null,
       "first_dt": "2026-10-08",
-      "last_dt": "2026-10-12"
+      "last_dt": "2026-10-13"
     },
     "complete_days_habr": {
       "value": 1.0,
-      "n": 5,
-      "denominator": 5
+      "n": 6,
+      "denominator": 6
     },
     "calendar_span_days_habr": {
-      "value": 5,
+      "value": 6,
       "n": null,
       "denominator": null
     },
     "collected_days_superjob": {
-      "value": 1,
+      "value": 2,
       "n": null,
       "denominator": null,
       "first_dt": "2026-10-12",
-      "last_dt": "2026-10-12"
+      "last_dt": "2026-10-13"
     },
     "complete_days_superjob": {
       "value": 1.0,
-      "n": 1,
-      "denominator": 1
+      "n": 2,
+      "denominator": 2
     },
     "calendar_span_days_superjob": {
-      "value": 1,
+      "value": 2,
       "n": null,
       "denominator": null
     },
     "collected_days_trudvsem": {
-      "value": 5,
+      "value": 6,
       "n": null,
       "denominator": null,
       "first_dt": "2026-10-08",
-      "last_dt": "2026-10-12"
+      "last_dt": "2026-10-13"
     },
     "complete_days_trudvsem": {
-      "value": 0.6,
-      "n": 3,
-      "denominator": 5
+      "value": 0.6667,
+      "n": 4,
+      "denominator": 6
     },
     "calendar_span_days_trudvsem": {
-      "value": 5,
+      "value": 6,
       "n": null,
       "denominator": null
     },
     "collected_days_trudvsem_snapshot": {
-      "value": 105,
+      "value": 106,
       "n": null,
       "denominator": null,
       "first_dt": "2026-06-30",
-      "last_dt": "2026-10-12"
+      "last_dt": "2026-10-13"
     },
     "complete_days_trudvsem_snapshot": {
       "value": 1.0,
-      "n": 105,
-      "denominator": 105
+      "n": 106,
+      "denominator": 106
     },
     "calendar_span_days_trudvsem_snapshot": {
-      "value": 105,
+      "value": 106,
       "n": null,
       "denominator": null
     },
     "vacancies_tracked_habr": {
-      "value": 1139,
+      "value": 1180,
       "n": null,
       "denominator": null
     },
     "closed_habr": {
-      "value": 0.0334,
-      "n": 38,
-      "denominator": 1139
+      "value": 0.0381,
+      "n": 45,
+      "denominator": 1180
     },
     "reopened_habr": {
       "value": 0.0,
       "n": 0,
-      "denominator": 1139
+      "denominator": 1180
     },
     "salary_changed_habr": {
-      "value": 0.0009,
+      "value": 0.0008,
       "n": 1,
-      "denominator": 1139
+      "denominator": 1180
     },
     "left_censored_habr": {
-      "value": 0.9271,
+      "value": 0.8949,
       "n": 1056,
-      "denominator": 1139
+      "denominator": 1180
     },
     "vacancies_tracked_superjob": {
-      "value": 787,
+      "value": 804,
       "n": null,
       "denominator": null
     },
     "closed_superjob": {
       "value": 0.0,
       "n": 0,
-      "denominator": 787
+      "denominator": 804
     },
     "reopened_superjob": {
       "value": 0.0,
       "n": 0,
-      "denominator": 787
+      "denominator": 804
     },
     "salary_changed_superjob": {
       "value": 0.0,
       "n": 0,
-      "denominator": 787
+      "denominator": 804
     },
     "left_censored_superjob": {
-      "value": 1.0,
+      "value": 0.9789,
       "n": 787,
-      "denominator": 787
+      "denominator": 804
     },
     "vacancies_tracked_trudvsem": {
-      "value": 12374,
+      "value": 12660,
       "n": null,
       "denominator": null
     },
     "closed_trudvsem": {
       "value": 0.0,
       "n": 0,
-      "denominator": 12374
+      "denominator": 12660
     },
     "reopened_trudvsem": {
       "value": 0.0,
       "n": 0,
-      "denominator": 12374
+      "denominator": 12660
     },
     "salary_changed_trudvsem": {
       "value": 0.0002,
-      "n": 2,
-      "denominator": 12374
+      "n": 3,
+      "denominator": 12660
     },
     "left_censored_trudvsem": {
-      "value": 0.94,
+      "value": 0.9188,
       "n": 11632,
-      "denominator": 12374
+      "denominator": 12660
     },
     "vacancies_tracked_trudvsem_snapshot": {
-      "value": 25797,
+      "value": 25992,
       "n": null,
       "denominator": null
     },
     "closed_trudvsem_snapshot": {
-      "value": 0.5833,
-      "n": 15047,
-      "denominator": 25797
+      "value": 0.5838,
+      "n": 15173,
+      "denominator": 25992
     },
     "reopened_trudvsem_snapshot": {
-      "value": 0.0861,
-      "n": 2220,
-      "denominator": 25797
+      "value": 0.0868,
+      "n": 2256,
+      "denominator": 25992
     },
     "salary_changed_trudvsem_snapshot": {
       "value": 0.0014,
       "n": 36,
-      "denominator": 25797
+      "denominator": 25992
     },
     "left_censored_trudvsem_snapshot": {
-      "value": 0.3654,
-      "n": 9426,
-      "denominator": 25797
+      "value": 0.3626,
+      "n": 9425,
+      "denominator": 25992
     },
     "versions_habr": {
-      "value": 1816,
+      "value": 1973,
       "n": null,
       "denominator": null
     },
     "versions_changed_habr": {
-      "value": 0.3728,
-      "n": 677,
-      "denominator": 1816
+      "value": 0.4019,
+      "n": 793,
+      "denominator": 1973
     },
     "versions_superjob": {
-      "value": 787,
+      "value": 810,
       "n": null,
       "denominator": null
     },
     "versions_changed_superjob": {
-      "value": 0.0,
-      "n": 0,
-      "denominator": 787
+      "value": 0.0074,
+      "n": 6,
+      "denominator": 810
     },
     "versions_trudvsem": {
-      "value": 12427,
+      "value": 12728,
       "n": null,
       "denominator": null
     },
     "versions_changed_trudvsem": {
-      "value": 0.0043,
-      "n": 53,
-      "denominator": 12427
+      "value": 0.0053,
+      "n": 68,
+      "denominator": 12728
     },
     "versions_trudvsem_snapshot": {
-      "value": 38731,
+      "value": 38979,
       "n": null,
       "denominator": null
     },
     "versions_changed_trudvsem_snapshot": {
-      "value": 0.2713,
-      "n": 10509,
-      "denominator": 38731
+      "value": 0.2698,
+      "n": 10518,
+      "denominator": 38979
     },
     "changed_field_habr_other": {
-      "value": 0.6204,
-      "n": 420,
-      "denominator": 677
+      "value": 0.6747,
+      "n": 535,
+      "denominator": 793
     },
     "changed_field_habr_remote_work": {
-      "value": 0.0015,
+      "value": 0.0013,
       "n": 1,
-      "denominator": 677
+      "denominator": 793
     },
     "changed_field_habr_salary_to": {
-      "value": 0.0015,
+      "value": 0.0013,
       "n": 1,
-      "denominator": 677
+      "denominator": 793
     },
     "changed_field_habr_text_hash": {
-      "value": 0.3781,
+      "value": 0.3228,
       "n": 256,
-      "denominator": 677
+      "denominator": 793
     },
     "changed_field_habr_title": {
-      "value": 0.003,
-      "n": 2,
-      "denominator": 677
+      "value": 0.0038,
+      "n": 3,
+      "denominator": 793
+    },
+    "changed_field_superjob_other": {
+      "value": 0.8333,
+      "n": 5,
+      "denominator": 6
+    },
+    "changed_field_superjob_text_hash": {
+      "value": 0.1667,
+      "n": 1,
+      "denominator": 6
     },
     "changed_field_trudvsem_employer_name": {
-      "value": 0.3962,
-      "n": 21,
-      "denominator": 53
+      "value": 0.3529,
+      "n": 24,
+      "denominator": 68
     },
     "changed_field_trudvsem_other": {
-      "value": 0.5283,
-      "n": 28,
-      "denominator": 53
+      "value": 0.5588,
+      "n": 38,
+      "denominator": 68
     },
     "changed_field_trudvsem_salary_from": {
-      "value": 0.0189,
-      "n": 1,
-      "denominator": 53
+      "value": 0.0294,
+      "n": 2,
+      "denominator": 68
     },
     "changed_field_trudvsem_salary_to": {
-      "value": 0.0189,
+      "value": 0.0147,
       "n": 1,
-      "denominator": 53
+      "denominator": 68
+    },
+    "changed_field_trudvsem_skills": {
+      "value": 0.0147,
+      "n": 1,
+      "denominator": 68
     },
     "changed_field_trudvsem_text_hash": {
-      "value": 0.0377,
-      "n": 2,
-      "denominator": 53
+      "value": 0.0588,
+      "n": 4,
+      "denominator": 68
     },
     "changed_field_trudvsem_snapshot_employer_name": {
-      "value": 0.0084,
-      "n": 88,
-      "denominator": 10509
+      "value": 0.0085,
+      "n": 89,
+      "denominator": 10518
     },
     "changed_field_trudvsem_snapshot_employment": {
       "value": 0.0002,
       "n": 2,
-      "denominator": 10509
+      "denominator": 10518
     },
     "changed_field_trudvsem_snapshot_other": {
-      "value": 0.9565,
-      "n": 10052,
-      "denominator": 10509
+      "value": 0.9563,
+      "n": 10058,
+      "denominator": 10518
     },
     "changed_field_trudvsem_snapshot_salary_currency_code": {
       "value": 0.0004,
       "n": 4,
-      "denominator": 10509
+      "denominator": 10518
     },
     "changed_field_trudvsem_snapshot_salary_from": {
       "value": 0.0029,
       "n": 31,
-      "denominator": 10509
+      "denominator": 10518
     },
     "changed_field_trudvsem_snapshot_salary_to": {
       "value": 0.002,
       "n": 21,
-      "denominator": 10509
+      "denominator": 10518
     },
     "changed_field_trudvsem_snapshot_skills": {
-      "value": 0.0165,
+      "value": 0.0164,
       "n": 173,
-      "denominator": 10509
+      "denominator": 10518
     },
     "changed_field_trudvsem_snapshot_status": {
-      "value": 0.0059,
-      "n": 62,
-      "denominator": 10509
+      "value": 0.006,
+      "n": 63,
+      "denominator": 10518
     },
     "changed_field_trudvsem_snapshot_text_hash": {
-      "value": 0.0069,
-      "n": 73,
-      "denominator": 10509
+      "value": 0.0071,
+      "n": 75,
+      "denominator": 10518
     },
     "changed_field_trudvsem_snapshot_title": {
       "value": 0.0054,
       "n": 57,
-      "denominator": 10509
+      "denominator": 10518
     },
     "median_lifetime_days_closed_snapshot_all": {
       "value": 23,
       "n": null,
       "denominator": null,
-      "vacancies": 15047
+      "vacancies": 15173
     },
     "median_lifetime_days_closed_snapshot_not_left_censored": {
       "value": 23,
       "n": null,
       "denominator": null,
-      "vacancies": 9279
+      "vacancies": 9399
     },
     "closures_habr": {
-      "value": 38,
+      "value": 45,
       "n": null,
       "denominator": null
     },
     "closures_reopened_habr": {
       "value": 0.0,
       "n": 0,
-      "denominator": 38
+      "denominator": 45
     },
     "reopened_within_1_days_habr": {
       "value": 0,
@@ -400,92 +415,92 @@
       "denominator": 0
     },
     "closures_trudvsem_snapshot": {
-      "value": 17472,
+      "value": 17642,
       "n": null,
       "denominator": null
     },
     "closures_reopened_trudvsem_snapshot": {
-      "value": 0.1388,
-      "n": 2425,
-      "denominator": 17472
+      "value": 0.14,
+      "n": 2469,
+      "denominator": 17642
     },
     "reopened_within_1_days_trudvsem_snapshot": {
       "value": 0.0,
       "n": 0,
-      "denominator": 2425
+      "denominator": 2469
     },
     "reopened_within_3_days_trudvsem_snapshot": {
       "value": 0.0,
       "n": 0,
-      "denominator": 2425
+      "denominator": 2469
     },
     "reopened_within_7_days_trudvsem_snapshot": {
-      "value": 0.0581,
+      "value": 0.0571,
       "n": 141,
-      "denominator": 2425
+      "denominator": 2469
     },
     "it_filter_left_while_listed_trudvsem_snapshot": {
       "value": 0.0014,
       "n": 36,
-      "denominator": 25818
+      "denominator": 26014
     },
     "reposts_trudvsem_snapshot": {
-      "value": 0.1842,
-      "n": 2772,
-      "denominator": 15047
+      "value": 0.1859,
+      "n": 2820,
+      "denominator": 15173
     },
     "repost_candidates_trudvsem_snapshot_gap_le_0": {
-      "value": 0.0821,
-      "n": 1236,
-      "denominator": 15047
+      "value": 0.0834,
+      "n": 1266,
+      "denominator": 15173
     },
     "repost_candidates_trudvsem_snapshot_gap_le_3": {
-      "value": 0.1332,
-      "n": 2005,
-      "denominator": 15047
+      "value": 0.1346,
+      "n": 2043,
+      "denominator": 15173
     },
     "repost_candidates_trudvsem_snapshot_gap_le_7": {
-      "value": 0.1608,
-      "n": 2420,
-      "denominator": 15047
+      "value": 0.1621,
+      "n": 2459,
+      "denominator": 15173
     },
     "repost_candidates_trudvsem_snapshot_gap_le_14": {
-      "value": 0.1842,
-      "n": 2772,
-      "denominator": 15047
+      "value": 0.1859,
+      "n": 2820,
+      "denominator": 15173
     },
     "repost_candidates_trudvsem_snapshot_gap_le_30": {
-      "value": 0.2005,
-      "n": 3017,
-      "denominator": 15047
+      "value": 0.2027,
+      "n": 3076,
+      "denominator": 15173
     },
     "peak_memory_mib_hist_reposts": {
-      "value": 38.1,
+      "value": 37.8,
       "n": null,
       "denominator": null,
       "statements": 1
     },
     "peak_memory_mib_hist_snapshot_days": {
-      "value": 52.7,
+      "value": 54.5,
       "n": null,
       "denominator": null,
       "statements": 1
     },
     "peak_memory_mib_hist_vacancy_lifetime": {
-      "value": 51.1,
+      "value": 51.4,
       "n": null,
       "denominator": null,
       "statements": 1
     },
     "peak_memory_mib_hist_vacancy_scd2": {
-      "value": 335.5,
+      "value": 342.2,
       "n": null,
       "denominator": null,
       "statements": 1
     }
   },
   "dbt_version": "1.12.5",
-  "build_finished_at": "2026-10-13T20:38:59.138285Z",
+  "build_finished_at": "2026-10-14T07:30:02.024052Z",
   "notes": {
     "rules": "closure, grace and repost window: dbt/macros/history.sql",
     "closed": "vacancies with a closure observed, of vacancies tracked; trudvsem (API) never closes by absence",

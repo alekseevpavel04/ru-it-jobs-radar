@@ -1,21 +1,21 @@
 {
   "source_script": "dbt/report.py",
   "command": "python dbt/report.py",
-  "commit": "b03bea0-dirty",
-  "created_at": "2026-10-13T20:39:09+00:00",
+  "commit": "c6d6469-dirty",
+  "created_at": "2026-10-14T07:30:30+00:00",
   "metrics": {
     "rows_mart_extracted_skills_weekly": {
-      "value": 120052,
+      "value": 120074,
       "n": null,
       "denominator": null
     },
     "rows_mart_extracted_fields_weekly": {
-      "value": 20214,
+      "value": 20219,
       "n": null,
       "denominator": null
     },
     "rows_mart_extracted_salaries": {
-      "value": 680,
+      "value": 679,
       "n": null,
       "denominator": null
     },
@@ -25,54 +25,54 @@
       "denominator": null
     },
     "coverage_all_portals": {
-      "value": 1.0,
-      "n": 21126,
-      "denominator": 21126
+      "value": 0.9859,
+      "n": 21077,
+      "denominator": 21379
     },
     "coverage_extractable_all_portals": {
-      "value": 1.0,
-      "n": 21126,
-      "denominator": 21126
+      "value": 0.9859,
+      "n": 21077,
+      "denominator": 21379
     },
     "valid_all_portals": {
       "value": 0.9999,
-      "n": 21124,
-      "denominator": 21126
+      "n": 21075,
+      "denominator": 21077
     },
     "it_all_portals": {
-      "value": 0.5233,
-      "n": 11055,
-      "denominator": 21124
+      "value": 0.5232,
+      "n": 11027,
+      "denominator": 21075
     },
     "skills_by_spelling_all_portals": {
       "value": 0.9743,
-      "n": 41780,
-      "denominator": 42882
+      "n": 41700,
+      "denominator": 42801
     },
     "skills_in_dictionary_all_portals": {
-      "value": 0.9799,
-      "n": 42018,
-      "denominator": 42882
+      "value": 0.9798,
+      "n": 41937,
+      "denominator": 42801
     },
     "skills_non_skill_all_portals": {
       "value": 0.001,
       "n": 42,
-      "denominator": 42882
+      "denominator": 42801
     },
     "skills_unchecked_all_portals": {
       "value": 0.0,
       "n": 0,
-      "denominator": 42882
+      "denominator": 42801
     },
     "coverage_habr": {
-      "value": 1.0,
+      "value": 0.9631,
       "n": 1069,
-      "denominator": 1069
+      "denominator": 1110
     },
     "coverage_extractable_habr": {
-      "value": 1.0,
+      "value": 0.9631,
       "n": 1069,
-      "denominator": 1069
+      "denominator": 1110
     },
     "valid_habr": {
       "value": 1.0,
@@ -105,14 +105,14 @@
       "denominator": 8016
     },
     "coverage_superjob": {
-      "value": 1.0,
+      "value": 0.9769,
       "n": 676,
-      "denominator": 676
+      "denominator": 692
     },
     "coverage_extractable_superjob": {
-      "value": 1.0,
+      "value": 0.9769,
       "n": 676,
-      "denominator": 676
+      "denominator": 692
     },
     "valid_superjob": {
       "value": 1.0,
@@ -120,8 +120,8 @@
       "denominator": 676
     },
     "it_superjob": {
-      "value": 0.4645,
-      "n": 314,
+      "value": 0.466,
+      "n": 315,
       "denominator": 676
     },
     "skills_by_spelling_superjob": {
@@ -145,14 +145,14 @@
       "denominator": 2018
     },
     "coverage_telegram": {
-      "value": 0.8833,
+      "value": 0.8828,
       "n": 202724,
-      "denominator": 229518
+      "denominator": 229641
     },
     "coverage_extractable_telegram": {
-      "value": 1.0,
+      "value": 0.9994,
       "n": 202724,
-      "denominator": 202724
+      "denominator": 202847
     },
     "valid_telegram": {
       "value": 0.9986,
@@ -186,97 +186,97 @@
     },
     "telegram_linking_habr": {
       "value": 0.2697,
-      "n": 61905,
-      "denominator": 229518
+      "n": 61924,
+      "denominator": 229641
     },
     "telegram_not_extractable": {
       "value": 0.1167,
       "n": 26794,
-      "denominator": 229518
+      "denominator": 229641
     },
     "coverage_trudvsem": {
-      "value": 1.0,
-      "n": 8465,
-      "denominator": 8465
+      "value": 0.9739,
+      "n": 8464,
+      "denominator": 8691
     },
     "coverage_extractable_trudvsem": {
-      "value": 1.0,
-      "n": 8465,
-      "denominator": 8465
+      "value": 0.9739,
+      "n": 8464,
+      "denominator": 8691
     },
     "valid_trudvsem": {
       "value": 0.9998,
-      "n": 8463,
-      "denominator": 8465
+      "n": 8462,
+      "denominator": 8464
     },
     "it_trudvsem": {
-      "value": 0.4711,
+      "value": 0.4712,
       "n": 3987,
-      "denominator": 8463
+      "denominator": 8462
     },
     "skills_by_spelling_trudvsem": {
-      "value": 0.9767,
-      "n": 13890,
-      "denominator": 14222
+      "value": 0.9765,
+      "n": 13887,
+      "denominator": 14221
     },
     "skills_in_dictionary_trudvsem": {
-      "value": 0.9809,
-      "n": 13950,
-      "denominator": 14222
+      "value": 0.9807,
+      "n": 13947,
+      "denominator": 14221
     },
     "skills_non_skill_trudvsem": {
       "value": 0.0005,
       "n": 7,
-      "denominator": 14222
+      "denominator": 14221
     },
     "skills_unchecked_trudvsem": {
       "value": 0.0,
       "n": 0,
-      "denominator": 14222
+      "denominator": 14221
     },
     "coverage_trudvsem_snapshot": {
-      "value": 1.0,
-      "n": 19545,
-      "denominator": 19545
+      "value": 0.9876,
+      "n": 19496,
+      "denominator": 19741
     },
     "coverage_extractable_trudvsem_snapshot": {
-      "value": 1.0,
-      "n": 19545,
-      "denominator": 19545
+      "value": 0.9876,
+      "n": 19496,
+      "denominator": 19741
     },
     "valid_trudvsem_snapshot": {
       "value": 0.9999,
-      "n": 19543,
-      "denominator": 19545
+      "n": 19494,
+      "denominator": 19496
     },
     "it_trudvsem_snapshot": {
-      "value": 0.5088,
-      "n": 9943,
-      "denominator": 19543
+      "value": 0.5086,
+      "n": 9914,
+      "denominator": 19494
     },
     "skills_by_spelling_trudvsem_snapshot": {
       "value": 0.9779,
-      "n": 32458,
-      "denominator": 33192
+      "n": 32378,
+      "denominator": 33111
     },
     "skills_in_dictionary_trudvsem_snapshot": {
       "value": 0.9825,
-      "n": 32612,
-      "denominator": 33192
+      "n": 32531,
+      "denominator": 33111
     },
     "skills_non_skill_trudvsem_snapshot": {
       "value": 0.0005,
       "n": 18,
-      "denominator": 33192
+      "denominator": 33111
     },
     "skills_unchecked_trudvsem_snapshot": {
       "value": 0.0,
       "n": 0,
-      "denominator": 33192
+      "denominator": 33111
     }
   },
   "dbt_version": "1.12.5",
-  "build_finished_at": "2026-10-13T20:38:59.138285Z",
+  "build_finished_at": "2026-10-14T07:30:02.024052Z",
   "extraction_model": "qwen3_1p7b_r16_clean-awq",
   "notes": {
     "units": "portal vacancies (dedup entities; all_portals counts a vacancy on several portals once) and Telegram single-vacancy posts after the weekly cross-post dedup, each once over the period (mart_extraction_coverage level source)",

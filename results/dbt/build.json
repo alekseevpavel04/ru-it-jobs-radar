@@ -1,8 +1,8 @@
 {
   "source_script": "dbt/report.py",
   "command": "python dbt/report.py",
-  "commit": "b03bea0-dirty",
-  "created_at": "2026-10-13T20:39:09+00:00",
+  "commit": "c6d6469-dirty",
+  "created_at": "2026-10-14T07:30:30+00:00",
   "metrics": {
     "models_ok": {
       "value": 1.0,
@@ -30,7 +30,7 @@
       "denominator": 308
     },
     "build_seconds": {
-      "value": 138.2,
+      "value": 107.1,
       "n": null,
       "denominator": null
     },
@@ -63,42 +63,42 @@
       "checked_at": "2026-10-08T16:07:50.541180Z"
     },
     "rows_stg_trudvsem_api_trudvsem": {
-      "value": 14307,
+      "value": 15029,
       "n": null,
       "denominator": null
     },
     "rows_stg_trudvsem_snapshot_trudvsem_snapshot": {
-      "value": 54969344,
+      "value": 55456662,
       "n": null,
       "denominator": null
     },
     "rows_stg_habr_habr": {
-      "value": 5311,
+      "value": 6421,
       "n": null,
       "denominator": null
     },
     "rows_stg_superjob_superjob": {
-      "value": 787,
+      "value": 1586,
       "n": null,
       "denominator": null
     },
     "rows_stg_vacancies_habr": {
-      "value": 5311,
+      "value": 6421,
       "n": null,
       "denominator": null
     },
     "rows_stg_vacancies_superjob": {
-      "value": 787,
+      "value": 1586,
       "n": null,
       "denominator": null
     },
     "rows_stg_vacancies_trudvsem": {
-      "value": 14307,
+      "value": 15029,
       "n": null,
       "denominator": null
     },
     "rows_stg_vacancies_trudvsem_snapshot": {
-      "value": 54969344,
+      "value": 55456662,
       "n": null,
       "denominator": null
     },
@@ -627,6 +627,11 @@
       "n": 9491,
       "denominator": 480390
     },
+    "it_candidates_trudvsem_snapshot_2026-10-13": {
+      "value": 0.0199,
+      "n": 9680,
+      "denominator": 487318
+    },
     "it_candidates_trudvsem_api_2026-10-08": {
       "value": 0.729,
       "n": 8480,
@@ -652,10 +657,20 @@
       "n": 480,
       "denominator": 613
     },
+    "it_candidates_trudvsem_api_2026-10-13": {
+      "value": 0.6981,
+      "n": 504,
+      "denominator": 722
+    },
     "it_candidates_superjob_2026-10-12": {
       "value": 0.9708,
       "n": 764,
       "denominator": 787
+    },
+    "it_candidates_superjob_2026-10-13": {
+      "value": 0.9712,
+      "n": 776,
+      "denominator": 799
     },
     "habr_future_date_posted_2026-10-08": {
       "value": 0.0038,
@@ -681,10 +696,15 @@
       "value": 0.0019,
       "n": 2,
       "denominator": 1079
+    },
+    "habr_future_date_posted_2026-10-13": {
+      "value": 0.0018,
+      "n": 2,
+      "denominator": 1110
     }
   },
   "dbt_version": "1.12.5",
-  "build_finished_at": "2026-10-13T20:38:59.138285Z",
+  "build_finished_at": "2026-10-14T07:30:02.024052Z",
   "notes": {
     "it_candidates": "wide IT filter is_it_candidate, not measured against labels yet",
     "habr_future_date_posted": "cards whose datePosted is later than the fetch, of cards read that day"
