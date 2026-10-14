@@ -16,6 +16,7 @@ from radar.models.forecast import (
     compare,
     coverage_by_year,
     ets,
+    interval_check,
     link_check,
     load_config,
     mase,
@@ -25,6 +26,7 @@ from radar.models.forecast import (
     seasonal_naive,
     select_skills,
     served_method,
+    site_forecast,
     smape,
     usable_weeks,
 )
@@ -151,3 +153,39 @@ def test_link_check_shares_of_the_series_weeks() -> None:
     links = pd.DataFrame({"week": w, "it_units": [100, 100, 50], "link_only": [10, 20, 50], "named": [1, 1, 5]})
     entry = link_check(links, w[:2])
     assert entry == {"value": 0.15, "n": 30, "denominator": 200, "named_value": 0.01, "named_n": 2}
+
+
+def test_interval_check_uses_only_errors_known_at_the_origin() -> None:
+    err = np.ones((1, 60, 2))
+    err[0, 59, 0] = 2.0
+    err[0, :, 1] = np.arange(60.0)  # growing errors: a quantile of the past never covers the next one
+    covered, cells = interval_check(err, 0.8, min_history=52)
+    # horizon 1: origins 52..59, horizon 2: origins 53..59 (the error of origin o - 1 is not known yet)
+    assert cells == 8 + 7
+    assert covered == 7
+
+
+def test_site_forecast_refits_the_method_on_the_usable_weeks() -> None:
+    w = weeks(date(2024, 1, 1), 40)
+    rng = np.random.default_rng(3)
+    series = pd.DataFrame(
+        [
+            {"source": "telegram", "week": week, "skill": skill, "vacancies_mentioning": float(rng.poisson(lam))}
+            for week in w
+            for skill, lam in (("Python", 30), ("SQL", 20))
+        ]
+    )
+    coverage = pd.DataFrame({"source": "telegram", "week": w, "units_it": 200.0, "coverage_extractable": 0.95})
+    cfg = config(first_week={}, min_origins=4)
+    today = w[-1] + timedelta(days=3)  # the last week is not over
+    site = site_forecast(series, coverage, cfg, ["SQL", "Python"], "ets", today)
+    assert site.weeks == w[:-1] and site.skills == ["SQL", "Python"]
+    assert site.forecast_weeks == w[-1:] + [w[-1] + timedelta(days=7 * h) for h in (1, 2, 3)]
+    assert site.origins == 39 - cfg.horizon - cfg.min_train + 1
+    assert site.point.shape == site.low.shape == (2, cfg.horizon)
+    assert (site.low <= site.point).all() and (site.point <= site.high).all()
+    assert site.mentions[0].tolist() == series[series["skill"] == "SQL"]["vacancies_mentioning"].tolist()[:-1]
+    with pytest.raises(ValueError, match="no weekly series"):
+        site_forecast(series, coverage, cfg, ["Rust"], "ets", today)
+    with pytest.raises(ValueError, match="usable weeks"):
+        site_forecast(series, coverage, replace(cfg, min_train=60), ["SQL"], "ets", today)

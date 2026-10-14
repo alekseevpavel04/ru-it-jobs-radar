@@ -3,12 +3,16 @@ from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 import pytest
 from pydantic import BaseModel, ValidationError
 
 from radar.config import ROOT
+from radar.models.forecast import SiteForecast
 from radar.site import export
 from radar.site.export import (
+    Forecast,
+    ForecastHistory,
     Junior,
     Lifetime,
     LifetimeObserved,
@@ -21,6 +25,7 @@ from radar.site.export import (
     WeeklyVacancies,
     WorkFormat,
     build,
+    forecast_files,
     lifetime,
     median_ci_coverage,
     render,
@@ -41,6 +46,7 @@ ROW_MODELS: dict[str, type[BaseModel]] = {
     "junior.json": Junior,
     "salaries.json": Salary,
     "lifetime_observed.json": LifetimeObserved,
+    "forecast_history.json": ForecastHistory,
 }
 
 
@@ -215,8 +221,43 @@ SURVIVAL: dict[str, Any] = {
 }
 
 
+FORECAST_RESULT: dict[str, Any] = {
+    "source_script": "src/radar/models/forecast.py",
+    "commit": "6d319c5",
+    "created_at": "2026-10-13T20:52:29+00:00",
+    "limits_ru": ["Навыки извлечены моделью из текста."],
+}
+
+
+def site_forecast(n_weeks: int = 6) -> SiteForecast:
+    weeks = [date(2026, 8, 31) + i * (date(2026, 9, 7) - date(2026, 8, 31)) for i in range(n_weeks)]
+    return SiteForecast(
+        method="ets",
+        weeks=weeks,
+        skills=["Python", "SQL"],
+        mentions=np.array([[10.0 + t for t in range(n_weeks)], [5.0] * n_weeks]),
+        it_units=np.array([100.0] * n_weeks),
+        forecast_weeks=[weeks[-1] + (weeks[1] - weeks[0]) * h for h in (1, 2)],
+        point=np.array([[0.151234, 0.151234], [0.05, 0.05]]),
+        low=np.array([[0.12, 0.11], [0.0, 0.0]]),
+        high=np.array([[0.18, 0.19], [0.09, 0.1]]),
+        origins=3,
+        interval_quantile=0.8,
+        interval_covered=7,
+        interval_cells=10,
+    )
+
+
 def built(marts: dict[str, list[dict[str, Any]]]) -> dict[str, Any]:
-    return build(marts, SURVIVAL, datetime(2026, 10, 11, 9, 0, tzinfo=UTC), "abc1234")
+    doc, history = forecast_files(FORECAST_RESULT, site_forecast(), "results/models/forecast.json", weeks=4)
+    return build(
+        marts,
+        SURVIVAL,
+        datetime(2026, 10, 11, 9, 0, tzinfo=UTC),
+        "abc1234",
+        forecast_doc=doc,
+        forecast_history=history,
+    )
 
 
 def test_weekly_vacancies_leave_telegram_out_and_sort(marts: dict[str, list[dict[str, Any]]]) -> None:
@@ -265,7 +306,8 @@ def test_meta_dates_and_counts(marts: dict[str, list[dict[str, Any]]]) -> None:
     assert meta.snapshot_first_week == date(2026, 6, 29)
     assert meta.snapshot_last_week == date(2026, 7, 6)
     assert meta.telegram_weeks_shown == 2
-    assert meta.files == {name: len(rows) for name, rows in docs.items() if name not in ("meta.json", "lifetime.json")}
+    documents = ("meta.json", "lifetime.json", "forecast.json")
+    assert meta.files == {name: len(rows) for name, rows in docs.items() if name not in documents}
     assert set(meta.periods) == {"trudvsem", "telegram"}
 
 
@@ -311,6 +353,7 @@ def test_exported_fields_are_aggregates_only() -> None:
             *("left_censored", "closed_by_repost", "closed_in_quantiles", "period_from", "period_to", "window_days"),
             *(f"duration_days_{q}" for q in ("p25", "median", "p75", "p90")),
         },
+        "forecast_history.json": {"week", "skill", "posts_mentioning", "posts_it"},
     }
 
 
@@ -332,6 +375,7 @@ def test_committed_site_data_matches_the_contract() -> None:
     meta = Meta.model_validate_json((SITE_DATA / "meta.json").read_text(encoding="utf-8"))
     assert set(meta.files) == set(ROW_MODELS)
     Lifetime.model_validate_json((SITE_DATA / "lifetime.json").read_text(encoding="utf-8"))
+    Forecast.model_validate_json((SITE_DATA / "forecast.json").read_text(encoding="utf-8"))
     for name, model in ROW_MODELS.items():
         rows = json.loads((SITE_DATA / name).read_text(encoding="utf-8"))
         assert len(rows) == meta.files[name], name
@@ -407,3 +451,29 @@ def test_salary_rows_keep_their_level(marts: dict[str, list[dict[str, Any]]]) ->
 def test_observed_lifetime_passes_through(marts: dict[str, list[dict[str, Any]]]) -> None:
     (row,) = built(marts)["lifetime_observed.json"]
     assert (row.closed_in_quantiles, row.duration_days_median, row.window_days) == (30, 28.0, 103)
+
+
+def test_forecast_keeps_the_last_weeks_as_counts_with_their_base() -> None:
+    doc, history = forecast_files(FORECAST_RESULT, site_forecast(6), "results/models/forecast.json", weeks=4)
+    assert [r.week for r in history if r.skill == "Python"] == site_forecast(6).weeks[2:]
+    assert [(r.posts_mentioning, r.posts_it) for r in history if r.skill == "Python"][-1] == (15, 100)
+    assert doc.history_first_week == date(2026, 9, 14)
+    assert doc.series_first_week == date(2026, 8, 31) and doc.last_week == date(2026, 10, 5) and doc.weeks == 6
+    assert (doc.commit, doc.method, doc.origins, doc.horizon) == ("6d319c5", "ets", 3, 2)
+    assert (doc.interval_check_covered, doc.interval_check_cells) == (7, 10)
+
+
+def test_forecast_points_are_rounded_shares_per_skill_and_horizon() -> None:
+    doc, _ = forecast_files(FORECAST_RESULT, site_forecast(), "results/models/forecast.json")
+    assert len(doc.points) == 2 * 2
+    first = doc.points[0]
+    assert (first.skill, first.horizon, first.week) == ("Python", 1, date(2026, 10, 12))
+    assert (first.forecast, first.low, first.high) == (0.1512, 0.12, 0.18)
+    assert all(p.low <= p.forecast <= p.high for p in doc.points)
+
+
+def test_forecast_with_more_mentions_than_posts_stops_the_export() -> None:
+    broken = site_forecast()
+    broken.mentions[0, -1] = 101.0
+    with pytest.raises(ValueError, match="mentions of"):
+        forecast_files(FORECAST_RESULT, broken, "results/models/forecast.json")

@@ -21,6 +21,7 @@ export default {
   base: "/ru-it-jobs-radar/",
   pages: [
     {name: "Навыки", path: "/skills"},
+    {name: "Прогноз навыков", path: "/forecast"},
     {name: "Зарплаты", path: "/salaries"},
     {name: "Джуниорский срез", path: "/junior"},
     {name: "Время жизни вакансии", path: "/lifetime"},

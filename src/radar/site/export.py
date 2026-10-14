@@ -5,8 +5,10 @@
 Reads only marts.* and writes only aggregates: counts per week, source, role bucket, skill, format
 and salary cell, each with its denominator. No vacancy row of any source, no title, text or link
 leaves ClickHouse here; every row model forbids fields it does not declare, and tests pin the field
-lists. The one input besides the marts is results/models/survival.json (vacancy lifetimes, task
-7.3), copied as medians with intervals and counts, with its path and provenance. Rerunnable: the
+lists. Inputs besides the marts: results/models/survival.json (vacancy lifetimes), copied
+as medians with intervals and counts, with its path and provenance; results/models/forecast.json
+(skill demand forecast), whose skills and served method are refit here on the weekly
+skill shares of Telegram, so the forecast and its history come from the same weeks. Rerunnable: the
 files are rewritten whole, rows in a fixed order, so a daily rerun changes only what the data
 changed. Also writes results/site/export.json (rows and bytes per file).
 """
@@ -20,15 +22,21 @@ from collections.abc import Iterable, Mapping
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Any, Literal
+from zoneinfo import ZoneInfo
 
 from pydantic import BaseModel, ConfigDict
 
 from radar.config import RESULTS, ROOT, load_dotenv
+from radar.models import forecast
+from radar.models.forecast import SiteForecast
 from radar.results import git_commit, write_result
 from radar.stream.clickhouse import ClickHouse
 
 OUT = ROOT / "site" / "src" / "data"
 SURVIVAL = RESULTS / "models" / "survival.json"
+FORECAST = RESULTS / "models" / "forecast.json"
+FORECAST_SOURCE = "telegram"
+FORECAST_TARGET = f"{FORECAST_SOURCE}.share"
 JUNIOR_GRADES = ("intern", "junior")
 # The site shows a salary quantile of a cell only when the cell is large enough for its median to
 # say something; see salary_min_n.
@@ -194,6 +202,46 @@ class LifetimeObserved(Row):
     period_from: date
     period_to: date
     window_days: int
+
+
+class ForecastHistory(Row):
+    """Telegram posts of the week naming the skill, of the week's IT posts with fields: the forecast series."""
+
+    week: date
+    skill: str
+    posts_mentioning: int
+    posts_it: int
+
+
+class ForecastPoint(Row):
+    week: date
+    skill: str
+    horizon: int
+    forecast: float
+    low: float
+    high: float
+
+
+class Forecast(Row):
+    """Skill demand forecast of the site; provenance is the result file that chose the method and skills."""
+
+    source_file: str
+    source_script: str
+    commit: str
+    created_at: str
+    method: str
+    series_first_week: date
+    last_week: date
+    weeks: int
+    history_first_week: date
+    horizon: int
+    origins: int
+    interval_quantile: float
+    interval_check_min_origins: int
+    interval_check_covered: int
+    interval_check_cells: int
+    points: list[ForecastPoint]
+    limits: list[str]
 
 
 class Period(Row):
@@ -469,6 +517,58 @@ def lifetime(doc: Mapping[str, Any], source_file: str) -> Lifetime:
     )
 
 
+def forecast_files(
+    result: Mapping[str, Any], site: SiteForecast, source_file: str, weeks: int = TELEGRAM_WEEKS
+) -> tuple[Forecast, list[ForecastHistory]]:
+    """The forecast document and the last `weeks` weeks of its series, shares as counts with their base."""
+    shown = range(max(0, len(site.weeks) - weeks), len(site.weeks))
+    history = [
+        ForecastHistory(
+            week=site.weeks[t],
+            skill=skill,
+            posts_mentioning=int(site.mentions[i, t]),
+            posts_it=int(site.it_units[t]),
+        )
+        for i, skill in enumerate(site.skills)
+        for t in shown
+    ]
+    for row in history:
+        if row.posts_mentioning > row.posts_it:
+            raise ValueError(f"{row.skill} {row.week}: {row.posts_mentioning} mentions of {row.posts_it} posts")
+    points = [
+        ForecastPoint(
+            week=week,
+            skill=skill,
+            horizon=j + 1,
+            forecast=round(float(site.point[i, j]), 4),
+            low=round(float(site.low[i, j]), 4),
+            high=round(float(site.high[i, j]), 4),
+        )
+        for i, skill in enumerate(site.skills)
+        for j, week in enumerate(site.forecast_weeks)
+    ]
+    doc = Forecast(
+        source_file=source_file,
+        source_script=result["source_script"],
+        commit=result["commit"],
+        created_at=result["created_at"],
+        method=site.method,
+        series_first_week=site.weeks[0],
+        last_week=site.weeks[-1],
+        weeks=len(site.weeks),
+        history_first_week=site.weeks[shown.start],
+        horizon=len(site.forecast_weeks),
+        origins=site.origins,
+        interval_quantile=site.interval_quantile,
+        interval_check_min_origins=forecast.INTERVAL_CHECK_MIN_ORIGINS,
+        interval_check_covered=site.interval_covered,
+        interval_check_cells=site.interval_cells,
+        points=points,
+        limits=result["limits_ru"],
+    )
+    return doc, sorted(history, key=lambda r: (r.skill, r.week))
+
+
 def periods(skill_rows: Iterable[dict[str, Any]]) -> dict[str, Period]:
     found: dict[str, Period] = {}
     for r in skill_rows:
@@ -476,8 +576,16 @@ def periods(skill_rows: Iterable[dict[str, Any]]) -> dict[str, Period]:
     return dict(sorted(found.items()))
 
 
-def build(marts: MartRows, survival: Mapping[str, Any], exported_at: datetime, commit: str) -> dict[str, Any]:
-    """File name -> rows (or one document for meta.json and lifetime.json)."""
+def build(
+    marts: MartRows,
+    survival: Mapping[str, Any],
+    exported_at: datetime,
+    commit: str,
+    *,
+    forecast_doc: Forecast,
+    forecast_history: list[ForecastHistory],
+) -> dict[str, Any]:
+    """File name -> rows (or one document for meta.json, lifetime.json and forecast.json)."""
     weekly = marts["mart_weekly_dynamics"]
     sizes = bucket_sizes(marts["mart_junior"])
     skill_totals, skill_roles = skills(marts["mart_skills"], sizes)
@@ -500,6 +608,7 @@ def build(marts: MartRows, survival: Mapping[str, Any], exported_at: datetime, c
             (LifetimeObserved(**r) for r in marts["mart_lifetime"]),
             key=lambda r: (r.source, r.level, r.role_group),
         ),
+        "forecast_history.json": forecast_history,
     }
     snapshot_weeks = [r.week for r in files["weekly_vacancies.json"] if r.source == "trudvsem_snapshot"]
     telegram_weeks = [r.week for r in files["weekly_telegram.json"]]
@@ -521,6 +630,7 @@ def build(marts: MartRows, survival: Mapping[str, Any], exported_at: datetime, c
     return {
         "meta.json": meta,
         "lifetime.json": lifetime(survival, SURVIVAL.relative_to(ROOT).as_posix()),
+        "forecast.json": forecast_doc,
         **files,
     }
 
@@ -551,8 +661,27 @@ def main() -> int:
     load_dotenv()
     with ClickHouse() as ch:
         marts = fetch_marts(ch)
+        series, coverage = forecast.fetch_series(ch, (FORECAST_SOURCE,))
     survival = json.loads(SURVIVAL.read_text(encoding="utf-8"))
-    docs = build(marts, survival, datetime.now(UTC).replace(microsecond=0), git_commit())
+    result = json.loads(FORECAST.read_text(encoding="utf-8"))
+    site = forecast.site_forecast(
+        series,
+        coverage,
+        forecast.load_config(),
+        result["skills"][FORECAST_SOURCE],
+        result["served"][FORECAST_TARGET]["method"],
+        datetime.now(ZoneInfo("Europe/Moscow")).date(),
+        FORECAST_SOURCE,
+    )
+    forecast_doc, history = forecast_files(result, site, FORECAST.relative_to(ROOT).as_posix())
+    docs = build(
+        marts,
+        survival,
+        datetime.now(UTC).replace(microsecond=0),
+        git_commit(),
+        forecast_doc=forecast_doc,
+        forecast_history=history,
+    )
     sizes = write(docs, args.out)
     meta: Meta = docs["meta.json"]
     metrics: dict[str, dict[str, Any]] = {}

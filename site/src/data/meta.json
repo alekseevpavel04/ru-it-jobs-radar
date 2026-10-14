@@ -1,6 +1,6 @@
 {
-  "exported_at": "2026-10-14T08:47:51Z",
-  "commit": "d44f60a-dirty",
+  "exported_at": "2026-10-14T09:38:25Z",
+  "commit": "40501c2-dirty",
   "data_through": "2026-10-13",
   "periods": {
     "habr": {
@@ -32,6 +32,7 @@
     "work_format.json": 199,
     "junior.json": 55,
     "salaries.json": 799,
-    "lifetime_observed.json": 12
+    "lifetime_observed.json": 12,
+    "forecast_history.json": 2496
   }
 }

@@ -28,7 +28,7 @@ from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 from io import StringIO
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 from zoneinfo import ZoneInfo
 
 import numpy as np
@@ -40,6 +40,9 @@ from statsmodels.tsa.holtwinters import SimpleExpSmoothing  # type: ignore[impor
 
 from radar.config import ROOT, load_dotenv
 from radar.results import write_result
+
+if TYPE_CHECKING:
+    from radar.stream.clickhouse import ClickHouse
 
 log = logging.getLogger("radar.models.forecast")
 
@@ -428,6 +431,97 @@ def next_weeks(Y: Array, bt: Backtest, method: str, cfg: Config, target: str) ->
     return point, np.clip(point - q, 0.0, upper_cap), np.clip(point + q, 0.0, upper_cap)
 
 
+# --- site ------------------------------------------------------------------------------------------
+
+# The interval check needs a year of earlier backtest errors before it judges an origin.
+INTERVAL_CHECK_MIN_ORIGINS = 52
+
+
+def interval_check(err: Array, quantile: float, min_history: int = INTERVAL_CHECK_MIN_ORIGINS) -> tuple[int, int]:
+    """How often an interval built only from errors already known would have covered the actual value.
+
+    `err` is skills x origins x horizon absolute errors, origins one week apart. The error of origin o
+    at horizon h is known from origin o + h on, so the interval at origin o and horizon h takes the
+    quantile of origins up to o - h. Returns (covered, cells) over the origins with at least
+    `min_history` such errors.
+    """
+    _, n_origins, horizon = err.shape
+    covered = cells = 0
+    for j in range(horizon):
+        h = j + 1
+        for o in range(min_history + h - 1, n_origins):
+            past = err[:, : o - h + 1, j]
+            q = np.nanquantile(past, quantile, axis=1)
+            now = err[:, o, j]
+            ok = np.isfinite(now) & np.isfinite(q)
+            covered += int((now[ok] <= q[ok]).sum())
+            cells += int(ok.sum())
+    return covered, cells
+
+
+@dataclass(frozen=True)
+class SiteForecast:
+    """The served method refit on the weeks the site export sees, with its own backtest interval."""
+
+    method: str
+    weeks: list[date]
+    skills: list[str]
+    mentions: Array  # skills x weeks
+    it_units: Array  # weeks
+    forecast_weeks: list[date]
+    point: Array  # skills x horizon
+    low: Array
+    high: Array
+    origins: int
+    interval_quantile: float
+    interval_covered: int
+    interval_cells: int
+
+
+def site_forecast(
+    series: pd.DataFrame,
+    coverage: pd.DataFrame,
+    cfg: Config,
+    skills: list[str],
+    method: str,
+    today: date,
+    source: str = "telegram",
+) -> SiteForecast:
+    """Share target of one source: the usable weeks as the backtest defines them, the given skills.
+
+    Skills and method come from the result file, so the site forecasts what the backtest judged; the
+    weeks are the ones over by `today`, so the forecast moves on as weeks complete.
+    """
+    cov = coverage[coverage["source"] == source]
+    weeks = usable_weeks(cov, cfg.first_week.get(source), cfg.min_coverage, today)
+    if len(weeks) < cfg.min_weeks:
+        raise ValueError(f"{source}: {len(weeks)} usable weeks, the backtest needs {cfg.min_weeks}")
+    panel = build_panel(source, series[series["source"] == source], cov, weeks)
+    missing = [s for s in skills if s not in panel.skills]
+    if missing:
+        raise ValueError(f"{source}: no weekly series for {missing}")
+    rows = [panel.skills.index(s) for s in skills]
+    Y = panel.target("share")[rows]
+    bt = backtest(Y, cfg, methods=(method,))
+    point, low, high = next_weeks(Y, bt, method, cfg, "share")
+    covered, cells = interval_check(np.abs(bt.actual - bt.forecast[method]), cfg.interval_quantile)
+    return SiteForecast(
+        method=method,
+        weeks=weeks,
+        skills=list(skills),
+        mentions=panel.mentions[rows],
+        it_units=panel.it_units,
+        forecast_weeks=[weeks[-1] + timedelta(days=7 * h) for h in range(1, cfg.horizon + 1)],
+        point=point,
+        low=low,
+        high=high,
+        origins=len(bt.origins),
+        interval_quantile=cfg.interval_quantile,
+        interval_covered=covered,
+        interval_cells=cells,
+    )
+
+
 # --- run -------------------------------------------------------------------------------------------
 
 
@@ -437,14 +531,22 @@ def _tsv(text: str) -> pd.DataFrame:
     return frame
 
 
+def _array_arg(sources: tuple[str, ...]) -> str:
+    return "[" + ",".join(f"'{s}'" for s in sources) + "]"
+
+
+def fetch_series(ch: "ClickHouse", sources: tuple[str, ...]) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Weekly skill mentions and extraction coverage of the sources, marts only."""
+    arg = _array_arg(sources)
+    return _tsv(ch.query(SERIES_SQL, sources=arg)), _tsv(ch.query(COVERAGE_SQL, sources=arg))
+
+
 def load(sources: tuple[str, ...], link_report: str) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     from radar.stream.clickhouse import ClickHouse
 
-    arg = "[" + ",".join(f"'{s}'" for s in sources) + "]"
     with ClickHouse() as ch:
-        series = _tsv(ch.query(SERIES_SQL, sources=arg))
-        coverage = _tsv(ch.query(COVERAGE_SQL, sources=arg))
-        links = _tsv(ch.query(LINK_SQL, sources=arg, skill=link_report))
+        series, coverage = fetch_series(ch, sources)
+        links = _tsv(ch.query(LINK_SQL, sources=_array_arg(sources), skill=link_report))
     return series, coverage, links
 
 

@@ -91,7 +91,8 @@ ROW_FILES["lifetime_observed"] = frozenset(
     }
     | {f"duration_days_{q}" for q in ("p25", "median", "p75", "p90")}
 )
-DOCUMENT_FILES = frozenset({"meta", "lifetime"})
+ROW_FILES["forecast_history"] = frozenset({"week", "skill", "posts_mentioning", "posts_it"})
+DOCUMENT_FILES = frozenset({"meta", "lifetime", "forecast"})
 ALLOWED = {**ROW_FILES, **{name: frozenset() for name in DOCUMENT_FILES}}
 
 FORBIDDEN_KEYS = frozenset(

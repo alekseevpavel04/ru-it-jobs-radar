@@ -1,7 +1,7 @@
 {
   "source_file": "results/models/survival.json",
   "source_script": "src/radar/models/survival.py",
-  "commit": "018064b-dirty",
+  "commit": "5e5c3c0-dirty",
   "created_at": "2026-10-11T15:23:08+00:00",
   "window_from": "2026-06-30",
   "window_to": "2026-10-10",
