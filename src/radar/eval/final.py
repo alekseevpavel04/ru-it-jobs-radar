@@ -46,7 +46,7 @@ from collections.abc import Callable, Iterator, Mapping, Sequence
 from contextlib import contextmanager
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from typing import Any
 
 import httpx
@@ -259,8 +259,9 @@ def port_free(port: int) -> bool:
 
 
 def to_wsl(path: Path) -> str:
-    drive, rest = path.resolve().drive, path.resolve().as_posix().split(":", 1)[-1]
-    return f"/mnt/{drive[0].lower()}{rest}" if drive else path.as_posix()
+    # Parsed as a Windows path on any host, so "D:/..." keeps its drive under Linux CI as well.
+    win = PureWindowsPath(str(path.resolve() if os.name == "nt" else path))
+    return f"/mnt/{win.drive[0].lower()}{win.as_posix()[len(win.drive) :]}" if win.drive else path.as_posix()
 
 
 @dataclass
