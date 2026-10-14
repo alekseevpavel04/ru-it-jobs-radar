@@ -1,0 +1,384 @@
+{
+  "source_script": "src/radar/monitor/drift_output.py",
+  "command": "python -m radar.monitor.drift_output",
+  "commit": "a7d3e3d-dirty",
+  "created_at": "2026-10-14T07:50:53+00:00",
+  "metrics": {
+    "trudvsem_snapshot.coverage_current": {
+      "value": 1.0,
+      "n": 635,
+      "denominator": 635
+    },
+    "trudvsem_snapshot.drifted_outputs": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 10
+    },
+    "trudvsem_snapshot.valid_json_current": {
+      "value": 1.0,
+      "n": 635,
+      "denominator": 635
+    },
+    "telegram.coverage_current": {
+      "value": 0.9549,
+      "n": 614,
+      "denominator": 643
+    },
+    "telegram.drifted_outputs": {
+      "value": 0.4,
+      "n": 4,
+      "denominator": 10
+    },
+    "telegram.valid_json_current": {
+      "value": 1.0,
+      "n": 614,
+      "denominator": 614
+    }
+  },
+  "extraction_model": "qwen3_1p7b_r16_clean-awq",
+  "settings": {
+    "reference_weeks": 4,
+    "min_reference_weeks": 2,
+    "num_method": "wasserstein",
+    "cat_method": "jensenshannon",
+    "drift_threshold": 0.1,
+    "coverage_gap": 0.05
+  },
+  "sources": {
+    "trudvsem_snapshot": {
+      "first_day": "2026-06-30",
+      "last_day": "2026-10-13",
+      "complete_weeks": 14,
+      "reference_weeks": [
+        "2026-07-06",
+        "2026-07-13",
+        "2026-07-20",
+        "2026-07-27"
+      ],
+      "current_week": "2026-10-05",
+      "coverage": {
+        "reference": {
+          "value": 0.9993,
+          "n": 2981,
+          "denominator": 2983
+        },
+        "current": {
+          "value": 1.0,
+          "n": 635,
+          "denominator": 635
+        }
+      },
+      "extracted": {
+        "reference": 2981,
+        "current": 635
+      },
+      "valid_json": {
+        "reference": {
+          "value": 1.0,
+          "n": 2981,
+          "denominator": 2981
+        },
+        "current": {
+          "value": 1.0,
+          "n": 635,
+          "denominator": 635
+        }
+      },
+      "status": "ok",
+      "not_available": [],
+      "drift": {
+        "drifted_features": {
+          "value": 0.0,
+          "n": 0,
+          "denominator": 10
+        },
+        "drifted_beyond_spread": {
+          "value": 0.0,
+          "n": 0,
+          "denominator": 10
+        },
+        "features": [
+          {
+            "feature": "n_skills",
+            "type": "numerical",
+            "method": "wasserstein",
+            "score": 0.027,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.1616,
+            "beyond_spread": false
+          },
+          {
+            "feature": "n_cities",
+            "type": "numerical",
+            "method": "wasserstein",
+            "score": 0.065,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.082,
+            "beyond_spread": false
+          },
+          {
+            "feature": "valid",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0,
+            "beyond_spread": false
+          },
+          {
+            "feature": "role",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0978,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.1057,
+            "beyond_spread": false
+          },
+          {
+            "feature": "grade",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0358,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0816,
+            "beyond_spread": false
+          },
+          {
+            "feature": "work_format",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0345,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.1088,
+            "beyond_spread": false
+          },
+          {
+            "feature": "employment_type",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0217,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0529,
+            "beyond_spread": false
+          },
+          {
+            "feature": "lang",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0,
+            "beyond_spread": false
+          },
+          {
+            "feature": "has_salary",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0318,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0838,
+            "beyond_spread": false
+          },
+          {
+            "feature": "has_experience",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0004,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0439,
+            "beyond_spread": false
+          }
+        ]
+      },
+      "report_html": "reports/evidently/2026-10-05/output_trudvsem_snapshot.html"
+    },
+    "trudvsem": {
+      "status": "insufficient_history",
+      "first_day": "2026-10-08",
+      "last_day": "2026-10-13",
+      "complete_weeks": 0,
+      "needed_weeks": 3
+    },
+    "habr": {
+      "status": "insufficient_history",
+      "first_day": "2026-10-08",
+      "last_day": "2026-10-13",
+      "complete_weeks": 0,
+      "needed_weeks": 3
+    },
+    "superjob": {
+      "status": "insufficient_history",
+      "first_day": "2026-10-12",
+      "last_day": "2026-10-13",
+      "complete_weeks": 0,
+      "needed_weeks": 3
+    },
+    "telegram": {
+      "first_day": "2026-06-30",
+      "last_day": "2026-10-13",
+      "complete_weeks": 14,
+      "reference_weeks": [
+        "2026-07-06",
+        "2026-07-13",
+        "2026-07-20",
+        "2026-07-27"
+      ],
+      "current_week": "2026-10-05",
+      "coverage": {
+        "reference": {
+          "value": 0.9245,
+          "n": 1996,
+          "denominator": 2159
+        },
+        "current": {
+          "value": 0.9549,
+          "n": 614,
+          "denominator": 643
+        }
+      },
+      "extracted": {
+        "reference": 1996,
+        "current": 614
+      },
+      "valid_json": {
+        "reference": {
+          "value": 0.9995,
+          "n": 1995,
+          "denominator": 1996
+        },
+        "current": {
+          "value": 1.0,
+          "n": 614,
+          "denominator": 614
+        }
+      },
+      "status": "ok",
+      "not_available": [],
+      "drift": {
+        "drifted_features": {
+          "value": 0.4,
+          "n": 4,
+          "denominator": 10
+        },
+        "drifted_beyond_spread": {
+          "value": 0.3,
+          "n": 3,
+          "denominator": 10
+        },
+        "features": [
+          {
+            "feature": "n_skills",
+            "type": "numerical",
+            "method": "wasserstein",
+            "score": 0.2245,
+            "threshold": 0.1,
+            "drifted": true,
+            "reference_spread": 0.0861,
+            "beyond_spread": true
+          },
+          {
+            "feature": "n_cities",
+            "type": "numerical",
+            "method": "wasserstein",
+            "score": 0.1189,
+            "threshold": 0.1,
+            "drifted": true,
+            "reference_spread": 0.0727,
+            "beyond_spread": true
+          },
+          {
+            "feature": "valid",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0132,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0273,
+            "beyond_spread": false
+          },
+          {
+            "feature": "role",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.11,
+            "threshold": 0.1,
+            "drifted": true,
+            "reference_spread": 0.1158,
+            "beyond_spread": false
+          },
+          {
+            "feature": "grade",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0395,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0433,
+            "beyond_spread": false
+          },
+          {
+            "feature": "work_format",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.1173,
+            "threshold": 0.1,
+            "drifted": true,
+            "reference_spread": 0.0579,
+            "beyond_spread": true
+          },
+          {
+            "feature": "employment_type",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0352,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0511,
+            "beyond_spread": false
+          },
+          {
+            "feature": "lang",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0229,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0902,
+            "beyond_spread": false
+          },
+          {
+            "feature": "has_salary",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0391,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0162,
+            "beyond_spread": true
+          },
+          {
+            "feature": "has_experience",
+            "type": "categorical",
+            "method": "jensenshannon",
+            "score": 0.0047,
+            "threshold": 0.1,
+            "drifted": false,
+            "reference_spread": 0.0323,
+            "beyond_spread": false
+          }
+        ]
+      },
+      "report_html": "reports/evidently/2026-10-05/output_telegram.html"
+    }
+  }
+}

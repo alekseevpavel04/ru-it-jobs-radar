@@ -35,7 +35,8 @@ features rather than rows and stays local for its size (about 4 MB each, mostly 
     python -m radar.monitor.drift
     python -m radar.monitor.drift --sources habr telegram --no-html
 
-Drift of the extraction model's output (agreement with the teacher) joins after the corpus run.
+The extraction model's side, on the same units and windows: radar.monitor.drift_output (drift of
+the student's fields) and radar.monitor.drift_quality (agreement with the teacher on a subsample).
 """
 
 import argparse
@@ -123,10 +124,12 @@ BY_NAME = {s.name: s for s in SOURCES}
 MISSING_FIELDS = ("it_without_text", "it_without_title", "it_without_published_at")
 
 
-class Reader(Protocol):
+class Extent(Protocol):
     def extent(self, source: Source) -> tuple[date, date] | None:
         """First and last day of the source's collection; None when it has no rows."""
 
+
+class Reader(Extent, Protocol):
     def daily(self, source: Source, first: date, last: date) -> pd.DataFrame:
         """One row per day with rows: day, rows and, for records, it_rows and MISSING_FIELDS."""
 
@@ -362,9 +365,19 @@ def drift_summary(snapshot: Any, categorical: Sequence[str], spread: dict[str, f
     }
 
 
-def analyse_source(
-    source: Source, reader: Reader, reference_weeks: int = REFERENCE_WEEKS, html_dir: Path | None = REPORTS
-) -> dict[str, Any]:
+@dataclass(frozen=True)
+class Windows:
+    reference: list[date]
+    current: date
+    base: dict[str, Any]
+
+    @property
+    def last_day(self) -> date:
+        return self.current + timedelta(days=6)
+
+
+def source_windows(source: Source, reader: Extent, reference_weeks: int = REFERENCE_WEEKS) -> Windows | dict[str, Any]:
+    """The reference weeks and the current week of a source, or the status that says why there are none."""
     extent = reader.extent(source)
     if extent is None:
         return {"status": "no_data"}
@@ -374,8 +387,17 @@ def analyse_source(
     windows = choose_windows(weeks, reference_weeks)
     if windows is None:
         return {"status": "insufficient_history", **base, "needed_weeks": MIN_REFERENCE_WEEKS + 1}
-    reference, current = windows
-    period_last = current + timedelta(days=6)
+    return Windows(windows[0], windows[1], base)
+
+
+def analyse_source(
+    source: Source, reader: Reader, reference_weeks: int = REFERENCE_WEEKS, html_dir: Path | None = REPORTS
+) -> dict[str, Any]:
+    windows = source_windows(source, reader, reference_weeks)
+    if not isinstance(windows, Windows):
+        return windows
+    reference, current, base = windows.reference, windows.current, windows.base
+    period_last = windows.last_day
     daily = reader.daily(source, reference[0], period_last)
     inflow = reader.inflow(source, reference[0], period_last)
     out: dict[str, Any] = {
