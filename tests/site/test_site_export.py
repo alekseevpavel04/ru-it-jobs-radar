@@ -11,6 +11,10 @@ from radar.config import ROOT
 from radar.models.forecast import SiteForecast
 from radar.site import export
 from radar.site.export import (
+    HISTORY,
+    MARKET_FACTS,
+    SKILL_EFFECTS,
+    ExtractedSalary,
     Forecast,
     ForecastHistory,
     Junior,
@@ -19,8 +23,11 @@ from radar.site.export import (
     Meta,
     Salary,
     SkillByRole,
+    SkillEffects,
     SkillJunior,
     SkillTotal,
+    TelegramYears,
+    VacancyHistory,
     WeeklyTelegram,
     WeeklyVacancies,
     WorkFormat,
@@ -30,8 +37,11 @@ from radar.site.export import (
     median_ci_coverage,
     render,
     salary_min_n,
+    skill_effects,
     skills,
     skills_junior,
+    telegram_years,
+    vacancy_history,
     weekly_telegram,
     write,
 )
@@ -45,9 +55,19 @@ ROW_MODELS: dict[str, type[BaseModel]] = {
     "work_format.json": WorkFormat,
     "junior.json": Junior,
     "salaries.json": Salary,
+    "salaries_telegram.json": ExtractedSalary,
     "lifetime_observed.json": LifetimeObserved,
     "forecast_history.json": ForecastHistory,
 }
+DOCUMENT_MODELS: dict[str, type[BaseModel]] = {
+    "meta.json": Meta,
+    "lifetime.json": Lifetime,
+    "forecast.json": Forecast,
+    "telegram_years.json": TelegramYears,
+    "skill_effects.json": SkillEffects,
+    "vacancy_history.json": VacancyHistory,
+}
+DOCUMENTS = tuple(DOCUMENT_MODELS)
 
 
 def weekly_row(week: str, source: str, bucket: str, **counts: int | None) -> dict[str, Any]:
@@ -93,6 +113,28 @@ def junior_row(source: str, bucket: str, vacancies: int) -> dict[str, Any]:
         "no_experience_required": 0,
         "grade_known": 0,
         "experience_field_stated": None,
+    }
+
+
+def extracted_salary_row(source: str, level: str, role: str, grade: str) -> dict[str, Any]:
+    return {
+        "source": source,
+        "level": level,
+        "role": role,
+        "grade": grade,
+        "vacancies": 829,
+        "with_salary": 170,
+        "with_salary_rub_month": 159,
+        "with_from": 146,
+        "with_to": 115,
+        "salary_from_p25": 60000.0,
+        "salary_from_median": 80000.0,
+        "salary_from_p75": 100000.0,
+        "salary_to_p25": 90000.0,
+        "salary_to_median": 120000.0,
+        "salary_to_p75": 150000.0,
+        "period_from": "2026-07-06",
+        "period_to": "2026-10-13",
     }
 
 
@@ -150,6 +192,11 @@ def marts() -> dict[str, list[dict[str, Any]]]:
                 "salary_to_median": None,
                 "salary_to_p75": None,
             }
+        ],
+        "mart_extracted_salaries": [
+            extracted_salary_row("telegram", "grade", "all", "junior"),
+            # portal rows of the extracted mart stay out: the site shows the portals' own salary fields
+            extracted_salary_row("habr", "grade", "all", "junior"),
         ],
         "mart_lifetime": [
             {
@@ -248,6 +295,84 @@ def site_forecast(n_weeks: int = 6) -> SiteForecast:
     )
 
 
+PROVENANCE = {"source_script": "src/x.py", "commit": "1234567", "created_at": "2026-10-14T12:32:24+00:00"}
+
+
+def share_metric(n: int, denominator: int) -> dict[str, Any]:
+    return {"value": round(n / denominator, 4), "n": n, "denominator": denominator}
+
+
+MARKET_RESULT: dict[str, Any] = {
+    **PROVENANCE,
+    "ml_roles": ["data_scientist", "ml_engineer", "mlops"],
+    "panel_years": [2025, 2026],
+    "metrics": {
+        "telegram_panel.channels": share_metric(39, 58),
+        "telegram_year.last_week": {"value": "2026-10-12"},
+        **{
+            f"{prefix}_year.{year}.{name}": metric
+            for prefix in ("telegram", "telegram_panel")
+            for year in (2025, 2026)
+            for name, metric in (
+                ("it_posts", {"value": 18606}),
+                ("ml_posts", share_metric(1433, 18606)),
+                ("junior_posts", share_metric(3215, 18606)),
+                ("junior_of_graded", share_metric(3215, 12539)),
+                ("ml_junior_of_graded", share_metric(208, 997)),
+            )
+        },
+        "telegram_ml_skill.2026.RAG": share_metric(206, 1433),
+        "telegram_panel_ml_skill.2026.RAG": share_metric(150, 1000),
+        "telegram_work_format.2026.junior.remote": share_metric(1249, 2301),
+        "telegram_ml_work_format.2026.other.remote": share_metric(439, 694),
+        "ml_ds.habr.vacancies": {"value": 54},
+    },
+}
+
+
+def effect(skill: str, rows: int, naive: float, pct: float, p_holm: float) -> dict[str, Any]:
+    return {
+        "value": 0.0,
+        "skill": skill,
+        "rows_with_skill": rows,
+        "naive_pct": naive,
+        "pct": pct,
+        "pct_ci_low": pct - 10,
+        "pct_ci_high": pct + 10,
+        "p_holm": p_holm,
+        "se": 0.07,
+    }
+
+
+EFFECTS_RESULT: dict[str, Any] = {
+    **PROVENANCE,
+    "scenario": {"cf_y": 0.03, "cf_d": 0.03, "level": 0.95},
+    "limits_ru": ["Оценка описывает вакансии с опубликованной зарплатой."],
+    "metrics": {
+        "data_rows": {"value": 7429},
+        "treatments": {"value": 2},
+        "estimated": share_metric(2, 2),
+        "significant_holm": share_metric(1, 2),
+        "overlap.Kubernetes": share_metric(372, 7429),
+        "effect.Kubernetes": effect("Kubernetes", 162, 106.1, -5.4, 1.0),
+        "effect.Microservices": effect("Microservices", 127, 135.3, 24.2, 0.02),
+    },
+}
+
+HISTORY_RESULT: dict[str, Any] = {
+    **PROVENANCE,
+    "metrics": {
+        "vacancies_tracked_trudvsem_snapshot": {"value": 25992},
+        "closed_trudvsem_snapshot": share_metric(15173, 25992),
+        "reopened_trudvsem_snapshot": share_metric(2256, 25992),
+        "reposts_trudvsem_snapshot": share_metric(2820, 15173),
+        "closed_habr": share_metric(45, 1180),
+    },
+}
+
+RESULTS = {MARKET_FACTS: MARKET_RESULT, SKILL_EFFECTS: EFFECTS_RESULT, HISTORY: HISTORY_RESULT}
+
+
 def built(marts: dict[str, list[dict[str, Any]]]) -> dict[str, Any]:
     doc, history = forecast_files(FORECAST_RESULT, site_forecast(), "results/models/forecast.json", weeks=4)
     return build(
@@ -257,6 +382,7 @@ def built(marts: dict[str, list[dict[str, Any]]]) -> dict[str, Any]:
         "abc1234",
         forecast_doc=doc,
         forecast_history=history,
+        results=RESULTS,
     )
 
 
@@ -306,7 +432,7 @@ def test_meta_dates_and_counts(marts: dict[str, list[dict[str, Any]]]) -> None:
     assert meta.snapshot_first_week == date(2026, 6, 29)
     assert meta.snapshot_last_week == date(2026, 7, 6)
     assert meta.telegram_weeks_shown == 2
-    documents = ("meta.json", "lifetime.json", "forecast.json")
+    documents = DOCUMENTS
     assert meta.files == {name: len(rows) for name, rows in docs.items() if name not in documents}
     assert set(meta.periods) == {"trudvsem", "telegram"}
 
@@ -348,6 +474,11 @@ def test_exported_fields_are_aggregates_only() -> None:
             *("with_salary_rub", "with_salary_other_currency", "with_from", "with_to"),
             *quantiles,
         },
+        "salaries_telegram.json": {
+            *("level", "role", "grade", "vacancies", "with_salary", "with_salary_rub_month", "with_from", "with_to"),
+            *quantiles,
+            *("period_from", "period_to"),
+        },
         "lifetime_observed.json": {
             *("source", "level", "role_group", "vacancies", "still_open", "closed", "closed_in_gap", "censored"),
             *("left_censored", "closed_by_repost", "closed_in_quantiles", "period_from", "period_to", "window_days"),
@@ -374,8 +505,8 @@ SITE_DATA = ROOT / "site" / "src" / "data"
 def test_committed_site_data_matches_the_contract() -> None:
     meta = Meta.model_validate_json((SITE_DATA / "meta.json").read_text(encoding="utf-8"))
     assert set(meta.files) == set(ROW_MODELS)
-    Lifetime.model_validate_json((SITE_DATA / "lifetime.json").read_text(encoding="utf-8"))
-    Forecast.model_validate_json((SITE_DATA / "forecast.json").read_text(encoding="utf-8"))
+    for name, document in DOCUMENT_MODELS.items():
+        document.model_validate_json((SITE_DATA / name).read_text(encoding="utf-8"))
     for name, model in ROW_MODELS.items():
         rows = json.loads((SITE_DATA / name).read_text(encoding="utf-8"))
         assert len(rows) == meta.files[name], name
@@ -386,7 +517,8 @@ def test_committed_site_data_matches_the_contract() -> None:
 def test_site_texts_have_no_long_dash() -> None:
     files = [ROOT / "site" / "observablehq.config.js", *(ROOT / "site" / "src").rglob("*.md")]
     files += (ROOT / "site" / "src" / "components").rglob("*.js")
-    offenders = [p.name for p in files if "—" in p.read_text(encoding="utf-8")]
+    dashes = {"—", "–"}
+    offenders = [p.name for p in files if dashes & set(p.read_text(encoding="utf-8"))]
     assert offenders == []
 
 
@@ -477,3 +609,59 @@ def test_forecast_with_more_mentions_than_posts_stops_the_export() -> None:
     broken.mentions[0, -1] = 101.0
     with pytest.raises(ValueError, match="mentions of"):
         forecast_files(FORECAST_RESULT, broken, "results/models/forecast.json")
+
+
+def test_lifetime_keeps_the_curve_of_each_estimable_group() -> None:
+    curve = {"at_risk": {"0": 54, "7": 111}, "survival": {"7": 0.7765}}
+    doc = {
+        **SURVIVAL,
+        "metrics": {
+            **SURVIVAL["metrics"],
+            "median_days_role_ml_ds_data": {**median_metric(26.0, 20.0, 29.0, 211, 152), **curve},
+            "median_days_incident_role_ml_ds_data": {**median_metric(30.0, 21.0, 31.0, 139, 89), **curve},
+        },
+    }
+    (only,) = lifetime(doc, "results/models/survival.json").group_curves
+    assert (only.group, only.level) == ("role", "ml_ds_data"), "incident cohorts and groups without a curve stay out"
+    assert [(p.day, p.survival, p.at_risk) for p in only.points] == [(7, 0.7765, 111)]
+
+
+def test_telegram_years_keep_counts_with_their_base() -> None:
+    doc = telegram_years(MARKET_RESULT, "results/market/facts.json")
+    assert (doc.panel_channels, doc.channels, doc.last_week) == (39, 58, date(2026, 10, 12))
+    row = next(r for r in doc.years if r.scope == "all" and r.year == 2026)
+    assert (row.it_posts, row.ml_posts, row.junior_posts, row.graded_posts) == (18606, 1433, 3215, 12539)
+    assert (row.ml_junior_posts, row.ml_graded_posts) == (208, 997)
+    assert [(r.scope, r.skill, r.posts_mentioning, r.ml_posts) for r in doc.skills] == [
+        ("all", "RAG", 206, 1433),
+        ("panel", "RAG", 150, 1000),
+    ]
+    assert [(r.scope, r.group, r.work_format, r.posts, r.posts_with_format) for r in doc.work_format] == [
+        ("it", "junior", "remote", 1249, 2301),
+        ("ml", "other", "remote", 439, 694),
+    ]
+    assert doc.source_file == "results/market/facts.json" and doc.commit == "1234567"
+
+
+def test_skill_effects_copy_the_estimates_and_check_their_count() -> None:
+    doc = skill_effects(EFFECTS_RESULT, "results/models/skill_effects.json")
+    assert [(e.skill, e.naive_pct, e.pct, e.p_holm) for e in doc.effects] == [
+        ("Kubernetes", 106.1, -5.4, 1.0),
+        ("Microservices", 135.3, 24.2, 0.02),
+    ]
+    assert (doc.rows, doc.estimated, doc.significant_holm, doc.ci_level) == (7429, 2, 1, 0.95)
+    broken = {**EFFECTS_RESULT, "metrics": {**EFFECTS_RESULT["metrics"], "estimated": share_metric(3, 3)}}
+    with pytest.raises(ValueError, match="estimated"):
+        skill_effects(broken, "results/models/skill_effects.json")
+
+
+def test_vacancy_history_takes_the_snapshot_counts() -> None:
+    doc = vacancy_history(HISTORY_RESULT, "results/dbt/history.json")
+    assert (doc.vacancies_tracked, doc.closed, doc.reopened, doc.reposted) == (25992, 15173, 2256, 2820)
+
+
+def test_telegram_salaries_leave_the_portal_rows_of_the_extracted_mart_out(
+    marts: dict[str, list[dict[str, Any]]],
+) -> None:
+    (row,) = built(marts)["salaries_telegram.json"]
+    assert (row.level, row.grade, row.with_from, row.salary_from_median) == ("grade", "junior", 146, 80000)

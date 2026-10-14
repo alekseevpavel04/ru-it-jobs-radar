@@ -1,0 +1,2378 @@
+{
+  "source_file": "results/market/facts.json",
+  "source_script": "src/radar/site/market_facts.py",
+  "commit": "a49fc6e-dirty",
+  "created_at": "2026-10-14T14:22:30+00:00",
+  "last_week": "2026-10-12",
+  "ml_roles": [
+    "data_scientist",
+    "ml_engineer",
+    "mlops"
+  ],
+  "panel_years": [
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "panel_channels": 39,
+  "channels": 58,
+  "years": [
+    {
+      "scope": "all",
+      "year": 2019,
+      "it_posts": 9621,
+      "ml_posts": 154,
+      "junior_posts": 479,
+      "graded_posts": 5279,
+      "ml_junior_posts": 7,
+      "ml_graded_posts": 64
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "it_posts": 12234,
+      "ml_posts": 284,
+      "junior_posts": 635,
+      "graded_posts": 7972,
+      "ml_junior_posts": 24,
+      "ml_graded_posts": 174
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "it_posts": 19279,
+      "ml_posts": 455,
+      "junior_posts": 1200,
+      "graded_posts": 12953,
+      "ml_junior_posts": 32,
+      "ml_graded_posts": 277
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "it_posts": 27514,
+      "ml_posts": 542,
+      "junior_posts": 2271,
+      "graded_posts": 16966,
+      "ml_junior_posts": 50,
+      "ml_graded_posts": 340
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "it_posts": 31206,
+      "ml_posts": 1038,
+      "junior_posts": 3742,
+      "graded_posts": 20561,
+      "ml_junior_posts": 135,
+      "ml_graded_posts": 737
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "it_posts": 31817,
+      "ml_posts": 1786,
+      "junior_posts": 3916,
+      "graded_posts": 20163,
+      "ml_junior_posts": 196,
+      "ml_graded_posts": 1172
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "it_posts": 27794,
+      "ml_posts": 1880,
+      "junior_posts": 4354,
+      "graded_posts": 17079,
+      "ml_junior_posts": 236,
+      "ml_graded_posts": 1207
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "it_posts": 18606,
+      "ml_posts": 1433,
+      "junior_posts": 3215,
+      "graded_posts": 12539,
+      "ml_junior_posts": 208,
+      "ml_graded_posts": 997
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "it_posts": 27514,
+      "ml_posts": 542,
+      "junior_posts": 2271,
+      "graded_posts": 16966,
+      "ml_junior_posts": 50,
+      "ml_graded_posts": 340
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "it_posts": 29768,
+      "ml_posts": 899,
+      "junior_posts": 3366,
+      "graded_posts": 19785,
+      "ml_junior_posts": 120,
+      "ml_graded_posts": 667
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "it_posts": 27198,
+      "ml_posts": 1039,
+      "junior_posts": 3378,
+      "graded_posts": 17725,
+      "ml_junior_posts": 128,
+      "ml_graded_posts": 770
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "it_posts": 22944,
+      "ml_posts": 1242,
+      "junior_posts": 3471,
+      "graded_posts": 14325,
+      "ml_junior_posts": 162,
+      "ml_graded_posts": 832
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "it_posts": 15046,
+      "ml_posts": 959,
+      "junior_posts": 2584,
+      "graded_posts": 10371,
+      "ml_junior_posts": 130,
+      "ml_graded_posts": 687
+    }
+  ],
+  "skills": [
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "Airflow",
+      "posts_mentioning": 3,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "Airflow",
+      "posts_mentioning": 6,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "Airflow",
+      "posts_mentioning": 28,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "Airflow",
+      "posts_mentioning": 42,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "Airflow",
+      "posts_mentioning": 81,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "Airflow",
+      "posts_mentioning": 157,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "Airflow",
+      "posts_mentioning": 125,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "Airflow",
+      "posts_mentioning": 115,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "Docker",
+      "posts_mentioning": 8,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "Docker",
+      "posts_mentioning": 21,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "Docker",
+      "posts_mentioning": 68,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "Docker",
+      "posts_mentioning": 74,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "Docker",
+      "posts_mentioning": 130,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "Docker",
+      "posts_mentioning": 257,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "Docker",
+      "posts_mentioning": 301,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "Docker",
+      "posts_mentioning": 260,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "FastAPI",
+      "posts_mentioning": 0,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "FastAPI",
+      "posts_mentioning": 0,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "FastAPI",
+      "posts_mentioning": 6,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "FastAPI",
+      "posts_mentioning": 8,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "FastAPI",
+      "posts_mentioning": 26,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "FastAPI",
+      "posts_mentioning": 60,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "FastAPI",
+      "posts_mentioning": 127,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "FastAPI",
+      "posts_mentioning": 126,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "Kubernetes",
+      "posts_mentioning": 4,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "Kubernetes",
+      "posts_mentioning": 6,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "Kubernetes",
+      "posts_mentioning": 31,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "Kubernetes",
+      "posts_mentioning": 31,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "Kubernetes",
+      "posts_mentioning": 60,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "Kubernetes",
+      "posts_mentioning": 100,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "Kubernetes",
+      "posts_mentioning": 159,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "Kubernetes",
+      "posts_mentioning": 175,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "LangChain",
+      "posts_mentioning": 0,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "LangChain",
+      "posts_mentioning": 0,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "LangChain",
+      "posts_mentioning": 0,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "LangChain",
+      "posts_mentioning": 0,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "LangChain",
+      "posts_mentioning": 17,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "LangChain",
+      "posts_mentioning": 50,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "LangChain",
+      "posts_mentioning": 124,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "LangChain",
+      "posts_mentioning": 124,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "MLOps",
+      "posts_mentioning": 0,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "MLOps",
+      "posts_mentioning": 0,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "MLOps",
+      "posts_mentioning": 8,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "MLOps",
+      "posts_mentioning": 42,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "MLOps",
+      "posts_mentioning": 59,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "MLOps",
+      "posts_mentioning": 109,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "MLOps",
+      "posts_mentioning": 123,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "MLOps",
+      "posts_mentioning": 158,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "NumPy",
+      "posts_mentioning": 25,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "NumPy",
+      "posts_mentioning": 32,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "NumPy",
+      "posts_mentioning": 76,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "NumPy",
+      "posts_mentioning": 50,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "NumPy",
+      "posts_mentioning": 100,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "NumPy",
+      "posts_mentioning": 172,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "NumPy",
+      "posts_mentioning": 214,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "NumPy",
+      "posts_mentioning": 97,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "PyTorch",
+      "posts_mentioning": 10,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "PyTorch",
+      "posts_mentioning": 54,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "PyTorch",
+      "posts_mentioning": 89,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "PyTorch",
+      "posts_mentioning": 83,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "PyTorch",
+      "posts_mentioning": 191,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "PyTorch",
+      "posts_mentioning": 365,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "PyTorch",
+      "posts_mentioning": 374,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "PyTorch",
+      "posts_mentioning": 215,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "Python",
+      "posts_mentioning": 93,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "Python",
+      "posts_mentioning": 161,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "Python",
+      "posts_mentioning": 263,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "Python",
+      "posts_mentioning": 272,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "Python",
+      "posts_mentioning": 486,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "Python",
+      "posts_mentioning": 897,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "Python",
+      "posts_mentioning": 933,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "Python",
+      "posts_mentioning": 793,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "RAG",
+      "posts_mentioning": 0,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "RAG",
+      "posts_mentioning": 0,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "RAG",
+      "posts_mentioning": 0,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "RAG",
+      "posts_mentioning": 0,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "RAG",
+      "posts_mentioning": 1,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "RAG",
+      "posts_mentioning": 48,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "RAG",
+      "posts_mentioning": 185,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "RAG",
+      "posts_mentioning": 206,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "SQL",
+      "posts_mentioning": 33,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "SQL",
+      "posts_mentioning": 68,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "SQL",
+      "posts_mentioning": 100,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "SQL",
+      "posts_mentioning": 125,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "SQL",
+      "posts_mentioning": 214,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "SQL",
+      "posts_mentioning": 395,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "SQL",
+      "posts_mentioning": 357,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "SQL",
+      "posts_mentioning": 308,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "Spark",
+      "posts_mentioning": 13,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "Spark",
+      "posts_mentioning": 21,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "Spark",
+      "posts_mentioning": 44,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "Spark",
+      "posts_mentioning": 52,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "Spark",
+      "posts_mentioning": 65,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "Spark",
+      "posts_mentioning": 131,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "Spark",
+      "posts_mentioning": 106,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "Spark",
+      "posts_mentioning": 81,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "TensorFlow",
+      "posts_mentioning": 25,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "TensorFlow",
+      "posts_mentioning": 57,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "TensorFlow",
+      "posts_mentioning": 87,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "TensorFlow",
+      "posts_mentioning": 50,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "TensorFlow",
+      "posts_mentioning": 101,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "TensorFlow",
+      "posts_mentioning": 186,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "TensorFlow",
+      "posts_mentioning": 180,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "TensorFlow",
+      "posts_mentioning": 49,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "pandas",
+      "posts_mentioning": 30,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "pandas",
+      "posts_mentioning": 46,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "pandas",
+      "posts_mentioning": 89,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "pandas",
+      "posts_mentioning": 60,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "pandas",
+      "posts_mentioning": 117,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "pandas",
+      "posts_mentioning": 219,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "pandas",
+      "posts_mentioning": 237,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "pandas",
+      "posts_mentioning": 108,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "all",
+      "year": 2019,
+      "skill": "scikit-learn",
+      "posts_mentioning": 21,
+      "ml_posts": 154
+    },
+    {
+      "scope": "all",
+      "year": 2020,
+      "skill": "scikit-learn",
+      "posts_mentioning": 34,
+      "ml_posts": 284
+    },
+    {
+      "scope": "all",
+      "year": 2021,
+      "skill": "scikit-learn",
+      "posts_mentioning": 75,
+      "ml_posts": 455
+    },
+    {
+      "scope": "all",
+      "year": 2022,
+      "skill": "scikit-learn",
+      "posts_mentioning": 54,
+      "ml_posts": 542
+    },
+    {
+      "scope": "all",
+      "year": 2023,
+      "skill": "scikit-learn",
+      "posts_mentioning": 86,
+      "ml_posts": 1038
+    },
+    {
+      "scope": "all",
+      "year": 2024,
+      "skill": "scikit-learn",
+      "posts_mentioning": 190,
+      "ml_posts": 1786
+    },
+    {
+      "scope": "all",
+      "year": 2025,
+      "skill": "scikit-learn",
+      "posts_mentioning": 211,
+      "ml_posts": 1880
+    },
+    {
+      "scope": "all",
+      "year": 2026,
+      "skill": "scikit-learn",
+      "posts_mentioning": 88,
+      "ml_posts": 1433
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "Airflow",
+      "posts_mentioning": 42,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "Airflow",
+      "posts_mentioning": 65,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "Airflow",
+      "posts_mentioning": 84,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "Airflow",
+      "posts_mentioning": 84,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "Airflow",
+      "posts_mentioning": 71,
+      "ml_posts": 959
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "Docker",
+      "posts_mentioning": 74,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "Docker",
+      "posts_mentioning": 99,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "Docker",
+      "posts_mentioning": 141,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "Docker",
+      "posts_mentioning": 197,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "Docker",
+      "posts_mentioning": 178,
+      "ml_posts": 959
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "FastAPI",
+      "posts_mentioning": 8,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "FastAPI",
+      "posts_mentioning": 18,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "FastAPI",
+      "posts_mentioning": 37,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "FastAPI",
+      "posts_mentioning": 86,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "FastAPI",
+      "posts_mentioning": 90,
+      "ml_posts": 959
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "Kubernetes",
+      "posts_mentioning": 31,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "Kubernetes",
+      "posts_mentioning": 45,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "Kubernetes",
+      "posts_mentioning": 54,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "Kubernetes",
+      "posts_mentioning": 118,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "Kubernetes",
+      "posts_mentioning": 115,
+      "ml_posts": 959
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "LangChain",
+      "posts_mentioning": 0,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "LangChain",
+      "posts_mentioning": 16,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "LangChain",
+      "posts_mentioning": 28,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "LangChain",
+      "posts_mentioning": 66,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "LangChain",
+      "posts_mentioning": 81,
+      "ml_posts": 959
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "MLOps",
+      "posts_mentioning": 42,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "MLOps",
+      "posts_mentioning": 53,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "MLOps",
+      "posts_mentioning": 61,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "MLOps",
+      "posts_mentioning": 76,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "MLOps",
+      "posts_mentioning": 103,
+      "ml_posts": 959
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "NumPy",
+      "posts_mentioning": 50,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "NumPy",
+      "posts_mentioning": 78,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "NumPy",
+      "posts_mentioning": 73,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "NumPy",
+      "posts_mentioning": 141,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "NumPy",
+      "posts_mentioning": 69,
+      "ml_posts": 959
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "PyTorch",
+      "posts_mentioning": 83,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "PyTorch",
+      "posts_mentioning": 153,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "PyTorch",
+      "posts_mentioning": 181,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "PyTorch",
+      "posts_mentioning": 242,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "PyTorch",
+      "posts_mentioning": 155,
+      "ml_posts": 959
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "Python",
+      "posts_mentioning": 272,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "Python",
+      "posts_mentioning": 389,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "Python",
+      "posts_mentioning": 445,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "Python",
+      "posts_mentioning": 634,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "Python",
+      "posts_mentioning": 523,
+      "ml_posts": 959
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "RAG",
+      "posts_mentioning": 0,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "RAG",
+      "posts_mentioning": 1,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "RAG",
+      "posts_mentioning": 24,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "RAG",
+      "posts_mentioning": 108,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "RAG",
+      "posts_mentioning": 126,
+      "ml_posts": 959
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "SQL",
+      "posts_mentioning": 125,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "SQL",
+      "posts_mentioning": 174,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "SQL",
+      "posts_mentioning": 168,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "SQL",
+      "posts_mentioning": 212,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "SQL",
+      "posts_mentioning": 179,
+      "ml_posts": 959
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "Spark",
+      "posts_mentioning": 52,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "Spark",
+      "posts_mentioning": 53,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "Spark",
+      "posts_mentioning": 50,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "Spark",
+      "posts_mentioning": 70,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "Spark",
+      "posts_mentioning": 48,
+      "ml_posts": 959
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "TensorFlow",
+      "posts_mentioning": 50,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "TensorFlow",
+      "posts_mentioning": 78,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "TensorFlow",
+      "posts_mentioning": 104,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "TensorFlow",
+      "posts_mentioning": 117,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "TensorFlow",
+      "posts_mentioning": 37,
+      "ml_posts": 959
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "pandas",
+      "posts_mentioning": 60,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "pandas",
+      "posts_mentioning": 90,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "pandas",
+      "posts_mentioning": 101,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "pandas",
+      "posts_mentioning": 155,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "pandas",
+      "posts_mentioning": 74,
+      "ml_posts": 959
+    },
+    {
+      "scope": "panel",
+      "year": 2022,
+      "skill": "scikit-learn",
+      "posts_mentioning": 54,
+      "ml_posts": 542
+    },
+    {
+      "scope": "panel",
+      "year": 2023,
+      "skill": "scikit-learn",
+      "posts_mentioning": 64,
+      "ml_posts": 899
+    },
+    {
+      "scope": "panel",
+      "year": 2024,
+      "skill": "scikit-learn",
+      "posts_mentioning": 70,
+      "ml_posts": 1039
+    },
+    {
+      "scope": "panel",
+      "year": 2025,
+      "skill": "scikit-learn",
+      "posts_mentioning": 132,
+      "ml_posts": 1242
+    },
+    {
+      "scope": "panel",
+      "year": 2026,
+      "skill": "scikit-learn",
+      "posts_mentioning": 61,
+      "ml_posts": 959
+    }
+  ],
+  "work_format": [
+    {
+      "scope": "it",
+      "year": 2017,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 6,
+      "posts_with_format": 80
+    },
+    {
+      "scope": "it",
+      "year": 2017,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 57,
+      "posts_with_format": 80
+    },
+    {
+      "scope": "it",
+      "year": 2017,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 17,
+      "posts_with_format": 80
+    },
+    {
+      "scope": "it",
+      "year": 2017,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 28,
+      "posts_with_format": 297
+    },
+    {
+      "scope": "it",
+      "year": 2017,
+      "group": "other",
+      "work_format": "office",
+      "posts": 197,
+      "posts_with_format": 297
+    },
+    {
+      "scope": "it",
+      "year": 2017,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 72,
+      "posts_with_format": 297
+    },
+    {
+      "scope": "it",
+      "year": 2018,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 29,
+      "posts_with_format": 202
+    },
+    {
+      "scope": "it",
+      "year": 2018,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 136,
+      "posts_with_format": 202
+    },
+    {
+      "scope": "it",
+      "year": 2018,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 37,
+      "posts_with_format": 202
+    },
+    {
+      "scope": "it",
+      "year": 2018,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 194,
+      "posts_with_format": 1361
+    },
+    {
+      "scope": "it",
+      "year": 2018,
+      "group": "other",
+      "work_format": "office",
+      "posts": 853,
+      "posts_with_format": 1361
+    },
+    {
+      "scope": "it",
+      "year": 2018,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 314,
+      "posts_with_format": 1361
+    },
+    {
+      "scope": "it",
+      "year": 2019,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 40,
+      "posts_with_format": 344
+    },
+    {
+      "scope": "it",
+      "year": 2019,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 125,
+      "posts_with_format": 344
+    },
+    {
+      "scope": "it",
+      "year": 2019,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 179,
+      "posts_with_format": 344
+    },
+    {
+      "scope": "it",
+      "year": 2019,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 244,
+      "posts_with_format": 3047
+    },
+    {
+      "scope": "it",
+      "year": 2019,
+      "group": "other",
+      "work_format": "office",
+      "posts": 1189,
+      "posts_with_format": 3047
+    },
+    {
+      "scope": "it",
+      "year": 2019,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 1614,
+      "posts_with_format": 3047
+    },
+    {
+      "scope": "it",
+      "year": 2020,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 59,
+      "posts_with_format": 438
+    },
+    {
+      "scope": "it",
+      "year": 2020,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 71,
+      "posts_with_format": 438
+    },
+    {
+      "scope": "it",
+      "year": 2020,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 308,
+      "posts_with_format": 438
+    },
+    {
+      "scope": "it",
+      "year": 2020,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 466,
+      "posts_with_format": 5124
+    },
+    {
+      "scope": "it",
+      "year": 2020,
+      "group": "other",
+      "work_format": "office",
+      "posts": 700,
+      "posts_with_format": 5124
+    },
+    {
+      "scope": "it",
+      "year": 2020,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 3958,
+      "posts_with_format": 5124
+    },
+    {
+      "scope": "it",
+      "year": 2021,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 111,
+      "posts_with_format": 900
+    },
+    {
+      "scope": "it",
+      "year": 2021,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 83,
+      "posts_with_format": 900
+    },
+    {
+      "scope": "it",
+      "year": 2021,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 706,
+      "posts_with_format": 900
+    },
+    {
+      "scope": "it",
+      "year": 2021,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 976,
+      "posts_with_format": 9483
+    },
+    {
+      "scope": "it",
+      "year": 2021,
+      "group": "other",
+      "work_format": "office",
+      "posts": 465,
+      "posts_with_format": 9483
+    },
+    {
+      "scope": "it",
+      "year": 2021,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 8042,
+      "posts_with_format": 9483
+    },
+    {
+      "scope": "it",
+      "year": 2022,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 406,
+      "posts_with_format": 1741
+    },
+    {
+      "scope": "it",
+      "year": 2022,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 289,
+      "posts_with_format": 1741
+    },
+    {
+      "scope": "it",
+      "year": 2022,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 1046,
+      "posts_with_format": 1741
+    },
+    {
+      "scope": "it",
+      "year": 2022,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 1610,
+      "posts_with_format": 12113
+    },
+    {
+      "scope": "it",
+      "year": 2022,
+      "group": "other",
+      "work_format": "office",
+      "posts": 353,
+      "posts_with_format": 12113
+    },
+    {
+      "scope": "it",
+      "year": 2022,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 10150,
+      "posts_with_format": 12113
+    },
+    {
+      "scope": "it",
+      "year": 2023,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 591,
+      "posts_with_format": 2943
+    },
+    {
+      "scope": "it",
+      "year": 2023,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 504,
+      "posts_with_format": 2943
+    },
+    {
+      "scope": "it",
+      "year": 2023,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 1848,
+      "posts_with_format": 2943
+    },
+    {
+      "scope": "it",
+      "year": 2023,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 2492,
+      "posts_with_format": 14266
+    },
+    {
+      "scope": "it",
+      "year": 2023,
+      "group": "other",
+      "work_format": "office",
+      "posts": 685,
+      "posts_with_format": 14266
+    },
+    {
+      "scope": "it",
+      "year": 2023,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 11089,
+      "posts_with_format": 14266
+    },
+    {
+      "scope": "it",
+      "year": 2024,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 535,
+      "posts_with_format": 3008
+    },
+    {
+      "scope": "it",
+      "year": 2024,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 338,
+      "posts_with_format": 3008
+    },
+    {
+      "scope": "it",
+      "year": 2024,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 2135,
+      "posts_with_format": 3008
+    },
+    {
+      "scope": "it",
+      "year": 2024,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 2913,
+      "posts_with_format": 14035
+    },
+    {
+      "scope": "it",
+      "year": 2024,
+      "group": "other",
+      "work_format": "office",
+      "posts": 704,
+      "posts_with_format": 14035
+    },
+    {
+      "scope": "it",
+      "year": 2024,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 10418,
+      "posts_with_format": 14035
+    },
+    {
+      "scope": "it",
+      "year": 2025,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 571,
+      "posts_with_format": 3329
+    },
+    {
+      "scope": "it",
+      "year": 2025,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 335,
+      "posts_with_format": 3329
+    },
+    {
+      "scope": "it",
+      "year": 2025,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 2423,
+      "posts_with_format": 3329
+    },
+    {
+      "scope": "it",
+      "year": 2025,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 2088,
+      "posts_with_format": 10844
+    },
+    {
+      "scope": "it",
+      "year": 2025,
+      "group": "other",
+      "work_format": "office",
+      "posts": 618,
+      "posts_with_format": 10844
+    },
+    {
+      "scope": "it",
+      "year": 2025,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 8138,
+      "posts_with_format": 10844
+    },
+    {
+      "scope": "it",
+      "year": 2026,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 605,
+      "posts_with_format": 2301
+    },
+    {
+      "scope": "it",
+      "year": 2026,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 447,
+      "posts_with_format": 2301
+    },
+    {
+      "scope": "it",
+      "year": 2026,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 1249,
+      "posts_with_format": 2301
+    },
+    {
+      "scope": "it",
+      "year": 2026,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 1722,
+      "posts_with_format": 8113
+    },
+    {
+      "scope": "it",
+      "year": 2026,
+      "group": "other",
+      "work_format": "office",
+      "posts": 741,
+      "posts_with_format": 8113
+    },
+    {
+      "scope": "it",
+      "year": 2026,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 5650,
+      "posts_with_format": 8113
+    },
+    {
+      "scope": "ml",
+      "year": 2018,
+      "group": "other",
+      "work_format": "office",
+      "posts": 1,
+      "posts_with_format": 1
+    },
+    {
+      "scope": "ml",
+      "year": 2019,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 1,
+      "posts_with_format": 4
+    },
+    {
+      "scope": "ml",
+      "year": 2019,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 3,
+      "posts_with_format": 4
+    },
+    {
+      "scope": "ml",
+      "year": 2019,
+      "group": "other",
+      "work_format": "office",
+      "posts": 8,
+      "posts_with_format": 21
+    },
+    {
+      "scope": "ml",
+      "year": 2019,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 13,
+      "posts_with_format": 21
+    },
+    {
+      "scope": "ml",
+      "year": 2020,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 1,
+      "posts_with_format": 13
+    },
+    {
+      "scope": "ml",
+      "year": 2020,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 6,
+      "posts_with_format": 13
+    },
+    {
+      "scope": "ml",
+      "year": 2020,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 6,
+      "posts_with_format": 13
+    },
+    {
+      "scope": "ml",
+      "year": 2020,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 11,
+      "posts_with_format": 93
+    },
+    {
+      "scope": "ml",
+      "year": 2020,
+      "group": "other",
+      "work_format": "office",
+      "posts": 22,
+      "posts_with_format": 93
+    },
+    {
+      "scope": "ml",
+      "year": 2020,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 60,
+      "posts_with_format": 93
+    },
+    {
+      "scope": "ml",
+      "year": 2021,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 5,
+      "posts_with_format": 25
+    },
+    {
+      "scope": "ml",
+      "year": 2021,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 6,
+      "posts_with_format": 25
+    },
+    {
+      "scope": "ml",
+      "year": 2021,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 14,
+      "posts_with_format": 25
+    },
+    {
+      "scope": "ml",
+      "year": 2021,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 31,
+      "posts_with_format": 184
+    },
+    {
+      "scope": "ml",
+      "year": 2021,
+      "group": "other",
+      "work_format": "office",
+      "posts": 23,
+      "posts_with_format": 184
+    },
+    {
+      "scope": "ml",
+      "year": 2021,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 130,
+      "posts_with_format": 184
+    },
+    {
+      "scope": "ml",
+      "year": 2022,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 11,
+      "posts_with_format": 42
+    },
+    {
+      "scope": "ml",
+      "year": 2022,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 12,
+      "posts_with_format": 42
+    },
+    {
+      "scope": "ml",
+      "year": 2022,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 19,
+      "posts_with_format": 42
+    },
+    {
+      "scope": "ml",
+      "year": 2022,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 54,
+      "posts_with_format": 215
+    },
+    {
+      "scope": "ml",
+      "year": 2022,
+      "group": "other",
+      "work_format": "office",
+      "posts": 7,
+      "posts_with_format": 215
+    },
+    {
+      "scope": "ml",
+      "year": 2022,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 154,
+      "posts_with_format": 215
+    },
+    {
+      "scope": "ml",
+      "year": 2023,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 32,
+      "posts_with_format": 109
+    },
+    {
+      "scope": "ml",
+      "year": 2023,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 27,
+      "posts_with_format": 109
+    },
+    {
+      "scope": "ml",
+      "year": 2023,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 50,
+      "posts_with_format": 109
+    },
+    {
+      "scope": "ml",
+      "year": 2023,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 144,
+      "posts_with_format": 543
+    },
+    {
+      "scope": "ml",
+      "year": 2023,
+      "group": "other",
+      "work_format": "office",
+      "posts": 29,
+      "posts_with_format": 543
+    },
+    {
+      "scope": "ml",
+      "year": 2023,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 370,
+      "posts_with_format": 543
+    },
+    {
+      "scope": "ml",
+      "year": 2024,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 42,
+      "posts_with_format": 166
+    },
+    {
+      "scope": "ml",
+      "year": 2024,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 35,
+      "posts_with_format": 166
+    },
+    {
+      "scope": "ml",
+      "year": 2024,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 89,
+      "posts_with_format": 166
+    },
+    {
+      "scope": "ml",
+      "year": 2024,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 300,
+      "posts_with_format": 903
+    },
+    {
+      "scope": "ml",
+      "year": 2024,
+      "group": "other",
+      "work_format": "office",
+      "posts": 92,
+      "posts_with_format": 903
+    },
+    {
+      "scope": "ml",
+      "year": 2024,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 511,
+      "posts_with_format": 903
+    },
+    {
+      "scope": "ml",
+      "year": 2025,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 52,
+      "posts_with_format": 180
+    },
+    {
+      "scope": "ml",
+      "year": 2025,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 35,
+      "posts_with_format": 180
+    },
+    {
+      "scope": "ml",
+      "year": 2025,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 93,
+      "posts_with_format": 180
+    },
+    {
+      "scope": "ml",
+      "year": 2025,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 268,
+      "posts_with_format": 848
+    },
+    {
+      "scope": "ml",
+      "year": 2025,
+      "group": "other",
+      "work_format": "office",
+      "posts": 49,
+      "posts_with_format": 848
+    },
+    {
+      "scope": "ml",
+      "year": 2025,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 531,
+      "posts_with_format": 848
+    },
+    {
+      "scope": "ml",
+      "year": 2026,
+      "group": "junior",
+      "work_format": "hybrid",
+      "posts": 48,
+      "posts_with_format": 136
+    },
+    {
+      "scope": "ml",
+      "year": 2026,
+      "group": "junior",
+      "work_format": "office",
+      "posts": 32,
+      "posts_with_format": 136
+    },
+    {
+      "scope": "ml",
+      "year": 2026,
+      "group": "junior",
+      "work_format": "remote",
+      "posts": 56,
+      "posts_with_format": 136
+    },
+    {
+      "scope": "ml",
+      "year": 2026,
+      "group": "other",
+      "work_format": "hybrid",
+      "posts": 208,
+      "posts_with_format": 694
+    },
+    {
+      "scope": "ml",
+      "year": 2026,
+      "group": "other",
+      "work_format": "office",
+      "posts": 47,
+      "posts_with_format": 694
+    },
+    {
+      "scope": "ml",
+      "year": 2026,
+      "group": "other",
+      "work_format": "remote",
+      "posts": 439,
+      "posts_with_format": 694
+    }
+  ]
+}

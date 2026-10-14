@@ -5,12 +5,15 @@
 Reads only marts.* and writes only aggregates: counts per week, source, role bucket, skill, format
 and salary cell, each with its denominator. No vacancy row of any source, no title, text or link
 leaves ClickHouse here; every row model forbids fields it does not declare, and tests pin the field
-lists. Inputs besides the marts: results/models/survival.json (vacancy lifetimes), copied
-as medians with intervals and counts, with its path and provenance; results/models/forecast.json
-(skill demand forecast), whose skills and served method are refit here on the weekly
-skill shares of Telegram, so the forecast and its history come from the same weeks. Rerunnable: the
-files are rewritten whole, rows in a fixed order, so a daily rerun changes only what the data
-changed. Also writes results/site/export.json (rows and bytes per file).
+lists. Inputs besides the marts, each copied with its path and provenance:
+results/models/survival.json (vacancy lifetimes) as medians with intervals and counts and
+the survival curves; results/models/forecast.json (skill demand forecast), whose skills and
+served method are refit here on the weekly skill shares of Telegram, so the forecast and its history
+come from the same weeks; results/market/facts.json (the Telegram history by year),
+results/models/skill_effects.json (skill and salary, double ML) and results/dbt/history.json
+(closures that came back), as the counts and estimates these files hold. Rerunnable: the files are
+rewritten whole, rows in a fixed order, so a daily rerun changes only what the data changed. Also
+writes results/site/export.json (rows and bytes per file).
 """
 
 import argparse
@@ -35,6 +38,9 @@ from radar.stream.clickhouse import ClickHouse
 OUT = ROOT / "site" / "src" / "data"
 SURVIVAL = RESULTS / "models" / "survival.json"
 FORECAST = RESULTS / "models" / "forecast.json"
+MARKET_FACTS = RESULTS / "market" / "facts.json"
+SKILL_EFFECTS = RESULTS / "models" / "skill_effects.json"
+HISTORY = RESULTS / "dbt" / "history.json"
 FORECAST_SOURCE = "telegram"
 FORECAST_TARGET = f"{FORECAST_SOURCE}.share"
 JUNIOR_GRADES = ("intern", "junior")
@@ -113,7 +119,18 @@ class Junior(Row):
     experience_field_stated: int | None
 
 
-SalaryLevel = Literal["cell", "bucket_grade", "bucket", "group_grade", "group", "grade", "region", "source"]
+SalaryLevel = Literal[
+    "cell",
+    "bucket_grade",
+    "bucket",
+    "bucket_region",
+    "group_grade",
+    "group",
+    "grade",
+    "grade_region",
+    "region",
+    "source",
+]
 
 
 class Salary(Row):
@@ -142,6 +159,28 @@ class Salary(Row):
     salary_to_p75: int | None
 
 
+class ExtractedSalary(Row):
+    """A Telegram row of mart_extracted_salaries: salary, role and grade as the extraction model read
+    them from the post. Posts have no salary fields of their own, so mart_salaries has no Telegram."""
+
+    level: Literal["cell", "role", "grade", "source"]
+    role: str
+    grade: str
+    vacancies: int
+    with_salary: int
+    with_salary_rub_month: int
+    with_from: int
+    with_to: int
+    salary_from_p25: int | None
+    salary_from_median: int | None
+    salary_from_p75: int | None
+    salary_to_p25: int | None
+    salary_to_median: int | None
+    salary_to_p75: int | None
+    period_from: date
+    period_to: date
+
+
 class SkillJunior(Row):
     source: Family
     skill: str
@@ -167,6 +206,12 @@ class SurvivalPoint(Row):
     at_risk: int
 
 
+class SurvivalCurve(Row):
+    group: Literal["role", "experience", "salary", "region"]
+    level: str
+    points: list[SurvivalPoint]
+
+
 class Lifetime(Row):
     source_file: str
     source_script: str
@@ -178,6 +223,7 @@ class Lifetime(Row):
     grace_days: int
     medians: list[LifetimeMedian]
     overall_curve: list[SurvivalPoint]
+    group_curves: list[SurvivalCurve]
     limits: list[str]
 
 
@@ -244,6 +290,89 @@ class Forecast(Row):
     limits: list[str]
 
 
+class Provenance(Row):
+    source_file: str
+    source_script: str
+    commit: str
+    created_at: str
+
+
+class TelegramYear(Row):
+    """IT posts of a calendar year (of the week's Monday) and the ML, junior and graded posts among them."""
+
+    scope: Literal["all", "panel"]
+    year: int
+    it_posts: int
+    ml_posts: int
+    junior_posts: int
+    graded_posts: int
+    ml_junior_posts: int
+    ml_graded_posts: int
+
+
+class TelegramSkillYear(Row):
+    scope: Literal["all", "panel"]
+    year: int
+    skill: str
+    posts_mentioning: int
+    ml_posts: int
+
+
+class TelegramFormatYear(Row):
+    scope: Literal["it", "ml"]
+    year: int
+    group: Literal["junior", "other"]
+    work_format: Literal["office", "hybrid", "remote"]
+    posts: int
+    posts_with_format: int
+
+
+class TelegramYears(Provenance):
+    """The Telegram history by year of results/market/facts.json: all channels, and the panel of
+    channels with IT posts in every panel year, because the channel mix changes over the years."""
+
+    last_week: date
+    ml_roles: list[str]
+    panel_years: list[int]
+    panel_channels: int
+    channels: int
+    years: list[TelegramYear]
+    skills: list[TelegramSkillYear]
+    work_format: list[TelegramFormatYear]
+
+
+class SkillEffect(Row):
+    skill: str
+    rows_with_skill: int
+    naive_pct: float
+    pct: float
+    pct_ci_low: float
+    pct_ci_high: float
+    p_holm: float
+
+
+class SkillEffects(Provenance):
+    """Skill and posted salary of results/models/skill_effects.json: the naive gap and the double ML
+    estimate at equal role, grade, region, experience and other skills, with its interval."""
+
+    rows: int
+    treatments: int
+    estimated: int
+    significant_holm: int
+    ci_level: float
+    effects: list[SkillEffect]
+    limits: list[str]
+
+
+class VacancyHistory(Provenance):
+    """Closures of portal vacancies (snapshots) that were not final, from results/dbt/history.json."""
+
+    vacancies_tracked: int
+    closed: int
+    reopened: int
+    reposted: int
+
+
 class Period(Row):
     period_from: date
     period_to: date
@@ -294,6 +423,7 @@ MART_COLUMNS: dict[str, tuple[str, ...]] = {
     "mart_junior": tuple(Junior.model_fields),
     "mart_salaries": tuple(Salary.model_fields),
     "mart_lifetime": tuple(LifetimeObserved.model_fields),
+    "mart_extracted_salaries": ("source", *ExtractedSalary.model_fields),
 }
 
 MartRows = Mapping[str, list[dict[str, Any]]]
@@ -469,9 +599,17 @@ _GRACE = re.compile(r"no open sighting on (?P<days>\d+) consecutive")
 _OVERALL = {"median_days_overall": "prevalent", "median_days_incident_from_first_sighting": "incident"}
 
 
+def survival_points(metric: Mapping[str, Any]) -> list[SurvivalPoint]:
+    points = [
+        SurvivalPoint(day=int(day), survival=s, at_risk=metric["at_risk"][day]) for day, s in metric["survival"].items()
+    ]
+    return sorted(points, key=lambda p: p.day)
+
+
 def lifetime(doc: Mapping[str, Any], source_file: str) -> Lifetime:
     """Kaplan-Meier medians of results/models/survival.json, as computed there, with their counts."""
     medians = []
+    curves = []
     for key, m in doc["metrics"].items():
         found = _MEDIAN_KEY.match(key)
         if key in _OVERALL:
@@ -479,6 +617,9 @@ def lifetime(doc: Mapping[str, Any], source_file: str) -> Lifetime:
         elif found:
             group, level = found["group"], found["level"]
             cohort = "incident" if found["incident"] else "prevalent"
+            # a group whose median is not estimable has no curve in the result
+            if cohort == "prevalent" and "survival" in m:
+                curves.append(SurvivalCurve(group=group, level=level, points=survival_points(m)))
         else:
             continue
         estimable = isinstance(m["value"], int | float)
@@ -497,11 +638,6 @@ def lifetime(doc: Mapping[str, Any], source_file: str) -> Lifetime:
     grace = _GRACE.search(doc["definitions"]["event"])
     if grace is None:
         raise ValueError(f"no grace days in the event definition: {doc['definitions']['event']}")
-    overall = doc["metrics"]["median_days_overall"]
-    curve = [
-        SurvivalPoint(day=int(day), survival=s, at_risk=overall["at_risk"][day])
-        for day, s in overall["survival"].items()
-    ]
     return Lifetime(
         source_file=source_file,
         source_script=doc["source_script"],
@@ -512,7 +648,8 @@ def lifetime(doc: Mapping[str, Any], source_file: str) -> Lifetime:
         event=doc["definitions"]["event"],
         grace_days=int(grace["days"]),
         medians=sorted(medians, key=lambda m: (m.group, m.cohort, m.level)),
-        overall_curve=sorted(curve, key=lambda p: p.day),
+        overall_curve=survival_points(doc["metrics"]["median_days_overall"]),
+        group_curves=sorted(curves, key=lambda c: (c.group, c.level)),
         limits=doc["limits_ru"],
     )
 
@@ -569,6 +706,119 @@ def forecast_files(
     return doc, sorted(history, key=lambda r: (r.skill, r.week))
 
 
+def provenance(doc: Mapping[str, Any], source_file: str) -> dict[str, str]:
+    return {
+        "source_file": source_file,
+        "source_script": doc["source_script"],
+        "commit": doc["commit"],
+        "created_at": doc["created_at"],
+    }
+
+
+_YEAR_KEY = re.compile(r"^(?P<prefix>telegram|telegram_panel)_year\.(?P<year>\d{4})\.(?P<name>\w+)$")
+_SKILL_KEY = re.compile(r"^(?P<prefix>telegram|telegram_panel)_ml_skill\.(?P<year>\d{4})\.(?P<skill>.+)$")
+_FORMAT_KEY = re.compile(
+    r"^telegram(?P<ml>_ml)?_work_format\.(?P<year>\d{4})\.(?P<group>junior|other)\.(?P<format>office|hybrid|remote)$"
+)
+
+
+def telegram_years(doc: Mapping[str, Any], source_file: str) -> TelegramYears:
+    """The counts behind the shares of results/market/facts.json, so every share keeps its base."""
+    metrics = doc["metrics"]
+    years: dict[tuple[str, int], dict[str, int]] = defaultdict(dict)
+    skill_rows: list[TelegramSkillYear] = []
+    formats: list[TelegramFormatYear] = []
+    for key, m in metrics.items():
+        if found := _YEAR_KEY.match(key):
+            row = years["panel" if found["prefix"] == "telegram_panel" else "all", int(found["year"])]
+            name = found["name"]
+            if name == "it_posts":
+                row["it_posts"] = m["value"]
+            elif name == "ml_posts":
+                row["ml_posts"] = m["n"]
+            elif name == "junior_of_graded":
+                row["junior_posts"], row["graded_posts"] = m["n"], m["denominator"]
+            elif name == "ml_junior_of_graded":
+                row["ml_junior_posts"], row["ml_graded_posts"] = m["n"], m["denominator"]
+        elif found := _SKILL_KEY.match(key):
+            skill_rows.append(
+                TelegramSkillYear(
+                    scope="panel" if found["prefix"] == "telegram_panel" else "all",
+                    year=int(found["year"]),
+                    skill=found["skill"],
+                    posts_mentioning=m["n"],
+                    ml_posts=m["denominator"],
+                )
+            )
+        elif found := _FORMAT_KEY.match(key):
+            formats.append(
+                TelegramFormatYear(
+                    scope="ml" if found["ml"] else "it",
+                    year=int(found["year"]),
+                    group=found["group"],
+                    work_format=found["format"],
+                    posts=m["n"],
+                    posts_with_format=m["denominator"],
+                )
+            )
+    panel = metrics["telegram_panel.channels"]
+    return TelegramYears(
+        **provenance(doc, source_file),
+        last_week=metrics["telegram_year.last_week"]["value"],
+        ml_roles=doc["ml_roles"],
+        panel_years=doc["panel_years"],
+        panel_channels=panel["n"],
+        channels=panel["denominator"],
+        years=sorted(
+            (TelegramYear(scope=scope, year=year, **row) for (scope, year), row in years.items()),
+            key=lambda r: (r.scope, r.year),
+        ),
+        skills=sorted(skill_rows, key=lambda r: (r.scope, r.skill, r.year)),
+        work_format=sorted(formats, key=lambda r: (r.scope, r.year, r.group, r.work_format)),
+    )
+
+
+def skill_effects(doc: Mapping[str, Any], source_file: str) -> SkillEffects:
+    metrics = doc["metrics"]
+    effects = [
+        SkillEffect(
+            skill=m["skill"],
+            rows_with_skill=m["rows_with_skill"],
+            naive_pct=m["naive_pct"],
+            pct=m["pct"],
+            pct_ci_low=m["pct_ci_low"],
+            pct_ci_high=m["pct_ci_high"],
+            p_holm=m["p_holm"],
+        )
+        for key, m in metrics.items()
+        if key.startswith("effect.")
+    ]
+    if len(effects) != metrics["estimated"]["n"]:
+        raise ValueError(f"{len(effects)} effects, the result reports {metrics['estimated']['n']} estimated")
+    return SkillEffects(
+        **provenance(doc, source_file),
+        rows=metrics["data_rows"]["value"],
+        treatments=metrics["treatments"]["value"],
+        estimated=metrics["estimated"]["n"],
+        significant_holm=metrics["significant_holm"]["n"],
+        ci_level=doc["scenario"]["level"],
+        effects=sorted(effects, key=lambda e: (-e.rows_with_skill, e.skill)),
+        limits=doc["limits_ru"],
+    )
+
+
+def vacancy_history(doc: Mapping[str, Any], source_file: str) -> VacancyHistory:
+    metrics = doc["metrics"]
+    source = "trudvsem_snapshot"
+    return VacancyHistory(
+        **provenance(doc, source_file),
+        vacancies_tracked=metrics[f"vacancies_tracked_{source}"]["value"],
+        closed=metrics[f"closed_{source}"]["n"],
+        reopened=metrics[f"reopened_{source}"]["n"],
+        reposted=metrics[f"reposts_{source}"]["n"],
+    )
+
+
 def periods(skill_rows: Iterable[dict[str, Any]]) -> dict[str, Period]:
     found: dict[str, Period] = {}
     for r in skill_rows:
@@ -584,8 +834,12 @@ def build(
     *,
     forecast_doc: Forecast,
     forecast_history: list[ForecastHistory],
+    results: Mapping[Path, Mapping[str, Any]],
 ) -> dict[str, Any]:
-    """File name -> rows (or one document for meta.json, lifetime.json and forecast.json)."""
+    """File name -> rows, or one document for meta.json and each file built from results/.
+
+    results maps MARKET_FACTS, SKILL_EFFECTS and HISTORY to their parsed result files.
+    """
     weekly = marts["mart_weekly_dynamics"]
     sizes = bucket_sizes(marts["mart_junior"])
     skill_totals, skill_roles = skills(marts["mart_skills"], sizes)
@@ -603,6 +857,14 @@ def build(
         "salaries.json": sorted(
             (Salary(**r) for r in marts["mart_salaries"]),
             key=lambda r: (r.source, r.level, r.role_group, r.role_bucket, r.grade, r.region_group),
+        ),
+        "salaries_telegram.json": sorted(
+            (
+                ExtractedSalary(**{k: v for k, v in r.items() if k != "source"})
+                for r in marts["mart_extracted_salaries"]
+                if r["source"] == "telegram"
+            ),
+            key=lambda r: (r.level, r.role, r.grade),
         ),
         "lifetime_observed.json": sorted(
             (LifetimeObserved(**r) for r in marts["mart_lifetime"]),
@@ -627,10 +889,14 @@ def build(
         salary_min_n_coverage=round(median_ci_coverage(salary_min_n()), 4),
         files={name: len(rows) for name, rows in files.items()},
     )
+    rel = {path: path.relative_to(ROOT).as_posix() for path in (SURVIVAL, MARKET_FACTS, SKILL_EFFECTS, HISTORY)}
     return {
         "meta.json": meta,
-        "lifetime.json": lifetime(survival, SURVIVAL.relative_to(ROOT).as_posix()),
+        "lifetime.json": lifetime(survival, rel[SURVIVAL]),
         "forecast.json": forecast_doc,
+        "telegram_years.json": telegram_years(results[MARKET_FACTS], rel[MARKET_FACTS]),
+        "skill_effects.json": skill_effects(results[SKILL_EFFECTS], rel[SKILL_EFFECTS]),
+        "vacancy_history.json": vacancy_history(results[HISTORY], rel[HISTORY]),
         **files,
     }
 
@@ -681,6 +947,7 @@ def main() -> int:
         git_commit(),
         forecast_doc=forecast_doc,
         forecast_history=history,
+        results={path: json.loads(path.read_text(encoding="utf-8")) for path in (MARKET_FACTS, SKILL_EFFECTS, HISTORY)},
     )
     sizes = write(docs, args.out)
     meta: Meta = docs["meta.json"]

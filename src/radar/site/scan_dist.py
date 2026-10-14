@@ -91,8 +91,24 @@ ROW_FILES["lifetime_observed"] = frozenset(
     }
     | {f"duration_days_{q}" for q in ("p25", "median", "p75", "p90")}
 )
+ROW_FILES["salaries_telegram"] = frozenset(
+    {
+        "level",
+        "role",
+        "grade",
+        "vacancies",
+        "with_salary",
+        "with_salary_rub_month",
+        "with_from",
+        "with_to",
+        "period_from",
+        "period_to",
+    }
+    | {f"salary_{b}_{q}" for b in ("from", "to") for q in ("p25", "median", "p75")}
+)
 ROW_FILES["forecast_history"] = frozenset({"week", "skill", "posts_mentioning", "posts_it"})
-DOCUMENT_FILES = frozenset({"meta", "lifetime", "forecast"})
+# Documents copied from results/ with their provenance; the forbidden keys are checked in them too.
+DOCUMENT_FILES = frozenset({"meta", "lifetime", "forecast", "telegram_years", "skill_effects", "vacancy_history"})
 ALLOWED = {**ROW_FILES, **{name: frozenset() for name in DOCUMENT_FILES}}
 
 FORBIDDEN_KEYS = frozenset(

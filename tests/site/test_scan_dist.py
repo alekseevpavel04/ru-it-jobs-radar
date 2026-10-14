@@ -17,16 +17,18 @@ ROW_MODELS = {
     "work_format": export.WorkFormat,
     "junior": export.Junior,
     "salaries": export.Salary,
+    "salaries_telegram": export.ExtractedSalary,
     "lifetime_observed": export.LifetimeObserved,
     "forecast_history": export.ForecastHistory,
 }
+DOCUMENTS = {"meta", "lifetime", "forecast", "telegram_years", "skill_effects", "vacancy_history"}
 
 
 def test_scanner_allows_exactly_the_fields_the_export_writes() -> None:
     assert {name: set(fields) for name, fields in ROW_FILES.items()} == {
         name: set(model.model_fields) for name, model in ROW_MODELS.items()
     }
-    assert set(ALLOWED) == set(ROW_FILES) | {"meta", "lifetime", "forecast"}
+    assert set(ALLOWED) == set(ROW_FILES) | DOCUMENTS
 
 
 def site(tmp_path: Path, files: dict[str, Any], pages: dict[str, str] | None = None) -> Path:

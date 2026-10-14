@@ -1,21 +1,36 @@
 {
   "source_script": "src/radar/site/export.py",
   "command": "python -m radar.site.export",
-  "commit": "40501c2-dirty",
-  "created_at": "2026-10-14T09:38:25+00:00",
+  "commit": "521474c-dirty",
+  "created_at": "2026-10-14T14:37:58+00:00",
   "metrics": {
     "bytes_meta": {
-      "value": 952,
+      "value": 987,
       "n": null,
       "denominator": null
     },
     "bytes_lifetime": {
-      "value": 10553,
+      "value": 18579,
       "n": null,
       "denominator": null
     },
     "bytes_forecast": {
       "value": 16392,
+      "n": null,
+      "denominator": null
+    },
+    "bytes_telegram_years": {
+      "value": 46648,
+      "n": null,
+      "denominator": null
+    },
+    "bytes_skill_effects": {
+      "value": 10197,
+      "n": null,
+      "denominator": null
+    },
+    "bytes_vacancy_history": {
+      "value": 247,
       "n": null,
       "denominator": null
     },
@@ -90,12 +105,22 @@
       "denominator": null
     },
     "rows_salaries": {
-      "value": 799,
+      "value": 998,
       "n": null,
       "denominator": null
     },
     "bytes_salaries": {
-      "value": 288628,
+      "value": 361527,
+      "n": null,
+      "denominator": null
+    },
+    "rows_salaries_telegram": {
+      "value": 159,
+      "n": null,
+      "denominator": null
+    },
+    "bytes_salaries_telegram": {
+      "value": 53029,
       "n": null,
       "denominator": null
     },
