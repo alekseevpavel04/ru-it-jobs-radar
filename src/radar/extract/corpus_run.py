@@ -28,7 +28,9 @@ chunks; a run that died between the file and the table is caught up by the next 
 before it enumerates anything. A failed request is written to the file with its error, never to the
 table, and is tried again on the next run. A run stops safely at any moment: SIGTERM (`kill <pid>`)
 lets the requests in flight finish and inserts what is waiting, and a partial last line left by a
-harder stop is cut off before the next run reads the file. The same command resumes.
+harder stop is cut off before the next run reads the file. The same command resumes. `--time-budget`
+ends a run the same way once it has taken that long, so a slow extractor works off a backlog over
+several runs; `--skip-done-by` leaves out versions another model_id already holds.
 
     python -m radar.extract.corpus_run plan --rate hf_generate=1.0 --rate llama_server=0.25
     python -m radar.extract.corpus_run run --backend regex --limit 20 --dry-run
@@ -36,6 +38,8 @@ harder stop is cut off before the next run reads the file. The same command resu
         --backend-opt base_url=http://127.0.0.1:8095 --workers 8 --limit 200      (WSL training venv)
     python -m radar.extract.corpus_run run --backend radar.extract.student_server:backend \
         --backend-opt base_url=http://127.0.0.1:8095 --workers 8
+    python -m radar.extract.corpus_run run --backend student_cpu:backend --backend-opt base_url=http://student:8080 \
+        --skip-done-by qwen3_1p7b_r16_clean-awq --limit 150 --time-budget 3600      (airflow radar_ml_label)
     python -m radar.extract.corpus_run sync --model-id <model_id>
     python -m radar.extract.corpus_run report --model-id <model_id>
     python -m radar.extract.corpus_run dropped        (radar.extract.corpus_drops)
@@ -474,6 +478,7 @@ class RunStats:
     valid_requests: int = 0
     reused: int = 0
     errors: int = 0
+    stopped_by_time_budget: bool = False
     by_source: Counter[str] = field(default_factory=Counter)
 
 
@@ -508,9 +513,11 @@ def extract_all(
     workers: int,
     stats: RunStats,
     log_every: int = 200,
+    deadline: float | None = None,
 ) -> None:
     """Each distinct input once; versions that share it get the same answer. `stats` is filled as
-    rows are written, so a run that stops halfway still reports what it wrote."""
+    rows are written, so a run that stops halfway still reports what it wrote. Past `deadline`
+    (a time.perf_counter value) no new batch is sent; the ones in flight finish and are written."""
     groups: dict[str, list[Version]] = defaultdict(list)
     for v in todo:
         groups[sha256_text(v.input)].append(v)
@@ -539,9 +546,17 @@ def extract_all(
             raise RuntimeError(f"the backend answered {len(answers)} of {len(batch)} inputs")
         return answers
 
+    def until_deadline() -> Iterator[list[list[Version]]]:
+        for i, batch in enumerate(batches):
+            if deadline is not None and time.perf_counter() >= deadline:
+                stats.stopped_by_time_budget = True
+                log.info("time budget spent: %d of %d batches left for the next run", len(batches) - i, len(batches))
+                return
+            yield batch
+
     t0 = time.perf_counter()
     failures_in_a_row = 0
-    for batch, answers in in_flight(call, batches, workers):
+    for batch, answers in in_flight(call, until_deadline(), workers):
         created_at = utc_now()
         for members, answer in zip(batch, answers, strict=True):
             for i, v in enumerate(members):
@@ -581,6 +596,8 @@ def run_id_now() -> str:
 
 
 def cmd_run(args: argparse.Namespace, store: Store, backend: Backend, seed: int) -> int:
+    # The budget counts from the start of the command: enumeration and catching up the table included.
+    deadline = time.perf_counter() + args.time_budget if args.time_budget is not None else None
     directory = args.state_dir or state_dir(backend.model_id, args.dry_run)
     meta_file, rows_file = directory / "meta.json", directory / "rows.jsonl"
     meta = open_meta(meta_file, backend, args.backend)
@@ -599,6 +616,11 @@ def cmd_run(args: argparse.Namespace, store: Store, backend: Backend, seed: int)
             raise SystemExit(f"{TABLE} holds model_id {backend.model_id} with prompt {sorted(map(str, foreign))}")
         loaded = sync(store, file_rows, backend.model_id)
         done = store.done_keys(backend.model_id)
+    # Versions another model has fields for are not pending for this one (a daily run of the CPU
+    # student after the corpus run of another quantization); its own rows still count first.
+    if args.skip_done_by and store.table_exists():
+        for other in args.skip_done_by:
+            done |= store.done_keys(other)
 
     run_id = run_id_now()
     run: dict[str, Any] = {
@@ -608,6 +630,8 @@ def cmd_run(args: argparse.Namespace, store: Store, backend: Backend, seed: int)
         "sources": list(args.sources),
         "telegram_since": args.telegram_since.isoformat() if args.telegram_since else None,
         "limit": args.limit,
+        "time_budget_s": args.time_budget,
+        "skip_done_by": list(args.skip_done_by),
         "batch_size": args.batch_size,
         "workers": args.workers,
         "dry_run": args.dry_run,
@@ -631,7 +655,9 @@ def cmd_run(args: argparse.Namespace, store: Store, backend: Backend, seed: int)
     t0 = time.perf_counter()
     stats = RunStats()
     try:
-        extract_all(todo, backend, sink, run_id, earlier, args.batch_size, args.workers, stats, args.log_every)
+        extract_all(
+            todo, backend, sink, run_id, earlier, args.batch_size, args.workers, stats, args.log_every, deadline
+        )
     finally:
         try:
             sink.close()
@@ -647,6 +673,7 @@ def cmd_run(args: argparse.Namespace, store: Store, backend: Backend, seed: int)
                 valid_requests=stats.valid_requests,
                 reused=stats.reused,
                 errors=stats.errors,
+                stopped_by_time_budget=stats.stopped_by_time_budget,
                 inserted=sink.inserted,
                 rows_by_source=dict(stats.by_source),
             )
@@ -944,6 +971,16 @@ def main(argv: list[str] | None = None) -> int:
     run.add_argument("--backend", required=True, help="regex or module:factory")
     run.add_argument("--backend-opt", action="append", default=[], metavar="NAME=VALUE")
     run.add_argument("--limit", type=int, help="first N versions of a fixed random order (a probe)")
+    run.add_argument(
+        "--time-budget", type=float, metavar="SECONDS", help="send no new request after this long; the rest waits"
+    )
+    run.add_argument(
+        "--skip-done-by",
+        action="append",
+        default=[],
+        metavar="MODEL_ID",
+        help="also skip versions this model has rows for (repeatable)",
+    )
     run.add_argument("--batch-size", type=int, default=1, help="inputs per backend call")
     run.add_argument("--workers", type=int, default=1, help="backend calls in flight")
     run.add_argument("--insert-every", type=int, default=500, help="rows per insert into the table")

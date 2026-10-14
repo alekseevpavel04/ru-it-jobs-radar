@@ -14,8 +14,16 @@ from radar.stream.producer import SOURCES
 ROOT = Path(__file__).resolve().parents[2]
 DAGS = ROOT / "airflow" / "dags"
 
-ACTIVE = {"radar_collect", "radar_load", "radar_dbt", "radar_sla", "radar_drift"}
-SKELETONS = {"radar_ml_label", "radar_retrain", "radar_publish"}
+EXPECTED = {
+    "radar_collect",
+    "radar_load",
+    "radar_dbt",
+    "radar_sla",
+    "radar_drift",
+    "radar_ml_label",
+    "radar_retrain",
+    "radar_publish",
+}
 # The scheduler and the DAG processor import every file often: only Airflow and the standard
 # library at the top, the project's code runs in tasks under its own environment.
 ALLOWED_IMPORT_ROOTS = {"airflow", "datetime"}
@@ -55,7 +63,7 @@ FILES = sorted(DAGS.glob("*.py"))
 
 
 def test_one_file_per_expected_dag() -> None:
-    assert {p.stem for p in FILES} == ACTIVE | SKELETONS
+    assert {p.stem for p in FILES} == EXPECTED
 
 
 @pytest.mark.parametrize("path", FILES, ids=lambda p: p.stem)
@@ -79,9 +87,11 @@ def test_only_light_imports_at_top_level(path: Path) -> None:
 
 
 @pytest.mark.parametrize("path", FILES, ids=lambda p: p.stem)
-def test_skeletons_paused_and_daily_dags_active(path: Path) -> None:
+def test_every_dag_does_real_work(path: Path) -> None:
     (call,) = dag_calls(parse(path))
-    assert keyword(call, "is_paused_upon_creation") is (path.stem in SKELETONS)
+    assert keyword(call, "is_paused_upon_creation") is False
+    assert "skeleton" not in keyword(call, "tags")
+    assert "EmptyOperator" not in path.read_text(encoding="utf-8")
 
 
 def test_load_and_collect_cover_every_raw_topic() -> None:
@@ -122,3 +132,33 @@ def test_drift_runs_weekly_on_the_project_interpreter() -> None:
     text = (DAGS / "radar_drift.py").read_text(encoding="utf-8")
     assert 'CronTriggerTimetable("0 10 * * 1", timezone="UTC")' in text
     assert constant(parse(DAGS / "radar_drift.py"), "DRIFT") == "/opt/radar/.venv/bin/python -m radar.monitor.drift"
+
+
+def test_ml_label_follows_the_dbt_build_and_publish_follows_ml_label() -> None:
+    dbt, label, publish = (parse(DAGS / f"{name}.py") for name in ("radar_dbt", "radar_ml_label", "radar_publish"))
+    assert ast.dump(assigned(dbt, "MARTS")) == ast.dump(assigned(label, "MARTS"))
+    assert ast.dump(assigned(label, "EXTRACTED")) == ast.dump(assigned(publish, "EXTRACTED"))
+    assert "outlets=[MARTS]" in (DAGS / "radar_dbt.py").read_text(encoding="utf-8")
+    assert "outlets=[EXTRACTED]" in (DAGS / "radar_ml_label.py").read_text(encoding="utf-8")
+    for tree, asset in ((label, "[MARTS]"), (publish, "[EXTRACTED]")):
+        (call,) = dag_calls(tree)
+        assert ast.unparse(next(kw.value for kw in call.keywords if kw.arg == "schedule")) == asset
+
+
+def test_ml_label_reads_the_state_of_the_model_its_backend_names() -> None:
+    # student_cpu names the model <name>-<quant lower>, as student_server.connect does
+    label = parse(DAGS / "radar_ml_label.py")
+    assert constant(label, "STUDENT_MODEL") == "qwen3_1p7b_r16_clean-q4_k_m"
+    assert "--backend student_cpu:backend" in ast.unparse(assigned(label, "EXTRACT"))
+    corpus = (ROOT / "dbt" / "dbt_project.yml").read_text(encoding="utf-8")
+    assert f'extraction_model: "{constant(label, "CORPUS_MODEL")}"' in corpus
+
+
+def test_publish_never_commits_or_pushes() -> None:
+    text = (DAGS / "radar_publish.py").read_text(encoding="utf-8")
+    assert "git " not in text.replace("no git checkout", "")
+
+
+def test_retrain_skip_code_matches_the_task_script() -> None:
+    script = parse(ROOT / "airflow" / "include" / "salary_retrain.py")
+    assert constant(parse(DAGS / "radar_retrain.py"), "SKIP_EXIT_CODE") == constant(script, "SKIP_EXIT_CODE")

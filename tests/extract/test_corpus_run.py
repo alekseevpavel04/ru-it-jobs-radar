@@ -11,7 +11,7 @@ from typing import Any, get_args
 
 import pytest
 
-from radar.extract import schema
+from radar.extract import corpus_run, schema
 from radar.extract.corpus_run import (
     DDL,
     SOURCES,
@@ -155,6 +155,8 @@ def args(tmp_path: Path, **kw: Any) -> argparse.Namespace:
         "sources": list(SOURCES),
         "telegram_since": None,
         "limit": None,
+        "time_budget": None,
+        "skip_done_by": [],
         "batch_size": 2,
         "workers": 2,
         "insert_every": 3,
@@ -453,3 +455,42 @@ def test_cut_line_is_dropped_only_when_there_is_one(tmp_path: Path) -> None:
     assert drop_cut_line(path) is True
     assert path.read_bytes() == b'{"a": 1}\n'
     assert drop_cut_line(tmp_path / "missing.jsonl") is False
+
+
+class SlowBackend(FakeBackend):
+    """Each call moves the clock the runner reads by ten seconds."""
+
+    def __init__(self, clock: list[float]) -> None:
+        super().__init__()
+        self.clock = clock
+
+    def extract(self, inputs: Sequence[str]) -> list[Answer]:
+        self.clock[0] += 10.0
+        return super().extract(inputs)
+
+
+def test_time_budget_leaves_the_rest_for_the_next_run(
+    store: FakeStore, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    clock = [0.0]
+    monkeypatch.setattr(corpus_run.time, "perf_counter", lambda: clock[0])
+    backend = SlowBackend(clock)
+    cmd_run(args(tmp_path, time_budget=15.0, batch_size=1, workers=1), store, backend, seed=7)
+    assert len(backend.seen) == 2  # sent at 0 s and 10 s; at 20 s the budget is spent
+    run = json.loads((tmp_path / "state" / "meta.json").read_text(encoding="utf-8"))["runs"][-1]
+    assert run["stopped_by_time_budget"] is True and run["finished"] is False and run["time_budget_s"] == 15.0
+
+    rest = FakeBackend()
+    cmd_run(args(tmp_path), store, rest, seed=7)
+    assert len(rest.seen) == 2 and len(store.table) == 5
+
+
+def test_versions_another_model_holds_are_not_pending(store: FakeStore, tmp_path: Path) -> None:
+    cmd_run(args(tmp_path / "gpu", limit=2), store, FakeBackend(), seed=7)
+    cpu = FakeBackend()
+    cpu.model_id = "fake-cpu"
+    cmd_run(args(tmp_path / "cpu", skip_done_by=["fake-student"]), store, cpu, seed=7)
+    by_model = Counter(m for (_, _, _, m) in store.table)
+    assert by_model["fake-student"] + by_model["fake-cpu"] == 5 and by_model["fake-cpu"] == 3
+    run = json.loads((tmp_path / "cpu" / "state" / "meta.json").read_text(encoding="utf-8"))["runs"][-1]
+    assert run["skip_done_by"] == ["fake-student"]

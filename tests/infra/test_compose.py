@@ -28,6 +28,13 @@ WRITABLE_BINDS = {
     # The weekly drift report (radar_drift): its summary and the local Evidently HTML.
     ("airflow-scheduler", "../../results/monitor"),
     ("airflow-scheduler", "../../reports/evidently"),
+    # radar_ml_label: the corpus runner's state per model (rows.jsonl, meta.json).
+    ("airflow-scheduler", "../../data/corpus_run"),
+    # radar_retrain: the refit salary models before they go to MLflow.
+    ("airflow-scheduler", "../../models/salary_retrain"),
+    # radar_publish: the site export and its result file, left for review.
+    ("airflow-scheduler", "../../site/src/data"),
+    ("airflow-scheduler", "../../results/site"),
     # The weekly digest writes its pages for the site build.
     ("n8n", "../../site/src/digest"),
 }

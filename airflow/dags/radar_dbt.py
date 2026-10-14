@@ -5,7 +5,8 @@ daily date, or every date of a catch-up or backfill). Events that arrive while a
 and start one more run after it (max_active_runs=1); the scheduler folds every queued event into
 that one run. The staging models rebuild only the raw days that got rows since the previous build
 (dbt/macros/incremental_by_day.sql), history and marts are rebuilt once per run. A source past its
-error threshold (dbt/models/staging/_sources.yml) fails the freshness task.
+error threshold (dbt/models/staging/_sources.yml) fails the freshness task. A successful build
+emits the asset marts, which schedules radar_ml_label.
 """
 
 from datetime import timedelta
@@ -16,6 +17,8 @@ from airflow.sdk import DAG, Asset
 DBT = "bash /opt/radar/scripts/dbt.sh"
 # Emitted by radar_load; same name and URI there.
 RAW_VACANCIES = Asset(name="raw.vacancies", uri="clickhouse://clickhouse:8123/raw/vacancies")
+# Schedules radar_ml_label; same name and URI there.
+MARTS = Asset(name="marts", uri="clickhouse://clickhouse:8123/marts")
 
 with DAG(
     dag_id="radar_dbt",
@@ -27,7 +30,9 @@ with DAG(
     default_args={"owner": "radar", "retries": 1, "retry_delay": timedelta(minutes=5)},
     tags=["radar", "daily"],
 ) as dag:
-    build = BashOperator(task_id="build", bash_command=f"{DBT} build", execution_timeout=timedelta(hours=1))
+    build = BashOperator(
+        task_id="build", bash_command=f"{DBT} build", execution_timeout=timedelta(hours=1), outlets=[MARTS]
+    )
     freshness = BashOperator(task_id="source_freshness", bash_command=f"{DBT} source freshness")
 
     build >> freshness

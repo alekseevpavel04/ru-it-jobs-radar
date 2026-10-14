@@ -11,8 +11,10 @@ require_env_file
 select_profiles "$@"
 require_profile_secrets
 # Mount points of the Airflow worker's dbt target/ and logs/ volumes inside its read-only dbt/, and
-# the bind-mounted output directories of radar_drift, owned by the user the worker runs as.
-mkdir -p "$RADAR_ROOT/dbt/target" "$RADAR_ROOT/dbt/logs" "$RADAR_ROOT/results/monitor" "$RADAR_ROOT/reports/evidently"
+# the bind-mounted output directories of radar_drift, radar_ml_label, radar_retrain and radar_publish,
+# owned by the user the worker runs as.
+mkdir -p "$RADAR_ROOT/dbt/target" "$RADAR_ROOT/dbt/logs" "$RADAR_ROOT/results/monitor" "$RADAR_ROOT/reports/evidently" \
+  "$RADAR_ROOT/data/corpus_run" "$RADAR_ROOT/models/salary_retrain" "$RADAR_ROOT/results/site" "$RADAR_ROOT/site/src/data"
 
 services=$(compose "${PROFILE_ARGS[@]}" config --services)
 # `up --wait` reports a one-shot container that exited as a failure, so the *-init services

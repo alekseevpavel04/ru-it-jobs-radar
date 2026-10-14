@@ -52,4 +52,5 @@ def test_every_dag_parses_with_its_tasks() -> None:
     dags = {dag_id: int(row["task_num"]) for row in report for dag_id in row["dags"]}
     assert set(dags) == EXPECTED
     assert dags["radar_load"] == 6  # one task per raw topic plus the hand-over to radar_dbt
+    assert (dags["radar_ml_label"], dags["radar_publish"], dags["radar_retrain"]) == (4, 6, 2)
     assert all(n >= 1 for n in dags.values())

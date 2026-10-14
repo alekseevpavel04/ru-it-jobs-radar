@@ -447,9 +447,12 @@ services:
       CLICKHOUSE_USER: ${CLICKHOUSE_USER:?set CLICKHOUSE_USER in .env}
       CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:?set CLICKHOUSE_PASSWORD in .env}
       REDPANDA_BROKERS: redpanda:9092
+      # radar_retrain registers the refit salary model (the ml profile).
+      MLFLOW_TRACKING_URI: http://mlflow:5000
       PYTHONDONTWRITEBYTECODE: "1"
       # Standard-library helpers the Python tasks import under Airflow's interpreter (raw_layer,
-      # dbt_handover); the project's code runs under /opt/radar/.venv instead.
+      # dbt_handover); the project's code runs under /opt/radar/.venv instead, where the same path
+      # gives the corpus runner of radar_ml_label its backend (student_cpu).
       PYTHONPATH: /opt/radar/airflow/include
     volumes:
       - ../../airflow:/opt/radar/airflow:ro
@@ -464,6 +467,21 @@ services:
       # Evidently HTML reports stay local. scripts/up.sh creates both, so Docker does not as root.
       - ../../results/monitor:/opt/radar/results/monitor
       - ../../reports/evidently:/opt/radar/reports/evidently
+      - ../../configs:/opt/radar/configs:ro
+      # radar_ml_label: the DDL of extract.vacancy_fields, the runner's state per model, and the
+      # merged model's tokenizer and prompt meta.
+      - ../clickhouse:/opt/radar/infra/clickhouse:ro
+      - ../../data/corpus_run:/opt/radar/data/corpus_run
+      - ../../models/merged/qwen3_1p7b_r16_clean:/opt/radar/models/merged/qwen3_1p7b_r16_clean:ro
+      # radar_retrain: the corpus split the salary frame pins, the registry's model descriptions, and
+      # the refits; results/models read-only, so a refit cannot overwrite the published results.
+      - ../../data/corpus:/opt/radar/data/corpus:ro
+      - ./mlflow:/opt/radar/infra/compose/mlflow:ro
+      - ../../models/salary_retrain:/opt/radar/models/salary_retrain
+      - ../../results/models:/opt/radar/results/models:ro
+      # radar_publish: the site export and its result file, left in the working tree for review.
+      - ../../site/src/data:/opt/radar/site/src/data
+      - ../../results/site:/opt/radar/results/site
       # The host user's ssh directory for the sync (set by lib.sh); keys are copied into the tmpfs.
       - ${RADAR_SSH_DIR:?run through scripts/up.sh, which sets RADAR_SSH_DIR}:/run/host-ssh:ro
       - airflow-logs:/opt/airflow/logs
