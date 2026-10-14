@@ -113,3 +113,19 @@
     ) AS skill_status,
     (SELECT groupArray(key_hash) FROM {{ ref('skill_dictionary_v1') }} WHERE origin = 'dictionary') AS dictionary_keys
 {%- endmacro %}
+
+
+{#- The model_ids the marts read, var extraction_model first, then var extraction_fallback_models. -#}
+{% macro extraction_models() -%}
+    {{ return([var('extraction_model')] + var('extraction_fallback_models', [])) }}
+{%- endmacro %}
+
+
+{#- Filter on model_id for the marts' extractors, and a sort key that puts extraction_model first. -#}
+{% macro extraction_model_filter() -%}
+    model_id IN {{ extraction_models() | tojson | replace('[', '(') | replace(']', ')') | replace('"', "'") }}
+{%- endmacro %}
+
+{% macro extraction_model_rank() -%}
+    indexOf({{ extraction_models() | tojson | replace('"', "'") }}, model_id)
+{%- endmacro %}

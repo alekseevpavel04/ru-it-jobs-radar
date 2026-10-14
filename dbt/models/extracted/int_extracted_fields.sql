@@ -34,8 +34,8 @@ latest AS (
 older AS (
     SELECT *
     FROM {{ ref('stg_vacancy_fields') }}
-    WHERE model_id = '{{ var("extraction_model") }}'
-    ORDER BY source, source_id, dt DESC, created_at DESC
+    WHERE {{ extraction_model_filter() }}
+    ORDER BY source, source_id, dt DESC, {{ extraction_model_rank() }}, created_at DESC
     LIMIT 1 BY source, source_id
 ),
 
@@ -50,7 +50,7 @@ dropped AS (
 link_candidates AS (
     SELECT DISTINCT source, source_id, content_hash
     FROM {{ ref('stg_vacancy_fields') }}
-    WHERE model_id = '{{ var("extraction_model") }}'
+    WHERE {{ extraction_model_filter() }}
         AND arrayExists(s -> hasAny(skill_map[{{ skill_hash('s') }}], {{ checked }}), skills)
 ),
 

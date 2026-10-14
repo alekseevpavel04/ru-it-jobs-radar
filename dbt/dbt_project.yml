@@ -17,6 +17,10 @@ vars:
   # model_id of extract.vacancy_fields that int_vacancy_fields reads (radar.extract.corpus_run).
   # Empty keeps the models of models/extract off.
   extraction_model: "qwen3_1p7b_r16_clean-awq"
+  # Other model_ids whose rows stand in, in this order, for a version extraction_model has not
+  # extracted: the same student as Q4_K_M GGUF, which radar_ml_label runs on CPU in compose for new
+  # versions (the GPU corpus run is AWQ; the two are within noise of each other on dev and test, E14).
+  extraction_fallback_models: ["qwen3_1p7b_r16_clean-q4_k_m"]
 
 models:
   radar:

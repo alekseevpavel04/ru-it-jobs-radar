@@ -99,7 +99,7 @@ models:
   - name: int_vacancy_fields
     description: >
       One row per vacancy record (source, source_id) at the version the corpus run extracts, with
-      the fields of var extraction_model. Portal records are the latest staged version of an IT
+      the fields of var extraction_model (or of a fallback model). Portal records are the latest staged version of an IT
       candidate (trudvsem API and snapshots, Habr, SuperJob), Telegram records the latest stored
       version of a post stg_telegram counts as a single vacancy. is_extracted is false for a version
       the run has not reached yet and for the Telegram posts the corpus rules leave out (digests,
@@ -120,7 +120,7 @@ models:
       - name: content_hash
         description: The version the fields belong to.
       - name: is_extracted
-        description: extract.vacancy_fields holds this version for var extraction_model.
+        description: extract.vacancy_fields holds this version for var extraction_model or a fallback model.
       - name: valid
         description: The answer passed the schema; false also when not extracted.
       - name: role

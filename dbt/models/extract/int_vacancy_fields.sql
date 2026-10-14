@@ -1,7 +1,7 @@
 {{ config(enabled=var('extraction_model') != '') }}
 
 -- One row per vacancy record (source, source_id) at the version radar.extract.corpus_run extracts,
--- with the fields that var('extraction_model') gave that version. Portal records (trudvsem API and
+-- with the fields that var('extraction_model') gave that version, or a fallback model where it gave none. Portal records (trudvsem API and
 -- snapshots, Habr, SuperJob, all through stg_vacancies): the latest staged version of an IT
 -- candidate, as the runner reads it from the per-source staging tables. Telegram: the latest
 -- stored version of a post stg_telegram counts as a single vacancy, ordered as the runner orders
@@ -35,7 +35,9 @@ versions AS (
 fields AS (
     SELECT *
     FROM {{ ref('stg_vacancy_fields') }}
-    WHERE model_id = '{{ var("extraction_model") }}'
+    WHERE {{ extraction_model_filter() }}
+    ORDER BY {{ extraction_model_rank() }}
+    LIMIT 1 BY source, source_id, content_hash
 )
 
 -- Without join_use_nulls an unmatched model_id is '' and an unmatched valid is false, which is what
