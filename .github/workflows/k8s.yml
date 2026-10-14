@@ -7,6 +7,14 @@ name: k8s
 # local stack is scripts/k8s_smoke.sh.
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - deploy/**
+      - infra/compose/api/**
+      - src/**
+      - uv.lock
+      - .github/workflows/k8s.yml
   pull_request:
     paths:
       - deploy/**
