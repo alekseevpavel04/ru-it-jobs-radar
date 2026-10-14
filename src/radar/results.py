@@ -41,6 +41,27 @@ class ResultFile(BaseModel):
     metrics: dict[str, Metric]
 
 
+# What can change a computed number: code, configs, SQL, labeled inputs under version control and the
+# lock file. A modified or untracked file there marks the commit "-dirty". Other paths are left out:
+# results/ itself changes while a session writes one result after another, and logs, docs or the
+# built site do not take part in any computation.
+CODE_PATHS = (
+    "src",
+    "scripts",
+    "configs",
+    "dbt",
+    "airflow",
+    "jobs",
+    "training",
+    "infra",
+    "deploy",
+    "eval",
+    "data",
+    "pyproject.toml",
+    "uv.lock",
+)
+
+
 def git_commit() -> str:
     try:
         out = subprocess.run(
@@ -48,7 +69,9 @@ def git_commit() -> str:
         )
     except (OSError, subprocess.CalledProcessError):
         return "unknown"
-    dirty = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT, capture_output=True, text=True).stdout
+    dirty = subprocess.run(
+        ["git", "status", "--porcelain", "--", *CODE_PATHS], cwd=ROOT, capture_output=True, text=True
+    ).stdout
     return out.stdout.strip() + ("-dirty" if dirty.strip() else "")
 
 
