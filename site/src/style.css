@@ -8,7 +8,6 @@
 .radar-header {
   font: 13px/1.45 var(--sans-serif);
   color: var(--theme-foreground-muted);
-  max-width: 960px;
 }
 
 #observablehq-footer nav a[rel="prev"]::before {
@@ -19,26 +18,168 @@
   content: "Дальше";
 }
 
+.lead {
+  font-size: 16px;
+  max-width: 760px;
+  color: var(--theme-foreground-alt);
+}
+
 .card h2 {
   font-size: 14px;
 }
 
+.card h3 {
+  margin-top: 0;
+}
+
 .card .big {
-  font-size: 32px;
-  font-weight: 600;
+  font-size: 30px;
+  font-weight: 650;
   line-height: 1.2;
+  margin: 0.2rem 0;
+}
+
+.card p {
+  margin: 0.3rem 0 0;
+}
+
+.card .sub {
+  font-size: 13px;
+  color: var(--theme-foreground-muted);
+}
+
+#observablehq-main .grid.facts {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.multiples {
+  display: grid;
+  gap: 0.5rem 1rem;
+}
+
+.multiple-title {
+  font-size: 13px;
+}
+
+/* A fact card links to the page that unfolds the fact. */
+a.card.fact {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border-top: 3px solid var(--theme-foreground-focus);
+}
+
+a.card.fact:hover {
+  background: var(--theme-background-alt);
+}
+
+a.card.fact h2::after {
+  content: " →";
+  color: var(--theme-foreground-focus);
+}
+
+.card.accent-junior {
+  border-top: 3px solid #8e44ad;
 }
 
 .note-small {
   font-size: 13px;
   color: var(--theme-foreground-muted);
-  max-width: 720px;
+  max-width: 760px;
 }
 
-/* Markdown tables (digest issues, methodology) scroll inside the page on a phone instead of widening it. */
+/* One filter panel under the title of a page; every chart below follows it. */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 2rem;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  margin: 1rem 0;
+  background: var(--theme-background-alt);
+  border-radius: 8px;
+}
+
+.filters form {
+  margin: 0;
+  width: auto;
+  max-width: none;
+}
+
+.filters select {
+  max-width: 100%;
+}
+
+.filters label.select-native {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font: 13px var(--sans-serif);
+}
+
+table.change td:not(:first-child),
+table.change th:not(:first-child) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+table.change tr.total td {
+  font-weight: 600;
+}
+
+details {
+  margin: 0.8rem 0;
+}
+
+details > summary {
+  cursor: pointer;
+  color: var(--theme-foreground-focus);
+}
+
+.legend-inline {
+  font-size: 13px;
+  color: var(--theme-foreground-muted);
+}
+
+.legend-inline .swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 0.3rem 0 0.9rem;
+  vertical-align: baseline;
+}
+
+/* Markdown tables (digest issues, methodology) and wide tables scroll inside the page on a phone. */
 @media (max-width: 640px) {
-  #observablehq-main > table {
+  #observablehq-main > table,
+  .table-wrap {
     display: block;
     overflow-x: auto;
   }
+
+  .filters {
+    gap: 0.25rem;
+  }
+
+  .wide-only {
+    display: none;
+  }
+
+  table.change {
+    font-size: 12px;
+  }
+
+  table.change th,
+  table.change td {
+    padding-right: 0.3rem;
+  }
+
+  .card .big {
+    font-size: 26px;
+  }
+}
+
+.card.accent-ml {
+  border-top: 3px solid #d1495b;
 }

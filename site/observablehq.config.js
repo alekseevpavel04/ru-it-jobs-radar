@@ -19,20 +19,18 @@ export default {
   lang: "ru",
   // GitHub Pages serves the project at /ru-it-jobs-radar/; pages link relatively, the 404 page needs the base
   base: "/ru-it-jobs-radar/",
+  // The order is the order of the "Назад" and "Дальше" links: the questions of a reader come first.
   pages: [
+    {name: "Главное", path: "/index"},
     {name: "Навыки", path: "/skills"},
-    {name: "Прогноз навыков", path: "/forecast"},
     {name: "Зарплаты", path: "/salaries"},
-    {name: "Джуниорский срез", path: "/junior"},
+    {name: "Начинающим", path: "/junior"},
     {name: "Время жизни вакансии", path: "/lifetime"},
-    {name: "Недельные выпуски", path: "/digest/"},
     {name: "Методика и ограничения", path: "/methodology"}
   ],
-  header: `<div class="radar-header">Срез рынка по открытым источникам: «Работа в России», Хабр Карьера, публичные
-Telegram-каналы. hh.ru в выборку не входит. Данные по ${longDate(meta.data_through)}, выгрузка
-${longDate(meta.exported_at)}. <a href="/methodology">Как считается</a></div>`,
-  footer: `Код, витрины и методика: <a href="${REPO}">${REPO.replace("https://", "")}</a>`,
-  toc: {label: "На странице"},
+  header: `<div class="radar-header">Открытые источники, без hh.ru · данные по ${longDate(meta.data_through)} · <a href="/methodology">Как считается</a></div>`,
+  footer: `Выгрузка данных ${longDate(meta.exported_at)} · <a href="/digest/">Недельные выпуски</a> · Код, витрины и методика: <a href="${REPO}">${REPO.replace("https://", "")}</a>`,
+  toc: false,
   search: false,
   // The default stylesheet links Google Fonts; the site loads nothing from other hosts.
   globalStylesheets: [],

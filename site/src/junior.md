@@ -1,12 +1,11 @@
 ---
-title: Джуниорский срез
-toc: false
+title: Начинающим
 ---
 
 # Вакансии для начинающих
 
 ```js
-import {ROLE, SOURCE, CATEGORY, GRADE, REGION, REGION_ORDER, withSkillLabels, int, pct, share, rub, dateLong} from "./components/labels.js";
+import {ROLE, SOURCE_SHORT, SOURCE_COLOR, FAMILY_ORDER, CATEGORY, GRADE, COLOR, withSkillLabels, int, pct, share, dateLong, sourcePicker} from "./components/labels.js";
 import {shownBounds, rangePlot} from "./components/salary.js";
 
 const meta = FileAttachment("data/meta.json").json();
@@ -14,237 +13,271 @@ const junior = FileAttachment("data/junior.json").json();
 const skillsJunior = FileAttachment("data/skills_junior.json").json().then(withSkillLabels);
 const skillsAll = FileAttachment("data/skills.json").json().then(withSkillLabels);
 const salaries = FileAttachment("data/salaries.json").json();
+const salariesTg = FileAttachment("data/salaries_telegram.json").json();
+const workFormat = FileAttachment("data/work_format.json").json();
+const tgYears = FileAttachment("data/telegram_years.json").json();
 ```
+
+<p class="lead">Начинающий здесь это стажёр или джуниор: грейд из заголовка вакансии или первой строки поста, у Хабр Карьеры квалификация, которую указал работодатель. Доли считаются среди вакансий, где грейд известен. <a href="./methodology#junior">Подробнее</a>.</p>
 
 ```js
-const FAMILIES = ["trudvsem", "habr", "telegram"];
-const JUNIOR_GRADES = ["intern", "junior"];
 const sum = (rows, key) => d3.sum(rows, (d) => d[key]);
-const minN = meta.salary_min_n;
+const graded = (rows) => sum(rows, "graded_intern") + sum(rows, "graded_junior");
+const unitOf = (s) => (s === "telegram" ? "постов" : "вакансий");
+const ml = (s) => junior.filter((d) => d.source === s && d.role_bucket === "ml_ds");
 ```
 
-Вакансия открыта начинающему, если её грейд стажёр или джуниор, или если в ней сказано, что опыт не нужен. На портале «Работа в России» это поле требуемого опыта, равное нулю лет («без опыта»); у Хабр Карьеры и в Telegram такого поля нет, там ищется фраза в тексте. Опыт «до года» отдельно не выделяется: поле портала считает опыт в целых годах, у остальных источников поля нет. Грейд определяется правилом по заголовку (на Хабр Карьере по квалификации, которую указал работодатель).
-
-<div class="grid grid-cols-3">
-${FAMILIES.map((s) => {
+<div class="grid grid-cols-4 facts">
+${FAMILY_ORDER.map((s) => {
   const rows = junior.filter((d) => d.source === s);
-  const unit = s === "telegram" ? "постов" : "вакансий";
-  return html`<div class="card">
-    <h2>${SOURCE[s]}</h2>
-    <div class="big">${pct(sum(rows, "open_to_junior") / sum(rows, "vacancies"))}</div>
-    ${unit} открыты начинающим: ${share(sum(rows, "open_to_junior"), sum(rows, "vacancies"))}. Из них стажёр ${int(sum(rows, "graded_intern"))}, джуниор ${int(sum(rows, "graded_junior"))}, «без опыта» ${int(sum(rows, "no_experience_required"))} (признаки пересекаются).
+  return html`<div class="card" style=${`border-top: 3px solid ${SOURCE_COLOR[s]}`}>
+    <h2>${SOURCE_SHORT[s]}</h2>
+    <div class="big">${pct(graded(rows) / sum(rows, "grade_known"))}</div>
+    <p>${int(graded(rows))} из ${int(sum(rows, "grade_known"))} ${unitOf(s)} с грейдом</p>
+    ${s === "trudvsem" ? html`<p class="sub">«без опыта» по полю портала: ${share(sum(rows, "no_experience_required"), sum(rows, "vacancies"))} вакансий, это другая величина</p>` : html`<p class="sub">грейд указан у ${share(sum(rows, "grade_known"), sum(rows, "vacancies"))}</p>`}
   </div>`;
 })}
+<div class="card accent-junior">
+  <h2>ML и Data Science</h2>
+  <div class="big">${int(graded(ml("habr")))} из ${int(sum(ml("habr"), "grade_known"))}</div>
+  <p>ML/DS-вакансий Хабр Карьеры с грейдом</p>
+  <p class="sub">Telegram: ${share(graded(ml("telegram")), sum(ml("telegram"), "grade_known"))} постов</p>
+</div>
 </div>
 
-## Роли
-
 ```js
-const roleSource = view(Inputs.radio(new Map(FAMILIES.map((s) => [SOURCE[s], s])), {value: "trudvsem", label: "Источник"}));
+const sourceInput = sourcePicker(Inputs, FAMILY_ORDER, "telegram");
+const source = Generators.input(sourceInput);
+const softInput = Inputs.toggle({label: "Без гибких навыков", value: true});
+const noSoft = Generators.input(softInput);
 ```
 
+<div class="filters">${sourceInput}${softInput}</div>
+
+## В какой роли проще войти
+
 ```js
-const roles = junior
-  .filter((d) => d.source === roleSource && d.vacancies > 0)
-  .map((d) => ({...d, role: ROLE[d.role_bucket], share: d.open_to_junior / d.vacancies}))
-  .sort((a, b) => b.open_to_junior - a.open_to_junior);
+const MIN_GRADED = 30;
+const all = junior.filter((d) => d.source === source);
+const big = all.filter((d) => d.grade_known >= MIN_GRADED);
+const small = all.filter((d) => d.grade_known < MIN_GRADED && d.grade_known > 0);
+// a post with several vacancies is not a role: it is shown, grey, under the roles
+const roleRows = [
+  ...big
+    .map((d) => ({role: ROLE[d.role_bucket], n: graded([d]), of: d.grade_known, rest: d.role_bucket === "multi_post"}))
+    .sort((a, b) => a.rest - b.rest || b.n / b.of - a.n / a.of),
+  ...(small.length ? [{role: `остальные (${small.length})`, n: graded(small), of: sum(small, "grade_known"), rest: true, names: small.map((d) => ROLE[d.role_bucket]).join(", ")}] : [])
+];
+const average = graded(all) / sum(all, "grade_known");
 ```
 
 <div class="card">
 
-Сколько вакансий каждой роли открыты начинающим. Роли отсортированы по числу таких вакансий, подпись: сколько из всех вакансий роли.
-
 ```js
 Plot.plot({
   width,
-  height: roles.length * 24 + 30,
-  marginLeft: width < 600 ? 185 : 230,
-  marginRight: width < 600 ? 70 : 150,
-  x: {axis: null, domain: [0, 1]},
-  y: {label: null, domain: roles.map((d) => d.role)},
+  height: roleRows.length * 24 + 40,
+  marginLeft: width < 600 ? 150 : 230,
+  marginRight: width < 600 ? 70 : 130,
+  x: {axis: null, domain: [0, Math.max(average, d3.max(roleRows, (d) => d.n / d.of)) * 1.05]},
+  y: {label: null, domain: roleRows.map((d) => d.role), tickFormat: (r) => (width < 600 && r.length > 24 ? r.slice(0, 23) + "…" : r)},
   marks: [
-    Plot.barX(roles, {
-      y: "role",
-      x: "share",
-      fill: "#3ca951",
-      title: (d) =>
-        `${d.role}\n${share(d.open_to_junior, d.vacancies)}\nстажёр ${int(d.graded_intern)}, джуниор ${int(d.graded_junior)}, без опыта ${int(d.no_experience_required)}`,
-      tip: true
-    }),
-    Plot.text(roles, {
-      y: "role",
-      x: "share",
-      text: (d) => (width < 600 ? `${int(d.open_to_junior)} из ${int(d.vacancies)}` : share(d.open_to_junior, d.vacancies)),
-      textAnchor: "start",
-      dx: 4
-    })
+    Plot.barX(roleRows, {y: "role", x: (d) => d.n / d.of, fill: (d) => (d.rest ? COLOR.all : COLOR.junior), title: (d) => `${d.role}\n${share(d.n, d.of)} ${unitOf(source)} с грейдом${d.names ? `\n${d.names}` : ""}`, tip: true}),
+    Plot.ruleX([average], {stroke: "#555", strokeDasharray: "3,3"}),
+    Plot.text([average], {x: (d) => d, frameAnchor: "top", dy: -12, text: (d) => `в среднем ${pct(d)}`, fontSize: 11, fill: "#555"}),
+    Plot.text(roleRows, {y: "role", x: (d) => d.n / d.of, text: (d) => (width < 600 ? pct(d.n / d.of) : share(d.n, d.of)), textAnchor: "start", dx: 4})
   ]
 })
 ```
 
+<p class="note-small">${SOURCE_SHORT[source]}: доля стажёров и джуниоров среди ${unitOf(source)} роли с известным грейдом. Роли, где грейд известен меньше чем у ${MIN_GRADED} ${unitOf(source)}, собраны в «остальные».</p>
+
 </div>
 
-## Навыки, зарплаты и города
+## Что спрашивают у начинающих
 
 ```js
-const graded = FAMILIES.map((s) => {
-  const rows = junior.filter((d) => d.source === s);
-  return {s, graded: sum(rows, "graded_intern") + sum(rows, "graded_junior"), open: sum(rows, "open_to_junior")};
-});
-```
-
-Навыки, зарплаты и города ниже считаются только по вакансиям с грейдом стажёр или джуниор: витрины навыков и зарплат разбиты по грейду, а не по требуемому опыту. Это заметная часть джуниорского среза не везде: ${graded.map((g) => `${SOURCE[g.s]} ${share(g.graded, g.open)} ${g.s === "telegram" ? "постов" : "вакансий"}`).join("; ")}, открытых начинающим (грейд и «без опыта» пересекаются, поэтому доля не дополняет «без опыта» до целого).
-
-### Навыки
-
-```js
-const skillSource = view(Inputs.radio(new Map(FAMILIES.map((s) => [SOURCE[s], s])), {value: "trudvsem", label: "Источник"}));
-```
-
-```js
-const juniorRows = skillsJunior.filter((d) => d.source === skillSource);
+const SOFT = new Set(["soft", "language_human"]);
+const juniorRows = skillsJunior.filter((d) => d.source === source && !(noSoft && SOFT.has(d.category)));
 const base = juniorRows.length ? juniorRows[0].vacancies_graded_junior : 0;
-const allShare = new Map(skillsAll.filter((d) => d.source === skillSource).map((d) => [d.skill, d.vacancies_mentioning / d.vacancies_total]));
-const allBase = skillsAll.find((d) => d.source === skillSource)?.vacancies_total ?? 0;
-const topJunior = juniorRows.slice(0, 20).flatMap((d) => [
-  {skill: d.skill, who: "стажёр и джуниор", share: d.vacancies_mentioning / d.vacancies_graded_junior, text: share(d.vacancies_mentioning, d.vacancies_graded_junior)},
-  {skill: d.skill, who: "все вакансии", share: allShare.get(d.skill) ?? 0, text: ""}
+const allShare = new Map(skillsAll.filter((d) => d.source === source).map((d) => [d.skill, d]));
+const topJunior = juniorRows
+  .slice(0, 20)
+  .map((d) => {
+    const a = allShare.get(d.skill);
+    return {skill: d.skill, j: d.vacancies_mentioning / d.vacancies_graded_junior, jn: d.vacancies_mentioning, jof: d.vacancies_graded_junior, a: a ? a.vacancies_mentioning / a.vacancies_total : 0, an: a?.vacancies_mentioning ?? 0, aof: a?.vacancies_total ?? 0};
+  })
+  .sort((x, y) => y.j - y.a - (x.j - x.a));
+const skillPoints = topJunior.flatMap((d) => [
+  {skill: d.skill, who: "стажёр и джуниор", share: d.j, text: share(d.jn, d.jof)},
+  {skill: d.skill, who: "все вакансии", share: d.a, text: share(d.an, d.aof)}
 ]);
 ```
 
 <div class="card">
 
-${base === 0 ? "В этом источнике нет вакансий с грейдом стажёр или джуниор." : `Двадцать самых частых навыков в ${int(base)} ${skillSource === "telegram" ? "постах" : "вакансиях"} с грейдом стажёр или джуниор; серым та же доля среди всех ${int(allBase)}. Вакансии «без опыта» без грейда сюда не входят: навыки в витрине разбиты по грейду, а не по опыту.`}
+<p class="note-small">${base === 0 ? "В этом источнике нет вакансий с грейдом стажёр или джуниор." : `Двадцать самых частых навыков в ${int(base)} ${source === "telegram" ? "постах" : "вакансиях"} стажёров и джуниоров. Сверху то, что у начинающих спрашивают чаще, чем у всех.`}</p>
 
 ```js
 base === 0
   ? html``
   : Plot.plot({
       width,
-      height: 20 * 26 + 50,
-      marginLeft: width < 600 ? 150 : 200,
-      x: {grid: true, label: skillSource === "telegram" ? "доля постов" : "доля вакансий", tickFormat: pct, zero: true},
-      y: {label: null, domain: juniorRows.slice(0, 20).map((d) => d.skill)},
-      color: {domain: ["стажёр и джуниор", "все вакансии"], range: ["#3ca951", "#a0a0a0"], legend: true},
+      height: topJunior.length * 24 + 50,
+      marginLeft: width < 600 ? 130 : 200,
+      x: {grid: true, label: source === "telegram" ? "доля постов" : "доля вакансий", tickFormat: pct, zero: true},
+      y: {label: null, domain: topJunior.map((d) => d.skill)},
+      color: {domain: ["стажёр и джуниор", "все вакансии"], range: [COLOR.junior, COLOR.all], legend: true},
       marks: [
-        Plot.ruleY(juniorRows.slice(0, 20), {y: "skill", stroke: "#e0e0e0"}),
-        Plot.dot(topJunior, {y: "skill", x: "share", fill: "who", r: 5, title: (d) => `${d.skill}, ${d.who}\n${d.text || pct(d.share)}`, tip: true})
+        Plot.link(topJunior, {y1: "skill", y2: "skill", x1: "a", x2: "j", stroke: "#ddd", strokeWidth: 3}),
+        Plot.dot(skillPoints, {y: "skill", x: "share", fill: "who", r: 5, title: (d) => `${d.skill}, ${d.who}\n${d.text}`, tip: true})
       ]
     })
 ```
 
 </div>
 
-### Зарплаты
+## Сколько платят на старте
 
 ```js
-// Rows of one level of mart_salaries cover every vacancy of the source once; sums stay within a level.
-const at = (level) => salaries.filter((d) => d.level === level);
-const cells = at("cell");
-const juniorCells = cells.filter((d) => JUNIOR_GRADES.includes(d.grade));
-const juniorGrades = at("grade").filter((d) => JUNIOR_GRADES.includes(d.grade));
-const salaryRows = ["trudvsem", "habr"].map((s) => {
-  const j = juniorGrades.filter((d) => d.source === s);
-  const [all] = at("source").filter((d) => d.source === s);
-  return {s, jn: sum(j, "with_salary_rub"), jof: sum(j, "vacancies"), an: all.with_salary_rub, aof: all.vacancies};
-});
-const gradeShown = shownBounds(juniorGrades, minN, (d) => `${SOURCE[d.source]} · ${GRADE[d.grade]}`);
-const gradeHidden = juniorGrades.filter((d) => d.with_from < minN && d.with_to < minN);
-// one bound shown, the other under the threshold
-const gradeOneBound = juniorGrades.filter((d) => (d.with_from < minN) !== (d.with_to < minN));
-const juniorShown = shownBounds(juniorCells, minN, (d) => `${SOURCE[d.source]} · ${ROLE[d.role_bucket]} · ${GRADE[d.grade]} · ${REGION[d.region_group]}`).sort(
-  (a, b) => b.with_salary_rub - a.with_salary_rub
-);
-const juniorHidden = juniorCells.filter((d) => d.with_from < minN && d.with_to < minN);
+const STEPS = ["intern", "junior", "middle"];
+const ladder = [
+  ...["trudvsem", "habr"].flatMap((s) => salaries.filter((d) => d.level === "grade" && d.source === s && STEPS.includes(d.grade)).map((d) => ({...d, src: s}))),
+  ...salariesTg.filter((d) => d.level === "grade" && STEPS.includes(d.grade)).map((d) => ({...d, src: "telegram"}))
+].sort((a, b) => FAMILY_ORDER.indexOf(a.src) - FAMILY_ORDER.indexOf(b.src) || STEPS.indexOf(a.grade) - STEPS.indexOf(b.grade));
+const ladderShown = shownBounds(ladder, meta.salary_min_n, (d) => `${SOURCE_SHORT[d.src]} · ${GRADE[d.grade]}`);
+const ladderHidden = ladder.filter((d) => d.with_from < meta.salary_min_n && d.with_to < meta.salary_min_n);
 ```
-
-Доля вакансий с суммой в рублях. ${salaryRows.map((r) => `${SOURCE[r.s]}: ${share(r.jn, r.jof)} у стажёров и джуниоров, ${share(r.an, r.aof)} у всех вакансий`).join(". ")}.
 
 <div class="card">
 
-Медианы вилки по грейду, посчитанные в витрине по всем вакансиям грейда источника. Граница показана, если её указали хотя бы ${minN} вакансий (почему так, на странице «Зарплаты»)${gradeHidden.length ? `; не набрали: ${gradeHidden.map((d) => `${SOURCE[d.source]}, ${GRADE[d.grade]} (${int(d.with_salary_rub)} с суммой)`).join("; ")}` : ""}${gradeOneBound.length ? `; только одна граница: ${gradeOneBound.map((d) => d.with_from < minN ? `${SOURCE[d.source]}, ${GRADE[d.grade]} («от» указали ${int(d.with_from)})` : `${SOURCE[d.source]}, ${GRADE[d.grade]} («до» указали ${int(d.with_to)})`).join("; ")}` : ""}. Это вилка из объявления, а не выплаченная зарплата.
+<p class="note-small">Медиана вилки стажёра, джуниора и следующего шага, мидла, по источникам. Точка: медиана, отрезок: квартили.${ladderHidden.length ? ` Мало данных: ${ladderHidden.map((d) => `${SOURCE_SHORT[d.src]}, ${GRADE[d.grade]}`).join("; ")}.` : ""}</p>
 
 ```js
-gradeShown.length === 0 ? html`` : rangePlot(gradeShown, {width, labelWidth: 230})
+rangePlot(ladderShown, {width, labelWidth: 210, sort: false})
 ```
+
+<p class="note-small">Вилка из объявления. В Telegram сумму, роль и грейд из поста читает модель извлечения. <a href="./salaries">Все зарплаты</a>.</p>
 
 </div>
 
-По ячейкам (роль, грейд, регион) с тем же порогом: таких ячеек стажёров и джуниоров ${int(juniorShown.length)}; ещё ${int(juniorHidden.length)} ячеек с ${int(sum(juniorHidden, "with_salary_rub"))} вакансиями с суммой слишком малы.
+## Есть ли удалёнка
 
 ```js
-Inputs.table(
-  juniorShown.map((d) => ({...d, src: SOURCE[d.source], role: ROLE[d.role_bucket], gradeLabel: GRADE[d.grade], region: REGION[d.region_group]})),
-  {
-    columns: width < 600 ? ["role", "gradeLabel", "region", "from", "to"] : ["src", "role", "gradeLabel", "region", "with_from", "from", "with_to", "to"],
-    header: {
-      src: "Источник",
-      role: "Роль",
-      gradeLabel: "Грейд",
-      region: "Регион",
-      with_from: "n «от»",
-      from: "Медиана «от»",
-      with_to: "n «до»",
-      to: "Медиана «до»"
-    },
-    format: {with_from: int, with_to: int, from: rub, to: rub},
-    // on a phone the columns keep their width and the table scrolls sideways instead of cutting names
-    layout: width < 600 ? "fixed" : "auto",
-    width: width < 600 ? {role: 170, gradeLabel: 120, region: 120, from: 100, to: 100} : undefined,
-    sort: "with_from",
-    reverse: true,
-    rows: 10
-  }
-)
-```
-
-### Города и удалённая работа
-
-```js
-const regionRows = ["trudvsem", "habr"].flatMap((s) => {
-  const j = juniorCells.filter((d) => d.source === s);
-  const all = cells.filter((d) => d.source === s);
-  return REGION_ORDER.flatMap((r) => [
-    {source: SOURCE[s], who: "стажёр и джуниор", region: REGION[r], n: sum(j.filter((d) => d.region_group === r), "vacancies"), of: sum(j, "vacancies")},
-    {source: SOURCE[s], who: "все вакансии", region: REGION[r], n: sum(all.filter((d) => d.region_group === r), "vacancies"), of: sum(all, "vacancies")}
-  ]);
+// Juniors against the other grades. Levels region and grade_region of mart_salaries each cover every
+// vacancy once, so the other grades are the source total minus the juniors.
+const JUNIOR_GRADES = ["intern", "junior"];
+const portalRemote = ["trudvsem", "habr"].map((s) => {
+  const gr = salaries.filter((d) => d.level === "grade_region" && d.source === s && JUNIOR_GRADES.includes(d.grade));
+  const reg = salaries.filter((d) => d.level === "region" && d.source === s);
+  const jn = sum(gr.filter((d) => d.region_group === "remote"), "vacancies");
+  const jof = sum(gr, "vacancies");
+  const an = sum(reg.filter((d) => d.region_group === "remote"), "vacancies");
+  const aof = sum(reg, "vacancies");
+  return {label: SOURCE_SHORT[s], jn, jof, on: an - jn, oof: aof - jof, unit: "вакансий"};
+});
+const lastYear = d3.max(tgYears.work_format, (d) => d.year);
+const tgRemote = (scope, year) => {
+  const rows = tgYears.work_format.filter((d) => d.scope === scope && d.year === year);
+  const j = rows.find((d) => d.group === "junior" && d.work_format === "remote");
+  const o = rows.find((d) => d.group === "other" && d.work_format === "remote");
+  return {jn: j?.posts ?? 0, jof: rows.find((d) => d.group === "junior")?.posts_with_format ?? 0, on: o?.posts ?? 0, oof: rows.find((d) => d.group === "other")?.posts_with_format ?? 0};
+};
+const remoteRows = [
+  ...portalRemote,
+  {label: `Telegram, ${lastYear}`, ...tgRemote("it", lastYear), unit: "постов"},
+  {label: `Telegram, ML-роли, ${lastYear}`, ...tgRemote("ml", lastYear), unit: "постов"}
+];
+const remotePoints = remoteRows.flatMap((d) => [
+  {label: d.label, who: "стажёр и джуниор", share: d.jn / d.jof, text: `${share(d.jn, d.jof)} ${d.unit}`},
+  {label: d.label, who: "остальные грейды", share: d.on / d.oof, text: `${share(d.on, d.oof)} ${d.unit}`}
+]);
+const tgYearsRemote = [...new Set(tgYears.work_format.filter((d) => d.scope === "it").map((d) => d.year))].sort().flatMap((year) => {
+  const r = tgRemote("it", year);
+  return [
+    {year, who: "стажёр и джуниор", share: r.jn / r.jof, text: share(r.jn, r.jof)},
+    {year, who: "остальные грейды", share: r.on / r.oof, text: share(r.on, r.oof)}
+  ];
 });
 ```
 
+<div class="grid grid-cols-2">
 <div class="card">
-
-Где вакансии стажёров и джуниоров (зелёные полосы) по сравнению со всеми вакансиями источника (серые риски). «Удалённо» стоит выше города: вакансия с удалённым форматом считается удалённой, даже если город указан. Доли от ${regionRows.filter((d) => d.who === "стажёр и джуниор" && d.region === REGION.moscow).map((d) => `${int(d.of)} вакансий стажёров и джуниоров (${d.source})`).join(" и ")}. Telegram не входит: место работы из постов пока не извлекается.
+<h3>Доля удалённых</h3>
 
 ```js
-html`<div class="grid grid-cols-2">${[SOURCE.trudvsem, SOURCE.habr].map((source) => {
-  const rows = regionRows.filter((d) => d.source === source);
-  const jun = rows.filter((d) => d.who === "стажёр и джуниор");
-  const all = rows.filter((d) => d.who === "все вакансии");
-  return html`<div><h3>${source}</h3>${Plot.plot({
-    width: width < 600 ? width : width / 2 - 20,
-    height: REGION_ORDER.length * 28 + 30,
-    marginLeft: 130,
-    marginRight: 60,
-    x: {axis: null, domain: [0, 1]},
-    y: {label: null, domain: REGION_ORDER.map((r) => REGION[r])},
-    marks: [
-      Plot.barX(jun, {y: "region", x: (d) => d.n / d.of, fill: "#3ca951", title: (d) => `${d.region}, стажёр и джуниор
-${share(d.n, d.of)}`, tip: true}),
-      Plot.tickX(all, {y: "region", x: (d) => d.n / d.of, stroke: "#606060", strokeWidth: 2, title: (d) => `${d.region}, все вакансии
-${share(d.n, d.of)}`}),
-      Plot.text(jun, {
-        y: "region",
-        x: (d) => {
-          const a = all.find((r) => r.region === d.region);
-          return Math.max(d.n / d.of, a.n / a.of);
-        },
-        text: (d) => pct(d.n / d.of),
-        textAnchor: "start",
-        dx: 6
+resize((width) => Plot.plot({
+  width,
+  height: remoteRows.length * 34 + 60,
+  marginLeft: width < 400 ? 130 : 170,
+  marginRight: 20,
+  x: {grid: true, label: "доля удалённых", tickFormat: pct, zero: true},
+  y: {label: null, domain: remoteRows.map((d) => d.label)},
+  color: {domain: ["стажёр и джуниор", "остальные грейды"], range: [COLOR.junior, COLOR.all], legend: true},
+  marks: [
+    Plot.ruleY(remoteRows, {y: "label", stroke: "#eee"}),
+    Plot.dot(remotePoints, {y: "label", x: "share", fill: "who", r: 6, title: (d) => `${d.label}, ${d.who}\n${d.text}`, tip: true})
+  ]
+}))
+```
+
+<p class="note-small">Портал и Хабр Карьера: вакансия удалённая, если так указан формат работы. Telegram: формат из поста, среди постов с грейдом и форматом.</p>
+
+</div>
+<div class="card">
+<h3>Telegram по годам</h3>
+
+```js
+resize((width) => Plot.plot({
+  width,
+  height: 230,
+  marginLeft: 44,
+  x: {label: null, tickFormat: (y) => `${y}`, ticks: [...new Set(tgYearsRemote.map((d) => d.year))]},
+  y: {grid: true, label: "доля удалённых", tickFormat: pct, zero: true},
+  color: {domain: ["стажёр и джуниор", "остальные грейды"], range: [COLOR.junior, COLOR.all], legend: true},
+  marks: [
+    Plot.lineY(tgYearsRemote, {x: "year", y: "share", stroke: "who", strokeWidth: 2}),
+    Plot.dot(tgYearsRemote, {x: "year", y: "share", fill: "who", r: 3, title: (d) => `${d.year}, ${d.who}\n${d.text} постов`, tip: true})
+  ]
+}))
+```
+
+<p class="note-small">${lastYear} по неделю с ${dateLong(tgYears.last_week)}.</p>
+
+</div>
+</div>
+
+<details>
+<summary>Удалёнка по ролям, ${SOURCE_SHORT[source]}</summary>
+
+```js
+const wf = d3
+  .groups(workFormat.filter((d) => d.source === source), (d) => d.role_bucket)
+  .map(([bucket, v]) => {
+    const remote = v.find((d) => d.work_format === "remote")?.vacancies ?? 0;
+    const known = d3.sum(v.filter((d) => d.work_format !== "unknown"), (d) => d.vacancies);
+    return {role: ROLE[bucket], n: remote, of: known};
+  })
+  .filter((d) => d.of >= 30)
+  .sort((a, b) => b.n / b.of - a.n / a.of);
+display(
+  wf.length === 0
+    ? html`<p class="note-small">Формат работы в этом источнике почти не указан.</p>`
+    : Plot.plot({
+        width,
+        height: wf.length * 22 + 20,
+        marginLeft: width < 600 ? 150 : 230,
+        marginRight: width < 600 ? 70 : 130,
+        x: {axis: null, domain: [0, 1]},
+        y: {label: null, domain: wf.map((d) => d.role), tickFormat: (r) => (width < 600 && r.length > 24 ? r.slice(0, 23) + "…" : r)},
+        marks: [
+          Plot.barX(wf, {y: "role", x: (d) => d.n / d.of, fill: SOURCE_COLOR[source]}),
+          Plot.text(wf, {y: "role", x: (d) => d.n / d.of, text: (d) => (width < 600 ? pct(d.n / d.of) : share(d.n, d.of)), textAnchor: "start", dx: 4})
+        ]
       })
-    ]
-  })}</div>`;
-})}</div>`
+);
 ```
 
-</div>
+<p class="note-small">Доля «удалённо» среди ${unitOf(source)} роли с указанным форматом, все грейды; роли, где формат указан меньше чем у 30, не показаны.</p>
+
+</details>

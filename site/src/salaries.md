@@ -1,195 +1,177 @@
 ---
 title: Зарплаты
-toc: false
 ---
 
 # Зарплаты в объявлениях
 
 ```js
-import {ROLE, SOURCE, GRADE, GRADE_ORDER, REGION, REGION_ORDER, MART_GROUP, MART_GROUP_ORDER, int, pct, share, rub, dateLong} from "./components/labels.js";
-import {shownBounds, rangePlot} from "./components/salary.js";
+import {ROLE, XROLE, SOURCE_SHORT, SOURCE_COLOR, FAMILY_ORDER, GRADE, GRADE_ORDER, REGION, REGION_ORDER, COLOR, int, pct, share, rub, signedPct, dateLong, sourcePicker} from "./components/labels.js";
+import {shownBounds, rangePlot, salaryTable} from "./components/salary.js";
 
 const meta = FileAttachment("data/meta.json").json();
 const salaries = FileAttachment("data/salaries.json").json();
+const telegram = FileAttachment("data/salaries_telegram.json").json();
+const effects = FileAttachment("data/skill_effects.json").json();
 ```
+
+<p class="lead">Вилка из объявления, рубли в месяц до вычета налога. Это не выплаченная зарплата. <a href="./methodology#salaries">Подробнее в методике</a>.</p>
 
 ```js
-const FAMILIES = ["trudvsem", "habr"];
 const minN = meta.salary_min_n;
-// Rows of one level cover every vacancy of the source once; nothing is ever summed across levels.
-const at = (level, source) => salaries.filter((d) => d.level === level && d.source === source);
-const DIMENSIONS = {
-  group: {name: "группа ролей", key: (d) => MART_GROUP[d.role_group], order: MART_GROUP_ORDER.map((g) => MART_GROUP[g])},
-  grade: {name: "грейд", key: (d) => GRADE[d.grade], order: GRADE_ORDER.map((g) => GRADE[g])},
-  region: {name: "регион", key: (d) => REGION[d.region_group], order: REGION_ORDER.map((r) => REGION[r])},
-  group_grade: {name: "группа ролей и грейд", key: (d) => `${MART_GROUP[d.role_group]} · ${GRADE[d.grade]}`, order: null},
-  bucket: {name: "роль", key: (d) => ROLE[d.role_bucket], order: null}
-};
-const dimensionInput = (levels) =>
-  Inputs.radio(new Map(levels.map((l) => [DIMENSIONS[l].name, l])), {value: levels[0], label: "В разрезе"});
-const sourceInput = () => Inputs.radio(new Map(FAMILIES.map((s) => [SOURCE[s], s])), {value: "trudvsem", label: "Источник"});
+const sourceInput = sourcePicker(Inputs, FAMILY_ORDER, "telegram");
+const source = Generators.input(sourceInput);
+const regionInput = Inputs.select(new Map([["вся выборка", null], ...REGION_ORDER.map((r) => [REGION[r], r])]), {label: "Регион"});
+const region = Generators.input(regionInput);
+const gradeInput = Inputs.select(new Map([["все", null], ...GRADE_ORDER.map((g) => [GRADE[g], g])]), {label: "Грейд"});
+const grade = Generators.input(gradeInput);
 ```
 
-Зарплата здесь это вилка, которую работодатель написал в объявлении, а не то, сколько в итоге платят. Суммы взяты в рублях в месяц так, как их указал источник, вычет налога не учитывается. Вакансии с суммой в другой валюте в вилки не входят. На портале «Работа в России» верхняя граница часто совпадает с нижней: так устроена форма портала. Telegram на этой странице нет: зарплаты из постов пока не извлекаются.
+<div class="filters">${sourceInput}${regionInput}${gradeInput}</div>
 
-<div class="grid grid-cols-2">
-${FAMILIES.map((s) => {
-  const [row] = at("source", s);
-  return html`<div class="card">
-    <h2>${SOURCE[s]}</h2>
-    <div class="big">${pct(row.with_salary_rub / row.vacancies)}</div>
-    вакансий указывают сумму в рублях: ${share(row.with_salary_rub, row.vacancies)}; в другой валюте ${int(row.with_salary_other_currency)}. Медиана «от» ${row.with_from >= minN ? `${rub(row.salary_from_median)} (n ${int(row.with_from)})` : "не показана, мало вакансий"}, медиана «до» ${row.with_to >= minN ? `${rub(row.salary_to_median)} (n ${int(row.with_to)})` : "не показана, мало вакансий"}. Вакансии с ${dateLong(meta.periods[s].period_from)} по ${dateLong(meta.periods[s].period_to)}.
+```js
+const isTg = source === "telegram";
+// Rows of one level cover every vacancy of the source once; nothing is ever summed across levels.
+const at = (level) => (isTg ? telegram.filter((d) => d.level === level) : salaries.filter((d) => d.level === level && d.source === source));
+const unit = isTg ? "постов" : "вакансий";
+const regionUsed = isTg ? null : region;
+const sourceRow = (s) => (s === "telegram" ? telegram.find((d) => d.level === "source") : salaries.find((d) => d.level === "source" && d.source === s));
+const withAmount = (d) => d.with_salary_rub ?? d.with_salary_rub_month;
+const period = (s) => (s === "telegram" ? telegram[0] : meta.periods[s]);
+```
+
+<div class="grid grid-cols-3">
+${FAMILY_ORDER.map((s) => {
+  const row = sourceRow(s);
+  return html`<div class="card" style=${`border-top: 3px solid ${SOURCE_COLOR[s]}`}>
+    <h2>${SOURCE_SHORT[s]}</h2>
+    <div class="big">${row.with_from >= minN ? rub(row.salary_from_median) : "мало данных"}</div>
+    <p>медиана «от», n ${int(row.with_from)}; «до» ${row.with_to >= minN ? rub(row.salary_to_median) : "мало данных"}</p>
+    <p class="sub">вилку пишут ${share(withAmount(row), row.vacancies)} ${s === "telegram" ? "постов" : "вакансий"} с ${dateLong(period(s).period_from)} по ${dateLong(period(s).period_to)}</p>
   </div>`;
 })}
 </div>
 
-Медианы и квартили считаются в витрине по вакансиям каждой группы, а не собираются из медиан её частей. Граница вилки показана, если её указали хотя бы ${minN} вакансий группы: при меньшем числе 95-процентный интервал для медианы по порядковым статистикам совпадает со всем разбросом группы, от минимума до максимума (при ${minN} вакансиях интервал от второго до предпоследнего значения покрывает медиану с вероятностью ${pct(meta.salary_min_n_coverage)}).
+${isTg && region !== null ? html`<p class="note-small">Регион из постов Telegram пока не извлекается в витрину зарплат, фильтр региона для Telegram не действует.</p>` : ""}
 
-## Медианы по группам
-
-```js
-const medSource = view(sourceInput());
-const medBy = view(dimensionInput(["group", "grade", "region", "group_grade", "bucket"]));
-```
+## Лестница грейдов
 
 ```js
-const medRows = at(medBy, medSource);
-const dim = DIMENSIONS[medBy];
-const medShown = shownBounds(medRows, minN, dim.key);
-const medOrdered = dim.order
-  ? medShown.slice().sort((a, b) => dim.order.indexOf(a.label) - dim.order.indexOf(b.label))
-  : medShown.slice().sort((a, b) => (b.from ?? b.to) - (a.from ?? a.to));
-const medHidden = medRows.filter((d) => d.with_from < minN && d.with_to < minN);
+const LADDER = ["intern", "junior", "middle", "senior", "lead"];
+const ladderRows = (regionUsed === null ? at("grade") : at("grade_region").filter((d) => d.region_group === regionUsed)).filter((d) => LADDER.includes(d.grade));
+const ladderShown = shownBounds(ladderRows, minN, (d) => GRADE[d.grade]).sort((a, b) => LADDER.indexOf(a.grade) - LADDER.indexOf(b.grade));
+const ladderHidden = ladderRows.filter((d) => d.with_from < minN && d.with_to < minN);
 ```
 
 <div class="card">
 
-${SOURCE[medSource]}, в разрезе «${dim.name}»: групп с достаточным числом вакансий ${int(medShown.length)} из ${int(medRows.length)}${medHidden.length ? `; не показаны ${medHidden.map((d) => dim.key(d)).join(", ")} (в них ${int(d3.sum(medHidden, (d) => d.with_salary_rub))} вакансий с суммой)` : ""}. Точка: медиана, отрезок: от 25-го до 75-го процентиля.
+<p class="note-small">${SOURCE_SHORT[source]}${regionUsed ? `, ${REGION[regionUsed]}` : ""}. Точка: медиана, отрезок: от 25-го до 75-го процентиля.${ladderHidden.length ? ` Мало данных: ${ladderHidden.map((d) => GRADE[d.grade]).join(", ")}.` : ""}</p>
 
 ```js
-medShown.length === 0 ? html`<p>Ни одна группа не набрала ${minN} вакансий с указанной границей.</p>` : rangePlot(medOrdered, {width, labelWidth: medBy === "group_grade" ? 330 : 230, sort: false})
+ladderShown.length === 0 ? html`<p>Ни один грейд не набрал ${minN} ${unit} с указанной границей.</p>` : rangePlot(ladderShown, {width, labelWidth: 110, sort: false, unit})
 ```
+
+${source === "trudvsem" ? html`<p class="note-small">На портале грейд берётся из заголовка: «ведущий специалист» в госсекторе попадает в сеньоры, поэтому сеньор здесь может стоять ниже мидла.</p>` : ""}
 
 </div>
 
-```js
-Inputs.table(
-  medOrdered.map((d) => ({...d, share: d.with_salary_rub / d.vacancies})),
-  {
-    columns: width < 600 ? ["label", "from", "to"] : ["label", "vacancies", "with_salary_rub", "with_from", "from", "with_to", "to"],
-    header: {
-      label: dim.name[0].toUpperCase() + dim.name.slice(1),
-      vacancies: "Вакансий",
-      with_salary_rub: "С суммой",
-      with_from: "n «от»",
-      from: "Медиана «от»",
-      with_to: "n «до»",
-      to: "Медиана «до»"
-    },
-    format: {vacancies: int, with_salary_rub: int, with_from: int, with_to: int, from: rub, to: rub},
-    layout: width < 600 ? "fixed" : "auto",
-    width: width < 600 ? {label: 150, from: 85, to: 85} : undefined,
-    sort: null,
-    rows: 12
-  }
-)
-```
-
-## Где зарплату указывают
+## По ролям
 
 ```js
-const shareSource = view(sourceInput());
-const shareBy = view(dimensionInput(["group", "grade", "region"]));
-```
-
-```js
-const shareDim = DIMENSIONS[shareBy];
-const stated = at(shareBy, shareSource)
-  .map((d) => ({key: shareDim.key(d), n: d.with_salary_rub, of: d.vacancies, share: d.with_salary_rub / d.vacancies}))
-  .sort((a, b) => shareDim.order.indexOf(a.key) - shareDim.order.indexOf(b.key));
+// The level of mart_salaries (or of the extracted mart for Telegram) that splits by exactly the filters.
+const roleLevel = isTg ? (grade === null ? "role" : "cell") : grade === null ? (regionUsed === null ? "bucket" : "bucket_region") : regionUsed === null ? "bucket_grade" : "cell";
+const roleRows = at(roleLevel).filter((d) => (grade === null || d.grade === grade) && (regionUsed === null || d.region_group === regionUsed));
+const roleName = (d) => (isTg ? XROLE[d.role] ?? d.role : ROLE[d.role_bucket]);
+const roleShown = shownBounds(roleRows, minN, roleName);
+const roleHidden = roleRows.filter((d) => d.with_from < minN && d.with_to < minN);
+const roleSorted = roleShown.slice().sort((a, b) => (b.from ?? b.to) - (a.from ?? a.to));
 ```
 
 <div class="card">
 
-${SOURCE[shareSource]}: доля вакансий, где указана сумма в рублях.
+<p class="note-small">${SOURCE_SHORT[source]}${grade ? `, ${GRADE[grade]}` : ""}${regionUsed ? `, ${REGION[regionUsed]}` : ""}: ролей с достаточным числом ${unit} ${int(roleShown.length)} из ${int(roleRows.length)}.${isTg ? " Роль в Telegram определяет модель извлечения." : ""}</p>
+
+```js
+roleShown.length === 0 ? html`<p>Ни одна роль не набрала ${minN} ${unit} с указанной границей.</p>` : rangePlot(roleSorted, {width, labelWidth: 230, sort: false, unit})
+```
+
+<p class="note-small">Граница показана, если её указали ${minN} ${unit} и больше (<a href="./methodology#salary-threshold">почему</a>).${roleHidden.length ? ` Мало данных: ${roleHidden.map(roleName).join(", ")}.` : ""}</p>
+
+<details>
+<summary>Таблица</summary>
+
+```js
+salaryTable(roleSorted, {width, header: "Роль", countHeader: isTg ? "Постов" : "Вакансий"})
+```
+
+</details>
+</div>
+
+## Навык и вилка
+
+```js
+const level = Math.round(effects.ci_level * 100);
+const holm = (e) => e.p_holm < 1 - effects.ci_level;
+const k8s = effects.effects.find((e) => e.skill === "Kubernetes");
+// The skills with the largest plain gap among those named in 100+ vacancies, and every skill that
+// passed the Holm correction; the full list is in the table below.
+const slopeSkills = effects.effects
+  .filter((e) => e.rows_with_skill >= 100)
+  .sort((a, b) => b.naive_pct - a.naive_pct)
+  .slice(0, 9)
+  .concat(effects.effects.filter((e) => holm(e)))
+  .filter((e, i, all) => all.findIndex((x) => x.skill === e.skill) === i);
+const hot = (e) => holm(e) || e.skill === "Kubernetes";
+const slopeRows = slopeSkills.flatMap((e) => [
+  {skill: e.skill, side: "в лоб", value: e.naive_pct, e},
+  {skill: e.skill, side: "при прочих равных", value: e.pct, e}
+]);
+const allEffects = effects.effects.slice().sort((a, b) => b.naive_pct - a.naive_pct);
+// Labels of close values are nudged apart, the points stay where they are.
+function spreadLabels(rows, gap) {
+  const sorted = rows.slice().sort((a, b) => a.value - b.value);
+  let last = -Infinity;
+  return sorted.map((d) => ({...d, labelY: (last = Math.max(d.value, last + gap))}));
+}
+const naiveSpan = d3.extent(slopeSkills, (e) => e.naive_pct);
+const leftLabels = spreadLabels(slopeRows.filter((d) => d.side === "в лоб"), (naiveSpan[1] - Math.min(0, naiveSpan[0])) / 18);
+```
+
+<div class="card">
+
+<p class="note-small">Слева вакансии с навыком и без сравниваются в лоб, справа те же вакансии при одинаковых роли, грейде, регионе, опыте и остальном стеке. Kubernetes: ${signedPct(k8s.naive_pct)} в лоб и ${signedPct(k8s.pct)} [${signedPct(k8s.pct_ci_low)}; ${signedPct(k8s.pct_ci_high)}] при прочих равных.</p>
 
 ```js
 Plot.plot({
   width,
-  height: stated.length * 26 + 30,
-  marginLeft: width < 600 ? 190 : 240,
-  marginRight: width < 600 ? 80 : 140,
-  x: {axis: null, domain: [0, 1]},
-  y: {label: null, domain: stated.map((d) => d.key)},
+  height: 460,
+  marginLeft: width < 600 ? 120 : 170,
+  marginRight: width < 600 ? 120 : 170,
+  x: {domain: ["в лоб", "при прочих равных"], label: null, axis: "top", padding: 0},
+  y: {axis: null, inset: 16},
   marks: [
-    Plot.barX(stated, {y: "key", x: "share", fill: "#4269d0"}),
-    Plot.text(stated, {
-      y: "key",
-      x: "share",
-      text: (d) => (width < 600 ? `${int(d.n)} из ${int(d.of)}` : share(d.n, d.of)),
-      textAnchor: "start",
-      dx: 4
-    })
+    Plot.ruleY([0], {stroke: "#888", strokeDasharray: "3,3"}),
+    Plot.line(slopeRows, {x: "side", y: "value", z: "skill", stroke: (d) => (hot(d.e) ? COLOR.accent : "#cfccc4"), strokeWidth: (d) => (hot(d.e) ? 3 : 1.5)}),
+    Plot.dot(slopeRows, {x: "side", y: "value", r: 3.5, fill: (d) => (hot(d.e) ? COLOR.accent : "#b8b5ad"), tip: true,
+      title: (d) => `${d.skill}, вакансий с навыком ${int(d.e.rows_with_skill)}\nв лоб ${signedPct(d.e.naive_pct)}\nпри прочих равных ${signedPct(d.e.pct)} [${signedPct(d.e.pct_ci_low)}; ${signedPct(d.e.pct_ci_high)}]`}),
+    Plot.text(leftLabels, {x: "side", y: "labelY", text: (d) => `${d.skill} ${signedPct(d.value)}`, textAnchor: "end", dx: -8, fill: (d) => (hot(d.e) ? COLOR.accent : "#6b6963"), fontWeight: (d) => (hot(d.e) ? "bold" : "normal")}),
+    Plot.text(slopeRows.filter((d) => d.side !== "в лоб" && hot(d.e)), {x: "side", y: "value", text: (d) => `${signedPct(d.value)} ${d.skill}${holm(d.e) ? " *" : ""}`, textAnchor: "start", dx: 8, fill: COLOR.accent, fontWeight: "bold"})
   ]
 })
 ```
 
-</div>
+<p class="note-small">* прошёл поправку Холма на ${effects.estimated} проверок, таких ${effects.significant_holm} из ${effects.estimated}. Вакансии порталов с вилкой в рублях, ${int(effects.rows)} строк; навыки извлечены моделью проекта. <a href="./methodology#skill-effects">Ограничения оценки</a>.</p>
 
-## Вилки по ячейкам
-
-Самый мелкий срез: роль, грейд и регион вместе. Фильтры выбирают ячейки, сами ячейки не складываются.
+<details><summary>Все ${effects.estimated} навыков</summary>
 
 ```js
-const pickSource = view(sourceInput());
-const pickGroup = view(Inputs.select(new Map([["все", null], ...MART_GROUP_ORDER.map((g) => [MART_GROUP[g], g])]), {label: "Группа ролей"}));
-const pickGrade = view(Inputs.select(new Map([["все", null], ...GRADE_ORDER.map((g) => [GRADE[g], g])]), {label: "Грейд"}));
-const pickRegion = view(Inputs.select(new Map([["все", null], ...REGION_ORDER.map((r) => [REGION[r], r])]), {label: "Регион"}));
+Inputs.table(allEffects, {
+  columns: ["skill", "naive_pct", "pct", "pct_ci_low", "pct_ci_high", "rows_with_skill"],
+  header: {skill: "Навык", naive_pct: "в лоб, %", pct: "при прочих равных, %", pct_ci_low: `${level} % от`, pct_ci_high: `${level} % до`, rows_with_skill: "вакансий"},
+  format: {naive_pct: signedPct, pct: signedPct, pct_ci_low: signedPct, pct_ci_high: signedPct, rows_with_skill: int},
+  rows: 14
+})
 ```
 
-```js
-const selected = at("cell", pickSource).filter(
-  (d) =>
-    (pickGroup === null || d.role_group === pickGroup) &&
-    (pickGrade === null || d.grade === pickGrade) &&
-    (pickRegion === null || d.region_group === pickRegion)
-);
-const shown = shownBounds(selected, minN, (d) => `${ROLE[d.role_bucket]} · ${GRADE[d.grade]} · ${REGION[d.region_group]}`);
-const hidden = selected.filter((d) => d.with_from < minN && d.with_to < minN);
-const plotted = shown.slice().sort((a, b) => b.with_salary_rub - a.with_salary_rub).slice(0, 30);
-```
-
-<div class="card">
-
-${shown.length === 0 ? "В выбранном срезе нет ячейки, где границу вилки указали бы " + minN + " вакансий или больше." : `Ячеек с достаточным числом вакансий: ${int(shown.length)}${shown.length > plotted.length ? `, на графике ${plotted.length} самых крупных, остальные в таблице ниже` : ""}. Не показаны ${int(hidden.length)} ячеек, в них ${int(d3.sum(hidden, (d) => d.with_salary_rub))} вакансий с суммой в рублях.`}
-
-```js
-shown.length === 0 ? html`` : rangePlot(plotted, {width, labelWidth: 360})
-```
+</details>
 
 </div>
-
-```js
-Inputs.table(
-  shown.map((d) => ({...d, role: ROLE[d.role_bucket], gradeLabel: GRADE[d.grade], region: REGION[d.region_group]})),
-  {
-    columns: width < 600 ? ["role", "gradeLabel", "region", "from", "to"] : ["role", "gradeLabel", "region", "with_from", "from", "with_to", "to"],
-    header: {
-      role: "Роль",
-      gradeLabel: "Грейд",
-      region: "Регион",
-      with_from: "n «от»",
-      from: "Медиана «от»",
-      with_to: "n «до»",
-      to: "Медиана «до»"
-    },
-    format: {with_from: int, with_to: int, from: rub, to: rub},
-    // on a phone the columns keep their width and the table scrolls sideways instead of cutting names
-    layout: width < 600 ? "fixed" : "auto",
-    width: width < 600 ? {role: 170, gradeLabel: 120, region: 120, from: 100, to: 100} : undefined,
-    sort: "with_from",
-    reverse: true,
-    rows: 12
-  }
-)
-```

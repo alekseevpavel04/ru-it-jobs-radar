@@ -209,6 +209,74 @@ export const LIFETIME = {
 
 const money = new Intl.NumberFormat("ru-RU", {maximumFractionDigits: 0});
 export const rub = (x) => (x === null || x === undefined ? "" : `${money.format(x)} ₽`);
+export const thousands = (x) => `${int(Math.round(x / 1000))} тыс.`;
 
+// Russian noun agreement with a number: plural(n, ["день", "дня", "дней"]).
+export function plural(n, [one, few, many]) {
+  const k = Math.abs(Math.round(n));
+  if (k % 10 === 1 && k % 100 !== 11) return one;
+  if (k % 10 >= 2 && k % 10 <= 4 && (k % 100 < 12 || k % 100 > 14)) return few;
+  return many;
+}
 // "из N каналов" agrees with N: из 51 канала, из 47 каналов.
 export const ofChannels = (n) => `${int(n)} ${n % 10 === 1 && n % 100 !== 11 ? "канала" : "каналов"}`;
+export const days = (n) => `${int(n)} ${plural(n, ["день", "дня", "дней"])}`;
+// "+2,7 п. п.": change of a share in percentage points.
+const oneDecimal = new Intl.NumberFormat("ru-RU", {minimumFractionDigits: 1, maximumFractionDigits: 1});
+// The sign follows the rounded number, so a change that rounds to zero reads "0,0", not "-0,0".
+const signed = (x) => {
+  const text = oneDecimal.format(Math.abs(x));
+  return `${text === oneDecimal.format(0) ? "" : x > 0 ? "+" : "-"}${text}`;
+};
+export const points = (delta) => `${signed(delta * 100)} п. п.`;
+export const signedPct = (x) => `${signed(x)} %`;
+
+// One colour per source on every page; everything else is neutral, beginners get a colour no source has.
+export const SOURCE_COLOR = {trudvsem: "#4269d0", trudvsem_snapshot: "#4269d0", habr: "#efb118", telegram: "#3ca951"};
+export const FAMILY_ORDER = ["trudvsem", "habr", "telegram"];
+export const SOURCE_SHORT = {trudvsem: "Работа в России", trudvsem_snapshot: "Работа в России", habr: "Хабр Карьера", telegram: "Telegram"};
+export const COLOR = {
+  bar: "#4a4a4a",
+  all: "#b8b8b8",
+  junior: "#8e44ad",
+  accent: "#d1495b",
+  from: "#9a9a9a",
+  to: "#3a3a3a"
+};
+
+// Roles of the extraction schema (mart_extracted_salaries: Telegram salaries).
+export const XROLE = {
+  ml_engineer: "ML-инженер",
+  data_scientist: "Data Scientist",
+  mlops: "MLOps",
+  data_engineer: "Инженер данных",
+  data_analyst: "Аналитик данных",
+  business_analyst: "Бизнес-аналитик",
+  system_analyst: "Системный аналитик",
+  backend: "Backend",
+  frontend: "Frontend",
+  fullstack: "Fullstack",
+  mobile: "Мобильная разработка",
+  software_engineer: "Программист без уточнения",
+  developer_1c: "1С",
+  embedded: "Встраиваемые системы",
+  devops: "DevOps",
+  qa: "Тестирование",
+  sysadmin: "Системное администрирование",
+  support: "Поддержка",
+  security: "Информационная безопасность",
+  designer: "Дизайн",
+  manager: "Управление",
+  other_it: "Прочее IT",
+  unknown: "роль не указана"
+};
+
+export const WORK_FORMAT = {office: "офис", hybrid: "гибрид", remote: "удалённо", unknown: "не указан"};
+
+// A source picker: radio buttons on a wide screen, a select on a phone, where three long labels wrap.
+export function sourcePicker(Inputs, sources, value, label = "Источник") {
+  const options = new Map(sources.map((s) => [SOURCE_SHORT[s], s]));
+  return window.matchMedia("(max-width: 640px)").matches
+    ? Inputs.select(options, {value, label})
+    : Inputs.radio(options, {value, label});
+}
