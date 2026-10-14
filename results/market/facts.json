@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/market_facts.py",
   "command": "python -m radar.site.market_facts",
-  "commit": "d2054bb-dirty",
-  "created_at": "2026-10-14T12:32:24+00:00",
+  "commit": "a49fc6e-dirty",
+  "created_at": "2026-10-14T14:22:30+00:00",
   "metrics": {
     "ml_ds.habr.vacancies": {
       "value": 54,
@@ -2902,6 +2902,830 @@
       "n": 5650,
       "denominator": 8113
     },
+    "telegram_recent.it_all.posts": {
+      "value": 46400,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_recent.it_junior.posts": {
+      "value": 7569,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_recent.ml_all.posts": {
+      "value": 3313,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_recent.ml_junior.posts": {
+      "value": 444,
+      "n": null,
+      "denominator": null
+    },
+    "telegram_recent_skill.it_all.A/B-тесты": {
+      "value": 0.0105,
+      "n": 489,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.Airflow": {
+      "value": 0.0258,
+      "n": 1195,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.CI/CD": {
+      "value": 0.088,
+      "n": 4081,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.CSS": {
+      "value": 0.034,
+      "n": 1579,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.DevOps": {
+      "value": 0.0471,
+      "n": 2184,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.Docker": {
+      "value": 0.1037,
+      "n": 4811,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.Excel": {
+      "value": 0.0166,
+      "n": 768,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.FastAPI": {
+      "value": 0.0312,
+      "n": 1450,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.Git": {
+      "value": 0.0962,
+      "n": 4463,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.HTML": {
+      "value": 0.0333,
+      "n": 1543,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.HTTP": {
+      "value": 0.0278,
+      "n": 1291,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.Java": {
+      "value": 0.0908,
+      "n": 4211,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.JavaScript": {
+      "value": 0.0792,
+      "n": 3674,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.Jira": {
+      "value": 0.0288,
+      "n": 1334,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.Kubernetes": {
+      "value": 0.074,
+      "n": 3435,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.LangChain": {
+      "value": 0.0079,
+      "n": 366,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.LangGraph": {
+      "value": 0.004,
+      "n": 187,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.Linux": {
+      "value": 0.0758,
+      "n": 3516,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.MLOps": {
+      "value": 0.0072,
+      "n": 333,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.NumPy": {
+      "value": 0.0125,
+      "n": 581,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.PostgreSQL": {
+      "value": 0.1172,
+      "n": 5440,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.PyTorch": {
+      "value": 0.0138,
+      "n": 641,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.Python": {
+      "value": 0.2026,
+      "n": 9402,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.RAG": {
+      "value": 0.0138,
+      "n": 639,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.REST": {
+      "value": 0.0833,
+      "n": 3866,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.React": {
+      "value": 0.0927,
+      "n": 4300,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.SQL": {
+      "value": 0.149,
+      "n": 6914,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.Spark": {
+      "value": 0.0199,
+      "n": 923,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.TensorFlow": {
+      "value": 0.0054,
+      "n": 250,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.Transformers": {
+      "value": 0.0033,
+      "n": 153,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.TypeScript": {
+      "value": 0.0697,
+      "n": 3234,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.pandas": {
+      "value": 0.0174,
+      "n": 809,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.scikit-learn": {
+      "value": 0.0074,
+      "n": 342,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_all.ООП": {
+      "value": 0.0301,
+      "n": 1396,
+      "denominator": 46400
+    },
+    "telegram_recent_skill.it_junior.A/B-тесты": {
+      "value": 0.007,
+      "n": 53,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.Airflow": {
+      "value": 0.0135,
+      "n": 102,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.CI/CD": {
+      "value": 0.0439,
+      "n": 332,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.CSS": {
+      "value": 0.069,
+      "n": 522,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.DevOps": {
+      "value": 0.0377,
+      "n": 285,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.Docker": {
+      "value": 0.0867,
+      "n": 656,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.Excel": {
+      "value": 0.0458,
+      "n": 347,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.FastAPI": {
+      "value": 0.0358,
+      "n": 271,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.Git": {
+      "value": 0.1509,
+      "n": 1142,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.HTML": {
+      "value": 0.0708,
+      "n": 536,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.HTTP": {
+      "value": 0.0349,
+      "n": 264,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.Java": {
+      "value": 0.0905,
+      "n": 685,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.JavaScript": {
+      "value": 0.099,
+      "n": 749,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.Jira": {
+      "value": 0.0357,
+      "n": 270,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.Kubernetes": {
+      "value": 0.0258,
+      "n": 195,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.LangChain": {
+      "value": 0.0065,
+      "n": 49,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.LangGraph": {
+      "value": 0.0037,
+      "n": 28,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.Linux": {
+      "value": 0.0674,
+      "n": 510,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.MLOps": {
+      "value": 0.0018,
+      "n": 14,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.NumPy": {
+      "value": 0.016,
+      "n": 121,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.PostgreSQL": {
+      "value": 0.0906,
+      "n": 686,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.PyTorch": {
+      "value": 0.0111,
+      "n": 84,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.Python": {
+      "value": 0.2303,
+      "n": 1743,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.RAG": {
+      "value": 0.0104,
+      "n": 79,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.REST": {
+      "value": 0.0881,
+      "n": 667,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.React": {
+      "value": 0.0852,
+      "n": 645,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.SQL": {
+      "value": 0.1961,
+      "n": 1484,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.Spark": {
+      "value": 0.0098,
+      "n": 74,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.TensorFlow": {
+      "value": 0.0036,
+      "n": 27,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.Transformers": {
+      "value": 0.0036,
+      "n": 27,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.TypeScript": {
+      "value": 0.0638,
+      "n": 483,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.pandas": {
+      "value": 0.0271,
+      "n": 205,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.scikit-learn": {
+      "value": 0.0085,
+      "n": 64,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.it_junior.ООП": {
+      "value": 0.0542,
+      "n": 410,
+      "denominator": 7569
+    },
+    "telegram_recent_skill.ml_all.A/B-тесты": {
+      "value": 0.0495,
+      "n": 164,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.Airflow": {
+      "value": 0.0724,
+      "n": 240,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.CI/CD": {
+      "value": 0.0921,
+      "n": 305,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.CSS": {
+      "value": 0.0018,
+      "n": 6,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.DevOps": {
+      "value": 0.0435,
+      "n": 144,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.Docker": {
+      "value": 0.1693,
+      "n": 561,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.Excel": {
+      "value": 0.0072,
+      "n": 24,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.FastAPI": {
+      "value": 0.0764,
+      "n": 253,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.Git": {
+      "value": 0.0936,
+      "n": 310,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.HTML": {
+      "value": 0.0024,
+      "n": 8,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.HTTP": {
+      "value": 0.0066,
+      "n": 22,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.Java": {
+      "value": 0.0238,
+      "n": 79,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.JavaScript": {
+      "value": 0.0142,
+      "n": 47,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.Jira": {
+      "value": 0.0112,
+      "n": 37,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.Kubernetes": {
+      "value": 0.1008,
+      "n": 334,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.LangChain": {
+      "value": 0.0749,
+      "n": 248,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.LangGraph": {
+      "value": 0.0392,
+      "n": 130,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.Linux": {
+      "value": 0.0414,
+      "n": 137,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.MLOps": {
+      "value": 0.0848,
+      "n": 281,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.NumPy": {
+      "value": 0.0939,
+      "n": 311,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.PostgreSQL": {
+      "value": 0.077,
+      "n": 255,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.PyTorch": {
+      "value": 0.1778,
+      "n": 589,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.Python": {
+      "value": 0.521,
+      "n": 1726,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.RAG": {
+      "value": 0.118,
+      "n": 391,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.REST": {
+      "value": 0.0501,
+      "n": 166,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.React": {
+      "value": 0.0148,
+      "n": 49,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.SQL": {
+      "value": 0.2007,
+      "n": 665,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.Spark": {
+      "value": 0.0564,
+      "n": 187,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.TensorFlow": {
+      "value": 0.0691,
+      "n": 229,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.Transformers": {
+      "value": 0.0429,
+      "n": 142,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.TypeScript": {
+      "value": 0.0142,
+      "n": 47,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.pandas": {
+      "value": 0.1041,
+      "n": 345,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.scikit-learn": {
+      "value": 0.0903,
+      "n": 299,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_all.ООП": {
+      "value": 0.0257,
+      "n": 85,
+      "denominator": 3313
+    },
+    "telegram_recent_skill.ml_junior.A/B-тесты": {
+      "value": 0.0608,
+      "n": 27,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.Airflow": {
+      "value": 0.045,
+      "n": 20,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.CI/CD": {
+      "value": 0.045,
+      "n": 20,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.CSS": {
+      "value": 0.0045,
+      "n": 2,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.DevOps": {
+      "value": 0.0113,
+      "n": 5,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.Docker": {
+      "value": 0.1104,
+      "n": 49,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.Excel": {
+      "value": 0.036,
+      "n": 16,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.FastAPI": {
+      "value": 0.0698,
+      "n": 31,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.Git": {
+      "value": 0.1306,
+      "n": 58,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.HTML": {
+      "value": 0.0135,
+      "n": 6,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.HTTP": {
+      "value": 0.0068,
+      "n": 3,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.Java": {
+      "value": 0.0428,
+      "n": 19,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.JavaScript": {
+      "value": 0.0293,
+      "n": 13,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.Jira": {
+      "value": 0.0203,
+      "n": 9,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.Kubernetes": {
+      "value": 0.0225,
+      "n": 10,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.LangChain": {
+      "value": 0.0743,
+      "n": 33,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.LangGraph": {
+      "value": 0.0495,
+      "n": 22,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.Linux": {
+      "value": 0.0428,
+      "n": 19,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.MLOps": {
+      "value": 0.0225,
+      "n": 10,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.NumPy": {
+      "value": 0.1464,
+      "n": 65,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.PostgreSQL": {
+      "value": 0.0405,
+      "n": 18,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.PyTorch": {
+      "value": 0.1712,
+      "n": 76,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.Python": {
+      "value": 0.6689,
+      "n": 297,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.RAG": {
+      "value": 0.1194,
+      "n": 53,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.REST": {
+      "value": 0.0631,
+      "n": 28,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.React": {
+      "value": 0.0203,
+      "n": 9,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.SQL": {
+      "value": 0.3018,
+      "n": 134,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.Spark": {
+      "value": 0.0315,
+      "n": 14,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.TensorFlow": {
+      "value": 0.0563,
+      "n": 25,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.Transformers": {
+      "value": 0.0586,
+      "n": 26,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.TypeScript": {
+      "value": 0.0225,
+      "n": 10,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.pandas": {
+      "value": 0.1667,
+      "n": 74,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.scikit-learn": {
+      "value": 0.1284,
+      "n": 57,
+      "denominator": 444
+    },
+    "telegram_recent_skill.ml_junior.ООП": {
+      "value": 0.0473,
+      "n": 21,
+      "denominator": 444
+    },
+    "telegram_recent_salary.ml.senior.stated": {
+      "value": 0.1829,
+      "n": 163,
+      "denominator": 891
+    },
+    "telegram_recent_salary.ml.senior.from_median": {
+      "value": 300000,
+      "n": null,
+      "denominator": null,
+      "rows": 153
+    },
+    "telegram_recent_salary.ml.senior.to_median": {
+      "value": 400000,
+      "n": null,
+      "denominator": null,
+      "rows": 105
+    },
+    "telegram_recent_salary.ml.intern.stated": {
+      "value": 0.0362,
+      "n": 8,
+      "denominator": 221
+    },
+    "telegram_recent_salary.ml.middle.stated": {
+      "value": 0.2217,
+      "n": 131,
+      "denominator": 591
+    },
+    "telegram_recent_salary.ml.middle.from_median": {
+      "value": 200000,
+      "n": null,
+      "denominator": null,
+      "rows": 118
+    },
+    "telegram_recent_salary.ml.middle.to_median": {
+      "value": 300000,
+      "n": null,
+      "denominator": null,
+      "rows": 96
+    },
+    "telegram_recent_salary.ml.junior.stated": {
+      "value": 0.2332,
+      "n": 52,
+      "denominator": 223
+    },
+    "telegram_recent_salary.ml.junior.from_median": {
+      "value": 100000,
+      "n": null,
+      "denominator": null,
+      "rows": 51
+    },
+    "telegram_recent_salary.ml.junior.to_median": {
+      "value": 150000,
+      "n": null,
+      "denominator": null,
+      "rows": 32
+    },
+    "telegram_recent_salary.it.junior.stated": {
+      "value": 0.2657,
+      "n": 1367,
+      "denominator": 5145
+    },
+    "telegram_recent_salary.it.junior.from_median": {
+      "value": 75900,
+      "n": null,
+      "denominator": null,
+      "rows": 1284
+    },
+    "telegram_recent_salary.it.junior.to_median": {
+      "value": 120000,
+      "n": null,
+      "denominator": null,
+      "rows": 894
+    },
+    "telegram_recent_salary.it.middle.stated": {
+      "value": 0.3044,
+      "n": 2670,
+      "denominator": 8770
+    },
+    "telegram_recent_salary.it.middle.from_median": {
+      "value": 180000,
+      "n": null,
+      "denominator": null,
+      "rows": 2352
+    },
+    "telegram_recent_salary.it.middle.to_median": {
+      "value": 250000,
+      "n": null,
+      "denominator": null,
+      "rows": 1985
+    },
+    "telegram_recent_salary.it.senior.stated": {
+      "value": 0.1681,
+      "n": 1727,
+      "denominator": 10273
+    },
+    "telegram_recent_salary.it.senior.from_median": {
+      "value": 250000,
+      "n": null,
+      "denominator": null,
+      "rows": 1587
+    },
+    "telegram_recent_salary.it.senior.to_median": {
+      "value": 320000,
+      "n": null,
+      "denominator": null,
+      "rows": 1218
+    },
+    "telegram_recent_salary.it.intern.stated": {
+      "value": 0.0936,
+      "n": 227,
+      "denominator": 2424
+    },
+    "telegram_recent_salary.it.intern.from_median": {
+      "value": 50000,
+      "n": null,
+      "denominator": null,
+      "rows": 213
+    },
+    "telegram_recent_salary.it.intern.to_median": {
+      "value": 80000,
+      "n": null,
+      "denominator": null,
+      "rows": 147
+    },
     "window.telegram.from": {
       "value": "2026-07-06",
       "n": null,
@@ -2956,6 +3780,7 @@
     "telegram_year": "Single-vacancy IT posts after the weekly cross-post dedup, by year of the week's Monday, extracted fields; ml_posts: role data_scientist, ml_engineer or mlops; junior_posts: grade intern or junior; junior_of_graded: of the posts with a grade; ml_junior_of_graded: the same within the ML roles.",
     "telegram_ml_skill": "ML posts of the year naming the skill (extracted skills), of the year's ML posts.",
     "telegram_work_format": "Single-vacancy IT posts with an extracted grade and work format, by year of the week's Monday; junior: grade intern or junior, other: the other grades; share of the group's posts with a format; telegram_ml_work_format: the same within the ML roles.",
+    "telegram_recent": "Telegram single-vacancy IT posts of the weeks whose Monday falls in 2025-2026, extracted fields; groups it_all, it_junior (grade intern or junior), ml_all (ML roles), ml_junior; telegram_recent_skill: posts of the group naming the skill, over the tracked skills and the top 20 skills of the two junior groups; telegram_recent_salary: posts of the grade stating a RUB monthly amount, medians of the posted bounds when 9 or more posts state the bound.",
     "window": "Collection window of the cross-sectional marts per source (mart_skills period_from, period_to).",
     "telegram_panel": "The same over the channels with IT posts in every year 2022-2026."
   },

@@ -101,6 +101,40 @@ FROM staging.int_extracted_weekly_units
 WHERE source = 'telegram' AND is_it AND grade IS NOT NULL AND work_format IS NOT NULL
 GROUP BY year, ml, junior, work_format
 """
+# The 2025-2026 Telegram cut on the extracted fields: the window of the marts holds 97 ML posts of a
+# junior grade, two years hold several times more, which skill shares and medians of a junior need.
+RECENT_YEARS = (2025, 2026)
+RECENT_TOP_SKILLS = 20
+MIN_SALARY_ROWS = 9
+_RECENT = f"source = 'telegram' AND is_it AND toYear(week) IN {RECENT_YEARS}"
+RECENT_SIZE_SQL = f"""
+SELECT role IN {ML_ROLES} AS ml, grade IN {JUNIOR_GRADES} AS junior, count() AS posts
+FROM staging.int_extracted_weekly_units WHERE {_RECENT}
+GROUP BY ml, junior
+"""
+RECENT_SKILL_SQL = f"""
+SELECT role IN {ML_ROLES} AS ml, grade IN {JUNIOR_GRADES} AS junior, skill, count() AS posts
+FROM staging.int_extracted_weekly_units ARRAY JOIN skills AS skill WHERE {_RECENT}
+GROUP BY ml, junior, skill
+"""
+# The salary rule of mart_extracted_salaries: RUB per month, or no period stated.
+_RECENT_SALARY_AGG = """grade, count() AS posts, countIf(in_q) AS stated,
+    countIf(in_q AND salary_from IS NOT NULL) AS with_from, countIf(in_q AND salary_to IS NOT NULL) AS with_to,
+    quantileExactInclusive(0.5)(if(in_q, salary_from, NULL)) AS from_median,
+    quantileExactInclusive(0.5)(if(in_q, salary_to, NULL)) AS to_median"""
+RECENT_SALARY_SQL = f"""
+WITH posts AS (
+    SELECT u.role IN {ML_ROLES} AS ml, u.grade AS grade, f.salary_from AS salary_from, f.salary_to AS salary_to,
+        (f.salary_from IS NOT NULL OR f.salary_to IS NOT NULL) AND coalesce(f.salary_currency = 'RUB', false)
+            AND coalesce(f.salary_period, 'month') = 'month' AS in_q
+    FROM staging.int_extracted_weekly_units AS u
+    INNER JOIN staging.int_extracted_fields AS f ON f.source = 'telegram' AND f.source_id = u.record_source_id
+    WHERE u.source = 'telegram' AND u.is_it AND toYear(u.week) IN {RECENT_YEARS} AND u.grade IN {SALARY_GRADES}
+)
+SELECT 'it' AS scope, {_RECENT_SALARY_AGG} FROM posts GROUP BY grade
+UNION ALL
+SELECT 'ml' AS scope, {_RECENT_SALARY_AGG} FROM posts WHERE ml GROUP BY grade
+"""
 CHANNEL_YEAR_SQL = (
     _UNITS
     + """
@@ -262,6 +296,44 @@ def work_formats(rows: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
     return out
 
 
+def _recent_group(ml: Any, junior: Any) -> list[str]:
+    groups = ["it_all"] + (["it_junior"] if junior else [])
+    return groups + (["ml_all"] + (["ml_junior"] if junior else []) if ml else [])
+
+
+def recent_skills(sizes: Iterable[Mapping[str, Any]], skills: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
+    """Skill shares of the 2025-2026 Telegram posts for ML and all IT, juniors and everyone, over the
+    tracked skills and the top skills of the two junior groups."""
+    posts: Counter[str] = Counter()
+    for r in sizes:
+        for g in _recent_group(r["ml"], r["junior"]):
+            posts[g] += int(r["posts"])
+    counts: dict[str, Counter[str]] = defaultdict(Counter)
+    for r in skills:
+        for g in _recent_group(r["ml"], r["junior"]):
+            counts[g][r["skill"]] += int(r["posts"])
+    chosen = set(TRACKED_SKILLS)
+    chosen |= {s for g in ("ml_junior", "it_junior") for s, _ in counts[g].most_common(RECENT_TOP_SKILLS)}
+    metrics: dict[str, Any] = {f"telegram_recent.{g}.posts": {"value": n} for g, n in sorted(posts.items())}
+    for g in sorted(posts):
+        for s in sorted(chosen):
+            metrics[f"telegram_recent_skill.{g}.{s}"] = share(counts[g][s], posts[g])
+    return metrics
+
+
+def recent_salaries(rows: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
+    """Posted RUB monthly salaries of the 2025-2026 Telegram posts by grade, for the ML roles and for all
+    IT. A median is kept only over MIN_SALARY_ROWS bounds or more, the threshold of the site."""
+    metrics: dict[str, Any] = {}
+    for r in rows:
+        key = f"telegram_recent_salary.{r['scope']}.{r['grade']}"
+        metrics[f"{key}.stated"] = share(r["stated"], r["posts"])
+        for end in ("from", "to"):
+            if r[f"with_{end}"] >= MIN_SALARY_ROWS:
+                metrics[f"{key}.{end}_median"] = {"value": round(r[f"{end}_median"]), "rows": int(r[f"with_{end}"])}
+    return metrics
+
+
 def build(ch: ClickHouse) -> dict[str, Any]:
     junior = fetch(ch, JUNIOR_SQL)
     metrics = ml_ds_buckets(junior, fetch(ch, GRADE_SQL))
@@ -269,6 +341,8 @@ def build(ch: ClickHouse) -> dict[str, Any]:
     metrics |= salaries(fetch(ch, SALARY_SQL))
     metrics |= telegram_years(fetch(ch, CHANNEL_YEAR_SQL), fetch(ch, CHANNEL_SKILL_SQL))
     metrics |= work_formats(fetch(ch, WORK_FORMAT_SQL))
+    metrics |= recent_skills(fetch(ch, RECENT_SIZE_SQL), fetch(ch, RECENT_SKILL_SQL))
+    metrics |= recent_salaries(fetch(ch, RECENT_SALARY_SQL))
     for r in fetch(ch, WINDOW_SQL):
         metrics[f"window.{r['source']}.from"] = {"value": r["period_from"]}
         metrics[f"window.{r['source']}.to"] = {"value": r["period_to"]}
@@ -293,6 +367,11 @@ DEFINITIONS = {
     "telegram_work_format": "Single-vacancy IT posts with an extracted grade and work format, by year of the week's "
     "Monday; junior: grade intern or junior, other: the other grades; share of the group's posts with a format; "
     "telegram_ml_work_format: the same within the ML roles.",
+    "telegram_recent": f"Telegram single-vacancy IT posts of the weeks whose Monday falls in {RECENT_YEARS[0]}-"
+    f"{RECENT_YEARS[-1]}, extracted fields; groups it_all, it_junior (grade intern or junior), ml_all (ML roles), "
+    "ml_junior; telegram_recent_skill: posts of the group naming the skill, over the tracked skills and the top "
+    f"{RECENT_TOP_SKILLS} skills of the two junior groups; telegram_recent_salary: posts of the grade stating a RUB "
+    f"monthly amount, medians of the posted bounds when {MIN_SALARY_ROWS} or more posts state the bound.",
     "window": "Collection window of the cross-sectional marts per source (mart_skills period_from, period_to).",
     "telegram_panel": f"The same over the channels with IT posts in every year {PANEL_YEARS[0]}-{PANEL_YEARS[-1]}.",
 }

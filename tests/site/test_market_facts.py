@@ -1,7 +1,16 @@
 import pytest
 
 from radar.results import Metric
-from radar.site.market_facts import ml_ds_buckets, ml_ds_skills, panel_channels, salaries, telegram_years, work_formats
+from radar.site.market_facts import (
+    ml_ds_buckets,
+    ml_ds_skills,
+    panel_channels,
+    recent_salaries,
+    recent_skills,
+    salaries,
+    telegram_years,
+    work_formats,
+)
 
 JUNIOR = [
     {
@@ -142,3 +151,33 @@ def test_work_formats_split_juniors_from_the_rest() -> None:
     assert "telegram_ml_work_format.2026.other.remote" not in out
     assert out["telegram_work_format.2026.other.remote"]["n"] == 7
     assert out["telegram_work_format.2026.other.remote"]["denominator"] == 10
+
+
+def test_recent_skills_nest_juniors_inside_ml_inside_it() -> None:
+    sizes = [
+        {"ml": 1, "junior": 1, "posts": 10},
+        {"ml": 1, "junior": 0, "posts": 30},
+        {"ml": 0, "junior": 1, "posts": 60},
+        {"ml": 0, "junior": 0, "posts": 900},
+    ]
+    skills = [
+        {"ml": 1, "junior": 1, "skill": "SQL", "posts": 5},
+        {"ml": 1, "junior": 0, "skill": "SQL", "posts": 3},
+        {"ml": 0, "junior": 1, "skill": "Git", "posts": 6},
+    ]
+    m = recent_skills(sizes, skills)
+    assert m["telegram_recent.ml_junior.posts"] == {"value": 10}
+    assert m["telegram_recent.it_junior.posts"] == {"value": 70}
+    assert m["telegram_recent.it_all.posts"] == {"value": 1000}
+    assert m["telegram_recent_skill.ml_junior.SQL"] == {"value": 0.5, "n": 5, "denominator": 10}
+    assert m["telegram_recent_skill.ml_all.SQL"] == {"value": 0.2, "n": 8, "denominator": 40}
+    assert m["telegram_recent_skill.it_junior.Git"] == {"value": 0.0857, "n": 6, "denominator": 70}
+    assert m["telegram_recent_skill.ml_junior.Git"]["n"] == 0
+
+
+def test_recent_salaries_keep_medians_over_the_threshold_only() -> None:
+    row = {"scope": "ml", "grade": "junior", "posts": 100, "stated": 20, "with_from": 12, "with_to": 8}
+    m = recent_salaries([{**row, "from_median": 90000.4, "to_median": 130000.0}])
+    assert m["telegram_recent_salary.ml.junior.stated"] == {"value": 0.2, "n": 20, "denominator": 100}
+    assert m["telegram_recent_salary.ml.junior.from_median"] == {"value": 90000, "rows": 12}
+    assert "telegram_recent_salary.ml.junior.to_median" not in m
