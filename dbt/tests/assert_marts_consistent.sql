@@ -58,10 +58,10 @@ UNION ALL
 
 SELECT DISTINCT concat('mart_salaries: level ', level, ' does not split by what its name says')
 FROM {{ ref('mart_salaries') }}
-WHERE (role_group = 'all') != (level IN ('grade', 'region', 'source'))
-    OR (role_bucket = 'all') != (level NOT IN ('cell', 'bucket_grade', 'bucket'))
-    OR (grade = 'all') != (level NOT IN ('cell', 'bucket_grade', 'group_grade', 'grade'))
-    OR (region_group = 'all') != (level NOT IN ('cell', 'region'))
+WHERE (role_group = 'all') != (level IN ('grade', 'grade_region', 'region', 'source'))
+    OR (role_bucket = 'all') != (level NOT IN ('cell', 'bucket_grade', 'bucket', 'bucket_region'))
+    OR (grade = 'all') != (level NOT IN ('cell', 'bucket_grade', 'group_grade', 'grade', 'grade_region'))
+    OR (region_group = 'all') != (level NOT IN ('cell', 'bucket_region', 'grade_region', 'region'))
 
 UNION ALL
 

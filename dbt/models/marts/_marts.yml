@@ -102,8 +102,8 @@ models:
     description: >
       Salaries as stated per source family, over every vacancy of the collection period
       (period_from..period_to), at several levels (column level, GROUPING SETS): cell = role bucket x
-      grade x region group; bucket_grade, bucket, group_grade, group (role group of seed role_groups),
-      grade, region and source totals, each computed over the vacancies of the group, not from cell
+      grade x region group; bucket_grade, bucket, bucket_region, group_grade, group (role group of seed
+      role_groups), grade, grade_region, region and source totals, each computed over the vacancies of the group, not from cell
       medians. A dimension a level does not split by reads 'all'. The rows of one level cover every
       vacancy of the source once, so a sum over rows is taken within one level only. Amounts are RUB per month as the sources state them
       (all three publish monthly salaries and have no period field; nothing is converted); a vacancy
@@ -126,12 +126,12 @@ models:
                 values: [trudvsem, habr, superjob]
       - name: level
         description: >
-          What the row totals: cell (bucket x grade x region), bucket_grade, bucket, group_grade,
-          group, grade, region or source.
+          What the row totals: cell (bucket x grade x region), bucket_grade, bucket, bucket_region
+          (bucket x region), group_grade, group, grade, grade_region (grade x region), region or source.
         data_tests:
           - accepted_values:
               arguments:
-                values: [cell, bucket_grade, bucket, group_grade, group, grade, region, source]
+                values: [cell, bucket_grade, bucket, bucket_region, group_grade, group, grade, grade_region, region, source]
       - name: role_group
         description: &role_group >
           Role group of the bucket (seed role_groups: ml_ds_data, dev, analyst, qa_devops_sys,

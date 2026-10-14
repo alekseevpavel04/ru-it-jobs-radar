@@ -21,9 +21,11 @@
     ('cell', ['role_group', 'role_bucket', 'grade', 'region_group']),
     ('bucket_grade', ['role_group', 'role_bucket', 'grade']),
     ('bucket', ['role_group', 'role_bucket']),
+    ('bucket_region', ['role_group', 'role_bucket', 'region_group']),
     ('group_grade', ['role_group', 'grade']),
     ('group', ['role_group']),
     ('grade', ['grade']),
+    ('grade_region', ['grade', 'region_group']),
     ('region', ['region_group']),
     ('source', [])
 ] %}
