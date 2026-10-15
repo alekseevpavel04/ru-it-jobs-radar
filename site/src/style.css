@@ -242,3 +242,65 @@ details.more summary {
     width: 62px;
   }
 }
+
+/* Small charts of the direction mix. */
+.direction-tiles {
+  display: grid;
+  gap: 12px;
+  margin-top: 0.6rem;
+}
+
+.direction-tile {
+  background: var(--theme-background);
+  border: 1px solid #ebe9e4;
+  border-radius: 8px;
+  padding: 10px 12px 4px;
+}
+
+.direction-name {
+  font-size: 13px;
+  color: var(--theme-foreground-muted);
+}
+
+.direction-numbers {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 2px 0 2px;
+}
+
+.direction-numbers b {
+  font-size: 22px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.direction-numbers span {
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.direction-numbers span {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .direction-numbers b {
+    font-size: 18px;
+  }
+
+  .direction-numbers span {
+    font-size: 12px;
+  }
+}
+
+/* Air before each section of the page, so a section does not read as part of the previous one. */
+#observablehq-main > h2 {
+  margin-top: 3.5rem;
+}
+
+#observablehq-main > .lead + h2,
+#observablehq-main > p.lead ~ h2:first-of-type {
+  margin-top: 2rem;
+}

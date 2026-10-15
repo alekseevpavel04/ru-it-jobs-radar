@@ -16,8 +16,10 @@ Only shares a reader can lean on leave the file:
 - a year of a cell's series is kept when the cell has MIN_YEAR_POSTS posts or more that year; without
   BASE_YEAR a cell has its recent shares only, with no change to show.
 
-It also writes the grade mix of all IT by year: each grade of GRADES as a share of the posts that name a
-grade, with how many posts name one at all.
+It also writes the grade mix of all IT by year (each grade of GRADES as a share of the posts that name a
+grade, with how many posts name one at all) and the direction mix from BASE_YEAR on: each direction's share
+of all IT posts, over the panel of channels with IT posts in every year from BASE_YEAR, because channels
+that start later (ML ones in 2023-2025) would move the shares by themselves.
 """
 
 import argparse
@@ -55,6 +57,14 @@ SIZE_SQL = f"""
 SELECT toYear(week) AS year, role, grade, count() AS posts
 FROM staging.int_extracted_weekly_units WHERE source = 'telegram' AND is_it AND toYear(week) IN {YEARS}
 GROUP BY year, role, grade
+"""
+DIRECTION_SQL = f"""
+SELECT toYear(u.week) AS year, t.channel AS channel, u.role AS role, count() AS posts
+FROM staging.int_extracted_weekly_units AS u
+INNER JOIN (SELECT source_id, any(channel) AS channel FROM staging.stg_telegram GROUP BY source_id) AS t
+    ON u.record_source_id = t.source_id
+WHERE u.source = 'telegram' AND u.is_it AND toYear(u.week) IN {YEARS}
+GROUP BY year, channel, role
 """
 SKILL_SQL = f"""
 SELECT toYear(week) AS year, role, grade, skill, count() AS posts
@@ -113,6 +123,30 @@ def grade_mix(sizes: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
     return metrics
 
 
+def direction_mix(rows: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
+    """Each direction's share of the IT posts of the panel channels, by year from BASE_YEAR."""
+    rows = list(rows)
+    years = [y for y in YEARS if y >= BASE_YEAR]
+    seen: dict[str, set[int]] = defaultdict(set)
+    for r in rows:
+        seen[r["channel"]].add(int(r["year"]))
+    panel = {c for c, ys in seen.items() if set(years) <= ys}
+    direction_of = {role: d for d, roles in DIRECTIONS.items() for role in roles}
+    counts: dict[int, Counter[str]] = defaultdict(Counter)
+    total: Counter[int] = Counter()
+    for r in rows:
+        year = int(r["year"])
+        if year in years and r["channel"] in panel:
+            total[year] += int(r["posts"])
+            if r["role"] in direction_of:
+                counts[year][direction_of[r["role"]]] += int(r["posts"])
+    metrics: dict[str, Any] = {"directions.panel_channels": share(len(panel), len(seen))}
+    for year in years:
+        for d in DIRECTIONS:
+            metrics[f"directions.{year}.{d}"] = share(counts[year][d], total[year])
+    return metrics
+
+
 def trends(sizes: Iterable[Mapping[str, Any]], skills: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
     sizes = list(sizes)
     posts: dict[str, Counter[int]] = defaultdict(Counter)
@@ -148,7 +182,7 @@ def main() -> int:
     argparse.ArgumentParser(description=__doc__.splitlines()[0]).parse_args()
     load_dotenv()
     with ClickHouse() as ch:
-        metrics = trends(fetch(ch, SIZE_SQL), fetch(ch, SKILL_SQL))
+        metrics = trends(fetch(ch, SIZE_SQL), fetch(ch, SKILL_SQL)) | direction_mix(fetch(ch, DIRECTION_SQL))
     path = write_result(
         "market/skill_trends.json",
         metrics,
@@ -166,6 +200,8 @@ def main() -> int:
         definitions={
             "cells": "<direction>_<grade>: Telegram single-vacancy IT posts of the direction's roles (it: all IT) "
             "and of the grade (all: every post, a post without a grade included).",
+            "directions": "directions.<year>.<direction>: posts of the direction's roles of all IT posts of the panel "
+            "channels (IT posts in every year from the base year); directions.panel_channels: panel channels of all.",
             "grades": "grades.<year>.<grade>: posts of the grade of the IT posts that name a grade; "
             "grades.<year>.graded: IT posts that name a grade of all IT posts.",
             "share": "posts of the cell naming the skill (extracted skills) of the cell's posts; recent pools "

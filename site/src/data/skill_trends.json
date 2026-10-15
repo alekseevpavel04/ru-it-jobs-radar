@@ -1,8 +1,8 @@
 {
   "source_file": "results/market/skill_trends.json",
   "source_script": "src/radar/site/skill_trends.py",
-  "commit": "73157d4-dirty",
-  "created_at": "2026-10-15T09:11:24+00:00",
+  "commit": "71df5cf-dirty",
+  "created_at": "2026-10-15T09:22:09+00:00",
   "recent_years": [
     2025,
     2026
@@ -56807,6 +56807,249 @@
       "posts": 5978,
       "graded": 12555,
       "total": 18630
+    }
+  ],
+  "direction_panel_channels": 39,
+  "directions": [
+    {
+      "year": 2022,
+      "direction": "analytics",
+      "posts": 2609,
+      "total": 27514
+    },
+    {
+      "year": 2022,
+      "direction": "backend",
+      "posts": 7451,
+      "total": 27514
+    },
+    {
+      "year": 2022,
+      "direction": "dataeng",
+      "posts": 832,
+      "total": 27514
+    },
+    {
+      "year": 2022,
+      "direction": "devops",
+      "posts": 1764,
+      "total": 27514
+    },
+    {
+      "year": 2022,
+      "direction": "frontend",
+      "posts": 2867,
+      "total": 27514
+    },
+    {
+      "year": 2022,
+      "direction": "ml",
+      "posts": 542,
+      "total": 27514
+    },
+    {
+      "year": 2022,
+      "direction": "mobile",
+      "posts": 2034,
+      "total": 27514
+    },
+    {
+      "year": 2022,
+      "direction": "qa",
+      "posts": 1950,
+      "total": 27514
+    },
+    {
+      "year": 2023,
+      "direction": "analytics",
+      "posts": 3368,
+      "total": 29768
+    },
+    {
+      "year": 2023,
+      "direction": "backend",
+      "posts": 7441,
+      "total": 29768
+    },
+    {
+      "year": 2023,
+      "direction": "dataeng",
+      "posts": 952,
+      "total": 29768
+    },
+    {
+      "year": 2023,
+      "direction": "devops",
+      "posts": 1843,
+      "total": 29768
+    },
+    {
+      "year": 2023,
+      "direction": "frontend",
+      "posts": 2449,
+      "total": 29768
+    },
+    {
+      "year": 2023,
+      "direction": "ml",
+      "posts": 899,
+      "total": 29768
+    },
+    {
+      "year": 2023,
+      "direction": "mobile",
+      "posts": 1544,
+      "total": 29768
+    },
+    {
+      "year": 2023,
+      "direction": "qa",
+      "posts": 2129,
+      "total": 29768
+    },
+    {
+      "year": 2024,
+      "direction": "analytics",
+      "posts": 3281,
+      "total": 27198
+    },
+    {
+      "year": 2024,
+      "direction": "backend",
+      "posts": 6529,
+      "total": 27198
+    },
+    {
+      "year": 2024,
+      "direction": "dataeng",
+      "posts": 768,
+      "total": 27198
+    },
+    {
+      "year": 2024,
+      "direction": "devops",
+      "posts": 1646,
+      "total": 27198
+    },
+    {
+      "year": 2024,
+      "direction": "frontend",
+      "posts": 2000,
+      "total": 27198
+    },
+    {
+      "year": 2024,
+      "direction": "ml",
+      "posts": 1039,
+      "total": 27198
+    },
+    {
+      "year": 2024,
+      "direction": "mobile",
+      "posts": 1073,
+      "total": 27198
+    },
+    {
+      "year": 2024,
+      "direction": "qa",
+      "posts": 2261,
+      "total": 27198
+    },
+    {
+      "year": 2025,
+      "direction": "analytics",
+      "posts": 2319,
+      "total": 22944
+    },
+    {
+      "year": 2025,
+      "direction": "backend",
+      "posts": 4779,
+      "total": 22944
+    },
+    {
+      "year": 2025,
+      "direction": "dataeng",
+      "posts": 576,
+      "total": 22944
+    },
+    {
+      "year": 2025,
+      "direction": "devops",
+      "posts": 1334,
+      "total": 22944
+    },
+    {
+      "year": 2025,
+      "direction": "frontend",
+      "posts": 2359,
+      "total": 22944
+    },
+    {
+      "year": 2025,
+      "direction": "ml",
+      "posts": 1242,
+      "total": 22944
+    },
+    {
+      "year": 2025,
+      "direction": "mobile",
+      "posts": 768,
+      "total": 22944
+    },
+    {
+      "year": 2025,
+      "direction": "qa",
+      "posts": 2002,
+      "total": 22944
+    },
+    {
+      "year": 2026,
+      "direction": "analytics",
+      "posts": 1726,
+      "total": 15065
+    },
+    {
+      "year": 2026,
+      "direction": "backend",
+      "posts": 2641,
+      "total": 15065
+    },
+    {
+      "year": 2026,
+      "direction": "dataeng",
+      "posts": 405,
+      "total": 15065
+    },
+    {
+      "year": 2026,
+      "direction": "devops",
+      "posts": 770,
+      "total": 15065
+    },
+    {
+      "year": 2026,
+      "direction": "frontend",
+      "posts": 1899,
+      "total": 15065
+    },
+    {
+      "year": 2026,
+      "direction": "ml",
+      "posts": 961,
+      "total": 15065
+    },
+    {
+      "year": 2026,
+      "direction": "mobile",
+      "posts": 373,
+      "total": 15065
+    },
+    {
+      "year": 2026,
+      "direction": "qa",
+      "posts": 1322,
+      "total": 15065
     }
   ]
 }

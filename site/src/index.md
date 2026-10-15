@@ -7,7 +7,7 @@ toc: false
 
 ```js
 import {SKILL, int, pct, plural} from "./components/labels.js";
-import {DIRECTION, GRADE_GROUP, change, gradeChart, skillChart} from "./components/skills.js";
+import {DIRECTION, GRADE_GROUP, change, directionTiles, gradeChart, skillChart} from "./components/skills.js";
 import {FDR, effectsChart} from "./components/effects.js";
 
 const trends = FileAttachment("data/skill_trends.json").json();
@@ -42,6 +42,35 @@ const graded = [...new Set(trends.grades.map((g) => g.year))].map((y) => {
 
 ```js
 gradeChart(trends.grades, {width, partialYear: lastYear})
+```
+
+</div>
+
+```js
+// The direction that gained most and the one that lost most since the base year, if the change is real.
+const dirYears = [...new Set(trends.directions.map((d) => d.year))].sort();
+const dirChanges = Object.keys(DIRECTION)
+  .filter((k) => k !== "it")
+  .map((k) => {
+    const at = (y) => trends.directions.find((d) => d.direction === k && d.year === y);
+    const a = at(dirYears[0]), b = at(dirYears.at(-1));
+    return {name: DIRECTION[k], c: change({n: a.posts, of: a.total}, {n: b.posts, of: b.total})};
+  })
+  .filter((d) => d.c.significant)
+  .sort((x, y) => y.c.diff - x.c.diff);
+const gainer = dirChanges.find((d) => d.c.diff > 0);
+const loser = dirChanges.at(-1)?.c.diff < 0 ? dirChanges.at(-1) : null;
+const dirTitle = gainer && loser ? `${gainer.name} растёт, ${loser.name} теряет долю` : "Какие направления растут";
+```
+
+<h2>${dirTitle}</h2>
+
+<div class="card">
+
+<p class="note-small">Доля направления среди всех IT-постов ${int(trends.direction_panel_channels)} каналов, которые писали вакансии каждый год с ${dirYears[0]}-го (так новые каналы не сдвигают доли); справа изменение с ${dirYears[0]} года в п. п.</p>
+
+```js
+directionTiles(trends.directions, {width, partialYear: lastYear})
 ```
 
 </div>

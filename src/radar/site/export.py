@@ -393,6 +393,13 @@ class GradeYear(Row):
     total: int  # all IT posts of the year
 
 
+class DirectionYear(Row):
+    year: int
+    direction: str
+    posts: int
+    total: int  # IT posts of the year of the panel channels
+
+
 class SkillTrends(Provenance):
     """Skills of Telegram posts by year and group from results/market/skill_trends.json; only the skills
     and years that pass the file's thresholds are there."""
@@ -405,6 +412,8 @@ class SkillTrends(Provenance):
     groups: list[SkillGroupYear]
     shares: list[SkillShare]
     grades: list[GradeYear]
+    direction_panel_channels: int
+    directions: list[DirectionYear]
 
 
 class VacancyHistory(Provenance):
@@ -866,9 +875,15 @@ def vacancy_history(doc: Mapping[str, Any], source_file: str) -> VacancyHistory:
 
 
 def skill_trends(doc: Mapping[str, Any], source_file: str) -> SkillTrends:
-    groups, shares, grades = [], [], []
+    groups, shares, grades, directions = [], [], [], []
     for key, m in doc["metrics"].items():
         kind, *rest = key.split(".")
+        if kind == "directions":
+            if rest[0] != "panel_channels":
+                directions.append(
+                    DirectionYear(year=int(rest[0]), direction=rest[1], posts=m["n"], total=m["denominator"])
+                )
+            continue
         if kind == "grades":
             if rest[1] != "graded":
                 total = doc["metrics"][f"grades.{rest[0]}.graded"]["denominator"]
@@ -900,6 +915,8 @@ def skill_trends(doc: Mapping[str, Any], source_file: str) -> SkillTrends:
         groups=sorted(groups, key=lambda r: (r.group, r.year or 0)),
         shares=sorted(shares, key=lambda r: (r.group, r.skill, r.year or 0)),
         grades=sorted(grades, key=lambda r: (r.year, r.grade)),
+        direction_panel_channels=doc["metrics"]["directions.panel_channels"]["n"],
+        directions=sorted(directions, key=lambda r: (r.year, r.direction)),
     )
 
 

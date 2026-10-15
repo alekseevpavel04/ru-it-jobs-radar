@@ -86,3 +86,14 @@ def test_grade_mix_counts_only_posts_that_name_a_grade() -> None:
     assert m["grades.2025.graded"] == {"value": 0.5, "n": 100, "denominator": 200}
     assert m["grades.2025.junior"] == {"value": 0.4, "n": 40, "denominator": 100}
     assert m["grades.2025.senior"]["n"] == 40
+
+
+def test_direction_mix_keeps_only_channels_of_every_year() -> None:
+    rows = [{"year": y, "channel": "a", "role": "backend", "posts": 10} for y in range(2022, 2027)]
+    rows += [{"year": y, "channel": "a", "role": "designer", "posts": 10} for y in range(2022, 2027)]
+    # channel b starts in 2024: its ML posts must not lift the ML share
+    rows += [{"year": y, "channel": "b", "role": "ml_engineer", "posts": 50} for y in range(2024, 2027)]
+    m = skill_trends.direction_mix(rows)
+    assert m["directions.panel_channels"] == {"value": 0.5, "n": 1, "denominator": 2}
+    assert m["directions.2026.backend"] == {"value": 0.5, "n": 10, "denominator": 20}
+    assert m["directions.2026.ml"]["n"] == 0

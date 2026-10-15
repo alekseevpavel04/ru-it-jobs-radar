@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/skill_trends.py",
   "command": "python -m radar.site.skill_trends",
-  "commit": "73157d4-dirty",
-  "created_at": "2026-10-15T09:11:24+00:00",
+  "commit": "71df5cf-dirty",
+  "created_at": "2026-10-15T09:22:09+00:00",
   "metrics": {
     "posts.analytics_all.recent": {
       "value": 5117,
@@ -40933,6 +40933,211 @@
       "value": 0.4761,
       "n": 5978,
       "denominator": 12555
+    },
+    "directions.panel_channels": {
+      "value": 0.6724,
+      "n": 39,
+      "denominator": 58
+    },
+    "directions.2022.backend": {
+      "value": 0.2708,
+      "n": 7451,
+      "denominator": 27514
+    },
+    "directions.2022.frontend": {
+      "value": 0.1042,
+      "n": 2867,
+      "denominator": 27514
+    },
+    "directions.2022.qa": {
+      "value": 0.0709,
+      "n": 1950,
+      "denominator": 27514
+    },
+    "directions.2022.analytics": {
+      "value": 0.0948,
+      "n": 2609,
+      "denominator": 27514
+    },
+    "directions.2022.ml": {
+      "value": 0.0197,
+      "n": 542,
+      "denominator": 27514
+    },
+    "directions.2022.dataeng": {
+      "value": 0.0302,
+      "n": 832,
+      "denominator": 27514
+    },
+    "directions.2022.devops": {
+      "value": 0.0641,
+      "n": 1764,
+      "denominator": 27514
+    },
+    "directions.2022.mobile": {
+      "value": 0.0739,
+      "n": 2034,
+      "denominator": 27514
+    },
+    "directions.2023.backend": {
+      "value": 0.25,
+      "n": 7441,
+      "denominator": 29768
+    },
+    "directions.2023.frontend": {
+      "value": 0.0823,
+      "n": 2449,
+      "denominator": 29768
+    },
+    "directions.2023.qa": {
+      "value": 0.0715,
+      "n": 2129,
+      "denominator": 29768
+    },
+    "directions.2023.analytics": {
+      "value": 0.1131,
+      "n": 3368,
+      "denominator": 29768
+    },
+    "directions.2023.ml": {
+      "value": 0.0302,
+      "n": 899,
+      "denominator": 29768
+    },
+    "directions.2023.dataeng": {
+      "value": 0.032,
+      "n": 952,
+      "denominator": 29768
+    },
+    "directions.2023.devops": {
+      "value": 0.0619,
+      "n": 1843,
+      "denominator": 29768
+    },
+    "directions.2023.mobile": {
+      "value": 0.0519,
+      "n": 1544,
+      "denominator": 29768
+    },
+    "directions.2024.backend": {
+      "value": 0.2401,
+      "n": 6529,
+      "denominator": 27198
+    },
+    "directions.2024.frontend": {
+      "value": 0.0735,
+      "n": 2000,
+      "denominator": 27198
+    },
+    "directions.2024.qa": {
+      "value": 0.0831,
+      "n": 2261,
+      "denominator": 27198
+    },
+    "directions.2024.analytics": {
+      "value": 0.1206,
+      "n": 3281,
+      "denominator": 27198
+    },
+    "directions.2024.ml": {
+      "value": 0.0382,
+      "n": 1039,
+      "denominator": 27198
+    },
+    "directions.2024.dataeng": {
+      "value": 0.0282,
+      "n": 768,
+      "denominator": 27198
+    },
+    "directions.2024.devops": {
+      "value": 0.0605,
+      "n": 1646,
+      "denominator": 27198
+    },
+    "directions.2024.mobile": {
+      "value": 0.0395,
+      "n": 1073,
+      "denominator": 27198
+    },
+    "directions.2025.backend": {
+      "value": 0.2083,
+      "n": 4779,
+      "denominator": 22944
+    },
+    "directions.2025.frontend": {
+      "value": 0.1028,
+      "n": 2359,
+      "denominator": 22944
+    },
+    "directions.2025.qa": {
+      "value": 0.0873,
+      "n": 2002,
+      "denominator": 22944
+    },
+    "directions.2025.analytics": {
+      "value": 0.1011,
+      "n": 2319,
+      "denominator": 22944
+    },
+    "directions.2025.ml": {
+      "value": 0.0541,
+      "n": 1242,
+      "denominator": 22944
+    },
+    "directions.2025.dataeng": {
+      "value": 0.0251,
+      "n": 576,
+      "denominator": 22944
+    },
+    "directions.2025.devops": {
+      "value": 0.0581,
+      "n": 1334,
+      "denominator": 22944
+    },
+    "directions.2025.mobile": {
+      "value": 0.0335,
+      "n": 768,
+      "denominator": 22944
+    },
+    "directions.2026.backend": {
+      "value": 0.1753,
+      "n": 2641,
+      "denominator": 15065
+    },
+    "directions.2026.frontend": {
+      "value": 0.1261,
+      "n": 1899,
+      "denominator": 15065
+    },
+    "directions.2026.qa": {
+      "value": 0.0878,
+      "n": 1322,
+      "denominator": 15065
+    },
+    "directions.2026.analytics": {
+      "value": 0.1146,
+      "n": 1726,
+      "denominator": 15065
+    },
+    "directions.2026.ml": {
+      "value": 0.0638,
+      "n": 961,
+      "denominator": 15065
+    },
+    "directions.2026.dataeng": {
+      "value": 0.0269,
+      "n": 405,
+      "denominator": 15065
+    },
+    "directions.2026.devops": {
+      "value": 0.0511,
+      "n": 770,
+      "denominator": 15065
+    },
+    "directions.2026.mobile": {
+      "value": 0.0248,
+      "n": 373,
+      "denominator": 15065
     }
   },
   "directions": {
@@ -40992,6 +41197,7 @@
   "growth_min_share": 0.005,
   "definitions": {
     "cells": "<direction>_<grade>: Telegram single-vacancy IT posts of the direction's roles (it: all IT) and of the grade (all: every post, a post without a grade included).",
+    "directions": "directions.<year>.<direction>: posts of the direction's roles of all IT posts of the panel channels (IT posts in every year from the base year); directions.panel_channels: panel channels of all.",
     "grades": "grades.<year>.<grade>: posts of the grade of the IT posts that name a grade; grades.<year>.graded: IT posts that name a grade of all IT posts.",
     "share": "posts of the cell naming the skill (extracted skills) of the cell's posts; recent pools 2025-2026, a year by the week's Monday."
   }

@@ -164,3 +164,46 @@ export function gradeChart(grades, {width, partialYear}) {
     ]
   });
 }
+
+// Each direction's share of all IT posts of the panel channels by year, one small chart per direction:
+// the share of the last year in big type, the change since the base year coloured as on the rest of the page.
+export function directionTiles(directions, {width, partialYear}) {
+  const narrow = width < 600;
+  const years = [...new Set(directions.map((d) => d.year))].sort();
+  const first = years[0], last = years.at(-1);
+  const tiles = Object.keys(DIRECTION)
+    .filter((key) => key !== "it")
+    .map((key) => {
+      const line = directions.filter((d) => d.direction === key).map((d) => ({...d, share: d.posts / d.total}));
+      const a = line.find((d) => d.year === first), b = line.find((d) => d.year === last);
+      return {key, line, a, b, c: change({n: a.posts, of: a.total}, {n: b.posts, of: b.total})};
+    })
+    .sort((x, y) => y.c.diff - x.c.diff);
+  const cols = narrow ? 2 : 4;
+  const tileWidth = Math.floor((width - (cols - 1) * 12) / cols);
+  return html`<div class="direction-tiles" style=${`grid-template-columns: repeat(${cols}, 1fr)`}>${tiles.map(({key, line, b, c}) => {
+    const color = changeColor(c);
+    const done = line.filter((d) => d.year !== partialYear);
+    const plot = Plot.plot({
+      width: tileWidth - 24,
+      height: 64,
+      margin: 4,
+      marginBottom: 16,
+      x: {domain: years, type: "point", axis: "bottom", ticks: [first, last], tickFormat: (y) => (y === partialYear ? `${y}*` : `${y}`), tickSize: 0, label: null},
+      y: {domain: [0, Math.max(...line.map((d) => d.share)) * 1.15], axis: null},
+      style: {fontSize: "11px", color: "#8c8a84"},
+      marks: [
+        Plot.areaY(line, {x: "year", y: "share", fill: color, fillOpacity: 0.08}),
+        Plot.line(done, {x: "year", y: "share", stroke: color, strokeWidth: 2}),
+        partialYear ? Plot.line(line.filter((d) => d.year >= last - 1), {x: "year", y: "share", stroke: color, strokeWidth: 2, strokeDasharray: "3,3"}) : null,
+        Plot.dot(line.filter((d) => d.year === last), {x: "year", y: "share", r: 3, fill: color}),
+        Plot.tip(line, Plot.pointerX({x: "year", y: "share", title: (d) => `${d.year}: ${int(d.posts)} из ${int(d.total)} (${pct(d.share)})`}))
+      ]
+    });
+    return html`<div class="direction-tile">
+      <div class="direction-name">${DIRECTION[key]}</div>
+      <div class="direction-numbers"><b>${pct(b.share)}</b><span style=${`color: ${color}`}>${c.significant ? points(c.diff) : "≈"}</span></div>
+      ${plot}
+    </div>`;
+  })}</div>`;
+}
