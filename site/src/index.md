@@ -14,7 +14,7 @@ const trends = FileAttachment("data/skill_trends.json").json();
 const effects = FileAttachment("data/skill_effects.json").json();
 ```
 
-<p class="lead">Кого ищут, какие навыки просят и за какие платят больше, по вакансиям из публичных Telegram-каналов. Роль, грейд и навыки из текста читает модель проекта. <a href="./methodology">Как считается</a>.</p>
+<p class="lead">Какие навыки просят, за какие платят больше, какие направления растут и кого ищут, по вакансиям из публичных Telegram-каналов. Роль, грейд и навыки из текста читает модель проекта. <a href="./methodology">Как считается</a>.</p>
 
 ```js
 // Headings say what the data shows, so they are computed: a claim is made only while the data holds it.
@@ -33,48 +33,6 @@ const graded = [...new Set(trends.grades.map((g) => g.year))].map((y) => {
   return g.graded / g.total;
 });
 ```
-
-<h2>${gradeTitle}</h2>
-
-<div class="card">
-
-<p class="note-small">Доля среди IT-постов, где указан грейд (а он указан в ${Math.round(d3.min(graded) * 100)}-${Math.round(d3.max(graded) * 100)} % постов); ${lastYear} год неполный.</p>
-
-```js
-gradeChart(trends.grades, {width, partialYear: lastYear})
-```
-
-</div>
-
-```js
-// The direction that gained most and the one that lost most since the base year, if the change is real.
-const dirYears = [...new Set(trends.directions.map((d) => d.year))].sort();
-const dirChanges = [...new Set(trends.directions.map((d) => d.direction))]
-  .filter((k) => k !== "other" && DIRECTION[k])
-  .map((k) => {
-    const at = (y) => trends.directions.find((d) => d.direction === k && d.year === y);
-    const a = at(dirYears[0]), b = at(dirYears.at(-1));
-    return {name: DIRECTION[k], c: change({n: a.posts, of: a.total}, {n: b.posts, of: b.total})};
-  })
-  .filter((d) => d.c.significant)
-  .sort((x, y) => y.c.diff - x.c.diff);
-const gainer = dirChanges.find((d) => d.c.diff > 0);
-const loser = dirChanges.at(-1)?.c.diff < 0 ? dirChanges.at(-1) : null;
-const otherNow = trends.directions.find((d) => d.direction === "other" && d.year === dirYears.at(-1));
-const dirTitle = gainer && loser ? `${gainer.name} растёт, ${loser.name} теряет долю` : "Какие направления растут";
-```
-
-<h2>${dirTitle}</h2>
-
-<div class="card">
-
-<p class="note-small">Доля среди всех IT-постов ${int(trends.direction_panel_channels)} каналов, которые писали вакансии каждый год с ${dirYears[0]}-го (так новые каналы не сдвигают доли); остальные ${pct(otherNow.posts / otherNow.total)} это прочие роли; справа изменение с ${dirYears[0]} года в п. п.</p>
-
-```js
-directionTiles(trends.directions, {width, partialYear: lastYear})
-```
-
-</div>
 
 ```js
 const directionInput = Inputs.select(new Map(Object.entries(DIRECTION).map(([k, v]) => [v, k])), {label: "Направление", value: "it"});
@@ -149,6 +107,49 @@ const moneyTitle =
 
 ```js
 effectsChart(effects.effects, {width, name})
+```
+
+</div>
+
+
+```js
+// The direction that gained most and the one that lost most since the base year, if the change is real.
+const dirYears = [...new Set(trends.directions.map((d) => d.year))].sort();
+const dirChanges = [...new Set(trends.directions.map((d) => d.direction))]
+  .filter((k) => k !== "other" && DIRECTION[k])
+  .map((k) => {
+    const at = (y) => trends.directions.find((d) => d.direction === k && d.year === y);
+    const a = at(dirYears[0]), b = at(dirYears.at(-1));
+    return {name: DIRECTION[k], c: change({n: a.posts, of: a.total}, {n: b.posts, of: b.total})};
+  })
+  .filter((d) => d.c.significant)
+  .sort((x, y) => y.c.diff - x.c.diff);
+const gainer = dirChanges.find((d) => d.c.diff > 0);
+const loser = dirChanges.at(-1)?.c.diff < 0 ? dirChanges.at(-1) : null;
+const otherNow = trends.directions.find((d) => d.direction === "other" && d.year === dirYears.at(-1));
+const dirTitle = gainer && loser ? `${gainer.name} растёт, ${loser.name} теряет долю` : "Какие направления растут";
+```
+
+<h2>${dirTitle}</h2>
+
+<div class="card">
+
+<p class="note-small">Доля среди всех IT-постов ${int(trends.direction_panel_channels)} каналов, которые писали вакансии каждый год с ${dirYears[0]}-го (так новые каналы не сдвигают доли); остальные ${pct(otherNow.posts / otherNow.total)} это прочие роли; справа изменение с ${dirYears[0]} года в п. п.</p>
+
+```js
+directionTiles(trends.directions, {width, partialYear: lastYear})
+```
+
+</div>
+
+<h2>${gradeTitle}</h2>
+
+<div class="card">
+
+<p class="note-small">Доля среди IT-постов, где указан грейд (а он указан в ${Math.round(d3.min(graded) * 100)}-${Math.round(d3.max(graded) * 100)} % постов); ${lastYear} год неполный.</p>
+
+```js
+gradeChart(trends.grades, {width, partialYear: lastYear})
 ```
 
 </div>
