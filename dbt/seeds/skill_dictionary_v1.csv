@@ -1795,7 +1795,7 @@ a91d21f597df42ae,яндексоблако,яндекс облако,Yandex Cloud
 0d676ed982b41120,,,,,,unknown,corpus
 0d68d36fa35dfc7a,,,,,,unknown,corpus
 0d7e0c2efdb1044d,,,,,,unknown,corpus
-0d9c4848fea91cad,,,,,,unknown,corpus
+0d9c4848fea91cad,,,Figma,design,,known,corpus
 0d9dbdf587ae209d,,,,,,unknown,corpus
 0da94d915ba10704,,,,,,unknown,corpus
 0db9e59ef1541c88,,,,,,unknown,corpus
@@ -1809,7 +1809,7 @@ a91d21f597df42ae,яндексоблако,яндекс облако,Yandex Cloud
 0e10bcd2f5a9549d,,,,,,unknown,corpus
 0e1aa548fd13bb53,,,,,,unknown,corpus
 0e2138d9e8dd501f,,,,,,unknown,corpus
-0e32df3361f7aa29,,,,,,unknown,corpus
+0e32df3361f7aa29,,,MS SQL Server,database,,known,corpus
 0e3cc71d0a496d77,,,Elasticsearch,database,,known,corpus
 0e3d53a2611bc57f,,,1С,1c,,known,corpus
 0e543d519ee096d4,,,ADS,design,,known,corpus
@@ -2092,7 +2092,7 @@ a91d21f597df42ae,яндексоблако,яндекс облако,Yandex Cloud
 189d74288c059181,,,,,,unknown,corpus
 18ac52bd72de388b,,,,,,unknown,corpus
 18acf8b13f78425d,,,,,,unknown,corpus
-18ad52f46c078f32,,,,,,unknown,corpus
+18ad52f46c078f32,,,Yii,framework,,known,corpus
 18b92dc65d471bb0,,,,,,unknown,corpus
 18ba4deced1457f6,,,,,,unknown,corpus
 18c082269e98051b,,,,,,unknown,corpus
@@ -2594,7 +2594,7 @@ a91d21f597df42ae,яндексоблако,яндекс облако,Yandex Cloud
 2bf548d8056029c7,,,,,,unknown,corpus
 2bf59a16991e5bbe,,,,,,unknown,corpus
 2bfbc118abcafe8c,,,,,,unknown,corpus
-2c201fc5a7bf7511,,,,,,unknown,corpus
+2c201fc5a7bf7511,,,Unity,framework,,known,corpus
 2c2820c6a82b86fa,,,,,,unknown,corpus
 2c28a025e2c97af6,,,ClickHouse,database,,known,corpus
 2c28a025e2c97af6,,,MongoDB,database,,known,corpus
@@ -2832,7 +2832,7 @@ a91d21f597df42ae,яндексоблако,яндекс облако,Yandex Cloud
 34640245da316036,,,,,,unknown,corpus
 3464f13b59481aa6,,,,,,unknown,corpus
 3465c653b2f79676,,,,,,unknown,corpus
-34665b26672ea336,,,,,,unknown,corpus
+34665b26672ea336,,,CI/CD,devops,,known,corpus
 346900700716370f,,,Linux,os,,known,corpus
 346900700716370f,,,Unix,os,,known,corpus
 346a28f39f4424cc,,,,,,unknown,corpus
@@ -3760,7 +3760,7 @@ a91d21f597df42ae,яндексоблако,яндекс облако,Yandex Cloud
 564328b55a4ea6ea,,,1С,1c,,known,corpus
 5648b3be51b2a73b,,,,,,unknown,corpus
 56497ff4c20db04b,,,,,,unknown,corpus
-5654b6a035493184,,,,,,unknown,corpus
+5654b6a035493184,,,Spring,framework,,known,corpus
 5659834c82f60919,,,,,,unknown,corpus
 565cdb4fcb2bc54a,,,,,,unknown,corpus
 5663df92997f9d88,,,,,,unknown,corpus
@@ -4150,7 +4150,7 @@ a91d21f597df42ae,яндексоблако,яндекс облако,Yandex Cloud
 650453ad4c2fd717,,,,,,unknown,corpus
 65097598d9b23a0c,,,,,,unknown,corpus
 650d6fd82d47992d,,,,,,unknown,corpus
-65137c94ae332b56,,,,,,unknown,corpus
+65137c94ae332b56,,,Spring,framework,,known,corpus
 6527c9361a2f469c,,,,,,unknown,corpus
 652b41a3d1a1a0aa,,,,,,unknown,corpus
 65336c3e71380010,,,,,,unknown,corpus
@@ -4771,7 +4771,7 @@ a91d21f597df42ae,яндексоблако,яндекс облако,Yandex Cloud
 7bff95f20561e508,,,,,,unknown,corpus
 7c0131db2f8f405d,,,,,,unknown,corpus
 7c0c6381bc6349a2,,,,,,unknown,corpus
-7c10d15b2908f69e,,,,,,unknown,corpus
+7c10d15b2908f69e,,,AWS,cloud,,known,corpus
 7c1a4b51bfa762b0,,,,,,unknown,corpus
 7c20d7d299e55b4a,,,,,,unknown,corpus
 7c28b57d1544052c,,,,,,unknown,corpus
@@ -7583,7 +7583,7 @@ e757e800f23aa7a2,,,,,,unknown,corpus
 e75c8708a842b0ea,,,Java,language,,known,corpus
 e7880894fbcb67ab,,,,,,unknown,corpus
 e78a51f09a1bab70,,,,,,unknown,corpus
-e79272e728898d10,,,,,,unknown,corpus
+e79272e728898d10,,,REST,network,,known,corpus
 e7949b38e6504e3b,,,,,,unknown,corpus
 e7a027217aa35b77,,,,,,unknown,corpus
 e7a513bec6d56752,,,,,,unknown,corpus
@@ -7891,7 +7891,7 @@ f4083ebab14495ba,,,,,,unknown,corpus
 f416b363c6c5f070,,,,,,unknown,corpus
 f41f672e35f2a32e,,,,,,unknown,corpus
 f42bade3e1c78b18,,,,,,unknown,corpus
-f4392b5a9875aa79,,,,,,unknown,corpus
+f4392b5a9875aa79,,,Linux,os,,known,corpus
 f44682805ed51c11,,,,,,unknown,corpus
 f4490563d38d1b27,,,,,,unknown,corpus
 f44ceb062e35dfee,,,,,,unknown,corpus
