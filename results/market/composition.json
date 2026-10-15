@@ -1,0 +1,166 @@
+{
+  "source_script": "src/radar/site/composition.py",
+  "command": "python -m radar.site.composition",
+  "commit": "434c383-dirty",
+  "created_at": "2026-10-15T12:02:04+00:00",
+  "metrics": {
+    "pooled.it_all.Python": {
+      "value": 0.0943,
+      "n": null,
+      "denominator": null
+    },
+    "within.it_all.Python": {
+      "value": 0.0308,
+      "n": null,
+      "denominator": null,
+      "p": 0.002
+    },
+    "pooled.it_all.CI/CD": {
+      "value": 0.0528,
+      "n": null,
+      "denominator": null
+    },
+    "within.it_all.CI/CD": {
+      "value": 0.0352,
+      "n": null,
+      "denominator": null,
+      "p": 0.0005
+    },
+    "pooled.it_all.JavaScript": {
+      "value": -0.0392,
+      "n": null,
+      "denominator": null
+    },
+    "within.it_all.JavaScript": {
+      "value": -0.0396,
+      "n": null,
+      "denominator": null,
+      "p": 0.012
+    },
+    "new_channels_share.it_all": {
+      "value": 0.2012,
+      "n": 7585,
+      "denominator": 37706
+    },
+    "pooled.frontend_all.React": {
+      "value": 0.1666,
+      "n": null,
+      "denominator": null
+    },
+    "within.frontend_all.React": {
+      "value": 0.0254,
+      "n": null,
+      "denominator": null,
+      "p": 0.47
+    },
+    "pooled.frontend_all.TypeScript": {
+      "value": 0.2345,
+      "n": null,
+      "denominator": null
+    },
+    "within.frontend_all.TypeScript": {
+      "value": 0.1424,
+      "n": null,
+      "denominator": null,
+      "p": 0.052
+    },
+    "pooled.frontend_all.CSS": {
+      "value": 0.0645,
+      "n": null,
+      "denominator": null
+    },
+    "within.frontend_all.CSS": {
+      "value": -0.0276,
+      "n": null,
+      "denominator": null,
+      "p": 0.44
+    },
+    "new_channels_share.frontend_all": {
+      "value": 0.0675,
+      "n": 208,
+      "denominator": 3081
+    },
+    "grades.junior.pooled.base": {
+      "value": 0.1312,
+      "n": null,
+      "denominator": null
+    },
+    "grades.junior.pooled.last": {
+      "value": 0.2647,
+      "n": null,
+      "denominator": null
+    },
+    "grades.junior.fixed.base": {
+      "value": 0.1949,
+      "n": null,
+      "denominator": null
+    },
+    "grades.junior.fixed.last": {
+      "value": 0.2027,
+      "n": null,
+      "denominator": null
+    },
+    "placebo.pooled_test": {
+      "value": 0.8515,
+      "n": 10218,
+      "denominator": 12000
+    },
+    "resume_posts.2017": {
+      "value": 2,
+      "n": null,
+      "denominator": null
+    },
+    "resume_posts.2018": {
+      "value": 30,
+      "n": null,
+      "denominator": null
+    },
+    "resume_posts.2019": {
+      "value": 107,
+      "n": null,
+      "denominator": null
+    },
+    "resume_posts.2020": {
+      "value": 151,
+      "n": null,
+      "denominator": null
+    },
+    "resume_posts.2021": {
+      "value": 91,
+      "n": null,
+      "denominator": null
+    },
+    "resume_posts.2022": {
+      "value": 90,
+      "n": null,
+      "denominator": null
+    },
+    "resume_posts.2023": {
+      "value": 114,
+      "n": null,
+      "denominator": null
+    },
+    "resume_posts.2024": {
+      "value": 69,
+      "n": null,
+      "denominator": null
+    },
+    "resume_posts.2025": {
+      "value": 3028,
+      "n": null,
+      "denominator": null
+    },
+    "resume_posts.2026": {
+      "value": 1627,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "base_year": 2022,
+  "recent_years": [
+    2025,
+    2026
+  ],
+  "placebo_splits": 200,
+  "placebo_skills": 60
+}
