@@ -50,32 +50,45 @@ const BLOCKS = [
   {title: "Падают", color: DOWN, test: (c) => c.significant && c.diff < 0}
 ];
 
-function blockPlot(rows, {width, top, row, font}) {
+// The left margin fits the longest skill name of the whole chart, so the blocks line up; a phone cuts
+// long names instead.
+const nameMargin = (rows, {width, font}) =>
+  width < 600 ? 96 : Math.min(260, Math.max(120, Math.ceil(Math.max(...rows.map((r) => r.skill.length)) * font * 0.6) + 14));
+
+function blockPlot(rows, {width, top, row, font, left}) {
   // Dots, arrow and label gap scale with the row height.
   const dot = Math.max(3.5, Math.min(7.5, row / 3.2));
+  const baseDot = Math.max(2.5, dot / 1.9);
   const gap = dot + 5;
   const narrow = width < 600;
+  const size = narrow ? 12 : font;
   const base = (r) => r.base.share;
-  const rises = (r) => r.share >= r.base.share;
   const right = narrow ? 72 : 120;
+  const reach = top * (narrow ? 1.5 : 1.12);
+  // The share goes on the side away from the base dot; a falling share near zero has no room on the
+  // left, so its label goes past the base dot on the right.
+  const px = (v) => (v / reach) * (width - left - right);
+  const leftFits = (r) => px(r.share) - gap - pct(r.share).length * size * 0.6 >= 0;
+  const onLeft = (r) => r.share < r.base.share && leftFits(r);
+  const pastBase = (r) => r.share < r.base.share && !leftFits(r);
   return Plot.plot({
     width,
     height: rows.length * row + 16,
-    marginLeft: narrow ? 96 : 160,
+    marginLeft: left,
     marginRight: right,
     marginTop: 4,
     marginBottom: 8,
-    x: {domain: [0, top * (narrow ? 1.5 : 1.12)], axis: null},
+    x: {domain: [0, reach], axis: null},
     y: {domain: rows.map((r) => r.skill), label: null, tickSize: 0, tickFormat: (t) => (narrow && t.length > 13 ? `${t.slice(0, 12)}…` : t)},
     // A phone keeps 12px whatever the desktop size, and cuts long names short.
     style: {fontSize: `${narrow ? 12 : font}px`},
     marks: [
       Plot.arrow(rows, {y1: "skill", y2: "skill", x1: base, x2: "share", stroke: "#bdbab2", strokeWidth: 1.6, headLength: Math.min(6, row / 4), insetStart: 5, insetEnd: dot + 2}),
-      Plot.dot(rows, {y: "skill", x: base, r: Math.max(2.5, dot / 1.9), fill: BASE}),
+      Plot.dot(rows, {y: "skill", x: base, r: baseDot, fill: BASE}),
       Plot.dot(rows, {y: "skill", x: "share", r: dot, fill: (r) => changeColor(r.change), stroke: "white", strokeWidth: 1.5}),
-      // The share beside the coloured dot, on the side away from the base dot.
-      Plot.text(rows.filter(rises), {y: "skill", x: "share", text: (r) => pct(r.share), dx: gap, textAnchor: "start", fontWeight: 650, fill: COLOR.bar}),
-      Plot.text(rows.filter((r) => !rises(r)), {y: "skill", x: "share", text: (r) => pct(r.share), dx: -gap, textAnchor: "end", fontWeight: 650, fill: COLOR.bar}),
+      Plot.text(rows.filter((r) => !onLeft(r) && !pastBase(r)), {y: "skill", x: "share", text: (r) => pct(r.share), dx: gap, textAnchor: "start", fontWeight: 650, fill: COLOR.bar}),
+      Plot.text(rows.filter(onLeft), {y: "skill", x: "share", text: (r) => pct(r.share), dx: -gap, textAnchor: "end", fontWeight: 650, fill: COLOR.bar}),
+      Plot.text(rows.filter(pastBase), {y: "skill", x: base, text: (r) => pct(r.share), dx: baseDot + 5, textAnchor: "start", fontWeight: 650, fill: COLOR.bar}),
       Plot.text(rows, {y: "skill", text: (r) => changeText(r.change), frameAnchor: "right", textAnchor: "end", dx: right - 6, fill: (r) => changeColor(r.change), fontWeight: 700}),
     ]
   });
@@ -86,13 +99,14 @@ const heading = (block) => html`<div class="block-head" style=${`--block: ${bloc
 
 // Without a base year: the recent share alone, one dot per skill with the share beside it.
 function nowPlot(rows, {width, row, font}) {
+  const left = nameMargin(rows, {width, font});
   const dot = Math.max(3.5, Math.min(7, row / 3.2));
   const narrow = width < 600;
   const top = Math.max(...rows.map((r) => r.share));
   return Plot.plot({
     width,
     height: rows.length * row + 16,
-    marginLeft: narrow ? 96 : 160,
+    marginLeft: left,
     marginRight: 16,
     marginTop: 4,
     marginBottom: 8,
@@ -111,8 +125,9 @@ export function skillChart(rows, {width, recentLabel, baseYear, row = 16, font =
   if (!baseYear) return nowPlot(rows, {width, row, font});
   const top = Math.max(...rows.map((r) => Math.max(r.share, r.base.share)));
   const legend = html`<div class="dot-legend"><span><i class="up-dot"></i><i class="down-dot"></i>сейчас, ${recentLabel}</span><span><i class="base"></i>${baseYear}</span><span>стрелка показывает, куда сдвинулась доля</span></div>`;
+  const left = nameMargin(rows, {width, font});
   const parts = BLOCKS.map((b) => [b, rows.filter((r) => b.test(r.change))]).filter(([, part]) => part.length);
-  return html`<div>${legend}${parts.map(([b, part]) => html`${heading(b)}${blockPlot(part, {width, top, row, font})}`)}</div>`;
+  return html`<div>${legend}${parts.map(([b, part]) => html`${heading(b)}${blockPlot(part, {width, top, row, font, left})}`)}</div>`;
 }
 
 // The grade mix of all IT by year: a line per grade, labelled at its end, the unfinished year dashed.
