@@ -183,3 +183,168 @@ details > summary {
 .card.accent-ml {
   border-top: 3px solid #d1495b;
 }
+
+/* Skill rows of the main page: name, bar of the recent share, yearly line, change since the base year. */
+.skill-rows {
+  font-size: 14px;
+  margin-top: 0.6rem;
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: minmax(110px, 170px) 1fr 112px 92px;
+  align-items: center;
+  gap: 0 14px;
+  padding: 5px 4px;
+  border-radius: 6px;
+}
+
+.skill-row:not(.skill-head):hover {
+  background: var(--theme-background-alt);
+}
+
+.skill-head {
+  font-size: 12px;
+  color: var(--theme-foreground-muted);
+  border-bottom: 1px solid #ebe9e4;
+  padding-bottom: 7px;
+  margin-bottom: 3px;
+}
+
+.skill-name {
+  font-weight: 550;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.skill-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.skill-bar i {
+  display: block;
+  height: 12px;
+  border-radius: 6px;
+  background: #1d3557;
+  min-width: 4px;
+}
+
+.skill-bar b {
+  font-weight: 600;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.skill-spark svg {
+  display: block;
+}
+
+.skill-delta {
+  text-align: right;
+  font-weight: 650;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.skill-delta.up {
+  color: #f2542d;
+}
+
+.skill-delta.down {
+  color: #6b6963;
+}
+
+@media (max-width: 600px) {
+  .skill-row {
+    grid-template-columns: 92px 1fr 64px;
+    gap: 0 8px;
+  }
+
+  .skill-spark,
+  .skill-head span:nth-child(3) {
+    display: none;
+  }
+}
+
+/* The movers: three skills that grew most since the base year and three that fell. */
+.movers h2 {
+  font-size: 14px;
+  margin-bottom: 0.4rem;
+}
+
+.mover {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "skill delta" "path path";
+  padding: 6px 0;
+  border-top: 1px solid #ebe9e4;
+}
+
+.mover:first-of-type {
+  border-top: none;
+}
+
+.mover-skill {
+  grid-area: skill;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.mover-delta {
+  grid-area: delta;
+  font-size: 17px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.mover-delta.up {
+  color: #f2542d;
+}
+
+.mover-delta.down {
+  color: #1d3557;
+}
+
+.mover-path {
+  grid-area: path;
+  font-size: 12px;
+  color: var(--theme-foreground-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+details.more summary {
+  margin: 0.5rem 4px 0.2rem;
+  font-size: 13px;
+  color: var(--theme-foreground-focus);
+  cursor: pointer;
+}
+
+.dot-legend {
+  display: flex;
+  gap: 18px;
+  font-size: 13px;
+  margin: 0.6rem 0 0.2rem;
+}
+
+.dot-legend i {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+
+.dot-legend i.jun {
+  background: #f2542d;
+}
+
+.dot-legend i.all {
+  background: #1d3557;
+}

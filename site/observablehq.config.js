@@ -21,14 +21,12 @@ export default {
   base: "/ru-it-jobs-radar/",
   // The order is the order of the "Назад" and "Дальше" links: the questions of a reader come first.
   pages: [
-    {name: "Главное", path: "/index"},
-    {name: "Навыки", path: "/skills"},
-    {name: "Зарплаты", path: "/salaries"},
-    {name: "Начинающим", path: "/junior"},
-    {name: "Время жизни вакансии", path: "/lifetime"},
-    {name: "Методика и ограничения", path: "/methodology"}
+    {name: "Навыки", path: "/index"},
+    {name: "Навыки джуна", path: "/junior"},
+    {name: "Навыки и деньги", path: "/salaries"},
+    {name: "О данных", path: "/methodology"}
   ],
-  header: `<div class="radar-header">Открытые источники, без hh.ru · данные по ${longDate(meta.data_through)} · <a href="/methodology">Как считается</a></div>`,
+  header: `<div class="radar-header">Открытые источники, без hh.ru · данные по ${longDate(meta.data_through)} · <a href="/methodology">О данных</a></div>`,
   footer: `Выгрузка данных ${longDate(meta.exported_at)} · <a href="/digest/">Недельные выпуски</a> · Код, витрины и методика: <a href="${REPO}">${REPO.replace("https://", "")}</a>`,
   toc: false,
   search: false,

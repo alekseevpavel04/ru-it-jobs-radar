@@ -235,13 +235,16 @@ export const signedPct = (x) => `${signed(x)} %`;
 export const SOURCE_COLOR = {trudvsem: "#4269d0", trudvsem_snapshot: "#4269d0", habr: "#efb118", telegram: "#3ca951"};
 export const FAMILY_ORDER = ["trudvsem", "habr", "telegram"];
 export const SOURCE_SHORT = {trudvsem: "Работа в России", trudvsem_snapshot: "Работа в России", habr: "Хабр Карьера", telegram: "Telegram"};
+// One palette with the README pictures (scripts/readme_charts.py): navy for the plain series,
+// orange for what the chart is about (juniors, the highlighted row), warm grey for "all vacancies".
 export const COLOR = {
-  bar: "#4a4a4a",
-  all: "#b8b8b8",
-  junior: "#8e44ad",
-  accent: "#d1495b",
+  bar: "#1d3557",
+  all: "#c9c6be",
+  junior: "#f2542d",
+  accent: "#f2542d",
+  muted: "#6b6963",
   from: "#9a9a9a",
-  to: "#3a3a3a"
+  to: "#1d3557"
 };
 
 // Roles of the extraction schema (mart_extracted_salaries: Telegram salaries).
