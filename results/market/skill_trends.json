@@ -1,0 +1,4260 @@
+{
+  "source_script": "src/radar/site/skill_trends.py",
+  "command": "python -m radar.site.skill_trends",
+  "commit": "8215b22-dirty",
+  "created_at": "2026-10-15T07:13:43+00:00",
+  "metrics": {
+    "posts.it_all.recent": {
+      "value": 46400,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_all.2019": {
+      "value": 9621,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_all.2020": {
+      "value": 12234,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_all.2021": {
+      "value": 19279,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_all.2022": {
+      "value": 27514,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_all.2023": {
+      "value": 31206,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_all.2024": {
+      "value": 31817,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_all.2025": {
+      "value": 27794,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_all.2026": {
+      "value": 18606,
+      "n": null,
+      "denominator": null
+    },
+    "share.it_all.Python.recent": {
+      "value": 0.2026,
+      "n": 9402,
+      "denominator": 46400
+    },
+    "share.it_all.Python.2019": {
+      "value": 0.0794,
+      "n": 764,
+      "denominator": 9621
+    },
+    "share.it_all.Python.2020": {
+      "value": 0.0965,
+      "n": 1180,
+      "denominator": 12234
+    },
+    "share.it_all.Python.2021": {
+      "value": 0.1549,
+      "n": 2987,
+      "denominator": 19279
+    },
+    "share.it_all.Python.2022": {
+      "value": 0.1321,
+      "n": 3634,
+      "denominator": 27514
+    },
+    "share.it_all.Python.2023": {
+      "value": 0.1632,
+      "n": 5094,
+      "denominator": 31206
+    },
+    "share.it_all.Python.2024": {
+      "value": 0.2039,
+      "n": 6489,
+      "denominator": 31817
+    },
+    "share.it_all.Python.2025": {
+      "value": 0.1965,
+      "n": 5462,
+      "denominator": 27794
+    },
+    "share.it_all.Python.2026": {
+      "value": 0.2118,
+      "n": 3940,
+      "denominator": 18606
+    },
+    "share.it_all.SQL.recent": {
+      "value": 0.149,
+      "n": 6914,
+      "denominator": 46400
+    },
+    "share.it_all.SQL.2019": {
+      "value": 0.0702,
+      "n": 675,
+      "denominator": 9621
+    },
+    "share.it_all.SQL.2020": {
+      "value": 0.0845,
+      "n": 1034,
+      "denominator": 12234
+    },
+    "share.it_all.SQL.2021": {
+      "value": 0.1503,
+      "n": 2898,
+      "denominator": 19279
+    },
+    "share.it_all.SQL.2022": {
+      "value": 0.119,
+      "n": 3275,
+      "denominator": 27514
+    },
+    "share.it_all.SQL.2023": {
+      "value": 0.1327,
+      "n": 4141,
+      "denominator": 31206
+    },
+    "share.it_all.SQL.2024": {
+      "value": 0.1506,
+      "n": 4792,
+      "denominator": 31817
+    },
+    "share.it_all.SQL.2025": {
+      "value": 0.1442,
+      "n": 4009,
+      "denominator": 27794
+    },
+    "share.it_all.SQL.2026": {
+      "value": 0.1561,
+      "n": 2905,
+      "denominator": 18606
+    },
+    "share.it_all.PostgreSQL.recent": {
+      "value": 0.1172,
+      "n": 5440,
+      "denominator": 46400
+    },
+    "share.it_all.PostgreSQL.2019": {
+      "value": 0.0786,
+      "n": 756,
+      "denominator": 9621
+    },
+    "share.it_all.PostgreSQL.2020": {
+      "value": 0.0911,
+      "n": 1115,
+      "denominator": 12234
+    },
+    "share.it_all.PostgreSQL.2021": {
+      "value": 0.1308,
+      "n": 2521,
+      "denominator": 19279
+    },
+    "share.it_all.PostgreSQL.2022": {
+      "value": 0.1014,
+      "n": 2789,
+      "denominator": 27514
+    },
+    "share.it_all.PostgreSQL.2023": {
+      "value": 0.112,
+      "n": 3495,
+      "denominator": 31206
+    },
+    "share.it_all.PostgreSQL.2024": {
+      "value": 0.1362,
+      "n": 4332,
+      "denominator": 31817
+    },
+    "share.it_all.PostgreSQL.2025": {
+      "value": 0.1205,
+      "n": 3350,
+      "denominator": 27794
+    },
+    "share.it_all.PostgreSQL.2026": {
+      "value": 0.1123,
+      "n": 2090,
+      "denominator": 18606
+    },
+    "share.it_all.Docker.recent": {
+      "value": 0.1037,
+      "n": 4811,
+      "denominator": 46400
+    },
+    "share.it_all.Docker.2019": {
+      "value": 0.0642,
+      "n": 618,
+      "denominator": 9621
+    },
+    "share.it_all.Docker.2020": {
+      "value": 0.0913,
+      "n": 1117,
+      "denominator": 12234
+    },
+    "share.it_all.Docker.2021": {
+      "value": 0.1186,
+      "n": 2286,
+      "denominator": 19279
+    },
+    "share.it_all.Docker.2022": {
+      "value": 0.0885,
+      "n": 2434,
+      "denominator": 27514
+    },
+    "share.it_all.Docker.2023": {
+      "value": 0.0907,
+      "n": 2830,
+      "denominator": 31206
+    },
+    "share.it_all.Docker.2024": {
+      "value": 0.1119,
+      "n": 3561,
+      "denominator": 31817
+    },
+    "share.it_all.Docker.2025": {
+      "value": 0.1029,
+      "n": 2859,
+      "denominator": 27794
+    },
+    "share.it_all.Docker.2026": {
+      "value": 0.1049,
+      "n": 1952,
+      "denominator": 18606
+    },
+    "share.it_all.Git.recent": {
+      "value": 0.0962,
+      "n": 4463,
+      "denominator": 46400
+    },
+    "share.it_all.Git.2019": {
+      "value": 0.2116,
+      "n": 2036,
+      "denominator": 9621
+    },
+    "share.it_all.Git.2020": {
+      "value": 0.1933,
+      "n": 2365,
+      "denominator": 12234
+    },
+    "share.it_all.Git.2021": {
+      "value": 0.1701,
+      "n": 3280,
+      "denominator": 19279
+    },
+    "share.it_all.Git.2022": {
+      "value": 0.1125,
+      "n": 3094,
+      "denominator": 27514
+    },
+    "share.it_all.Git.2023": {
+      "value": 0.1041,
+      "n": 3247,
+      "denominator": 31206
+    },
+    "share.it_all.Git.2024": {
+      "value": 0.1084,
+      "n": 3449,
+      "denominator": 31817
+    },
+    "share.it_all.Git.2025": {
+      "value": 0.0986,
+      "n": 2741,
+      "denominator": 27794
+    },
+    "share.it_all.Git.2026": {
+      "value": 0.0926,
+      "n": 1722,
+      "denominator": 18606
+    },
+    "share.it_all.React.recent": {
+      "value": 0.0927,
+      "n": 4300,
+      "denominator": 46400
+    },
+    "share.it_all.React.2019": {
+      "value": 0.2957,
+      "n": 2845,
+      "denominator": 9621
+    },
+    "share.it_all.React.2020": {
+      "value": 0.2087,
+      "n": 2553,
+      "denominator": 12234
+    },
+    "share.it_all.React.2021": {
+      "value": 0.1357,
+      "n": 2616,
+      "denominator": 19279
+    },
+    "share.it_all.React.2022": {
+      "value": 0.0813,
+      "n": 2236,
+      "denominator": 27514
+    },
+    "share.it_all.React.2023": {
+      "value": 0.0688,
+      "n": 2146,
+      "denominator": 31206
+    },
+    "share.it_all.React.2024": {
+      "value": 0.064,
+      "n": 2036,
+      "denominator": 31817
+    },
+    "share.it_all.React.2025": {
+      "value": 0.0806,
+      "n": 2241,
+      "denominator": 27794
+    },
+    "share.it_all.React.2026": {
+      "value": 0.1107,
+      "n": 2059,
+      "denominator": 18606
+    },
+    "share.it_all.Java.recent": {
+      "value": 0.0908,
+      "n": 4211,
+      "denominator": 46400
+    },
+    "share.it_all.Java.2019": {
+      "value": 0.0706,
+      "n": 679,
+      "denominator": 9621
+    },
+    "share.it_all.Java.2020": {
+      "value": 0.0862,
+      "n": 1055,
+      "denominator": 12234
+    },
+    "share.it_all.Java.2021": {
+      "value": 0.102,
+      "n": 1966,
+      "denominator": 19279
+    },
+    "share.it_all.Java.2022": {
+      "value": 0.1043,
+      "n": 2869,
+      "denominator": 27514
+    },
+    "share.it_all.Java.2023": {
+      "value": 0.1004,
+      "n": 3133,
+      "denominator": 31206
+    },
+    "share.it_all.Java.2024": {
+      "value": 0.0964,
+      "n": 3067,
+      "denominator": 31817
+    },
+    "share.it_all.Java.2025": {
+      "value": 0.0932,
+      "n": 2591,
+      "denominator": 27794
+    },
+    "share.it_all.Java.2026": {
+      "value": 0.0871,
+      "n": 1620,
+      "denominator": 18606
+    },
+    "share.it_all.CI/CD.recent": {
+      "value": 0.088,
+      "n": 4081,
+      "denominator": 46400
+    },
+    "share.it_all.CI/CD.2019": {
+      "value": 0.0281,
+      "n": 270,
+      "denominator": 9621
+    },
+    "share.it_all.CI/CD.2020": {
+      "value": 0.0284,
+      "n": 348,
+      "denominator": 12234
+    },
+    "share.it_all.CI/CD.2021": {
+      "value": 0.0449,
+      "n": 865,
+      "denominator": 19279
+    },
+    "share.it_all.CI/CD.2022": {
+      "value": 0.0404,
+      "n": 1111,
+      "denominator": 27514
+    },
+    "share.it_all.CI/CD.2023": {
+      "value": 0.0446,
+      "n": 1393,
+      "denominator": 31206
+    },
+    "share.it_all.CI/CD.2024": {
+      "value": 0.0596,
+      "n": 1897,
+      "denominator": 31817
+    },
+    "share.it_all.CI/CD.2025": {
+      "value": 0.0763,
+      "n": 2120,
+      "denominator": 27794
+    },
+    "share.it_all.CI/CD.2026": {
+      "value": 0.1054,
+      "n": 1961,
+      "denominator": 18606
+    },
+    "share.it_all.REST.recent": {
+      "value": 0.0833,
+      "n": 3866,
+      "denominator": 46400
+    },
+    "share.it_all.REST.2019": {
+      "value": 0.0794,
+      "n": 764,
+      "denominator": 9621
+    },
+    "share.it_all.REST.2020": {
+      "value": 0.0697,
+      "n": 853,
+      "denominator": 12234
+    },
+    "share.it_all.REST.2021": {
+      "value": 0.0737,
+      "n": 1420,
+      "denominator": 19279
+    },
+    "share.it_all.REST.2022": {
+      "value": 0.0635,
+      "n": 1748,
+      "denominator": 27514
+    },
+    "share.it_all.REST.2023": {
+      "value": 0.0665,
+      "n": 2075,
+      "denominator": 31206
+    },
+    "share.it_all.REST.2024": {
+      "value": 0.078,
+      "n": 2481,
+      "denominator": 31817
+    },
+    "share.it_all.REST.2025": {
+      "value": 0.0823,
+      "n": 2287,
+      "denominator": 27794
+    },
+    "share.it_all.REST.2026": {
+      "value": 0.0849,
+      "n": 1579,
+      "denominator": 18606
+    },
+    "share.it_all.JavaScript.recent": {
+      "value": 0.0792,
+      "n": 3674,
+      "denominator": 46400
+    },
+    "share.it_all.JavaScript.2019": {
+      "value": 0.4091,
+      "n": 3936,
+      "denominator": 9621
+    },
+    "share.it_all.JavaScript.2020": {
+      "value": 0.3013,
+      "n": 3686,
+      "denominator": 12234
+    },
+    "share.it_all.JavaScript.2021": {
+      "value": 0.1987,
+      "n": 3831,
+      "denominator": 19279
+    },
+    "share.it_all.JavaScript.2022": {
+      "value": 0.1097,
+      "n": 3019,
+      "denominator": 27514
+    },
+    "share.it_all.JavaScript.2023": {
+      "value": 0.0894,
+      "n": 2790,
+      "denominator": 31206
+    },
+    "share.it_all.JavaScript.2024": {
+      "value": 0.0765,
+      "n": 2434,
+      "denominator": 31817
+    },
+    "share.it_all.JavaScript.2025": {
+      "value": 0.0814,
+      "n": 2263,
+      "denominator": 27794
+    },
+    "share.it_all.JavaScript.2026": {
+      "value": 0.0758,
+      "n": 1411,
+      "denominator": 18606
+    },
+    "share.it_all.Linux.recent": {
+      "value": 0.0758,
+      "n": 3516,
+      "denominator": 46400
+    },
+    "share.it_all.Linux.2019": {
+      "value": 0.0607,
+      "n": 584,
+      "denominator": 9621
+    },
+    "share.it_all.Linux.2020": {
+      "value": 0.0701,
+      "n": 858,
+      "denominator": 12234
+    },
+    "share.it_all.Linux.2021": {
+      "value": 0.0836,
+      "n": 1612,
+      "denominator": 19279
+    },
+    "share.it_all.Linux.2022": {
+      "value": 0.0733,
+      "n": 2017,
+      "denominator": 27514
+    },
+    "share.it_all.Linux.2023": {
+      "value": 0.0821,
+      "n": 2561,
+      "denominator": 31206
+    },
+    "share.it_all.Linux.2024": {
+      "value": 0.0847,
+      "n": 2696,
+      "denominator": 31817
+    },
+    "share.it_all.Linux.2025": {
+      "value": 0.0773,
+      "n": 2149,
+      "denominator": 27794
+    },
+    "share.it_all.Linux.2026": {
+      "value": 0.0735,
+      "n": 1367,
+      "denominator": 18606
+    },
+    "share.it_all.Kubernetes.recent": {
+      "value": 0.074,
+      "n": 3435,
+      "denominator": 46400
+    },
+    "share.it_all.Kubernetes.2019": {
+      "value": 0.021,
+      "n": 202,
+      "denominator": 9621
+    },
+    "share.it_all.Kubernetes.2020": {
+      "value": 0.0335,
+      "n": 410,
+      "denominator": 12234
+    },
+    "share.it_all.Kubernetes.2021": {
+      "value": 0.0563,
+      "n": 1086,
+      "denominator": 19279
+    },
+    "share.it_all.Kubernetes.2022": {
+      "value": 0.0526,
+      "n": 1446,
+      "denominator": 27514
+    },
+    "share.it_all.Kubernetes.2023": {
+      "value": 0.0535,
+      "n": 1668,
+      "denominator": 31206
+    },
+    "share.it_all.Kubernetes.2024": {
+      "value": 0.0722,
+      "n": 2296,
+      "denominator": 31817
+    },
+    "share.it_all.Kubernetes.2025": {
+      "value": 0.0694,
+      "n": 1929,
+      "denominator": 27794
+    },
+    "share.it_all.Kubernetes.2026": {
+      "value": 0.0809,
+      "n": 1506,
+      "denominator": 18606
+    },
+    "share.it_all.TypeScript.recent": {
+      "value": 0.0697,
+      "n": 3234,
+      "denominator": 46400
+    },
+    "share.it_all.TypeScript.2019": {
+      "value": 0.1251,
+      "n": 1204,
+      "denominator": 9621
+    },
+    "share.it_all.TypeScript.2020": {
+      "value": 0.1217,
+      "n": 1489,
+      "denominator": 12234
+    },
+    "share.it_all.TypeScript.2021": {
+      "value": 0.0954,
+      "n": 1840,
+      "denominator": 19279
+    },
+    "share.it_all.TypeScript.2022": {
+      "value": 0.0615,
+      "n": 1691,
+      "denominator": 27514
+    },
+    "share.it_all.TypeScript.2023": {
+      "value": 0.0491,
+      "n": 1532,
+      "denominator": 31206
+    },
+    "share.it_all.TypeScript.2024": {
+      "value": 0.0514,
+      "n": 1635,
+      "denominator": 31817
+    },
+    "share.it_all.TypeScript.2025": {
+      "value": 0.063,
+      "n": 1751,
+      "denominator": 27794
+    },
+    "share.it_all.TypeScript.2026": {
+      "value": 0.0797,
+      "n": 1483,
+      "denominator": 18606
+    },
+    "share.it_all.Kafka.recent": {
+      "value": 0.0693,
+      "n": 3217,
+      "denominator": 46400
+    },
+    "share.it_all.Kafka.2019": {
+      "value": 0.0125,
+      "n": 120,
+      "denominator": 9621
+    },
+    "share.it_all.Kafka.2020": {
+      "value": 0.0179,
+      "n": 219,
+      "denominator": 12234
+    },
+    "share.it_all.Kafka.2021": {
+      "value": 0.0421,
+      "n": 811,
+      "denominator": 19279
+    },
+    "share.it_all.Kafka.2022": {
+      "value": 0.0391,
+      "n": 1075,
+      "denominator": 27514
+    },
+    "share.it_all.Kafka.2023": {
+      "value": 0.0453,
+      "n": 1414,
+      "denominator": 31206
+    },
+    "share.it_all.Kafka.2024": {
+      "value": 0.0662,
+      "n": 2106,
+      "denominator": 31817
+    },
+    "share.it_all.Kafka.2025": {
+      "value": 0.0652,
+      "n": 1811,
+      "denominator": 27794
+    },
+    "share.it_all.Kafka.2026": {
+      "value": 0.0756,
+      "n": 1406,
+      "denominator": 18606
+    },
+    "share.it_all.Go.recent": {
+      "value": 0.0555,
+      "n": 2574,
+      "denominator": 46400
+    },
+    "share.it_all.Go.2019": {
+      "value": 0.0242,
+      "n": 233,
+      "denominator": 9621
+    },
+    "share.it_all.Go.2020": {
+      "value": 0.0282,
+      "n": 345,
+      "denominator": 12234
+    },
+    "share.it_all.Go.2021": {
+      "value": 0.0371,
+      "n": 716,
+      "denominator": 19279
+    },
+    "share.it_all.Go.2022": {
+      "value": 0.0402,
+      "n": 1107,
+      "denominator": 27514
+    },
+    "share.it_all.Go.2023": {
+      "value": 0.0435,
+      "n": 1356,
+      "denominator": 31206
+    },
+    "share.it_all.Go.2024": {
+      "value": 0.0554,
+      "n": 1763,
+      "denominator": 31817
+    },
+    "share.it_all.Go.2025": {
+      "value": 0.052,
+      "n": 1444,
+      "denominator": 27794
+    },
+    "share.it_all.Go.2026": {
+      "value": 0.0607,
+      "n": 1130,
+      "denominator": 18606
+    },
+    "share.it_all.Microservices.recent": {
+      "value": 0.0547,
+      "n": 2536,
+      "denominator": 46400
+    },
+    "share.it_all.Microservices.2019": {
+      "value": 0.0161,
+      "n": 155,
+      "denominator": 9621
+    },
+    "share.it_all.Microservices.2020": {
+      "value": 0.0231,
+      "n": 283,
+      "denominator": 12234
+    },
+    "share.it_all.Microservices.2021": {
+      "value": 0.0382,
+      "n": 737,
+      "denominator": 19279
+    },
+    "share.it_all.Microservices.2022": {
+      "value": 0.0355,
+      "n": 976,
+      "denominator": 27514
+    },
+    "share.it_all.Microservices.2023": {
+      "value": 0.0378,
+      "n": 1180,
+      "denominator": 31206
+    },
+    "share.it_all.Microservices.2024": {
+      "value": 0.0474,
+      "n": 1507,
+      "denominator": 31817
+    },
+    "share.it_all.Microservices.2025": {
+      "value": 0.0497,
+      "n": 1382,
+      "denominator": 27794
+    },
+    "share.it_all.Microservices.2026": {
+      "value": 0.062,
+      "n": 1154,
+      "denominator": 18606
+    },
+    "share.it_all.DevOps.recent": {
+      "value": 0.0471,
+      "n": 2184,
+      "denominator": 46400
+    },
+    "share.it_all.DevOps.2019": {
+      "value": 0.0195,
+      "n": 188,
+      "denominator": 9621
+    },
+    "share.it_all.DevOps.2020": {
+      "value": 0.0302,
+      "n": 369,
+      "denominator": 12234
+    },
+    "share.it_all.DevOps.2021": {
+      "value": 0.0369,
+      "n": 712,
+      "denominator": 19279
+    },
+    "share.it_all.DevOps.2022": {
+      "value": 0.0449,
+      "n": 1236,
+      "denominator": 27514
+    },
+    "share.it_all.DevOps.2023": {
+      "value": 0.0409,
+      "n": 1275,
+      "denominator": 31206
+    },
+    "share.it_all.DevOps.2024": {
+      "value": 0.0449,
+      "n": 1429,
+      "denominator": 31817
+    },
+    "share.it_all.DevOps.2025": {
+      "value": 0.0455,
+      "n": 1265,
+      "denominator": 27794
+    },
+    "share.it_all.DevOps.2026": {
+      "value": 0.0494,
+      "n": 919,
+      "denominator": 18606
+    },
+    "share.it_all.Node.js.recent": {
+      "value": 0.0434,
+      "n": 2013,
+      "denominator": 46400
+    },
+    "share.it_all.Node.js.2019": {
+      "value": 0.1454,
+      "n": 1399,
+      "denominator": 9621
+    },
+    "share.it_all.Node.js.2020": {
+      "value": 0.1187,
+      "n": 1452,
+      "denominator": 12234
+    },
+    "share.it_all.Node.js.2021": {
+      "value": 0.0741,
+      "n": 1429,
+      "denominator": 19279
+    },
+    "share.it_all.Node.js.2022": {
+      "value": 0.0429,
+      "n": 1180,
+      "denominator": 27514
+    },
+    "share.it_all.Node.js.2023": {
+      "value": 0.0329,
+      "n": 1028,
+      "denominator": 31206
+    },
+    "share.it_all.Node.js.2024": {
+      "value": 0.0327,
+      "n": 1042,
+      "denominator": 31817
+    },
+    "share.it_all.Node.js.2025": {
+      "value": 0.038,
+      "n": 1056,
+      "denominator": 27794
+    },
+    "share.it_all.Node.js.2026": {
+      "value": 0.0514,
+      "n": 957,
+      "denominator": 18606
+    },
+    "share.it_all.Redis.recent": {
+      "value": 0.0408,
+      "n": 1892,
+      "denominator": 46400
+    },
+    "share.it_all.Redis.2019": {
+      "value": 0.0364,
+      "n": 350,
+      "denominator": 9621
+    },
+    "share.it_all.Redis.2020": {
+      "value": 0.0422,
+      "n": 516,
+      "denominator": 12234
+    },
+    "share.it_all.Redis.2021": {
+      "value": 0.0486,
+      "n": 936,
+      "denominator": 19279
+    },
+    "share.it_all.Redis.2022": {
+      "value": 0.0367,
+      "n": 1010,
+      "denominator": 27514
+    },
+    "share.it_all.Redis.2023": {
+      "value": 0.037,
+      "n": 1155,
+      "denominator": 31206
+    },
+    "share.it_all.Redis.2024": {
+      "value": 0.0454,
+      "n": 1444,
+      "denominator": 31817
+    },
+    "share.it_all.Redis.2025": {
+      "value": 0.0393,
+      "n": 1093,
+      "denominator": 27794
+    },
+    "share.it_all.Redis.2026": {
+      "value": 0.0429,
+      "n": 799,
+      "denominator": 18606
+    },
+    "share.it_all.RabbitMQ.recent": {
+      "value": 0.0345,
+      "n": 1602,
+      "denominator": 46400
+    },
+    "share.it_all.RabbitMQ.2019": {
+      "value": 0.0157,
+      "n": 151,
+      "denominator": 9621
+    },
+    "share.it_all.RabbitMQ.2020": {
+      "value": 0.0252,
+      "n": 308,
+      "denominator": 12234
+    },
+    "share.it_all.RabbitMQ.2021": {
+      "value": 0.0449,
+      "n": 866,
+      "denominator": 19279
+    },
+    "share.it_all.RabbitMQ.2022": {
+      "value": 0.0315,
+      "n": 868,
+      "denominator": 27514
+    },
+    "share.it_all.RabbitMQ.2023": {
+      "value": 0.0345,
+      "n": 1076,
+      "denominator": 31206
+    },
+    "share.it_all.RabbitMQ.2024": {
+      "value": 0.0409,
+      "n": 1301,
+      "denominator": 31817
+    },
+    "share.it_all.RabbitMQ.2025": {
+      "value": 0.034,
+      "n": 946,
+      "denominator": 27794
+    },
+    "share.it_all.RabbitMQ.2026": {
+      "value": 0.0353,
+      "n": 656,
+      "denominator": 18606
+    },
+    "share.it_all.CSS.recent": {
+      "value": 0.034,
+      "n": 1579,
+      "denominator": 46400
+    },
+    "share.it_all.CSS.2019": {
+      "value": 0.2181,
+      "n": 2098,
+      "denominator": 9621
+    },
+    "share.it_all.CSS.2020": {
+      "value": 0.1417,
+      "n": 1734,
+      "denominator": 12234
+    },
+    "share.it_all.CSS.2021": {
+      "value": 0.0875,
+      "n": 1686,
+      "denominator": 19279
+    },
+    "share.it_all.CSS.2022": {
+      "value": 0.049,
+      "n": 1348,
+      "denominator": 27514
+    },
+    "share.it_all.CSS.2023": {
+      "value": 0.0416,
+      "n": 1299,
+      "denominator": 31206
+    },
+    "share.it_all.CSS.2024": {
+      "value": 0.0366,
+      "n": 1163,
+      "denominator": 31817
+    },
+    "share.it_all.CSS.2025": {
+      "value": 0.0393,
+      "n": 1093,
+      "denominator": 27794
+    },
+    "share.it_all.CSS.2026": {
+      "value": 0.0261,
+      "n": 486,
+      "denominator": 18606
+    },
+    "share.it_all.HTML.recent": {
+      "value": 0.0333,
+      "n": 1543,
+      "denominator": 46400
+    },
+    "share.it_all.HTML.2019": {
+      "value": 0.2107,
+      "n": 2027,
+      "denominator": 9621
+    },
+    "share.it_all.HTML.2020": {
+      "value": 0.1368,
+      "n": 1673,
+      "denominator": 12234
+    },
+    "share.it_all.HTML.2021": {
+      "value": 0.0844,
+      "n": 1628,
+      "denominator": 19279
+    },
+    "share.it_all.HTML.2022": {
+      "value": 0.0503,
+      "n": 1384,
+      "denominator": 27514
+    },
+    "share.it_all.HTML.2023": {
+      "value": 0.0441,
+      "n": 1376,
+      "denominator": 31206
+    },
+    "share.it_all.HTML.2024": {
+      "value": 0.0361,
+      "n": 1150,
+      "denominator": 31817
+    },
+    "share.it_all.HTML.2025": {
+      "value": 0.0387,
+      "n": 1075,
+      "denominator": 27794
+    },
+    "share.it_all.HTML.2026": {
+      "value": 0.0252,
+      "n": 468,
+      "denominator": 18606
+    },
+    "share.it_all.ClickHouse.recent": {
+      "value": 0.0328,
+      "n": 1521,
+      "denominator": 46400
+    },
+    "share.it_all.ClickHouse.2019": {
+      "value": 0.0049,
+      "n": 47,
+      "denominator": 9621
+    },
+    "share.it_all.ClickHouse.2020": {
+      "value": 0.0136,
+      "n": 166,
+      "denominator": 12234
+    },
+    "share.it_all.ClickHouse.2021": {
+      "value": 0.0208,
+      "n": 401,
+      "denominator": 19279
+    },
+    "share.it_all.ClickHouse.2022": {
+      "value": 0.016,
+      "n": 439,
+      "denominator": 27514
+    },
+    "share.it_all.ClickHouse.2023": {
+      "value": 0.0236,
+      "n": 735,
+      "denominator": 31206
+    },
+    "share.it_all.ClickHouse.2024": {
+      "value": 0.034,
+      "n": 1083,
+      "denominator": 31817
+    },
+    "share.it_all.ClickHouse.2025": {
+      "value": 0.0317,
+      "n": 881,
+      "denominator": 27794
+    },
+    "share.it_all.ClickHouse.2026": {
+      "value": 0.0344,
+      "n": 640,
+      "denominator": 18606
+    },
+    "share.it_all.FastAPI.recent": {
+      "value": 0.0312,
+      "n": 1450,
+      "denominator": 46400
+    },
+    "share.it_all.FastAPI.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 9621
+    },
+    "share.it_all.FastAPI.2020": {
+      "value": 0.0002,
+      "n": 3,
+      "denominator": 12234
+    },
+    "share.it_all.FastAPI.2021": {
+      "value": 0.0085,
+      "n": 164,
+      "denominator": 19279
+    },
+    "share.it_all.FastAPI.2022": {
+      "value": 0.0091,
+      "n": 251,
+      "denominator": 27514
+    },
+    "share.it_all.FastAPI.2023": {
+      "value": 0.0146,
+      "n": 456,
+      "denominator": 31206
+    },
+    "share.it_all.FastAPI.2024": {
+      "value": 0.0261,
+      "n": 831,
+      "denominator": 31817
+    },
+    "share.it_all.FastAPI.2025": {
+      "value": 0.0297,
+      "n": 825,
+      "denominator": 27794
+    },
+    "share.it_all.FastAPI.2026": {
+      "value": 0.0336,
+      "n": 625,
+      "denominator": 18606
+    },
+    "share.it_all.C#.recent": {
+      "value": 0.0306,
+      "n": 1420,
+      "denominator": 46400
+    },
+    "share.it_all.C#.2019": {
+      "value": 0.0432,
+      "n": 416,
+      "denominator": 9621
+    },
+    "share.it_all.C#.2020": {
+      "value": 0.0436,
+      "n": 533,
+      "denominator": 12234
+    },
+    "share.it_all.C#.2021": {
+      "value": 0.0889,
+      "n": 1713,
+      "denominator": 19279
+    },
+    "share.it_all.C#.2022": {
+      "value": 0.0622,
+      "n": 1710,
+      "denominator": 27514
+    },
+    "share.it_all.C#.2023": {
+      "value": 0.0436,
+      "n": 1362,
+      "denominator": 31206
+    },
+    "share.it_all.C#.2024": {
+      "value": 0.0373,
+      "n": 1188,
+      "denominator": 31817
+    },
+    "share.it_all.C#.2025": {
+      "value": 0.0293,
+      "n": 814,
+      "denominator": 27794
+    },
+    "share.it_all.C#.2026": {
+      "value": 0.0326,
+      "n": 606,
+      "denominator": 18606
+    },
+    "share.it_all.ООП.recent": {
+      "value": 0.0301,
+      "n": 1396,
+      "denominator": 46400
+    },
+    "share.it_all.ООП.2019": {
+      "value": 0.0631,
+      "n": 607,
+      "denominator": 9621
+    },
+    "share.it_all.ООП.2020": {
+      "value": 0.0575,
+      "n": 703,
+      "denominator": 12234
+    },
+    "share.it_all.ООП.2021": {
+      "value": 0.0566,
+      "n": 1092,
+      "denominator": 19279
+    },
+    "share.it_all.ООП.2022": {
+      "value": 0.0426,
+      "n": 1171,
+      "denominator": 27514
+    },
+    "share.it_all.ООП.2023": {
+      "value": 0.0401,
+      "n": 1250,
+      "denominator": 31206
+    },
+    "share.it_all.ООП.2024": {
+      "value": 0.034,
+      "n": 1081,
+      "denominator": 31817
+    },
+    "share.it_all.ООП.2025": {
+      "value": 0.0314,
+      "n": 873,
+      "denominator": 27794
+    },
+    "share.it_all.ООП.2026": {
+      "value": 0.0281,
+      "n": 523,
+      "denominator": 18606
+    },
+    "share.it_all.Jira.recent": {
+      "value": 0.0288,
+      "n": 1334,
+      "denominator": 46400
+    },
+    "share.it_all.Jira.2019": {
+      "value": 0.0323,
+      "n": 311,
+      "denominator": 9621
+    },
+    "share.it_all.Jira.2020": {
+      "value": 0.0323,
+      "n": 395,
+      "denominator": 12234
+    },
+    "share.it_all.Jira.2021": {
+      "value": 0.037,
+      "n": 713,
+      "denominator": 19279
+    },
+    "share.it_all.Jira.2022": {
+      "value": 0.027,
+      "n": 744,
+      "denominator": 27514
+    },
+    "share.it_all.Jira.2023": {
+      "value": 0.0263,
+      "n": 822,
+      "denominator": 31206
+    },
+    "share.it_all.Jira.2024": {
+      "value": 0.0294,
+      "n": 934,
+      "denominator": 31817
+    },
+    "share.it_all.Jira.2025": {
+      "value": 0.0274,
+      "n": 761,
+      "denominator": 27794
+    },
+    "share.it_all.Jira.2026": {
+      "value": 0.0308,
+      "n": 573,
+      "denominator": 18606
+    },
+    "share.it_all.Vue.js.recent": {
+      "value": 0.0284,
+      "n": 1320,
+      "denominator": 46400
+    },
+    "share.it_all.Vue.js.2019": {
+      "value": 0.1083,
+      "n": 1042,
+      "denominator": 9621
+    },
+    "share.it_all.Vue.js.2020": {
+      "value": 0.0871,
+      "n": 1065,
+      "denominator": 12234
+    },
+    "share.it_all.Vue.js.2021": {
+      "value": 0.0525,
+      "n": 1013,
+      "denominator": 19279
+    },
+    "share.it_all.Vue.js.2022": {
+      "value": 0.032,
+      "n": 880,
+      "denominator": 27514
+    },
+    "share.it_all.Vue.js.2023": {
+      "value": 0.0251,
+      "n": 782,
+      "denominator": 31206
+    },
+    "share.it_all.Vue.js.2024": {
+      "value": 0.0233,
+      "n": 740,
+      "denominator": 31817
+    },
+    "share.it_all.Vue.js.2025": {
+      "value": 0.0213,
+      "n": 593,
+      "denominator": 27794
+    },
+    "share.it_all.Vue.js.2026": {
+      "value": 0.0391,
+      "n": 727,
+      "denominator": 18606
+    },
+    "share.it_all.HTTP.recent": {
+      "value": 0.0278,
+      "n": 1291,
+      "denominator": 46400
+    },
+    "share.it_all.HTTP.2019": {
+      "value": 0.0238,
+      "n": 229,
+      "denominator": 9621
+    },
+    "share.it_all.HTTP.2020": {
+      "value": 0.0206,
+      "n": 252,
+      "denominator": 12234
+    },
+    "share.it_all.HTTP.2021": {
+      "value": 0.0249,
+      "n": 480,
+      "denominator": 19279
+    },
+    "share.it_all.HTTP.2022": {
+      "value": 0.018,
+      "n": 494,
+      "denominator": 27514
+    },
+    "share.it_all.HTTP.2023": {
+      "value": 0.0191,
+      "n": 596,
+      "denominator": 31206
+    },
+    "share.it_all.HTTP.2024": {
+      "value": 0.0255,
+      "n": 811,
+      "denominator": 31817
+    },
+    "share.it_all.HTTP.2025": {
+      "value": 0.0266,
+      "n": 740,
+      "denominator": 27794
+    },
+    "share.it_all.HTTP.2026": {
+      "value": 0.0296,
+      "n": 551,
+      "denominator": 18606
+    },
+    "share.it_all.C++.recent": {
+      "value": 0.0277,
+      "n": 1287,
+      "denominator": 46400
+    },
+    "share.it_all.C++.2019": {
+      "value": 0.0256,
+      "n": 246,
+      "denominator": 9621
+    },
+    "share.it_all.C++.2020": {
+      "value": 0.0307,
+      "n": 376,
+      "denominator": 12234
+    },
+    "share.it_all.C++.2021": {
+      "value": 0.0352,
+      "n": 678,
+      "denominator": 19279
+    },
+    "share.it_all.C++.2022": {
+      "value": 0.0326,
+      "n": 897,
+      "denominator": 27514
+    },
+    "share.it_all.C++.2023": {
+      "value": 0.0335,
+      "n": 1046,
+      "denominator": 31206
+    },
+    "share.it_all.C++.2024": {
+      "value": 0.0304,
+      "n": 968,
+      "denominator": 31817
+    },
+    "share.it_all.C++.2025": {
+      "value": 0.0294,
+      "n": 818,
+      "denominator": 27794
+    },
+    "share.it_all.C++.2026": {
+      "value": 0.0252,
+      "n": 469,
+      "denominator": 18606
+    },
+    "share.it_all.Excel.recent": {
+      "value": 0.0166,
+      "n": 768,
+      "denominator": 46400
+    },
+    "share.it_all.Excel.2019": {
+      "value": 0.0015,
+      "n": 14,
+      "denominator": 9621
+    },
+    "share.it_all.Excel.2020": {
+      "value": 0.0028,
+      "n": 34,
+      "denominator": 12234
+    },
+    "share.it_all.Excel.2021": {
+      "value": 0.0048,
+      "n": 93,
+      "denominator": 19279
+    },
+    "share.it_all.Excel.2022": {
+      "value": 0.0048,
+      "n": 132,
+      "denominator": 27514
+    },
+    "share.it_all.Excel.2023": {
+      "value": 0.0082,
+      "n": 255,
+      "denominator": 31206
+    },
+    "share.it_all.Excel.2024": {
+      "value": 0.0086,
+      "n": 273,
+      "denominator": 31817
+    },
+    "share.it_all.Excel.2025": {
+      "value": 0.0129,
+      "n": 358,
+      "denominator": 27794
+    },
+    "share.it_all.Excel.2026": {
+      "value": 0.022,
+      "n": 410,
+      "denominator": 18606
+    },
+    "share.it_all.Postman.recent": {
+      "value": 0.0164,
+      "n": 762,
+      "denominator": 46400
+    },
+    "share.it_all.Postman.2019": {
+      "value": 0.0008,
+      "n": 8,
+      "denominator": 9621
+    },
+    "share.it_all.Postman.2020": {
+      "value": 0.0021,
+      "n": 26,
+      "denominator": 12234
+    },
+    "share.it_all.Postman.2021": {
+      "value": 0.0036,
+      "n": 69,
+      "denominator": 19279
+    },
+    "share.it_all.Postman.2022": {
+      "value": 0.0038,
+      "n": 104,
+      "denominator": 27514
+    },
+    "share.it_all.Postman.2023": {
+      "value": 0.007,
+      "n": 217,
+      "denominator": 31206
+    },
+    "share.it_all.Postman.2024": {
+      "value": 0.0136,
+      "n": 433,
+      "denominator": 31817
+    },
+    "share.it_all.Postman.2025": {
+      "value": 0.0151,
+      "n": 421,
+      "denominator": 27794
+    },
+    "share.it_all.Postman.2026": {
+      "value": 0.0183,
+      "n": 341,
+      "denominator": 18606
+    },
+    "share.it_all.Django.recent": {
+      "value": 0.0203,
+      "n": 944,
+      "denominator": 46400
+    },
+    "share.it_all.Django.2019": {
+      "value": 0.0195,
+      "n": 188,
+      "denominator": 9621
+    },
+    "share.it_all.Django.2020": {
+      "value": 0.0208,
+      "n": 255,
+      "denominator": 12234
+    },
+    "share.it_all.Django.2021": {
+      "value": 0.038,
+      "n": 732,
+      "denominator": 19279
+    },
+    "share.it_all.Django.2022": {
+      "value": 0.0247,
+      "n": 680,
+      "denominator": 27514
+    },
+    "share.it_all.Django.2023": {
+      "value": 0.0257,
+      "n": 802,
+      "denominator": 31206
+    },
+    "share.it_all.Django.2024": {
+      "value": 0.0275,
+      "n": 874,
+      "denominator": 31817
+    },
+    "share.it_all.Django.2025": {
+      "value": 0.0212,
+      "n": 589,
+      "denominator": 27794
+    },
+    "share.it_all.Django.2026": {
+      "value": 0.0191,
+      "n": 355,
+      "denominator": 18606
+    },
+    "share.it_all.pandas.recent": {
+      "value": 0.0174,
+      "n": 809,
+      "denominator": 46400
+    },
+    "share.it_all.pandas.2019": {
+      "value": 0.0041,
+      "n": 39,
+      "denominator": 9621
+    },
+    "share.it_all.pandas.2020": {
+      "value": 0.0051,
+      "n": 62,
+      "denominator": 12234
+    },
+    "share.it_all.pandas.2021": {
+      "value": 0.0106,
+      "n": 205,
+      "denominator": 19279
+    },
+    "share.it_all.pandas.2022": {
+      "value": 0.0068,
+      "n": 187,
+      "denominator": 27514
+    },
+    "share.it_all.pandas.2023": {
+      "value": 0.0086,
+      "n": 267,
+      "denominator": 31206
+    },
+    "share.it_all.pandas.2024": {
+      "value": 0.0143,
+      "n": 454,
+      "denominator": 31817
+    },
+    "share.it_all.pandas.2025": {
+      "value": 0.0185,
+      "n": 515,
+      "denominator": 27794
+    },
+    "share.it_all.pandas.2026": {
+      "value": 0.0158,
+      "n": 294,
+      "denominator": 18606
+    },
+    "share.it_all.Spring.recent": {
+      "value": 0.0205,
+      "n": 949,
+      "denominator": 46400
+    },
+    "share.it_all.Spring.2019": {
+      "value": 0.0072,
+      "n": 69,
+      "denominator": 9621
+    },
+    "share.it_all.Spring.2020": {
+      "value": 0.012,
+      "n": 147,
+      "denominator": 12234
+    },
+    "share.it_all.Spring.2021": {
+      "value": 0.0178,
+      "n": 343,
+      "denominator": 19279
+    },
+    "share.it_all.Spring.2022": {
+      "value": 0.0187,
+      "n": 515,
+      "denominator": 27514
+    },
+    "share.it_all.Spring.2023": {
+      "value": 0.0214,
+      "n": 669,
+      "denominator": 31206
+    },
+    "share.it_all.Spring.2024": {
+      "value": 0.0251,
+      "n": 798,
+      "denominator": 31817
+    },
+    "share.it_all.Spring.2025": {
+      "value": 0.023,
+      "n": 639,
+      "denominator": 27794
+    },
+    "share.it_all.Spring.2026": {
+      "value": 0.0167,
+      "n": 310,
+      "denominator": 18606
+    },
+    "posts.it_junior.recent": {
+      "value": 7569,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_junior.2019": {
+      "value": 479,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_junior.2020": {
+      "value": 635,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_junior.2021": {
+      "value": 1200,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_junior.2022": {
+      "value": 2271,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_junior.2023": {
+      "value": 3742,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_junior.2024": {
+      "value": 3916,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_junior.2025": {
+      "value": 4354,
+      "n": null,
+      "denominator": null
+    },
+    "posts.it_junior.2026": {
+      "value": 3215,
+      "n": null,
+      "denominator": null
+    },
+    "share.it_junior.Python.recent": {
+      "value": 0.2303,
+      "n": 1743,
+      "denominator": 7569
+    },
+    "share.it_junior.Python.2019": {
+      "value": 0.0752,
+      "n": 36,
+      "denominator": 479
+    },
+    "share.it_junior.Python.2020": {
+      "value": 0.1118,
+      "n": 71,
+      "denominator": 635
+    },
+    "share.it_junior.Python.2021": {
+      "value": 0.15,
+      "n": 180,
+      "denominator": 1200
+    },
+    "share.it_junior.Python.2022": {
+      "value": 0.1911,
+      "n": 434,
+      "denominator": 2271
+    },
+    "share.it_junior.Python.2023": {
+      "value": 0.1678,
+      "n": 628,
+      "denominator": 3742
+    },
+    "share.it_junior.Python.2024": {
+      "value": 0.1757,
+      "n": 688,
+      "denominator": 3916
+    },
+    "share.it_junior.Python.2025": {
+      "value": 0.2384,
+      "n": 1038,
+      "denominator": 4354
+    },
+    "share.it_junior.Python.2026": {
+      "value": 0.2193,
+      "n": 705,
+      "denominator": 3215
+    },
+    "share.it_junior.SQL.recent": {
+      "value": 0.1961,
+      "n": 1484,
+      "denominator": 7569
+    },
+    "share.it_junior.SQL.2019": {
+      "value": 0.0898,
+      "n": 43,
+      "denominator": 479
+    },
+    "share.it_junior.SQL.2020": {
+      "value": 0.1024,
+      "n": 65,
+      "denominator": 635
+    },
+    "share.it_junior.SQL.2021": {
+      "value": 0.1792,
+      "n": 215,
+      "denominator": 1200
+    },
+    "share.it_junior.SQL.2022": {
+      "value": 0.1805,
+      "n": 410,
+      "denominator": 2271
+    },
+    "share.it_junior.SQL.2023": {
+      "value": 0.1467,
+      "n": 549,
+      "denominator": 3742
+    },
+    "share.it_junior.SQL.2024": {
+      "value": 0.155,
+      "n": 607,
+      "denominator": 3916
+    },
+    "share.it_junior.SQL.2025": {
+      "value": 0.1996,
+      "n": 869,
+      "denominator": 4354
+    },
+    "share.it_junior.SQL.2026": {
+      "value": 0.1913,
+      "n": 615,
+      "denominator": 3215
+    },
+    "share.it_junior.Git.recent": {
+      "value": 0.1509,
+      "n": 1142,
+      "denominator": 7569
+    },
+    "share.it_junior.Git.2019": {
+      "value": 0.3299,
+      "n": 158,
+      "denominator": 479
+    },
+    "share.it_junior.Git.2020": {
+      "value": 0.2535,
+      "n": 161,
+      "denominator": 635
+    },
+    "share.it_junior.Git.2021": {
+      "value": 0.2025,
+      "n": 243,
+      "denominator": 1200
+    },
+    "share.it_junior.Git.2022": {
+      "value": 0.2083,
+      "n": 473,
+      "denominator": 2271
+    },
+    "share.it_junior.Git.2023": {
+      "value": 0.1374,
+      "n": 514,
+      "denominator": 3742
+    },
+    "share.it_junior.Git.2024": {
+      "value": 0.1374,
+      "n": 538,
+      "denominator": 3916
+    },
+    "share.it_junior.Git.2025": {
+      "value": 0.1573,
+      "n": 685,
+      "denominator": 4354
+    },
+    "share.it_junior.Git.2026": {
+      "value": 0.1421,
+      "n": 457,
+      "denominator": 3215
+    },
+    "share.it_junior.JavaScript.recent": {
+      "value": 0.099,
+      "n": 749,
+      "denominator": 7569
+    },
+    "share.it_junior.JavaScript.2019": {
+      "value": 0.453,
+      "n": 217,
+      "denominator": 479
+    },
+    "share.it_junior.JavaScript.2020": {
+      "value": 0.3386,
+      "n": 215,
+      "denominator": 635
+    },
+    "share.it_junior.JavaScript.2021": {
+      "value": 0.2158,
+      "n": 259,
+      "denominator": 1200
+    },
+    "share.it_junior.JavaScript.2022": {
+      "value": 0.1911,
+      "n": 434,
+      "denominator": 2271
+    },
+    "share.it_junior.JavaScript.2023": {
+      "value": 0.143,
+      "n": 535,
+      "denominator": 3742
+    },
+    "share.it_junior.JavaScript.2024": {
+      "value": 0.1032,
+      "n": 404,
+      "denominator": 3916
+    },
+    "share.it_junior.JavaScript.2025": {
+      "value": 0.1187,
+      "n": 517,
+      "denominator": 4354
+    },
+    "share.it_junior.JavaScript.2026": {
+      "value": 0.0722,
+      "n": 232,
+      "denominator": 3215
+    },
+    "share.it_junior.PostgreSQL.recent": {
+      "value": 0.0906,
+      "n": 686,
+      "denominator": 7569
+    },
+    "share.it_junior.PostgreSQL.2019": {
+      "value": 0.0647,
+      "n": 31,
+      "denominator": 479
+    },
+    "share.it_junior.PostgreSQL.2020": {
+      "value": 0.0661,
+      "n": 42,
+      "denominator": 635
+    },
+    "share.it_junior.PostgreSQL.2021": {
+      "value": 0.0925,
+      "n": 111,
+      "denominator": 1200
+    },
+    "share.it_junior.PostgreSQL.2022": {
+      "value": 0.1158,
+      "n": 263,
+      "denominator": 2271
+    },
+    "share.it_junior.PostgreSQL.2023": {
+      "value": 0.0778,
+      "n": 291,
+      "denominator": 3742
+    },
+    "share.it_junior.PostgreSQL.2024": {
+      "value": 0.0876,
+      "n": 343,
+      "denominator": 3916
+    },
+    "share.it_junior.PostgreSQL.2025": {
+      "value": 0.105,
+      "n": 457,
+      "denominator": 4354
+    },
+    "share.it_junior.PostgreSQL.2026": {
+      "value": 0.0712,
+      "n": 229,
+      "denominator": 3215
+    },
+    "share.it_junior.Java.recent": {
+      "value": 0.0905,
+      "n": 685,
+      "denominator": 7569
+    },
+    "share.it_junior.Java.2019": {
+      "value": 0.0543,
+      "n": 26,
+      "denominator": 479
+    },
+    "share.it_junior.Java.2020": {
+      "value": 0.052,
+      "n": 33,
+      "denominator": 635
+    },
+    "share.it_junior.Java.2021": {
+      "value": 0.08,
+      "n": 96,
+      "denominator": 1200
+    },
+    "share.it_junior.Java.2022": {
+      "value": 0.1347,
+      "n": 306,
+      "denominator": 2271
+    },
+    "share.it_junior.Java.2023": {
+      "value": 0.1133,
+      "n": 424,
+      "denominator": 3742
+    },
+    "share.it_junior.Java.2024": {
+      "value": 0.0861,
+      "n": 337,
+      "denominator": 3916
+    },
+    "share.it_junior.Java.2025": {
+      "value": 0.0937,
+      "n": 408,
+      "denominator": 4354
+    },
+    "share.it_junior.Java.2026": {
+      "value": 0.0862,
+      "n": 277,
+      "denominator": 3215
+    },
+    "share.it_junior.REST.recent": {
+      "value": 0.0881,
+      "n": 667,
+      "denominator": 7569
+    },
+    "share.it_junior.REST.2019": {
+      "value": 0.0689,
+      "n": 33,
+      "denominator": 479
+    },
+    "share.it_junior.REST.2020": {
+      "value": 0.0598,
+      "n": 38,
+      "denominator": 635
+    },
+    "share.it_junior.REST.2021": {
+      "value": 0.0675,
+      "n": 81,
+      "denominator": 1200
+    },
+    "share.it_junior.REST.2022": {
+      "value": 0.0947,
+      "n": 215,
+      "denominator": 2271
+    },
+    "share.it_junior.REST.2023": {
+      "value": 0.0641,
+      "n": 240,
+      "denominator": 3742
+    },
+    "share.it_junior.REST.2024": {
+      "value": 0.0792,
+      "n": 310,
+      "denominator": 3916
+    },
+    "share.it_junior.REST.2025": {
+      "value": 0.0972,
+      "n": 423,
+      "denominator": 4354
+    },
+    "share.it_junior.REST.2026": {
+      "value": 0.0759,
+      "n": 244,
+      "denominator": 3215
+    },
+    "share.it_junior.Docker.recent": {
+      "value": 0.0867,
+      "n": 656,
+      "denominator": 7569
+    },
+    "share.it_junior.Docker.2019": {
+      "value": 0.048,
+      "n": 23,
+      "denominator": 479
+    },
+    "share.it_junior.Docker.2020": {
+      "value": 0.0677,
+      "n": 43,
+      "denominator": 635
+    },
+    "share.it_junior.Docker.2021": {
+      "value": 0.08,
+      "n": 96,
+      "denominator": 1200
+    },
+    "share.it_junior.Docker.2022": {
+      "value": 0.0832,
+      "n": 189,
+      "denominator": 2271
+    },
+    "share.it_junior.Docker.2023": {
+      "value": 0.0553,
+      "n": 207,
+      "denominator": 3742
+    },
+    "share.it_junior.Docker.2024": {
+      "value": 0.0848,
+      "n": 332,
+      "denominator": 3916
+    },
+    "share.it_junior.Docker.2025": {
+      "value": 0.0972,
+      "n": 423,
+      "denominator": 4354
+    },
+    "share.it_junior.Docker.2026": {
+      "value": 0.0725,
+      "n": 233,
+      "denominator": 3215
+    },
+    "share.it_junior.React.recent": {
+      "value": 0.0852,
+      "n": 645,
+      "denominator": 7569
+    },
+    "share.it_junior.React.2019": {
+      "value": 0.3069,
+      "n": 147,
+      "denominator": 479
+    },
+    "share.it_junior.React.2020": {
+      "value": 0.1827,
+      "n": 116,
+      "denominator": 635
+    },
+    "share.it_junior.React.2021": {
+      "value": 0.1467,
+      "n": 176,
+      "denominator": 1200
+    },
+    "share.it_junior.React.2022": {
+      "value": 0.1273,
+      "n": 289,
+      "denominator": 2271
+    },
+    "share.it_junior.React.2023": {
+      "value": 0.0866,
+      "n": 324,
+      "denominator": 3742
+    },
+    "share.it_junior.React.2024": {
+      "value": 0.0748,
+      "n": 293,
+      "denominator": 3916
+    },
+    "share.it_junior.React.2025": {
+      "value": 0.0923,
+      "n": 402,
+      "denominator": 4354
+    },
+    "share.it_junior.React.2026": {
+      "value": 0.0756,
+      "n": 243,
+      "denominator": 3215
+    },
+    "share.it_junior.HTML.recent": {
+      "value": 0.0708,
+      "n": 536,
+      "denominator": 7569
+    },
+    "share.it_junior.HTML.2019": {
+      "value": 0.3382,
+      "n": 162,
+      "denominator": 479
+    },
+    "share.it_junior.HTML.2020": {
+      "value": 0.222,
+      "n": 141,
+      "denominator": 635
+    },
+    "share.it_junior.HTML.2021": {
+      "value": 0.1358,
+      "n": 163,
+      "denominator": 1200
+    },
+    "share.it_junior.HTML.2022": {
+      "value": 0.1136,
+      "n": 258,
+      "denominator": 2271
+    },
+    "share.it_junior.HTML.2023": {
+      "value": 0.0986,
+      "n": 369,
+      "denominator": 3742
+    },
+    "share.it_junior.HTML.2024": {
+      "value": 0.0705,
+      "n": 276,
+      "denominator": 3916
+    },
+    "share.it_junior.HTML.2025": {
+      "value": 0.0811,
+      "n": 353,
+      "denominator": 4354
+    },
+    "share.it_junior.HTML.2026": {
+      "value": 0.0569,
+      "n": 183,
+      "denominator": 3215
+    },
+    "share.it_junior.CSS.recent": {
+      "value": 0.069,
+      "n": 522,
+      "denominator": 7569
+    },
+    "share.it_junior.CSS.2019": {
+      "value": 0.309,
+      "n": 148,
+      "denominator": 479
+    },
+    "share.it_junior.CSS.2020": {
+      "value": 0.2409,
+      "n": 153,
+      "denominator": 635
+    },
+    "share.it_junior.CSS.2021": {
+      "value": 0.14,
+      "n": 168,
+      "denominator": 1200
+    },
+    "share.it_junior.CSS.2022": {
+      "value": 0.1061,
+      "n": 241,
+      "denominator": 2271
+    },
+    "share.it_junior.CSS.2023": {
+      "value": 0.0919,
+      "n": 344,
+      "denominator": 3742
+    },
+    "share.it_junior.CSS.2024": {
+      "value": 0.0702,
+      "n": 275,
+      "denominator": 3916
+    },
+    "share.it_junior.CSS.2025": {
+      "value": 0.0776,
+      "n": 338,
+      "denominator": 4354
+    },
+    "share.it_junior.CSS.2026": {
+      "value": 0.0572,
+      "n": 184,
+      "denominator": 3215
+    },
+    "share.it_junior.Linux.recent": {
+      "value": 0.0674,
+      "n": 510,
+      "denominator": 7569
+    },
+    "share.it_junior.Linux.2019": {
+      "value": 0.0668,
+      "n": 32,
+      "denominator": 479
+    },
+    "share.it_junior.Linux.2020": {
+      "value": 0.0693,
+      "n": 44,
+      "denominator": 635
+    },
+    "share.it_junior.Linux.2021": {
+      "value": 0.0867,
+      "n": 104,
+      "denominator": 1200
+    },
+    "share.it_junior.Linux.2022": {
+      "value": 0.1035,
+      "n": 235,
+      "denominator": 2271
+    },
+    "share.it_junior.Linux.2023": {
+      "value": 0.0695,
+      "n": 260,
+      "denominator": 3742
+    },
+    "share.it_junior.Linux.2024": {
+      "value": 0.072,
+      "n": 282,
+      "denominator": 3916
+    },
+    "share.it_junior.Linux.2025": {
+      "value": 0.0723,
+      "n": 315,
+      "denominator": 4354
+    },
+    "share.it_junior.Linux.2026": {
+      "value": 0.0607,
+      "n": 195,
+      "denominator": 3215
+    },
+    "share.it_junior.TypeScript.recent": {
+      "value": 0.0638,
+      "n": 483,
+      "denominator": 7569
+    },
+    "share.it_junior.TypeScript.2019": {
+      "value": 0.0856,
+      "n": 41,
+      "denominator": 479
+    },
+    "share.it_junior.TypeScript.2020": {
+      "value": 0.0882,
+      "n": 56,
+      "denominator": 635
+    },
+    "share.it_junior.TypeScript.2021": {
+      "value": 0.0833,
+      "n": 100,
+      "denominator": 1200
+    },
+    "share.it_junior.TypeScript.2022": {
+      "value": 0.0652,
+      "n": 148,
+      "denominator": 2271
+    },
+    "share.it_junior.TypeScript.2023": {
+      "value": 0.0532,
+      "n": 199,
+      "denominator": 3742
+    },
+    "share.it_junior.TypeScript.2024": {
+      "value": 0.0516,
+      "n": 202,
+      "denominator": 3916
+    },
+    "share.it_junior.TypeScript.2025": {
+      "value": 0.0691,
+      "n": 301,
+      "denominator": 4354
+    },
+    "share.it_junior.TypeScript.2026": {
+      "value": 0.0566,
+      "n": 182,
+      "denominator": 3215
+    },
+    "share.it_junior.ООП.recent": {
+      "value": 0.0542,
+      "n": 410,
+      "denominator": 7569
+    },
+    "share.it_junior.ООП.2019": {
+      "value": 0.0459,
+      "n": 22,
+      "denominator": 479
+    },
+    "share.it_junior.ООП.2020": {
+      "value": 0.0614,
+      "n": 39,
+      "denominator": 635
+    },
+    "share.it_junior.ООП.2021": {
+      "value": 0.0592,
+      "n": 71,
+      "denominator": 1200
+    },
+    "share.it_junior.ООП.2022": {
+      "value": 0.0907,
+      "n": 206,
+      "denominator": 2271
+    },
+    "share.it_junior.ООП.2023": {
+      "value": 0.0735,
+      "n": 275,
+      "denominator": 3742
+    },
+    "share.it_junior.ООП.2024": {
+      "value": 0.0531,
+      "n": 208,
+      "denominator": 3916
+    },
+    "share.it_junior.ООП.2025": {
+      "value": 0.0606,
+      "n": 264,
+      "denominator": 4354
+    },
+    "share.it_junior.ООП.2026": {
+      "value": 0.0454,
+      "n": 146,
+      "denominator": 3215
+    },
+    "share.it_junior.Excel.recent": {
+      "value": 0.0458,
+      "n": 347,
+      "denominator": 7569
+    },
+    "share.it_junior.Excel.2019": {
+      "value": 0.0063,
+      "n": 3,
+      "denominator": 479
+    },
+    "share.it_junior.Excel.2020": {
+      "value": 0.0063,
+      "n": 4,
+      "denominator": 635
+    },
+    "share.it_junior.Excel.2021": {
+      "value": 0.0108,
+      "n": 13,
+      "denominator": 1200
+    },
+    "share.it_junior.Excel.2022": {
+      "value": 0.0092,
+      "n": 21,
+      "denominator": 2271
+    },
+    "share.it_junior.Excel.2023": {
+      "value": 0.0139,
+      "n": 52,
+      "denominator": 3742
+    },
+    "share.it_junior.Excel.2024": {
+      "value": 0.0153,
+      "n": 60,
+      "denominator": 3916
+    },
+    "share.it_junior.Excel.2025": {
+      "value": 0.0388,
+      "n": 169,
+      "denominator": 4354
+    },
+    "share.it_junior.Excel.2026": {
+      "value": 0.0554,
+      "n": 178,
+      "denominator": 3215
+    },
+    "share.it_junior.CI/CD.recent": {
+      "value": 0.0439,
+      "n": 332,
+      "denominator": 7569
+    },
+    "share.it_junior.CI/CD.2019": {
+      "value": 0.0125,
+      "n": 6,
+      "denominator": 479
+    },
+    "share.it_junior.CI/CD.2020": {
+      "value": 0.022,
+      "n": 14,
+      "denominator": 635
+    },
+    "share.it_junior.CI/CD.2021": {
+      "value": 0.0292,
+      "n": 35,
+      "denominator": 1200
+    },
+    "share.it_junior.CI/CD.2022": {
+      "value": 0.0291,
+      "n": 66,
+      "denominator": 2271
+    },
+    "share.it_junior.CI/CD.2023": {
+      "value": 0.019,
+      "n": 71,
+      "denominator": 3742
+    },
+    "share.it_junior.CI/CD.2024": {
+      "value": 0.034,
+      "n": 133,
+      "denominator": 3916
+    },
+    "share.it_junior.CI/CD.2025": {
+      "value": 0.0423,
+      "n": 184,
+      "denominator": 4354
+    },
+    "share.it_junior.CI/CD.2026": {
+      "value": 0.046,
+      "n": 148,
+      "denominator": 3215
+    },
+    "share.it_junior.DevOps.recent": {
+      "value": 0.0377,
+      "n": 285,
+      "denominator": 7569
+    },
+    "share.it_junior.DevOps.2019": {
+      "value": 0.0104,
+      "n": 5,
+      "denominator": 479
+    },
+    "share.it_junior.DevOps.2020": {
+      "value": 0.011,
+      "n": 7,
+      "denominator": 635
+    },
+    "share.it_junior.DevOps.2021": {
+      "value": 0.0225,
+      "n": 27,
+      "denominator": 1200
+    },
+    "share.it_junior.DevOps.2022": {
+      "value": 0.0361,
+      "n": 82,
+      "denominator": 2271
+    },
+    "share.it_junior.DevOps.2023": {
+      "value": 0.0329,
+      "n": 123,
+      "denominator": 3742
+    },
+    "share.it_junior.DevOps.2024": {
+      "value": 0.0485,
+      "n": 190,
+      "denominator": 3916
+    },
+    "share.it_junior.DevOps.2025": {
+      "value": 0.0349,
+      "n": 152,
+      "denominator": 4354
+    },
+    "share.it_junior.DevOps.2026": {
+      "value": 0.0414,
+      "n": 133,
+      "denominator": 3215
+    },
+    "share.it_junior.FastAPI.recent": {
+      "value": 0.0358,
+      "n": 271,
+      "denominator": 7569
+    },
+    "share.it_junior.FastAPI.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 479
+    },
+    "share.it_junior.FastAPI.2020": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 635
+    },
+    "share.it_junior.FastAPI.2021": {
+      "value": 0.0033,
+      "n": 4,
+      "denominator": 1200
+    },
+    "share.it_junior.FastAPI.2022": {
+      "value": 0.0123,
+      "n": 28,
+      "denominator": 2271
+    },
+    "share.it_junior.FastAPI.2023": {
+      "value": 0.0112,
+      "n": 42,
+      "denominator": 3742
+    },
+    "share.it_junior.FastAPI.2024": {
+      "value": 0.0176,
+      "n": 69,
+      "denominator": 3916
+    },
+    "share.it_junior.FastAPI.2025": {
+      "value": 0.0381,
+      "n": 166,
+      "denominator": 4354
+    },
+    "share.it_junior.FastAPI.2026": {
+      "value": 0.0327,
+      "n": 105,
+      "denominator": 3215
+    },
+    "share.it_junior.Jira.recent": {
+      "value": 0.0357,
+      "n": 270,
+      "denominator": 7569
+    },
+    "share.it_junior.Jira.2019": {
+      "value": 0.0397,
+      "n": 19,
+      "denominator": 479
+    },
+    "share.it_junior.Jira.2020": {
+      "value": 0.0283,
+      "n": 18,
+      "denominator": 635
+    },
+    "share.it_junior.Jira.2021": {
+      "value": 0.0358,
+      "n": 43,
+      "denominator": 1200
+    },
+    "share.it_junior.Jira.2022": {
+      "value": 0.0339,
+      "n": 77,
+      "denominator": 2271
+    },
+    "share.it_junior.Jira.2023": {
+      "value": 0.0232,
+      "n": 87,
+      "denominator": 3742
+    },
+    "share.it_junior.Jira.2024": {
+      "value": 0.0291,
+      "n": 114,
+      "denominator": 3916
+    },
+    "share.it_junior.Jira.2025": {
+      "value": 0.0345,
+      "n": 150,
+      "denominator": 4354
+    },
+    "share.it_junior.Jira.2026": {
+      "value": 0.0373,
+      "n": 120,
+      "denominator": 3215
+    },
+    "share.it_junior.HTTP.recent": {
+      "value": 0.0349,
+      "n": 264,
+      "denominator": 7569
+    },
+    "share.it_junior.HTTP.2019": {
+      "value": 0.0167,
+      "n": 8,
+      "denominator": 479
+    },
+    "share.it_junior.HTTP.2020": {
+      "value": 0.0142,
+      "n": 9,
+      "denominator": 635
+    },
+    "share.it_junior.HTTP.2021": {
+      "value": 0.0233,
+      "n": 28,
+      "denominator": 1200
+    },
+    "share.it_junior.HTTP.2022": {
+      "value": 0.0379,
+      "n": 86,
+      "denominator": 2271
+    },
+    "share.it_junior.HTTP.2023": {
+      "value": 0.0235,
+      "n": 88,
+      "denominator": 3742
+    },
+    "share.it_junior.HTTP.2024": {
+      "value": 0.0281,
+      "n": 110,
+      "denominator": 3916
+    },
+    "share.it_junior.HTTP.2025": {
+      "value": 0.0409,
+      "n": 178,
+      "denominator": 4354
+    },
+    "share.it_junior.HTTP.2026": {
+      "value": 0.0267,
+      "n": 86,
+      "denominator": 3215
+    },
+    "share.it_junior.Go.recent": {
+      "value": 0.0333,
+      "n": 252,
+      "denominator": 7569
+    },
+    "share.it_junior.Go.2019": {
+      "value": 0.0251,
+      "n": 12,
+      "denominator": 479
+    },
+    "share.it_junior.Go.2020": {
+      "value": 0.0142,
+      "n": 9,
+      "denominator": 635
+    },
+    "share.it_junior.Go.2021": {
+      "value": 0.0192,
+      "n": 23,
+      "denominator": 1200
+    },
+    "share.it_junior.Go.2022": {
+      "value": 0.0255,
+      "n": 58,
+      "denominator": 2271
+    },
+    "share.it_junior.Go.2023": {
+      "value": 0.0243,
+      "n": 91,
+      "denominator": 3742
+    },
+    "share.it_junior.Go.2024": {
+      "value": 0.0347,
+      "n": 136,
+      "denominator": 3916
+    },
+    "share.it_junior.Go.2025": {
+      "value": 0.0333,
+      "n": 145,
+      "denominator": 4354
+    },
+    "share.it_junior.Go.2026": {
+      "value": 0.0333,
+      "n": 107,
+      "denominator": 3215
+    },
+    "share.it_junior.C#.recent": {
+      "value": 0.0329,
+      "n": 249,
+      "denominator": 7569
+    },
+    "share.it_junior.C#.2019": {
+      "value": 0.0585,
+      "n": 28,
+      "denominator": 479
+    },
+    "share.it_junior.C#.2020": {
+      "value": 0.0488,
+      "n": 31,
+      "denominator": 635
+    },
+    "share.it_junior.C#.2021": {
+      "value": 0.065,
+      "n": 78,
+      "denominator": 1200
+    },
+    "share.it_junior.C#.2022": {
+      "value": 0.0643,
+      "n": 146,
+      "denominator": 2271
+    },
+    "share.it_junior.C#.2023": {
+      "value": 0.0478,
+      "n": 179,
+      "denominator": 3742
+    },
+    "share.it_junior.C#.2024": {
+      "value": 0.0291,
+      "n": 114,
+      "denominator": 3916
+    },
+    "share.it_junior.C#.2025": {
+      "value": 0.0328,
+      "n": 143,
+      "denominator": 4354
+    },
+    "share.it_junior.C#.2026": {
+      "value": 0.033,
+      "n": 106,
+      "denominator": 3215
+    },
+    "share.it_junior.Postman.recent": {
+      "value": 0.0312,
+      "n": 236,
+      "denominator": 7569
+    },
+    "share.it_junior.Postman.2019": {
+      "value": 0.0042,
+      "n": 2,
+      "denominator": 479
+    },
+    "share.it_junior.Postman.2020": {
+      "value": 0.0047,
+      "n": 3,
+      "denominator": 635
+    },
+    "share.it_junior.Postman.2021": {
+      "value": 0.0142,
+      "n": 17,
+      "denominator": 1200
+    },
+    "share.it_junior.Postman.2022": {
+      "value": 0.0066,
+      "n": 15,
+      "denominator": 2271
+    },
+    "share.it_junior.Postman.2023": {
+      "value": 0.0086,
+      "n": 32,
+      "denominator": 3742
+    },
+    "share.it_junior.Postman.2024": {
+      "value": 0.0291,
+      "n": 114,
+      "denominator": 3916
+    },
+    "share.it_junior.Postman.2025": {
+      "value": 0.0324,
+      "n": 141,
+      "denominator": 4354
+    },
+    "share.it_junior.Postman.2026": {
+      "value": 0.0295,
+      "n": 95,
+      "denominator": 3215
+    },
+    "share.it_junior.Kafka.recent": {
+      "value": 0.0292,
+      "n": 221,
+      "denominator": 7569
+    },
+    "share.it_junior.Kafka.2019": {
+      "value": 0.0042,
+      "n": 2,
+      "denominator": 479
+    },
+    "share.it_junior.Kafka.2020": {
+      "value": 0.0079,
+      "n": 5,
+      "denominator": 635
+    },
+    "share.it_junior.Kafka.2021": {
+      "value": 0.0217,
+      "n": 26,
+      "denominator": 1200
+    },
+    "share.it_junior.Kafka.2022": {
+      "value": 0.0216,
+      "n": 49,
+      "denominator": 2271
+    },
+    "share.it_junior.Kafka.2023": {
+      "value": 0.0139,
+      "n": 52,
+      "denominator": 3742
+    },
+    "share.it_junior.Kafka.2024": {
+      "value": 0.0253,
+      "n": 99,
+      "denominator": 3916
+    },
+    "share.it_junior.Kafka.2025": {
+      "value": 0.0342,
+      "n": 149,
+      "denominator": 4354
+    },
+    "share.it_junior.Kafka.2026": {
+      "value": 0.0224,
+      "n": 72,
+      "denominator": 3215
+    },
+    "share.it_junior.Vue.js.recent": {
+      "value": 0.0285,
+      "n": 216,
+      "denominator": 7569
+    },
+    "share.it_junior.Vue.js.2019": {
+      "value": 0.0835,
+      "n": 40,
+      "denominator": 479
+    },
+    "share.it_junior.Vue.js.2020": {
+      "value": 0.1008,
+      "n": 64,
+      "denominator": 635
+    },
+    "share.it_junior.Vue.js.2021": {
+      "value": 0.0458,
+      "n": 55,
+      "denominator": 1200
+    },
+    "share.it_junior.Vue.js.2022": {
+      "value": 0.0383,
+      "n": 87,
+      "denominator": 2271
+    },
+    "share.it_junior.Vue.js.2023": {
+      "value": 0.0246,
+      "n": 92,
+      "denominator": 3742
+    },
+    "share.it_junior.Vue.js.2024": {
+      "value": 0.0296,
+      "n": 116,
+      "denominator": 3916
+    },
+    "share.it_junior.Vue.js.2025": {
+      "value": 0.0347,
+      "n": 151,
+      "denominator": 4354
+    },
+    "share.it_junior.Vue.js.2026": {
+      "value": 0.0202,
+      "n": 65,
+      "denominator": 3215
+    },
+    "share.it_junior.Node.js.recent": {
+      "value": 0.0284,
+      "n": 215,
+      "denominator": 7569
+    },
+    "share.it_junior.Node.js.2019": {
+      "value": 0.0939,
+      "n": 45,
+      "denominator": 479
+    },
+    "share.it_junior.Node.js.2020": {
+      "value": 0.0835,
+      "n": 53,
+      "denominator": 635
+    },
+    "share.it_junior.Node.js.2021": {
+      "value": 0.0792,
+      "n": 95,
+      "denominator": 1200
+    },
+    "share.it_junior.Node.js.2022": {
+      "value": 0.0502,
+      "n": 114,
+      "denominator": 2271
+    },
+    "share.it_junior.Node.js.2023": {
+      "value": 0.0267,
+      "n": 100,
+      "denominator": 3742
+    },
+    "share.it_junior.Node.js.2024": {
+      "value": 0.0317,
+      "n": 124,
+      "denominator": 3916
+    },
+    "share.it_junior.Node.js.2025": {
+      "value": 0.0331,
+      "n": 144,
+      "denominator": 4354
+    },
+    "share.it_junior.Node.js.2026": {
+      "value": 0.0221,
+      "n": 71,
+      "denominator": 3215
+    },
+    "share.it_junior.Microservices.recent": {
+      "value": 0.0279,
+      "n": 211,
+      "denominator": 7569
+    },
+    "share.it_junior.Microservices.2019": {
+      "value": 0.0104,
+      "n": 5,
+      "denominator": 479
+    },
+    "share.it_junior.Microservices.2020": {
+      "value": 0.011,
+      "n": 7,
+      "denominator": 635
+    },
+    "share.it_junior.Microservices.2021": {
+      "value": 0.025,
+      "n": 30,
+      "denominator": 1200
+    },
+    "share.it_junior.Microservices.2022": {
+      "value": 0.0247,
+      "n": 56,
+      "denominator": 2271
+    },
+    "share.it_junior.Microservices.2023": {
+      "value": 0.0208,
+      "n": 78,
+      "denominator": 3742
+    },
+    "share.it_junior.Microservices.2024": {
+      "value": 0.0289,
+      "n": 113,
+      "denominator": 3916
+    },
+    "share.it_junior.Microservices.2025": {
+      "value": 0.0282,
+      "n": 123,
+      "denominator": 4354
+    },
+    "share.it_junior.Microservices.2026": {
+      "value": 0.0274,
+      "n": 88,
+      "denominator": 3215
+    },
+    "share.it_junior.Django.recent": {
+      "value": 0.0275,
+      "n": 208,
+      "denominator": 7569
+    },
+    "share.it_junior.Django.2019": {
+      "value": 0.0084,
+      "n": 4,
+      "denominator": 479
+    },
+    "share.it_junior.Django.2020": {
+      "value": 0.0189,
+      "n": 12,
+      "denominator": 635
+    },
+    "share.it_junior.Django.2021": {
+      "value": 0.02,
+      "n": 24,
+      "denominator": 1200
+    },
+    "share.it_junior.Django.2022": {
+      "value": 0.037,
+      "n": 84,
+      "denominator": 2271
+    },
+    "share.it_junior.Django.2023": {
+      "value": 0.0299,
+      "n": 112,
+      "denominator": 3742
+    },
+    "share.it_junior.Django.2024": {
+      "value": 0.0255,
+      "n": 100,
+      "denominator": 3916
+    },
+    "share.it_junior.Django.2025": {
+      "value": 0.0331,
+      "n": 144,
+      "denominator": 4354
+    },
+    "share.it_junior.Django.2026": {
+      "value": 0.0199,
+      "n": 64,
+      "denominator": 3215
+    },
+    "share.it_junior.pandas.recent": {
+      "value": 0.0271,
+      "n": 205,
+      "denominator": 7569
+    },
+    "share.it_junior.pandas.2019": {
+      "value": 0.0021,
+      "n": 1,
+      "denominator": 479
+    },
+    "share.it_junior.pandas.2020": {
+      "value": 0.011,
+      "n": 7,
+      "denominator": 635
+    },
+    "share.it_junior.pandas.2021": {
+      "value": 0.015,
+      "n": 18,
+      "denominator": 1200
+    },
+    "share.it_junior.pandas.2022": {
+      "value": 0.0167,
+      "n": 38,
+      "denominator": 2271
+    },
+    "share.it_junior.pandas.2023": {
+      "value": 0.0166,
+      "n": 62,
+      "denominator": 3742
+    },
+    "share.it_junior.pandas.2024": {
+      "value": 0.0163,
+      "n": 64,
+      "denominator": 3916
+    },
+    "share.it_junior.pandas.2025": {
+      "value": 0.0301,
+      "n": 131,
+      "denominator": 4354
+    },
+    "share.it_junior.pandas.2026": {
+      "value": 0.023,
+      "n": 74,
+      "denominator": 3215
+    },
+    "share.it_junior.Spring.recent": {
+      "value": 0.0259,
+      "n": 196,
+      "denominator": 7569
+    },
+    "share.it_junior.Spring.2019": {
+      "value": 0.0021,
+      "n": 1,
+      "denominator": 479
+    },
+    "share.it_junior.Spring.2020": {
+      "value": 0.0047,
+      "n": 3,
+      "denominator": 635
+    },
+    "share.it_junior.Spring.2021": {
+      "value": 0.0117,
+      "n": 14,
+      "denominator": 1200
+    },
+    "share.it_junior.Spring.2022": {
+      "value": 0.0374,
+      "n": 85,
+      "denominator": 2271
+    },
+    "share.it_junior.Spring.2023": {
+      "value": 0.0313,
+      "n": 117,
+      "denominator": 3742
+    },
+    "share.it_junior.Spring.2024": {
+      "value": 0.0243,
+      "n": 95,
+      "denominator": 3916
+    },
+    "share.it_junior.Spring.2025": {
+      "value": 0.0301,
+      "n": 131,
+      "denominator": 4354
+    },
+    "share.it_junior.Spring.2026": {
+      "value": 0.0202,
+      "n": 65,
+      "denominator": 3215
+    },
+    "posts.ml_all.recent": {
+      "value": 3313,
+      "n": null,
+      "denominator": null
+    },
+    "posts.ml_all.2021": {
+      "value": 455,
+      "n": null,
+      "denominator": null
+    },
+    "posts.ml_all.2022": {
+      "value": 542,
+      "n": null,
+      "denominator": null
+    },
+    "posts.ml_all.2023": {
+      "value": 1038,
+      "n": null,
+      "denominator": null
+    },
+    "posts.ml_all.2024": {
+      "value": 1786,
+      "n": null,
+      "denominator": null
+    },
+    "posts.ml_all.2025": {
+      "value": 1880,
+      "n": null,
+      "denominator": null
+    },
+    "posts.ml_all.2026": {
+      "value": 1433,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml_all.Python.recent": {
+      "value": 0.521,
+      "n": 1726,
+      "denominator": 3313
+    },
+    "share.ml_all.Python.2021": {
+      "value": 0.578,
+      "n": 263,
+      "denominator": 455
+    },
+    "share.ml_all.Python.2022": {
+      "value": 0.5018,
+      "n": 272,
+      "denominator": 542
+    },
+    "share.ml_all.Python.2023": {
+      "value": 0.4682,
+      "n": 486,
+      "denominator": 1038
+    },
+    "share.ml_all.Python.2024": {
+      "value": 0.5022,
+      "n": 897,
+      "denominator": 1786
+    },
+    "share.ml_all.Python.2025": {
+      "value": 0.4963,
+      "n": 933,
+      "denominator": 1880
+    },
+    "share.ml_all.Python.2026": {
+      "value": 0.5534,
+      "n": 793,
+      "denominator": 1433
+    },
+    "share.ml_all.SQL.recent": {
+      "value": 0.2007,
+      "n": 665,
+      "denominator": 3313
+    },
+    "share.ml_all.SQL.2021": {
+      "value": 0.2198,
+      "n": 100,
+      "denominator": 455
+    },
+    "share.ml_all.SQL.2022": {
+      "value": 0.2306,
+      "n": 125,
+      "denominator": 542
+    },
+    "share.ml_all.SQL.2023": {
+      "value": 0.2062,
+      "n": 214,
+      "denominator": 1038
+    },
+    "share.ml_all.SQL.2024": {
+      "value": 0.2212,
+      "n": 395,
+      "denominator": 1786
+    },
+    "share.ml_all.SQL.2025": {
+      "value": 0.1899,
+      "n": 357,
+      "denominator": 1880
+    },
+    "share.ml_all.SQL.2026": {
+      "value": 0.2149,
+      "n": 308,
+      "denominator": 1433
+    },
+    "share.ml_all.PyTorch.recent": {
+      "value": 0.1778,
+      "n": 589,
+      "denominator": 3313
+    },
+    "share.ml_all.PyTorch.2021": {
+      "value": 0.1956,
+      "n": 89,
+      "denominator": 455
+    },
+    "share.ml_all.PyTorch.2022": {
+      "value": 0.1531,
+      "n": 83,
+      "denominator": 542
+    },
+    "share.ml_all.PyTorch.2023": {
+      "value": 0.184,
+      "n": 191,
+      "denominator": 1038
+    },
+    "share.ml_all.PyTorch.2024": {
+      "value": 0.2044,
+      "n": 365,
+      "denominator": 1786
+    },
+    "share.ml_all.PyTorch.2025": {
+      "value": 0.1989,
+      "n": 374,
+      "denominator": 1880
+    },
+    "share.ml_all.PyTorch.2026": {
+      "value": 0.15,
+      "n": 215,
+      "denominator": 1433
+    },
+    "share.ml_all.Docker.recent": {
+      "value": 0.1693,
+      "n": 561,
+      "denominator": 3313
+    },
+    "share.ml_all.Docker.2021": {
+      "value": 0.1495,
+      "n": 68,
+      "denominator": 455
+    },
+    "share.ml_all.Docker.2022": {
+      "value": 0.1365,
+      "n": 74,
+      "denominator": 542
+    },
+    "share.ml_all.Docker.2023": {
+      "value": 0.1252,
+      "n": 130,
+      "denominator": 1038
+    },
+    "share.ml_all.Docker.2024": {
+      "value": 0.1439,
+      "n": 257,
+      "denominator": 1786
+    },
+    "share.ml_all.Docker.2025": {
+      "value": 0.1601,
+      "n": 301,
+      "denominator": 1880
+    },
+    "share.ml_all.Docker.2026": {
+      "value": 0.1814,
+      "n": 260,
+      "denominator": 1433
+    },
+    "share.ml_all.RAG.recent": {
+      "value": 0.118,
+      "n": 391,
+      "denominator": 3313
+    },
+    "share.ml_all.RAG.2021": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 455
+    },
+    "share.ml_all.RAG.2022": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 542
+    },
+    "share.ml_all.RAG.2023": {
+      "value": 0.001,
+      "n": 1,
+      "denominator": 1038
+    },
+    "share.ml_all.RAG.2024": {
+      "value": 0.0269,
+      "n": 48,
+      "denominator": 1786
+    },
+    "share.ml_all.RAG.2025": {
+      "value": 0.0984,
+      "n": 185,
+      "denominator": 1880
+    },
+    "share.ml_all.RAG.2026": {
+      "value": 0.1438,
+      "n": 206,
+      "denominator": 1433
+    },
+    "share.ml_all.pandas.recent": {
+      "value": 0.1041,
+      "n": 345,
+      "denominator": 3313
+    },
+    "share.ml_all.pandas.2021": {
+      "value": 0.1956,
+      "n": 89,
+      "denominator": 455
+    },
+    "share.ml_all.pandas.2022": {
+      "value": 0.1107,
+      "n": 60,
+      "denominator": 542
+    },
+    "share.ml_all.pandas.2023": {
+      "value": 0.1127,
+      "n": 117,
+      "denominator": 1038
+    },
+    "share.ml_all.pandas.2024": {
+      "value": 0.1226,
+      "n": 219,
+      "denominator": 1786
+    },
+    "share.ml_all.pandas.2025": {
+      "value": 0.1261,
+      "n": 237,
+      "denominator": 1880
+    },
+    "share.ml_all.pandas.2026": {
+      "value": 0.0754,
+      "n": 108,
+      "denominator": 1433
+    },
+    "share.ml_all.Kubernetes.recent": {
+      "value": 0.1008,
+      "n": 334,
+      "denominator": 3313
+    },
+    "share.ml_all.Kubernetes.2021": {
+      "value": 0.0681,
+      "n": 31,
+      "denominator": 455
+    },
+    "share.ml_all.Kubernetes.2022": {
+      "value": 0.0572,
+      "n": 31,
+      "denominator": 542
+    },
+    "share.ml_all.Kubernetes.2023": {
+      "value": 0.0578,
+      "n": 60,
+      "denominator": 1038
+    },
+    "share.ml_all.Kubernetes.2024": {
+      "value": 0.056,
+      "n": 100,
+      "denominator": 1786
+    },
+    "share.ml_all.Kubernetes.2025": {
+      "value": 0.0846,
+      "n": 159,
+      "denominator": 1880
+    },
+    "share.ml_all.Kubernetes.2026": {
+      "value": 0.1221,
+      "n": 175,
+      "denominator": 1433
+    },
+    "share.ml_all.NumPy.recent": {
+      "value": 0.0939,
+      "n": 311,
+      "denominator": 3313
+    },
+    "share.ml_all.NumPy.2021": {
+      "value": 0.167,
+      "n": 76,
+      "denominator": 455
+    },
+    "share.ml_all.NumPy.2022": {
+      "value": 0.0923,
+      "n": 50,
+      "denominator": 542
+    },
+    "share.ml_all.NumPy.2023": {
+      "value": 0.0963,
+      "n": 100,
+      "denominator": 1038
+    },
+    "share.ml_all.NumPy.2024": {
+      "value": 0.0963,
+      "n": 172,
+      "denominator": 1786
+    },
+    "share.ml_all.NumPy.2025": {
+      "value": 0.1138,
+      "n": 214,
+      "denominator": 1880
+    },
+    "share.ml_all.NumPy.2026": {
+      "value": 0.0677,
+      "n": 97,
+      "denominator": 1433
+    },
+    "share.ml_all.Git.recent": {
+      "value": 0.0936,
+      "n": 310,
+      "denominator": 3313
+    },
+    "share.ml_all.Git.2021": {
+      "value": 0.1626,
+      "n": 74,
+      "denominator": 455
+    },
+    "share.ml_all.Git.2022": {
+      "value": 0.1421,
+      "n": 77,
+      "denominator": 542
+    },
+    "share.ml_all.Git.2023": {
+      "value": 0.1185,
+      "n": 123,
+      "denominator": 1038
+    },
+    "share.ml_all.Git.2024": {
+      "value": 0.1159,
+      "n": 207,
+      "denominator": 1786
+    },
+    "share.ml_all.Git.2025": {
+      "value": 0.0947,
+      "n": 178,
+      "denominator": 1880
+    },
+    "share.ml_all.Git.2026": {
+      "value": 0.0921,
+      "n": 132,
+      "denominator": 1433
+    },
+    "share.ml_all.CI/CD.recent": {
+      "value": 0.0921,
+      "n": 305,
+      "denominator": 3313
+    },
+    "share.ml_all.CI/CD.2021": {
+      "value": 0.033,
+      "n": 15,
+      "denominator": 455
+    },
+    "share.ml_all.CI/CD.2022": {
+      "value": 0.059,
+      "n": 32,
+      "denominator": 542
+    },
+    "share.ml_all.CI/CD.2023": {
+      "value": 0.0279,
+      "n": 29,
+      "denominator": 1038
+    },
+    "share.ml_all.CI/CD.2024": {
+      "value": 0.0538,
+      "n": 96,
+      "denominator": 1786
+    },
+    "share.ml_all.CI/CD.2025": {
+      "value": 0.0819,
+      "n": 154,
+      "denominator": 1880
+    },
+    "share.ml_all.CI/CD.2026": {
+      "value": 0.1054,
+      "n": 151,
+      "denominator": 1433
+    },
+    "share.ml_all.scikit-learn.recent": {
+      "value": 0.0903,
+      "n": 299,
+      "denominator": 3313
+    },
+    "share.ml_all.scikit-learn.2021": {
+      "value": 0.1648,
+      "n": 75,
+      "denominator": 455
+    },
+    "share.ml_all.scikit-learn.2022": {
+      "value": 0.0996,
+      "n": 54,
+      "denominator": 542
+    },
+    "share.ml_all.scikit-learn.2023": {
+      "value": 0.0829,
+      "n": 86,
+      "denominator": 1038
+    },
+    "share.ml_all.scikit-learn.2024": {
+      "value": 0.1064,
+      "n": 190,
+      "denominator": 1786
+    },
+    "share.ml_all.scikit-learn.2025": {
+      "value": 0.1122,
+      "n": 211,
+      "denominator": 1880
+    },
+    "share.ml_all.scikit-learn.2026": {
+      "value": 0.0614,
+      "n": 88,
+      "denominator": 1433
+    },
+    "share.ml_all.MLOps.recent": {
+      "value": 0.0848,
+      "n": 281,
+      "denominator": 3313
+    },
+    "share.ml_all.MLOps.2021": {
+      "value": 0.0176,
+      "n": 8,
+      "denominator": 455
+    },
+    "share.ml_all.MLOps.2022": {
+      "value": 0.0775,
+      "n": 42,
+      "denominator": 542
+    },
+    "share.ml_all.MLOps.2023": {
+      "value": 0.0568,
+      "n": 59,
+      "denominator": 1038
+    },
+    "share.ml_all.MLOps.2024": {
+      "value": 0.061,
+      "n": 109,
+      "denominator": 1786
+    },
+    "share.ml_all.MLOps.2025": {
+      "value": 0.0654,
+      "n": 123,
+      "denominator": 1880
+    },
+    "share.ml_all.MLOps.2026": {
+      "value": 0.1103,
+      "n": 158,
+      "denominator": 1433
+    },
+    "share.ml_all.PostgreSQL.recent": {
+      "value": 0.077,
+      "n": 255,
+      "denominator": 3313
+    },
+    "share.ml_all.PostgreSQL.2021": {
+      "value": 0.0505,
+      "n": 23,
+      "denominator": 455
+    },
+    "share.ml_all.PostgreSQL.2022": {
+      "value": 0.0664,
+      "n": 36,
+      "denominator": 542
+    },
+    "share.ml_all.PostgreSQL.2023": {
+      "value": 0.0665,
+      "n": 69,
+      "denominator": 1038
+    },
+    "share.ml_all.PostgreSQL.2024": {
+      "value": 0.0745,
+      "n": 133,
+      "denominator": 1786
+    },
+    "share.ml_all.PostgreSQL.2025": {
+      "value": 0.0638,
+      "n": 120,
+      "denominator": 1880
+    },
+    "share.ml_all.PostgreSQL.2026": {
+      "value": 0.0942,
+      "n": 135,
+      "denominator": 1433
+    },
+    "share.ml_all.FastAPI.recent": {
+      "value": 0.0764,
+      "n": 253,
+      "denominator": 3313
+    },
+    "share.ml_all.FastAPI.2021": {
+      "value": 0.0132,
+      "n": 6,
+      "denominator": 455
+    },
+    "share.ml_all.FastAPI.2022": {
+      "value": 0.0148,
+      "n": 8,
+      "denominator": 542
+    },
+    "share.ml_all.FastAPI.2023": {
+      "value": 0.025,
+      "n": 26,
+      "denominator": 1038
+    },
+    "share.ml_all.FastAPI.2024": {
+      "value": 0.0336,
+      "n": 60,
+      "denominator": 1786
+    },
+    "share.ml_all.FastAPI.2025": {
+      "value": 0.0676,
+      "n": 127,
+      "denominator": 1880
+    },
+    "share.ml_all.FastAPI.2026": {
+      "value": 0.0879,
+      "n": 126,
+      "denominator": 1433
+    },
+    "share.ml_all.LangChain.recent": {
+      "value": 0.0749,
+      "n": 248,
+      "denominator": 3313
+    },
+    "share.ml_all.LangChain.2021": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 455
+    },
+    "share.ml_all.LangChain.2022": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 542
+    },
+    "share.ml_all.LangChain.2023": {
+      "value": 0.0164,
+      "n": 17,
+      "denominator": 1038
+    },
+    "share.ml_all.LangChain.2024": {
+      "value": 0.028,
+      "n": 50,
+      "denominator": 1786
+    },
+    "share.ml_all.LangChain.2025": {
+      "value": 0.066,
+      "n": 124,
+      "denominator": 1880
+    },
+    "share.ml_all.LangChain.2026": {
+      "value": 0.0865,
+      "n": 124,
+      "denominator": 1433
+    },
+    "share.ml_all.Airflow.recent": {
+      "value": 0.0724,
+      "n": 240,
+      "denominator": 3313
+    },
+    "share.ml_all.Airflow.2021": {
+      "value": 0.0615,
+      "n": 28,
+      "denominator": 455
+    },
+    "share.ml_all.Airflow.2022": {
+      "value": 0.0775,
+      "n": 42,
+      "denominator": 542
+    },
+    "share.ml_all.Airflow.2023": {
+      "value": 0.078,
+      "n": 81,
+      "denominator": 1038
+    },
+    "share.ml_all.Airflow.2024": {
+      "value": 0.0879,
+      "n": 157,
+      "denominator": 1786
+    },
+    "share.ml_all.Airflow.2025": {
+      "value": 0.0665,
+      "n": 125,
+      "denominator": 1880
+    },
+    "share.ml_all.Airflow.2026": {
+      "value": 0.0803,
+      "n": 115,
+      "denominator": 1433
+    },
+    "share.ml_all.TensorFlow.recent": {
+      "value": 0.0691,
+      "n": 229,
+      "denominator": 3313
+    },
+    "share.ml_all.TensorFlow.2021": {
+      "value": 0.1912,
+      "n": 87,
+      "denominator": 455
+    },
+    "share.ml_all.TensorFlow.2022": {
+      "value": 0.0923,
+      "n": 50,
+      "denominator": 542
+    },
+    "share.ml_all.TensorFlow.2023": {
+      "value": 0.0973,
+      "n": 101,
+      "denominator": 1038
+    },
+    "share.ml_all.TensorFlow.2024": {
+      "value": 0.1041,
+      "n": 186,
+      "denominator": 1786
+    },
+    "share.ml_all.TensorFlow.2025": {
+      "value": 0.0957,
+      "n": 180,
+      "denominator": 1880
+    },
+    "share.ml_all.TensorFlow.2026": {
+      "value": 0.0342,
+      "n": 49,
+      "denominator": 1433
+    },
+    "share.ml_all.Spark.recent": {
+      "value": 0.0564,
+      "n": 187,
+      "denominator": 3313
+    },
+    "share.ml_all.Spark.2021": {
+      "value": 0.0967,
+      "n": 44,
+      "denominator": 455
+    },
+    "share.ml_all.Spark.2022": {
+      "value": 0.0959,
+      "n": 52,
+      "denominator": 542
+    },
+    "share.ml_all.Spark.2023": {
+      "value": 0.0626,
+      "n": 65,
+      "denominator": 1038
+    },
+    "share.ml_all.Spark.2024": {
+      "value": 0.0733,
+      "n": 131,
+      "denominator": 1786
+    },
+    "share.ml_all.Spark.2025": {
+      "value": 0.0564,
+      "n": 106,
+      "denominator": 1880
+    },
+    "share.ml_all.Spark.2026": {
+      "value": 0.0565,
+      "n": 81,
+      "denominator": 1433
+    },
+    "share.ml_all.Kafka.recent": {
+      "value": 0.0552,
+      "n": 183,
+      "denominator": 3313
+    },
+    "share.ml_all.Kafka.2021": {
+      "value": 0.033,
+      "n": 15,
+      "denominator": 455
+    },
+    "share.ml_all.Kafka.2022": {
+      "value": 0.0332,
+      "n": 18,
+      "denominator": 542
+    },
+    "share.ml_all.Kafka.2023": {
+      "value": 0.0328,
+      "n": 34,
+      "denominator": 1038
+    },
+    "share.ml_all.Kafka.2024": {
+      "value": 0.0308,
+      "n": 55,
+      "denominator": 1786
+    },
+    "share.ml_all.Kafka.2025": {
+      "value": 0.041,
+      "n": 77,
+      "denominator": 1880
+    },
+    "share.ml_all.Kafka.2026": {
+      "value": 0.074,
+      "n": 106,
+      "denominator": 1433
+    },
+    "share.ml_all.REST.recent": {
+      "value": 0.0501,
+      "n": 166,
+      "denominator": 3313
+    },
+    "share.ml_all.REST.2021": {
+      "value": 0.0132,
+      "n": 6,
+      "denominator": 455
+    },
+    "share.ml_all.REST.2022": {
+      "value": 0.0148,
+      "n": 8,
+      "denominator": 542
+    },
+    "share.ml_all.REST.2023": {
+      "value": 0.0202,
+      "n": 21,
+      "denominator": 1038
+    },
+    "share.ml_all.REST.2024": {
+      "value": 0.0235,
+      "n": 42,
+      "denominator": 1786
+    },
+    "share.ml_all.REST.2025": {
+      "value": 0.0479,
+      "n": 90,
+      "denominator": 1880
+    },
+    "share.ml_all.REST.2026": {
+      "value": 0.053,
+      "n": 76,
+      "denominator": 1433
+    },
+    "share.ml_all.A/B-тесты.recent": {
+      "value": 0.0495,
+      "n": 164,
+      "denominator": 3313
+    },
+    "share.ml_all.A/B-тесты.2021": {
+      "value": 0.022,
+      "n": 10,
+      "denominator": 455
+    },
+    "share.ml_all.A/B-тесты.2022": {
+      "value": 0.0314,
+      "n": 17,
+      "denominator": 542
+    },
+    "share.ml_all.A/B-тесты.2023": {
+      "value": 0.0299,
+      "n": 31,
+      "denominator": 1038
+    },
+    "share.ml_all.A/B-тесты.2024": {
+      "value": 0.0437,
+      "n": 78,
+      "denominator": 1786
+    },
+    "share.ml_all.A/B-тесты.2025": {
+      "value": 0.0372,
+      "n": 70,
+      "denominator": 1880
+    },
+    "share.ml_all.A/B-тесты.2026": {
+      "value": 0.0656,
+      "n": 94,
+      "denominator": 1433
+    },
+    "share.ml_all.Hadoop.recent": {
+      "value": 0.0489,
+      "n": 162,
+      "denominator": 3313
+    },
+    "share.ml_all.Hadoop.2021": {
+      "value": 0.1011,
+      "n": 46,
+      "denominator": 455
+    },
+    "share.ml_all.Hadoop.2022": {
+      "value": 0.0812,
+      "n": 44,
+      "denominator": 542
+    },
+    "share.ml_all.Hadoop.2023": {
+      "value": 0.0559,
+      "n": 58,
+      "denominator": 1038
+    },
+    "share.ml_all.Hadoop.2024": {
+      "value": 0.047,
+      "n": 84,
+      "denominator": 1786
+    },
+    "share.ml_all.Hadoop.2025": {
+      "value": 0.0463,
+      "n": 87,
+      "denominator": 1880
+    },
+    "share.ml_all.Hadoop.2026": {
+      "value": 0.0523,
+      "n": 75,
+      "denominator": 1433
+    },
+    "share.ml_all.MLflow.recent": {
+      "value": 0.0471,
+      "n": 156,
+      "denominator": 3313
+    },
+    "share.ml_all.MLflow.2021": {
+      "value": 0.033,
+      "n": 15,
+      "denominator": 455
+    },
+    "share.ml_all.MLflow.2022": {
+      "value": 0.0314,
+      "n": 17,
+      "denominator": 542
+    },
+    "share.ml_all.MLflow.2023": {
+      "value": 0.0347,
+      "n": 36,
+      "denominator": 1038
+    },
+    "share.ml_all.MLflow.2024": {
+      "value": 0.0336,
+      "n": 60,
+      "denominator": 1786
+    },
+    "share.ml_all.MLflow.2025": {
+      "value": 0.0436,
+      "n": 82,
+      "denominator": 1880
+    },
+    "share.ml_all.MLflow.2026": {
+      "value": 0.0516,
+      "n": 74,
+      "denominator": 1433
+    },
+    "share.ml_all.DevOps.recent": {
+      "value": 0.0435,
+      "n": 144,
+      "denominator": 3313
+    },
+    "share.ml_all.DevOps.2021": {
+      "value": 0.0154,
+      "n": 7,
+      "denominator": 455
+    },
+    "share.ml_all.DevOps.2022": {
+      "value": 0.0461,
+      "n": 25,
+      "denominator": 542
+    },
+    "share.ml_all.DevOps.2023": {
+      "value": 0.0279,
+      "n": 29,
+      "denominator": 1038
+    },
+    "share.ml_all.DevOps.2024": {
+      "value": 0.023,
+      "n": 41,
+      "denominator": 1786
+    },
+    "share.ml_all.DevOps.2025": {
+      "value": 0.0426,
+      "n": 80,
+      "denominator": 1880
+    },
+    "share.ml_all.DevOps.2026": {
+      "value": 0.0447,
+      "n": 64,
+      "denominator": 1433
+    },
+    "share.ml_all.Transformers.recent": {
+      "value": 0.0429,
+      "n": 142,
+      "denominator": 3313
+    },
+    "share.ml_all.Transformers.2021": {
+      "value": 0.0154,
+      "n": 7,
+      "denominator": 455
+    },
+    "share.ml_all.Transformers.2022": {
+      "value": 0.0074,
+      "n": 4,
+      "denominator": 542
+    },
+    "share.ml_all.Transformers.2023": {
+      "value": 0.0241,
+      "n": 25,
+      "denominator": 1038
+    },
+    "share.ml_all.Transformers.2024": {
+      "value": 0.0291,
+      "n": 52,
+      "denominator": 1786
+    },
+    "share.ml_all.Transformers.2025": {
+      "value": 0.0553,
+      "n": 104,
+      "denominator": 1880
+    },
+    "share.ml_all.Transformers.2026": {
+      "value": 0.0265,
+      "n": 38,
+      "denominator": 1433
+    },
+    "share.ml_all.Linux.recent": {
+      "value": 0.0414,
+      "n": 137,
+      "denominator": 3313
+    },
+    "share.ml_all.Linux.2021": {
+      "value": 0.1165,
+      "n": 53,
+      "denominator": 455
+    },
+    "share.ml_all.Linux.2022": {
+      "value": 0.0812,
+      "n": 44,
+      "denominator": 542
+    },
+    "share.ml_all.Linux.2023": {
+      "value": 0.0809,
+      "n": 84,
+      "denominator": 1038
+    },
+    "share.ml_all.Linux.2024": {
+      "value": 0.0599,
+      "n": 107,
+      "denominator": 1786
+    },
+    "share.ml_all.Linux.2025": {
+      "value": 0.0404,
+      "n": 76,
+      "denominator": 1880
+    },
+    "share.ml_all.Linux.2026": {
+      "value": 0.0426,
+      "n": 61,
+      "denominator": 1433
+    },
+    "share.ml_all.Microservices.recent": {
+      "value": 0.0404,
+      "n": 134,
+      "denominator": 3313
+    },
+    "share.ml_all.Microservices.2021": {
+      "value": 0.0242,
+      "n": 11,
+      "denominator": 455
+    },
+    "share.ml_all.Microservices.2022": {
+      "value": 0.0148,
+      "n": 8,
+      "denominator": 542
+    },
+    "share.ml_all.Microservices.2023": {
+      "value": 0.0222,
+      "n": 23,
+      "denominator": 1038
+    },
+    "share.ml_all.Microservices.2024": {
+      "value": 0.0426,
+      "n": 76,
+      "denominator": 1786
+    },
+    "share.ml_all.Microservices.2025": {
+      "value": 0.0404,
+      "n": 76,
+      "denominator": 1880
+    },
+    "share.ml_all.Microservices.2026": {
+      "value": 0.0405,
+      "n": 58,
+      "denominator": 1433
+    },
+    "share.ml_all.LangGraph.recent": {
+      "value": 0.0392,
+      "n": 130,
+      "denominator": 3313
+    },
+    "share.ml_all.LangGraph.2021": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 455
+    },
+    "share.ml_all.LangGraph.2022": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 542
+    },
+    "share.ml_all.LangGraph.2023": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1038
+    },
+    "share.ml_all.LangGraph.2024": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1786
+    },
+    "share.ml_all.LangGraph.2025": {
+      "value": 0.0335,
+      "n": 63,
+      "denominator": 1880
+    },
+    "share.ml_all.LangGraph.2026": {
+      "value": 0.0468,
+      "n": 67,
+      "denominator": 1433
+    },
+    "share.ml_all.CatBoost.recent": {
+      "value": 0.0383,
+      "n": 127,
+      "denominator": 3313
+    },
+    "share.ml_all.CatBoost.2021": {
+      "value": 0.0418,
+      "n": 19,
+      "denominator": 455
+    },
+    "share.ml_all.CatBoost.2022": {
+      "value": 0.024,
+      "n": 13,
+      "denominator": 542
+    },
+    "share.ml_all.CatBoost.2023": {
+      "value": 0.0376,
+      "n": 39,
+      "denominator": 1038
+    },
+    "share.ml_all.CatBoost.2024": {
+      "value": 0.0319,
+      "n": 57,
+      "denominator": 1786
+    },
+    "share.ml_all.CatBoost.2025": {
+      "value": 0.0447,
+      "n": 84,
+      "denominator": 1880
+    },
+    "share.ml_all.CatBoost.2026": {
+      "value": 0.03,
+      "n": 43,
+      "denominator": 1433
+    },
+    "share.ml_all.Hugging Face.recent": {
+      "value": 0.0368,
+      "n": 122,
+      "denominator": 3313
+    },
+    "share.ml_all.Hugging Face.2021": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 455
+    },
+    "share.ml_all.Hugging Face.2022": {
+      "value": 0.0018,
+      "n": 1,
+      "denominator": 542
+    },
+    "share.ml_all.Hugging Face.2023": {
+      "value": 0.0067,
+      "n": 7,
+      "denominator": 1038
+    },
+    "share.ml_all.Hugging Face.2024": {
+      "value": 0.0196,
+      "n": 35,
+      "denominator": 1786
+    },
+    "share.ml_all.Hugging Face.2025": {
+      "value": 0.0383,
+      "n": 72,
+      "denominator": 1880
+    },
+    "share.ml_all.Hugging Face.2026": {
+      "value": 0.0349,
+      "n": 50,
+      "denominator": 1433
+    },
+    "share.ml_all.ООП.recent": {
+      "value": 0.0257,
+      "n": 85,
+      "denominator": 3313
+    },
+    "share.ml_all.ООП.2021": {
+      "value": 0.022,
+      "n": 10,
+      "denominator": 455
+    },
+    "share.ml_all.ООП.2022": {
+      "value": 0.0295,
+      "n": 16,
+      "denominator": 542
+    },
+    "share.ml_all.ООП.2023": {
+      "value": 0.026,
+      "n": 27,
+      "denominator": 1038
+    },
+    "share.ml_all.ООП.2024": {
+      "value": 0.0263,
+      "n": 47,
+      "denominator": 1786
+    },
+    "share.ml_all.ООП.2025": {
+      "value": 0.0303,
+      "n": 57,
+      "denominator": 1880
+    },
+    "share.ml_all.ООП.2026": {
+      "value": 0.0195,
+      "n": 28,
+      "denominator": 1433
+    },
+    "posts.ml_junior.recent": {
+      "value": 444,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml_junior.Python.recent": {
+      "value": 0.6689,
+      "n": 297,
+      "denominator": 444
+    },
+    "share.ml_junior.SQL.recent": {
+      "value": 0.3018,
+      "n": 134,
+      "denominator": 444
+    },
+    "share.ml_junior.PyTorch.recent": {
+      "value": 0.1712,
+      "n": 76,
+      "denominator": 444
+    },
+    "share.ml_junior.pandas.recent": {
+      "value": 0.1667,
+      "n": 74,
+      "denominator": 444
+    },
+    "share.ml_junior.NumPy.recent": {
+      "value": 0.1464,
+      "n": 65,
+      "denominator": 444
+    },
+    "share.ml_junior.Git.recent": {
+      "value": 0.1306,
+      "n": 58,
+      "denominator": 444
+    },
+    "share.ml_junior.scikit-learn.recent": {
+      "value": 0.1284,
+      "n": 57,
+      "denominator": 444
+    },
+    "share.ml_junior.RAG.recent": {
+      "value": 0.1194,
+      "n": 53,
+      "denominator": 444
+    },
+    "share.ml_junior.Docker.recent": {
+      "value": 0.1104,
+      "n": 49,
+      "denominator": 444
+    },
+    "share.ml_junior.LangChain.recent": {
+      "value": 0.0743,
+      "n": 33,
+      "denominator": 444
+    },
+    "share.ml_junior.FastAPI.recent": {
+      "value": 0.0698,
+      "n": 31,
+      "denominator": 444
+    },
+    "share.ml_junior.REST.recent": {
+      "value": 0.0631,
+      "n": 28,
+      "denominator": 444
+    },
+    "share.ml_junior.A/B-тесты.recent": {
+      "value": 0.0608,
+      "n": 27,
+      "denominator": 444
+    },
+    "share.ml_junior.Transformers.recent": {
+      "value": 0.0586,
+      "n": 26,
+      "denominator": 444
+    },
+    "share.ml_junior.TensorFlow.recent": {
+      "value": 0.0563,
+      "n": 25,
+      "denominator": 444
+    },
+    "share.ml_junior.LangGraph.recent": {
+      "value": 0.0495,
+      "n": 22,
+      "denominator": 444
+    },
+    "share.ml_junior.ООП.recent": {
+      "value": 0.0473,
+      "n": 21,
+      "denominator": 444
+    },
+    "share.ml_junior.Airflow.recent": {
+      "value": 0.045,
+      "n": 20,
+      "denominator": 444
+    },
+    "share.ml_junior.CI/CD.recent": {
+      "value": 0.045,
+      "n": 20,
+      "denominator": 444
+    }
+  },
+  "groups": [
+    "it_all",
+    "it_junior",
+    "ml_all",
+    "ml_junior"
+  ],
+  "recent_years": [
+    2025,
+    2026
+  ],
+  "min_mentions": 20,
+  "min_year_posts": 300,
+  "top_skills": 30,
+  "definitions": {
+    "groups": "it_all: Telegram single-vacancy IT posts; it_junior: graded intern or junior; ml_all: roles data_scientist, ml_engineer, mlops; ml_junior: both.",
+    "share": "posts of the group naming the skill (extracted skills) of the group's posts; recent pools 2025-2026, a year by the week's Monday."
+  }
+}

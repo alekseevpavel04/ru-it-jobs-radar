@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/market_facts.py",
   "command": "python -m radar.site.market_facts",
-  "commit": "a49fc6e-dirty",
-  "created_at": "2026-10-14T14:22:30+00:00",
+  "commit": "8215b22-dirty",
+  "created_at": "2026-10-15T07:15:44+00:00",
   "metrics": {
     "ml_ds.habr.vacancies": {
       "value": 54,
@@ -25,64 +25,64 @@
       "denominator": 43
     },
     "ml_ds.superjob.vacancies": {
-      "value": 9,
+      "value": 10,
       "n": null,
       "denominator": null
     },
     "ml_ds.superjob.open_to_junior": {
-      "value": 0.4444,
-      "n": 4,
-      "denominator": 9
+      "value": 0.5,
+      "n": 5,
+      "denominator": 10
     },
     "ml_ds.superjob.graded_junior": {
-      "value": 0.6,
-      "n": 3,
-      "denominator": 5
+      "value": 0.6667,
+      "n": 4,
+      "denominator": 6
     },
     "ml_ds.superjob.graded_senior": {
-      "value": 0.2,
+      "value": 0.1667,
       "n": 1,
-      "denominator": 5
+      "denominator": 6
     },
     "ml_ds.telegram.vacancies": {
-      "value": 582,
+      "value": 591,
       "n": null,
       "denominator": null
     },
     "ml_ds.telegram.open_to_junior": {
-      "value": 0.1787,
-      "n": 104,
-      "denominator": 582
+      "value": 0.1777,
+      "n": 105,
+      "denominator": 591
     },
     "ml_ds.telegram.graded_junior": {
-      "value": 0.2601,
-      "n": 97,
-      "denominator": 373
+      "value": 0.2599,
+      "n": 98,
+      "denominator": 377
     },
     "ml_ds.telegram.graded_senior": {
-      "value": 0.4772,
-      "n": 178,
-      "denominator": 373
+      "value": 0.4828,
+      "n": 182,
+      "denominator": 377
     },
     "ml_ds.trudvsem.vacancies": {
-      "value": 55,
+      "value": 56,
       "n": null,
       "denominator": null
     },
     "ml_ds.trudvsem.open_to_junior": {
-      "value": 0.2545,
-      "n": 14,
-      "denominator": 55
+      "value": 0.2679,
+      "n": 15,
+      "denominator": 56
     },
     "ml_ds.trudvsem.graded_junior": {
-      "value": 0.1364,
+      "value": 0.1304,
       "n": 3,
-      "denominator": 22
+      "denominator": 23
     },
     "ml_ds.trudvsem.graded_senior": {
-      "value": 0.7273,
+      "value": 0.6957,
       "n": 16,
-      "denominator": 22
+      "denominator": 23
     },
     "ml_ds_skill.habr.Python": {
       "value": 0.9074,
@@ -265,444 +265,444 @@
       "denominator": 2
     },
     "ml_ds_skill.superjob.Machine learning": {
-      "value": 0.8889,
-      "n": 8,
-      "denominator": 9
+      "value": 0.9,
+      "n": 9,
+      "denominator": 10
     },
     "ml_ds_skill.superjob.Python": {
-      "value": 0.7778,
+      "value": 0.7,
       "n": 7,
-      "denominator": 9
-    },
-    "ml_ds_skill.superjob.SQL": {
-      "value": 0.6667,
-      "n": 6,
-      "denominator": 9
+      "denominator": 10
     },
     "ml_ds_skill.superjob.Algorithms": {
-      "value": 0.5556,
-      "n": 5,
-      "denominator": 9
+      "value": 0.6,
+      "n": 6,
+      "denominator": 10
+    },
+    "ml_ds_skill.superjob.SQL": {
+      "value": 0.6,
+      "n": 6,
+      "denominator": 10
     },
     "ml_ds_skill.superjob.LLM": {
-      "value": 0.4444,
+      "value": 0.4,
       "n": 4,
-      "denominator": 9
+      "denominator": 10
     },
     "ml_ds_skill.superjob.API integration": {
-      "value": 0.3333,
+      "value": 0.3,
       "n": 3,
-      "denominator": 9
+      "denominator": 10
     },
     "ml_ds_skill.superjob.English": {
-      "value": 0.3333,
+      "value": 0.3,
       "n": 3,
-      "denominator": 9
+      "denominator": 10
     },
     "ml_ds_skill.superjob.NLP": {
-      "value": 0.3333,
+      "value": 0.3,
       "n": 3,
-      "denominator": 9
+      "denominator": 10
     },
     "ml_ds_skill.superjob.PyTorch": {
-      "value": 0.3333,
+      "value": 0.3,
       "n": 3,
-      "denominator": 9
+      "denominator": 10
     },
     "ml_ds_skill.superjob.RAG": {
-      "value": 0.3333,
+      "value": 0.3,
       "n": 3,
-      "denominator": 9
-    },
-    "ml_ds_skill.superjob.Big Data": {
-      "value": 0.2222,
-      "n": 2,
-      "denominator": 9
-    },
-    "ml_ds_skill.superjob.Deep learning": {
-      "value": 0.2222,
-      "n": 2,
-      "denominator": 9
-    },
-    "ml_ds_skill.superjob.Docker": {
-      "value": 0.2222,
-      "n": 2,
-      "denominator": 9
-    },
-    "ml_ds_skill.superjob.ETL": {
-      "value": 0.2222,
-      "n": 2,
-      "denominator": 9
-    },
-    "ml_ds_skill.superjob.Excel": {
-      "value": 0.2222,
-      "n": 2,
-      "denominator": 9
+      "denominator": 10
     },
     "ml_ds_skill.superjob.Statistics": {
-      "value": 0.2222,
+      "value": 0.3,
+      "n": 3,
+      "denominator": 10
+    },
+    "ml_ds_skill.superjob.Big Data": {
+      "value": 0.2,
       "n": 2,
-      "denominator": 9
+      "denominator": 10
+    },
+    "ml_ds_skill.superjob.Deep learning": {
+      "value": 0.2,
+      "n": 2,
+      "denominator": 10
+    },
+    "ml_ds_skill.superjob.Docker": {
+      "value": 0.2,
+      "n": 2,
+      "denominator": 10
+    },
+    "ml_ds_skill.superjob.ETL": {
+      "value": 0.2,
+      "n": 2,
+      "denominator": 10
     },
     "ml_ds_skill.superjob.Communication": {
-      "value": 0.1111,
+      "value": 0.1,
       "n": 1,
-      "denominator": 9
+      "denominator": 10
+    },
+    "ml_ds_skill.superjob.Excel": {
+      "value": 0.2,
+      "n": 2,
+      "denominator": 10
     },
     "ml_ds_junior_skill.superjob.Machine learning": {
-      "value": 0.6667,
-      "n": 2,
-      "denominator": 3
+      "value": 0.75,
+      "n": 3,
+      "denominator": 4
     },
     "ml_ds_junior_skill.superjob.Python": {
-      "value": 1.0,
+      "value": 0.75,
       "n": 3,
-      "denominator": 3
-    },
-    "ml_ds_junior_skill.superjob.SQL": {
-      "value": 1.0,
-      "n": 3,
-      "denominator": 3
+      "denominator": 4
     },
     "ml_ds_junior_skill.superjob.Algorithms": {
-      "value": 0.3333,
-      "n": 1,
-      "denominator": 3
+      "value": 0.5,
+      "n": 2,
+      "denominator": 4
+    },
+    "ml_ds_junior_skill.superjob.SQL": {
+      "value": 0.75,
+      "n": 3,
+      "denominator": 4
     },
     "ml_ds_junior_skill.superjob.LLM": {
-      "value": 0.6667,
+      "value": 0.5,
       "n": 2,
-      "denominator": 3
+      "denominator": 4
     },
     "ml_ds_junior_skill.superjob.API integration": {
-      "value": 0.3333,
+      "value": 0.25,
       "n": 1,
-      "denominator": 3
+      "denominator": 4
     },
     "ml_ds_junior_skill.superjob.English": {
       "value": 0.0,
       "n": 0,
-      "denominator": 3
+      "denominator": 4
     },
     "ml_ds_junior_skill.superjob.NLP": {
       "value": 0.0,
       "n": 0,
-      "denominator": 3
+      "denominator": 4
     },
     "ml_ds_junior_skill.superjob.PyTorch": {
       "value": 0.0,
       "n": 0,
-      "denominator": 3
+      "denominator": 4
     },
     "ml_ds_junior_skill.superjob.RAG": {
-      "value": 0.3333,
+      "value": 0.25,
       "n": 1,
-      "denominator": 3
+      "denominator": 4
+    },
+    "ml_ds_junior_skill.superjob.Statistics": {
+      "value": 0.75,
+      "n": 3,
+      "denominator": 4
     },
     "ml_ds_junior_skill.superjob.Big Data": {
-      "value": 0.3333,
+      "value": 0.25,
       "n": 1,
-      "denominator": 3
+      "denominator": 4
     },
     "ml_ds_junior_skill.superjob.Deep learning": {
       "value": 0.0,
       "n": 0,
-      "denominator": 3
+      "denominator": 4
     },
     "ml_ds_junior_skill.superjob.Docker": {
       "value": 0.0,
       "n": 0,
-      "denominator": 3
+      "denominator": 4
     },
     "ml_ds_junior_skill.superjob.ETL": {
       "value": 0.0,
       "n": 0,
-      "denominator": 3
-    },
-    "ml_ds_junior_skill.superjob.Excel": {
-      "value": 0.3333,
-      "n": 1,
-      "denominator": 3
-    },
-    "ml_ds_junior_skill.superjob.Statistics": {
-      "value": 0.6667,
-      "n": 2,
-      "denominator": 3
+      "denominator": 4
     },
     "ml_ds_junior_skill.superjob.Communication": {
-      "value": 0.3333,
+      "value": 0.25,
       "n": 1,
-      "denominator": 3
+      "denominator": 4
+    },
+    "ml_ds_junior_skill.superjob.Excel": {
+      "value": 0.25,
+      "n": 1,
+      "denominator": 4
     },
     "ml_ds_skill.telegram.Machine learning": {
-      "value": 0.5687,
-      "n": 331,
-      "denominator": 582
+      "value": 0.5651,
+      "n": 334,
+      "denominator": 591
     },
     "ml_ds_skill.telegram.Python": {
-      "value": 0.4433,
-      "n": 258,
-      "denominator": 582
+      "value": 0.4467,
+      "n": 264,
+      "denominator": 591
     },
     "ml_ds_skill.telegram.LLM": {
-      "value": 0.323,
-      "n": 188,
-      "denominator": 582
+      "value": 0.3266,
+      "n": 193,
+      "denominator": 591
     },
     "ml_ds_skill.telegram.SQL": {
-      "value": 0.201,
+      "value": 0.198,
       "n": 117,
-      "denominator": 582
+      "denominator": 591
     },
     "ml_ds_skill.telegram.API integration": {
-      "value": 0.1426,
-      "n": 83,
-      "denominator": 582
+      "value": 0.1489,
+      "n": 88,
+      "denominator": 591
     },
     "ml_ds_skill.telegram.Docker": {
-      "value": 0.1409,
-      "n": 82,
-      "denominator": 582
+      "value": 0.1455,
+      "n": 86,
+      "denominator": 591
     },
     "ml_ds_skill.telegram.Algorithms": {
-      "value": 0.1323,
+      "value": 0.1303,
       "n": 77,
-      "denominator": 582
+      "denominator": 591
     },
     "ml_ds_skill.telegram.RAG": {
-      "value": 0.1186,
-      "n": 69,
-      "denominator": 582
+      "value": 0.1201,
+      "n": 71,
+      "denominator": 591
     },
     "ml_ds_skill.telegram.PyTorch": {
-      "value": 0.1082,
+      "value": 0.1066,
       "n": 63,
-      "denominator": 582
+      "denominator": 591
     },
     "ml_ds_skill.telegram.Kubernetes": {
-      "value": 0.0997,
-      "n": 58,
-      "denominator": 582
-    },
-    "ml_ds_skill.telegram.NLP": {
-      "value": 0.0979,
-      "n": 57,
-      "denominator": 582
+      "value": 0.1015,
+      "n": 60,
+      "denominator": 591
     },
     "ml_ds_skill.telegram.CI/CD": {
-      "value": 0.0945,
-      "n": 55,
-      "denominator": 582
+      "value": 0.0981,
+      "n": 58,
+      "denominator": 591
+    },
+    "ml_ds_skill.telegram.NLP": {
+      "value": 0.0964,
+      "n": 57,
+      "denominator": 591
     },
     "ml_ds_skill.telegram.Airflow": {
-      "value": 0.0825,
-      "n": 48,
-      "denominator": 582
+      "value": 0.0829,
+      "n": 49,
+      "denominator": 591
     },
     "ml_ds_skill.telegram.Git": {
-      "value": 0.0808,
-      "n": 47,
-      "denominator": 582
+      "value": 0.0812,
+      "n": 48,
+      "denominator": 591
     },
     "ml_ds_skill.telegram.PostgreSQL": {
-      "value": 0.079,
+      "value": 0.0778,
       "n": 46,
-      "denominator": 582
-    },
-    "ml_ds_skill.telegram.Statistics": {
-      "value": 0.0739,
-      "n": 43,
-      "denominator": 582
+      "denominator": 591
     },
     "ml_ds_skill.telegram.Deep learning": {
-      "value": 0.0722,
+      "value": 0.0711,
       "n": 42,
-      "denominator": 582
+      "denominator": 591
+    },
+    "ml_ds_skill.telegram.Statistics": {
+      "value": 0.0711,
+      "n": 42,
+      "denominator": 591
     },
     "ml_ds_skill.telegram.English": {
-      "value": 0.0687,
-      "n": 40,
-      "denominator": 582
+      "value": 0.0728,
+      "n": 43,
+      "denominator": 591
     },
     "ml_ds_junior_skill.telegram.Machine learning": {
-      "value": 0.5773,
+      "value": 0.5714,
       "n": 56,
-      "denominator": 97
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.Python": {
-      "value": 0.5567,
-      "n": 54,
-      "denominator": 97
+      "value": 0.5612,
+      "n": 55,
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.LLM": {
-      "value": 0.268,
+      "value": 0.2653,
       "n": 26,
-      "denominator": 97
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.SQL": {
-      "value": 0.2371,
+      "value": 0.2347,
       "n": 23,
-      "denominator": 97
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.API integration": {
-      "value": 0.1134,
+      "value": 0.1122,
       "n": 11,
-      "denominator": 97
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.Docker": {
-      "value": 0.0825,
+      "value": 0.0816,
       "n": 8,
-      "denominator": 97
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.Algorithms": {
-      "value": 0.1237,
+      "value": 0.1224,
       "n": 12,
-      "denominator": 97
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.RAG": {
-      "value": 0.0619,
+      "value": 0.0612,
       "n": 6,
-      "denominator": 97
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.PyTorch": {
-      "value": 0.0515,
+      "value": 0.051,
       "n": 5,
-      "denominator": 97
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.Kubernetes": {
-      "value": 0.0206,
+      "value": 0.0204,
       "n": 2,
-      "denominator": 97
-    },
-    "ml_ds_junior_skill.telegram.NLP": {
-      "value": 0.0619,
-      "n": 6,
-      "denominator": 97
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.CI/CD": {
-      "value": 0.0515,
+      "value": 0.051,
       "n": 5,
-      "denominator": 97
+      "denominator": 98
+    },
+    "ml_ds_junior_skill.telegram.NLP": {
+      "value": 0.0612,
+      "n": 6,
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.Airflow": {
-      "value": 0.0309,
+      "value": 0.0306,
       "n": 3,
-      "denominator": 97
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.Git": {
-      "value": 0.1134,
+      "value": 0.1122,
       "n": 11,
-      "denominator": 97
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.PostgreSQL": {
-      "value": 0.0206,
+      "value": 0.0204,
       "n": 2,
-      "denominator": 97
-    },
-    "ml_ds_junior_skill.telegram.Statistics": {
-      "value": 0.1443,
-      "n": 14,
-      "denominator": 97
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.Deep learning": {
-      "value": 0.134,
+      "value": 0.1327,
       "n": 13,
-      "denominator": 97
+      "denominator": 98
+    },
+    "ml_ds_junior_skill.telegram.Statistics": {
+      "value": 0.1327,
+      "n": 13,
+      "denominator": 98
     },
     "ml_ds_junior_skill.telegram.English": {
-      "value": 0.1134,
+      "value": 0.1122,
       "n": 11,
-      "denominator": 97
+      "denominator": 98
     },
     "ml_ds_skill.trudvsem.Python": {
-      "value": 0.8182,
-      "n": 45,
-      "denominator": 55
+      "value": 0.8214,
+      "n": 46,
+      "denominator": 56
     },
     "ml_ds_skill.trudvsem.Machine learning": {
-      "value": 0.6727,
-      "n": 37,
-      "denominator": 55
-    },
-    "ml_ds_skill.trudvsem.LLM": {
-      "value": 0.4727,
-      "n": 26,
-      "denominator": 55
+      "value": 0.6786,
+      "n": 38,
+      "denominator": 56
     },
     "ml_ds_skill.trudvsem.SQL": {
-      "value": 0.4727,
+      "value": 0.4821,
+      "n": 27,
+      "denominator": 56
+    },
+    "ml_ds_skill.trudvsem.LLM": {
+      "value": 0.4643,
       "n": 26,
-      "denominator": 55
+      "denominator": 56
     },
     "ml_ds_skill.trudvsem.Git": {
-      "value": 0.4,
+      "value": 0.3929,
       "n": 22,
-      "denominator": 55
+      "denominator": 56
     },
     "ml_ds_skill.trudvsem.PyTorch": {
-      "value": 0.4,
+      "value": 0.3929,
       "n": 22,
-      "denominator": 55
+      "denominator": 56
     },
     "ml_ds_skill.trudvsem.RAG": {
-      "value": 0.3636,
+      "value": 0.3571,
       "n": 20,
-      "denominator": 55
+      "denominator": 56
     },
     "ml_ds_skill.trudvsem.Algorithms": {
-      "value": 0.3455,
+      "value": 0.3393,
       "n": 19,
-      "denominator": 55
+      "denominator": 56
     },
     "ml_ds_skill.trudvsem.Docker": {
-      "value": 0.3273,
+      "value": 0.3214,
       "n": 18,
-      "denominator": 55
+      "denominator": 56
     },
     "ml_ds_skill.trudvsem.Pandas": {
-      "value": 0.3091,
+      "value": 0.3036,
       "n": 17,
-      "denominator": 55
+      "denominator": 56
     },
     "ml_ds_skill.trudvsem.NumPy": {
-      "value": 0.2909,
+      "value": 0.2857,
       "n": 16,
-      "denominator": 55
+      "denominator": 56
     },
     "ml_ds_skill.trudvsem.scikit-learn": {
-      "value": 0.2909,
+      "value": 0.2857,
       "n": 16,
-      "denominator": 55
-    },
-    "ml_ds_skill.trudvsem.Prompt engineering": {
-      "value": 0.2727,
-      "n": 15,
-      "denominator": 55
-    },
-    "ml_ds_skill.trudvsem.API integration": {
-      "value": 0.2545,
-      "n": 14,
-      "denominator": 55
-    },
-    "ml_ds_skill.trudvsem.CI/CD": {
-      "value": 0.2545,
-      "n": 14,
-      "denominator": 55
+      "denominator": 56
     },
     "ml_ds_skill.trudvsem.Deep learning": {
-      "value": 0.2545,
-      "n": 14,
-      "denominator": 55
+      "value": 0.2679,
+      "n": 15,
+      "denominator": 56
+    },
+    "ml_ds_skill.trudvsem.NLP": {
+      "value": 0.2679,
+      "n": 15,
+      "denominator": 56
+    },
+    "ml_ds_skill.trudvsem.Prompt engineering": {
+      "value": 0.2679,
+      "n": 15,
+      "denominator": 56
     },
     "ml_ds_skill.trudvsem.Oracle": {
-      "value": 0.0545,
+      "value": 0.0536,
       "n": 3,
-      "denominator": 55
+      "denominator": 56
     },
     "ml_ds_skill.trudvsem.Statistics": {
-      "value": 0.1636,
+      "value": 0.1607,
       "n": 9,
-      "denominator": 55
+      "denominator": 56
+    },
+    "ml_ds_skill.trudvsem.API integration": {
+      "value": 0.25,
+      "n": 14,
+      "denominator": 56
     },
     "ml_ds_junior_skill.trudvsem.Python": {
       "value": 1.0,
@@ -714,14 +714,14 @@
       "n": 2,
       "denominator": 3
     },
-    "ml_ds_junior_skill.trudvsem.LLM": {
-      "value": 0.3333,
-      "n": 1,
-      "denominator": 3
-    },
     "ml_ds_junior_skill.trudvsem.SQL": {
       "value": 1.0,
       "n": 3,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.LLM": {
+      "value": 0.3333,
+      "n": 1,
       "denominator": 3
     },
     "ml_ds_junior_skill.trudvsem.Git": {
@@ -764,24 +764,19 @@
       "n": 0,
       "denominator": 3
     },
-    "ml_ds_junior_skill.trudvsem.Prompt engineering": {
-      "value": 0.3333,
-      "n": 1,
+    "ml_ds_junior_skill.trudvsem.Deep learning": {
+      "value": 0.6667,
+      "n": 2,
       "denominator": 3
     },
-    "ml_ds_junior_skill.trudvsem.API integration": {
-      "value": 0.3333,
-      "n": 1,
-      "denominator": 3
-    },
-    "ml_ds_junior_skill.trudvsem.CI/CD": {
+    "ml_ds_junior_skill.trudvsem.NLP": {
       "value": 0.0,
       "n": 0,
       "denominator": 3
     },
-    "ml_ds_junior_skill.trudvsem.Deep learning": {
-      "value": 0.6667,
-      "n": 2,
+    "ml_ds_junior_skill.trudvsem.Prompt engineering": {
+      "value": 0.3333,
+      "n": 1,
       "denominator": 3
     },
     "ml_ds_junior_skill.trudvsem.Oracle": {
@@ -792,6 +787,11 @@
     "ml_ds_junior_skill.trudvsem.Statistics": {
       "value": 0.6667,
       "n": 2,
+      "denominator": 3
+    },
+    "ml_ds_junior_skill.trudvsem.API integration": {
+      "value": 0.3333,
+      "n": 1,
       "denominator": 3
     },
     "salary_ml_cell.all_portals.data_scientist.intern.stated": {
@@ -894,7 +894,7 @@
     "salary_ml_cell.telegram.data_scientist.intern.stated": {
       "value": 0.0,
       "n": 0,
-      "denominator": 17
+      "denominator": 16
     },
     "salary_ml_cell.telegram.data_scientist.junior.stated": {
       "value": 0.0667,
@@ -917,9 +917,9 @@
       "denominator": 1
     },
     "salary.telegram.intern.stated": {
-      "value": 0.1034,
+      "value": 0.1042,
       "n": 40,
-      "denominator": 387
+      "denominator": 384
     },
     "salary.telegram.intern.from_median": {
       "value": 68000,
@@ -934,9 +934,9 @@
       "rows": 20
     },
     "salary.telegram.junior.stated": {
-      "value": 0.1918,
+      "value": 0.192,
       "n": 159,
-      "denominator": 829
+      "denominator": 828
     },
     "salary.telegram.junior.from_median": {
       "value": 80000,
@@ -951,26 +951,26 @@
       "rows": 115
     },
     "salary.telegram.middle.stated": {
-      "value": 0.1988,
-      "n": 223,
-      "denominator": 1122
+      "value": 0.1977,
+      "n": 220,
+      "denominator": 1113
     },
     "salary.telegram.middle.from_median": {
       "value": 180000,
       "n": null,
       "denominator": null,
-      "rows": 196
+      "rows": 193
     },
     "salary.telegram.middle.to_median": {
       "value": 210000,
       "n": null,
       "denominator": null,
-      "rows": 161
+      "rows": 159
     },
     "salary.telegram.senior.stated": {
-      "value": 0.1307,
+      "value": 0.1313,
       "n": 226,
-      "denominator": 1729
+      "denominator": 1721
     },
     "salary.telegram.senior.from_median": {
       "value": 250000,
@@ -1047,20 +1047,20 @@
     },
     "salary.trudvsem.senior.stated": {
       "value": 0.9768,
-      "n": 1093,
-      "denominator": 1119
+      "n": 1095,
+      "denominator": 1121
     },
     "salary.trudvsem.senior.from_median": {
       "value": 71000,
       "n": null,
       "denominator": null,
-      "rows": 1091
+      "rows": 1093
     },
     "salary.trudvsem.senior.to_median": {
       "value": 80000,
       "n": null,
       "denominator": null,
-      "rows": 1026
+      "rows": 1028
     },
     "telegram_panel.channels": {
       "value": 0.6724,
@@ -3727,12 +3727,12 @@
       "rows": 147
     },
     "window.telegram.from": {
-      "value": "2026-07-06",
+      "value": "2026-07-07",
       "n": null,
       "denominator": null
     },
     "window.telegram.to": {
-      "value": "2026-10-13",
+      "value": "2026-10-14",
       "n": null,
       "denominator": null
     },
@@ -3742,7 +3742,7 @@
       "denominator": null
     },
     "window.trudvsem.to": {
-      "value": "2026-10-13",
+      "value": "2026-10-14",
       "n": null,
       "denominator": null
     },
@@ -3752,7 +3752,7 @@
       "denominator": null
     },
     "window.superjob.to": {
-      "value": "2026-10-13",
+      "value": "2026-10-14",
       "n": null,
       "denominator": null
     },
@@ -3762,7 +3762,7 @@
       "denominator": null
     },
     "window.habr.to": {
-      "value": "2026-10-13",
+      "value": "2026-10-14",
       "n": null,
       "denominator": null
     },
@@ -3793,6 +3793,10 @@
     2022,
     2023,
     2024,
+    2025,
+    2026
+  ],
+  "salary_years": [
     2025,
     2026
   ]

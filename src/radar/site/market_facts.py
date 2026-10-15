@@ -389,6 +389,7 @@ def main() -> int:
         definitions=DEFINITIONS,
         ml_roles=list(ML_ROLES),
         panel_years=list(PANEL_YEARS),
+        salary_years=list(RECENT_YEARS),
     )
     print(f"{len(metrics)} metrics -> {path}")
     return 0
