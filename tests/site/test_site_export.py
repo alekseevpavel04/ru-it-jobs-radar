@@ -687,7 +687,10 @@ def test_skill_effects_copy_the_estimates_and_check_their_count() -> None:
         ("Kubernetes", 324, -5.4, 1.0),
         ("Microservices", 254, 24.2, 0.02),
     ]
-    assert (doc.rows, doc.estimated, doc.significant_holm, doc.significant_bh, doc.ci_level) == (7429, 2, 1, 1, 0.95)
+    assert (doc.rows, doc.estimated, doc.significant_holm, doc.significant_bh) == (7429, 2, 1, 1)
+    # One of two selected at 5 %: the intervals are at 1 - 1 * 0.05 / 2, z 2.24 on se 0.07 around zero.
+    assert (doc.fdr, doc.fcr_level) == (0.05, 0.975)
+    assert {(e.pct_ci_low, e.pct_ci_high) for e in doc.effects} == {(-14.5, 17.0)}
     broken = {**EFFECTS_RESULT, "metrics": {**EFFECTS_RESULT["metrics"], "estimated": share_metric(3, 3)}}
     with pytest.raises(ValueError, match="estimated"):
         skill_effects(broken, "results/models/skill_effects.json")

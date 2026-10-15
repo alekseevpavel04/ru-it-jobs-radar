@@ -8,7 +8,7 @@ toc: false
 ```js
 import {SKILL, int, pct, plural} from "./components/labels.js";
 import {DIRECTION, GRADE_GROUP, change, directionTiles, gradeChart, skillChart} from "./components/skills.js";
-import {FDR, effectsChart} from "./components/effects.js";
+import {effectsChart} from "./components/effects.js";
 
 const trends = FileAttachment("data/skill_trends.json").json();
 const effects = FileAttachment("data/skill_effects.json").json();
@@ -91,8 +91,7 @@ display(posts.size ? skillChart(ordered, {width, recentLabel, baseYear}) : docum
 
 ```js
 const name = (e) => SKILL[e.skill] ?? e.skill;
-const level = Math.round(effects.ci_level * 100);
-const confirmed = (sign) => effects.effects.filter((e) => e.q_bh < FDR && Math.sign(e.pct) === sign).sort((a, b) => sign * (b.pct - a.pct));
+const confirmed = (sign) => effects.effects.filter((e) => e.q_bh < effects.fdr && Math.sign(e.pct) === sign).sort((a, b) => sign * (b.pct - a.pct));
 const ups = confirmed(1).slice(0, 2).map((e) => lowerFirst(name(e)));
 const downs = confirmed(-1).slice(0, 2).map((e) => lowerFirst(name(e)));
 const moneyTitle =
@@ -103,7 +102,7 @@ const moneyTitle =
 
 <div class="card">
 
-<p class="note-small">Разница середины вилки у вакансий с навыком и у похожих без него, полоса ${level} % интервал; ${int(effects.rows)} вакансий, почти все с портала «Работа в России». <a href="./methodology#skill-effects">Как считается</a>.</p>
+<p class="note-small">Разница середины вилки у вакансий с навыком и у похожих без него; полоса это интервал с поправкой на ${effects.estimated} проверок, и навык с полосой через ноль не доказан; ${int(effects.rows)} вакансий, почти все с портала «Работа в России». <a href="./methodology#skill-effects">Как считается</a>.</p>
 
 ```js
 effectsChart(effects.effects, {width, name})

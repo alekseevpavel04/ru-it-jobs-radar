@@ -19,11 +19,13 @@ writes results/site/export.json (rows and bytes per file).
 import argparse
 import json
 import re
+import math
 import sys
 from collections import defaultdict
 from collections.abc import Iterable, Mapping
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
+from statistics import NormalDist
 from typing import Any, Literal
 from zoneinfo import ZoneInfo
 
@@ -348,7 +350,7 @@ class SkillEffect(Row):
     rows_kept: int  # the comparable vacancies the estimate rests on: the overlap band, with and without
     rows_kept_with_skill: int
     pct: float
-    pct_ci_low: float
+    pct_ci_low: float  # the false coverage rate interval at SkillEffects.fcr_level, not the pointwise one
     pct_ci_high: float
     p_holm: float
     q_bh: float
@@ -363,7 +365,8 @@ class SkillEffects(Provenance):
     estimated: int
     significant_holm: int
     significant_bh: int
-    ci_level: float
+    fdr: float
+    fcr_level: float
     effects: list[SkillEffect]
     limits: list[str]
 
@@ -831,7 +834,20 @@ def telegram_years(doc: Mapping[str, Any], source_file: str) -> TelegramYears:
 
 
 def skill_effects(doc: Mapping[str, Any], source_file: str) -> SkillEffects:
+    """The intervals are the false coverage rate ones of Benjamini and Yekutieli (2005) for the skills the
+    Benjamini-Hochberg test selects: level 1 - R * alpha / m with R selected of m. At that level an interval
+    leaves out zero exactly when the test selects the skill, so the band agrees with the block it sits in;
+    the pointwise 95 % band of a skill that the test does not select can miss zero after 44 tries."""
     metrics = doc["metrics"]
+    fdr = 1 - doc["scenario"]["level"]
+    estimated = metrics["estimated"]["n"]
+    selected = metrics["significant_bh"]["n"]
+    level = 1 - max(selected, 1) * fdr / estimated
+    z = NormalDist().inv_cdf(1 - (1 - level) / 2)
+
+    def pct(theta: float) -> float:
+        return round(100 * (math.exp(theta) - 1), 1)
+
     effects = [
         SkillEffect(
             skill=m["skill"],
@@ -839,24 +855,25 @@ def skill_effects(doc: Mapping[str, Any], source_file: str) -> SkillEffects:
             rows_kept=m["rows_kept"],
             rows_kept_with_skill=m["rows_kept_with_skill"],
             pct=m["pct"],
-            pct_ci_low=m["pct_ci_low"],
-            pct_ci_high=m["pct_ci_high"],
+            pct_ci_low=pct(m["value"] - z * m["se"]),
+            pct_ci_high=pct(m["value"] + z * m["se"]),
             p_holm=m["p_holm"],
             q_bh=m["q_bh"],
         )
         for key, m in metrics.items()
         if key.startswith("effect.")
     ]
-    if len(effects) != metrics["estimated"]["n"]:
-        raise ValueError(f"{len(effects)} effects, the result reports {metrics['estimated']['n']} estimated")
+    if len(effects) != estimated:
+        raise ValueError(f"{len(effects)} effects, the result reports {estimated} estimated")
     return SkillEffects(
         **provenance(doc, source_file),
         rows=metrics["data_rows"]["value"],
         treatments=metrics["treatments"]["value"],
-        estimated=metrics["estimated"]["n"],
+        estimated=estimated,
         significant_holm=metrics["significant_holm"]["n"],
-        significant_bh=metrics["significant_bh"]["n"],
-        ci_level=doc["scenario"]["level"],
+        significant_bh=selected,
+        fdr=round(fdr, 4),
+        fcr_level=round(level, 4),
         effects=sorted(effects, key=lambda e: (-e.rows_with_skill, e.skill)),
         limits=doc["limits_ru"],
     )
