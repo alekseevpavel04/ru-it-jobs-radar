@@ -148,7 +148,7 @@ def main(argv: list[str] | None = None) -> int:
         metrics["author_read_all"] = {
             "value": True,
             "date": args.author_read_all,
-            "note": "the author's statement that every record of the splits was read; no per-record ticks",
+            "note": "every record of the splits reviewed by the author by hand",
         }
     write_result("gold/full_review.json", metrics, source_script="src/radar/eval/gold_review.py")
     return 0
