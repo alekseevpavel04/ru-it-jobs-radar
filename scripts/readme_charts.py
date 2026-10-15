@@ -2,25 +2,62 @@
 
     python scripts/readme_charts.py
 
-Writes docs/img/readme/*.png: the key numbers, what changed in a year (results/quarterly), the pipeline,
-the extraction model against rules and teachers on test (results/extract/final_test.json), and how much the
-make-up of the channels moved the pooled numbers (results/market/composition.json).
+Writes docs/img/readme/*.png: the social preview card, the key numbers, what changed in a year
+(results/quarterly), the pipeline, the extraction model against rules and teachers on test
+(results/extract/final_test.json), and how much the make-up of the channels moved the pooled numbers
+(results/market/composition.json). Labels are direct, without legends where a label fits, so a picture reads
+on its own when it is shared.
 """
 
 import json
 from collections.abc import Sequence
 from typing import Any
 
+import matplotlib
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from chart_style import ACCENT, GRID, INK, LIGHT, MUTED, NAVY, PALE, TEAL, frame, metrics
+from matplotlib import font_manager
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
 from radar.config import RESULTS, ROOT
 from radar.site import quarterly
 
 OUT = ROOT / "docs" / "img" / "readme"
+ACCENT, NAVY, TEAL = "#f2542d", "#1d3557", "#2a9d8f"
+LIGHT, PALE, INK, MUTED, GRID = "#d9d6cf", "#efede8", "#1a1a1a", "#6b6963", "#ebe9e4"
 UP, DOWN, NOISE = "#1a7f37", "#cf222e", "#9a9890"
+FOOTER = "Радар IT-вакансий · github.com/alekseevpavel04/ru-it-jobs-radar"
 QUARTER = "2026Q3"
+
+# Segoe UI where it exists (the author's machine), DejaVu Sans elsewhere; both have Cyrillic.
+_FONTS = {f.name for f in font_manager.fontManager.ttflist}
+plt.rcParams.update(
+    {
+        "font.family": "Segoe UI" if "Segoe UI" in _FONTS else "DejaVu Sans",
+        "font.size": 13,
+        "axes.edgecolor": GRID,
+        "axes.labelcolor": MUTED,
+        "xtick.color": MUTED,
+        "ytick.color": INK,
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+        "axes.spines.left": False,
+        "figure.facecolor": "white",
+    }
+)
+
+
+def metrics(relpath: str) -> dict[str, Any]:
+    doc: dict[str, Any] = json.loads((RESULTS / relpath).read_text(encoding="utf-8"))
+    return doc["metrics"]
+
+
+def frame(fig: plt.Figure, title: str, subtitle: str, top: float = 0.86) -> None:
+    fig.subplots_adjust(top=top)
+    fig.text(0.02, 0.985, title, fontsize=19, fontweight="bold", color=INK, va="top")
+    fig.text(0.02, 0.985 - 0.075 * 5.4 / fig.get_figheight(), subtitle, fontsize=12.5, color=MUTED, va="top")
+    fig.text(0.02, -0.02, FOOTER, fontsize=9.5, color=MUTED, va="top")
 
 
 def result(relpath: str) -> dict[str, Any]:
