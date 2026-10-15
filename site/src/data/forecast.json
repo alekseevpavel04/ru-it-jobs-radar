@@ -12,776 +12,776 @@
   "origins": 220,
   "interval_quantile": 0.8,
   "interval_check_min_origins": 52,
-  "interval_check_covered": 12377,
+  "interval_check_covered": 12416,
   "interval_check_cells": 15984,
   "points": [
     {
       "week": "2026-10-12",
       "skill": "Python",
       "horizon": 1,
-      "forecast": 0.1795,
-      "low": 0.1508,
-      "high": 0.2082
+      "forecast": 0.1913,
+      "low": 0.1636,
+      "high": 0.2189
     },
     {
       "week": "2026-10-19",
       "skill": "Python",
       "horizon": 2,
-      "forecast": 0.1795,
-      "low": 0.1491,
-      "high": 0.2099
+      "forecast": 0.1913,
+      "low": 0.1609,
+      "high": 0.2217
     },
     {
       "week": "2026-10-26",
       "skill": "Python",
       "horizon": 3,
-      "forecast": 0.1795,
-      "low": 0.1471,
-      "high": 0.212
+      "forecast": 0.1913,
+      "low": 0.1595,
+      "high": 0.2231
     },
     {
       "week": "2026-11-02",
       "skill": "Python",
       "horizon": 4,
-      "forecast": 0.1795,
-      "low": 0.1471,
-      "high": 0.2119
+      "forecast": 0.1913,
+      "low": 0.1601,
+      "high": 0.2224
     },
     {
       "week": "2026-10-12",
       "skill": "SQL",
       "horizon": 1,
-      "forecast": 0.1394,
-      "low": 0.1144,
-      "high": 0.1644
+      "forecast": 0.1461,
+      "low": 0.1202,
+      "high": 0.1719
     },
     {
       "week": "2026-10-19",
       "skill": "SQL",
       "horizon": 2,
-      "forecast": 0.1394,
-      "low": 0.1136,
-      "high": 0.1652
+      "forecast": 0.1461,
+      "low": 0.1188,
+      "high": 0.1734
     },
     {
       "week": "2026-10-26",
       "skill": "SQL",
       "horizon": 3,
-      "forecast": 0.1394,
-      "low": 0.1142,
-      "high": 0.1646
+      "forecast": 0.1461,
+      "low": 0.1192,
+      "high": 0.1729
     },
     {
       "week": "2026-11-02",
       "skill": "SQL",
       "horizon": 4,
-      "forecast": 0.1394,
-      "low": 0.1133,
-      "high": 0.1655
+      "forecast": 0.1461,
+      "low": 0.1184,
+      "high": 0.1737
     },
     {
       "week": "2026-10-12",
       "skill": "PostgreSQL",
       "horizon": 1,
-      "forecast": 0.088,
-      "low": 0.0629,
-      "high": 0.1131
+      "forecast": 0.091,
+      "low": 0.0657,
+      "high": 0.1162
     },
     {
       "week": "2026-10-19",
       "skill": "PostgreSQL",
       "horizon": 2,
-      "forecast": 0.088,
-      "low": 0.0617,
-      "high": 0.1143
+      "forecast": 0.091,
+      "low": 0.0644,
+      "high": 0.1175
     },
     {
       "week": "2026-10-26",
       "skill": "PostgreSQL",
       "horizon": 3,
-      "forecast": 0.088,
-      "low": 0.0615,
-      "high": 0.1145
+      "forecast": 0.091,
+      "low": 0.0648,
+      "high": 0.1172
     },
     {
       "week": "2026-11-02",
       "skill": "PostgreSQL",
       "horizon": 4,
-      "forecast": 0.088,
-      "low": 0.0596,
-      "high": 0.1164
+      "forecast": 0.091,
+      "low": 0.0624,
+      "high": 0.1196
     },
     {
       "week": "2026-10-12",
       "skill": "Git",
       "horizon": 1,
-      "forecast": 0.0781,
-      "low": 0.0544,
-      "high": 0.1019
-    },
-    {
-      "week": "2026-10-19",
-      "skill": "Git",
-      "horizon": 2,
-      "forecast": 0.0781,
-      "low": 0.054,
-      "high": 0.1023
-    },
-    {
-      "week": "2026-10-26",
-      "skill": "Git",
-      "horizon": 3,
-      "forecast": 0.0781,
-      "low": 0.0544,
-      "high": 0.1019
-    },
-    {
-      "week": "2026-11-02",
-      "skill": "Git",
-      "horizon": 4,
-      "forecast": 0.0781,
-      "low": 0.0533,
-      "high": 0.1029
-    },
-    {
-      "week": "2026-10-12",
-      "skill": "Docker",
-      "horizon": 1,
-      "forecast": 0.0838,
-      "low": 0.0626,
+      "forecast": 0.0811,
+      "low": 0.0571,
       "high": 0.1051
     },
     {
       "week": "2026-10-19",
+      "skill": "Git",
+      "horizon": 2,
+      "forecast": 0.0811,
+      "low": 0.0564,
+      "high": 0.1058
+    },
+    {
+      "week": "2026-10-26",
+      "skill": "Git",
+      "horizon": 3,
+      "forecast": 0.0811,
+      "low": 0.0565,
+      "high": 0.1056
+    },
+    {
+      "week": "2026-11-02",
+      "skill": "Git",
+      "horizon": 4,
+      "forecast": 0.0811,
+      "low": 0.0559,
+      "high": 0.1062
+    },
+    {
+      "week": "2026-10-12",
+      "skill": "Docker",
+      "horizon": 1,
+      "forecast": 0.0868,
+      "low": 0.0645,
+      "high": 0.1091
+    },
+    {
+      "week": "2026-10-19",
       "skill": "Docker",
       "horizon": 2,
-      "forecast": 0.0838,
-      "low": 0.062,
-      "high": 0.1057
+      "forecast": 0.0868,
+      "low": 0.0647,
+      "high": 0.1089
     },
     {
       "week": "2026-10-26",
       "skill": "Docker",
       "horizon": 3,
-      "forecast": 0.0838,
-      "low": 0.0612,
-      "high": 0.1064
+      "forecast": 0.0868,
+      "low": 0.0628,
+      "high": 0.1108
     },
     {
       "week": "2026-11-02",
       "skill": "Docker",
       "horizon": 4,
-      "forecast": 0.0838,
-      "low": 0.0593,
-      "high": 0.1084
+      "forecast": 0.0868,
+      "low": 0.0619,
+      "high": 0.1117
     },
     {
       "week": "2026-10-12",
       "skill": "Java",
       "horizon": 1,
-      "forecast": 0.0714,
-      "low": 0.0537,
-      "high": 0.089
+      "forecast": 0.0765,
+      "low": 0.0584,
+      "high": 0.0946
     },
     {
       "week": "2026-10-19",
       "skill": "Java",
       "horizon": 2,
-      "forecast": 0.0714,
-      "low": 0.053,
-      "high": 0.0897
+      "forecast": 0.0765,
+      "low": 0.0581,
+      "high": 0.0949
     },
     {
       "week": "2026-10-26",
       "skill": "Java",
       "horizon": 3,
-      "forecast": 0.0714,
-      "low": 0.0524,
-      "high": 0.0903
+      "forecast": 0.0765,
+      "low": 0.0575,
+      "high": 0.0955
     },
     {
       "week": "2026-11-02",
       "skill": "Java",
       "horizon": 4,
-      "forecast": 0.0714,
-      "low": 0.0532,
-      "high": 0.0895
+      "forecast": 0.0765,
+      "low": 0.0586,
+      "high": 0.0944
     },
     {
       "week": "2026-10-12",
       "skill": "JavaScript",
       "horizon": 1,
-      "forecast": 0.0636,
-      "low": 0.0438,
-      "high": 0.0833
+      "forecast": 0.0512,
+      "low": 0.0312,
+      "high": 0.0712
     },
     {
       "week": "2026-10-19",
       "skill": "JavaScript",
       "horizon": 2,
-      "forecast": 0.0636,
-      "low": 0.0423,
-      "high": 0.0849
+      "forecast": 0.0512,
+      "low": 0.0303,
+      "high": 0.0721
     },
     {
       "week": "2026-10-26",
       "skill": "JavaScript",
       "horizon": 3,
-      "forecast": 0.0636,
-      "low": 0.0422,
-      "high": 0.085
-    },
-    {
-      "week": "2026-11-02",
-      "skill": "JavaScript",
-      "horizon": 4,
-      "forecast": 0.0636,
-      "low": 0.0413,
-      "high": 0.0859
-    },
-    {
-      "week": "2026-10-12",
-      "skill": "Linux",
-      "horizon": 1,
-      "forecast": 0.0642,
-      "low": 0.0447,
-      "high": 0.0837
-    },
-    {
-      "week": "2026-10-19",
-      "skill": "Linux",
-      "horizon": 2,
-      "forecast": 0.0642,
-      "low": 0.0433,
-      "high": 0.0851
-    },
-    {
-      "week": "2026-10-26",
-      "skill": "Linux",
-      "horizon": 3,
-      "forecast": 0.0642,
-      "low": 0.0435,
-      "high": 0.0849
-    },
-    {
-      "week": "2026-11-02",
-      "skill": "Linux",
-      "horizon": 4,
-      "forecast": 0.0642,
-      "low": 0.044,
-      "high": 0.0844
-    },
-    {
-      "week": "2026-10-12",
-      "skill": "React",
-      "horizon": 1,
-      "forecast": 0.0957,
-      "low": 0.0759,
-      "high": 0.1155
-    },
-    {
-      "week": "2026-10-19",
-      "skill": "React",
-      "horizon": 2,
-      "forecast": 0.0957,
-      "low": 0.0745,
-      "high": 0.1168
-    },
-    {
-      "week": "2026-10-26",
-      "skill": "React",
-      "horizon": 3,
-      "forecast": 0.0957,
-      "low": 0.0713,
-      "high": 0.12
-    },
-    {
-      "week": "2026-11-02",
-      "skill": "React",
-      "horizon": 4,
-      "forecast": 0.0957,
-      "low": 0.0714,
-      "high": 0.1199
-    },
-    {
-      "week": "2026-10-12",
-      "skill": "REST",
-      "horizon": 1,
-      "forecast": 0.0818,
-      "low": 0.062,
-      "high": 0.1016
-    },
-    {
-      "week": "2026-10-19",
-      "skill": "REST",
-      "horizon": 2,
-      "forecast": 0.0818,
-      "low": 0.0622,
-      "high": 0.1014
-    },
-    {
-      "week": "2026-10-26",
-      "skill": "REST",
-      "horizon": 3,
-      "forecast": 0.0818,
-      "low": 0.0617,
-      "high": 0.102
-    },
-    {
-      "week": "2026-11-02",
-      "skill": "REST",
-      "horizon": 4,
-      "forecast": 0.0818,
-      "low": 0.0607,
-      "high": 0.1029
-    },
-    {
-      "week": "2026-10-12",
-      "skill": "Kubernetes",
-      "horizon": 1,
-      "forecast": 0.0663,
-      "low": 0.0485,
-      "high": 0.0842
-    },
-    {
-      "week": "2026-10-19",
-      "skill": "Kubernetes",
-      "horizon": 2,
-      "forecast": 0.0663,
-      "low": 0.0483,
-      "high": 0.0843
-    },
-    {
-      "week": "2026-10-26",
-      "skill": "Kubernetes",
-      "horizon": 3,
-      "forecast": 0.0663,
-      "low": 0.0482,
-      "high": 0.0845
-    },
-    {
-      "week": "2026-11-02",
-      "skill": "Kubernetes",
-      "horizon": 4,
-      "forecast": 0.0663,
-      "low": 0.0488,
-      "high": 0.0839
-    },
-    {
-      "week": "2026-10-12",
-      "skill": "CI/CD",
-      "horizon": 1,
-      "forecast": 0.0843,
-      "low": 0.0671,
-      "high": 0.1015
-    },
-    {
-      "week": "2026-10-19",
-      "skill": "CI/CD",
-      "horizon": 2,
-      "forecast": 0.0843,
-      "low": 0.0662,
-      "high": 0.1025
-    },
-    {
-      "week": "2026-10-26",
-      "skill": "CI/CD",
-      "horizon": 3,
-      "forecast": 0.0843,
-      "low": 0.0671,
-      "high": 0.1015
-    },
-    {
-      "week": "2026-11-02",
-      "skill": "CI/CD",
-      "horizon": 4,
-      "forecast": 0.0843,
-      "low": 0.067,
-      "high": 0.1017
-    },
-    {
-      "week": "2026-10-12",
-      "skill": "TypeScript",
-      "horizon": 1,
-      "forecast": 0.0579,
-      "low": 0.0401,
-      "high": 0.0756
-    },
-    {
-      "week": "2026-10-19",
-      "skill": "TypeScript",
-      "horizon": 2,
-      "forecast": 0.0579,
-      "low": 0.0408,
-      "high": 0.075
-    },
-    {
-      "week": "2026-10-26",
-      "skill": "TypeScript",
-      "horizon": 3,
-      "forecast": 0.0579,
-      "low": 0.0381,
-      "high": 0.0777
-    },
-    {
-      "week": "2026-11-02",
-      "skill": "TypeScript",
-      "horizon": 4,
-      "forecast": 0.0579,
-      "low": 0.0365,
-      "high": 0.0793
-    },
-    {
-      "week": "2026-10-12",
-      "skill": "Kafka",
-      "horizon": 1,
-      "forecast": 0.0648,
-      "low": 0.0502,
-      "high": 0.0793
-    },
-    {
-      "week": "2026-10-19",
-      "skill": "Kafka",
-      "horizon": 2,
-      "forecast": 0.0648,
-      "low": 0.0493,
-      "high": 0.0803
-    },
-    {
-      "week": "2026-10-26",
-      "skill": "Kafka",
-      "horizon": 3,
-      "forecast": 0.0648,
-      "low": 0.0495,
-      "high": 0.08
-    },
-    {
-      "week": "2026-11-02",
-      "skill": "Kafka",
-      "horizon": 4,
-      "forecast": 0.0648,
-      "low": 0.0494,
-      "high": 0.0802
-    },
-    {
-      "week": "2026-10-12",
-      "skill": "Go",
-      "horizon": 1,
-      "forecast": 0.0575,
-      "low": 0.044,
-      "high": 0.071
-    },
-    {
-      "week": "2026-10-19",
-      "skill": "Go",
-      "horizon": 2,
-      "forecast": 0.0575,
-      "low": 0.0432,
-      "high": 0.0718
-    },
-    {
-      "week": "2026-10-26",
-      "skill": "Go",
-      "horizon": 3,
-      "forecast": 0.0575,
-      "low": 0.0432,
-      "high": 0.0717
-    },
-    {
-      "week": "2026-11-02",
-      "skill": "Go",
-      "horizon": 4,
-      "forecast": 0.0575,
-      "low": 0.0433,
-      "high": 0.0717
-    },
-    {
-      "week": "2026-10-12",
-      "skill": "Microservices",
-      "horizon": 1,
-      "forecast": 0.0579,
-      "low": 0.0447,
-      "high": 0.0711
-    },
-    {
-      "week": "2026-10-19",
-      "skill": "Microservices",
-      "horizon": 2,
-      "forecast": 0.0579,
-      "low": 0.0446,
-      "high": 0.0711
-    },
-    {
-      "week": "2026-10-26",
-      "skill": "Microservices",
-      "horizon": 3,
-      "forecast": 0.0579,
-      "low": 0.0431,
-      "high": 0.0726
-    },
-    {
-      "week": "2026-11-02",
-      "skill": "Microservices",
-      "horizon": 4,
-      "forecast": 0.0579,
-      "low": 0.0431,
+      "forecast": 0.0512,
+      "low": 0.0297,
       "high": 0.0727
     },
     {
+      "week": "2026-11-02",
+      "skill": "JavaScript",
+      "horizon": 4,
+      "forecast": 0.0512,
+      "low": 0.0295,
+      "high": 0.0729
+    },
+    {
+      "week": "2026-10-12",
+      "skill": "Linux",
+      "horizon": 1,
+      "forecast": 0.0685,
+      "low": 0.0488,
+      "high": 0.0881
+    },
+    {
+      "week": "2026-10-19",
+      "skill": "Linux",
+      "horizon": 2,
+      "forecast": 0.0685,
+      "low": 0.0476,
+      "high": 0.0894
+    },
+    {
+      "week": "2026-10-26",
+      "skill": "Linux",
+      "horizon": 3,
+      "forecast": 0.0685,
+      "low": 0.0478,
+      "high": 0.0891
+    },
+    {
+      "week": "2026-11-02",
+      "skill": "Linux",
+      "horizon": 4,
+      "forecast": 0.0685,
+      "low": 0.0494,
+      "high": 0.0876
+    },
+    {
+      "week": "2026-10-12",
+      "skill": "React",
+      "horizon": 1,
+      "forecast": 0.0626,
+      "low": 0.0449,
+      "high": 0.0804
+    },
+    {
+      "week": "2026-10-19",
+      "skill": "React",
+      "horizon": 2,
+      "forecast": 0.0626,
+      "low": 0.0438,
+      "high": 0.0815
+    },
+    {
+      "week": "2026-10-26",
+      "skill": "React",
+      "horizon": 3,
+      "forecast": 0.0626,
+      "low": 0.0423,
+      "high": 0.083
+    },
+    {
+      "week": "2026-11-02",
+      "skill": "React",
+      "horizon": 4,
+      "forecast": 0.0626,
+      "low": 0.0423,
+      "high": 0.0829
+    },
+    {
+      "week": "2026-10-12",
+      "skill": "REST",
+      "horizon": 1,
+      "forecast": 0.088,
+      "low": 0.0684,
+      "high": 0.1075
+    },
+    {
+      "week": "2026-10-19",
+      "skill": "REST",
+      "horizon": 2,
+      "forecast": 0.088,
+      "low": 0.0681,
+      "high": 0.1079
+    },
+    {
+      "week": "2026-10-26",
+      "skill": "REST",
+      "horizon": 3,
+      "forecast": 0.088,
+      "low": 0.0676,
+      "high": 0.1084
+    },
+    {
+      "week": "2026-11-02",
+      "skill": "REST",
+      "horizon": 4,
+      "forecast": 0.088,
+      "low": 0.0671,
+      "high": 0.1088
+    },
+    {
+      "week": "2026-10-12",
+      "skill": "Kubernetes",
+      "horizon": 1,
+      "forecast": 0.0707,
+      "low": 0.0533,
+      "high": 0.0882
+    },
+    {
+      "week": "2026-10-19",
+      "skill": "Kubernetes",
+      "horizon": 2,
+      "forecast": 0.0707,
+      "low": 0.0526,
+      "high": 0.0889
+    },
+    {
+      "week": "2026-10-26",
+      "skill": "Kubernetes",
+      "horizon": 3,
+      "forecast": 0.0707,
+      "low": 0.0523,
+      "high": 0.0891
+    },
+    {
+      "week": "2026-11-02",
+      "skill": "Kubernetes",
+      "horizon": 4,
+      "forecast": 0.0707,
+      "low": 0.0532,
+      "high": 0.0882
+    },
+    {
+      "week": "2026-10-12",
+      "skill": "CI/CD",
+      "horizon": 1,
+      "forecast": 0.0746,
+      "low": 0.058,
+      "high": 0.0912
+    },
+    {
+      "week": "2026-10-19",
+      "skill": "CI/CD",
+      "horizon": 2,
+      "forecast": 0.0746,
+      "low": 0.0569,
+      "high": 0.0923
+    },
+    {
+      "week": "2026-10-26",
+      "skill": "CI/CD",
+      "horizon": 3,
+      "forecast": 0.0746,
+      "low": 0.0573,
+      "high": 0.0919
+    },
+    {
+      "week": "2026-11-02",
+      "skill": "CI/CD",
+      "horizon": 4,
+      "forecast": 0.0746,
+      "low": 0.0572,
+      "high": 0.0919
+    },
+    {
+      "week": "2026-10-12",
+      "skill": "TypeScript",
+      "horizon": 1,
+      "forecast": 0.0521,
+      "low": 0.0375,
+      "high": 0.0668
+    },
+    {
+      "week": "2026-10-19",
+      "skill": "TypeScript",
+      "horizon": 2,
+      "forecast": 0.0521,
+      "low": 0.0366,
+      "high": 0.0677
+    },
+    {
+      "week": "2026-10-26",
+      "skill": "TypeScript",
+      "horizon": 3,
+      "forecast": 0.0521,
+      "low": 0.036,
+      "high": 0.0683
+    },
+    {
+      "week": "2026-11-02",
+      "skill": "TypeScript",
+      "horizon": 4,
+      "forecast": 0.0521,
+      "low": 0.0354,
+      "high": 0.0689
+    },
+    {
+      "week": "2026-10-12",
+      "skill": "Kafka",
+      "horizon": 1,
+      "forecast": 0.0643,
+      "low": 0.0487,
+      "high": 0.0798
+    },
+    {
+      "week": "2026-10-19",
+      "skill": "Kafka",
+      "horizon": 2,
+      "forecast": 0.0643,
+      "low": 0.0488,
+      "high": 0.0798
+    },
+    {
+      "week": "2026-10-26",
+      "skill": "Kafka",
+      "horizon": 3,
+      "forecast": 0.0643,
+      "low": 0.0488,
+      "high": 0.0797
+    },
+    {
+      "week": "2026-11-02",
+      "skill": "Kafka",
+      "horizon": 4,
+      "forecast": 0.0643,
+      "low": 0.0486,
+      "high": 0.08
+    },
+    {
+      "week": "2026-10-12",
+      "skill": "Go",
+      "horizon": 1,
+      "forecast": 0.0543,
+      "low": 0.0412,
+      "high": 0.0675
+    },
+    {
+      "week": "2026-10-19",
+      "skill": "Go",
+      "horizon": 2,
+      "forecast": 0.0543,
+      "low": 0.0405,
+      "high": 0.0682
+    },
+    {
+      "week": "2026-10-26",
+      "skill": "Go",
+      "horizon": 3,
+      "forecast": 0.0543,
+      "low": 0.0406,
+      "high": 0.068
+    },
+    {
+      "week": "2026-11-02",
+      "skill": "Go",
+      "horizon": 4,
+      "forecast": 0.0543,
+      "low": 0.04,
+      "high": 0.0686
+    },
+    {
+      "week": "2026-10-12",
+      "skill": "Microservices",
+      "horizon": 1,
+      "forecast": 0.0521,
+      "low": 0.0384,
+      "high": 0.0658
+    },
+    {
+      "week": "2026-10-19",
+      "skill": "Microservices",
+      "horizon": 2,
+      "forecast": 0.0521,
+      "low": 0.0377,
+      "high": 0.0666
+    },
+    {
+      "week": "2026-10-26",
+      "skill": "Microservices",
+      "horizon": 3,
+      "forecast": 0.0521,
+      "low": 0.0364,
+      "high": 0.0678
+    },
+    {
+      "week": "2026-11-02",
+      "skill": "Microservices",
+      "horizon": 4,
+      "forecast": 0.0521,
+      "low": 0.0372,
+      "high": 0.0671
+    },
+    {
       "week": "2026-10-12",
       "skill": "DevOps",
       "horizon": 1,
-      "forecast": 0.0429,
-      "low": 0.0298,
-      "high": 0.0561
+      "forecast": 0.0436,
+      "low": 0.0304,
+      "high": 0.0568
     },
     {
       "week": "2026-10-19",
       "skill": "DevOps",
       "horizon": 2,
-      "forecast": 0.0429,
-      "low": 0.0295,
-      "high": 0.0564
+      "forecast": 0.0436,
+      "low": 0.0293,
+      "high": 0.0578
     },
     {
       "week": "2026-10-26",
       "skill": "DevOps",
       "horizon": 3,
-      "forecast": 0.0429,
-      "low": 0.0295,
-      "high": 0.0564
+      "forecast": 0.0436,
+      "low": 0.03,
+      "high": 0.0572
     },
     {
       "week": "2026-11-02",
       "skill": "DevOps",
       "horizon": 4,
-      "forecast": 0.0429,
-      "low": 0.0292,
-      "high": 0.0567
+      "forecast": 0.0436,
+      "low": 0.0299,
+      "high": 0.0573
     },
     {
       "week": "2026-10-12",
       "skill": "PHP",
       "horizon": 1,
-      "forecast": 0.0149,
-      "low": 0.0017,
-      "high": 0.0281
+      "forecast": 0.0145,
+      "low": 0.0011,
+      "high": 0.0279
     },
     {
       "week": "2026-10-19",
       "skill": "PHP",
       "horizon": 2,
-      "forecast": 0.0149,
-      "low": 0.0017,
-      "high": 0.0281
+      "forecast": 0.0145,
+      "low": 0.001,
+      "high": 0.0279
     },
     {
       "week": "2026-10-26",
       "skill": "PHP",
       "horizon": 3,
-      "forecast": 0.0149,
-      "low": 0.0016,
-      "high": 0.0281
+      "forecast": 0.0145,
+      "low": 0.0008,
+      "high": 0.0282
     },
     {
       "week": "2026-11-02",
       "skill": "PHP",
       "horizon": 4,
-      "forecast": 0.0149,
-      "low": 0.0014,
+      "forecast": 0.0145,
+      "low": 0.0006,
       "high": 0.0284
     },
     {
       "week": "2026-10-12",
       "skill": "C#",
       "horizon": 1,
-      "forecast": 0.0326,
-      "low": 0.0203,
-      "high": 0.0449
+      "forecast": 0.0345,
+      "low": 0.0223,
+      "high": 0.0467
     },
     {
       "week": "2026-10-19",
       "skill": "C#",
       "horizon": 2,
-      "forecast": 0.0326,
-      "low": 0.0196,
-      "high": 0.0457
+      "forecast": 0.0345,
+      "low": 0.0215,
+      "high": 0.0474
     },
     {
       "week": "2026-10-26",
       "skill": "C#",
       "horizon": 3,
-      "forecast": 0.0326,
-      "low": 0.0194,
-      "high": 0.0459
+      "forecast": 0.0345,
+      "low": 0.0212,
+      "high": 0.0477
     },
     {
       "week": "2026-11-02",
       "skill": "C#",
       "horizon": 4,
-      "forecast": 0.0326,
-      "low": 0.0192,
-      "high": 0.0461
+      "forecast": 0.0345,
+      "low": 0.0212,
+      "high": 0.0477
     },
     {
       "week": "2026-10-12",
       "skill": "Redis",
       "horizon": 1,
-      "forecast": 0.0363,
-      "low": 0.0218,
-      "high": 0.0509
+      "forecast": 0.0324,
+      "low": 0.018,
+      "high": 0.0468
     },
     {
       "week": "2026-10-19",
       "skill": "Redis",
       "horizon": 2,
-      "forecast": 0.0363,
-      "low": 0.0217,
-      "high": 0.0509
+      "forecast": 0.0324,
+      "low": 0.0186,
+      "high": 0.0462
     },
     {
       "week": "2026-10-26",
       "skill": "Redis",
       "horizon": 3,
-      "forecast": 0.0363,
-      "low": 0.0225,
-      "high": 0.0502
+      "forecast": 0.0324,
+      "low": 0.0189,
+      "high": 0.046
     },
     {
       "week": "2026-11-02",
       "skill": "Redis",
       "horizon": 4,
-      "forecast": 0.0363,
-      "low": 0.0222,
-      "high": 0.0505
+      "forecast": 0.0324,
+      "low": 0.0185,
+      "high": 0.0463
     },
     {
       "week": "2026-10-12",
       "skill": "HTML",
       "horizon": 1,
-      "forecast": 0.0211,
-      "low": 0.0082,
-      "high": 0.0339
+      "forecast": 0.0225,
+      "low": 0.0101,
+      "high": 0.0348
     },
     {
       "week": "2026-10-19",
       "skill": "HTML",
       "horizon": 2,
-      "forecast": 0.0211,
-      "low": 0.0072,
-      "high": 0.0349
+      "forecast": 0.0225,
+      "low": 0.0089,
+      "high": 0.036
     },
     {
       "week": "2026-10-26",
       "skill": "HTML",
       "horizon": 3,
-      "forecast": 0.0211,
-      "low": 0.0058,
-      "high": 0.0363
+      "forecast": 0.0225,
+      "low": 0.0083,
+      "high": 0.0366
     },
     {
       "week": "2026-11-02",
       "skill": "HTML",
       "horizon": 4,
-      "forecast": 0.0211,
-      "low": 0.007,
+      "forecast": 0.0225,
+      "low": 0.0085,
+      "high": 0.0365
+    },
+    {
+      "week": "2026-10-12",
+      "skill": "CSS",
+      "horizon": 1,
+      "forecast": 0.0241,
+      "low": 0.0118,
+      "high": 0.0364
+    },
+    {
+      "week": "2026-10-19",
+      "skill": "CSS",
+      "horizon": 2,
+      "forecast": 0.0241,
+      "low": 0.01,
+      "high": 0.0381
+    },
+    {
+      "week": "2026-10-26",
+      "skill": "CSS",
+      "horizon": 3,
+      "forecast": 0.0241,
+      "low": 0.0102,
+      "high": 0.038
+    },
+    {
+      "week": "2026-11-02",
+      "skill": "CSS",
+      "horizon": 4,
+      "forecast": 0.0241,
+      "low": 0.0103,
+      "high": 0.0379
+    },
+    {
+      "week": "2026-10-12",
+      "skill": "Node.js",
+      "horizon": 1,
+      "forecast": 0.0228,
+      "low": 0.0116,
+      "high": 0.034
+    },
+    {
+      "week": "2026-10-19",
+      "skill": "Node.js",
+      "horizon": 2,
+      "forecast": 0.0228,
+      "low": 0.0103,
+      "high": 0.0353
+    },
+    {
+      "week": "2026-10-26",
+      "skill": "Node.js",
+      "horizon": 3,
+      "forecast": 0.0228,
+      "low": 0.0099,
+      "high": 0.0358
+    },
+    {
+      "week": "2026-11-02",
+      "skill": "Node.js",
+      "horizon": 4,
+      "forecast": 0.0228,
+      "low": 0.0097,
+      "high": 0.0359
+    },
+    {
+      "week": "2026-10-12",
+      "skill": "ООП",
+      "horizon": 1,
+      "forecast": 0.0213,
+      "low": 0.008,
+      "high": 0.0346
+    },
+    {
+      "week": "2026-10-19",
+      "skill": "ООП",
+      "horizon": 2,
+      "forecast": 0.0213,
+      "low": 0.0069,
+      "high": 0.0357
+    },
+    {
+      "week": "2026-10-26",
+      "skill": "ООП",
+      "horizon": 3,
+      "forecast": 0.0213,
+      "low": 0.0074,
       "high": 0.0351
     },
     {
-      "week": "2026-10-12",
-      "skill": "CSS",
-      "horizon": 1,
-      "forecast": 0.0254,
-      "low": 0.013,
-      "high": 0.0378
-    },
-    {
-      "week": "2026-10-19",
-      "skill": "CSS",
-      "horizon": 2,
-      "forecast": 0.0254,
-      "low": 0.0105,
-      "high": 0.0402
-    },
-    {
-      "week": "2026-10-26",
-      "skill": "CSS",
-      "horizon": 3,
-      "forecast": 0.0254,
-      "low": 0.0113,
-      "high": 0.0394
-    },
-    {
-      "week": "2026-11-02",
-      "skill": "CSS",
-      "horizon": 4,
-      "forecast": 0.0254,
-      "low": 0.0107,
-      "high": 0.0401
-    },
-    {
-      "week": "2026-10-12",
-      "skill": "Node.js",
-      "horizon": 1,
-      "forecast": 0.0524,
-      "low": 0.0382,
-      "high": 0.0666
-    },
-    {
-      "week": "2026-10-19",
-      "skill": "Node.js",
-      "horizon": 2,
-      "forecast": 0.0524,
-      "low": 0.0379,
-      "high": 0.0669
-    },
-    {
-      "week": "2026-10-26",
-      "skill": "Node.js",
-      "horizon": 3,
-      "forecast": 0.0524,
-      "low": 0.0377,
-      "high": 0.0671
-    },
-    {
-      "week": "2026-11-02",
-      "skill": "Node.js",
-      "horizon": 4,
-      "forecast": 0.0524,
-      "low": 0.0372,
-      "high": 0.0677
-    },
-    {
-      "week": "2026-10-12",
-      "skill": "ООП",
-      "horizon": 1,
-      "forecast": 0.02,
-      "low": 0.0068,
-      "high": 0.0333
-    },
-    {
-      "week": "2026-10-19",
-      "skill": "ООП",
-      "horizon": 2,
-      "forecast": 0.02,
-      "low": 0.0057,
-      "high": 0.0344
-    },
-    {
-      "week": "2026-10-26",
-      "skill": "ООП",
-      "horizon": 3,
-      "forecast": 0.02,
-      "low": 0.0061,
-      "high": 0.0339
-    },
-    {
       "week": "2026-11-02",
       "skill": "ООП",
       "horizon": 4,
-      "forecast": 0.02,
-      "low": 0.0061,
-      "high": 0.034
+      "forecast": 0.0213,
+      "low": 0.0074,
+      "high": 0.0352
     }
   ],
   "limits": [

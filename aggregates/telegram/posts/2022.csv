@@ -19,7 +19,6 @@ week,channel,role,grade,posts
 2022-01-03,habr_career,fullstack,senior,1
 2022-01-03,habr_career,qa,middle,1
 2022-01-03,javascript_jobs_feed,frontend,,2
-2022-01-03,javascript_jobs_feed,frontend,junior,1
 2022-01-03,javascript_jobs_feed,frontend,middle,1
 2022-01-03,javascript_jobs_feed,fullstack,,2
 2022-01-03,javascript_jobs_feed,fullstack,senior,2
@@ -180,11 +179,9 @@ week,channel,role,grade,posts
 2022-01-10,habr_career,mobile,senior,1
 2022-01-10,habr_career,other_it,lead,1
 2022-01-10,javascript_jobs_feed,backend,,1
-2022-01-10,javascript_jobs_feed,backend,junior,1
 2022-01-10,javascript_jobs_feed,backend,middle,2
 2022-01-10,javascript_jobs_feed,frontend,,1
-2022-01-10,javascript_jobs_feed,frontend,intern,1
-2022-01-10,javascript_jobs_feed,frontend,junior,5
+2022-01-10,javascript_jobs_feed,frontend,junior,2
 2022-01-10,javascript_jobs_feed,frontend,middle,6
 2022-01-10,javascript_jobs_feed,frontend,senior,2
 2022-01-10,javascript_jobs_feed,fullstack,,1
@@ -411,7 +408,6 @@ week,channel,role,grade,posts
 2022-01-17,habr_career,other_it,intern,1
 2022-01-17,habr_career,software_engineer,intern,1
 2022-01-17,javascript_jobs_feed,backend,,1
-2022-01-17,javascript_jobs_feed,backend,junior,1
 2022-01-17,javascript_jobs_feed,backend,lead,1
 2022-01-17,javascript_jobs_feed,backend,middle,1
 2022-01-17,javascript_jobs_feed,backend,senior,1
@@ -652,7 +648,6 @@ week,channel,role,grade,posts
 2022-01-24,habr_career,other_it,intern,1
 2022-01-24,javascript_jobs_feed,backend,,2
 2022-01-24,javascript_jobs_feed,frontend,,1
-2022-01-24,javascript_jobs_feed,frontend,junior,2
 2022-01-24,javascript_jobs_feed,frontend,middle,6
 2022-01-24,javascript_jobs_feed,frontend,senior,4
 2022-01-24,javascript_jobs_feed,fullstack,,2
@@ -895,7 +890,6 @@ week,channel,role,grade,posts
 2022-01-31,javascript_jobs_feed,backend,,1
 2022-01-31,javascript_jobs_feed,backend,middle,1
 2022-01-31,javascript_jobs_feed,frontend,,2
-2022-01-31,javascript_jobs_feed,frontend,intern,1
 2022-01-31,javascript_jobs_feed,frontend,junior,1
 2022-01-31,javascript_jobs_feed,frontend,middle,7
 2022-01-31,javascript_jobs_feed,frontend,senior,2
@@ -1054,7 +1048,7 @@ week,channel,role,grade,posts
 2022-02-07,devs_it,data_analyst,senior,1
 2022-02-07,devs_it,mobile,senior,1
 2022-02-07,dotnetrujobsfeed,backend,,4
-2022-02-07,dotnetrujobsfeed,backend,junior,5
+2022-02-07,dotnetrujobsfeed,backend,junior,3
 2022-02-07,dotnetrujobsfeed,backend,middle,12
 2022-02-07,dotnetrujobsfeed,backend,senior,16
 2022-02-07,dotnetrujobsfeed,fullstack,,4
@@ -1294,7 +1288,7 @@ week,channel,role,grade,posts
 2022-02-14,devjobs,qa,,1
 2022-02-14,devjobs,software_engineer,middle,1
 2022-02-14,dotnetrujobsfeed,backend,,2
-2022-02-14,dotnetrujobsfeed,backend,junior,3
+2022-02-14,dotnetrujobsfeed,backend,junior,2
 2022-02-14,dotnetrujobsfeed,backend,lead,1
 2022-02-14,dotnetrujobsfeed,backend,middle,15
 2022-02-14,dotnetrujobsfeed,backend,senior,6
@@ -1516,7 +1510,7 @@ week,channel,role,grade,posts
 2022-02-21,devjobs,manager,,1
 2022-02-21,devjobs,qa,,1
 2022-02-21,dotnetrujobsfeed,backend,,5
-2022-02-21,dotnetrujobsfeed,backend,junior,4
+2022-02-21,dotnetrujobsfeed,backend,junior,2
 2022-02-21,dotnetrujobsfeed,backend,middle,9
 2022-02-21,dotnetrujobsfeed,backend,senior,8
 2022-02-21,dotnetrujobsfeed,frontend,middle,1
@@ -1578,7 +1572,6 @@ week,channel,role,grade,posts
 2022-02-21,habr_career,manager,,1
 2022-02-21,habr_career,other_it,,1
 2022-02-21,javascript_jobs_feed,frontend,,1
-2022-02-21,javascript_jobs_feed,frontend,intern,2
 2022-02-21,javascript_jobs_feed,fullstack,middle,1
 2022-02-21,jc_it,backend,junior,1
 2022-02-21,jc_it,frontend,,1
@@ -1925,7 +1918,7 @@ week,channel,role,grade,posts
 2022-03-07,devjobs,mobile,middle,1
 2022-03-07,devjobs,qa,middle,2
 2022-03-07,dotnetrujobsfeed,backend,,7
-2022-03-07,dotnetrujobsfeed,backend,junior,4
+2022-03-07,dotnetrujobsfeed,backend,junior,2
 2022-03-07,dotnetrujobsfeed,backend,middle,6
 2022-03-07,dotnetrujobsfeed,backend,senior,4
 2022-03-07,dotnetrujobsfeed,fullstack,,3
@@ -2127,7 +2120,7 @@ week,channel,role,grade,posts
 2022-03-14,devjobs,mobile,middle,4
 2022-03-14,devs_it,mobile,senior,2
 2022-03-14,dotnetrujobsfeed,backend,,5
-2022-03-14,dotnetrujobsfeed,backend,junior,2
+2022-03-14,dotnetrujobsfeed,backend,junior,1
 2022-03-14,dotnetrujobsfeed,backend,middle,6
 2022-03-14,dotnetrujobsfeed,backend,senior,8
 2022-03-14,dotnetrujobsfeed,fullstack,,2
@@ -2332,7 +2325,7 @@ week,channel,role,grade,posts
 2022-03-21,devjobs,manager,,1
 2022-03-21,devjobs,mobile,,2
 2022-03-21,dotnetrujobsfeed,backend,,5
-2022-03-21,dotnetrujobsfeed,backend,junior,3
+2022-03-21,dotnetrujobsfeed,backend,junior,2
 2022-03-21,dotnetrujobsfeed,backend,middle,7
 2022-03-21,dotnetrujobsfeed,backend,senior,5
 2022-03-21,dotnetrujobsfeed,frontend,middle,1
@@ -2731,7 +2724,7 @@ week,channel,role,grade,posts
 2022-04-04,devjobs,mobile,middle,2
 2022-04-04,devjobs,software_engineer,,2
 2022-04-04,devs_it,system_analyst,,1
-2022-04-04,dotnetrujobsfeed,backend,junior,2
+2022-04-04,dotnetrujobsfeed,backend,junior,1
 2022-04-04,dotnetrujobsfeed,backend,middle,6
 2022-04-04,dotnetrujobsfeed,backend,senior,2
 2022-04-04,dotnetrujobsfeed,fullstack,middle,4
@@ -3537,11 +3530,9 @@ week,channel,role,grade,posts
 2022-05-02,javascript_jobs_feed,backend,middle,1
 2022-05-02,javascript_jobs_feed,backend,senior,1
 2022-05-02,javascript_jobs_feed,frontend,,5
-2022-05-02,javascript_jobs_feed,frontend,junior,4
 2022-05-02,javascript_jobs_feed,frontend,middle,5
 2022-05-02,javascript_jobs_feed,frontend,senior,2
 2022-05-02,javascript_jobs_feed,fullstack,,3
-2022-05-02,javascript_jobs_feed,fullstack,junior,1
 2022-05-02,javascript_jobs_feed,fullstack,middle,1
 2022-05-02,javascript_jobs_feed,fullstack,senior,1
 2022-05-02,jc_it,data_engineer,lead,3
@@ -3702,13 +3693,10 @@ week,channel,role,grade,posts
 2022-05-09,golangjobsit,backend,senior,2
 2022-05-09,javascript_jobs_feed,backend,middle,1
 2022-05-09,javascript_jobs_feed,backend,senior,1
-2022-05-09,javascript_jobs_feed,frontend,,13
-2022-05-09,javascript_jobs_feed,frontend,intern,2
-2022-05-09,javascript_jobs_feed,frontend,junior,4
+2022-05-09,javascript_jobs_feed,frontend,,12
 2022-05-09,javascript_jobs_feed,frontend,middle,3
 2022-05-09,javascript_jobs_feed,frontend,senior,1
 2022-05-09,javascript_jobs_feed,fullstack,,2
-2022-05-09,javascript_jobs_feed,fullstack,junior,1
 2022-05-09,javascript_jobs_feed,fullstack,middle,1
 2022-05-09,javascript_jobs_feed,fullstack,senior,1
 2022-05-09,javascript_jobs_feed,mobile,junior,1
@@ -3908,9 +3896,7 @@ week,channel,role,grade,posts
 2022-05-16,golangjobsit,backend,senior,1
 2022-05-16,habr_career,frontend,,1
 2022-05-16,it_vakansii_jobs,mobile,,1
-2022-05-16,javascript_jobs_feed,frontend,,3
-2022-05-16,javascript_jobs_feed,frontend,intern,1
-2022-05-16,javascript_jobs_feed,frontend,junior,1
+2022-05-16,javascript_jobs_feed,frontend,,1
 2022-05-16,javascript_jobs_feed,frontend,middle,1
 2022-05-16,javascript_jobs_feed,frontend,senior,3
 2022-05-16,javascript_jobs_feed,fullstack,,2
@@ -4116,9 +4102,7 @@ week,channel,role,grade,posts
 2022-05-23,it_vakansii_jobs,fullstack,middle,1
 2022-05-23,it_vakansii_jobs,mobile,middle,1
 2022-05-23,javascript_jobs_feed,backend,middle,1
-2022-05-23,javascript_jobs_feed,frontend,,6
-2022-05-23,javascript_jobs_feed,frontend,intern,1
-2022-05-23,javascript_jobs_feed,frontend,junior,2
+2022-05-23,javascript_jobs_feed,frontend,,5
 2022-05-23,javascript_jobs_feed,frontend,middle,3
 2022-05-23,javascript_jobs_feed,frontend,senior,1
 2022-05-23,javascript_jobs_feed,fullstack,middle,1
@@ -4331,7 +4315,6 @@ week,channel,role,grade,posts
 2022-05-30,habr_career,other_it,,1
 2022-05-30,habr_career,qa,lead,1
 2022-05-30,javascript_jobs_feed,backend,senior,1
-2022-05-30,javascript_jobs_feed,frontend,,1
 2022-05-30,javascript_jobs_feed,frontend,senior,2
 2022-05-30,javascript_jobs_feed,fullstack,,1
 2022-05-30,jc_it,business_analyst,,1
@@ -4564,7 +4547,7 @@ week,channel,role,grade,posts
 2022-06-06,habr_career,frontend,senior,1
 2022-06-06,it_vakansii_jobs,other_it,intern,1
 2022-06-06,javascript_jobs_feed,backend,middle,1
-2022-06-06,javascript_jobs_feed,frontend,,4
+2022-06-06,javascript_jobs_feed,frontend,,3
 2022-06-06,javascript_jobs_feed,frontend,middle,2
 2022-06-06,javascript_jobs_feed,frontend,senior,3
 2022-06-06,javascript_jobs_feed,fullstack,,1
@@ -4991,9 +4974,9 @@ week,channel,role,grade,posts
 2022-06-20,habr_career,backend,senior,1
 2022-06-20,javascript_jobs_feed,backend,middle,1
 2022-06-20,javascript_jobs_feed,backend,senior,1
-2022-06-20,javascript_jobs_feed,frontend,,2
-2022-06-20,javascript_jobs_feed,frontend,middle,3
-2022-06-20,javascript_jobs_feed,frontend,senior,2
+2022-06-20,javascript_jobs_feed,frontend,,1
+2022-06-20,javascript_jobs_feed,frontend,middle,2
+2022-06-20,javascript_jobs_feed,frontend,senior,1
 2022-06-20,javascript_jobs_feed,fullstack,,1
 2022-06-20,jc_it,backend,senior,1
 2022-06-20,job_javadevs,backend,junior,3
@@ -5611,7 +5594,6 @@ week,channel,role,grade,posts
 2022-07-11,habr_career,qa,senior,1
 2022-07-11,it_vakansii_jobs,backend,middle,1
 2022-07-11,it_vakansii_jobs,fullstack,middle,1
-2022-07-11,javascript_jobs_feed,frontend,intern,1
 2022-07-11,javascript_jobs_feed,frontend,senior,1
 2022-07-11,jc_it,frontend,senior,1
 2022-07-11,job_javadevs,backend,junior,4
@@ -7309,7 +7291,6 @@ week,channel,role,grade,posts
 2022-09-05,forpython,data_engineer,lead,1
 2022-09-05,forpython,fullstack,,1
 2022-09-05,gamedevjob,designer,middle,1
-2022-09-05,gamedevjob,designer,senior,1
 2022-09-05,gamedevjob,manager,,1
 2022-09-05,gamedevjob,qa,,1
 2022-09-05,gamedevjob,software_engineer,senior,1
@@ -8413,9 +8394,8 @@ week,channel,role,grade,posts
 2022-10-10,javascript_jobs_feed,backend,,1
 2022-10-10,javascript_jobs_feed,backend,middle,2
 2022-10-10,javascript_jobs_feed,backend,senior,2
-2022-10-10,javascript_jobs_feed,frontend,,10
-2022-10-10,javascript_jobs_feed,frontend,intern,1
-2022-10-10,javascript_jobs_feed,frontend,junior,8
+2022-10-10,javascript_jobs_feed,frontend,,9
+2022-10-10,javascript_jobs_feed,frontend,junior,2
 2022-10-10,javascript_jobs_feed,frontend,lead,1
 2022-10-10,javascript_jobs_feed,frontend,middle,11
 2022-10-10,javascript_jobs_feed,frontend,senior,11
@@ -8657,8 +8637,8 @@ week,channel,role,grade,posts
 2022-10-17,javascript_jobs_feed,backend,,3
 2022-10-17,javascript_jobs_feed,backend,middle,3
 2022-10-17,javascript_jobs_feed,backend,senior,1
-2022-10-17,javascript_jobs_feed,frontend,,17
-2022-10-17,javascript_jobs_feed,frontend,junior,3
+2022-10-17,javascript_jobs_feed,frontend,,16
+2022-10-17,javascript_jobs_feed,frontend,junior,1
 2022-10-17,javascript_jobs_feed,frontend,lead,2
 2022-10-17,javascript_jobs_feed,frontend,middle,8
 2022-10-17,javascript_jobs_feed,frontend,senior,8
@@ -8832,7 +8812,6 @@ week,channel,role,grade,posts
 2022-10-24,devjobs,designer,lead,1
 2022-10-24,devjobs,designer,middle,7
 2022-10-24,devjobs,mobile,,3
-2022-10-24,devjobs,other_it,senior,1
 2022-10-24,devjobs,qa,middle,1
 2022-10-24,devjobs,software_engineer,junior,1
 2022-10-24,devs_it,backend,,1
@@ -8915,7 +8894,6 @@ week,channel,role,grade,posts
 2022-10-24,javascript_jobs_feed,backend,middle,1
 2022-10-24,javascript_jobs_feed,backend,senior,1
 2022-10-24,javascript_jobs_feed,frontend,,9
-2022-10-24,javascript_jobs_feed,frontend,junior,3
 2022-10-24,javascript_jobs_feed,frontend,lead,1
 2022-10-24,javascript_jobs_feed,frontend,middle,10
 2022-10-24,javascript_jobs_feed,frontend,senior,9
@@ -9208,8 +9186,7 @@ week,channel,role,grade,posts
 2022-10-31,it_interns,frontend,intern,1
 2022-10-31,it_vakansii_jobs,manager,middle,1
 2022-10-31,javascript_jobs_feed,backend,middle,1
-2022-10-31,javascript_jobs_feed,frontend,,4
-2022-10-31,javascript_jobs_feed,frontend,junior,1
+2022-10-31,javascript_jobs_feed,frontend,,3
 2022-10-31,javascript_jobs_feed,frontend,middle,5
 2022-10-31,javascript_jobs_feed,fullstack,middle,1
 2022-10-31,javascript_jobs_feed,mobile,,1
@@ -9666,7 +9643,7 @@ week,channel,role,grade,posts
 2022-11-14,dataviz_jobs,frontend,,1
 2022-11-14,dataviz_jobs,software_engineer,,1
 2022-11-14,devjobs,backend,,1
-2022-11-14,devjobs,designer,,9
+2022-11-14,devjobs,designer,,8
 2022-11-14,devjobs,designer,lead,3
 2022-11-14,devjobs,designer,middle,1
 2022-11-14,devjobs,designer,senior,2
@@ -9754,7 +9731,6 @@ week,channel,role,grade,posts
 2022-11-14,javascript_jobs_feed,backend,junior,1
 2022-11-14,javascript_jobs_feed,backend,middle,1
 2022-11-14,javascript_jobs_feed,backend,senior,2
-2022-11-14,javascript_jobs_feed,frontend,,1
 2022-11-14,javascript_jobs_feed,frontend,junior,1
 2022-11-14,javascript_jobs_feed,frontend,lead,1
 2022-11-14,javascript_jobs_feed,frontend,middle,4
@@ -10038,7 +10014,6 @@ week,channel,role,grade,posts
 2022-11-21,it_vakansii_jobs,security,lead,1
 2022-11-21,javascript_jobs_feed,backend,middle,1
 2022-11-21,javascript_jobs_feed,backend,senior,1
-2022-11-21,javascript_jobs_feed,frontend,,1
 2022-11-21,javascript_jobs_feed,frontend,middle,2
 2022-11-21,javascript_jobs_feed,fullstack,middle,1
 2022-11-21,javascript_jobs_feed,fullstack,senior,1
@@ -10510,7 +10485,7 @@ week,channel,role,grade,posts
 2022-12-05,dataviz_jobs,data_analyst,senior,1
 2022-12-05,dataviz_jobs,frontend,,2
 2022-12-05,devjobs,data_engineer,senior,1
-2022-12-05,devjobs,designer,,7
+2022-12-05,devjobs,designer,,6
 2022-12-05,devjobs,designer,middle,1
 2022-12-05,devjobs,designer,senior,3
 2022-12-05,devjobs,frontend,,1

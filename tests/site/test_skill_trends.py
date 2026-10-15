@@ -23,7 +23,8 @@ def test_cells_cover_all_it_the_direction_and_the_grade() -> None:
         "analytics_all",
         "analytics_senior",
     ]
-    assert skill_trends.cells_of("designer", None) == ["it_all"]
+    assert skill_trends.cells_of("backend", None) == ["it_all", "backend_all"]
+    assert skill_trends.cells_of("designer", "senior") == [] and skill_trends.cells_of("manager", None) == []
 
 
 def test_cells_need_enough_posts_and_mentions() -> None:

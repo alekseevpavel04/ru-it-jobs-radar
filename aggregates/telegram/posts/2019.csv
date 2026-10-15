@@ -33,8 +33,8 @@ week,channel,role,grade,posts
 2019-01-14,javascript_jobs_feed,backend,,3
 2019-01-14,javascript_jobs_feed,backend,middle,1
 2019-01-14,javascript_jobs_feed,frontend,,23
-2019-01-14,javascript_jobs_feed,frontend,junior,5
-2019-01-14,javascript_jobs_feed,frontend,middle,18
+2019-01-14,javascript_jobs_feed,frontend,junior,4
+2019-01-14,javascript_jobs_feed,frontend,middle,16
 2019-01-14,javascript_jobs_feed,frontend,senior,10
 2019-01-14,javascript_jobs_feed,fullstack,,2
 2019-01-14,javascript_jobs_feed,fullstack,middle,2
@@ -51,9 +51,9 @@ week,channel,role,grade,posts
 2019-01-21,javascript_jobs_feed,backend,,4
 2019-01-21,javascript_jobs_feed,backend,middle,1
 2019-01-21,javascript_jobs_feed,frontend,,28
-2019-01-21,javascript_jobs_feed,frontend,junior,5
+2019-01-21,javascript_jobs_feed,frontend,junior,4
 2019-01-21,javascript_jobs_feed,frontend,lead,1
-2019-01-21,javascript_jobs_feed,frontend,middle,13
+2019-01-21,javascript_jobs_feed,frontend,middle,11
 2019-01-21,javascript_jobs_feed,frontend,senior,10
 2019-01-21,javascript_jobs_feed,fullstack,,6
 2019-01-21,javascript_jobs_feed,fullstack,lead,1
@@ -75,7 +75,7 @@ week,channel,role,grade,posts
 2019-01-28,javascript_jobs_feed,backend,,4
 2019-01-28,javascript_jobs_feed,backend,middle,1
 2019-01-28,javascript_jobs_feed,frontend,,31
-2019-01-28,javascript_jobs_feed,frontend,junior,5
+2019-01-28,javascript_jobs_feed,frontend,junior,4
 2019-01-28,javascript_jobs_feed,frontend,middle,24
 2019-01-28,javascript_jobs_feed,frontend,senior,4
 2019-01-28,javascript_jobs_feed,fullstack,,4
@@ -96,8 +96,7 @@ week,channel,role,grade,posts
 2019-02-04,javascript_jobs_feed,backend,middle,1
 2019-02-04,javascript_jobs_feed,designer,,1
 2019-02-04,javascript_jobs_feed,frontend,,40
-2019-02-04,javascript_jobs_feed,frontend,intern,1
-2019-02-04,javascript_jobs_feed,frontend,junior,3
+2019-02-04,javascript_jobs_feed,frontend,junior,2
 2019-02-04,javascript_jobs_feed,frontend,middle,19
 2019-02-04,javascript_jobs_feed,frontend,senior,9
 2019-02-04,javascript_jobs_feed,fullstack,,2
@@ -117,8 +116,8 @@ week,channel,role,grade,posts
 2019-02-11,habr_career,other_it,,1
 2019-02-11,javascript_jobs_feed,backend,,3
 2019-02-11,javascript_jobs_feed,backend,senior,1
-2019-02-11,javascript_jobs_feed,frontend,,32
-2019-02-11,javascript_jobs_feed,frontend,junior,5
+2019-02-11,javascript_jobs_feed,frontend,,31
+2019-02-11,javascript_jobs_feed,frontend,junior,3
 2019-02-11,javascript_jobs_feed,frontend,lead,1
 2019-02-11,javascript_jobs_feed,frontend,middle,13
 2019-02-11,javascript_jobs_feed,frontend,senior,11
@@ -225,7 +224,6 @@ week,channel,role,grade,posts
 2019-03-11,javascript_jobs_feed,backend,middle,2
 2019-03-11,javascript_jobs_feed,backend,senior,1
 2019-03-11,javascript_jobs_feed,frontend,,29
-2019-03-11,javascript_jobs_feed,frontend,intern,1
 2019-03-11,javascript_jobs_feed,frontend,junior,3
 2019-03-11,javascript_jobs_feed,frontend,middle,18
 2019-03-11,javascript_jobs_feed,frontend,senior,13
@@ -452,7 +450,7 @@ week,channel,role,grade,posts
 2019-04-29,javascript_jobs_feed,frontend,junior,1
 2019-04-29,javascript_jobs_feed,frontend,lead,2
 2019-04-29,javascript_jobs_feed,frontend,middle,10
-2019-04-29,javascript_jobs_feed,frontend,senior,7
+2019-04-29,javascript_jobs_feed,frontend,senior,6
 2019-04-29,javascript_jobs_feed,fullstack,,3
 2019-04-29,javascript_jobs_feed,fullstack,junior,1
 2019-04-29,javascript_jobs_feed,fullstack,senior,1
@@ -742,7 +740,7 @@ week,channel,role,grade,posts
 2019-05-27,javascript_jobs_feed,backend,,1
 2019-05-27,javascript_jobs_feed,backend,senior,1
 2019-05-27,javascript_jobs_feed,designer,,1
-2019-05-27,javascript_jobs_feed,frontend,,33
+2019-05-27,javascript_jobs_feed,frontend,,32
 2019-05-27,javascript_jobs_feed,frontend,junior,2
 2019-05-27,javascript_jobs_feed,frontend,lead,1
 2019-05-27,javascript_jobs_feed,frontend,middle,14
@@ -824,7 +822,7 @@ week,channel,role,grade,posts
 2019-06-03,habr_career,other_it,,1
 2019-06-03,javascript_jobs_feed,backend,,2
 2019-06-03,javascript_jobs_feed,backend,senior,1
-2019-06-03,javascript_jobs_feed,frontend,,29
+2019-06-03,javascript_jobs_feed,frontend,,28
 2019-06-03,javascript_jobs_feed,frontend,junior,3
 2019-06-03,javascript_jobs_feed,frontend,lead,1
 2019-06-03,javascript_jobs_feed,frontend,middle,10
@@ -891,7 +889,7 @@ week,channel,role,grade,posts
 2019-06-10,habr_career,other_it,junior,1
 2019-06-10,javascript_jobs_feed,backend,,2
 2019-06-10,javascript_jobs_feed,backend,senior,1
-2019-06-10,javascript_jobs_feed,frontend,,33
+2019-06-10,javascript_jobs_feed,frontend,,32
 2019-06-10,javascript_jobs_feed,frontend,junior,2
 2019-06-10,javascript_jobs_feed,frontend,lead,3
 2019-06-10,javascript_jobs_feed,frontend,middle,18
@@ -1090,8 +1088,8 @@ week,channel,role,grade,posts
 2019-07-01,habr_career,designer,,1
 2019-07-01,javascript_jobs_feed,backend,,2
 2019-07-01,javascript_jobs_feed,backend,junior,1
-2019-07-01,javascript_jobs_feed,frontend,,26
-2019-07-01,javascript_jobs_feed,frontend,junior,8
+2019-07-01,javascript_jobs_feed,frontend,,25
+2019-07-01,javascript_jobs_feed,frontend,junior,7
 2019-07-01,javascript_jobs_feed,frontend,lead,2
 2019-07-01,javascript_jobs_feed,frontend,middle,30
 2019-07-01,javascript_jobs_feed,frontend,senior,8
@@ -1170,7 +1168,7 @@ week,channel,role,grade,posts
 2019-07-08,javascript_jobs_feed,backend,middle,4
 2019-07-08,javascript_jobs_feed,backend,senior,1
 2019-07-08,javascript_jobs_feed,frontend,,25
-2019-07-08,javascript_jobs_feed,frontend,junior,4
+2019-07-08,javascript_jobs_feed,frontend,junior,3
 2019-07-08,javascript_jobs_feed,frontend,middle,19
 2019-07-08,javascript_jobs_feed,frontend,senior,10
 2019-07-08,javascript_jobs_feed,fullstack,,6
@@ -1238,8 +1236,7 @@ week,channel,role,grade,posts
 2019-07-15,javascript_jobs_feed,backend,,2
 2019-07-15,javascript_jobs_feed,backend,junior,1
 2019-07-15,javascript_jobs_feed,backend,middle,3
-2019-07-15,javascript_jobs_feed,frontend,,30
-2019-07-15,javascript_jobs_feed,frontend,intern,1
+2019-07-15,javascript_jobs_feed,frontend,,29
 2019-07-15,javascript_jobs_feed,frontend,junior,2
 2019-07-15,javascript_jobs_feed,frontend,lead,1
 2019-07-15,javascript_jobs_feed,frontend,middle,29
@@ -1312,7 +1309,7 @@ week,channel,role,grade,posts
 2019-07-22,javascript_jobs_feed,backend,,1
 2019-07-22,javascript_jobs_feed,backend,middle,3
 2019-07-22,javascript_jobs_feed,backend,senior,1
-2019-07-22,javascript_jobs_feed,frontend,,28
+2019-07-22,javascript_jobs_feed,frontend,,27
 2019-07-22,javascript_jobs_feed,frontend,junior,5
 2019-07-22,javascript_jobs_feed,frontend,lead,1
 2019-07-22,javascript_jobs_feed,frontend,middle,24
@@ -1385,7 +1382,6 @@ week,channel,role,grade,posts
 2019-07-29,javascript_jobs_feed,backend,middle,1
 2019-07-29,javascript_jobs_feed,backend,senior,2
 2019-07-29,javascript_jobs_feed,frontend,,25
-2019-07-29,javascript_jobs_feed,frontend,intern,2
 2019-07-29,javascript_jobs_feed,frontend,junior,5
 2019-07-29,javascript_jobs_feed,frontend,lead,1
 2019-07-29,javascript_jobs_feed,frontend,middle,20
@@ -1452,7 +1448,6 @@ week,channel,role,grade,posts
 2019-08-05,javascript_jobs_feed,backend,,1
 2019-08-05,javascript_jobs_feed,designer,,1
 2019-08-05,javascript_jobs_feed,frontend,,23
-2019-08-05,javascript_jobs_feed,frontend,intern,1
 2019-08-05,javascript_jobs_feed,frontend,junior,2
 2019-08-05,javascript_jobs_feed,frontend,lead,1
 2019-08-05,javascript_jobs_feed,frontend,middle,19
@@ -1521,7 +1516,7 @@ week,channel,role,grade,posts
 2019-08-12,javascript_jobs_feed,backend,middle,1
 2019-08-12,javascript_jobs_feed,frontend,,40
 2019-08-12,javascript_jobs_feed,frontend,intern,1
-2019-08-12,javascript_jobs_feed,frontend,junior,8
+2019-08-12,javascript_jobs_feed,frontend,junior,5
 2019-08-12,javascript_jobs_feed,frontend,lead,4
 2019-08-12,javascript_jobs_feed,frontend,middle,18
 2019-08-12,javascript_jobs_feed,frontend,senior,12
@@ -1595,9 +1590,8 @@ week,channel,role,grade,posts
 2019-08-19,getitrussia,software_engineer,,1
 2019-08-19,habr_career,software_engineer,,1
 2019-08-19,javascript_jobs_feed,backend,middle,1
-2019-08-19,javascript_jobs_feed,frontend,,30
-2019-08-19,javascript_jobs_feed,frontend,intern,1
-2019-08-19,javascript_jobs_feed,frontend,junior,2
+2019-08-19,javascript_jobs_feed,frontend,,29
+2019-08-19,javascript_jobs_feed,frontend,junior,1
 2019-08-19,javascript_jobs_feed,frontend,lead,2
 2019-08-19,javascript_jobs_feed,frontend,middle,14
 2019-08-19,javascript_jobs_feed,frontend,senior,13
@@ -1658,7 +1652,7 @@ week,channel,role,grade,posts
 2019-08-26,habr_career,qa,,1
 2019-08-26,javascript_jobs_feed,backend,,3
 2019-08-26,javascript_jobs_feed,backend,senior,1
-2019-08-26,javascript_jobs_feed,frontend,,26
+2019-08-26,javascript_jobs_feed,frontend,,25
 2019-08-26,javascript_jobs_feed,frontend,junior,1
 2019-08-26,javascript_jobs_feed,frontend,lead,2
 2019-08-26,javascript_jobs_feed,frontend,middle,23
@@ -1725,8 +1719,7 @@ week,channel,role,grade,posts
 2019-09-02,getitrussia,ml_engineer,,1
 2019-09-02,habr_career,other_it,,1
 2019-09-02,javascript_jobs_feed,frontend,,37
-2019-09-02,javascript_jobs_feed,frontend,intern,3
-2019-09-02,javascript_jobs_feed,frontend,junior,7
+2019-09-02,javascript_jobs_feed,frontend,junior,5
 2019-09-02,javascript_jobs_feed,frontend,lead,2
 2019-09-02,javascript_jobs_feed,frontend,middle,25
 2019-09-02,javascript_jobs_feed,frontend,senior,12
@@ -1798,8 +1791,7 @@ week,channel,role,grade,posts
 2019-09-09,javascript_jobs_feed,backend,,1
 2019-09-09,javascript_jobs_feed,backend,senior,2
 2019-09-09,javascript_jobs_feed,frontend,,39
-2019-09-09,javascript_jobs_feed,frontend,intern,1
-2019-09-09,javascript_jobs_feed,frontend,junior,6
+2019-09-09,javascript_jobs_feed,frontend,junior,5
 2019-09-09,javascript_jobs_feed,frontend,middle,19
 2019-09-09,javascript_jobs_feed,frontend,senior,11
 2019-09-09,javascript_jobs_feed,fullstack,,4
@@ -2076,7 +2068,7 @@ week,channel,role,grade,posts
 2019-10-07,getitrussia,manager,,1
 2019-10-07,javascript_jobs_feed,backend,middle,1
 2019-10-07,javascript_jobs_feed,frontend,,21
-2019-10-07,javascript_jobs_feed,frontend,junior,2
+2019-10-07,javascript_jobs_feed,frontend,junior,1
 2019-10-07,javascript_jobs_feed,frontend,middle,13
 2019-10-07,javascript_jobs_feed,frontend,senior,6
 2019-10-07,javascript_jobs_feed,fullstack,,4
@@ -2226,8 +2218,7 @@ week,channel,role,grade,posts
 2019-10-21,habr_career,other_it,junior,1
 2019-10-21,javascript_jobs_feed,backend,,2
 2019-10-21,javascript_jobs_feed,backend,junior,1
-2019-10-21,javascript_jobs_feed,frontend,,22
-2019-10-21,javascript_jobs_feed,frontend,intern,1
+2019-10-21,javascript_jobs_feed,frontend,,21
 2019-10-21,javascript_jobs_feed,frontend,junior,2
 2019-10-21,javascript_jobs_feed,frontend,lead,3
 2019-10-21,javascript_jobs_feed,frontend,middle,17
@@ -2293,7 +2284,7 @@ week,channel,role,grade,posts
 2019-10-28,getitrussia,mobile,,1
 2019-10-28,javascript_jobs_feed,backend,,3
 2019-10-28,javascript_jobs_feed,backend,middle,1
-2019-10-28,javascript_jobs_feed,frontend,,28
+2019-10-28,javascript_jobs_feed,frontend,,26
 2019-10-28,javascript_jobs_feed,frontend,junior,3
 2019-10-28,javascript_jobs_feed,frontend,lead,4
 2019-10-28,javascript_jobs_feed,frontend,middle,17
@@ -2367,7 +2358,7 @@ week,channel,role,grade,posts
 2019-11-04,javascript_jobs_feed,backend,,1
 2019-11-04,javascript_jobs_feed,backend,middle,1
 2019-11-04,javascript_jobs_feed,frontend,,35
-2019-11-04,javascript_jobs_feed,frontend,junior,3
+2019-11-04,javascript_jobs_feed,frontend,junior,2
 2019-11-04,javascript_jobs_feed,frontend,lead,2
 2019-11-04,javascript_jobs_feed,frontend,middle,17
 2019-11-04,javascript_jobs_feed,frontend,senior,5
@@ -2441,7 +2432,7 @@ week,channel,role,grade,posts
 2019-11-11,habr_career,software_engineer,,1
 2019-11-11,javascript_jobs_feed,backend,,2
 2019-11-11,javascript_jobs_feed,backend,senior,1
-2019-11-11,javascript_jobs_feed,frontend,,42
+2019-11-11,javascript_jobs_feed,frontend,,40
 2019-11-11,javascript_jobs_feed,frontend,junior,7
 2019-11-11,javascript_jobs_feed,frontend,lead,6
 2019-11-11,javascript_jobs_feed,frontend,middle,25
@@ -2512,8 +2503,8 @@ week,channel,role,grade,posts
 2019-11-18,javascript_jobs_feed,backend,lead,1
 2019-11-18,javascript_jobs_feed,backend,middle,1
 2019-11-18,javascript_jobs_feed,backend,senior,1
-2019-11-18,javascript_jobs_feed,frontend,,53
-2019-11-18,javascript_jobs_feed,frontend,junior,7
+2019-11-18,javascript_jobs_feed,frontend,,48
+2019-11-18,javascript_jobs_feed,frontend,junior,5
 2019-11-18,javascript_jobs_feed,frontend,lead,2
 2019-11-18,javascript_jobs_feed,frontend,middle,31
 2019-11-18,javascript_jobs_feed,frontend,senior,12
@@ -2593,8 +2584,8 @@ week,channel,role,grade,posts
 2019-11-25,javascript_jobs_feed,backend,,4
 2019-11-25,javascript_jobs_feed,backend,middle,2
 2019-11-25,javascript_jobs_feed,backend,senior,1
-2019-11-25,javascript_jobs_feed,frontend,,40
-2019-11-25,javascript_jobs_feed,frontend,junior,10
+2019-11-25,javascript_jobs_feed,frontend,,38
+2019-11-25,javascript_jobs_feed,frontend,junior,7
 2019-11-25,javascript_jobs_feed,frontend,lead,6
 2019-11-25,javascript_jobs_feed,frontend,middle,19
 2019-11-25,javascript_jobs_feed,frontend,senior,14
@@ -2678,8 +2669,8 @@ week,channel,role,grade,posts
 2019-12-02,javascript_jobs_feed,backend,junior,1
 2019-12-02,javascript_jobs_feed,backend,middle,1
 2019-12-02,javascript_jobs_feed,backend,senior,2
-2019-12-02,javascript_jobs_feed,frontend,,39
-2019-12-02,javascript_jobs_feed,frontend,junior,3
+2019-12-02,javascript_jobs_feed,frontend,,37
+2019-12-02,javascript_jobs_feed,frontend,junior,2
 2019-12-02,javascript_jobs_feed,frontend,lead,5
 2019-12-02,javascript_jobs_feed,frontend,middle,15
 2019-12-02,javascript_jobs_feed,frontend,senior,12
@@ -2687,7 +2678,7 @@ week,channel,role,grade,posts
 2019-12-02,javascript_jobs_feed,fullstack,middle,1
 2019-12-02,javascript_jobs_feed,fullstack,senior,1
 2019-12-02,javascript_jobs_feed,mobile,junior,1
-2019-12-02,javascript_jobs_feed,mobile,middle,3
+2019-12-02,javascript_jobs_feed,mobile,middle,2
 2019-12-02,javascript_jobs_feed,other_it,,1
 2019-12-02,jc_it,mobile,,1
 2019-12-02,progjob,backend,,11
@@ -2756,8 +2747,8 @@ week,channel,role,grade,posts
 2019-12-09,getitrussia,other_it,,1
 2019-12-09,habr_career,manager,,1
 2019-12-09,javascript_jobs_feed,backend,,3
-2019-12-09,javascript_jobs_feed,frontend,,19
-2019-12-09,javascript_jobs_feed,frontend,junior,4
+2019-12-09,javascript_jobs_feed,frontend,,18
+2019-12-09,javascript_jobs_feed,frontend,junior,3
 2019-12-09,javascript_jobs_feed,frontend,lead,1
 2019-12-09,javascript_jobs_feed,frontend,middle,16
 2019-12-09,javascript_jobs_feed,frontend,senior,7
@@ -2830,8 +2821,8 @@ week,channel,role,grade,posts
 2019-12-16,habr_career,other_it,,1
 2019-12-16,habr_career,software_engineer,,1
 2019-12-16,javascript_jobs_feed,backend,,1
-2019-12-16,javascript_jobs_feed,frontend,,24
-2019-12-16,javascript_jobs_feed,frontend,junior,3
+2019-12-16,javascript_jobs_feed,frontend,,22
+2019-12-16,javascript_jobs_feed,frontend,junior,2
 2019-12-16,javascript_jobs_feed,frontend,lead,1
 2019-12-16,javascript_jobs_feed,frontend,middle,10
 2019-12-16,javascript_jobs_feed,frontend,senior,4
@@ -2892,8 +2883,8 @@ week,channel,role,grade,posts
 2019-12-23,getitrussia,mobile,,3
 2019-12-23,javascript_jobs_feed,backend,,1
 2019-12-23,javascript_jobs_feed,backend,senior,1
-2019-12-23,javascript_jobs_feed,frontend,,20
-2019-12-23,javascript_jobs_feed,frontend,junior,2
+2019-12-23,javascript_jobs_feed,frontend,,19
+2019-12-23,javascript_jobs_feed,frontend,junior,1
 2019-12-23,javascript_jobs_feed,frontend,middle,6
 2019-12-23,javascript_jobs_feed,frontend,senior,6
 2019-12-23,javascript_jobs_feed,fullstack,,5
@@ -2940,8 +2931,7 @@ week,channel,role,grade,posts
 2019-12-30,getitrussia,frontend,,3
 2019-12-30,getitrussia,manager,,1
 2019-12-30,getitrussia,mobile,,2
-2019-12-30,javascript_jobs_feed,frontend,,1
-2019-12-30,javascript_jobs_feed,frontend,junior,3
+2019-12-30,javascript_jobs_feed,frontend,junior,1
 2019-12-30,javascript_jobs_feed,frontend,lead,1
 2019-12-30,javascript_jobs_feed,frontend,middle,4
 2019-12-30,javascript_jobs_feed,frontend,senior,2

@@ -993,6 +993,7 @@ week,channel,role,grade,skill,posts
 2025-01-06,progjob,backend,middle,RabbitMQ,3
 2025-01-06,progjob,backend,middle,SOLID,1
 2025-01-06,progjob,backend,middle,SQL,2
+2025-01-06,progjob,backend,middle,Spring,2
 2025-01-06,progjob,backend,middle,Spring Boot,1
 2025-01-06,progjob,backend,middle,Symfony,2
 2025-01-06,progjob,backend,middle,Vue.js,1
@@ -1010,6 +1011,7 @@ week,channel,role,grade,skill,posts
 2025-01-06,progjob,backend,senior,RabbitMQ,1
 2025-01-06,progjob,backend,senior,Rust,1
 2025-01-06,progjob,backend,senior,SOAP,1
+2025-01-06,progjob,backend,senior,Spring,1
 2025-01-06,progjob,business_analyst,senior,Kaspersky,1
 2025-01-06,progjob,data_analyst,lead,SQL,1
 2025-01-06,progjob,data_analyst,middle,Python,1
@@ -1018,6 +1020,7 @@ week,channel,role,grade,skill,posts
 2025-01-06,progjob,data_engineer,middle,ETL,1
 2025-01-06,progjob,data_engineer,middle,Greenplum,1
 2025-01-06,progjob,data_engineer,middle,SQL,1
+2025-01-06,progjob,designer,middle,Figma,2
 2025-01-06,progjob,designer,middle,Photoshop,1
 2025-01-06,progjob,developer_1c,middle,1С,2
 2025-01-06,progjob,developer_1c,senior,1С,1
@@ -1048,6 +1051,7 @@ week,channel,role,grade,skill,posts
 2025-01-06,progjob,mobile,middle,Java,2
 2025-01-06,progjob,mobile,middle,JavaScript,1
 2025-01-06,progjob,mobile,middle,Kotlin,2
+2025-01-06,progjob,mobile,middle,REST,1
 2025-01-06,progjob,mobile,middle,TCP,1
 2025-01-06,progjob,mobile,senior,Android,1
 2025-01-06,progjob,mobile,senior,MVVM,1
@@ -1875,6 +1879,7 @@ week,channel,role,grade,skill,posts
 2025-01-13,forpython,backend,senior,OpenCV,1
 2025-01-13,forpython,backend,senior,PostgreSQL,2
 2025-01-13,forpython,backend,senior,Python,3
+2025-01-13,forpython,backend,senior,REST,1
 2025-01-13,forpython,backend,senior,Redis,1
 2025-01-13,forpython,backend,senior,aiohttp,1
 2025-01-13,forpython,data_engineer,junior,CI/CD,1
@@ -2651,6 +2656,7 @@ week,channel,role,grade,skill,posts
 2025-01-13,progjob,backend,middle,Symfony,3
 2025-01-13,progjob,backend,middle,TypeScript,2
 2025-01-13,progjob,backend,middle,WebSocket,1
+2025-01-13,progjob,backend,middle,Yii,1
 2025-01-13,progjob,backend,middle,ООП,1
 2025-01-13,progjob,backend,senior,Bash,1
 2025-01-13,progjob,backend,senior,C++,1
@@ -2672,6 +2678,7 @@ week,channel,role,grade,skill,posts
 2025-01-13,progjob,backend,senior,RabbitMQ,1
 2025-01-13,progjob,backend,senior,Redis,2
 2025-01-13,progjob,backend,senior,SQL,1
+2025-01-13,progjob,backend,senior,Spring,1
 2025-01-13,progjob,backend,senior,Symfony,2
 2025-01-13,progjob,backend,senior,TCP,1
 2025-01-13,progjob,business_analyst,senior,Astra Linux,1
@@ -2694,6 +2701,7 @@ week,channel,role,grade,skill,posts
 2025-01-13,progjob,data_engineer,senior,Python,2
 2025-01-13,progjob,data_engineer,senior,SQL,2
 2025-01-13,progjob,data_engineer,senior,pandas,1
+2025-01-13,progjob,designer,middle,Figma,2
 2025-01-13,progjob,developer_1c,,1С,1
 2025-01-13,progjob,developer_1c,middle,1С,1
 2025-01-13,progjob,developer_1c,middle,C#,1
@@ -2801,7 +2809,7 @@ week,channel,role,grade,skill,posts
 2025-01-13,progjob,qa,middle,Java,2
 2025-01-13,progjob,qa,middle,Postman,1
 2025-01-13,progjob,qa,middle,Python,1
-2025-01-13,progjob,qa,middle,REST,1
+2025-01-13,progjob,qa,middle,REST,2
 2025-01-13,progjob,qa,middle,SQL,2
 2025-01-13,progjob,qa,middle,pytest,1
 2025-01-13,progjob,qa,senior,C#,1
@@ -2830,6 +2838,7 @@ week,channel,role,grade,skill,posts
 2025-01-13,progjob,software_engineer,middle,Git,2
 2025-01-13,progjob,software_engineer,middle,GitLab,2
 2025-01-13,progjob,software_engineer,middle,Linux,2
+2025-01-13,progjob,software_engineer,middle,MS SQL Server,1
 2025-01-13,progjob,software_engineer,middle,PostgreSQL,1
 2025-01-13,progjob,software_engineer,middle,Qt,1
 2025-01-13,progjob,software_engineer,middle,SQL,1
@@ -2870,6 +2879,7 @@ week,channel,role,grade,skill,posts
 2025-01-13,progjob,sysadmin,middle,PostgreSQL,1
 2025-01-13,progjob,sysadmin,middle,SSH,1
 2025-01-13,progjob,sysadmin,middle,Zabbix,1
+2025-01-13,progjob,sysadmin,senior,Linux,1
 2025-01-13,progjob,sysadmin,senior,MongoDB,1
 2025-01-13,progjob,system_analyst,,BPMN,2
 2025-01-13,progjob,system_analyst,,Confluence,1
@@ -4459,6 +4469,7 @@ week,channel,role,grade,skill,posts
 2025-01-20,progjob,backend,,Redis,1
 2025-01-20,progjob,backend,,Symfony,1
 2025-01-20,progjob,backend,,TypeScript,1
+2025-01-20,progjob,backend,,Yii,1
 2025-01-20,progjob,backend,intern,PHP,1
 2025-01-20,progjob,backend,intern,SQL,1
 2025-01-20,progjob,backend,middle,.NET,2
@@ -4510,6 +4521,7 @@ week,channel,role,grade,skill,posts
 2025-01-20,progjob,backend,senior,Scala,2
 2025-01-20,progjob,backend,senior,Spark,1
 2025-01-20,progjob,backend,senior,Symfony,1
+2025-01-20,progjob,backend,senior,Yii,1
 2025-01-20,progjob,backend,senior,ООП,1
 2025-01-20,progjob,data_analyst,middle,Agile,1
 2025-01-20,progjob,data_analyst,middle,Kanban,1
@@ -4545,6 +4557,7 @@ week,channel,role,grade,skill,posts
 2025-01-20,progjob,data_scientist,senior,SQL,1
 2025-01-20,progjob,designer,,Adobe Premiere,1
 2025-01-20,progjob,designer,,Blender,1
+2025-01-20,progjob,designer,,Figma,1
 2025-01-20,progjob,designer,,Photoshop,1
 2025-01-20,progjob,designer,middle,HTML,1
 2025-01-20,progjob,designer,middle,JavaScript,1
@@ -4875,6 +4888,7 @@ week,channel,role,grade,skill,posts
 2025-01-20,remote_job_it_geeklink,designer,senior,Figma,1
 2025-01-20,remote_job_it_geeklink,designer,senior,Midjourney,1
 2025-01-20,remote_job_it_geeklink,designer,senior,Photoshop,1
+2025-01-20,remote_job_it_geeklink,designer,senior,Unity,1
 2025-01-20,remote_job_it_geeklink,frontend,middle,Next.js,1
 2025-01-20,remote_job_it_geeklink,frontend,middle,React,1
 2025-01-20,remote_job_it_geeklink,frontend,middle,Tailwind CSS,1
@@ -6234,6 +6248,7 @@ week,channel,role,grade,skill,posts
 2025-01-27,jobofferinside,qa,,GitHub Actions,1
 2025-01-27,jobofferinside,qa,,GitLab CI,1
 2025-01-27,jobofferinside,qa,,Jenkins,1
+2025-01-27,jobofferinside,qa,,REST,1
 2025-01-27,jobofferinside,qa,lead,CI/CD,1
 2025-01-27,jun_qa,qa,intern,C#,1
 2025-01-27,jun_qa,qa,intern,C++,1
@@ -6391,6 +6406,7 @@ week,channel,role,grade,skill,posts
 2025-01-27,progjob,designer,middle,Adobe Illustrator,1
 2025-01-27,progjob,designer,middle,Blender,1
 2025-01-27,progjob,designer,middle,Photoshop,1
+2025-01-27,progjob,designer,senior,Figma,1
 2025-01-27,progjob,developer_1c,,1С,1
 2025-01-27,progjob,developer_1c,middle,1С,1
 2025-01-27,progjob,developer_1c,middle,Python,1
@@ -6458,6 +6474,7 @@ week,channel,role,grade,skill,posts
 2025-01-27,progjob,mobile,senior,Dart,1
 2025-01-27,progjob,mobile,senior,Flutter,1
 2025-01-27,progjob,mobile,senior,Kotlin Multiplatform,1
+2025-01-27,progjob,mobile,senior,REST,1
 2025-01-27,progjob,mobile,senior,Swift,1
 2025-01-27,progjob,mobile,senior,iOS,1
 2025-01-27,progjob,other_it,senior,CI/CD,2
@@ -7265,17 +7282,6 @@ week,channel,role,grade,skill,posts
 2025-02-03,devs_it,software_engineer,,C++,1
 2025-02-03,devs_it,software_engineer,,STL,1
 2025-02-03,devs_it,software_engineer,,Windows,1
-2025-02-03,dotnetrujobsfeed,backend,junior,.NET,1
-2025-02-03,dotnetrujobsfeed,backend,junior,ASP.NET,1
-2025-02-03,dotnetrujobsfeed,backend,junior,CI/CD,1
-2025-02-03,dotnetrujobsfeed,backend,junior,ClickHouse,1
-2025-02-03,dotnetrujobsfeed,backend,junior,Docker,1
-2025-02-03,dotnetrujobsfeed,backend,junior,Entity Framework,1
-2025-02-03,dotnetrujobsfeed,backend,junior,GitHub,1
-2025-02-03,dotnetrujobsfeed,backend,junior,GitLab,1
-2025-02-03,dotnetrujobsfeed,backend,junior,PostgreSQL,1
-2025-02-03,dotnetrujobsfeed,backend,junior,Redis,1
-2025-02-03,dotnetrujobsfeed,backend,junior,gRPC,1
 2025-02-03,dotnetrujobsfeed,backend,lead,.NET,1
 2025-02-03,dotnetrujobsfeed,backend,lead,ASP.NET,1
 2025-02-03,dotnetrujobsfeed,backend,lead,C#,1
@@ -7283,28 +7289,18 @@ week,channel,role,grade,skill,posts
 2025-02-03,dotnetrujobsfeed,backend,lead,PostgreSQL,1
 2025-02-03,dotnetrujobsfeed,backend,lead,REST,1
 2025-02-03,dotnetrujobsfeed,backend,lead,Vue.js,1
-2025-02-03,dotnetrujobsfeed,backend,senior,.NET,2
-2025-02-03,dotnetrujobsfeed,backend,senior,ASP.NET,1
+2025-02-03,dotnetrujobsfeed,backend,senior,.NET,1
 2025-02-03,dotnetrujobsfeed,backend,senior,Angular,1
-2025-02-03,dotnetrujobsfeed,backend,senior,Azure,1
-2025-02-03,dotnetrujobsfeed,backend,senior,Azure DevOps,1
 2025-02-03,dotnetrujobsfeed,backend,senior,C#,1
 2025-02-03,dotnetrujobsfeed,backend,senior,CSS,1
 2025-02-03,dotnetrujobsfeed,backend,senior,Design patterns,1
-2025-02-03,dotnetrujobsfeed,backend,senior,Docker,1
-2025-02-03,dotnetrujobsfeed,backend,senior,HTML,2
-2025-02-03,dotnetrujobsfeed,backend,senior,IIS,1
-2025-02-03,dotnetrujobsfeed,backend,senior,JavaScript,2
-2025-02-03,dotnetrujobsfeed,backend,senior,Kubernetes,1
-2025-02-03,dotnetrujobsfeed,backend,senior,MS SQL Server,2
+2025-02-03,dotnetrujobsfeed,backend,senior,HTML,1
+2025-02-03,dotnetrujobsfeed,backend,senior,JavaScript,1
+2025-02-03,dotnetrujobsfeed,backend,senior,MS SQL Server,1
 2025-02-03,dotnetrujobsfeed,backend,senior,Microservices,1
-2025-02-03,dotnetrujobsfeed,backend,senior,Playwright,1
-2025-02-03,dotnetrujobsfeed,backend,senior,RabbitMQ,1
 2025-02-03,dotnetrujobsfeed,backend,senior,React,1
 2025-02-03,dotnetrujobsfeed,backend,senior,SOLID,1
 2025-02-03,dotnetrujobsfeed,backend,senior,SQL,1
-2025-02-03,dotnetrujobsfeed,backend,senior,Selenium,1
-2025-02-03,dotnetrujobsfeed,backend,senior,TeamCity,1
 2025-02-03,dotnetrujobsfeed,backend,senior,TypeScript,1
 2025-02-03,dotnetrujobsfeed,mobile,senior,.NET,1
 2025-02-03,dotnetrujobsfeed,mobile,senior,C#,1
@@ -7509,6 +7505,7 @@ week,channel,role,grade,skill,posts
 2025-02-03,gamedevjob,designer,senior,Figma,1
 2025-02-03,gamedevjob,designer,senior,Midjourney,1
 2025-02-03,gamedevjob,designer,senior,Photoshop,1
+2025-02-03,gamedevjob,designer,senior,Unity,1
 2025-02-03,geekjobs,backend,senior,Ansible,1
 2025-02-03,geekjobs,backend,senior,C++,1
 2025-02-03,geekjobs,backend,senior,ClickHouse,2
@@ -8243,6 +8240,7 @@ week,channel,role,grade,skill,posts
 2025-02-03,progjob,backend,senior,JavaScript,1
 2025-02-03,progjob,backend,senior,Kafka,3
 2025-02-03,progjob,backend,senior,Kubernetes,2
+2025-02-03,progjob,backend,senior,MS SQL Server,1
 2025-02-03,progjob,backend,senior,MongoDB,1
 2025-02-03,progjob,backend,senior,MySQL,1
 2025-02-03,progjob,backend,senior,PHP,2
@@ -8251,6 +8249,7 @@ week,channel,role,grade,skill,posts
 2025-02-03,progjob,backend,senior,REST,2
 2025-02-03,progjob,backend,senior,SQL,4
 2025-02-03,progjob,backend,senior,SQLite,1
+2025-02-03,progjob,backend,senior,Spring,3
 2025-02-03,progjob,backend,senior,Spring Boot,1
 2025-02-03,progjob,backend,senior,Symfony,1
 2025-02-03,progjob,backend,senior,TypeScript,1
@@ -8286,7 +8285,9 @@ week,channel,role,grade,skill,posts
 2025-02-03,progjob,data_analyst,senior,ERD,1
 2025-02-03,progjob,data_analyst,senior,JSON,1
 2025-02-03,progjob,data_analyst,senior,UML,1
+2025-02-03,progjob,designer,middle,Figma,2
 2025-02-03,progjob,designer,middle,Photoshop,1
+2025-02-03,progjob,designer,senior,Figma,1
 2025-02-03,progjob,devops,middle,CI/CD,1
 2025-02-03,progjob,devops,middle,DevOps,1
 2025-02-03,progjob,devops,middle,GitLab,1
@@ -8432,7 +8433,7 @@ week,channel,role,grade,skill,posts
 2025-02-03,progjob,system_analyst,middle,JSON,1
 2025-02-03,progjob,system_analyst,middle,Kafka,2
 2025-02-03,progjob,system_analyst,middle,Postman,2
-2025-02-03,progjob,system_analyst,middle,REST,2
+2025-02-03,progjob,system_analyst,middle,REST,3
 2025-02-03,progjob,system_analyst,middle,RabbitMQ,1
 2025-02-03,progjob,system_analyst,middle,SOAP,1
 2025-02-03,progjob,system_analyst,middle,SQL,3
@@ -8654,6 +8655,7 @@ week,channel,role,grade,skill,posts
 2025-02-03,remotegeekjob,backend,,Go,1
 2025-02-03,remotegeekjob,backend,,Kafka,1
 2025-02-03,remotegeekjob,backend,,PostgreSQL,1
+2025-02-03,remotegeekjob,backend,,REST,1
 2025-02-03,remotegeekjob,backend,,Rust,1
 2025-02-03,remotegeekjob,backend,,SQL,1
 2025-02-03,remotegeekjob,backend,junior,Django,1
@@ -9213,6 +9215,7 @@ week,channel,role,grade,skill,posts
 2025-02-10,gamedevjob,designer,senior,Figma,1
 2025-02-10,gamedevjob,designer,senior,Midjourney,1
 2025-02-10,gamedevjob,designer,senior,Photoshop,1
+2025-02-10,gamedevjob,designer,senior,Unity,1
 2025-02-10,gamedevjob,mobile,middle,CSS,1
 2025-02-10,gamedevjob,mobile,middle,Docker,1
 2025-02-10,gamedevjob,mobile,middle,HTML,1
@@ -9849,6 +9852,7 @@ week,channel,role,grade,skill,posts
 2025-02-10,progjob,backend,,C#,1
 2025-02-10,progjob,backend,,Java,1
 2025-02-10,progjob,backend,,Python,1
+2025-02-10,progjob,backend,,Spring,1
 2025-02-10,progjob,backend,,Spring Boot,1
 2025-02-10,progjob,backend,junior,Git,1
 2025-02-10,progjob,backend,junior,Laravel,1
@@ -10083,6 +10087,7 @@ week,channel,role,grade,skill,posts
 2025-02-10,progjob,system_analyst,senior,Git,1
 2025-02-10,progjob,system_analyst,senior,Grafana,1
 2025-02-10,progjob,system_analyst,senior,Kafka,1
+2025-02-10,progjob,system_analyst,senior,Linux,1
 2025-02-10,progjob,system_analyst,senior,Prometheus,1
 2025-02-10,progjob,system_analyst,senior,REST,1
 2025-02-10,progjob,system_analyst,senior,SQL,2
@@ -11742,6 +11747,7 @@ week,channel,role,grade,skill,posts
 2025-02-17,progjob,backend,lead,Kafka,1
 2025-02-17,progjob,backend,lead,Kubernetes,2
 2025-02-17,progjob,backend,lead,Linux,1
+2025-02-17,progjob,backend,lead,MS SQL Server,1
 2025-02-17,progjob,backend,lead,PostgreSQL,2
 2025-02-17,progjob,backend,lead,Rust,1
 2025-02-17,progjob,backend,lead,SQL,1
@@ -11771,11 +11777,12 @@ week,channel,role,grade,skill,posts
 2025-02-17,progjob,backend,middle,POSIX,1
 2025-02-17,progjob,backend,middle,PostgreSQL,5
 2025-02-17,progjob,backend,middle,Python,3
-2025-02-17,progjob,backend,middle,REST,1
+2025-02-17,progjob,backend,middle,REST,2
 2025-02-17,progjob,backend,middle,RabbitMQ,2
 2025-02-17,progjob,backend,middle,SOAP,1
 2025-02-17,progjob,backend,middle,SOLID,1
 2025-02-17,progjob,backend,middle,SQL,3
+2025-02-17,progjob,backend,middle,Spring,1
 2025-02-17,progjob,backend,middle,Spring Boot,2
 2025-02-17,progjob,backend,middle,TCP,1
 2025-02-17,progjob,backend,senior,.NET,1
@@ -11805,6 +11812,7 @@ week,channel,role,grade,skill,posts
 2025-02-17,progjob,backend,senior,RabbitMQ,2
 2025-02-17,progjob,backend,senior,Redis,3
 2025-02-17,progjob,backend,senior,SOLID,1
+2025-02-17,progjob,backend,senior,Spring,2
 2025-02-17,progjob,backend,senior,Spring Boot,1
 2025-02-17,progjob,backend,senior,TypeScript,1
 2025-02-17,progjob,backend,senior,WebSocket,2
@@ -11845,6 +11853,8 @@ week,channel,role,grade,skill,posts
 2025-02-17,progjob,data_scientist,middle,Python,1
 2025-02-17,progjob,data_scientist,senior,Python,3
 2025-02-17,progjob,data_scientist,senior,SQL,3
+2025-02-17,progjob,designer,middle,Figma,2
+2025-02-17,progjob,designer,senior,Figma,1
 2025-02-17,progjob,developer_1c,,1С,1
 2025-02-17,progjob,developer_1c,lead,1С,1
 2025-02-17,progjob,developer_1c,middle,1С,2
@@ -11924,6 +11934,7 @@ week,channel,role,grade,skill,posts
 2025-02-17,progjob,mobile,middle,Swagger,1
 2025-02-17,progjob,other_it,,Docker,1
 2025-02-17,progjob,other_it,,Markdown,1
+2025-02-17,progjob,other_it,,REST,1
 2025-02-17,progjob,other_it,lead,.NET,1
 2025-02-17,progjob,other_it,lead,ASP.NET,1
 2025-02-17,progjob,other_it,lead,Assembler,1
@@ -12957,6 +12968,7 @@ week,channel,role,grade,skill,posts
 2025-02-24,forpython,backend,senior,Kafka,1
 2025-02-24,forpython,backend,senior,PostgreSQL,1
 2025-02-24,forpython,backend,senior,Python,1
+2025-02-24,forpython,backend,senior,REST,1
 2025-02-24,forpython,backend,senior,RabbitMQ,1
 2025-02-24,forpython,backend,senior,gRPC,1
 2025-02-24,forpython,fullstack,middle,FastAPI,1
@@ -13643,6 +13655,7 @@ week,channel,role,grade,skill,posts
 2025-02-24,progjob,backend,junior,Ruby,1
 2025-02-24,progjob,backend,junior,Ruby on Rails,1
 2025-02-24,progjob,backend,junior,Rust,1
+2025-02-24,progjob,backend,junior,Spring,1
 2025-02-24,progjob,backend,junior,Spring Boot,1
 2025-02-24,progjob,backend,junior,TypeScript,1
 2025-02-24,progjob,backend,junior,WebSocket,1
@@ -13693,6 +13706,7 @@ week,channel,role,grade,skill,posts
 2025-02-24,progjob,data_engineer,senior,Spark,1
 2025-02-24,progjob,designer,junior,Photoshop,1
 2025-02-24,progjob,designer,junior,Tilda,1
+2025-02-24,progjob,designer,middle,Figma,1
 2025-02-24,progjob,developer_1c,lead,1С,1
 2025-02-24,progjob,developer_1c,middle,1С,1
 2025-02-24,progjob,developer_1c,senior,1С,2
@@ -13732,6 +13746,7 @@ week,channel,role,grade,skill,posts
 2025-02-24,progjob,frontend,middle,JavaScript,2
 2025-02-24,progjob,frontend,middle,MySQL,1
 2025-02-24,progjob,frontend,middle,PHP,1
+2025-02-24,progjob,frontend,middle,REST,1
 2025-02-24,progjob,frontend,middle,React,2
 2025-02-24,progjob,frontend,middle,TypeScript,2
 2025-02-24,progjob,frontend,middle,WordPress,1
@@ -13764,6 +13779,7 @@ week,channel,role,grade,skill,posts
 2025-02-24,progjob,manager,,Kaspersky,1
 2025-02-24,progjob,manager,lead,Agile,1
 2025-02-24,progjob,manager,middle,Excel,1
+2025-02-24,progjob,manager,middle,Figma,1
 2025-02-24,progjob,manager,middle,Jira,1
 2025-02-24,progjob,manager,middle,Trello,1
 2025-02-24,progjob,ml_engineer,,C++,1
@@ -13987,6 +14003,7 @@ week,channel,role,grade,skill,posts
 2025-02-24,remote_job_it_geeklink,designer,senior,Adobe Illustrator,1
 2025-02-24,remote_job_it_geeklink,designer,senior,Figma,1
 2025-02-24,remote_job_it_geeklink,designer,senior,Photoshop,1
+2025-02-24,remote_job_it_geeklink,designer,senior,Unity,1
 2025-02-24,remote_job_it_geeklink,developer_1c,middle,1С,2
 2025-02-24,remote_job_it_geeklink,developer_1c,middle,1С:ЗУП,1
 2025-02-24,remote_job_it_geeklink,developer_1c,middle,1С:УПП,1
@@ -15430,6 +15447,7 @@ week,channel,role,grade,skill,posts
 2025-03-03,product_jobs,manager,senior,CJM,1
 2025-03-03,product_jobs,manager,senior,User story,1
 2025-03-03,progjob,backend,lead,Java,2
+2025-03-03,progjob,backend,lead,Spring,1
 2025-03-03,progjob,backend,middle,ASP.NET,1
 2025-03-03,progjob,backend,middle,C,1
 2025-03-03,progjob,backend,middle,C++,1
@@ -15468,6 +15486,7 @@ week,channel,role,grade,skill,posts
 2025-03-03,progjob,backend,senior,Rust,2
 2025-03-03,progjob,backend,senior,SQL,2
 2025-03-03,progjob,backend,senior,Solidity,1
+2025-03-03,progjob,backend,senior,Spring,1
 2025-03-03,progjob,backend,senior,Spring Boot,1
 2025-03-03,progjob,data_analyst,,C++,1
 2025-03-03,progjob,data_analyst,,Greenplum,1
@@ -15483,12 +15502,14 @@ week,channel,role,grade,skill,posts
 2025-03-03,progjob,data_analyst,junior,MySQL,1
 2025-03-03,progjob,data_analyst,junior,PostgreSQL,1
 2025-03-03,progjob,data_analyst,junior,SQL,1
+2025-03-03,progjob,data_analyst,middle,MS SQL Server,1
 2025-03-03,progjob,data_analyst,middle,SAS,1
 2025-03-03,progjob,data_analyst,middle,SQL,1
 2025-03-03,progjob,data_analyst,middle,Яндекс Метрика,1
 2025-03-03,progjob,data_scientist,middle,Docker,1
 2025-03-03,progjob,data_scientist,middle,Python,1
 2025-03-03,progjob,data_scientist,middle,SQL,1
+2025-03-03,progjob,designer,middle,Figma,2
 2025-03-03,progjob,developer_1c,middle,1С,1
 2025-03-03,progjob,developer_1c,middle,1С:ERP,1
 2025-03-03,progjob,developer_1c,middle,1С:Документооборот,1
@@ -15552,6 +15573,7 @@ week,channel,role,grade,skill,posts
 2025-03-03,progjob,frontend,senior,HTML,1
 2025-03-03,progjob,frontend,senior,JavaScript,4
 2025-03-03,progjob,frontend,senior,Next.js,1
+2025-03-03,progjob,frontend,senior,REST,1
 2025-03-03,progjob,frontend,senior,React,3
 2025-03-03,progjob,frontend,senior,TypeScript,1
 2025-03-03,progjob,frontend,senior,Vue.js,1
@@ -15679,6 +15701,7 @@ week,channel,role,grade,skill,posts
 2025-03-03,progjob,system_analyst,senior,Grafana,1
 2025-03-03,progjob,system_analyst,senior,JSON,1
 2025-03-03,progjob,system_analyst,senior,Prometheus,1
+2025-03-03,progjob,system_analyst,senior,REST,1
 2025-03-03,progjob,system_analyst,senior,Zabbix,1
 2025-03-03,pydevjob,backend,,Agile,1
 2025-03-03,pydevjob,backend,,Confluence,1
@@ -17341,6 +17364,7 @@ week,channel,role,grade,skill,posts
 2025-03-10,progjob,backend,middle,JavaScript,1
 2025-03-10,progjob,backend,middle,Kubernetes,1
 2025-03-10,progjob,backend,middle,Linux,1
+2025-03-10,progjob,backend,middle,MS SQL Server,1
 2025-03-10,progjob,backend,middle,MongoDB,2
 2025-03-10,progjob,backend,middle,MySQL,3
 2025-03-10,progjob,backend,middle,Nginx,1
@@ -17351,6 +17375,7 @@ week,channel,role,grade,skill,posts
 2025-03-10,progjob,backend,middle,Redis,3
 2025-03-10,progjob,backend,middle,Ruby on Rails,1
 2025-03-10,progjob,backend,middle,SQL,3
+2025-03-10,progjob,backend,middle,Spring,1
 2025-03-10,progjob,backend,middle,Symfony,1
 2025-03-10,progjob,backend,middle,Unix,1
 2025-03-10,progjob,backend,middle,WPF,1
@@ -17404,8 +17429,11 @@ week,channel,role,grade,skill,posts
 2025-03-10,progjob,data_scientist,middle,Docker,1
 2025-03-10,progjob,data_scientist,middle,PyTorch,1
 2025-03-10,progjob,data_scientist,middle,Python,1
+2025-03-10,progjob,designer,,Figma,1
 2025-03-10,progjob,designer,,UIKit,1
+2025-03-10,progjob,designer,middle,Figma,2
 2025-03-10,progjob,designer,middle,Tilda,1
+2025-03-10,progjob,designer,senior,Figma,2
 2025-03-10,progjob,designer,senior,Photoshop,1
 2025-03-10,progjob,developer_1c,,1С:ERP,1
 2025-03-10,progjob,developer_1c,lead,1С,1
@@ -17425,7 +17453,7 @@ week,channel,role,grade,skill,posts
 2025-03-10,progjob,devops,middle,Docker,3
 2025-03-10,progjob,devops,middle,Git,1
 2025-03-10,progjob,devops,middle,Kubernetes,1
-2025-03-10,progjob,devops,middle,Linux,3
+2025-03-10,progjob,devops,middle,Linux,4
 2025-03-10,progjob,devops,middle,Nginx,2
 2025-03-10,progjob,devops,middle,PostgreSQL,1
 2025-03-10,progjob,devops,middle,PowerShell,1
@@ -17447,6 +17475,7 @@ week,channel,role,grade,skill,posts
 2025-03-10,progjob,frontend,lead,GraphQL,1
 2025-03-10,progjob,frontend,lead,HTML,1
 2025-03-10,progjob,frontend,lead,JavaScript,1
+2025-03-10,progjob,frontend,lead,REST,1
 2025-03-10,progjob,frontend,lead,TypeScript,1
 2025-03-10,progjob,frontend,middle,CSS,1
 2025-03-10,progjob,frontend,middle,HTML,1
@@ -19030,6 +19059,7 @@ week,channel,role,grade,skill,posts
 2025-03-17,progjob,backend,,PostgreSQL,1
 2025-03-17,progjob,backend,,Quarkus,1
 2025-03-17,progjob,backend,,RabbitMQ,1
+2025-03-17,progjob,backend,,Spring,1
 2025-03-17,progjob,backend,middle,1С-Битрикс,1
 2025-03-17,progjob,backend,middle,ASP.NET,2
 2025-03-17,progjob,backend,middle,CI/CD,1
@@ -19075,6 +19105,7 @@ week,channel,role,grade,skill,posts
 2025-03-17,progjob,backend,senior,Redis,1
 2025-03-17,progjob,backend,senior,Rust,1
 2025-03-17,progjob,backend,senior,Solidity,1
+2025-03-17,progjob,backend,senior,Spring,1
 2025-03-17,progjob,backend,senior,gRPC,2
 2025-03-17,progjob,backend,senior,ООП,1
 2025-03-17,progjob,business_analyst,,1С:ERP,1
@@ -19106,8 +19137,10 @@ week,channel,role,grade,skill,posts
 2025-03-17,progjob,data_engineer,senior,SQL,1
 2025-03-17,progjob,data_scientist,senior,Python,1
 2025-03-17,progjob,designer,lead,Adobe Illustrator,1
+2025-03-17,progjob,designer,lead,Figma,1
 2025-03-17,progjob,designer,lead,Photoshop,1
 2025-03-17,progjob,designer,senior,Adobe Illustrator,1
+2025-03-17,progjob,designer,senior,Figma,1
 2025-03-17,progjob,designer,senior,Photoshop,1
 2025-03-17,progjob,developer_1c,middle,1С,1
 2025-03-17,progjob,developer_1c,middle,Git,1
@@ -20337,6 +20370,7 @@ week,channel,role,grade,skill,posts
 2025-03-24,job_javadevs,backend,middle,REST,1
 2025-03-24,job_javadevs,backend,middle,RabbitMQ,2
 2025-03-24,job_javadevs,backend,middle,SOAP,1
+2025-03-24,job_javadevs,backend,middle,Spring,1
 2025-03-24,job_javadevs,backend,middle,Spring Boot,2
 2025-03-24,job_javadevs,backend,middle,Spring Cloud,1
 2025-03-24,job_javadevs,backend,middle,Spring Data,1
@@ -20556,6 +20590,7 @@ week,channel,role,grade,skill,posts
 2025-03-24,job_react,frontend,junior,Android,1
 2025-03-24,job_react,frontend,junior,Firebase,1
 2025-03-24,job_react,frontend,junior,Microservices,1
+2025-03-24,job_react,frontend,junior,REST,1
 2025-03-24,job_react,frontend,junior,React,1
 2025-03-24,job_react,frontend,junior,React Native,1
 2025-03-24,job_react,frontend,junior,Vue.js,1
@@ -20784,6 +20819,7 @@ week,channel,role,grade,skill,posts
 2025-03-24,progjob,backend,,Java,1
 2025-03-24,progjob,backend,,PostgreSQL,1
 2025-03-24,progjob,backend,,SQL,1
+2025-03-24,progjob,backend,,Spring,1
 2025-03-24,progjob,backend,intern,Java,1
 2025-03-24,progjob,backend,lead,MySQL,1
 2025-03-24,progjob,backend,lead,PHP,1
@@ -20859,6 +20895,7 @@ week,channel,role,grade,skill,posts
 2025-03-24,progjob,data_scientist,middle,PostgreSQL,1
 2025-03-24,progjob,data_scientist,middle,SQL,1
 2025-03-24,progjob,data_scientist,middle,Spark,1
+2025-03-24,progjob,designer,senior,Figma,1
 2025-03-24,progjob,developer_1c,middle,1С:ERP,1
 2025-03-24,progjob,developer_1c,senior,1С,1
 2025-03-24,progjob,devops,,Ansible,1
@@ -20917,6 +20954,7 @@ week,channel,role,grade,skill,posts
 2025-03-24,progjob,fullstack,,MySQL,1
 2025-03-24,progjob,fullstack,,PHP,1
 2025-03-24,progjob,fullstack,,PostgreSQL,1
+2025-03-24,progjob,fullstack,,REST,1
 2025-03-24,progjob,fullstack,,TypeScript,1
 2025-03-24,progjob,fullstack,,Vue.js,1
 2025-03-24,progjob,fullstack,,Webpack,1
@@ -20929,6 +20967,7 @@ week,channel,role,grade,skill,posts
 2025-03-24,progjob,fullstack,middle,JavaScript,2
 2025-03-24,progjob,fullstack,middle,Node.js,1
 2025-03-24,progjob,fullstack,middle,PostgreSQL,1
+2025-03-24,progjob,fullstack,middle,REST,1
 2025-03-24,progjob,fullstack,middle,React,1
 2025-03-24,progjob,fullstack,middle,TypeScript,1
 2025-03-24,progjob,manager,lead,Android,1
@@ -21005,6 +21044,7 @@ week,channel,role,grade,skill,posts
 2025-03-24,progjob,software_engineer,senior,PostgreSQL,1
 2025-03-24,progjob,software_engineer,senior,Redis,1
 2025-03-24,progjob,software_engineer,senior,SIP,1
+2025-03-24,progjob,software_engineer,senior,Spring,1
 2025-03-24,progjob,software_engineer,senior,TCP,1
 2025-03-24,progjob,software_engineer,senior,Visual Studio,1
 2025-03-24,progjob,support,,Docker,1
@@ -21014,9 +21054,11 @@ week,channel,role,grade,skill,posts
 2025-03-24,progjob,sysadmin,,Linux,2
 2025-03-24,progjob,sysadmin,,VMware,1
 2025-03-24,progjob,sysadmin,,Zabbix,1
+2025-03-24,progjob,sysadmin,middle,MS SQL Server,1
 2025-03-24,progjob,sysadmin,middle,MySQL,1
 2025-03-24,progjob,sysadmin,middle,PostgreSQL,1
 2025-03-24,progjob,sysadmin,senior,Active Directory,2
+2025-03-24,progjob,sysadmin,senior,Linux,2
 2025-03-24,progjob,system_analyst,,BPMN,1
 2025-03-24,progjob,system_analyst,,MySQL,1
 2025-03-24,progjob,system_analyst,,Oracle,1
@@ -22003,7 +22045,7 @@ week,channel,role,grade,skill,posts
 2025-03-31,job_javadevs,backend,middle,Scala,1
 2025-03-31,job_javadevs,backend,middle,Scrum,1
 2025-03-31,job_javadevs,backend,middle,Spark,1
-2025-03-31,job_javadevs,backend,middle,Spring,2
+2025-03-31,job_javadevs,backend,middle,Spring,3
 2025-03-31,job_javadevs,backend,middle,Spring Boot,2
 2025-03-31,job_javadevs,backend,middle,Swagger,1
 2025-03-31,job_javadevs,backend,middle,Vue.js,1
@@ -22485,6 +22527,7 @@ week,channel,role,grade,skill,posts
 2025-03-31,progjob,backend,middle,PL/SQL,1
 2025-03-31,progjob,backend,middle,PostgreSQL,3
 2025-03-31,progjob,backend,middle,Python,1
+2025-03-31,progjob,backend,middle,REST,1
 2025-03-31,progjob,backend,middle,Redis,1
 2025-03-31,progjob,backend,middle,SOLID,1
 2025-03-31,progjob,backend,middle,SQL,1
@@ -22514,6 +22557,7 @@ week,channel,role,grade,skill,posts
 2025-03-31,progjob,backend,senior,REST,1
 2025-03-31,progjob,backend,senior,RabbitMQ,2
 2025-03-31,progjob,backend,senior,Redis,1
+2025-03-31,progjob,backend,senior,Spring,1
 2025-03-31,progjob,backend,senior,Spring Boot,1
 2025-03-31,progjob,backend,senior,Symfony,1
 2025-03-31,progjob,backend,senior,TypeScript,1
@@ -22550,6 +22594,7 @@ week,channel,role,grade,skill,posts
 2025-03-31,progjob,designer,,Adobe Illustrator,1
 2025-03-31,progjob,designer,,Photoshop,1
 2025-03-31,progjob,designer,middle,Adobe Illustrator,1
+2025-03-31,progjob,designer,middle,Figma,1
 2025-03-31,progjob,designer,middle,Photoshop,2
 2025-03-31,progjob,developer_1c,,1С,1
 2025-03-31,progjob,developer_1c,junior,1С,1
@@ -22628,6 +22673,7 @@ week,channel,role,grade,skill,posts
 2025-03-31,progjob,manager,,YADRO,1
 2025-03-31,progjob,manager,,x86,1
 2025-03-31,progjob,manager,junior,Agile,1
+2025-03-31,progjob,manager,junior,Figma,1
 2025-03-31,progjob,manager,junior,Google Analytics,1
 2025-03-31,progjob,manager,junior,SQL,1
 2025-03-31,progjob,manager,junior,Scrum,1
@@ -22677,6 +22723,7 @@ week,channel,role,grade,skill,posts
 2025-03-31,progjob,software_engineer,senior,Assembler,1
 2025-03-31,progjob,software_engineer,senior,C,1
 2025-03-31,progjob,software_engineer,senior,Linux,1
+2025-03-31,progjob,software_engineer,senior,MS SQL Server,1
 2025-03-31,progjob,software_engineer,senior,SQL,1
 2025-03-31,progjob,support,junior,CSS,1
 2025-03-31,progjob,support,junior,HTML,1
@@ -24165,6 +24212,7 @@ week,channel,role,grade,skill,posts
 2025-04-07,progjob,backend,middle,PostgreSQL,7
 2025-04-07,progjob,backend,middle,RabbitMQ,3
 2025-04-07,progjob,backend,middle,Redis,2
+2025-04-07,progjob,backend,middle,Spring,1
 2025-04-07,progjob,backend,middle,Symfony,3
 2025-04-07,progjob,backend,senior,.NET,1
 2025-04-07,progjob,backend,senior,Airflow,1
@@ -24184,6 +24232,7 @@ week,channel,role,grade,skill,posts
 2025-04-07,progjob,backend,senior,REST,1
 2025-04-07,progjob,backend,senior,Redis,1
 2025-04-07,progjob,backend,senior,SQL,2
+2025-04-07,progjob,backend,senior,Spring,1
 2025-04-07,progjob,business_analyst,middle,1С,1
 2025-04-07,progjob,data_analyst,middle,A/B-тесты,1
 2025-04-07,progjob,data_analyst,middle,ClickHouse,1
@@ -24210,7 +24259,9 @@ week,channel,role,grade,skill,posts
 2025-04-07,progjob,data_engineer,middle,Python,2
 2025-04-07,progjob,data_engineer,middle,Spark,2
 2025-04-07,progjob,designer,junior,Adobe Illustrator,1
+2025-04-07,progjob,designer,junior,Figma,1
 2025-04-07,progjob,designer,junior,Photoshop,1
+2025-04-07,progjob,designer,senior,Figma,1
 2025-04-07,progjob,developer_1c,lead,1С,1
 2025-04-07,progjob,developer_1c,middle,1С,1
 2025-04-07,progjob,developer_1c,senior,1С,1
@@ -24336,6 +24387,7 @@ week,channel,role,grade,skill,posts
 2025-04-07,progjob,manager,lead,Waterfall,1
 2025-04-07,progjob,manager,lead,ООП,1
 2025-04-07,progjob,manager,middle,Agile,1
+2025-04-07,progjob,manager,middle,Figma,1
 2025-04-07,progjob,manager,middle,Scrum,1
 2025-04-07,progjob,manager,senior,MS Project,1
 2025-04-07,progjob,ml_engineer,middle,PyTorch,1
@@ -24427,6 +24479,7 @@ week,channel,role,grade,skill,posts
 2025-04-07,progjob,sysadmin,senior,Grafana,1
 2025-04-07,progjob,sysadmin,senior,Greenplum,1
 2025-04-07,progjob,sysadmin,senior,Linux,1
+2025-04-07,progjob,sysadmin,senior,MS SQL Server,1
 2025-04-07,progjob,sysadmin,senior,PostgreSQL,1
 2025-04-07,progjob,sysadmin,senior,Python,1
 2025-04-07,progjob,sysadmin,senior,TeamCity,1
@@ -25045,18 +25098,6 @@ week,channel,role,grade,skill,posts
 2025-04-14,devs_it,mobile,junior,Git,1
 2025-04-14,devs_it,mobile,junior,iOS,1
 2025-04-14,devs_it,mobile,junior,ООП,1
-2025-04-14,dotnetrujobsfeed,backend,junior,.NET,1
-2025-04-14,dotnetrujobsfeed,backend,junior,ASP.NET,1
-2025-04-14,dotnetrujobsfeed,backend,junior,Azure,1
-2025-04-14,dotnetrujobsfeed,backend,junior,Docker,1
-2025-04-14,dotnetrujobsfeed,backend,junior,Docker Compose,1
-2025-04-14,dotnetrujobsfeed,backend,junior,Entity Framework,1
-2025-04-14,dotnetrujobsfeed,backend,junior,Git,1
-2025-04-14,dotnetrujobsfeed,backend,junior,GitHub Actions,1
-2025-04-14,dotnetrujobsfeed,backend,junior,MS SQL Server,1
-2025-04-14,dotnetrujobsfeed,backend,junior,MVC,1
-2025-04-14,dotnetrujobsfeed,backend,junior,RabbitMQ,1
-2025-04-14,dotnetrujobsfeed,backend,junior,SOLID,1
 2025-04-14,dotnetrujobsfeed,backend,senior,.NET,2
 2025-04-14,dotnetrujobsfeed,backend,senior,C#,1
 2025-04-14,dotnetrujobsfeed,backend,senior,CI/CD,1
@@ -26012,6 +26053,7 @@ week,channel,role,grade,skill,posts
 2025-04-14,progjob,backend,middle,SQL,4
 2025-04-14,progjob,backend,middle,Scala,2
 2025-04-14,progjob,backend,middle,Spark,1
+2025-04-14,progjob,backend,middle,Spring,1
 2025-04-14,progjob,backend,middle,Spring Boot,2
 2025-04-14,progjob,backend,middle,TypeScript,2
 2025-04-14,progjob,backend,middle,XML,1
@@ -26032,6 +26074,7 @@ week,channel,role,grade,skill,posts
 2025-04-14,progjob,backend,senior,Redis,2
 2025-04-14,progjob,backend,senior,S3,1
 2025-04-14,progjob,backend,senior,SQL,1
+2025-04-14,progjob,backend,senior,Spring,1
 2025-04-14,progjob,backend,senior,Terraform,1
 2025-04-14,progjob,backend,senior,TypeScript,1
 2025-04-14,progjob,backend,senior,ООП,1
@@ -26042,6 +26085,7 @@ week,channel,role,grade,skill,posts
 2025-04-14,progjob,data_analyst,lead,gRPC,1
 2025-04-14,progjob,data_analyst,middle,Python,2
 2025-04-14,progjob,data_analyst,middle,SQL,2
+2025-04-14,progjob,designer,senior,Figma,1
 2025-04-14,progjob,developer_1c,middle,1С,1
 2025-04-14,progjob,developer_1c,middle,1С:ERP,1
 2025-04-14,progjob,devops,,Ansible,2
@@ -26202,7 +26246,7 @@ week,channel,role,grade,skill,posts
 2025-04-14,progjob,system_analyst,,Linux,1
 2025-04-14,progjob,system_analyst,,PostgreSQL,2
 2025-04-14,progjob,system_analyst,,Python,1
-2025-04-14,progjob,system_analyst,,REST,1
+2025-04-14,progjob,system_analyst,,REST,2
 2025-04-14,progjob,system_analyst,,SQL,2
 2025-04-14,progjob,system_analyst,,UML,1
 2025-04-14,progjob,system_analyst,middle,1С:ERP,1
@@ -26236,6 +26280,7 @@ week,channel,role,grade,skill,posts
 2025-04-14,pydevjob,backend,lead,Oracle,1
 2025-04-14,pydevjob,backend,lead,PostgreSQL,1
 2025-04-14,pydevjob,backend,lead,Python,2
+2025-04-14,pydevjob,backend,lead,REST,1
 2025-04-14,pydevjob,backend,lead,asyncio,2
 2025-04-14,pydevjob,backend,senior,Celery,1
 2025-04-14,pydevjob,backend,senior,FastAPI,1
@@ -27189,7 +27234,7 @@ week,channel,role,grade,skill,posts
 2025-04-21,job_javadevs,backend,middle,S3,1
 2025-04-21,job_javadevs,backend,middle,SQL,1
 2025-04-21,job_javadevs,backend,middle,Scrum,1
-2025-04-21,job_javadevs,backend,middle,Spring,1
+2025-04-21,job_javadevs,backend,middle,Spring,2
 2025-04-21,job_javadevs,backend,middle,Spring Boot,2
 2025-04-21,job_javadevs,backend,middle,Spring Cloud,1
 2025-04-21,job_javadevs,backend,senior,Agile,2
@@ -27775,6 +27820,7 @@ week,channel,role,grade,skill,posts
 2025-04-21,progjob,backend,middle,Redis,1
 2025-04-21,progjob,backend,middle,SOLID,1
 2025-04-21,progjob,backend,middle,SQL,2
+2025-04-21,progjob,backend,middle,Yii,2
 2025-04-21,progjob,backend,middle,ООП,1
 2025-04-21,progjob,backend,senior,Go,1
 2025-04-21,progjob,backend,senior,Gradle,1
@@ -27785,6 +27831,7 @@ week,channel,role,grade,skill,posts
 2025-04-21,progjob,backend,senior,RabbitMQ,1
 2025-04-21,progjob,backend,senior,Redis,1
 2025-04-21,progjob,backend,senior,SQL,1
+2025-04-21,progjob,backend,senior,Spring,1
 2025-04-21,progjob,backend,senior,Spring Boot,1
 2025-04-21,progjob,backend,senior,gRPC,1
 2025-04-21,progjob,backend,senior,ООП,1
@@ -27819,6 +27866,7 @@ week,channel,role,grade,skill,posts
 2025-04-21,progjob,data_scientist,senior,Spark,1
 2025-04-21,progjob,data_scientist,senior,TensorFlow,1
 2025-04-21,progjob,data_scientist,senior,pandas,1
+2025-04-21,progjob,designer,,Figma,2
 2025-04-21,progjob,designer,,Photoshop,1
 2025-04-21,progjob,developer_1c,junior,1С,1
 2025-04-21,progjob,developer_1c,middle,1С,2
@@ -27875,6 +27923,7 @@ week,channel,role,grade,skill,posts
 2025-04-21,progjob,fullstack,middle,Angular,1
 2025-04-21,progjob,fullstack,middle,PostgreSQL,1
 2025-04-21,progjob,fullstack,senior,Node.js,1
+2025-04-21,progjob,fullstack,senior,REST,1
 2025-04-21,progjob,fullstack,senior,SQL,1
 2025-04-21,progjob,fullstack,senior,Scrum,1
 2025-04-21,progjob,manager,,Kaspersky,1
@@ -27934,6 +27983,7 @@ week,channel,role,grade,skill,posts
 2025-04-21,progjob,support,,Linux,1
 2025-04-21,progjob,support,,YADRO,1
 2025-04-21,progjob,support,,x86,1
+2025-04-21,progjob,support,junior,Linux,1
 2025-04-21,progjob,sysadmin,,Windows,1
 2025-04-21,progjob,sysadmin,middle,Linux,1
 2025-04-21,progjob,sysadmin,middle,Zabbix,1
@@ -29314,7 +29364,9 @@ week,channel,role,grade,skill,posts
 2025-04-28,progjob,backend,middle,RabbitMQ,1
 2025-04-28,progjob,backend,middle,React,1
 2025-04-28,progjob,backend,middle,SQL,4
+2025-04-28,progjob,backend,middle,Spring,1
 2025-04-28,progjob,backend,middle,TypeScript,1
+2025-04-28,progjob,backend,middle,Yii,1
 2025-04-28,progjob,backend,middle,Битрикс24,1
 2025-04-28,progjob,backend,senior,Django,1
 2025-04-28,progjob,backend,senior,Git,1
@@ -29325,6 +29377,7 @@ week,channel,role,grade,skill,posts
 2025-04-28,progjob,backend,senior,PostgreSQL,2
 2025-04-28,progjob,backend,senior,Python,1
 2025-04-28,progjob,backend,senior,SQL,2
+2025-04-28,progjob,backend,senior,Spring,1
 2025-04-28,progjob,backend,senior,Spring Boot,1
 2025-04-28,progjob,backend,senior,Symfony,1
 2025-04-28,progjob,data_engineer,,Docker,1
@@ -29422,7 +29475,7 @@ week,channel,role,grade,skill,posts
 2025-04-28,progjob,support,lead,SAP,1
 2025-04-28,progjob,support,senior,Excel,1
 2025-04-28,progjob,sysadmin,,Kaspersky,1
-2025-04-28,progjob,sysadmin,middle,Linux,1
+2025-04-28,progjob,sysadmin,middle,Linux,2
 2025-04-28,progjob,sysadmin,middle,TCP,1
 2025-04-28,progjob,system_analyst,,Kafka,1
 2025-04-28,progjob,system_analyst,,Kaspersky,1
@@ -29432,6 +29485,7 @@ week,channel,role,grade,skill,posts
 2025-04-28,progjob,system_analyst,junior,BPMN,1
 2025-04-28,progjob,system_analyst,junior,ERD,1
 2025-04-28,progjob,system_analyst,junior,JSON,1
+2025-04-28,progjob,system_analyst,junior,REST,1
 2025-04-28,progjob,system_analyst,junior,SOAP,1
 2025-04-28,progjob,system_analyst,junior,SQL,1
 2025-04-28,progjob,system_analyst,junior,UML,1
@@ -30591,6 +30645,8 @@ week,channel,role,grade,skill,posts
 2025-05-05,progjob,backend,middle,Redis,1
 2025-05-05,progjob,backend,middle,SOLID,2
 2025-05-05,progjob,backend,middle,SQL,3
+2025-05-05,progjob,backend,middle,Spring,1
+2025-05-05,progjob,backend,middle,Yii,1
 2025-05-05,progjob,backend,middle,jQuery,1
 2025-05-05,progjob,backend,middle,Битрикс24,1
 2025-05-05,progjob,backend,middle,ООП,1
@@ -30632,6 +30688,7 @@ week,channel,role,grade,skill,posts
 2025-05-05,progjob,frontend,,CSS,1
 2025-05-05,progjob,frontend,,HTML,1
 2025-05-05,progjob,frontend,,JavaScript,1
+2025-05-05,progjob,frontend,,REST,1
 2025-05-05,progjob,frontend,,React,1
 2025-05-05,progjob,frontend,,TypeScript,1
 2025-05-05,progjob,frontend,,WebSocket,1
@@ -31766,7 +31823,7 @@ week,channel,role,grade,skill,posts
 2025-05-12,job_javadevs,backend,middle,SOLID,1
 2025-05-12,job_javadevs,backend,middle,SQL,1
 2025-05-12,job_javadevs,backend,middle,Scrum,2
-2025-05-12,job_javadevs,backend,middle,Spring,1
+2025-05-12,job_javadevs,backend,middle,Spring,2
 2025-05-12,job_javadevs,backend,middle,Spring Boot,2
 2025-05-12,job_javadevs,backend,middle,Spring Cloud,1
 2025-05-12,job_javadevs,backend,middle,ООП,1
@@ -32228,6 +32285,7 @@ week,channel,role,grade,skill,posts
 2025-05-12,progjob,backend,middle,Kotlin,1
 2025-05-12,progjob,backend,middle,Laravel,1
 2025-05-12,progjob,backend,middle,Linux,2
+2025-05-12,progjob,backend,middle,MS SQL Server,1
 2025-05-12,progjob,backend,middle,MySQL,2
 2025-05-12,progjob,backend,middle,Oracle,1
 2025-05-12,progjob,backend,middle,PHP,2
@@ -32241,6 +32299,7 @@ week,channel,role,grade,skill,posts
 2025-05-12,progjob,backend,middle,SQL,1
 2025-05-12,progjob,backend,middle,Spring Boot,1
 2025-05-12,progjob,backend,middle,TCP,1
+2025-05-12,progjob,backend,middle,Yii,1
 2025-05-12,progjob,backend,middle,gRPC,1
 2025-05-12,progjob,backend,middle,ООП,1
 2025-05-12,progjob,backend,senior,C#,1
@@ -32261,7 +32320,7 @@ week,channel,role,grade,skill,posts
 2025-05-12,progjob,backend,senior,Oracle,1
 2025-05-12,progjob,backend,senior,PHP,4
 2025-05-12,progjob,backend,senior,PostgreSQL,3
-2025-05-12,progjob,backend,senior,REST,2
+2025-05-12,progjob,backend,senior,REST,3
 2025-05-12,progjob,backend,senior,Redis,1
 2025-05-12,progjob,backend,senior,SQL,2
 2025-05-12,progjob,backend,senior,Spring Boot,1
@@ -32301,6 +32360,7 @@ week,channel,role,grade,skill,posts
 2025-05-12,progjob,data_scientist,senior,SQL,1
 2025-05-12,progjob,developer_1c,lead,1С:ERP,1
 2025-05-12,progjob,developer_1c,middle,1С,1
+2025-05-12,progjob,developer_1c,middle,MS SQL Server,1
 2025-05-12,progjob,developer_1c,middle,REST,1
 2025-05-12,progjob,developer_1c,middle,SOAP,1
 2025-05-12,progjob,developer_1c,middle,SQL,1
@@ -32995,6 +33055,7 @@ week,channel,role,grade,skill,posts
 2025-05-19,datascjobs,backend,junior,Git,1
 2025-05-19,datascjobs,backend,junior,PostgreSQL,1
 2025-05-19,datascjobs,backend,junior,Python,1
+2025-05-19,datascjobs,backend,junior,REST,1
 2025-05-19,datascjobs,backend,junior,SOLID,1
 2025-05-19,datascjobs,backend,junior,gRPC,1
 2025-05-19,datascjobs,backend,junior,pytest,1
@@ -34125,6 +34186,8 @@ week,channel,role,grade,skill,posts
 2025-05-19,progjob,data_engineer,,Informatica,1
 2025-05-19,progjob,data_engineer,,MySQL,1
 2025-05-19,progjob,data_engineer,,SQL,1
+2025-05-19,progjob,designer,,Figma,2
+2025-05-19,progjob,designer,senior,Figma,2
 2025-05-19,progjob,developer_1c,lead,1С,1
 2025-05-19,progjob,developer_1c,senior,1С,1
 2025-05-19,progjob,devops,,Ansible,1
@@ -34230,6 +34293,7 @@ week,channel,role,grade,skill,posts
 2025-05-19,progjob,mobile,middle,Git,2
 2025-05-19,progjob,mobile,middle,JavaScript,2
 2025-05-19,progjob,mobile,middle,Node.js,1
+2025-05-19,progjob,mobile,middle,REST,1
 2025-05-19,progjob,mobile,middle,React,1
 2025-05-19,progjob,mobile,middle,React Native,2
 2025-05-19,progjob,mobile,middle,Redux,1
@@ -35770,6 +35834,7 @@ week,channel,role,grade,skill,posts
 2025-05-26,progjob,backend,,Rust,1
 2025-05-26,progjob,backend,junior,Git,1
 2025-05-26,progjob,backend,junior,PostgreSQL,1
+2025-05-26,progjob,backend,junior,REST,1
 2025-05-26,progjob,backend,junior,Ruby,1
 2025-05-26,progjob,backend,junior,Ruby on Rails,1
 2025-05-26,progjob,backend,junior,ООП,1
@@ -35805,6 +35870,7 @@ week,channel,role,grade,skill,posts
 2025-05-26,progjob,backend,middle,SQL,2
 2025-05-26,progjob,backend,middle,Spring Boot,1
 2025-05-26,progjob,backend,middle,Web API,1
+2025-05-26,progjob,backend,middle,Yii,1
 2025-05-26,progjob,backend,middle,gRPC,1
 2025-05-26,progjob,backend,middle,ООП,2
 2025-05-26,progjob,backend,senior,ClickHouse,1
@@ -35820,6 +35886,7 @@ week,channel,role,grade,skill,posts
 2025-05-26,progjob,backend,senior,PostgreSQL,1
 2025-05-26,progjob,backend,senior,Python,1
 2025-05-26,progjob,backend,senior,REST,1
+2025-05-26,progjob,backend,senior,Spring,1
 2025-05-26,progjob,backend,senior,ООП,1
 2025-05-26,progjob,business_analyst,senior,BPMN,1
 2025-05-26,progjob,business_analyst,senior,UML,1
@@ -35846,6 +35913,8 @@ week,channel,role,grade,skill,posts
 2025-05-26,progjob,data_engineer,senior,Python,1
 2025-05-26,progjob,data_engineer,senior,SQL,1
 2025-05-26,progjob,data_engineer,senior,Spark,1
+2025-05-26,progjob,designer,,Figma,1
+2025-05-26,progjob,designer,senior,Figma,3
 2025-05-26,progjob,developer_1c,,1С,2
 2025-05-26,progjob,developer_1c,middle,1С,2
 2025-05-26,progjob,developer_1c,senior,1С,1
@@ -37421,10 +37490,11 @@ week,channel,role,grade,skill,posts
 2025-06-02,progjob,backend,middle,PHP,5
 2025-06-02,progjob,backend,middle,PostgreSQL,4
 2025-06-02,progjob,backend,middle,Python,1
-2025-06-02,progjob,backend,middle,REST,1
+2025-06-02,progjob,backend,middle,REST,2
 2025-06-02,progjob,backend,middle,Redis,2
 2025-06-02,progjob,backend,middle,SQL,1
 2025-06-02,progjob,backend,middle,SQLAlchemy,1
+2025-06-02,progjob,backend,middle,Spring,1
 2025-06-02,progjob,backend,middle,Symfony,1
 2025-06-02,progjob,backend,middle,Битрикс24,2
 2025-06-02,progjob,backend,senior,CI/CD,1
@@ -37461,6 +37531,8 @@ week,channel,role,grade,skill,posts
 2025-06-02,progjob,data_scientist,senior,Python,1
 2025-06-02,progjob,data_scientist,senior,pandas,1
 2025-06-02,progjob,designer,middle,Adobe Illustrator,1
+2025-06-02,progjob,designer,middle,Figma,1
+2025-06-02,progjob,designer,senior,Figma,1
 2025-06-02,progjob,developer_1c,,1С,2
 2025-06-02,progjob,developer_1c,,1С:ERP,1
 2025-06-02,progjob,developer_1c,,C#,1
@@ -37535,6 +37607,7 @@ week,channel,role,grade,skill,posts
 2025-06-02,progjob,fullstack,middle,JavaScript,3
 2025-06-02,progjob,fullstack,middle,Laravel,1
 2025-06-02,progjob,fullstack,middle,PHP,1
+2025-06-02,progjob,fullstack,middle,REST,1
 2025-06-02,progjob,fullstack,middle,React,1
 2025-06-02,progjob,fullstack,middle,TypeScript,1
 2025-06-02,progjob,fullstack,middle,Webpack,1
@@ -38923,6 +38996,7 @@ week,channel,role,grade,skill,posts
 2025-06-09,progjob,backend,junior,Node.js,1
 2025-06-09,progjob,backend,junior,PostgreSQL,2
 2025-06-09,progjob,backend,junior,Python,2
+2025-06-09,progjob,backend,junior,Spring,1
 2025-06-09,progjob,backend,junior,Spring Boot,1
 2025-06-09,progjob,backend,junior,TypeScript,1
 2025-06-09,progjob,backend,junior,ООП,2
@@ -38938,6 +39012,7 @@ week,channel,role,grade,skill,posts
 2025-06-09,progjob,backend,middle,PHP,1
 2025-06-09,progjob,backend,middle,PostgreSQL,2
 2025-06-09,progjob,backend,middle,Python,1
+2025-06-09,progjob,backend,middle,REST,1
 2025-06-09,progjob,backend,middle,SQL,1
 2025-06-09,progjob,business_analyst,,BPMN,1
 2025-06-09,progjob,business_analyst,,Java,1
@@ -38978,6 +39053,7 @@ week,channel,role,grade,skill,posts
 2025-06-09,progjob,data_scientist,senior,Hadoop,1
 2025-06-09,progjob,data_scientist,senior,Python,1
 2025-06-09,progjob,data_scientist,senior,Spark,1
+2025-06-09,progjob,designer,senior,Figma,1
 2025-06-09,progjob,devops,middle,DAST,1
 2025-06-09,progjob,devops,middle,DevOps,1
 2025-06-09,progjob,devops,middle,DevSecOps,1
@@ -39082,6 +39158,7 @@ week,channel,role,grade,skill,posts
 2025-06-09,progjob,system_analyst,junior,BPMN,1
 2025-06-09,progjob,system_analyst,junior,ERD,1
 2025-06-09,progjob,system_analyst,junior,JSON,1
+2025-06-09,progjob,system_analyst,junior,REST,1
 2025-06-09,progjob,system_analyst,junior,SOAP,1
 2025-06-09,progjob,system_analyst,junior,SQL,1
 2025-06-09,progjob,system_analyst,junior,UML,1
@@ -40507,6 +40584,7 @@ week,channel,role,grade,skill,posts
 2025-06-16,progjob,backend,,SQL,1
 2025-06-16,progjob,backend,,Spring Boot,1
 2025-06-16,progjob,backend,,Symfony,1
+2025-06-16,progjob,backend,,Yii,1
 2025-06-16,progjob,backend,intern,Python,1
 2025-06-16,progjob,backend,junior,CI/CD,1
 2025-06-16,progjob,backend,junior,Java,1
@@ -40562,17 +40640,21 @@ week,channel,role,grade,skill,posts
 2025-06-16,progjob,backend,senior,Redis,1
 2025-06-16,progjob,backend,senior,SOLID,1
 2025-06-16,progjob,backend,senior,SQL,3
+2025-06-16,progjob,backend,senior,Spring,2
 2025-06-16,progjob,backend,senior,Spring Boot,2
 2025-06-16,progjob,backend,senior,TypeScript,1
 2025-06-16,progjob,backend,senior,asyncio,1
 2025-06-16,progjob,backend,senior,Битрикс24,1
+2025-06-16,progjob,data_analyst,middle,MS SQL Server,1
 2025-06-16,progjob,data_analyst,middle,PostgreSQL,1
 2025-06-16,progjob,data_analyst,middle,SQL,1
 2025-06-16,progjob,data_engineer,,PostgreSQL,1
 2025-06-16,progjob,data_scientist,middle,Python,1
 2025-06-16,progjob,data_scientist,senior,Python,1
+2025-06-16,progjob,designer,middle,Figma,1
 2025-06-16,progjob,designer,middle,Photoshop,1
 2025-06-16,progjob,designer,senior,Adobe Illustrator,1
+2025-06-16,progjob,designer,senior,Figma,2
 2025-06-16,progjob,developer_1c,,1С,2
 2025-06-16,progjob,developer_1c,,1С:ERP,1
 2025-06-16,progjob,developer_1c,,JSON,1
@@ -40639,6 +40721,7 @@ week,channel,role,grade,skill,posts
 2025-06-16,progjob,fullstack,middle,Nuxt,1
 2025-06-16,progjob,fullstack,middle,PHP,1
 2025-06-16,progjob,fullstack,middle,Vue.js,1
+2025-06-16,progjob,fullstack,middle,Yii,1
 2025-06-16,progjob,fullstack,middle,jQuery,1
 2025-06-16,progjob,fullstack,senior,JavaScript,1
 2025-06-16,progjob,fullstack,senior,Next.js,1
@@ -42059,9 +42142,10 @@ week,channel,role,grade,skill,posts
 2025-06-23,progjob,backend,middle,PHP,1
 2025-06-23,progjob,backend,middle,PostgreSQL,3
 2025-06-23,progjob,backend,middle,Python,1
-2025-06-23,progjob,backend,middle,REST,1
+2025-06-23,progjob,backend,middle,REST,2
 2025-06-23,progjob,backend,middle,RabbitMQ,1
 2025-06-23,progjob,backend,middle,SQL,2
+2025-06-23,progjob,backend,middle,Spring,2
 2025-06-23,progjob,backend,middle,TypeScript,1
 2025-06-23,progjob,backend,middle,Vue.js,1
 2025-06-23,progjob,backend,middle,ООП,1
@@ -42076,6 +42160,7 @@ week,channel,role,grade,skill,posts
 2025-06-23,progjob,backend,senior,Python,3
 2025-06-23,progjob,backend,senior,RabbitMQ,1
 2025-06-23,progjob,backend,senior,Scala,1
+2025-06-23,progjob,backend,senior,Spring,1
 2025-06-23,progjob,backend,senior,Spring Boot,1
 2025-06-23,progjob,data_analyst,,CI/CD,1
 2025-06-23,progjob,data_analyst,,Docker,1
@@ -42103,6 +42188,7 @@ week,channel,role,grade,skill,posts
 2025-06-23,progjob,designer,,Adobe Illustrator,1
 2025-06-23,progjob,designer,,Figma,1
 2025-06-23,progjob,designer,,Photoshop,1
+2025-06-23,progjob,designer,senior,Figma,1
 2025-06-23,progjob,developer_1c,senior,1С,1
 2025-06-23,progjob,devops,junior,Bash,1
 2025-06-23,progjob,devops,junior,CI/CD,1
@@ -42174,6 +42260,7 @@ week,channel,role,grade,skill,posts
 2025-06-23,progjob,fullstack,senior,PHP,1
 2025-06-23,progjob,fullstack,senior,React,1
 2025-06-23,progjob,fullstack,senior,Vue.js,1
+2025-06-23,progjob,fullstack,senior,Yii,1
 2025-06-23,progjob,manager,middle,Agile,1
 2025-06-23,progjob,manager,middle,CI/CD,1
 2025-06-23,progjob,manager,middle,Confluence,1
@@ -42204,6 +42291,7 @@ week,channel,role,grade,skill,posts
 2025-06-23,progjob,mobile,middle,Ktor,1
 2025-06-23,progjob,mobile,middle,iOS,1
 2025-06-23,progjob,mobile,senior,Android,1
+2025-06-23,progjob,mobile,senior,Figma,1
 2025-06-23,progjob,mobile,senior,Flutter,1
 2025-06-23,progjob,mobile,senior,Jetpack Compose,1
 2025-06-23,progjob,mobile,senior,Kotlin,1
@@ -43839,6 +43927,8 @@ week,channel,role,grade,skill,posts
 2025-06-30,progjob,data_engineer,senior,Python,1
 2025-06-30,progjob,data_engineer,senior,SQL,1
 2025-06-30,progjob,designer,middle,Blender,1
+2025-06-30,progjob,designer,middle,Figma,1
+2025-06-30,progjob,designer,senior,Figma,1
 2025-06-30,progjob,developer_1c,,1С,1
 2025-06-30,progjob,developer_1c,,1С:Бухгалтерия,1
 2025-06-30,progjob,developer_1c,,1С:ЗУП,1
@@ -43915,6 +44005,7 @@ week,channel,role,grade,skill,posts
 2025-06-30,progjob,manager,lead,SQL,1
 2025-06-30,progjob,manager,lead,Яндекс Метрика,1
 2025-06-30,progjob,manager,senior,Agile,1
+2025-06-30,progjob,manager,senior,Figma,1
 2025-06-30,progjob,manager,senior,Jira,1
 2025-06-30,progjob,manager,senior,Kanban,1
 2025-06-30,progjob,manager,senior,Miro,1
@@ -45587,6 +45678,7 @@ week,channel,role,grade,skill,posts
 2025-07-07,progjob,data_engineer,middle,ETL,1
 2025-07-07,progjob,data_engineer,middle,Python,1
 2025-07-07,progjob,data_engineer,middle,SQL,1
+2025-07-07,progjob,designer,,Figma,1
 2025-07-07,progjob,frontend,junior,Angular,1
 2025-07-07,progjob,frontend,junior,JavaScript,1
 2025-07-07,progjob,frontend,middle,Angular,1
@@ -45601,6 +45693,7 @@ week,channel,role,grade,skill,posts
 2025-07-07,progjob,mlops,senior,SRE,1
 2025-07-07,progjob,other_it,middle,AWS,1
 2025-07-07,progjob,other_it,middle,vSphere,1
+2025-07-07,progjob,qa,middle,REST,1
 2025-07-07,progjob,qa,middle,SQL,1
 2025-07-07,progjob,support,senior,Linux,1
 2025-07-07,progjob,support,senior,PostgreSQL,1
@@ -48821,8 +48914,10 @@ week,channel,role,grade,skill,posts
 2025-07-21,progjob,backend,middle,Node.js,2
 2025-07-21,progjob,backend,middle,PostgreSQL,7
 2025-07-21,progjob,backend,middle,Python,3
+2025-07-21,progjob,backend,middle,REST,1
 2025-07-21,progjob,backend,middle,RabbitMQ,2
 2025-07-21,progjob,backend,middle,SQL,2
+2025-07-21,progjob,backend,middle,Spring,2
 2025-07-21,progjob,backend,middle,Spring Boot,1
 2025-07-21,progjob,backend,middle,TypeScript,3
 2025-07-21,progjob,backend,senior,.NET,1
@@ -48866,7 +48961,9 @@ week,channel,role,grade,skill,posts
 2025-07-21,progjob,data_scientist,middle,PyTorch,1
 2025-07-21,progjob,data_scientist,middle,Python,1
 2025-07-21,progjob,data_scientist,middle,TensorFlow,1
+2025-07-21,progjob,designer,,Figma,1
 2025-07-21,progjob,designer,senior,A/B-тесты,1
+2025-07-21,progjob,designer,senior,Figma,1
 2025-07-21,progjob,developer_1c,,1С,2
 2025-07-21,progjob,developer_1c,,1С:ERP,1
 2025-07-21,progjob,developer_1c,middle,1С,1
@@ -48920,6 +49017,7 @@ week,channel,role,grade,skill,posts
 2025-07-21,progjob,frontend,middle,Linux,1
 2025-07-21,progjob,frontend,middle,Nuxt,1
 2025-07-21,progjob,frontend,middle,PHP,1
+2025-07-21,progjob,frontend,middle,REST,1
 2025-07-21,progjob,frontend,middle,React,1
 2025-07-21,progjob,frontend,middle,SCSS,2
 2025-07-21,progjob,frontend,middle,SQL,1
@@ -48936,6 +49034,7 @@ week,channel,role,grade,skill,posts
 2025-07-21,progjob,fullstack,junior,HTML,1
 2025-07-21,progjob,fullstack,junior,JavaScript,1
 2025-07-21,progjob,fullstack,junior,Laravel,1
+2025-07-21,progjob,fullstack,junior,Linux,1
 2025-07-21,progjob,fullstack,junior,Tailwind CSS,1
 2025-07-21,progjob,fullstack,junior,UIKit,1
 2025-07-21,progjob,fullstack,middle,.NET,1
@@ -48974,6 +49073,7 @@ week,channel,role,grade,skill,posts
 2025-07-21,progjob,other_it,lead,Python,1
 2025-07-21,progjob,other_it,middle,Python,1
 2025-07-21,progjob,other_it,middle,SQL,1
+2025-07-21,progjob,other_it,senior,Linux,1
 2025-07-21,progjob,qa,,Android,1
 2025-07-21,progjob,qa,,CSS,1
 2025-07-21,progjob,qa,,Git,1
@@ -48987,6 +49087,7 @@ week,channel,role,grade,skill,posts
 2025-07-21,progjob,qa,junior,Git,1
 2025-07-21,progjob,qa,junior,Java,1
 2025-07-21,progjob,qa,junior,SQL,1
+2025-07-21,progjob,qa,junior,Spring,1
 2025-07-21,progjob,qa,middle,Bash,1
 2025-07-21,progjob,qa,middle,C#,1
 2025-07-21,progjob,qa,middle,Go,1
@@ -49052,7 +49153,7 @@ week,channel,role,grade,skill,posts
 2025-07-21,progjob,sysadmin,middle,Docker,1
 2025-07-21,progjob,sysadmin,middle,Grafana,1
 2025-07-21,progjob,sysadmin,middle,Kubernetes,2
-2025-07-21,progjob,sysadmin,middle,Linux,1
+2025-07-21,progjob,sysadmin,middle,Linux,2
 2025-07-21,progjob,sysadmin,middle,MikroTik,1
 2025-07-21,progjob,sysadmin,middle,Python,1
 2025-07-21,progjob,sysadmin,middle,SQL,1
@@ -50760,6 +50861,7 @@ week,channel,role,grade,skill,posts
 2025-07-28,progjob,data_engineer,middle,Airflow,1
 2025-07-28,progjob,data_engineer,middle,CI/CD,1
 2025-07-28,progjob,data_engineer,middle,Kubernetes,1
+2025-07-28,progjob,designer,senior,Figma,1
 2025-07-28,progjob,developer_1c,,1С,1
 2025-07-28,progjob,developer_1c,junior,1С,1
 2025-07-28,progjob,developer_1c,middle,1С,2
@@ -50832,6 +50934,7 @@ week,channel,role,grade,skill,posts
 2025-07-28,progjob,fullstack,middle,Next.js,1
 2025-07-28,progjob,fullstack,middle,Nginx,1
 2025-07-28,progjob,fullstack,middle,Python,1
+2025-07-28,progjob,fullstack,middle,REST,1
 2025-07-28,progjob,fullstack,middle,React,1
 2025-07-28,progjob,fullstack,middle,SCSS,1
 2025-07-28,progjob,fullstack,middle,SQL,1
@@ -50942,6 +51045,7 @@ week,channel,role,grade,skill,posts
 2025-07-28,progjob,support,middle,Linux,1
 2025-07-28,progjob,support,middle,PostgreSQL,1
 2025-07-28,progjob,support,senior,Active Directory,1
+2025-07-28,progjob,support,senior,Linux,1
 2025-07-28,progjob,sysadmin,,Kafka,1
 2025-07-28,progjob,sysadmin,,Kaspersky,2
 2025-07-28,progjob,sysadmin,,PostgreSQL,1
@@ -52703,6 +52807,7 @@ week,channel,role,grade,skill,posts
 2025-08-04,progjob,backend,,Python,1
 2025-08-04,progjob,backend,,RabbitMQ,1
 2025-08-04,progjob,backend,,Redis,1
+2025-08-04,progjob,backend,,Yii,1
 2025-08-04,progjob,backend,lead,Java,1
 2025-08-04,progjob,backend,middle,.NET,1
 2025-08-04,progjob,backend,middle,C#,1
@@ -52725,6 +52830,7 @@ week,channel,role,grade,skill,posts
 2025-08-04,progjob,backend,senior,NATS,1
 2025-08-04,progjob,business_analyst,,Confluence,1
 2025-08-04,progjob,business_analyst,,Excel,1
+2025-08-04,progjob,business_analyst,,Figma,1
 2025-08-04,progjob,business_analyst,,Jira,1
 2025-08-04,progjob,business_analyst,,Miro,1
 2025-08-04,progjob,data_analyst,,Excel,1
@@ -52842,6 +52948,7 @@ week,channel,role,grade,skill,posts
 2025-08-04,progjob,support,junior,Excel,1
 2025-08-04,progjob,support,junior,Jira,1
 2025-08-04,progjob,sysadmin,,Hyper-V,1
+2025-08-04,progjob,sysadmin,,Linux,1
 2025-08-04,progjob,sysadmin,,VMware,1
 2025-08-04,progjob,sysadmin,junior,Docker,1
 2025-08-04,progjob,sysadmin,junior,Git,1
@@ -54539,6 +54646,7 @@ week,channel,role,grade,skill,posts
 2025-08-11,progjob,backend,middle,Entity Framework,1
 2025-08-11,progjob,backend,middle,Git,1
 2025-08-11,progjob,backend,middle,Linux,1
+2025-08-11,progjob,backend,middle,MS SQL Server,1
 2025-08-11,progjob,backend,middle,MySQL,1
 2025-08-11,progjob,backend,middle,PHP,1
 2025-08-11,progjob,backend,middle,PostgreSQL,1
@@ -54616,6 +54724,7 @@ week,channel,role,grade,skill,posts
 2025-08-11,progjob,fullstack,,Laravel,1
 2025-08-11,progjob,fullstack,,PHP,1
 2025-08-11,progjob,fullstack,,Vue.js,1
+2025-08-11,progjob,manager,,Figma,1
 2025-08-11,progjob,manager,,Jira,3
 2025-08-11,progjob,manager,,MS Project,1
 2025-08-11,progjob,manager,,Miro,1
@@ -58079,6 +58188,7 @@ week,channel,role,grade,skill,posts
 2025-08-25,progjob,backend,junior,Go,1
 2025-08-25,progjob,backend,junior,HTTP,1
 2025-08-25,progjob,backend,junior,PostgreSQL,1
+2025-08-25,progjob,backend,junior,REST,1
 2025-08-25,progjob,backend,junior,TCP,1
 2025-08-25,progjob,backend,lead,Gradle,1
 2025-08-25,progjob,backend,lead,Java,1
@@ -58119,6 +58229,7 @@ week,channel,role,grade,skill,posts
 2025-08-25,progjob,backend,senior,PL/SQL,1
 2025-08-25,progjob,backend,senior,PostgreSQL,2
 2025-08-25,progjob,backend,senior,RabbitMQ,1
+2025-08-25,progjob,backend,senior,Spring,1
 2025-08-25,progjob,backend,senior,gRPC,1
 2025-08-25,progjob,business_analyst,senior,BPMN,1
 2025-08-25,progjob,business_analyst,senior,REST,1
@@ -58141,7 +58252,10 @@ week,channel,role,grade,skill,posts
 2025-08-25,progjob,data_scientist,middle,Python,1
 2025-08-25,progjob,data_scientist,middle,Spark,1
 2025-08-25,progjob,designer,middle,Adobe Premiere,1
+2025-08-25,progjob,designer,middle,Figma,1
 2025-08-25,progjob,designer,middle,Photoshop,1
+2025-08-25,progjob,designer,middle,Unity,1
+2025-08-25,progjob,designer,senior,Figma,1
 2025-08-25,progjob,developer_1c,,1С,1
 2025-08-25,progjob,developer_1c,senior,1С,2
 2025-08-25,progjob,devops,,Ansible,2
@@ -59726,7 +59840,7 @@ week,channel,role,grade,skill,posts
 2025-09-01,progjob,data_analyst,senior,SQL,2
 2025-09-01,progjob,data_analyst,senior,Tableau,1
 2025-09-01,progjob,data_engineer,senior,Java,1
-2025-09-01,progjob,designer,middle,Figma,1
+2025-09-01,progjob,designer,middle,Figma,2
 2025-09-01,progjob,designer,middle,Visio,1
 2025-09-01,progjob,developer_1c,middle,1С,1
 2025-09-01,progjob,devops,,DevOps,2
@@ -59874,6 +59988,7 @@ week,channel,role,grade,skill,posts
 2025-09-01,progjob,sysadmin,senior,Active Directory,1
 2025-09-01,progjob,sysadmin,senior,DHCP,1
 2025-09-01,progjob,sysadmin,senior,DNS,1
+2025-09-01,progjob,sysadmin,senior,Linux,1
 2025-09-01,progjob,sysadmin,senior,Unix,1
 2025-09-01,progjob,system_analyst,,Linux,1
 2025-09-01,progjob,system_analyst,senior,REST,1
@@ -61405,6 +61520,7 @@ week,channel,role,grade,skill,posts
 2025-09-08,progjob,backend,,Java,2
 2025-09-08,progjob,backend,,Kubernetes,1
 2025-09-08,progjob,backend,,SQL,1
+2025-09-08,progjob,backend,,Spring,1
 2025-09-08,progjob,backend,,Битрикс24,1
 2025-09-08,progjob,backend,lead,Java,1
 2025-09-08,progjob,backend,lead,Kotlin,1
@@ -61466,6 +61582,8 @@ week,channel,role,grade,skill,posts
 2025-09-08,progjob,data_scientist,,Python,1
 2025-09-08,progjob,data_scientist,,SQL,1
 2025-09-08,progjob,data_scientist,middle,PyTorch,1
+2025-09-08,progjob,designer,middle,Figma,1
+2025-09-08,progjob,designer,senior,Figma,1
 2025-09-08,progjob,developer_1c,middle,1С,3
 2025-09-08,progjob,devops,junior,CI/CD,1
 2025-09-08,progjob,devops,junior,Git,1
@@ -63236,6 +63354,7 @@ week,channel,role,grade,skill,posts
 2025-09-15,progjob,backend,senior,Redis,1
 2025-09-15,progjob,backend,senior,SQLAlchemy,1
 2025-09-15,progjob,backend,senior,SRE,1
+2025-09-15,progjob,backend,senior,Spring,1
 2025-09-15,progjob,backend,senior,asyncio,1
 2025-09-15,progjob,business_analyst,,BPMN,1
 2025-09-15,progjob,business_analyst,,MySQL,1
@@ -63260,6 +63379,7 @@ week,channel,role,grade,skill,posts
 2025-09-15,progjob,data_engineer,senior,Oracle,1
 2025-09-15,progjob,data_scientist,senior,SQL,1
 2025-09-15,progjob,designer,senior,Adobe Illustrator,1
+2025-09-15,progjob,designer,senior,Figma,1
 2025-09-15,progjob,designer,senior,Photoshop,1
 2025-09-15,progjob,developer_1c,,1С,1
 2025-09-15,progjob,developer_1c,lead,1С,1
@@ -63367,7 +63487,7 @@ week,channel,role,grade,skill,posts
 2025-09-15,progjob,qa,middle,PostgreSQL,2
 2025-09-15,progjob,qa,middle,Postman,1
 2025-09-15,progjob,qa,middle,Python,1
-2025-09-15,progjob,qa,middle,REST,1
+2025-09-15,progjob,qa,middle,REST,2
 2025-09-15,progjob,qa,middle,SQL,2
 2025-09-15,progjob,qa,middle,Selenium,2
 2025-09-15,progjob,qa,middle,Spring Boot,1
@@ -64862,6 +64982,7 @@ week,channel,role,grade,skill,posts
 2025-09-22,offersanalysis,data_analyst,junior,SQL,1
 2025-09-22,progjob,backend,,Rust,1
 2025-09-22,progjob,backend,intern,Java,1
+2025-09-22,progjob,backend,intern,Spring,1
 2025-09-22,progjob,backend,junior,Docker,1
 2025-09-22,progjob,backend,junior,Gin,1
 2025-09-22,progjob,backend,junior,Go,2
@@ -64869,7 +64990,7 @@ week,channel,role,grade,skill,posts
 2025-09-22,progjob,backend,junior,JavaScript,1
 2025-09-22,progjob,backend,junior,PHP,1
 2025-09-22,progjob,backend,junior,PostgreSQL,1
-2025-09-22,progjob,backend,junior,REST,1
+2025-09-22,progjob,backend,junior,REST,2
 2025-09-22,progjob,backend,junior,SCSS,1
 2025-09-22,progjob,backend,junior,SQL,1
 2025-09-22,progjob,backend,junior,TCP,1
@@ -64895,6 +65016,7 @@ week,channel,role,grade,skill,posts
 2025-09-22,progjob,backend,middle,RabbitMQ,1
 2025-09-22,progjob,backend,middle,SQL,1
 2025-09-22,progjob,backend,middle,Spring Boot,1
+2025-09-22,progjob,backend,middle,Yii,2
 2025-09-22,progjob,backend,middle,gRPC,1
 2025-09-22,progjob,backend,middle,ООП,1
 2025-09-22,progjob,backend,senior,.NET,1
@@ -64916,6 +65038,7 @@ week,channel,role,grade,skill,posts
 2025-09-22,progjob,backend,senior,Python,1
 2025-09-22,progjob,backend,senior,REST,1
 2025-09-22,progjob,backend,senior,Redis,1
+2025-09-22,progjob,backend,senior,Spring,1
 2025-09-22,progjob,business_analyst,senior,BPMN,1
 2025-09-22,progjob,data_engineer,middle,Airflow,1
 2025-09-22,progjob,data_engineer,middle,ETL,1
@@ -64980,6 +65103,7 @@ week,channel,role,grade,skill,posts
 2025-09-22,progjob,fullstack,middle,MySQL,1
 2025-09-22,progjob,fullstack,middle,PHP,1
 2025-09-22,progjob,fullstack,middle,React,1
+2025-09-22,progjob,fullstack,middle,Yii,1
 2025-09-22,progjob,fullstack,senior,Docker,1
 2025-09-22,progjob,fullstack,senior,JavaScript,2
 2025-09-22,progjob,fullstack,senior,Kubernetes,1
@@ -64992,6 +65116,7 @@ week,channel,role,grade,skill,posts
 2025-09-22,progjob,fullstack,senior,React,1
 2025-09-22,progjob,fullstack,senior,TypeScript,2
 2025-09-22,progjob,fullstack,senior,Vue.js,1
+2025-09-22,progjob,fullstack,senior,Yii,1
 2025-09-22,progjob,manager,,Kaspersky,2
 2025-09-22,progjob,mlops,middle,Ansible,1
 2025-09-22,progjob,mlops,middle,CI/CD,1
@@ -65947,19 +66072,7 @@ week,channel,role,grade,skill,posts
 2025-09-29,it_vakansii_jobs,frontend,junior,Node.js,1
 2025-09-29,javascript_jobs_feed,backend,,Node.js,1
 2025-09-29,javascript_jobs_feed,backend,,TypeScript,1
-2025-09-29,javascript_jobs_feed,frontend,,Next.js,1
-2025-09-29,javascript_jobs_feed,frontend,,React,1
-2025-09-29,javascript_jobs_feed,frontend,,React Native,1
-2025-09-29,javascript_jobs_feed,frontend,,Vue.js,1
-2025-09-29,javascript_jobs_feed,frontend,junior,React,2
-2025-09-29,javascript_jobs_feed,frontend,junior,TypeScript,1
-2025-09-29,javascript_jobs_feed,fullstack,,Go,1
-2025-09-29,javascript_jobs_feed,fullstack,,Next.js,1
-2025-09-29,javascript_jobs_feed,fullstack,,Node.js,2
-2025-09-29,javascript_jobs_feed,fullstack,,React,2
-2025-09-29,javascript_jobs_feed,fullstack,senior,Node.js,1
-2025-09-29,javascript_jobs_feed,mobile,,React,1
-2025-09-29,javascript_jobs_feed,mobile,,React Native,2
+2025-09-29,javascript_jobs_feed,mobile,,React Native,1
 2025-09-29,job_javadevs,backend,,CI/CD,1
 2025-09-29,job_javadevs,backend,,Docker,1
 2025-09-29,job_javadevs,backend,,HTTP,1
@@ -66414,6 +66527,7 @@ week,channel,role,grade,skill,posts
 2025-09-29,product_jobs,manager,,User story,1
 2025-09-29,progjob,backend,,Git,1
 2025-09-29,progjob,backend,,Go,1
+2025-09-29,progjob,backend,,MS SQL Server,1
 2025-09-29,progjob,backend,,NumPy,1
 2025-09-29,progjob,backend,,OpenCV,1
 2025-09-29,progjob,backend,,Python,2
@@ -66453,6 +66567,7 @@ week,channel,role,grade,skill,posts
 2025-09-29,progjob,backend,senior,RabbitMQ,1
 2025-09-29,progjob,backend,senior,Redis,1
 2025-09-29,progjob,backend,senior,SQL,1
+2025-09-29,progjob,backend,senior,Spring,1
 2025-09-29,progjob,backend,senior,Symfony,1
 2025-09-29,progjob,data_analyst,,Airflow,1
 2025-09-29,progjob,data_analyst,,Python,1
@@ -66477,6 +66592,7 @@ week,channel,role,grade,skill,posts
 2025-09-29,progjob,data_engineer,senior,Python,1
 2025-09-29,progjob,data_engineer,senior,Spark,1
 2025-09-29,progjob,designer,senior,Adobe Illustrator,1
+2025-09-29,progjob,designer,senior,Figma,1
 2025-09-29,progjob,designer,senior,Photoshop,1
 2025-09-29,progjob,developer_1c,lead,1С,1
 2025-09-29,progjob,developer_1c,middle,1С:ERP,1
@@ -66521,6 +66637,7 @@ week,channel,role,grade,skill,posts
 2025-09-29,progjob,fullstack,,Node.js,1
 2025-09-29,progjob,fullstack,,PHP,1
 2025-09-29,progjob,fullstack,,PostgreSQL,2
+2025-09-29,progjob,fullstack,,REST,1
 2025-09-29,progjob,fullstack,,React,1
 2025-09-29,progjob,fullstack,,Redis,1
 2025-09-29,progjob,fullstack,senior,NestJS,1
@@ -67622,27 +67739,18 @@ week,channel,role,grade,skill,posts
 2025-10-06,javascript_jobs_feed,backend,,Node.js,2
 2025-10-06,javascript_jobs_feed,backend,,TypeScript,1
 2025-10-06,javascript_jobs_feed,backend,middle,Node.js,1
-2025-10-06,javascript_jobs_feed,frontend,,Angular,2
-2025-10-06,javascript_jobs_feed,frontend,,Nuxt,2
-2025-10-06,javascript_jobs_feed,frontend,,React,5
-2025-10-06,javascript_jobs_feed,frontend,,React Native,4
-2025-10-06,javascript_jobs_feed,frontend,,TypeScript,4
-2025-10-06,javascript_jobs_feed,frontend,,Vue.js,2
-2025-10-06,javascript_jobs_feed,frontend,junior,React,1
+2025-10-06,javascript_jobs_feed,frontend,,Angular,1
+2025-10-06,javascript_jobs_feed,frontend,,Nuxt,1
+2025-10-06,javascript_jobs_feed,frontend,,React,1
+2025-10-06,javascript_jobs_feed,frontend,,Vue.js,1
 2025-10-06,javascript_jobs_feed,frontend,middle,Next.js,1
 2025-10-06,javascript_jobs_feed,frontend,middle,Vue.js,1
 2025-10-06,javascript_jobs_feed,frontend,senior,React,1
 2025-10-06,javascript_jobs_feed,frontend,senior,TypeScript,1
-2025-10-06,javascript_jobs_feed,fullstack,,Go,1
-2025-10-06,javascript_jobs_feed,fullstack,,Next.js,4
-2025-10-06,javascript_jobs_feed,fullstack,,Node.js,8
-2025-10-06,javascript_jobs_feed,fullstack,,PHP,1
+2025-10-06,javascript_jobs_feed,fullstack,,Node.js,1
 2025-10-06,javascript_jobs_feed,fullstack,,Python,1
-2025-10-06,javascript_jobs_feed,fullstack,,React,8
-2025-10-06,javascript_jobs_feed,fullstack,,TypeScript,2
-2025-10-06,javascript_jobs_feed,fullstack,lead,JavaScript,2
-2025-10-06,javascript_jobs_feed,fullstack,senior,JavaScript,1
-2025-10-06,javascript_jobs_feed,fullstack,senior,Node.js,1
+2025-10-06,javascript_jobs_feed,fullstack,,React,1
+2025-10-06,javascript_jobs_feed,fullstack,,TypeScript,1
 2025-10-06,job_javadevs,backend,,Java,2
 2025-10-06,job_javadevs,backend,,Kotlin,1
 2025-10-06,job_javadevs,backend,,PostgreSQL,1
@@ -68217,6 +68325,7 @@ week,channel,role,grade,skill,posts
 2025-10-06,product_jobs,manager,,Scrum,1
 2025-10-06,progjob,backend,intern,CI/CD,1
 2025-10-06,progjob,backend,intern,Java,1
+2025-10-06,progjob,backend,intern,Spring,1
 2025-10-06,progjob,backend,intern,Spring Boot,1
 2025-10-06,progjob,backend,junior,Django,1
 2025-10-06,progjob,backend,junior,Docker,1
@@ -68233,8 +68342,10 @@ week,channel,role,grade,skill,posts
 2025-10-06,progjob,backend,lead,PHP,1
 2025-10-06,progjob,backend,lead,PostgreSQL,1
 2025-10-06,progjob,backend,lead,Redis,1
+2025-10-06,progjob,backend,lead,Spring,1
 2025-10-06,progjob,backend,lead,Spring Boot,1
 2025-10-06,progjob,backend,lead,Symfony,1
+2025-10-06,progjob,backend,lead,Yii,1
 2025-10-06,progjob,backend,middle,C#,1
 2025-10-06,progjob,backend,middle,Docker,2
 2025-10-06,progjob,backend,middle,Git,1
@@ -68243,6 +68354,7 @@ week,channel,role,grade,skill,posts
 2025-10-06,progjob,backend,middle,Linux,1
 2025-10-06,progjob,backend,middle,PHP,1
 2025-10-06,progjob,backend,middle,SQL,1
+2025-10-06,progjob,backend,middle,Spring,1
 2025-10-06,progjob,backend,middle,WordPress,1
 2025-10-06,progjob,backend,senior,CI/CD,1
 2025-10-06,progjob,backend,senior,Django,1
@@ -68262,6 +68374,7 @@ week,channel,role,grade,skill,posts
 2025-10-06,progjob,backend,senior,Python,3
 2025-10-06,progjob,backend,senior,REST,1
 2025-10-06,progjob,backend,senior,Redis,1
+2025-10-06,progjob,backend,senior,Spring,1
 2025-10-06,progjob,backend,senior,Spring Boot,2
 2025-10-06,progjob,backend,senior,TypeScript,1
 2025-10-06,progjob,backend,senior,gRPC,1
@@ -68280,6 +68393,8 @@ week,channel,role,grade,skill,posts
 2025-10-06,progjob,data_engineer,,Greenplum,1
 2025-10-06,progjob,data_scientist,lead,Python,1
 2025-10-06,progjob,data_scientist,lead,SQL,1
+2025-10-06,progjob,designer,middle,Figma,1
+2025-10-06,progjob,designer,senior,Figma,1
 2025-10-06,progjob,developer_1c,middle,1С,1
 2025-10-06,progjob,developer_1c,senior,1С,1
 2025-10-06,progjob,devops,,CI/CD,1
@@ -68357,6 +68472,7 @@ week,channel,role,grade,skill,posts
 2025-10-06,progjob,software_engineer,senior,C#,1
 2025-10-06,progjob,software_engineer,senior,C++,1
 2025-10-06,progjob,software_engineer,senior,Linux,1
+2025-10-06,progjob,software_engineer,senior,Unity,1
 2025-10-06,progjob,support,,Kaspersky,1
 2025-10-06,progjob,support,junior,SQL,1
 2025-10-06,progjob,support,middle,Confluence,1
@@ -68368,6 +68484,7 @@ week,channel,role,grade,skill,posts
 2025-10-06,progjob,support,middle,SQL,2
 2025-10-06,progjob,sysadmin,middle,DHCP,1
 2025-10-06,progjob,sysadmin,middle,DNS,1
+2025-10-06,progjob,sysadmin,middle,Linux,1
 2025-10-06,progjob,sysadmin,middle,TCP,1
 2025-10-06,progjob,system_analyst,,PostgreSQL,1
 2025-10-06,progjob,system_analyst,,REST,1
@@ -69332,29 +69449,12 @@ week,channel,role,grade,skill,posts
 2025-10-13,javascript_jobs_feed,backend,,AWS,1
 2025-10-13,javascript_jobs_feed,backend,,Node.js,1
 2025-10-13,javascript_jobs_feed,backend,,TypeScript,1
-2025-10-13,javascript_jobs_feed,frontend,,Angular,1
-2025-10-13,javascript_jobs_feed,frontend,,JavaScript,7
-2025-10-13,javascript_jobs_feed,frontend,,Next.js,3
-2025-10-13,javascript_jobs_feed,frontend,,Node.js,1
-2025-10-13,javascript_jobs_feed,frontend,,Nuxt,3
-2025-10-13,javascript_jobs_feed,frontend,,React,8
-2025-10-13,javascript_jobs_feed,frontend,,React Native,4
-2025-10-13,javascript_jobs_feed,frontend,,Solidity,1
-2025-10-13,javascript_jobs_feed,frontend,,TypeScript,10
-2025-10-13,javascript_jobs_feed,frontend,,Vue.js,3
-2025-10-13,javascript_jobs_feed,frontend,junior,React,5
-2025-10-13,javascript_jobs_feed,frontend,junior,TypeScript,2
-2025-10-13,javascript_jobs_feed,frontend,middle,React,3
-2025-10-13,javascript_jobs_feed,frontend,middle,Vue.js,1
+2025-10-13,javascript_jobs_feed,frontend,,Nuxt,1
+2025-10-13,javascript_jobs_feed,frontend,,Vue.js,1
 2025-10-13,javascript_jobs_feed,frontend,senior,JavaScript,1
 2025-10-13,javascript_jobs_feed,frontend,senior,TypeScript,1
-2025-10-13,javascript_jobs_feed,fullstack,,DevOps,1
-2025-10-13,javascript_jobs_feed,fullstack,,Go,1
-2025-10-13,javascript_jobs_feed,fullstack,,Next.js,1
-2025-10-13,javascript_jobs_feed,fullstack,,Node.js,5
-2025-10-13,javascript_jobs_feed,fullstack,,React,6
-2025-10-13,javascript_jobs_feed,fullstack,,React Native,1
-2025-10-13,javascript_jobs_feed,fullstack,,TypeScript,2
+2025-10-13,javascript_jobs_feed,fullstack,,Node.js,1
+2025-10-13,javascript_jobs_feed,fullstack,,React,1
 2025-10-13,javascript_jobs_feed,fullstack,senior,FastAPI,1
 2025-10-13,javascript_jobs_feed,fullstack,senior,Node.js,2
 2025-10-13,javascript_jobs_feed,fullstack,senior,Python,1
@@ -69419,7 +69519,7 @@ week,channel,role,grade,skill,posts
 2025-10-13,job_javadevs,backend,senior,REST,2
 2025-10-13,job_javadevs,backend,senior,S3,1
 2025-10-13,job_javadevs,backend,senior,SQL,2
-2025-10-13,job_javadevs,backend,senior,Spring,1
+2025-10-13,job_javadevs,backend,senior,Spring,2
 2025-10-13,job_javadevs,backend,senior,Spring Boot,1
 2025-10-13,job_javadevs,backend,senior,Spring Cloud,2
 2025-10-13,job_javadevs,backend,senior,Swagger,1
@@ -69918,8 +70018,10 @@ week,channel,role,grade,skill,posts
 2025-10-13,progjob,data_scientist,senior,Python,1
 2025-10-13,progjob,designer,,Adobe Illustrator,1
 2025-10-13,progjob,designer,,Blender,1
+2025-10-13,progjob,designer,,Figma,1
 2025-10-13,progjob,designer,,Photoshop,1
 2025-10-13,progjob,designer,middle,Adobe Illustrator,1
+2025-10-13,progjob,designer,middle,Figma,1
 2025-10-13,progjob,designer,middle,Photoshop,1
 2025-10-13,progjob,developer_1c,middle,1С,1
 2025-10-13,progjob,developer_1c,middle,REST,1
@@ -69972,6 +70074,7 @@ week,channel,role,grade,skill,posts
 2025-10-13,progjob,fullstack,middle,CSS,1
 2025-10-13,progjob,fullstack,middle,JavaScript,1
 2025-10-13,progjob,fullstack,middle,PHP,1
+2025-10-13,progjob,fullstack,middle,Yii,1
 2025-10-13,progjob,fullstack,middle,jQuery,1
 2025-10-13,progjob,fullstack,senior,Next.js,1
 2025-10-13,progjob,fullstack,senior,PHP,1
@@ -70590,8 +70693,6 @@ week,channel,role,grade,skill,posts
 2025-10-20,de_rabota,data_engineer,senior,Scala,1
 2025-10-20,de_rabota,data_engineer,senior,Spark,2
 2025-10-20,de_rabota,data_engineer,senior,Tableau,1
-2025-10-20,devjobs,designer,,Blender,1
-2025-10-20,devjobs,designer,,Photoshop,1
 2025-10-20,devjobs,designer,,Swift,1
 2025-10-20,devjobs,designer,,Unity,1
 2025-10-20,devjobs,designer,,Unreal Engine,1
@@ -70955,30 +71056,13 @@ week,channel,role,grade,skill,posts
 2025-10-20,it_interns,backend,intern,REST,1
 2025-10-20,it_interns,backend,intern,SQL,1
 2025-10-20,it_interns,frontend,intern,Excel,1
-2025-10-20,javascript_jobs_feed,frontend,,Angular,1
-2025-10-20,javascript_jobs_feed,frontend,,JavaScript,5
-2025-10-20,javascript_jobs_feed,frontend,,Next.js,5
-2025-10-20,javascript_jobs_feed,frontend,,Node.js,1
-2025-10-20,javascript_jobs_feed,frontend,,React,7
-2025-10-20,javascript_jobs_feed,frontend,,React Native,3
-2025-10-20,javascript_jobs_feed,frontend,,Solidity,1
-2025-10-20,javascript_jobs_feed,frontend,,TypeScript,6
-2025-10-20,javascript_jobs_feed,frontend,,Vue.js,4
-2025-10-20,javascript_jobs_feed,frontend,junior,React,3
-2025-10-20,javascript_jobs_feed,frontend,junior,TypeScript,3
+2025-10-20,javascript_jobs_feed,frontend,,Next.js,1
+2025-10-20,javascript_jobs_feed,frontend,,TypeScript,1
+2025-10-20,javascript_jobs_feed,frontend,,Vue.js,3
 2025-10-20,javascript_jobs_feed,frontend,middle,Nuxt,1
 2025-10-20,javascript_jobs_feed,frontend,middle,Vue.js,1
-2025-10-20,javascript_jobs_feed,frontend,senior,React,1
-2025-10-20,javascript_jobs_feed,frontend,senior,React Native,1
-2025-10-20,javascript_jobs_feed,fullstack,,DevOps,1
-2025-10-20,javascript_jobs_feed,fullstack,,Go,2
-2025-10-20,javascript_jobs_feed,fullstack,,Next.js,1
-2025-10-20,javascript_jobs_feed,fullstack,,Node.js,8
-2025-10-20,javascript_jobs_feed,fullstack,,React,9
-2025-10-20,javascript_jobs_feed,fullstack,,TypeScript,2
-2025-10-20,javascript_jobs_feed,fullstack,lead,JavaScript,2
 2025-10-20,javascript_jobs_feed,fullstack,senior,FastAPI,1
-2025-10-20,javascript_jobs_feed,fullstack,senior,Node.js,2
+2025-10-20,javascript_jobs_feed,fullstack,senior,Node.js,1
 2025-10-20,javascript_jobs_feed,fullstack,senior,Nuxt,1
 2025-10-20,javascript_jobs_feed,fullstack,senior,Python,1
 2025-10-20,javascript_jobs_feed,fullstack,senior,React,1
@@ -71056,7 +71140,7 @@ week,channel,role,grade,skill,posts
 2025-10-20,job_javadevs,backend,middle,Python,1
 2025-10-20,job_javadevs,backend,middle,Quarkus,1
 2025-10-20,job_javadevs,backend,middle,RabbitMQ,1
-2025-10-20,job_javadevs,backend,middle,Spring,2
+2025-10-20,job_javadevs,backend,middle,Spring,3
 2025-10-20,job_javadevs,backend,middle,Spring Boot,2
 2025-10-20,job_javadevs,backend,middle,ООП,1
 2025-10-20,job_javadevs,backend,senior,CI/CD,1
@@ -71611,6 +71695,7 @@ week,channel,role,grade,skill,posts
 2025-10-20,progjob,frontend,junior,SCSS,1
 2025-10-20,progjob,frontend,junior,TypeScript,1
 2025-10-20,progjob,frontend,middle,CSS,1
+2025-10-20,progjob,frontend,middle,Figma,1
 2025-10-20,progjob,frontend,middle,Git,1
 2025-10-20,progjob,frontend,middle,HTML,2
 2025-10-20,progjob,frontend,middle,JSON,1
@@ -71618,7 +71703,7 @@ week,channel,role,grade,skill,posts
 2025-10-20,progjob,frontend,middle,Jest,1
 2025-10-20,progjob,frontend,middle,MongoDB,1
 2025-10-20,progjob,frontend,middle,PHP,1
-2025-10-20,progjob,frontend,middle,REST,1
+2025-10-20,progjob,frontend,middle,REST,2
 2025-10-20,progjob,frontend,middle,React,3
 2025-10-20,progjob,frontend,middle,Redux,2
 2025-10-20,progjob,frontend,middle,Tailwind CSS,1
@@ -71642,7 +71727,7 @@ week,channel,role,grade,skill,posts
 2025-10-20,progjob,fullstack,middle,Node.js,1
 2025-10-20,progjob,fullstack,middle,PHP,1
 2025-10-20,progjob,fullstack,middle,PostgreSQL,2
-2025-10-20,progjob,fullstack,middle,REST,1
+2025-10-20,progjob,fullstack,middle,REST,2
 2025-10-20,progjob,fullstack,middle,React,1
 2025-10-20,progjob,fullstack,middle,Redis,1
 2025-10-20,progjob,fullstack,middle,Symfony,1
@@ -72774,40 +72859,18 @@ week,channel,role,grade,skill,posts
 2025-10-27,javascript_jobs_feed,backend,,Node.js,2
 2025-10-27,javascript_jobs_feed,backend,,Python,1
 2025-10-27,javascript_jobs_feed,backend,,TypeScript,1
-2025-10-27,javascript_jobs_feed,backend,senior,NestJS,2
-2025-10-27,javascript_jobs_feed,backend,senior,Node.js,2
-2025-10-27,javascript_jobs_feed,frontend,,Angular,1
-2025-10-27,javascript_jobs_feed,frontend,,JavaScript,7
-2025-10-27,javascript_jobs_feed,frontend,,Next.js,4
-2025-10-27,javascript_jobs_feed,frontend,,Node.js,1
-2025-10-27,javascript_jobs_feed,frontend,,Nuxt,2
-2025-10-27,javascript_jobs_feed,frontend,,React,9
-2025-10-27,javascript_jobs_feed,frontend,,React Native,3
-2025-10-27,javascript_jobs_feed,frontend,,Solidity,1
-2025-10-27,javascript_jobs_feed,frontend,,TypeScript,3
-2025-10-27,javascript_jobs_feed,frontend,,Vue.js,3
-2025-10-27,javascript_jobs_feed,frontend,junior,Next.js,1
-2025-10-27,javascript_jobs_feed,frontend,junior,React,4
-2025-10-27,javascript_jobs_feed,frontend,junior,TypeScript,3
-2025-10-27,javascript_jobs_feed,frontend,middle,React,1
-2025-10-27,javascript_jobs_feed,frontend,senior,Next.js,1
+2025-10-27,javascript_jobs_feed,frontend,,React,2
+2025-10-27,javascript_jobs_feed,frontend,,Vue.js,1
 2025-10-27,javascript_jobs_feed,frontend,senior,Node.js,1
-2025-10-27,javascript_jobs_feed,frontend,senior,React,7
-2025-10-27,javascript_jobs_feed,frontend,senior,React Native,5
-2025-10-27,javascript_jobs_feed,frontend,senior,TypeScript,1
-2025-10-27,javascript_jobs_feed,frontend,senior,Vue.js,2
-2025-10-27,javascript_jobs_feed,fullstack,,Go,1
-2025-10-27,javascript_jobs_feed,fullstack,,Next.js,2
-2025-10-27,javascript_jobs_feed,fullstack,,Node.js,11
-2025-10-27,javascript_jobs_feed,fullstack,,React,11
-2025-10-27,javascript_jobs_feed,fullstack,,React Native,2
-2025-10-27,javascript_jobs_feed,fullstack,,TypeScript,3
-2025-10-27,javascript_jobs_feed,fullstack,lead,JavaScript,2
+2025-10-27,javascript_jobs_feed,frontend,senior,React,1
+2025-10-27,javascript_jobs_feed,fullstack,,Next.js,1
+2025-10-27,javascript_jobs_feed,fullstack,,Node.js,2
+2025-10-27,javascript_jobs_feed,fullstack,,React,2
+2025-10-27,javascript_jobs_feed,fullstack,,TypeScript,1
 2025-10-27,javascript_jobs_feed,fullstack,middle,JavaScript,1
 2025-10-27,javascript_jobs_feed,fullstack,senior,FastAPI,1
-2025-10-27,javascript_jobs_feed,fullstack,senior,Node.js,2
 2025-10-27,javascript_jobs_feed,fullstack,senior,Python,1
-2025-10-27,javascript_jobs_feed,fullstack,senior,React,2
+2025-10-27,javascript_jobs_feed,fullstack,senior,React,1
 2025-10-27,job_javadevs,backend,,.NET,1
 2025-10-27,job_javadevs,backend,,CI/CD,3
 2025-10-27,job_javadevs,backend,,ClickHouse,1
@@ -73437,6 +73500,8 @@ week,channel,role,grade,skill,posts
 2025-10-27,progjob,data_engineer,senior,Kafka,1
 2025-10-27,progjob,data_engineer,senior,Python,1
 2025-10-27,progjob,data_engineer,senior,SQL,1
+2025-10-27,progjob,designer,middle,Figma,1
+2025-10-27,progjob,designer,senior,Figma,1
 2025-10-27,progjob,designer,senior,Kaspersky,1
 2025-10-27,progjob,designer,senior,Photoshop,1
 2025-10-27,progjob,developer_1c,middle,1С,3
@@ -73480,6 +73545,7 @@ week,channel,role,grade,skill,posts
 2025-10-27,progjob,frontend,middle,Webpack,1
 2025-10-27,progjob,fullstack,,Angular,1
 2025-10-27,progjob,fullstack,,Docker,1
+2025-10-27,progjob,fullstack,,Figma,1
 2025-10-27,progjob,fullstack,,GraphQL,1
 2025-10-27,progjob,fullstack,,JavaScript,1
 2025-10-27,progjob,fullstack,,Kubernetes,2
@@ -73495,6 +73561,7 @@ week,channel,role,grade,skill,posts
 2025-10-27,progjob,fullstack,middle,Node.js,1
 2025-10-27,progjob,fullstack,senior,C#,1
 2025-10-27,progjob,fullstack,senior,C++,1
+2025-10-27,progjob,fullstack,senior,MS SQL Server,1
 2025-10-27,progjob,fullstack,senior,PostgreSQL,1
 2025-10-27,progjob,manager,lead,1С,1
 2025-10-27,progjob,manager,lead,Laravel,1
@@ -74616,33 +74683,12 @@ week,channel,role,grade,skill,posts
 2025-11-03,javascript_jobs_feed,backend,,GCP,1
 2025-11-03,javascript_jobs_feed,backend,,Node.js,1
 2025-11-03,javascript_jobs_feed,backend,middle,NestJS,1
-2025-11-03,javascript_jobs_feed,backend,senior,NestJS,2
-2025-11-03,javascript_jobs_feed,backend,senior,Node.js,2
-2025-11-03,javascript_jobs_feed,frontend,,JavaScript,5
-2025-11-03,javascript_jobs_feed,frontend,,Next.js,1
 2025-11-03,javascript_jobs_feed,frontend,,Node.js,2
-2025-11-03,javascript_jobs_feed,frontend,,Nuxt,1
-2025-11-03,javascript_jobs_feed,frontend,,React,5
-2025-11-03,javascript_jobs_feed,frontend,,React Native,2
-2025-11-03,javascript_jobs_feed,frontend,,Solidity,2
-2025-11-03,javascript_jobs_feed,frontend,,TypeScript,2
-2025-11-03,javascript_jobs_feed,frontend,,Vue.js,1
-2025-11-03,javascript_jobs_feed,frontend,junior,Next.js,2
-2025-11-03,javascript_jobs_feed,frontend,junior,React,4
-2025-11-03,javascript_jobs_feed,frontend,junior,TypeScript,2
-2025-11-03,javascript_jobs_feed,frontend,middle,React,2
+2025-11-03,javascript_jobs_feed,frontend,,React,2
 2025-11-03,javascript_jobs_feed,frontend,middle,Vue.js,1
 2025-11-03,javascript_jobs_feed,frontend,senior,Next.js,1
 2025-11-03,javascript_jobs_feed,frontend,senior,Node.js,1
-2025-11-03,javascript_jobs_feed,frontend,senior,React,6
-2025-11-03,javascript_jobs_feed,frontend,senior,React Native,5
-2025-11-03,javascript_jobs_feed,frontend,senior,Vue.js,2
-2025-11-03,javascript_jobs_feed,fullstack,,JavaScript,2
-2025-11-03,javascript_jobs_feed,fullstack,,Next.js,1
-2025-11-03,javascript_jobs_feed,fullstack,,Node.js,3
-2025-11-03,javascript_jobs_feed,fullstack,,React,3
-2025-11-03,javascript_jobs_feed,fullstack,,React Native,2
-2025-11-03,javascript_jobs_feed,fullstack,lead,JavaScript,1
+2025-11-03,javascript_jobs_feed,frontend,senior,React,1
 2025-11-03,javascript_jobs_feed,mobile,,React Native,1
 2025-11-03,job_javadevs,backend,,CI/CD,1
 2025-11-03,job_javadevs,backend,,HTTP,1
@@ -75164,8 +75210,10 @@ week,channel,role,grade,skill,posts
 2025-11-03,progjob,backend,,RabbitMQ,1
 2025-11-03,progjob,backend,,SQL,2
 2025-11-03,progjob,backend,,Symfony,1
+2025-11-03,progjob,backend,,Yii,1
 2025-11-03,progjob,backend,,ООП,1
 2025-11-03,progjob,backend,junior,Java,1
+2025-11-03,progjob,backend,junior,Spring,1
 2025-11-03,progjob,backend,lead,PHP,1
 2025-11-03,progjob,backend,middle,1С-Битрикс,1
 2025-11-03,progjob,backend,middle,ClickHouse,1
@@ -75188,6 +75236,7 @@ week,channel,role,grade,skill,posts
 2025-11-03,progjob,backend,middle,RabbitMQ,3
 2025-11-03,progjob,backend,middle,Redis,1
 2025-11-03,progjob,backend,middle,SQLAlchemy,1
+2025-11-03,progjob,backend,middle,Spring,1
 2025-11-03,progjob,backend,middle,Spring Boot,1
 2025-11-03,progjob,backend,middle,ООП,1
 2025-11-03,progjob,backend,senior,CI/CD,2
@@ -75201,12 +75250,14 @@ week,channel,role,grade,skill,posts
 2025-11-03,progjob,backend,senior,PostgreSQL,4
 2025-11-03,progjob,backend,senior,Python,1
 2025-11-03,progjob,backend,senior,REST,1
+2025-11-03,progjob,backend,senior,Spring,1
 2025-11-03,progjob,backend,senior,Vault,1
 2025-11-03,progjob,data_analyst,middle,Python,1
 2025-11-03,progjob,data_analyst,middle,SQL,1
 2025-11-03,progjob,data_analyst,senior,Python,1
 2025-11-03,progjob,data_analyst,senior,SQL,1
 2025-11-03,progjob,designer,junior,Adobe Illustrator,1
+2025-11-03,progjob,designer,junior,Figma,1
 2025-11-03,progjob,designer,junior,Photoshop,1
 2025-11-03,progjob,designer,junior,Tilda,1
 2025-11-03,progjob,developer_1c,middle,1С,2
@@ -75226,6 +75277,7 @@ week,channel,role,grade,skill,posts
 2025-11-03,progjob,embedded,middle,C++,1
 2025-11-03,progjob,embedded,middle,Linux,1
 2025-11-03,progjob,frontend,,CSS,1
+2025-11-03,progjob,frontend,,Figma,1
 2025-11-03,progjob,frontend,,HTML,1
 2025-11-03,progjob,frontend,,JavaScript,1
 2025-11-03,progjob,frontend,,Linux,1
@@ -75297,6 +75349,7 @@ week,channel,role,grade,skill,posts
 2025-11-03,progjob,software_engineer,middle,REST,1
 2025-11-03,progjob,software_engineer,middle,SQL,1
 2025-11-03,progjob,software_engineer,senior,C++,2
+2025-11-03,progjob,software_engineer,senior,MS SQL Server,1
 2025-11-03,progjob,software_engineer,senior,MySQL,1
 2025-11-03,progjob,software_engineer,senior,PostgreSQL,1
 2025-11-03,progjob,software_engineer,senior,Qt,1
@@ -76302,29 +76355,8 @@ week,channel,role,grade,skill,posts
 2025-11-10,it_vakansii_jobs,fullstack,senior,Angular,1
 2025-11-10,it_vakansii_jobs,fullstack,senior,Node.js,1
 2025-11-10,javascript_jobs_feed,backend,middle,NestJS,2
-2025-11-10,javascript_jobs_feed,backend,senior,NestJS,1
-2025-11-10,javascript_jobs_feed,backend,senior,Node.js,1
-2025-11-10,javascript_jobs_feed,frontend,,Angular,2
-2025-11-10,javascript_jobs_feed,frontend,,JavaScript,3
-2025-11-10,javascript_jobs_feed,frontend,,Next.js,1
-2025-11-10,javascript_jobs_feed,frontend,,React,6
-2025-11-10,javascript_jobs_feed,frontend,,React Native,7
-2025-11-10,javascript_jobs_feed,frontend,,Solidity,2
-2025-11-10,javascript_jobs_feed,frontend,,TypeScript,5
-2025-11-10,javascript_jobs_feed,frontend,junior,Next.js,5
-2025-11-10,javascript_jobs_feed,frontend,junior,React,7
-2025-11-10,javascript_jobs_feed,frontend,junior,TypeScript,1
-2025-11-10,javascript_jobs_feed,frontend,middle,React,1
-2025-11-10,javascript_jobs_feed,frontend,middle,Vue.js,3
-2025-11-10,javascript_jobs_feed,frontend,senior,Next.js,3
-2025-11-10,javascript_jobs_feed,frontend,senior,React,3
-2025-11-10,javascript_jobs_feed,frontend,senior,TypeScript,3
-2025-11-10,javascript_jobs_feed,fullstack,,DevOps,1
-2025-11-10,javascript_jobs_feed,fullstack,,JavaScript,1
-2025-11-10,javascript_jobs_feed,fullstack,,Next.js,1
-2025-11-10,javascript_jobs_feed,fullstack,,Node.js,1
-2025-11-10,javascript_jobs_feed,fullstack,,React,1
-2025-11-10,javascript_jobs_feed,fullstack,middle,PHP,1
+2025-11-10,javascript_jobs_feed,frontend,,React,2
+2025-11-10,javascript_jobs_feed,frontend,,TypeScript,2
 2025-11-10,javascript_jobs_feed,fullstack,senior,Node.js,1
 2025-11-10,javascript_jobs_feed,fullstack,senior,Python,1
 2025-11-10,javascript_jobs_feed,fullstack,senior,React,1
@@ -76910,6 +76942,7 @@ week,channel,role,grade,skill,posts
 2025-11-10,progjob,backend,middle,PHP,4
 2025-11-10,progjob,backend,middle,PostgreSQL,6
 2025-11-10,progjob,backend,middle,Python,3
+2025-11-10,progjob,backend,middle,REST,1
 2025-11-10,progjob,backend,middle,RabbitMQ,2
 2025-11-10,progjob,backend,middle,Redis,3
 2025-11-10,progjob,backend,middle,Swagger,1
@@ -76963,6 +76996,7 @@ week,channel,role,grade,skill,posts
 2025-11-10,progjob,data_scientist,senior,Python,1
 2025-11-10,progjob,data_scientist,senior,SQL,1
 2025-11-10,progjob,data_scientist,senior,Spark,1
+2025-11-10,progjob,designer,middle,Figma,1
 2025-11-10,progjob,developer_1c,middle,1С,2
 2025-11-10,progjob,developer_1c,senior,1С,1
 2025-11-10,progjob,devops,,Bash,1
@@ -77001,6 +77035,7 @@ week,channel,role,grade,skill,posts
 2025-11-10,progjob,frontend,senior,Next.js,1
 2025-11-10,progjob,frontend,senior,Nuxt,1
 2025-11-10,progjob,frontend,senior,OpenStack,1
+2025-11-10,progjob,frontend,senior,REST,1
 2025-11-10,progjob,frontend,senior,React,1
 2025-11-10,progjob,frontend,senior,TypeScript,1
 2025-11-10,progjob,frontend,senior,Vue.js,1
@@ -77049,7 +77084,7 @@ week,channel,role,grade,skill,posts
 2025-11-10,progjob,qa,senior,Playwright,1
 2025-11-10,progjob,qa,senior,PostgreSQL,1
 2025-11-10,progjob,qa,senior,Python,3
-2025-11-10,progjob,qa,senior,REST,1
+2025-11-10,progjob,qa,senior,REST,2
 2025-11-10,progjob,qa,senior,SOAP,1
 2025-11-10,progjob,qa,senior,SQL,1
 2025-11-10,progjob,qa,senior,gRPC,1
@@ -77968,35 +78003,17 @@ week,channel,role,grade,skill,posts
 2025-11-17,javascript_jobs_feed,backend,middle,NestJS,4
 2025-11-17,javascript_jobs_feed,backend,middle,PHP,1
 2025-11-17,javascript_jobs_feed,backend,middle,Битрикс24,1
-2025-11-17,javascript_jobs_feed,backend,senior,NestJS,2
-2025-11-17,javascript_jobs_feed,backend,senior,Node.js,2
 2025-11-17,javascript_jobs_feed,devops,,DevOps,1
-2025-11-17,javascript_jobs_feed,frontend,,Angular,3
-2025-11-17,javascript_jobs_feed,frontend,,JavaScript,6
-2025-11-17,javascript_jobs_feed,frontend,,Next.js,5
-2025-11-17,javascript_jobs_feed,frontend,,Nuxt,1
-2025-11-17,javascript_jobs_feed,frontend,,React,9
-2025-11-17,javascript_jobs_feed,frontend,,React Native,7
-2025-11-17,javascript_jobs_feed,frontend,,TypeScript,4
-2025-11-17,javascript_jobs_feed,frontend,,Vue.js,1
-2025-11-17,javascript_jobs_feed,frontend,junior,React,8
-2025-11-17,javascript_jobs_feed,frontend,junior,TypeScript,1
-2025-11-17,javascript_jobs_feed,frontend,middle,Next.js,1
+2025-11-17,javascript_jobs_feed,frontend,,JavaScript,1
+2025-11-17,javascript_jobs_feed,frontend,,React,1
+2025-11-17,javascript_jobs_feed,frontend,,TypeScript,1
 2025-11-17,javascript_jobs_feed,frontend,middle,Nuxt,2
-2025-11-17,javascript_jobs_feed,frontend,middle,React,6
+2025-11-17,javascript_jobs_feed,frontend,middle,React,2
 2025-11-17,javascript_jobs_feed,frontend,middle,TypeScript,1
 2025-11-17,javascript_jobs_feed,frontend,middle,Unity,1
 2025-11-17,javascript_jobs_feed,frontend,middle,Vue.js,2
 2025-11-17,javascript_jobs_feed,frontend,senior,JavaScript,2
 2025-11-17,javascript_jobs_feed,frontend,senior,TypeScript,1
-2025-11-17,javascript_jobs_feed,frontend,senior,Vue.js,1
-2025-11-17,javascript_jobs_feed,fullstack,,JavaScript,5
-2025-11-17,javascript_jobs_feed,fullstack,,NestJS,1
-2025-11-17,javascript_jobs_feed,fullstack,,Next.js,2
-2025-11-17,javascript_jobs_feed,fullstack,,Node.js,2
-2025-11-17,javascript_jobs_feed,fullstack,,React,2
-2025-11-17,javascript_jobs_feed,fullstack,lead,JavaScript,4
-2025-11-17,javascript_jobs_feed,fullstack,middle,PHP,3
 2025-11-17,javascript_jobs_feed,fullstack,senior,Next.js,1
 2025-11-17,javascript_jobs_feed,fullstack,senior,Node.js,2
 2025-11-17,javascript_jobs_feed,fullstack,senior,Nuxt,2
@@ -78070,7 +78087,7 @@ week,channel,role,grade,skill,posts
 2025-11-17,job_javadevs,backend,middle,Quarkus,1
 2025-11-17,job_javadevs,backend,middle,RabbitMQ,1
 2025-11-17,job_javadevs,backend,middle,Redis,1
-2025-11-17,job_javadevs,backend,middle,Spring,1
+2025-11-17,job_javadevs,backend,middle,Spring,2
 2025-11-17,job_javadevs,backend,middle,Spring Boot,1
 2025-11-17,job_javadevs,backend,middle,ООП,1
 2025-11-17,job_javadevs,backend,senior,CSS,1
@@ -78566,6 +78583,7 @@ week,channel,role,grade,skill,posts
 2025-11-17,progjob,backend,senior,PostgreSQL,2
 2025-11-17,progjob,backend,senior,Python,1
 2025-11-17,progjob,backend,senior,REST,1
+2025-11-17,progjob,backend,senior,Spring,1
 2025-11-17,progjob,backend,senior,ООП,1
 2025-11-17,progjob,data_analyst,,Kaspersky,1
 2025-11-17,progjob,data_analyst,,Python,1
@@ -78649,6 +78667,7 @@ week,channel,role,grade,skill,posts
 2025-11-17,progjob,fullstack,senior,ClickHouse,1
 2025-11-17,progjob,fullstack,senior,Docker,1
 2025-11-17,progjob,fullstack,senior,Go,1
+2025-11-17,progjob,fullstack,senior,REST,1
 2025-11-17,progjob,fullstack,senior,React,1
 2025-11-17,progjob,fullstack,senior,SQL,1
 2025-11-17,progjob,fullstack,senior,TypeScript,1
@@ -79773,33 +79792,22 @@ week,channel,role,grade,skill,posts
 2025-11-24,it_vakansii_jobs,frontend,senior,DevOps,1
 2025-11-24,it_vakansii_jobs,frontend,senior,JavaScript,1
 2025-11-24,it_vakansii_jobs,frontend,senior,iOS,1
-2025-11-24,javascript_jobs_feed,backend,,Node.js,1
 2025-11-24,javascript_jobs_feed,backend,senior,Next.js,1
 2025-11-24,javascript_jobs_feed,backend,senior,Node.js,1
-2025-11-24,javascript_jobs_feed,frontend,,Angular,3
-2025-11-24,javascript_jobs_feed,frontend,,JavaScript,4
-2025-11-24,javascript_jobs_feed,frontend,,Next.js,2
-2025-11-24,javascript_jobs_feed,frontend,,React,5
-2025-11-24,javascript_jobs_feed,frontend,,React Native,8
-2025-11-24,javascript_jobs_feed,frontend,junior,React,8
-2025-11-24,javascript_jobs_feed,frontend,junior,TypeScript,1
+2025-11-24,javascript_jobs_feed,frontend,,Angular,1
+2025-11-24,javascript_jobs_feed,frontend,junior,React,1
 2025-11-24,javascript_jobs_feed,frontend,middle,JavaScript,1
 2025-11-24,javascript_jobs_feed,frontend,middle,Nuxt,1
-2025-11-24,javascript_jobs_feed,frontend,middle,React,1
 2025-11-24,javascript_jobs_feed,frontend,middle,TypeScript,1
 2025-11-24,javascript_jobs_feed,frontend,middle,Vue.js,1
 2025-11-24,javascript_jobs_feed,frontend,senior,JavaScript,2
-2025-11-24,javascript_jobs_feed,frontend,senior,React Native,1
 2025-11-24,javascript_jobs_feed,frontend,senior,TypeScript,1
 2025-11-24,javascript_jobs_feed,fullstack,,.NET,1
-2025-11-24,javascript_jobs_feed,fullstack,,Angular,3
-2025-11-24,javascript_jobs_feed,fullstack,,Go,2
 2025-11-24,javascript_jobs_feed,fullstack,,JavaScript,1
-2025-11-24,javascript_jobs_feed,fullstack,,NestJS,4
-2025-11-24,javascript_jobs_feed,fullstack,,Next.js,3
-2025-11-24,javascript_jobs_feed,fullstack,,Node.js,5
-2025-11-24,javascript_jobs_feed,fullstack,,React,9
-2025-11-24,javascript_jobs_feed,fullstack,lead,JavaScript,2
+2025-11-24,javascript_jobs_feed,fullstack,,NestJS,1
+2025-11-24,javascript_jobs_feed,fullstack,,Next.js,1
+2025-11-24,javascript_jobs_feed,fullstack,,Node.js,1
+2025-11-24,javascript_jobs_feed,fullstack,,React,2
 2025-11-24,javascript_jobs_feed,fullstack,senior,Node.js,1
 2025-11-24,javascript_jobs_feed,fullstack,senior,React,1
 2025-11-24,javascript_jobs_feed,ml_engineer,,React Native,1
@@ -79927,6 +79935,7 @@ week,channel,role,grade,skill,posts
 2025-11-24,job_python,backend,middle,Microservices,1
 2025-11-24,job_python,backend,middle,PostgreSQL,1
 2025-11-24,job_python,backend,middle,Python,3
+2025-11-24,job_python,backend,middle,REST,1
 2025-11-24,job_python,backend,middle,SQL,1
 2025-11-24,job_python,backend,middle,SQLAlchemy,1
 2025-11-24,job_python,backend,middle,ООП,1
@@ -80336,6 +80345,7 @@ week,channel,role,grade,skill,posts
 2025-11-24,progjob,data_analyst,senior,SQL,4
 2025-11-24,progjob,data_analyst,senior,Superset,1
 2025-11-24,progjob,data_analyst,senior,pandas,1
+2025-11-24,progjob,designer,junior,Figma,1
 2025-11-24,progjob,designer,junior,Photoshop,1
 2025-11-24,progjob,developer_1c,middle,1С,2
 2025-11-24,progjob,devops,,Ansible,1
@@ -80356,6 +80366,7 @@ week,channel,role,grade,skill,posts
 2025-11-24,progjob,frontend,junior,React,1
 2025-11-24,progjob,frontend,junior,TypeScript,1
 2025-11-24,progjob,frontend,middle,CSS,2
+2025-11-24,progjob,frontend,middle,Figma,1
 2025-11-24,progjob,frontend,middle,Git,1
 2025-11-24,progjob,frontend,middle,HTML,1
 2025-11-24,progjob,frontend,middle,JavaScript,1
@@ -81366,48 +81377,28 @@ week,channel,role,grade,skill,posts
 2025-12-01,it_vakansii_jobs,ml_engineer,junior,Python,1
 2025-12-01,it_vakansii_jobs,support,,Confluence,1
 2025-12-01,it_vakansii_jobs,support,,Jira,1
-2025-12-01,javascript_jobs_feed,backend,,C++,1
 2025-12-01,javascript_jobs_feed,backend,,Java,1
-2025-12-01,javascript_jobs_feed,backend,,NestJS,1
-2025-12-01,javascript_jobs_feed,backend,,Node.js,2
+2025-12-01,javascript_jobs_feed,backend,,Node.js,1
 2025-12-01,javascript_jobs_feed,backend,middle,FastAPI,1
 2025-12-01,javascript_jobs_feed,backend,middle,MongoDB,1
 2025-12-01,javascript_jobs_feed,backend,middle,PostgreSQL,1
-2025-12-01,javascript_jobs_feed,backend,senior,NestJS,1
-2025-12-01,javascript_jobs_feed,backend,senior,Node.js,1
-2025-12-01,javascript_jobs_feed,frontend,,Angular,2
 2025-12-01,javascript_jobs_feed,frontend,,Canva,2
-2025-12-01,javascript_jobs_feed,frontend,,JavaScript,9
-2025-12-01,javascript_jobs_feed,frontend,,Next.js,2
-2025-12-01,javascript_jobs_feed,frontend,,Node.js,4
-2025-12-01,javascript_jobs_feed,frontend,,React,11
-2025-12-01,javascript_jobs_feed,frontend,,React Native,3
+2025-12-01,javascript_jobs_feed,frontend,,JavaScript,3
+2025-12-01,javascript_jobs_feed,frontend,,Next.js,1
+2025-12-01,javascript_jobs_feed,frontend,,Node.js,3
+2025-12-01,javascript_jobs_feed,frontend,,React,4
 2025-12-01,javascript_jobs_feed,frontend,,TypeScript,4
-2025-12-01,javascript_jobs_feed,frontend,,Vue.js,1
 2025-12-01,javascript_jobs_feed,frontend,intern,Nuxt,1
 2025-12-01,javascript_jobs_feed,frontend,intern,Vue.js,1
-2025-12-01,javascript_jobs_feed,frontend,junior,React,5
-2025-12-01,javascript_jobs_feed,frontend,junior,TypeScript,1
 2025-12-01,javascript_jobs_feed,frontend,middle,React,1
 2025-12-01,javascript_jobs_feed,frontend,middle,React Native,1
 2025-12-01,javascript_jobs_feed,frontend,senior,JavaScript,2
-2025-12-01,javascript_jobs_feed,frontend,senior,Next.js,1
-2025-12-01,javascript_jobs_feed,frontend,senior,React,2
-2025-12-01,javascript_jobs_feed,frontend,senior,React Native,2
-2025-12-01,javascript_jobs_feed,frontend,senior,TypeScript,3
-2025-12-01,javascript_jobs_feed,fullstack,,Angular,6
-2025-12-01,javascript_jobs_feed,fullstack,,Go,1
-2025-12-01,javascript_jobs_feed,fullstack,,NestJS,6
-2025-12-01,javascript_jobs_feed,fullstack,,Next.js,2
-2025-12-01,javascript_jobs_feed,fullstack,,Node.js,6
-2025-12-01,javascript_jobs_feed,fullstack,,Nuxt,1
-2025-12-01,javascript_jobs_feed,fullstack,,React,11
+2025-12-01,javascript_jobs_feed,frontend,senior,React,1
+2025-12-01,javascript_jobs_feed,frontend,senior,TypeScript,2
+2025-12-01,javascript_jobs_feed,fullstack,,Node.js,1
+2025-12-01,javascript_jobs_feed,fullstack,,React,1
 2025-12-01,javascript_jobs_feed,fullstack,,Symfony,2
-2025-12-01,javascript_jobs_feed,fullstack,,Vue.js,3
-2025-12-01,javascript_jobs_feed,fullstack,lead,JavaScript,3
-2025-12-01,javascript_jobs_feed,fullstack,lead,TypeScript,1
-2025-12-01,javascript_jobs_feed,fullstack,middle,PHP,1
-2025-12-01,javascript_jobs_feed,fullstack,senior,Node.js,2
+2025-12-01,javascript_jobs_feed,fullstack,,Vue.js,2
 2025-12-01,javascript_jobs_feed,mobile,,React Native,1
 2025-12-01,job_javadevs,backend,,Azure,1
 2025-12-01,job_javadevs,backend,,ClickHouse,2
@@ -81957,10 +81948,12 @@ week,channel,role,grade,skill,posts
 2025-12-01,progjob,backend,,Express,1
 2025-12-01,progjob,backend,,FastAPI,1
 2025-12-01,progjob,backend,,JavaScript,2
+2025-12-01,progjob,backend,,MS SQL Server,1
 2025-12-01,progjob,backend,,NestJS,1
 2025-12-01,progjob,backend,,Node.js,1
 2025-12-01,progjob,backend,,PostgreSQL,3
 2025-12-01,progjob,backend,,Python,1
+2025-12-01,progjob,backend,,REST,1
 2025-12-01,progjob,backend,,Swagger,1
 2025-12-01,progjob,backend,,asyncio,1
 2025-12-01,progjob,backend,junior,Docker,3
@@ -82097,6 +82090,7 @@ week,channel,role,grade,skill,posts
 2025-12-01,progjob,mobile,,TypeScript,1
 2025-12-01,progjob,mobile,middle,Dart,2
 2025-12-01,progjob,mobile,middle,Flutter,2
+2025-12-01,progjob,mobile,middle,REST,1
 2025-12-01,progjob,mobile,senior,iOS,1
 2025-12-01,progjob,qa,,Kaspersky,1
 2025-12-01,progjob,qa,,Windows,1
@@ -83254,42 +83248,21 @@ week,channel,role,grade,skill,posts
 2025-12-08,it_vakansii_jobs,fullstack,middle,React,2
 2025-12-08,it_vakansii_jobs,fullstack,middle,TypeScript,1
 2025-12-08,it_vakansii_jobs,fullstack,middle,Vue.js,1
-2025-12-08,javascript_jobs_feed,backend,,C++,1
 2025-12-08,javascript_jobs_feed,backend,,Go,1
-2025-12-08,javascript_jobs_feed,backend,,NestJS,1
 2025-12-08,javascript_jobs_feed,backend,,Node.js,2
 2025-12-08,javascript_jobs_feed,backend,lead,Node.js,1
 2025-12-08,javascript_jobs_feed,backend,lead,TypeScript,1
 2025-12-08,javascript_jobs_feed,backend,senior,Go,1
 2025-12-08,javascript_jobs_feed,backend,senior,Node.js,1
 2025-12-08,javascript_jobs_feed,frontend,,Canva,1
-2025-12-08,javascript_jobs_feed,frontend,,JavaScript,8
-2025-12-08,javascript_jobs_feed,frontend,,Next.js,2
+2025-12-08,javascript_jobs_feed,frontend,,JavaScript,2
 2025-12-08,javascript_jobs_feed,frontend,,Node.js,2
-2025-12-08,javascript_jobs_feed,frontend,,React,11
-2025-12-08,javascript_jobs_feed,frontend,,React Native,4
+2025-12-08,javascript_jobs_feed,frontend,,React,4
 2025-12-08,javascript_jobs_feed,frontend,,TypeScript,3
-2025-12-08,javascript_jobs_feed,frontend,junior,React,4
-2025-12-08,javascript_jobs_feed,frontend,junior,TypeScript,1
 2025-12-08,javascript_jobs_feed,frontend,lead,Next.js,1
 2025-12-08,javascript_jobs_feed,frontend,lead,React,1
-2025-12-08,javascript_jobs_feed,frontend,senior,Next.js,2
-2025-12-08,javascript_jobs_feed,frontend,senior,React,5
-2025-12-08,javascript_jobs_feed,frontend,senior,TypeScript,2
-2025-12-08,javascript_jobs_feed,frontend,senior,Vue.js,3
-2025-12-08,javascript_jobs_feed,fullstack,,Angular,5
-2025-12-08,javascript_jobs_feed,fullstack,,Django,1
-2025-12-08,javascript_jobs_feed,fullstack,,Go,1
-2025-12-08,javascript_jobs_feed,fullstack,,NestJS,5
-2025-12-08,javascript_jobs_feed,fullstack,,Next.js,1
-2025-12-08,javascript_jobs_feed,fullstack,,Node.js,3
-2025-12-08,javascript_jobs_feed,fullstack,,React,9
-2025-12-08,javascript_jobs_feed,fullstack,lead,JavaScript,2
-2025-12-08,javascript_jobs_feed,fullstack,lead,TypeScript,2
 2025-12-08,javascript_jobs_feed,fullstack,middle,Angular,1
-2025-12-08,javascript_jobs_feed,fullstack,senior,NestJS,2
-2025-12-08,javascript_jobs_feed,fullstack,senior,Next.js,2
-2025-12-08,javascript_jobs_feed,fullstack,senior,Node.js,5
+2025-12-08,javascript_jobs_feed,fullstack,senior,Node.js,1
 2025-12-08,javascript_jobs_feed,fullstack,senior,React,1
 2025-12-08,javascript_jobs_feed,mobile,middle,React Native,1
 2025-12-08,job_javadevs,backend,,Agile,1
@@ -83838,6 +83811,7 @@ week,channel,role,grade,skill,posts
 2025-12-08,progjob,backend,junior,HTTP,1
 2025-12-08,progjob,backend,junior,PostgreSQL,1
 2025-12-08,progjob,backend,junior,Python,1
+2025-12-08,progjob,backend,junior,REST,1
 2025-12-08,progjob,backend,junior,SQL,1
 2025-12-08,progjob,backend,junior,TCP,1
 2025-12-08,progjob,backend,lead,Docker,1
@@ -83875,6 +83849,7 @@ week,channel,role,grade,skill,posts
 2025-12-08,progjob,backend,senior,PHP,1
 2025-12-08,progjob,backend,senior,PostgreSQL,3
 2025-12-08,progjob,backend,senior,Python,1
+2025-12-08,progjob,backend,senior,REST,1
 2025-12-08,progjob,backend,senior,RabbitMQ,2
 2025-12-08,progjob,backend,senior,Redis,1
 2025-12-08,progjob,backend,senior,SQL,1
@@ -83905,6 +83880,7 @@ week,channel,role,grade,skill,posts
 2025-12-08,progjob,data_scientist,senior,PyTorch,1
 2025-12-08,progjob,data_scientist,senior,Python,1
 2025-12-08,progjob,designer,senior,Adobe Illustrator,1
+2025-12-08,progjob,designer,senior,Figma,1
 2025-12-08,progjob,developer_1c,middle,1С,1
 2025-12-08,progjob,devops,,Ansible,1
 2025-12-08,progjob,devops,,DevOps,2
@@ -84612,6 +84588,7 @@ week,channel,role,grade,skill,posts
 2025-12-15,devs_it,software_engineer,intern,Windows,1
 2025-12-15,devs_it,software_engineer,intern,ООП,1
 2025-12-15,devs_it,software_engineer,middle,.NET,1
+2025-12-15,devs_it,software_engineer,middle,AWS,1
 2025-12-15,devs_it,software_engineer,middle,Boost,1
 2025-12-15,devs_it,software_engineer,middle,C#,1
 2025-12-15,devs_it,software_engineer,middle,C++,1
@@ -84885,37 +84862,16 @@ week,channel,role,grade,skill,posts
 2025-12-15,it_vakansii_jobs,frontend,middle,Java,1
 2025-12-15,it_vakansii_jobs,frontend,middle,Node.js,1
 2025-12-15,it_vakansii_jobs,frontend,middle,Python,1
-2025-12-15,javascript_jobs_feed,devops,,DevOps,3
-2025-12-15,javascript_jobs_feed,frontend,,Angular,1
 2025-12-15,javascript_jobs_feed,frontend,,Canva,1
-2025-12-15,javascript_jobs_feed,frontend,,JavaScript,7
-2025-12-15,javascript_jobs_feed,frontend,,Next.js,2
+2025-12-15,javascript_jobs_feed,frontend,,JavaScript,2
 2025-12-15,javascript_jobs_feed,frontend,,Node.js,2
-2025-12-15,javascript_jobs_feed,frontend,,React,8
+2025-12-15,javascript_jobs_feed,frontend,,React,2
 2025-12-15,javascript_jobs_feed,frontend,,TypeScript,2
-2025-12-15,javascript_jobs_feed,frontend,junior,React,1
-2025-12-15,javascript_jobs_feed,frontend,junior,TypeScript,1
 2025-12-15,javascript_jobs_feed,frontend,middle,Next.js,1
-2025-12-15,javascript_jobs_feed,frontend,middle,Nuxt,1
-2025-12-15,javascript_jobs_feed,frontend,middle,Vue.js,1
 2025-12-15,javascript_jobs_feed,frontend,senior,JavaScript,1
-2025-12-15,javascript_jobs_feed,frontend,senior,Next.js,1
-2025-12-15,javascript_jobs_feed,frontend,senior,React,1
-2025-12-15,javascript_jobs_feed,frontend,senior,TypeScript,2
-2025-12-15,javascript_jobs_feed,fullstack,,Angular,2
-2025-12-15,javascript_jobs_feed,fullstack,,Django,1
-2025-12-15,javascript_jobs_feed,fullstack,,Go,1
-2025-12-15,javascript_jobs_feed,fullstack,,NestJS,2
-2025-12-15,javascript_jobs_feed,fullstack,,Next.js,1
-2025-12-15,javascript_jobs_feed,fullstack,,Node.js,3
-2025-12-15,javascript_jobs_feed,fullstack,,React,6
-2025-12-15,javascript_jobs_feed,fullstack,junior,Node.js,1
-2025-12-15,javascript_jobs_feed,fullstack,junior,React,1
-2025-12-15,javascript_jobs_feed,fullstack,lead,JavaScript,1
-2025-12-15,javascript_jobs_feed,fullstack,lead,TypeScript,1
-2025-12-15,javascript_jobs_feed,fullstack,senior,NestJS,1
-2025-12-15,javascript_jobs_feed,fullstack,senior,Next.js,1
-2025-12-15,javascript_jobs_feed,fullstack,senior,Node.js,2
+2025-12-15,javascript_jobs_feed,frontend,senior,TypeScript,1
+2025-12-15,javascript_jobs_feed,fullstack,,Node.js,1
+2025-12-15,javascript_jobs_feed,fullstack,,React,1
 2025-12-15,job_javadevs,backend,,.NET,1
 2025-12-15,job_javadevs,backend,,ActiveMQ Artemis,1
 2025-12-15,job_javadevs,backend,,Agile,1
@@ -85477,6 +85433,7 @@ week,channel,role,grade,skill,posts
 2025-12-15,product_jobs,manager,senior,User story,1
 2025-12-15,progjob,backend,,Java,1
 2025-12-15,progjob,backend,,SonarQube,1
+2025-12-15,progjob,backend,,Spring,1
 2025-12-15,progjob,backend,,Spring Boot,1
 2025-12-15,progjob,backend,middle,AWS,1
 2025-12-15,progjob,backend,middle,Docker,1
@@ -86970,6 +86927,7 @@ week,channel,role,grade,skill,posts
 2025-12-22,product_jobs,manager,senior,SEO,1
 2025-12-22,progjob,backend,,Go,1
 2025-12-22,progjob,backend,,Kubernetes,1
+2025-12-22,progjob,backend,,Yii,1
 2025-12-22,progjob,backend,lead,Elasticsearch,1
 2025-12-22,progjob,backend,lead,MongoDB,1
 2025-12-22,progjob,backend,lead,NestJS,1
@@ -86982,8 +86940,10 @@ week,channel,role,grade,skill,posts
 2025-12-22,progjob,backend,middle,MySQL,1
 2025-12-22,progjob,backend,middle,PostgreSQL,2
 2025-12-22,progjob,backend,middle,Python,1
+2025-12-22,progjob,backend,middle,REST,1
 2025-12-22,progjob,backend,middle,Rust,1
 2025-12-22,progjob,backend,middle,SQL,1
+2025-12-22,progjob,backend,middle,Spring,1
 2025-12-22,progjob,backend,middle,ООП,1
 2025-12-22,progjob,backend,senior,CI/CD,1
 2025-12-22,progjob,backend,senior,Docker,2
@@ -87989,6 +87949,7 @@ week,channel,role,grade,skill,posts
 2025-12-29,progjob,backend,,JavaScript,1
 2025-12-29,progjob,backend,,Jira,1
 2025-12-29,progjob,backend,,React,1
+2025-12-29,progjob,backend,,Spring,1
 2025-12-29,progjob,backend,,TypeScript,1
 2025-12-29,progjob,backend,junior,Go,1
 2025-12-29,progjob,backend,senior,Linux,1

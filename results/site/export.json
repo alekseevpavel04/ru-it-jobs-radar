@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/export.py",
   "command": "python -m radar.site.export",
-  "commit": "54310e4-dirty",
-  "created_at": "2026-10-15T10:51:11+00:00",
+  "commit": "f0b4f20-dirty",
+  "created_at": "2026-10-15T11:33:59+00:00",
   "metrics": {
     "bytes_meta": {
       "value": 988,
@@ -15,7 +15,7 @@
       "denominator": null
     },
     "bytes_forecast": {
-      "value": 16392,
+      "value": 16397,
       "n": null,
       "denominator": null
     },
@@ -25,7 +25,7 @@
       "denominator": null
     },
     "bytes_skill_effects": {
-      "value": 12653,
+      "value": 13653,
       "n": null,
       "denominator": null
     },
@@ -35,7 +35,7 @@
       "denominator": null
     },
     "bytes_skill_trends": {
-      "value": 340594,
+      "value": 335033,
       "n": null,
       "denominator": null
     },
@@ -50,12 +50,12 @@
       "denominator": null
     },
     "rows_weekly_telegram": {
-      "value": 1936,
+      "value": 1935,
       "n": null,
       "denominator": null
     },
     "bytes_weekly_telegram": {
-      "value": 227793,
+      "value": 227623,
       "n": null,
       "denominator": null
     },
@@ -65,17 +65,17 @@
       "denominator": null
     },
     "bytes_skills": {
-      "value": 82734,
+      "value": 82719,
       "n": null,
       "denominator": null
     },
     "rows_skills_by_role": {
-      "value": 3194,
+      "value": 3082,
       "n": null,
       "denominator": null
     },
     "bytes_skills_by_role": {
-      "value": 446211,
+      "value": 430603,
       "n": null,
       "denominator": null
     },
@@ -85,7 +85,7 @@
       "denominator": null
     },
     "bytes_skills_junior": {
-      "value": 52521,
+      "value": 52520,
       "n": null,
       "denominator": null
     },
@@ -95,7 +95,7 @@
       "denominator": null
     },
     "bytes_work_format": {
-      "value": 22483,
+      "value": 22481,
       "n": null,
       "denominator": null
     },
@@ -125,7 +125,7 @@
       "denominator": null
     },
     "bytes_salaries_telegram": {
-      "value": 53030,
+      "value": 53005,
       "n": null,
       "denominator": null
     },
@@ -145,7 +145,7 @@
       "denominator": null
     },
     "bytes_forecast_history": {
-      "value": 191444,
+      "value": 191420,
       "n": null,
       "denominator": null
     },

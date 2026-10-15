@@ -181,7 +181,7 @@ week,channel,role,grade,posts
 2024-01-08,devs_it,qa,middle,2
 2024-01-08,devs_it,support,intern,1
 2024-01-08,devs_it,system_analyst,middle,1
-2024-01-08,dotnetrujobsfeed,backend,,2
+2024-01-08,dotnetrujobsfeed,backend,,1
 2024-01-08,dotnetrujobsfeed,backend,middle,2
 2024-01-08,dotnetrujobsfeed,backend,senior,2
 2024-01-08,dotnetrujobsfeed,fullstack,middle,1
@@ -509,7 +509,6 @@ week,channel,role,grade,posts
 2024-01-15,forpython,data_engineer,senior,1
 2024-01-15,forpython,mlops,middle,1
 2024-01-15,gamedevjob,designer,,2
-2024-01-15,gamedevjob,designer,intern,1
 2024-01-15,gamedevjob,designer,junior,1
 2024-01-15,geekjobs,backend,lead,2
 2024-01-15,geekjobs,data_analyst,,1
@@ -1153,7 +1152,6 @@ week,channel,role,grade,posts
 2024-01-29,myitjob,developer_1c,intern,1
 2024-01-29,myitjob,qa,intern,6
 2024-01-29,myitjob,software_engineer,intern,1
-2024-01-29,nlp_jobs,manager,,1
 2024-01-29,nlp_jobs,ml_engineer,,1
 2024-01-29,product_jobs,data_analyst,,1
 2024-01-29,product_jobs,manager,,4
@@ -2536,7 +2534,7 @@ week,channel,role,grade,posts
 2024-03-04,dataviz_jobs,data_analyst,,1
 2024-03-04,de_rabota,data_engineer,,1
 2024-03-04,de_rabota,data_engineer,senior,2
-2024-03-04,devjobs,designer,,8
+2024-03-04,devjobs,designer,,7
 2024-03-04,devjobs,designer,junior,2
 2024-03-04,devjobs,frontend,,1
 2024-03-04,devjobs,mobile,,2
@@ -2590,7 +2588,7 @@ week,channel,role,grade,posts
 2024-03-04,forpython,backend,middle,1
 2024-03-04,forpython,software_engineer,senior,1
 2024-03-04,gamedevjob,designer,,2
-2024-03-04,gamedevjob,designer,lead,1
+2024-03-04,gamedevjob,designer,lead,2
 2024-03-04,gamedevjob,designer,middle,1
 2024-03-04,gamedevjob,mobile,,1
 2024-03-04,gamedevjob,mobile,middle,1
@@ -4456,8 +4454,7 @@ week,channel,role,grade,posts
 2024-04-15,it_vakansii_jobs,other_it,middle,1
 2024-04-15,javascript_jobs_feed,backend,middle,2
 2024-04-15,javascript_jobs_feed,frontend,,2
-2024-04-15,javascript_jobs_feed,frontend,intern,1
-2024-04-15,javascript_jobs_feed,frontend,junior,2
+2024-04-15,javascript_jobs_feed,frontend,junior,1
 2024-04-15,javascript_jobs_feed,frontend,middle,3
 2024-04-15,javascript_jobs_feed,frontend,senior,5
 2024-04-15,javascript_jobs_feed,fullstack,senior,2
@@ -4786,7 +4783,6 @@ week,channel,role,grade,posts
 2024-04-22,it_vakansii_jobs,other_it,intern,1
 2024-04-22,it_vakansii_jobs,other_it,lead,2
 2024-04-22,it_vakansii_jobs,other_it,middle,1
-2024-04-22,javascript_jobs_feed,frontend,intern,1
 2024-04-22,jc_it,manager,senior,1
 2024-04-22,jc_it,other_it,,1
 2024-04-22,job_javadevs,backend,,6
@@ -5042,7 +5038,6 @@ week,channel,role,grade,posts
 2024-04-29,it_vakansii_jobs,data_engineer,lead,1
 2024-04-29,it_vakansii_jobs,fullstack,middle,1
 2024-04-29,javascript_jobs_feed,backend,middle,1
-2024-04-29,javascript_jobs_feed,frontend,intern,1
 2024-04-29,jc_it,support,,1
 2024-04-29,job_javadevs,backend,,6
 2024-04-29,job_javadevs,backend,junior,1
@@ -5236,7 +5231,6 @@ week,channel,role,grade,posts
 2024-05-06,it_vakansii_jobs,data_scientist,junior,1
 2024-05-06,it_vakansii_jobs,designer,senior,1
 2024-05-06,it_vakansii_jobs,manager,middle,1
-2024-05-06,javascript_jobs_feed,frontend,intern,1
 2024-05-06,jc_it,support,,1
 2024-05-06,job_javadevs,backend,,8
 2024-05-06,job_javadevs,backend,intern,1
@@ -5486,7 +5480,6 @@ week,channel,role,grade,posts
 2024-05-13,infosec_work,security,senior,1
 2024-05-13,it_vakansii_jobs,data_analyst,,1
 2024-05-13,it_vakansii_jobs,designer,senior,1
-2024-05-13,javascript_jobs_feed,frontend,intern,1
 2024-05-13,jc_it,manager,,1
 2024-05-13,jc_it,support,,1
 2024-05-13,job_javadevs,backend,,5
@@ -5806,7 +5799,6 @@ week,channel,role,grade,posts
 2024-05-20,infosec_work,security,senior,1
 2024-05-20,it_vakansii_jobs,frontend,middle,1
 2024-05-20,it_vakansii_jobs,manager,,1
-2024-05-20,javascript_jobs_feed,frontend,intern,1
 2024-05-20,jc_it,fullstack,,1
 2024-05-20,jc_it,sysadmin,junior,1
 2024-05-20,job_javadevs,backend,,3
@@ -6135,7 +6127,6 @@ week,channel,role,grade,posts
 2024-05-27,infosec_work,security,senior,3
 2024-05-27,it_vakansii_jobs,frontend,middle,1
 2024-05-27,it_vakansii_jobs,frontend,senior,1
-2024-05-27,javascript_jobs_feed,frontend,intern,1
 2024-05-27,jc_it,fullstack,,1
 2024-05-27,jc_it,support,,1
 2024-05-27,jc_it,sysadmin,,1
@@ -7139,7 +7130,7 @@ week,channel,role,grade,posts
 2024-06-17,javascript_jobs_feed,backend,lead,1
 2024-06-17,javascript_jobs_feed,backend,middle,3
 2024-06-17,javascript_jobs_feed,backend,senior,1
-2024-06-17,javascript_jobs_feed,frontend,,4
+2024-06-17,javascript_jobs_feed,frontend,,3
 2024-06-17,javascript_jobs_feed,frontend,junior,1
 2024-06-17,javascript_jobs_feed,frontend,middle,7
 2024-06-17,javascript_jobs_feed,frontend,senior,2
@@ -10367,7 +10358,6 @@ week,channel,role,grade,posts
 2024-08-19,it_vakansii_jobs,fullstack,senior,1
 2024-08-19,it_vakansii_jobs,other_it,junior,1
 2024-08-19,javascript_jobs_feed,backend,lead,1
-2024-08-19,javascript_jobs_feed,frontend,junior,1
 2024-08-19,jc_it,other_it,,1
 2024-08-19,job_javadevs,backend,,7
 2024-08-19,job_javadevs,backend,lead,1
@@ -10701,7 +10691,6 @@ week,channel,role,grade,posts
 2024-08-26,it_vakansii_jobs,other_it,middle,1
 2024-08-26,it_vakansii_jobs,security,,1
 2024-08-26,javascript_jobs_feed,backend,lead,1
-2024-08-26,javascript_jobs_feed,frontend,junior,1
 2024-08-26,jc_it,backend,middle,1
 2024-08-26,jc_it,other_it,,1
 2024-08-26,job_javadevs,backend,,4
@@ -11041,7 +11030,6 @@ week,channel,role,grade,posts
 2024-09-02,it_vakansii_jobs,frontend,intern,1
 2024-09-02,it_vakansii_jobs,fullstack,senior,1
 2024-09-02,javascript_jobs_feed,backend,lead,1
-2024-09-02,javascript_jobs_feed,frontend,junior,1
 2024-09-02,jc_it,other_it,,1
 2024-09-02,job_javadevs,backend,,4
 2024-09-02,job_javadevs,backend,junior,1
@@ -11387,7 +11375,6 @@ week,channel,role,grade,posts
 2024-09-09,it_vakansii_jobs,frontend,junior,1
 2024-09-09,it_vakansii_jobs,frontend,senior,1
 2024-09-09,javascript_jobs_feed,backend,lead,1
-2024-09-09,javascript_jobs_feed,frontend,junior,2
 2024-09-09,jc_it,other_it,,1
 2024-09-09,jc_it,support,,1
 2024-09-09,job_javadevs,backend,,4
@@ -11745,7 +11732,6 @@ week,channel,role,grade,posts
 2024-09-16,it_vakansii_jobs,frontend,middle,1
 2024-09-16,it_vakansii_jobs,other_it,senior,1
 2024-09-16,javascript_jobs_feed,backend,lead,1
-2024-09-16,javascript_jobs_feed,frontend,junior,1
 2024-09-16,jc_it,other_it,,1
 2024-09-16,jc_it,support,,1
 2024-09-16,job_javadevs,backend,,3
@@ -12103,7 +12089,6 @@ week,channel,role,grade,posts
 2024-09-23,it_vakansii_jobs,other_it,,1
 2024-09-23,it_vakansii_jobs,other_it,junior,1
 2024-09-23,it_vakansii_jobs,other_it,senior,1
-2024-09-23,javascript_jobs_feed,frontend,junior,1
 2024-09-23,jc_it,other_it,,1
 2024-09-23,job_javadevs,backend,,3
 2024-09-23,job_javadevs,backend,junior,3
@@ -12447,7 +12432,6 @@ week,channel,role,grade,posts
 2024-09-30,it_vakansii_jobs,fullstack,junior,1
 2024-09-30,it_vakansii_jobs,fullstack,middle,1
 2024-09-30,javascript_jobs_feed,frontend,,1
-2024-09-30,javascript_jobs_feed,frontend,junior,1
 2024-09-30,jc_it,other_it,,1
 2024-09-30,job_javadevs,backend,,4
 2024-09-30,job_javadevs,backend,junior,2
@@ -12796,7 +12780,6 @@ week,channel,role,grade,posts
 2024-10-07,infosec_work,security,lead,1
 2024-10-07,infosec_work,security,senior,3
 2024-10-07,it_vakansii_jobs,backend,,1
-2024-10-07,javascript_jobs_feed,frontend,junior,1
 2024-10-07,jc_it,other_it,,1
 2024-10-07,job_javadevs,backend,,1
 2024-10-07,job_javadevs,backend,intern,1
@@ -13137,7 +13120,6 @@ week,channel,role,grade,posts
 2024-10-14,infosec_work,security,lead,2
 2024-10-14,it_vakansii_jobs,frontend,middle,1
 2024-10-14,it_vakansii_jobs,other_it,junior,2
-2024-10-14,javascript_jobs_feed,frontend,junior,2
 2024-10-14,jc_it,other_it,,1
 2024-10-14,job_javadevs,backend,,4
 2024-10-14,job_javadevs,backend,intern,1
@@ -13446,7 +13428,6 @@ week,channel,role,grade,posts
 2024-10-21,it_vakansii_jobs,frontend,junior,1
 2024-10-21,it_vakansii_jobs,other_it,middle,1
 2024-10-21,javascript_jobs_feed,frontend,,1
-2024-10-21,javascript_jobs_feed,frontend,junior,1
 2024-10-21,jc_it,other_it,,1
 2024-10-21,job_javadevs,backend,,5
 2024-10-21,job_javadevs,backend,intern,1

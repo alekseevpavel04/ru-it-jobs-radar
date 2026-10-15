@@ -20,7 +20,8 @@
       "pct_ci_low": -5.4,
       "pct_ci_high": 13.4,
       "p_holm": 1.0,
-      "q_bh": 0.501
+      "q_bh": 0.501,
+      "robust": false
     },
     {
       "skill": "Linux",
@@ -31,7 +32,8 @@
       "pct_ci_low": 0.9,
       "pct_ci_high": 17.8,
       "p_holm": 0.0833,
-      "q_bh": 0.0238
+      "q_bh": 0.0238,
+      "robust": true
     },
     {
       "skill": "Windows",
@@ -42,7 +44,8 @@
       "pct_ci_low": -14.6,
       "pct_ci_high": 1.2,
       "p_holm": 0.653,
-      "q_bh": 0.108
+      "q_bh": 0.108,
+      "robust": false
     },
     {
       "skill": "SQL",
@@ -53,7 +56,8 @@
       "pct_ci_low": -10.0,
       "pct_ci_high": 8.6,
       "p_holm": 1.0,
-      "q_bh": 0.905
+      "q_bh": 0.905,
+      "robust": false
     },
     {
       "skill": "Python",
@@ -64,7 +68,8 @@
       "pct_ci_low": 1.2,
       "pct_ci_high": 27.0,
       "p_holm": 0.0888,
-      "q_bh": 0.0238
+      "q_bh": 0.0238,
+      "robust": false
     },
     {
       "skill": "PostgreSQL",
@@ -75,7 +80,8 @@
       "pct_ci_low": -6.9,
       "pct_ci_high": 19.1,
       "p_holm": 1.0,
-      "q_bh": 0.497
+      "q_bh": 0.497,
+      "robust": false
     },
     {
       "skill": "Git",
@@ -86,7 +92,8 @@
       "pct_ci_low": -7.5,
       "pct_ci_high": 19.4,
       "p_holm": 1.0,
-      "q_bh": 0.501
+      "q_bh": 0.501,
+      "robust": false
     },
     {
       "skill": "Excel",
@@ -97,7 +104,8 @@
       "pct_ci_low": -18.3,
       "pct_ci_high": 2.7,
       "p_holm": 1.0,
-      "q_bh": 0.188
+      "q_bh": 0.188,
+      "robust": false
     },
     {
       "skill": "TCP/IP",
@@ -108,7 +116,8 @@
       "pct_ci_low": -13.5,
       "pct_ci_high": 9.0,
       "p_holm": 1.0,
-      "q_bh": 0.728
+      "q_bh": 0.728,
+      "robust": false
     },
     {
       "skill": "REST",
@@ -119,7 +128,8 @@
       "pct_ci_low": -18.4,
       "pct_ci_high": 6.9,
       "p_holm": 1.0,
-      "q_bh": 0.4
+      "q_bh": 0.4,
+      "robust": false
     },
     {
       "skill": "DNS",
@@ -130,7 +140,8 @@
       "pct_ci_low": -23.2,
       "pct_ci_high": 21.6,
       "p_holm": 1.0,
-      "q_bh": 0.905
+      "q_bh": 0.905,
+      "robust": false
     },
     {
       "skill": "C++",
@@ -141,7 +152,8 @@
       "pct_ci_low": -14.8,
       "pct_ci_high": 19.6,
       "p_holm": 1.0,
-      "q_bh": 0.99
+      "q_bh": 0.99,
+      "robust": false
     },
     {
       "skill": "MS Office",
@@ -152,7 +164,8 @@
       "pct_ci_low": -26.0,
       "pct_ci_high": -2.7,
       "p_holm": 0.0388,
-      "q_bh": 0.0238
+      "q_bh": 0.0238,
+      "robust": true
     },
     {
       "skill": "DHCP",
@@ -163,7 +176,8 @@
       "pct_ci_low": -17.6,
       "pct_ci_high": 12.8,
       "p_holm": 1.0,
-      "q_bh": 0.763
+      "q_bh": 0.763,
+      "robust": false
     },
     {
       "skill": "Docker",
@@ -174,7 +188,8 @@
       "pct_ci_low": -14.7,
       "pct_ci_high": 16.8,
       "p_holm": 1.0,
-      "q_bh": 0.99
+      "q_bh": 0.99,
+      "robust": false
     },
     {
       "skill": "CI/CD",
@@ -185,7 +200,8 @@
       "pct_ci_low": -9.9,
       "pct_ci_high": 25.1,
       "p_holm": 1.0,
-      "q_bh": 0.526
+      "q_bh": 0.526,
+      "robust": false
     },
     {
       "skill": "MS SQL Server",
@@ -196,7 +212,8 @@
       "pct_ci_low": -14.0,
       "pct_ci_high": 15.4,
       "p_holm": 1.0,
-      "q_bh": 0.99
+      "q_bh": 0.99,
+      "robust": false
     },
     {
       "skill": "Active Directory",
@@ -207,7 +224,8 @@
       "pct_ci_low": -9.5,
       "pct_ci_high": 13.7,
       "p_holm": 1.0,
-      "q_bh": 0.905
+      "q_bh": 0.905,
+      "robust": false
     },
     {
       "skill": "Windows Server",
@@ -218,7 +236,8 @@
       "pct_ci_low": -12.7,
       "pct_ci_high": 14.3,
       "p_holm": 1.0,
-      "q_bh": 0.99
+      "q_bh": 0.99,
+      "robust": false
     },
     {
       "skill": "HTTP",
@@ -229,7 +248,8 @@
       "pct_ci_low": -13.5,
       "pct_ci_high": 16.7,
       "p_holm": 1.0,
-      "q_bh": 0.99
+      "q_bh": 0.99,
+      "robust": false
     },
     {
       "skill": "Bash",
@@ -240,7 +260,8 @@
       "pct_ci_low": -25.0,
       "pct_ci_high": 6.1,
       "p_holm": 1.0,
-      "q_bh": 0.248
+      "q_bh": 0.248,
+      "robust": false
     },
     {
       "skill": "JavaScript",
@@ -251,7 +272,8 @@
       "pct_ci_low": -16.9,
       "pct_ci_high": 20.1,
       "p_holm": 1.0,
-      "q_bh": 0.99
+      "q_bh": 0.99,
+      "robust": false
     },
     {
       "skill": "Java",
@@ -262,7 +284,8 @@
       "pct_ci_low": -24.8,
       "pct_ci_high": 5.2,
       "p_holm": 1.0,
-      "q_bh": 0.217
+      "q_bh": 0.217,
+      "robust": false
     },
     {
       "skill": "Kubernetes",
@@ -273,7 +296,8 @@
       "pct_ci_low": -22.2,
       "pct_ci_high": 15.1,
       "p_holm": 1.0,
-      "q_bh": 0.706
+      "q_bh": 0.706,
+      "robust": false
     },
     {
       "skill": "1С:ЗУП",
@@ -284,7 +308,8 @@
       "pct_ci_low": -0.4,
       "pct_ci_high": 30.2,
       "p_holm": 0.281,
-      "q_bh": 0.0527
+      "q_bh": 0.0527,
+      "robust": false
     },
     {
       "skill": "Jira",
@@ -295,7 +320,8 @@
       "pct_ci_low": -25.6,
       "pct_ci_high": 9.3,
       "p_holm": 1.0,
-      "q_bh": 0.376
+      "q_bh": 0.376,
+      "robust": false
     },
     {
       "skill": "1С:ERP",
@@ -306,7 +332,8 @@
       "pct_ci_low": 0.9,
       "pct_ci_high": 43.7,
       "p_holm": 0.147,
-      "q_bh": 0.0323
+      "q_bh": 0.0323,
+      "robust": true
     },
     {
       "skill": "Design patterns",
@@ -317,7 +344,8 @@
       "pct_ci_low": -8.3,
       "pct_ci_high": 38.1,
       "p_holm": 1.0,
-      "q_bh": 0.33
+      "q_bh": 0.33,
+      "robust": null
     },
     {
       "skill": "ООП",
@@ -328,7 +356,8 @@
       "pct_ci_low": -25.9,
       "pct_ci_high": 11.3,
       "p_holm": 1.0,
-      "q_bh": 0.436
+      "q_bh": 0.436,
+      "robust": false
     },
     {
       "skill": "Kafka",
@@ -339,7 +368,8 @@
       "pct_ci_low": -19.3,
       "pct_ci_high": 21.3,
       "p_holm": 1.0,
-      "q_bh": 0.99
+      "q_bh": 0.99,
+      "robust": null
     },
     {
       "skill": "Astra Linux",
@@ -350,7 +380,8 @@
       "pct_ci_low": -12.0,
       "pct_ci_high": 13.2,
       "p_holm": 1.0,
-      "q_bh": 0.99
+      "q_bh": 0.99,
+      "robust": false
     },
     {
       "skill": "C#",
@@ -361,7 +392,8 @@
       "pct_ci_low": -21.1,
       "pct_ci_high": 20.3,
       "p_holm": 1.0,
-      "q_bh": 0.905
+      "q_bh": 0.905,
+      "robust": false
     },
     {
       "skill": "JSON",
@@ -372,7 +404,8 @@
       "pct_ci_low": -5.9,
       "pct_ci_high": 43.3,
       "p_holm": 1.0,
-      "q_bh": 0.217
+      "q_bh": 0.217,
+      "robust": false
     },
     {
       "skill": "Microservices",
@@ -383,7 +416,8 @@
       "pct_ci_low": 2.8,
       "pct_ci_high": 49.9,
       "p_holm": 0.064,
-      "q_bh": 0.0238
+      "q_bh": 0.0238,
+      "robust": null
     },
     {
       "skill": "DevOps",
@@ -394,7 +428,8 @@
       "pct_ci_low": -27.5,
       "pct_ci_high": 28.1,
       "p_holm": 1.0,
-      "q_bh": 0.905
+      "q_bh": 0.905,
+      "robust": null
     },
     {
       "skill": "XML",
@@ -405,7 +440,8 @@
       "pct_ci_low": -33.8,
       "pct_ci_high": 7.5,
       "p_holm": 1.0,
-      "q_bh": 0.217
+      "q_bh": 0.217,
+      "robust": false
     },
     {
       "skill": "HTML",
@@ -416,7 +452,8 @@
       "pct_ci_low": -29.1,
       "pct_ci_high": 9.8,
       "p_holm": 1.0,
-      "q_bh": 0.33
+      "q_bh": 0.33,
+      "robust": false
     },
     {
       "skill": "Zabbix",
@@ -427,7 +464,8 @@
       "pct_ci_low": -15.1,
       "pct_ci_high": 23.2,
       "p_holm": 1.0,
-      "q_bh": 0.905
+      "q_bh": 0.905,
+      "robust": false
     },
     {
       "skill": "BPMN",
@@ -438,7 +476,8 @@
       "pct_ci_low": -27.4,
       "pct_ci_high": 10.7,
       "p_holm": 1.0,
-      "q_bh": 0.398
+      "q_bh": 0.398,
+      "robust": null
     },
     {
       "skill": "СКД",
@@ -449,7 +488,8 @@
       "pct_ci_low": -7.4,
       "pct_ci_high": 42.5,
       "p_holm": 1.0,
-      "q_bh": 0.254
+      "q_bh": 0.254,
+      "robust": false
     },
     {
       "skill": "Confluence",
@@ -460,7 +500,8 @@
       "pct_ci_low": -14.3,
       "pct_ci_high": 45.8,
       "p_holm": 1.0,
-      "q_bh": 0.497
+      "q_bh": 0.497,
+      "robust": null
     },
     {
       "skill": "Grafana",
@@ -471,7 +512,8 @@
       "pct_ci_low": -11.7,
       "pct_ci_high": 38.7,
       "p_holm": 1.0,
-      "q_bh": 0.472
+      "q_bh": 0.472,
+      "robust": null
     },
     {
       "skill": "Agile",
@@ -482,7 +524,8 @@
       "pct_ci_low": -15.9,
       "pct_ci_high": 34.0,
       "p_holm": 1.0,
-      "q_bh": 0.728
+      "q_bh": 0.728,
+      "robust": null
     },
     {
       "skill": "Cisco",
@@ -493,7 +536,8 @@
       "pct_ci_low": -9.5,
       "pct_ci_high": 25.4,
       "p_holm": 1.0,
-      "q_bh": 0.501
+      "q_bh": 0.501,
+      "robust": null
     }
   ],
   "limits": [

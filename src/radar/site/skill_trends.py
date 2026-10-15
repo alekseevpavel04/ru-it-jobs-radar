@@ -127,7 +127,14 @@ def period_of(year: int) -> str | None:
     return "base" if year == BASE_YEAR else "recent" if year in RECENT_YEARS else None
 
 
+# Managers and designers stay out of the skill cells, "it" included: their posts name few tools (Agile in 4 %
+# of managers' posts) and made up 13-15 % of IT posts, so they would only thin every share of all IT.
+NO_SKILL_CELLS = {role for roles in MIX_ONLY.values() for role in roles}
+
+
 def cells_of(role: str | None, grade: str | None) -> list[str]:
+    if role in NO_SKILL_CELLS:
+        return []
     directions = ["it"] + [d for d, roles in DIRECTIONS.items() if role in roles]
     grades = ["all"] + [g for g, names in GRADES.items() if grade in names]
     return [f"{d}_{g}" for d in directions for g in grades]

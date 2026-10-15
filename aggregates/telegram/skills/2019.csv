@@ -336,13 +336,13 @@ week,channel,role,grade,skill,posts
 2019-01-14,javascript_jobs_feed,frontend,,iOS,2
 2019-01-14,javascript_jobs_feed,frontend,,ООП,2
 2019-01-14,javascript_jobs_feed,frontend,junior,Angular,1
-2019-01-14,javascript_jobs_feed,frontend,junior,CSS,3
+2019-01-14,javascript_jobs_feed,frontend,junior,CSS,2
 2019-01-14,javascript_jobs_feed,frontend,junior,Git,3
 2019-01-14,javascript_jobs_feed,frontend,junior,GitFlow,1
 2019-01-14,javascript_jobs_feed,frontend,junior,GitHub,1
-2019-01-14,javascript_jobs_feed,frontend,junior,HTML,3
+2019-01-14,javascript_jobs_feed,frontend,junior,HTML,2
 2019-01-14,javascript_jobs_feed,frontend,junior,HTTP,1
-2019-01-14,javascript_jobs_feed,frontend,junior,JavaScript,5
+2019-01-14,javascript_jobs_feed,frontend,junior,JavaScript,4
 2019-01-14,javascript_jobs_feed,frontend,junior,Jest,1
 2019-01-14,javascript_jobs_feed,frontend,junior,Linux,1
 2019-01-14,javascript_jobs_feed,frontend,junior,Node.js,1
@@ -351,32 +351,28 @@ week,channel,role,grade,skill,posts
 2019-01-14,javascript_jobs_feed,frontend,junior,TypeScript,1
 2019-01-14,javascript_jobs_feed,frontend,junior,Webpack,1
 2019-01-14,javascript_jobs_feed,frontend,junior,YARN,1
-2019-01-14,javascript_jobs_feed,frontend,junior,jQuery,2
+2019-01-14,javascript_jobs_feed,frontend,junior,jQuery,1
 2019-01-14,javascript_jobs_feed,frontend,middle,Android,1
 2019-01-14,javascript_jobs_feed,frontend,middle,Angular,6
-2019-01-14,javascript_jobs_feed,frontend,middle,Bitbucket,2
 2019-01-14,javascript_jobs_feed,frontend,middle,CI/CD,1
-2019-01-14,javascript_jobs_feed,frontend,middle,CSS,7
+2019-01-14,javascript_jobs_feed,frontend,middle,CSS,5
 2019-01-14,javascript_jobs_feed,frontend,middle,Confluence,1
 2019-01-14,javascript_jobs_feed,frontend,middle,Docker,3
-2019-01-14,javascript_jobs_feed,frontend,middle,Git,5
-2019-01-14,javascript_jobs_feed,frontend,middle,GitFlow,2
-2019-01-14,javascript_jobs_feed,frontend,middle,GitHub,2
+2019-01-14,javascript_jobs_feed,frontend,middle,Git,3
 2019-01-14,javascript_jobs_feed,frontend,middle,GraphQL,1
 2019-01-14,javascript_jobs_feed,frontend,middle,HTML,4
 2019-01-14,javascript_jobs_feed,frontend,middle,Java,1
-2019-01-14,javascript_jobs_feed,frontend,middle,JavaScript,12
+2019-01-14,javascript_jobs_feed,frontend,middle,JavaScript,10
 2019-01-14,javascript_jobs_feed,frontend,middle,Jest,1
-2019-01-14,javascript_jobs_feed,frontend,middle,Jira,5
-2019-01-14,javascript_jobs_feed,frontend,middle,Less,4
+2019-01-14,javascript_jobs_feed,frontend,middle,Jira,3
+2019-01-14,javascript_jobs_feed,frontend,middle,Less,2
 2019-01-14,javascript_jobs_feed,frontend,middle,MVC,1
 2019-01-14,javascript_jobs_feed,frontend,middle,Microservices,1
-2019-01-14,javascript_jobs_feed,frontend,middle,MobX,1
 2019-01-14,javascript_jobs_feed,frontend,middle,MongoDB,1
 2019-01-14,javascript_jobs_feed,frontend,middle,Node.js,4
-2019-01-14,javascript_jobs_feed,frontend,middle,React,15
+2019-01-14,javascript_jobs_feed,frontend,middle,React,13
 2019-01-14,javascript_jobs_feed,frontend,middle,React Native,1
-2019-01-14,javascript_jobs_feed,frontend,middle,Redux,10
+2019-01-14,javascript_jobs_feed,frontend,middle,Redux,8
 2019-01-14,javascript_jobs_feed,frontend,middle,SCSS,1
 2019-01-14,javascript_jobs_feed,frontend,middle,SOLID,1
 2019-01-14,javascript_jobs_feed,frontend,middle,SQL,1
@@ -387,13 +383,12 @@ week,channel,role,grade,skill,posts
 2019-01-14,javascript_jobs_feed,frontend,middle,Spring Cloud,1
 2019-01-14,javascript_jobs_feed,frontend,middle,Symfony,1
 2019-01-14,javascript_jobs_feed,frontend,middle,TeamCity,1
-2019-01-14,javascript_jobs_feed,frontend,middle,TypeScript,4
+2019-01-14,javascript_jobs_feed,frontend,middle,TypeScript,2
 2019-01-14,javascript_jobs_feed,frontend,middle,Unix,1
 2019-01-14,javascript_jobs_feed,frontend,middle,Vue.js,3
 2019-01-14,javascript_jobs_feed,frontend,middle,Webpack,5
 2019-01-14,javascript_jobs_feed,frontend,middle,iOS,1
-2019-01-14,javascript_jobs_feed,frontend,middle,jQuery,3
-2019-01-14,javascript_jobs_feed,frontend,middle,macOS,2
+2019-01-14,javascript_jobs_feed,frontend,middle,jQuery,1
 2019-01-14,javascript_jobs_feed,frontend,middle,ООП,1
 2019-01-14,javascript_jobs_feed,frontend,senior,Angular,1
 2019-01-14,javascript_jobs_feed,frontend,senior,CSS,6
@@ -558,12 +553,12 @@ week,channel,role,grade,skill,posts
 2019-01-21,javascript_jobs_feed,frontend,,Webpack,11
 2019-01-21,javascript_jobs_feed,frontend,,iOS,1
 2019-01-21,javascript_jobs_feed,frontend,,ООП,5
-2019-01-21,javascript_jobs_feed,frontend,junior,CSS,2
+2019-01-21,javascript_jobs_feed,frontend,junior,CSS,1
 2019-01-21,javascript_jobs_feed,frontend,junior,Git,2
 2019-01-21,javascript_jobs_feed,frontend,junior,GitHub,1
-2019-01-21,javascript_jobs_feed,frontend,junior,HTML,4
+2019-01-21,javascript_jobs_feed,frontend,junior,HTML,3
 2019-01-21,javascript_jobs_feed,frontend,junior,JSON,2
-2019-01-21,javascript_jobs_feed,frontend,junior,JavaScript,5
+2019-01-21,javascript_jobs_feed,frontend,junior,JavaScript,4
 2019-01-21,javascript_jobs_feed,frontend,junior,Linux,3
 2019-01-21,javascript_jobs_feed,frontend,junior,MongoDB,2
 2019-01-21,javascript_jobs_feed,frontend,junior,Node.js,1
@@ -572,7 +567,6 @@ week,channel,role,grade,skill,posts
 2019-01-21,javascript_jobs_feed,frontend,junior,Redux,1
 2019-01-21,javascript_jobs_feed,frontend,junior,Webpack,1
 2019-01-21,javascript_jobs_feed,frontend,junior,YARN,1
-2019-01-21,javascript_jobs_feed,frontend,junior,jQuery,1
 2019-01-21,javascript_jobs_feed,frontend,lead,Django,1
 2019-01-21,javascript_jobs_feed,frontend,lead,Node.js,1
 2019-01-21,javascript_jobs_feed,frontend,lead,Python,1
@@ -582,40 +576,36 @@ week,channel,role,grade,skill,posts
 2019-01-21,javascript_jobs_feed,frontend,lead,Webpack,1
 2019-01-21,javascript_jobs_feed,frontend,middle,Android,1
 2019-01-21,javascript_jobs_feed,frontend,middle,Angular,1
-2019-01-21,javascript_jobs_feed,frontend,middle,Bitbucket,2
-2019-01-21,javascript_jobs_feed,frontend,middle,CSS,7
+2019-01-21,javascript_jobs_feed,frontend,middle,CSS,5
 2019-01-21,javascript_jobs_feed,frontend,middle,Cypress,1
 2019-01-21,javascript_jobs_feed,frontend,middle,Docker,1
-2019-01-21,javascript_jobs_feed,frontend,middle,Git,5
-2019-01-21,javascript_jobs_feed,frontend,middle,GitFlow,2
-2019-01-21,javascript_jobs_feed,frontend,middle,GitHub,2
+2019-01-21,javascript_jobs_feed,frontend,middle,Git,3
 2019-01-21,javascript_jobs_feed,frontend,middle,Go,1
 2019-01-21,javascript_jobs_feed,frontend,middle,HTML,5
 2019-01-21,javascript_jobs_feed,frontend,middle,HTTP,1
-2019-01-21,javascript_jobs_feed,frontend,middle,JavaScript,10
+2019-01-21,javascript_jobs_feed,frontend,middle,JavaScript,8
 2019-01-21,javascript_jobs_feed,frontend,middle,Jest,2
-2019-01-21,javascript_jobs_feed,frontend,middle,Jira,3
-2019-01-21,javascript_jobs_feed,frontend,middle,Less,4
+2019-01-21,javascript_jobs_feed,frontend,middle,Jira,1
+2019-01-21,javascript_jobs_feed,frontend,middle,Less,2
 2019-01-21,javascript_jobs_feed,frontend,middle,Microservices,1
 2019-01-21,javascript_jobs_feed,frontend,middle,Node.js,3
 2019-01-21,javascript_jobs_feed,frontend,middle,PHP,1
 2019-01-21,javascript_jobs_feed,frontend,middle,PostgreSQL,1
 2019-01-21,javascript_jobs_feed,frontend,middle,Python,1
 2019-01-21,javascript_jobs_feed,frontend,middle,REST,2
-2019-01-21,javascript_jobs_feed,frontend,middle,React,10
+2019-01-21,javascript_jobs_feed,frontend,middle,React,8
 2019-01-21,javascript_jobs_feed,frontend,middle,Redis,1
-2019-01-21,javascript_jobs_feed,frontend,middle,Redux,7
+2019-01-21,javascript_jobs_feed,frontend,middle,Redux,5
 2019-01-21,javascript_jobs_feed,frontend,middle,Ruby,1
 2019-01-21,javascript_jobs_feed,frontend,middle,Ruby on Rails,1
 2019-01-21,javascript_jobs_feed,frontend,middle,SOLID,2
 2019-01-21,javascript_jobs_feed,frontend,middle,Sass,3
-2019-01-21,javascript_jobs_feed,frontend,middle,TypeScript,3
+2019-01-21,javascript_jobs_feed,frontend,middle,TypeScript,1
 2019-01-21,javascript_jobs_feed,frontend,middle,WebSocket,1
 2019-01-21,javascript_jobs_feed,frontend,middle,Webpack,3
 2019-01-21,javascript_jobs_feed,frontend,middle,gRPC,1
 2019-01-21,javascript_jobs_feed,frontend,middle,iOS,1
-2019-01-21,javascript_jobs_feed,frontend,middle,jQuery,4
-2019-01-21,javascript_jobs_feed,frontend,middle,macOS,2
+2019-01-21,javascript_jobs_feed,frontend,middle,jQuery,2
 2019-01-21,javascript_jobs_feed,frontend,senior,AWS,1
 2019-01-21,javascript_jobs_feed,frontend,senior,CSS,5
 2019-01-21,javascript_jobs_feed,frontend,senior,Dell,1
@@ -896,18 +886,17 @@ week,channel,role,grade,skill,posts
 2019-01-28,javascript_jobs_feed,frontend,junior,ASP.NET,1
 2019-01-28,javascript_jobs_feed,frontend,junior,Angular,1
 2019-01-28,javascript_jobs_feed,frontend,junior,C#,1
-2019-01-28,javascript_jobs_feed,frontend,junior,CSS,2
+2019-01-28,javascript_jobs_feed,frontend,junior,CSS,1
 2019-01-28,javascript_jobs_feed,frontend,junior,Git,1
-2019-01-28,javascript_jobs_feed,frontend,junior,HTML,5
+2019-01-28,javascript_jobs_feed,frontend,junior,HTML,4
 2019-01-28,javascript_jobs_feed,frontend,junior,JSON,1
-2019-01-28,javascript_jobs_feed,frontend,junior,JavaScript,5
+2019-01-28,javascript_jobs_feed,frontend,junior,JavaScript,4
 2019-01-28,javascript_jobs_feed,frontend,junior,Linux,1
 2019-01-28,javascript_jobs_feed,frontend,junior,MS SQL Server,1
 2019-01-28,javascript_jobs_feed,frontend,junior,MongoDB,1
 2019-01-28,javascript_jobs_feed,frontend,junior,REST,1
 2019-01-28,javascript_jobs_feed,frontend,junior,React,1
 2019-01-28,javascript_jobs_feed,frontend,junior,TypeScript,2
-2019-01-28,javascript_jobs_feed,frontend,junior,jQuery,1
 2019-01-28,javascript_jobs_feed,frontend,middle,.NET,1
 2019-01-28,javascript_jobs_feed,frontend,middle,Agile,1
 2019-01-28,javascript_jobs_feed,frontend,middle,Android,1
@@ -1142,17 +1131,10 @@ week,channel,role,grade,skill,posts
 2019-02-04,javascript_jobs_feed,frontend,,jQuery,1
 2019-02-04,javascript_jobs_feed,frontend,,Битрикс24,1
 2019-02-04,javascript_jobs_feed,frontend,,ООП,1
-2019-02-04,javascript_jobs_feed,frontend,intern,CSS,1
-2019-02-04,javascript_jobs_feed,frontend,intern,HTML,1
-2019-02-04,javascript_jobs_feed,frontend,intern,JavaScript,1
-2019-02-04,javascript_jobs_feed,frontend,intern,Less,1
-2019-02-04,javascript_jobs_feed,frontend,intern,React,1
-2019-02-04,javascript_jobs_feed,frontend,intern,Sass,1
-2019-02-04,javascript_jobs_feed,frontend,intern,Webpack,1
-2019-02-04,javascript_jobs_feed,frontend,junior,CSS,2
-2019-02-04,javascript_jobs_feed,frontend,junior,HTML,3
+2019-02-04,javascript_jobs_feed,frontend,junior,CSS,1
+2019-02-04,javascript_jobs_feed,frontend,junior,HTML,2
 2019-02-04,javascript_jobs_feed,frontend,junior,JSON,1
-2019-02-04,javascript_jobs_feed,frontend,junior,JavaScript,3
+2019-02-04,javascript_jobs_feed,frontend,junior,JavaScript,2
 2019-02-04,javascript_jobs_feed,frontend,junior,Linux,1
 2019-02-04,javascript_jobs_feed,frontend,junior,MongoDB,1
 2019-02-04,javascript_jobs_feed,frontend,junior,REST,1
@@ -1160,7 +1142,6 @@ week,channel,role,grade,skill,posts
 2019-02-04,javascript_jobs_feed,frontend,junior,TeamCity,1
 2019-02-04,javascript_jobs_feed,frontend,junior,TypeScript,1
 2019-02-04,javascript_jobs_feed,frontend,junior,Webpack,1
-2019-02-04,javascript_jobs_feed,frontend,junior,jQuery,1
 2019-02-04,javascript_jobs_feed,frontend,middle,Android,1
 2019-02-04,javascript_jobs_feed,frontend,middle,Angular,4
 2019-02-04,javascript_jobs_feed,frontend,middle,CSS,11
@@ -1381,7 +1362,7 @@ week,channel,role,grade,skill,posts
 2019-02-11,javascript_jobs_feed,backend,senior,Redis,1
 2019-02-11,javascript_jobs_feed,backend,senior,Scrum,1
 2019-02-11,javascript_jobs_feed,frontend,,Agile,1
-2019-02-11,javascript_jobs_feed,frontend,,Android,2
+2019-02-11,javascript_jobs_feed,frontend,,Android,1
 2019-02-11,javascript_jobs_feed,frontend,,Angular,10
 2019-02-11,javascript_jobs_feed,frontend,,BPMN,1
 2019-02-11,javascript_jobs_feed,frontend,,Bash,1
@@ -1395,7 +1376,6 @@ week,channel,role,grade,skill,posts
 2019-02-11,javascript_jobs_feed,frontend,,GitFlow,3
 2019-02-11,javascript_jobs_feed,frontend,,GitHub,3
 2019-02-11,javascript_jobs_feed,frontend,,GitLab,1
-2019-02-11,javascript_jobs_feed,frontend,,Go,1
 2019-02-11,javascript_jobs_feed,frontend,,GraphQL,1
 2019-02-11,javascript_jobs_feed,frontend,,HTML,14
 2019-02-11,javascript_jobs_feed,frontend,,HTTP,1
@@ -1413,14 +1393,13 @@ week,channel,role,grade,skill,posts
 2019-02-11,javascript_jobs_feed,frontend,,MongoDB,1
 2019-02-11,javascript_jobs_feed,frontend,,MySQL,1
 2019-02-11,javascript_jobs_feed,frontend,,Node.js,6
-2019-02-11,javascript_jobs_feed,frontend,,PHP,3
+2019-02-11,javascript_jobs_feed,frontend,,PHP,2
 2019-02-11,javascript_jobs_feed,frontend,,Python,1
 2019-02-11,javascript_jobs_feed,frontend,,REST,4
-2019-02-11,javascript_jobs_feed,frontend,,React,15
+2019-02-11,javascript_jobs_feed,frontend,,React,14
 2019-02-11,javascript_jobs_feed,frontend,,React Native,2
 2019-02-11,javascript_jobs_feed,frontend,,Redis,1
 2019-02-11,javascript_jobs_feed,frontend,,Redux,8
-2019-02-11,javascript_jobs_feed,frontend,,Ruby,1
 2019-02-11,javascript_jobs_feed,frontend,,SCSS,4
 2019-02-11,javascript_jobs_feed,frontend,,SQL,2
 2019-02-11,javascript_jobs_feed,frontend,,Sass,7
@@ -1430,22 +1409,19 @@ week,channel,role,grade,skill,posts
 2019-02-11,javascript_jobs_feed,frontend,,WebSocket,5
 2019-02-11,javascript_jobs_feed,frontend,,Webpack,9
 2019-02-11,javascript_jobs_feed,frontend,,Windows,1
-2019-02-11,javascript_jobs_feed,frontend,,iOS,2
+2019-02-11,javascript_jobs_feed,frontend,,iOS,1
 2019-02-11,javascript_jobs_feed,frontend,,jQuery,1
 2019-02-11,javascript_jobs_feed,frontend,,macOS,1
 2019-02-11,javascript_jobs_feed,frontend,,ООП,1
-2019-02-11,javascript_jobs_feed,frontend,junior,CSS,2
-2019-02-11,javascript_jobs_feed,frontend,junior,HTML,3
+2019-02-11,javascript_jobs_feed,frontend,junior,HTML,1
 2019-02-11,javascript_jobs_feed,frontend,junior,JSON,1
-2019-02-11,javascript_jobs_feed,frontend,junior,JavaScript,4
+2019-02-11,javascript_jobs_feed,frontend,junior,JavaScript,2
 2019-02-11,javascript_jobs_feed,frontend,junior,Linux,1
 2019-02-11,javascript_jobs_feed,frontend,junior,MobX,1
 2019-02-11,javascript_jobs_feed,frontend,junior,MongoDB,1
 2019-02-11,javascript_jobs_feed,frontend,junior,REST,1
 2019-02-11,javascript_jobs_feed,frontend,junior,React,3
 2019-02-11,javascript_jobs_feed,frontend,junior,TypeScript,1
-2019-02-11,javascript_jobs_feed,frontend,junior,Webpack,1
-2019-02-11,javascript_jobs_feed,frontend,junior,jQuery,2
 2019-02-11,javascript_jobs_feed,frontend,lead,Agile,1
 2019-02-11,javascript_jobs_feed,frontend,lead,CSS,1
 2019-02-11,javascript_jobs_feed,frontend,lead,HTML,1
@@ -2578,11 +2554,6 @@ week,channel,role,grade,skill,posts
 2019-03-11,javascript_jobs_feed,frontend,,YouTrack,1
 2019-03-11,javascript_jobs_feed,frontend,,jQuery,1
 2019-03-11,javascript_jobs_feed,frontend,,ООП,1
-2019-03-11,javascript_jobs_feed,frontend,intern,CSS,1
-2019-03-11,javascript_jobs_feed,frontend,intern,HTML,1
-2019-03-11,javascript_jobs_feed,frontend,intern,JavaScript,1
-2019-03-11,javascript_jobs_feed,frontend,intern,Vue.js,1
-2019-03-11,javascript_jobs_feed,frontend,intern,jQuery,1
 2019-03-11,javascript_jobs_feed,frontend,junior,Angular,3
 2019-03-11,javascript_jobs_feed,frontend,junior,Bitbucket,1
 2019-03-11,javascript_jobs_feed,frontend,junior,Git,2
@@ -3378,6 +3349,7 @@ week,channel,role,grade,skill,posts
 2019-03-25,pydevjob,backend,,MongoDB,1
 2019-03-25,pydevjob,backend,,MySQL,1
 2019-03-25,pydevjob,backend,,Python,2
+2019-03-25,pydevjob,backend,,REST,1
 2019-03-25,pydevjob,backend,,RabbitMQ,1
 2019-03-25,pydevjob,backend,,Vue.js,1
 2019-03-25,pydevjob,backend,,jQuery,1
@@ -4812,6 +4784,7 @@ week,channel,role,grade,skill,posts
 2019-04-29,devjobs,backend,,Windows,1
 2019-04-29,devjobs,backend,,macOS,1
 2019-04-29,devjobs,backend,senior,C#,1
+2019-04-29,devjobs,backend,senior,Unity,1
 2019-04-29,devjobs,designer,,Photoshop,2
 2019-04-29,devjobs,designer,intern,Git,1
 2019-04-29,devjobs,designer,intern,Jira,1
@@ -4980,13 +4953,13 @@ week,channel,role,grade,skill,posts
 2019-04-29,javascript_jobs_feed,frontend,middle,jQuery,2
 2019-04-29,javascript_jobs_feed,frontend,middle,ООП,1
 2019-04-29,javascript_jobs_feed,frontend,senior,Agile,1
-2019-04-29,javascript_jobs_feed,frontend,senior,CSS,3
+2019-04-29,javascript_jobs_feed,frontend,senior,CSS,2
 2019-04-29,javascript_jobs_feed,frontend,senior,Design patterns,1
 2019-04-29,javascript_jobs_feed,frontend,senior,Git,2
-2019-04-29,javascript_jobs_feed,frontend,senior,HTML,3
+2019-04-29,javascript_jobs_feed,frontend,senior,HTML,2
 2019-04-29,javascript_jobs_feed,frontend,senior,HTTP,1
 2019-04-29,javascript_jobs_feed,frontend,senior,JSON,1
-2019-04-29,javascript_jobs_feed,frontend,senior,JavaScript,6
+2019-04-29,javascript_jobs_feed,frontend,senior,JavaScript,5
 2019-04-29,javascript_jobs_feed,frontend,senior,Jest,1
 2019-04-29,javascript_jobs_feed,frontend,senior,Kanban,1
 2019-04-29,javascript_jobs_feed,frontend,senior,Laravel,1
@@ -5001,9 +4974,9 @@ week,channel,role,grade,skill,posts
 2019-04-29,javascript_jobs_feed,frontend,senior,Sass,1
 2019-04-29,javascript_jobs_feed,frontend,senior,Scrum,1
 2019-04-29,javascript_jobs_feed,frontend,senior,TypeScript,1
-2019-04-29,javascript_jobs_feed,frontend,senior,Webpack,3
+2019-04-29,javascript_jobs_feed,frontend,senior,Webpack,2
 2019-04-29,javascript_jobs_feed,frontend,senior,XML,1
-2019-04-29,javascript_jobs_feed,frontend,senior,jQuery,2
+2019-04-29,javascript_jobs_feed,frontend,senior,jQuery,1
 2019-04-29,javascript_jobs_feed,frontend,senior,ООП,1
 2019-04-29,javascript_jobs_feed,fullstack,,Angular,1
 2019-04-29,javascript_jobs_feed,fullstack,,CSS,1
@@ -5102,6 +5075,7 @@ week,channel,role,grade,skill,posts
 2019-04-29,progjob,backend,middle,Ruby,3
 2019-04-29,progjob,backend,middle,Ruby on Rails,2
 2019-04-29,progjob,backend,middle,SOAP,1
+2019-04-29,progjob,backend,middle,Spring,1
 2019-04-29,progjob,backend,middle,Terraform,1
 2019-04-29,progjob,backend,middle,asyncio,1
 2019-04-29,progjob,backend,senior,ASP.NET,1
@@ -5142,6 +5116,7 @@ week,channel,role,grade,skill,posts
 2019-04-29,progjob,frontend,intern,JavaScript,1
 2019-04-29,progjob,frontend,intern,jQuery,1
 2019-04-29,progjob,frontend,intern,ООП,1
+2019-04-29,progjob,frontend,middle,AWS,1
 2019-04-29,progjob,frontend,middle,Angular,2
 2019-04-29,progjob,frontend,middle,CI/CD,1
 2019-04-29,progjob,frontend,middle,CSS,4
@@ -5157,6 +5132,7 @@ week,channel,role,grade,skill,posts
 2019-04-29,progjob,frontend,middle,Linux,1
 2019-04-29,progjob,frontend,middle,MobX,2
 2019-04-29,progjob,frontend,middle,Python,1
+2019-04-29,progjob,frontend,middle,REST,1
 2019-04-29,progjob,frontend,middle,React,4
 2019-04-29,progjob,frontend,middle,Redux,1
 2019-04-29,progjob,frontend,middle,Sass,1
@@ -5190,6 +5166,7 @@ week,channel,role,grade,skill,posts
 2019-04-29,progjob,fullstack,middle,MongoDB,1
 2019-04-29,progjob,fullstack,middle,Node.js,1
 2019-04-29,progjob,fullstack,middle,Python,1
+2019-04-29,progjob,fullstack,middle,REST,1
 2019-04-29,progjob,fullstack,middle,Ruby,1
 2019-04-29,progjob,fullstack,middle,Vue.js,1
 2019-04-29,progjob,fullstack,senior,CSS,1
@@ -5526,6 +5503,7 @@ week,channel,role,grade,skill,posts
 2019-05-06,javascript_jobs_feed,mobile,senior,React Native,1
 2019-05-06,javascript_jobs_feed,mobile,senior,iOS,1
 2019-05-06,progjob,backend,,1С-Битрикс,1
+2019-05-06,progjob,backend,,AWS,1
 2019-05-06,progjob,backend,,Ansible,1
 2019-05-06,progjob,backend,,CSS,1
 2019-05-06,progjob,backend,,DevOps,1
@@ -5578,6 +5556,7 @@ week,channel,role,grade,skill,posts
 2019-05-06,progjob,backend,middle,PHP,5
 2019-05-06,progjob,backend,middle,REST,1
 2019-05-06,progjob,backend,middle,Redis,1
+2019-05-06,progjob,backend,middle,Yii,1
 2019-05-06,progjob,backend,middle,jQuery,1
 2019-05-06,progjob,backend,middle,ООП,3
 2019-05-06,progjob,backend,senior,1С-Битрикс,1
@@ -5597,6 +5576,7 @@ week,channel,role,grade,skill,posts
 2019-05-06,progjob,backend,senior,PHP,5
 2019-05-06,progjob,backend,senior,PostgreSQL,2
 2019-05-06,progjob,backend,senior,SQL,2
+2019-05-06,progjob,backend,senior,Spring,1
 2019-05-06,progjob,backend,senior,Symfony,1
 2019-05-06,progjob,backend,senior,TeamCity,1
 2019-05-06,progjob,backend,senior,Vue.js,1
@@ -5776,7 +5756,7 @@ week,channel,role,grade,skill,posts
 2019-05-13,devjobs,designer,,Blender,5
 2019-05-13,devjobs,designer,,Excel,1
 2019-05-13,devjobs,designer,,Photoshop,4
-2019-05-13,devjobs,designer,,Unity,4
+2019-05-13,devjobs,designer,,Unity,5
 2019-05-13,devjobs,designer,,Unreal Engine,4
 2019-05-13,devjobs,designer,middle,Unity,1
 2019-05-13,devjobs,devops,,AWS,1
@@ -6034,6 +6014,7 @@ week,channel,role,grade,skill,posts
 2019-05-13,progjob,backend,,Ruby,1
 2019-05-13,progjob,backend,,Ruby on Rails,1
 2019-05-13,progjob,backend,,SOLID,1
+2019-05-13,progjob,backend,,Spring,1
 2019-05-13,progjob,backend,,TypeScript,1
 2019-05-13,progjob,backend,,Yii,2
 2019-05-13,progjob,backend,,ООП,3
@@ -6072,6 +6053,7 @@ week,channel,role,grade,skill,posts
 2019-05-13,progjob,backend,middle,Ruby on Rails,1
 2019-05-13,progjob,backend,middle,SOLID,2
 2019-05-13,progjob,backend,middle,SQL,1
+2019-05-13,progjob,backend,middle,Spring,1
 2019-05-13,progjob,backend,middle,Symfony,6
 2019-05-13,progjob,backend,middle,TypeScript,1
 2019-05-13,progjob,backend,middle,Vue.js,1
@@ -6142,9 +6124,10 @@ week,channel,role,grade,skill,posts
 2019-05-13,progjob,devops,middle,Ansible,1
 2019-05-13,progjob,devops,middle,Apache,1
 2019-05-13,progjob,devops,middle,Bash,1
+2019-05-13,progjob,devops,middle,CI/CD,1
 2019-05-13,progjob,devops,middle,DevOps,2
 2019-05-13,progjob,devops,middle,Git,1
-2019-05-13,progjob,devops,middle,Linux,1
+2019-05-13,progjob,devops,middle,Linux,2
 2019-05-13,progjob,devops,middle,MySQL,1
 2019-05-13,progjob,devops,middle,Nginx,1
 2019-05-13,progjob,devops,middle,PostgreSQL,1
@@ -6255,6 +6238,7 @@ week,channel,role,grade,skill,posts
 2019-05-13,progjob,software_engineer,,SOAP,1
 2019-05-13,progjob,software_engineer,,Salesforce,1
 2019-05-13,progjob,software_engineer,,Swift,1
+2019-05-13,progjob,software_engineer,,Unity,1
 2019-05-13,progjob,software_engineer,,XML,1
 2019-05-13,progjob,software_engineer,,ООП,1
 2019-05-13,progjob,software_engineer,middle,Agile,1
@@ -6265,6 +6249,7 @@ week,channel,role,grade,skill,posts
 2019-05-13,progjob,software_engineer,middle,Jira,1
 2019-05-13,progjob,software_engineer,middle,MS SQL Server,1
 2019-05-13,progjob,software_engineer,middle,SQL,1
+2019-05-13,progjob,software_engineer,middle,Unity,1
 2019-05-13,progjob,software_engineer,middle,ООП,1
 2019-05-13,progjob,software_engineer,senior,CSS,1
 2019-05-13,progjob,software_engineer,senior,Django,1
@@ -6612,6 +6597,7 @@ week,channel,role,grade,skill,posts
 2019-05-20,progjob,backend,junior,MySQL,1
 2019-05-20,progjob,backend,junior,PHP,2
 2019-05-20,progjob,backend,junior,SQL,2
+2019-05-20,progjob,backend,junior,Spring,1
 2019-05-20,progjob,backend,junior,WordPress,1
 2019-05-20,progjob,backend,junior,ООП,1
 2019-05-20,progjob,backend,lead,Express,1
@@ -6650,10 +6636,11 @@ week,channel,role,grade,skill,posts
 2019-05-20,progjob,backend,middle,SOA,1
 2019-05-20,progjob,backend,middle,SQL,1
 2019-05-20,progjob,backend,middle,SQLAlchemy,1
+2019-05-20,progjob,backend,middle,Spring,2
 2019-05-20,progjob,backend,middle,Symfony,3
 2019-05-20,progjob,backend,middle,Veeam,1
 2019-05-20,progjob,backend,middle,WebSocket,1
-2019-05-20,progjob,backend,middle,Yii,1
+2019-05-20,progjob,backend,middle,Yii,3
 2019-05-20,progjob,backend,middle,ООП,4
 2019-05-20,progjob,backend,senior,1С-Битрикс,1
 2019-05-20,progjob,backend,senior,Angular,1
@@ -6673,8 +6660,10 @@ week,channel,role,grade,skill,posts
 2019-05-20,progjob,backend,senior,PHP,5
 2019-05-20,progjob,backend,senior,PostgreSQL,2
 2019-05-20,progjob,backend,senior,Python,4
+2019-05-20,progjob,backend,senior,REST,1
 2019-05-20,progjob,backend,senior,React,1
 2019-05-20,progjob,backend,senior,Redis,2
+2019-05-20,progjob,backend,senior,Spring,1
 2019-05-20,progjob,backend,senior,ООП,1
 2019-05-20,progjob,data_analyst,,.NET,1
 2019-05-20,progjob,data_analyst,,C#,1
@@ -6696,6 +6685,7 @@ week,channel,role,grade,skill,posts
 2019-05-20,progjob,developer_1c,,1С,1
 2019-05-20,progjob,developer_1c,senior,1С,3
 2019-05-20,progjob,devops,,Bash,1
+2019-05-20,progjob,devops,,CI/CD,1
 2019-05-20,progjob,devops,,DevOps,1
 2019-05-20,progjob,devops,,Docker,1
 2019-05-20,progjob,devops,,Git,1
@@ -6770,6 +6760,7 @@ week,channel,role,grade,skill,posts
 2019-05-20,progjob,fullstack,middle,PostgreSQL,1
 2019-05-20,progjob,fullstack,middle,REST,1
 2019-05-20,progjob,fullstack,middle,SQL,1
+2019-05-20,progjob,fullstack,middle,Spring,1
 2019-05-20,progjob,fullstack,middle,TypeScript,1
 2019-05-20,progjob,fullstack,middle,ООП,1
 2019-05-20,progjob,fullstack,senior,Angular,1
@@ -6962,20 +6953,20 @@ week,channel,role,grade,skill,posts
 2019-05-27,javascript_jobs_feed,backend,senior,SQL,1
 2019-05-27,javascript_jobs_feed,backend,senior,TCP,1
 2019-05-27,javascript_jobs_feed,frontend,,Android,1
-2019-05-27,javascript_jobs_feed,frontend,,Angular,11
+2019-05-27,javascript_jobs_feed,frontend,,Angular,10
 2019-05-27,javascript_jobs_feed,frontend,,Azure,1
 2019-05-27,javascript_jobs_feed,frontend,,CI/CD,1
-2019-05-27,javascript_jobs_feed,frontend,,CSS,18
+2019-05-27,javascript_jobs_feed,frontend,,CSS,17
 2019-05-27,javascript_jobs_feed,frontend,,Flask,1
 2019-05-27,javascript_jobs_feed,frontend,,Git,11
 2019-05-27,javascript_jobs_feed,frontend,,GitFlow,1
 2019-05-27,javascript_jobs_feed,frontend,,Go,1
 2019-05-27,javascript_jobs_feed,frontend,,GraphQL,3
-2019-05-27,javascript_jobs_feed,frontend,,HTML,17
+2019-05-27,javascript_jobs_feed,frontend,,HTML,16
 2019-05-27,javascript_jobs_feed,frontend,,HTTP,2
 2019-05-27,javascript_jobs_feed,frontend,,HTTPS,1
 2019-05-27,javascript_jobs_feed,frontend,,JSON,1
-2019-05-27,javascript_jobs_feed,frontend,,JavaScript,24
+2019-05-27,javascript_jobs_feed,frontend,,JavaScript,23
 2019-05-27,javascript_jobs_feed,frontend,,Jenkins,1
 2019-05-27,javascript_jobs_feed,frontend,,Jest,1
 2019-05-27,javascript_jobs_feed,frontend,,Jira,1
@@ -6983,7 +6974,7 @@ week,channel,role,grade,skill,posts
 2019-05-27,javascript_jobs_feed,frontend,,Kotlin,1
 2019-05-27,javascript_jobs_feed,frontend,,Kubernetes,1
 2019-05-27,javascript_jobs_feed,frontend,,Laravel,1
-2019-05-27,javascript_jobs_feed,frontend,,Less,8
+2019-05-27,javascript_jobs_feed,frontend,,Less,7
 2019-05-27,javascript_jobs_feed,frontend,,Linux,1
 2019-05-27,javascript_jobs_feed,frontend,,MVC,1
 2019-05-27,javascript_jobs_feed,frontend,,MobX,2
@@ -7003,17 +6994,17 @@ week,channel,role,grade,skill,posts
 2019-05-27,javascript_jobs_feed,frontend,,SOLID,1
 2019-05-27,javascript_jobs_feed,frontend,,SQL,2
 2019-05-27,javascript_jobs_feed,frontend,,SVN,1
-2019-05-27,javascript_jobs_feed,frontend,,Sass,9
+2019-05-27,javascript_jobs_feed,frontend,,Sass,8
 2019-05-27,javascript_jobs_feed,frontend,,Scrum,2
 2019-05-27,javascript_jobs_feed,frontend,,Selenium,1
 2019-05-27,javascript_jobs_feed,frontend,,Swagger,1
 2019-05-27,javascript_jobs_feed,frontend,,Symfony,1
-2019-05-27,javascript_jobs_feed,frontend,,TypeScript,9
+2019-05-27,javascript_jobs_feed,frontend,,TypeScript,8
 2019-05-27,javascript_jobs_feed,frontend,,Unix,1
 2019-05-27,javascript_jobs_feed,frontend,,Vue.js,14
-2019-05-27,javascript_jobs_feed,frontend,,WebSocket,2
-2019-05-27,javascript_jobs_feed,frontend,,Webpack,10
-2019-05-27,javascript_jobs_feed,frontend,,jQuery,5
+2019-05-27,javascript_jobs_feed,frontend,,WebSocket,1
+2019-05-27,javascript_jobs_feed,frontend,,Webpack,9
+2019-05-27,javascript_jobs_feed,frontend,,jQuery,4
 2019-05-27,javascript_jobs_feed,frontend,,ООП,1
 2019-05-27,javascript_jobs_feed,frontend,junior,Angular,1
 2019-05-27,javascript_jobs_feed,frontend,junior,React,1
@@ -7201,6 +7192,7 @@ week,channel,role,grade,skill,posts
 2019-05-27,progjob,backend,junior,Java,1
 2019-05-27,progjob,backend,junior,MySQL,1
 2019-05-27,progjob,backend,junior,PHP,2
+2019-05-27,progjob,backend,junior,Yii,1
 2019-05-27,progjob,backend,junior,ООП,3
 2019-05-27,progjob,backend,lead,Design patterns,1
 2019-05-27,progjob,backend,lead,Docker,3
@@ -7213,10 +7205,13 @@ week,channel,role,grade,skill,posts
 2019-05-27,progjob,backend,lead,MySQL,1
 2019-05-27,progjob,backend,lead,Nginx,1
 2019-05-27,progjob,backend,lead,PHP,2
+2019-05-27,progjob,backend,lead,Spring,1
+2019-05-27,progjob,backend,lead,Yii,1
 2019-05-27,progjob,backend,lead,ООП,2
 2019-05-27,progjob,backend,middle,.NET,2
 2019-05-27,progjob,backend,middle,1С-Битрикс,1
 2019-05-27,progjob,backend,middle,C#,1
+2019-05-27,progjob,backend,middle,CI/CD,1
 2019-05-27,progjob,backend,middle,Celery,1
 2019-05-27,progjob,backend,middle,Django,2
 2019-05-27,progjob,backend,middle,Docker,1
@@ -7232,12 +7227,13 @@ week,channel,role,grade,skill,posts
 2019-05-27,progjob,backend,middle,PHP,6
 2019-05-27,progjob,backend,middle,PostgreSQL,4
 2019-05-27,progjob,backend,middle,Python,2
+2019-05-27,progjob,backend,middle,REST,1
 2019-05-27,progjob,backend,middle,Redis,1
 2019-05-27,progjob,backend,middle,Ruby,1
 2019-05-27,progjob,backend,middle,Ruby on Rails,1
 2019-05-27,progjob,backend,middle,SQL,3
 2019-05-27,progjob,backend,middle,Symfony,1
-2019-05-27,progjob,backend,middle,Yii,1
+2019-05-27,progjob,backend,middle,Yii,3
 2019-05-27,progjob,backend,middle,ООП,2
 2019-05-27,progjob,backend,senior,Docker,2
 2019-05-27,progjob,backend,senior,Elasticsearch,1
@@ -7254,6 +7250,7 @@ week,channel,role,grade,skill,posts
 2019-05-27,progjob,backend,senior,Python,1
 2019-05-27,progjob,backend,senior,Redis,2
 2019-05-27,progjob,backend,senior,SQL,2
+2019-05-27,progjob,backend,senior,Spring,1
 2019-05-27,progjob,backend,senior,Yii,1
 2019-05-27,progjob,backend,senior,ООП,1
 2019-05-27,progjob,data_analyst,,Excel,1
@@ -7262,6 +7259,7 @@ week,channel,role,grade,skill,posts
 2019-05-27,progjob,developer_1c,,1С,2
 2019-05-27,progjob,developer_1c,,1С:ЗУП,1
 2019-05-27,progjob,devops,,Python,1
+2019-05-27,progjob,devops,lead,CI/CD,1
 2019-05-27,progjob,devops,lead,Jenkins,1
 2019-05-27,progjob,devops,lead,Linux,1
 2019-05-27,progjob,devops,senior,DevOps,1
@@ -7586,9 +7584,9 @@ week,channel,role,grade,skill,posts
 2019-06-03,javascript_jobs_feed,frontend,,.NET,1
 2019-06-03,javascript_jobs_feed,frontend,,Agile,2
 2019-06-03,javascript_jobs_feed,frontend,,Android,1
-2019-06-03,javascript_jobs_feed,frontend,,Angular,7
+2019-06-03,javascript_jobs_feed,frontend,,Angular,6
 2019-06-03,javascript_jobs_feed,frontend,,C++,1
-2019-06-03,javascript_jobs_feed,frontend,,CSS,17
+2019-06-03,javascript_jobs_feed,frontend,,CSS,16
 2019-06-03,javascript_jobs_feed,frontend,,Confluence,1
 2019-06-03,javascript_jobs_feed,frontend,,Cypress,1
 2019-06-03,javascript_jobs_feed,frontend,,Design patterns,1
@@ -7600,10 +7598,10 @@ week,channel,role,grade,skill,posts
 2019-06-03,javascript_jobs_feed,frontend,,GitLab,1
 2019-06-03,javascript_jobs_feed,frontend,,Go,1
 2019-06-03,javascript_jobs_feed,frontend,,GraphQL,4
-2019-06-03,javascript_jobs_feed,frontend,,HTML,12
+2019-06-03,javascript_jobs_feed,frontend,,HTML,11
 2019-06-03,javascript_jobs_feed,frontend,,HTTP,1
 2019-06-03,javascript_jobs_feed,frontend,,Java,1
-2019-06-03,javascript_jobs_feed,frontend,,JavaScript,23
+2019-06-03,javascript_jobs_feed,frontend,,JavaScript,22
 2019-06-03,javascript_jobs_feed,frontend,,Jenkins,1
 2019-06-03,javascript_jobs_feed,frontend,,Jest,2
 2019-06-03,javascript_jobs_feed,frontend,,Jira,3
@@ -7628,14 +7626,13 @@ week,channel,role,grade,skill,posts
 2019-06-03,javascript_jobs_feed,frontend,,Scala,2
 2019-06-03,javascript_jobs_feed,frontend,,Scrum,2
 2019-06-03,javascript_jobs_feed,frontend,,Swagger,1
-2019-06-03,javascript_jobs_feed,frontend,,TypeScript,8
+2019-06-03,javascript_jobs_feed,frontend,,TypeScript,7
 2019-06-03,javascript_jobs_feed,frontend,,Vue.js,5
-2019-06-03,javascript_jobs_feed,frontend,,WebSocket,1
 2019-06-03,javascript_jobs_feed,frontend,,Webpack,6
 2019-06-03,javascript_jobs_feed,frontend,,YARN,1
 2019-06-03,javascript_jobs_feed,frontend,,YouTrack,1
 2019-06-03,javascript_jobs_feed,frontend,,iOS,1
-2019-06-03,javascript_jobs_feed,frontend,,jQuery,4
+2019-06-03,javascript_jobs_feed,frontend,,jQuery,3
 2019-06-03,javascript_jobs_feed,frontend,,ООП,1
 2019-06-03,javascript_jobs_feed,frontend,junior,Agile,1
 2019-06-03,javascript_jobs_feed,frontend,junior,Android,1
@@ -7780,9 +7777,11 @@ week,channel,role,grade,skill,posts
 2019-06-03,progjob,backend,,PostgreSQL,2
 2019-06-03,progjob,backend,,Redis,1
 2019-06-03,progjob,backend,,SQL,2
+2019-06-03,progjob,backend,,Spring,2
 2019-06-03,progjob,backend,,Symfony,1
 2019-06-03,progjob,backend,,Unix,1
 2019-06-03,progjob,backend,,Visual Studio,1
+2019-06-03,progjob,backend,,Yii,2
 2019-06-03,progjob,backend,,jQuery,1
 2019-06-03,progjob,backend,,ООП,3
 2019-06-03,progjob,backend,middle,.NET,1
@@ -7820,13 +7819,14 @@ week,channel,role,grade,skill,posts
 2019-06-03,progjob,backend,middle,Ruby,2
 2019-06-03,progjob,backend,middle,Ruby on Rails,2
 2019-06-03,progjob,backend,middle,SQL,4
-2019-06-03,progjob,backend,middle,Spring,1
+2019-06-03,progjob,backend,middle,Spring,2
 2019-06-03,progjob,backend,middle,Spring Boot,1
 2019-06-03,progjob,backend,middle,Spring Cloud,1
 2019-06-03,progjob,backend,middle,Symfony,2
 2019-06-03,progjob,backend,middle,Unix,1
 2019-06-03,progjob,backend,middle,Vue.js,1
 2019-06-03,progjob,backend,middle,XML,1
+2019-06-03,progjob,backend,middle,Yii,2
 2019-06-03,progjob,backend,middle,jQuery,1
 2019-06-03,progjob,backend,middle,ООП,6
 2019-06-03,progjob,backend,senior,.NET,1
@@ -7848,6 +7848,7 @@ week,channel,role,grade,skill,posts
 2019-06-03,progjob,backend,senior,PHP,4
 2019-06-03,progjob,backend,senior,PostgreSQL,2
 2019-06-03,progjob,backend,senior,Python,2
+2019-06-03,progjob,backend,senior,REST,1
 2019-06-03,progjob,backend,senior,Ruby,1
 2019-06-03,progjob,backend,senior,SQL,1
 2019-06-03,progjob,backend,senior,Ubuntu,2
@@ -7866,7 +7867,7 @@ week,channel,role,grade,skill,posts
 2019-06-03,progjob,frontend,,JavaScript,11
 2019-06-03,progjob,frontend,,Less,1
 2019-06-03,progjob,frontend,,Node.js,4
-2019-06-03,progjob,frontend,,REST,1
+2019-06-03,progjob,frontend,,REST,2
 2019-06-03,progjob,frontend,,React,7
 2019-06-03,progjob,frontend,,Redux,1
 2019-06-03,progjob,frontend,,SQL,1
@@ -8050,10 +8051,10 @@ week,channel,role,grade,skill,posts
 2019-06-10,javascript_jobs_feed,frontend,,1С-Битрикс,1
 2019-06-10,javascript_jobs_feed,frontend,,Agile,1
 2019-06-10,javascript_jobs_feed,frontend,,Android,1
-2019-06-10,javascript_jobs_feed,frontend,,Angular,13
+2019-06-10,javascript_jobs_feed,frontend,,Angular,12
 2019-06-10,javascript_jobs_feed,frontend,,C++,2
 2019-06-10,javascript_jobs_feed,frontend,,CI/CD,1
-2019-06-10,javascript_jobs_feed,frontend,,CSS,15
+2019-06-10,javascript_jobs_feed,frontend,,CSS,14
 2019-06-10,javascript_jobs_feed,frontend,,DDD,1
 2019-06-10,javascript_jobs_feed,frontend,,Docker,1
 2019-06-10,javascript_jobs_feed,frontend,,Electron,1
@@ -8061,11 +8062,11 @@ week,channel,role,grade,skill,posts
 2019-06-10,javascript_jobs_feed,frontend,,Git,4
 2019-06-10,javascript_jobs_feed,frontend,,Go,1
 2019-06-10,javascript_jobs_feed,frontend,,GraphQL,2
-2019-06-10,javascript_jobs_feed,frontend,,HTML,12
+2019-06-10,javascript_jobs_feed,frontend,,HTML,11
 2019-06-10,javascript_jobs_feed,frontend,,Haskell,1
 2019-06-10,javascript_jobs_feed,frontend,,Hive,1
 2019-06-10,javascript_jobs_feed,frontend,,Java,2
-2019-06-10,javascript_jobs_feed,frontend,,JavaScript,24
+2019-06-10,javascript_jobs_feed,frontend,,JavaScript,23
 2019-06-10,javascript_jobs_feed,frontend,,Jest,2
 2019-06-10,javascript_jobs_feed,frontend,,Kafka,1
 2019-06-10,javascript_jobs_feed,frontend,,Kubernetes,2
@@ -8089,13 +8090,12 @@ week,channel,role,grade,skill,posts
 2019-06-10,javascript_jobs_feed,frontend,,Scala,1
 2019-06-10,javascript_jobs_feed,frontend,,Svelte,1
 2019-06-10,javascript_jobs_feed,frontend,,Swagger,1
-2019-06-10,javascript_jobs_feed,frontend,,TypeScript,10
+2019-06-10,javascript_jobs_feed,frontend,,TypeScript,9
 2019-06-10,javascript_jobs_feed,frontend,,Unix,1
 2019-06-10,javascript_jobs_feed,frontend,,Vue.js,9
-2019-06-10,javascript_jobs_feed,frontend,,WebSocket,1
 2019-06-10,javascript_jobs_feed,frontend,,Webpack,6
 2019-06-10,javascript_jobs_feed,frontend,,iOS,1
-2019-06-10,javascript_jobs_feed,frontend,,jQuery,2
+2019-06-10,javascript_jobs_feed,frontend,,jQuery,1
 2019-06-10,javascript_jobs_feed,frontend,,ООП,2
 2019-06-10,javascript_jobs_feed,frontend,junior,Angular,1
 2019-06-10,javascript_jobs_feed,frontend,junior,CSS,1
@@ -8281,7 +8281,7 @@ week,channel,role,grade,skill,posts
 2019-06-10,progjob,backend,,Vertica,1
 2019-06-10,progjob,backend,,Vue.js,1
 2019-06-10,progjob,backend,,Webpack,1
-2019-06-10,progjob,backend,,Yii,1
+2019-06-10,progjob,backend,,Yii,3
 2019-06-10,progjob,backend,,iOS,1
 2019-06-10,progjob,backend,,jQuery,2
 2019-06-10,progjob,backend,,ООП,3
@@ -8304,6 +8304,7 @@ week,channel,role,grade,skill,posts
 2019-06-10,progjob,backend,lead,MongoDB,1
 2019-06-10,progjob,backend,lead,Node.js,1
 2019-06-10,progjob,backend,lead,PostgreSQL,2
+2019-06-10,progjob,backend,lead,REST,1
 2019-06-10,progjob,backend,lead,SQL,1
 2019-06-10,progjob,backend,lead,ООП,1
 2019-06-10,progjob,backend,middle,.NET,1
@@ -8333,6 +8334,7 @@ week,channel,role,grade,skill,posts
 2019-06-10,progjob,backend,middle,Scala,1
 2019-06-10,progjob,backend,middle,Symfony,2
 2019-06-10,progjob,backend,middle,Webpack,1
+2019-06-10,progjob,backend,middle,Yii,2
 2019-06-10,progjob,backend,middle,jQuery,2
 2019-06-10,progjob,backend,middle,ООП,2
 2019-06-10,progjob,backend,senior,ASP.NET,1
@@ -8366,6 +8368,7 @@ week,channel,role,grade,skill,posts
 2019-06-10,progjob,devops,,Prometheus,1
 2019-06-10,progjob,devops,,Python,1
 2019-06-10,progjob,devops,,SQL,1
+2019-06-10,progjob,devops,senior,AWS,1
 2019-06-10,progjob,devops,senior,Linux,1
 2019-06-10,progjob,devops,senior,MySQL,1
 2019-06-10,progjob,devops,senior,PHP,1
@@ -8770,11 +8773,13 @@ week,channel,role,grade,skill,posts
 2019-06-17,progjob,backend,,PHP,5
 2019-06-17,progjob,backend,,PostgreSQL,4
 2019-06-17,progjob,backend,,Python,1
+2019-06-17,progjob,backend,,REST,1
 2019-06-17,progjob,backend,,RabbitMQ,1
 2019-06-17,progjob,backend,,Redis,2
 2019-06-17,progjob,backend,,Ruby,1
 2019-06-17,progjob,backend,,Ruby on Rails,2
 2019-06-17,progjob,backend,,SQL,1
+2019-06-17,progjob,backend,,Spring,1
 2019-06-17,progjob,backend,,Symfony,1
 2019-06-17,progjob,backend,,Unix,1
 2019-06-17,progjob,backend,,WordPress,1
@@ -8815,7 +8820,9 @@ week,channel,role,grade,skill,posts
 2019-06-17,progjob,backend,middle,Redis,2
 2019-06-17,progjob,backend,middle,Ruby,1
 2019-06-17,progjob,backend,middle,Ruby on Rails,2
+2019-06-17,progjob,backend,middle,Spring,1
 2019-06-17,progjob,backend,middle,Symfony,2
+2019-06-17,progjob,backend,middle,Yii,1
 2019-06-17,progjob,backend,middle,jQuery,1
 2019-06-17,progjob,backend,senior,.NET,1
 2019-06-17,progjob,backend,senior,ASP.NET,1
@@ -8844,6 +8851,7 @@ week,channel,role,grade,skill,posts
 2019-06-17,progjob,backend,senior,SQL,2
 2019-06-17,progjob,backend,senior,Symfony,1
 2019-06-17,progjob,backend,senior,Tarantool,1
+2019-06-17,progjob,backend,senior,Yii,1
 2019-06-17,progjob,backend,senior,ООП,2
 2019-06-17,progjob,data_engineer,middle,ClickHouse,1
 2019-06-17,progjob,data_engineer,middle,Linux,1
@@ -8912,6 +8920,7 @@ week,channel,role,grade,skill,posts
 2019-06-17,progjob,frontend,senior,JavaScript,3
 2019-06-17,progjob,frontend,senior,Less,1
 2019-06-17,progjob,frontend,senior,PHP,1
+2019-06-17,progjob,frontend,senior,REST,1
 2019-06-17,progjob,frontend,senior,React,1
 2019-06-17,progjob,frontend,senior,Sass,1
 2019-06-17,progjob,frontend,senior,jQuery,1
@@ -9319,6 +9328,7 @@ week,channel,role,grade,skill,posts
 2019-06-24,progjob,backend,middle,Ruby,1
 2019-06-24,progjob,backend,middle,Ruby on Rails,1
 2019-06-24,progjob,backend,middle,SQL,5
+2019-06-24,progjob,backend,middle,Spring,1
 2019-06-24,progjob,backend,middle,Visual Studio,1
 2019-06-24,progjob,backend,middle,WordPress,1
 2019-06-24,progjob,backend,middle,ООП,3
@@ -9345,7 +9355,9 @@ week,channel,role,grade,skill,posts
 2019-06-24,progjob,backend,senior,Python,1
 2019-06-24,progjob,backend,senior,RabbitMQ,1
 2019-06-24,progjob,backend,senior,SQL,2
+2019-06-24,progjob,backend,senior,Spring,1
 2019-06-24,progjob,backend,senior,TypeScript,1
+2019-06-24,progjob,backend,senior,Yii,1
 2019-06-24,progjob,backend,senior,jQuery,1
 2019-06-24,progjob,backend,senior,ООП,2
 2019-06-24,progjob,developer_1c,senior,1С,1
@@ -9382,6 +9394,7 @@ week,channel,role,grade,skill,posts
 2019-06-24,progjob,fullstack,junior,Java,1
 2019-06-24,progjob,fullstack,junior,JavaScript,1
 2019-06-24,progjob,fullstack,junior,Linux,1
+2019-06-24,progjob,fullstack,junior,Spring,1
 2019-06-24,progjob,fullstack,senior,.NET,1
 2019-06-24,progjob,fullstack,senior,ASP.NET,1
 2019-06-24,progjob,fullstack,senior,Angular,2
@@ -9515,22 +9528,22 @@ week,channel,role,grade,skill,posts
 2019-07-01,javascript_jobs_feed,frontend,,ASP.NET,1
 2019-07-01,javascript_jobs_feed,frontend,,Agile,3
 2019-07-01,javascript_jobs_feed,frontend,,Android,2
-2019-07-01,javascript_jobs_feed,frontend,,Angular,7
+2019-07-01,javascript_jobs_feed,frontend,,Angular,6
 2019-07-01,javascript_jobs_feed,frontend,,Bitbucket,1
-2019-07-01,javascript_jobs_feed,frontend,,CSS,17
+2019-07-01,javascript_jobs_feed,frontend,,CSS,16
 2019-07-01,javascript_jobs_feed,frontend,,Design patterns,1
 2019-07-01,javascript_jobs_feed,frontend,,Docker,1
 2019-07-01,javascript_jobs_feed,frontend,,Express,3
 2019-07-01,javascript_jobs_feed,frontend,,Firebird,2
 2019-07-01,javascript_jobs_feed,frontend,,Git,7
-2019-07-01,javascript_jobs_feed,frontend,,GitHub,2
+2019-07-01,javascript_jobs_feed,frontend,,GitHub,1
 2019-07-01,javascript_jobs_feed,frontend,,Go,1
 2019-07-01,javascript_jobs_feed,frontend,,GraphQL,7
-2019-07-01,javascript_jobs_feed,frontend,,HTML,16
+2019-07-01,javascript_jobs_feed,frontend,,HTML,15
 2019-07-01,javascript_jobs_feed,frontend,,HTTP,1
 2019-07-01,javascript_jobs_feed,frontend,,JSON,1
 2019-07-01,javascript_jobs_feed,frontend,,Java,1
-2019-07-01,javascript_jobs_feed,frontend,,JavaScript,22
+2019-07-01,javascript_jobs_feed,frontend,,JavaScript,21
 2019-07-01,javascript_jobs_feed,frontend,,Jest,1
 2019-07-01,javascript_jobs_feed,frontend,,Jira,1
 2019-07-01,javascript_jobs_feed,frontend,,Kanban,1
@@ -9557,7 +9570,7 @@ week,channel,role,grade,skill,posts
 2019-07-01,javascript_jobs_feed,frontend,,SQLite,2
 2019-07-01,javascript_jobs_feed,frontend,,Sass,5
 2019-07-01,javascript_jobs_feed,frontend,,Scrum,2
-2019-07-01,javascript_jobs_feed,frontend,,TypeScript,8
+2019-07-01,javascript_jobs_feed,frontend,,TypeScript,7
 2019-07-01,javascript_jobs_feed,frontend,,Vue.js,7
 2019-07-01,javascript_jobs_feed,frontend,,WebSocket,2
 2019-07-01,javascript_jobs_feed,frontend,,Webpack,3
@@ -9567,7 +9580,6 @@ week,channel,role,grade,skill,posts
 2019-07-01,javascript_jobs_feed,frontend,junior,ASP.NET,2
 2019-07-01,javascript_jobs_feed,frontend,junior,Angular,1
 2019-07-01,javascript_jobs_feed,frontend,junior,CSS,2
-2019-07-01,javascript_jobs_feed,frontend,junior,Express,1
 2019-07-01,javascript_jobs_feed,frontend,junior,Git,4
 2019-07-01,javascript_jobs_feed,frontend,junior,GitLab,1
 2019-07-01,javascript_jobs_feed,frontend,junior,HTML,2
@@ -9575,12 +9587,10 @@ week,channel,role,grade,skill,posts
 2019-07-01,javascript_jobs_feed,frontend,junior,Jest,1
 2019-07-01,javascript_jobs_feed,frontend,junior,MS SQL Server,2
 2019-07-01,javascript_jobs_feed,frontend,junior,MVC,2
-2019-07-01,javascript_jobs_feed,frontend,junior,MongoDB,2
-2019-07-01,javascript_jobs_feed,frontend,junior,Node.js,3
-2019-07-01,javascript_jobs_feed,frontend,junior,Postman,1
-2019-07-01,javascript_jobs_feed,frontend,junior,React,8
-2019-07-01,javascript_jobs_feed,frontend,junior,Redux,3
-2019-07-01,javascript_jobs_feed,frontend,junior,SQL,1
+2019-07-01,javascript_jobs_feed,frontend,junior,MongoDB,1
+2019-07-01,javascript_jobs_feed,frontend,junior,Node.js,2
+2019-07-01,javascript_jobs_feed,frontend,junior,React,7
+2019-07-01,javascript_jobs_feed,frontend,junior,Redux,2
 2019-07-01,javascript_jobs_feed,frontend,junior,Vue.js,1
 2019-07-01,javascript_jobs_feed,frontend,junior,Web API,2
 2019-07-01,javascript_jobs_feed,frontend,junior,Webpack,1
@@ -9786,10 +9796,12 @@ week,channel,role,grade,skill,posts
 2019-07-01,progjob,backend,middle,Redis,1
 2019-07-01,progjob,backend,middle,SCSS,1
 2019-07-01,progjob,backend,middle,SQL,6
+2019-07-01,progjob,backend,middle,Spring,3
 2019-07-01,progjob,backend,middle,WordPress,1
-2019-07-01,progjob,backend,middle,Yii,1
+2019-07-01,progjob,backend,middle,Yii,3
 2019-07-01,progjob,backend,middle,ООП,5
 2019-07-01,progjob,backend,senior,.NET,1
+2019-07-01,progjob,backend,senior,AWS,1
 2019-07-01,progjob,backend,senior,Angular,1
 2019-07-01,progjob,backend,senior,Bash,1
 2019-07-01,progjob,backend,senior,C#,2
@@ -9819,7 +9831,7 @@ week,channel,role,grade,skill,posts
 2019-07-01,progjob,backend,senior,PHP,4
 2019-07-01,progjob,backend,senior,PostgreSQL,3
 2019-07-01,progjob,backend,senior,Python,4
-2019-07-01,progjob,backend,senior,REST,2
+2019-07-01,progjob,backend,senior,REST,3
 2019-07-01,progjob,backend,senior,RabbitMQ,1
 2019-07-01,progjob,backend,senior,Redmine,1
 2019-07-01,progjob,backend,senior,Ruby,1
@@ -9845,6 +9857,7 @@ week,channel,role,grade,skill,posts
 2019-07-01,progjob,developer_1c,middle,1С,1
 2019-07-01,progjob,developer_1c,middle,PHP,1
 2019-07-01,progjob,devops,,DevOps,1
+2019-07-01,progjob,devops,middle,AWS,1
 2019-07-01,progjob,devops,middle,Bash,1
 2019-07-01,progjob,devops,middle,Docker,1
 2019-07-01,progjob,devops,middle,Git,1
@@ -9916,6 +9929,7 @@ week,channel,role,grade,skill,posts
 2019-07-01,progjob,fullstack,middle,ООП,2
 2019-07-01,progjob,fullstack,senior,.NET,1
 2019-07-01,progjob,fullstack,senior,Angular,1
+2019-07-01,progjob,fullstack,senior,CI/CD,1
 2019-07-01,progjob,fullstack,senior,React,1
 2019-07-01,progjob,fullstack,senior,SVN,1
 2019-07-01,progjob,fullstack,senior,T-SQL,1
@@ -9960,6 +9974,7 @@ week,channel,role,grade,skill,posts
 2019-07-01,progjob,software_engineer,senior,.NET,1
 2019-07-01,progjob,software_engineer,senior,C#,1
 2019-07-01,progjob,software_engineer,senior,C++,1
+2019-07-01,progjob,software_engineer,senior,CI/CD,1
 2019-07-01,progjob,software_engineer,senior,DevOps,1
 2019-07-01,progjob,software_engineer,senior,Git,1
 2019-07-01,progjob,software_engineer,senior,Java,1
@@ -10163,24 +10178,18 @@ week,channel,role,grade,skill,posts
 2019-07-08,javascript_jobs_feed,frontend,junior,Android,1
 2019-07-08,javascript_jobs_feed,frontend,junior,Angular,1
 2019-07-08,javascript_jobs_feed,frontend,junior,CSS,1
-2019-07-08,javascript_jobs_feed,frontend,junior,Express,1
 2019-07-08,javascript_jobs_feed,frontend,junior,Git,1
 2019-07-08,javascript_jobs_feed,frontend,junior,GraphQL,1
 2019-07-08,javascript_jobs_feed,frontend,junior,HTML,1
 2019-07-08,javascript_jobs_feed,frontend,junior,Java,1
 2019-07-08,javascript_jobs_feed,frontend,junior,JavaScript,1
 2019-07-08,javascript_jobs_feed,frontend,junior,Kotlin,1
-2019-07-08,javascript_jobs_feed,frontend,junior,MongoDB,1
-2019-07-08,javascript_jobs_feed,frontend,junior,Node.js,1
 2019-07-08,javascript_jobs_feed,frontend,junior,Objective-C,1
 2019-07-08,javascript_jobs_feed,frontend,junior,PostgreSQL,1
-2019-07-08,javascript_jobs_feed,frontend,junior,Postman,1
-2019-07-08,javascript_jobs_feed,frontend,junior,React,2
+2019-07-08,javascript_jobs_feed,frontend,junior,React,1
 2019-07-08,javascript_jobs_feed,frontend,junior,React Native,1
-2019-07-08,javascript_jobs_feed,frontend,junior,Redux,1
 2019-07-08,javascript_jobs_feed,frontend,junior,Ruby on Rails,1
 2019-07-08,javascript_jobs_feed,frontend,junior,SCSS,1
-2019-07-08,javascript_jobs_feed,frontend,junior,SQL,1
 2019-07-08,javascript_jobs_feed,frontend,junior,Scrum,1
 2019-07-08,javascript_jobs_feed,frontend,junior,Swift,1
 2019-07-08,javascript_jobs_feed,frontend,junior,TypeScript,1
@@ -10357,10 +10366,11 @@ week,channel,role,grade,skill,posts
 2019-07-08,progjob,backend,middle,Ruby on Rails,1
 2019-07-08,progjob,backend,middle,SQL,5
 2019-07-08,progjob,backend,middle,Scrum,1
+2019-07-08,progjob,backend,middle,Spring,2
 2019-07-08,progjob,backend,middle,Symfony,6
 2019-07-08,progjob,backend,middle,Vue.js,1
 2019-07-08,progjob,backend,middle,WPF,1
-2019-07-08,progjob,backend,middle,Yii,1
+2019-07-08,progjob,backend,middle,Yii,3
 2019-07-08,progjob,backend,middle,jQuery,1
 2019-07-08,progjob,backend,middle,regex,1
 2019-07-08,progjob,backend,middle,ООП,2
@@ -10390,6 +10400,7 @@ week,channel,role,grade,skill,posts
 2019-07-08,progjob,backend,senior,SOAP,2
 2019-07-08,progjob,backend,senior,TCP,1
 2019-07-08,progjob,backend,senior,Unix,1
+2019-07-08,progjob,backend,senior,Yii,1
 2019-07-08,progjob,backend,senior,ООП,1
 2019-07-08,progjob,designer,intern,CSS,1
 2019-07-08,progjob,designer,intern,HTML,1
@@ -10465,6 +10476,7 @@ week,channel,role,grade,skill,posts
 2019-07-08,progjob,fullstack,middle,PHP,2
 2019-07-08,progjob,fullstack,middle,React Native,1
 2019-07-08,progjob,fullstack,middle,Symfony,1
+2019-07-08,progjob,fullstack,middle,Yii,1
 2019-07-08,progjob,fullstack,middle,ООП,1
 2019-07-08,progjob,fullstack,senior,Java,1
 2019-07-08,progjob,fullstack,senior,Laravel,1
@@ -10622,7 +10634,7 @@ week,channel,role,grade,skill,posts
 2019-07-15,javascript_jobs_feed,frontend,,Bash,1
 2019-07-15,javascript_jobs_feed,frontend,,C#,1
 2019-07-15,javascript_jobs_feed,frontend,,CI/CD,1
-2019-07-15,javascript_jobs_feed,frontend,,CSS,15
+2019-07-15,javascript_jobs_feed,frontend,,CSS,14
 2019-07-15,javascript_jobs_feed,frontend,,Celery,1
 2019-07-15,javascript_jobs_feed,frontend,,ClickHouse,1
 2019-07-15,javascript_jobs_feed,frontend,,Cypress,1
@@ -10636,11 +10648,11 @@ week,channel,role,grade,skill,posts
 2019-07-15,javascript_jobs_feed,frontend,,GitHub,1
 2019-07-15,javascript_jobs_feed,frontend,,GitLab,1
 2019-07-15,javascript_jobs_feed,frontend,,GraphQL,3
-2019-07-15,javascript_jobs_feed,frontend,,HTML,12
-2019-07-15,javascript_jobs_feed,frontend,,JavaScript,20
+2019-07-15,javascript_jobs_feed,frontend,,HTML,11
+2019-07-15,javascript_jobs_feed,frontend,,JavaScript,19
 2019-07-15,javascript_jobs_feed,frontend,,Jest,2
 2019-07-15,javascript_jobs_feed,frontend,,Jira,1
-2019-07-15,javascript_jobs_feed,frontend,,Less,2
+2019-07-15,javascript_jobs_feed,frontend,,Less,1
 2019-07-15,javascript_jobs_feed,frontend,,Linux,1
 2019-07-15,javascript_jobs_feed,frontend,,MS SQL Server,1
 2019-07-15,javascript_jobs_feed,frontend,,MVC,1
@@ -10663,23 +10675,17 @@ week,channel,role,grade,skill,posts
 2019-07-15,javascript_jobs_feed,frontend,,SQL,1
 2019-07-15,javascript_jobs_feed,frontend,,SQLite,1
 2019-07-15,javascript_jobs_feed,frontend,,SVG,1
-2019-07-15,javascript_jobs_feed,frontend,,Sass,3
+2019-07-15,javascript_jobs_feed,frontend,,Sass,2
 2019-07-15,javascript_jobs_feed,frontend,,Scala,1
 2019-07-15,javascript_jobs_feed,frontend,,TeamCity,1
 2019-07-15,javascript_jobs_feed,frontend,,TypeScript,6
 2019-07-15,javascript_jobs_feed,frontend,,Vue.js,4
 2019-07-15,javascript_jobs_feed,frontend,,Web API,1
 2019-07-15,javascript_jobs_feed,frontend,,WebSocket,1
-2019-07-15,javascript_jobs_feed,frontend,,Webpack,6
+2019-07-15,javascript_jobs_feed,frontend,,Webpack,5
 2019-07-15,javascript_jobs_feed,frontend,,iOS,1
-2019-07-15,javascript_jobs_feed,frontend,,jQuery,2
+2019-07-15,javascript_jobs_feed,frontend,,jQuery,1
 2019-07-15,javascript_jobs_feed,frontend,,ООП,1
-2019-07-15,javascript_jobs_feed,frontend,intern,Bash,1
-2019-07-15,javascript_jobs_feed,frontend,intern,CSS,1
-2019-07-15,javascript_jobs_feed,frontend,intern,Git,1
-2019-07-15,javascript_jobs_feed,frontend,intern,HTML,1
-2019-07-15,javascript_jobs_feed,frontend,intern,JavaScript,1
-2019-07-15,javascript_jobs_feed,frontend,intern,React,1
 2019-07-15,javascript_jobs_feed,frontend,junior,JavaScript,1
 2019-07-15,javascript_jobs_feed,frontend,junior,Laravel,1
 2019-07-15,javascript_jobs_feed,frontend,junior,PHP,1
@@ -10905,11 +10911,13 @@ week,channel,role,grade,skill,posts
 2019-07-15,progjob,backend,senior,Ruby,1
 2019-07-15,progjob,backend,senior,Ruby on Rails,1
 2019-07-15,progjob,backend,senior,Scala,1
+2019-07-15,progjob,backend,senior,Spring,1
 2019-07-15,progjob,backend,senior,jQuery,1
 2019-07-15,progjob,backend,senior,ООП,1
 2019-07-15,progjob,data_scientist,,Go,1
 2019-07-15,progjob,data_scientist,,Python,1
 2019-07-15,progjob,developer_1c,senior,1С,1
+2019-07-15,progjob,devops,,AWS,1
 2019-07-15,progjob,devops,,Bash,1
 2019-07-15,progjob,devops,,DevOps,1
 2019-07-15,progjob,devops,,Docker,2
@@ -10924,6 +10932,7 @@ week,channel,role,grade,skill,posts
 2019-07-15,progjob,devops,,SQL,1
 2019-07-15,progjob,devops,,Unix,1
 2019-07-15,progjob,devops,middle,Bash,1
+2019-07-15,progjob,devops,middle,CI/CD,1
 2019-07-15,progjob,devops,middle,Docker,1
 2019-07-15,progjob,devops,middle,Kubernetes,1
 2019-07-15,progjob,devops,middle,Linux,1
@@ -11004,6 +11013,7 @@ week,channel,role,grade,skill,posts
 2019-07-15,progjob,mobile,middle,JavaScript,1
 2019-07-15,progjob,mobile,middle,React Native,1
 2019-07-15,progjob,mobile,middle,TypeScript,1
+2019-07-15,progjob,mobile,middle,Unity,1
 2019-07-15,progjob,mobile,middle,iOS,1
 2019-07-15,progjob,mobile,senior,Android,1
 2019-07-15,progjob,mobile,senior,Flutter,1
@@ -11021,6 +11031,7 @@ week,channel,role,grade,skill,posts
 2019-07-15,progjob,software_engineer,middle,JavaScript,1
 2019-07-15,progjob,software_engineer,middle,Oracle,1
 2019-07-15,progjob,software_engineer,middle,SQL,1
+2019-07-15,progjob,software_engineer,middle,Unity,1
 2019-07-15,progjob,software_engineer,senior,C++,1
 2019-07-15,progjob,software_engineer,senior,Oracle,1
 2019-07-15,progjob,software_engineer,senior,PL/SQL,1
@@ -11100,7 +11111,7 @@ week,channel,role,grade,skill,posts
 2019-07-22,javascript_jobs_feed,frontend,,Agile,2
 2019-07-22,javascript_jobs_feed,frontend,,Angular,6
 2019-07-22,javascript_jobs_feed,frontend,,C#,1
-2019-07-22,javascript_jobs_feed,frontend,,CSS,16
+2019-07-22,javascript_jobs_feed,frontend,,CSS,15
 2019-07-22,javascript_jobs_feed,frontend,,Canva,1
 2019-07-22,javascript_jobs_feed,frontend,,Confluence,1
 2019-07-22,javascript_jobs_feed,frontend,,Docker,1
@@ -11108,14 +11119,14 @@ week,channel,role,grade,skill,posts
 2019-07-22,javascript_jobs_feed,frontend,,Git,6
 2019-07-22,javascript_jobs_feed,frontend,,GitLab,2
 2019-07-22,javascript_jobs_feed,frontend,,GraphQL,1
-2019-07-22,javascript_jobs_feed,frontend,,HTML,14
+2019-07-22,javascript_jobs_feed,frontend,,HTML,13
 2019-07-22,javascript_jobs_feed,frontend,,Java,2
-2019-07-22,javascript_jobs_feed,frontend,,JavaScript,20
+2019-07-22,javascript_jobs_feed,frontend,,JavaScript,19
 2019-07-22,javascript_jobs_feed,frontend,,Jenkins,1
 2019-07-22,javascript_jobs_feed,frontend,,Jest,3
 2019-07-22,javascript_jobs_feed,frontend,,Jira,2
 2019-07-22,javascript_jobs_feed,frontend,,Kanban,1
-2019-07-22,javascript_jobs_feed,frontend,,Less,7
+2019-07-22,javascript_jobs_feed,frontend,,Less,6
 2019-07-22,javascript_jobs_feed,frontend,,Linux,1
 2019-07-22,javascript_jobs_feed,frontend,,MS SQL Server,1
 2019-07-22,javascript_jobs_feed,frontend,,Microservices,1
@@ -11133,7 +11144,7 @@ week,channel,role,grade,skill,posts
 2019-07-22,javascript_jobs_feed,frontend,,React Native,1
 2019-07-22,javascript_jobs_feed,frontend,,Redux,11
 2019-07-22,javascript_jobs_feed,frontend,,SCSS,5
-2019-07-22,javascript_jobs_feed,frontend,,Sass,7
+2019-07-22,javascript_jobs_feed,frontend,,Sass,6
 2019-07-22,javascript_jobs_feed,frontend,,Scala,1
 2019-07-22,javascript_jobs_feed,frontend,,Scrum,3
 2019-07-22,javascript_jobs_feed,frontend,,SharePoint,1
@@ -11141,8 +11152,8 @@ week,channel,role,grade,skill,posts
 2019-07-22,javascript_jobs_feed,frontend,,Unix,1
 2019-07-22,javascript_jobs_feed,frontend,,Vue.js,2
 2019-07-22,javascript_jobs_feed,frontend,,WebSocket,4
-2019-07-22,javascript_jobs_feed,frontend,,Webpack,7
-2019-07-22,javascript_jobs_feed,frontend,,jQuery,2
+2019-07-22,javascript_jobs_feed,frontend,,Webpack,6
+2019-07-22,javascript_jobs_feed,frontend,,jQuery,1
 2019-07-22,javascript_jobs_feed,frontend,,ООП,1
 2019-07-22,javascript_jobs_feed,frontend,junior,Android,2
 2019-07-22,javascript_jobs_feed,frontend,junior,CSS,3
@@ -11312,8 +11323,10 @@ week,channel,role,grade,skill,posts
 2019-07-22,progjob,backend,middle,PHP,4
 2019-07-22,progjob,backend,middle,PostgreSQL,1
 2019-07-22,progjob,backend,middle,Python,1
+2019-07-22,progjob,backend,middle,REST,1
 2019-07-22,progjob,backend,middle,React,2
 2019-07-22,progjob,backend,middle,SQL,2
+2019-07-22,progjob,backend,middle,Spring,3
 2019-07-22,progjob,backend,middle,Symfony,1
 2019-07-22,progjob,backend,middle,Webpack,1
 2019-07-22,progjob,backend,middle,Yii,1
@@ -11335,11 +11348,13 @@ week,channel,role,grade,skill,posts
 2019-07-22,progjob,backend,senior,PHPUnit,1
 2019-07-22,progjob,backend,senior,PostgreSQL,4
 2019-07-22,progjob,backend,senior,Python,1
+2019-07-22,progjob,backend,senior,REST,1
 2019-07-22,progjob,backend,senior,RabbitMQ,1
 2019-07-22,progjob,backend,senior,Redis,1
 2019-07-22,progjob,backend,senior,Ruby,1
 2019-07-22,progjob,backend,senior,Ruby on Rails,1
 2019-07-22,progjob,backend,senior,SQL,1
+2019-07-22,progjob,backend,senior,Spring,1
 2019-07-22,progjob,backend,senior,Symfony,1
 2019-07-22,progjob,backend,senior,jQuery,1
 2019-07-22,progjob,data_analyst,middle,Python,1
@@ -11355,6 +11370,7 @@ week,channel,role,grade,skill,posts
 2019-07-22,progjob,devops,,Linux,1
 2019-07-22,progjob,devops,,Nginx,1
 2019-07-22,progjob,devops,,Puppet,1
+2019-07-22,progjob,devops,senior,CI/CD,1
 2019-07-22,progjob,devops,senior,DevOps,1
 2019-07-22,progjob,devops,senior,Kubernetes,1
 2019-07-22,progjob,devops,senior,MS SQL Server,1
@@ -11367,6 +11383,7 @@ week,channel,role,grade,skill,posts
 2019-07-22,progjob,frontend,,JavaScript,6
 2019-07-22,progjob,frontend,,Less,1
 2019-07-22,progjob,frontend,,PHP,1
+2019-07-22,progjob,frontend,,REST,1
 2019-07-22,progjob,frontend,,React,2
 2019-07-22,progjob,frontend,,Redux,2
 2019-07-22,progjob,frontend,,SCSS,1
@@ -11386,6 +11403,7 @@ week,channel,role,grade,skill,posts
 2019-07-22,progjob,frontend,junior,jQuery,1
 2019-07-22,progjob,frontend,middle,CSS,1
 2019-07-22,progjob,frontend,middle,Cocos2d,1
+2019-07-22,progjob,frontend,middle,Figma,1
 2019-07-22,progjob,frontend,middle,Git,2
 2019-07-22,progjob,frontend,middle,HTML,1
 2019-07-22,progjob,frontend,middle,JavaScript,3
@@ -11407,6 +11425,7 @@ week,channel,role,grade,skill,posts
 2019-07-22,progjob,frontend,senior,Ruby on Rails,1
 2019-07-22,progjob,frontend,senior,TypeScript,2
 2019-07-22,progjob,frontend,senior,Vue.js,2
+2019-07-22,progjob,frontend,senior,Yii,1
 2019-07-22,progjob,frontend,senior,ООП,1
 2019-07-22,progjob,fullstack,,.NET,1
 2019-07-22,progjob,fullstack,,Angular,2
@@ -11689,12 +11708,6 @@ week,channel,role,grade,skill,posts
 2019-07-29,javascript_jobs_feed,frontend,,jQuery,2
 2019-07-29,javascript_jobs_feed,frontend,,macOS,1
 2019-07-29,javascript_jobs_feed,frontend,,ООП,1
-2019-07-29,javascript_jobs_feed,frontend,intern,Bash,1
-2019-07-29,javascript_jobs_feed,frontend,intern,CSS,2
-2019-07-29,javascript_jobs_feed,frontend,intern,Git,2
-2019-07-29,javascript_jobs_feed,frontend,intern,HTML,2
-2019-07-29,javascript_jobs_feed,frontend,intern,JavaScript,2
-2019-07-29,javascript_jobs_feed,frontend,intern,React,2
 2019-07-29,javascript_jobs_feed,frontend,junior,ASP.NET,1
 2019-07-29,javascript_jobs_feed,frontend,junior,Android,1
 2019-07-29,javascript_jobs_feed,frontend,junior,CSS,1
@@ -11868,11 +11881,14 @@ week,channel,role,grade,skill,posts
 2019-07-29,progjob,backend,junior,PostgreSQL,2
 2019-07-29,progjob,backend,junior,Python,1
 2019-07-29,progjob,backend,junior,Symfony,1
+2019-07-29,progjob,backend,junior,Yii,1
 2019-07-29,progjob,backend,junior,ООП,1
 2019-07-29,progjob,backend,lead,Java,1
 2019-07-29,progjob,backend,lead,MongoDB,1
 2019-07-29,progjob,backend,lead,PHP,1
 2019-07-29,progjob,backend,lead,PostgreSQL,1
+2019-07-29,progjob,backend,lead,Spring,1
+2019-07-29,progjob,backend,lead,Yii,1
 2019-07-29,progjob,backend,middle,.NET,2
 2019-07-29,progjob,backend,middle,ASP.NET,1
 2019-07-29,progjob,backend,middle,Agile,1
@@ -11906,7 +11922,7 @@ week,channel,role,grade,skill,posts
 2019-07-29,progjob,backend,middle,PHP,6
 2019-07-29,progjob,backend,middle,PostgreSQL,5
 2019-07-29,progjob,backend,middle,Python,1
-2019-07-29,progjob,backend,middle,REST,3
+2019-07-29,progjob,backend,middle,REST,4
 2019-07-29,progjob,backend,middle,React,3
 2019-07-29,progjob,backend,middle,Redis,3
 2019-07-29,progjob,backend,middle,Ruby,2
@@ -11919,6 +11935,7 @@ week,channel,role,grade,skill,posts
 2019-07-29,progjob,backend,middle,Web API,1
 2019-07-29,progjob,backend,middle,WebSocket,1
 2019-07-29,progjob,backend,middle,XML,2
+2019-07-29,progjob,backend,middle,Yii,1
 2019-07-29,progjob,backend,middle,jQuery,1
 2019-07-29,progjob,backend,middle,ООП,2
 2019-07-29,progjob,backend,senior,.NET,3
@@ -12045,6 +12062,7 @@ week,channel,role,grade,skill,posts
 2019-07-29,progjob,software_engineer,middle,Perl,1
 2019-07-29,progjob,software_engineer,middle,PostgreSQL,1
 2019-07-29,progjob,software_engineer,middle,Python,1
+2019-07-29,progjob,software_engineer,middle,Yii,1
 2019-07-29,pydevjob,backend,,Python,1
 2019-08-05,datajob,data_engineer,,Flume,1
 2019-08-05,datajob,data_engineer,,Hadoop,1
@@ -12199,11 +12217,6 @@ week,channel,role,grade,skill,posts
 2019-08-05,javascript_jobs_feed,frontend,,Webpack,1
 2019-08-05,javascript_jobs_feed,frontend,,jQuery,2
 2019-08-05,javascript_jobs_feed,frontend,,ООП,1
-2019-08-05,javascript_jobs_feed,frontend,intern,CSS,1
-2019-08-05,javascript_jobs_feed,frontend,intern,Git,1
-2019-08-05,javascript_jobs_feed,frontend,intern,HTML,1
-2019-08-05,javascript_jobs_feed,frontend,intern,JavaScript,1
-2019-08-05,javascript_jobs_feed,frontend,intern,React,1
 2019-08-05,javascript_jobs_feed,frontend,junior,Angular,1
 2019-08-05,javascript_jobs_feed,frontend,junior,JavaScript,1
 2019-08-05,javascript_jobs_feed,frontend,junior,React,1
@@ -12367,6 +12380,7 @@ week,channel,role,grade,skill,posts
 2019-08-05,progjob,backend,,Node.js,4
 2019-08-05,progjob,backend,,PHP,1
 2019-08-05,progjob,backend,,Python,1
+2019-08-05,progjob,backend,,REST,1
 2019-08-05,progjob,backend,,Redis,1
 2019-08-05,progjob,backend,,SQL,2
 2019-08-05,progjob,backend,,Unix,1
@@ -12410,6 +12424,7 @@ week,channel,role,grade,skill,posts
 2019-08-05,progjob,backend,middle,Symfony,1
 2019-08-05,progjob,backend,middle,Unix,1
 2019-08-05,progjob,backend,middle,Vue.js,1
+2019-08-05,progjob,backend,middle,Yii,1
 2019-08-05,progjob,backend,middle,jQuery,1
 2019-08-05,progjob,backend,middle,ООП,5
 2019-08-05,progjob,backend,senior,C++,1
@@ -12428,10 +12443,12 @@ week,channel,role,grade,skill,posts
 2019-08-05,progjob,backend,senior,PHP,4
 2019-08-05,progjob,backend,senior,PostgreSQL,5
 2019-08-05,progjob,backend,senior,Python,1
+2019-08-05,progjob,backend,senior,REST,1
 2019-08-05,progjob,backend,senior,RabbitMQ,1
 2019-08-05,progjob,backend,senior,SQL,1
 2019-08-05,progjob,backend,senior,Scala,1
 2019-08-05,progjob,backend,senior,Symfony,2
+2019-08-05,progjob,backend,senior,Yii,1
 2019-08-05,progjob,backend,senior,ООП,3
 2019-08-05,progjob,data_analyst,senior,Oracle,1
 2019-08-05,progjob,data_analyst,senior,PL/SQL,1
@@ -12484,6 +12501,7 @@ week,channel,role,grade,skill,posts
 2019-08-05,progjob,frontend,,React Native,1
 2019-08-05,progjob,frontend,,Redux,3
 2019-08-05,progjob,frontend,,Vue.js,2
+2019-08-05,progjob,frontend,,Yii,1
 2019-08-05,progjob,frontend,,iOS,1
 2019-08-05,progjob,frontend,,jQuery,1
 2019-08-05,progjob,frontend,intern,Angular,1
@@ -12495,6 +12513,7 @@ week,channel,role,grade,skill,posts
 2019-08-05,progjob,frontend,middle,JavaScript,8
 2019-08-05,progjob,frontend,middle,Linux,1
 2019-08-05,progjob,frontend,middle,Node.js,1
+2019-08-05,progjob,frontend,middle,REST,2
 2019-08-05,progjob,frontend,middle,React,4
 2019-08-05,progjob,frontend,middle,Redux,2
 2019-08-05,progjob,frontend,middle,SQL,1
@@ -12507,6 +12526,7 @@ week,channel,role,grade,skill,posts
 2019-08-05,progjob,frontend,senior,Git,1
 2019-08-05,progjob,frontend,senior,HTML,3
 2019-08-05,progjob,frontend,senior,JavaScript,3
+2019-08-05,progjob,frontend,senior,REST,1
 2019-08-05,progjob,frontend,senior,React,2
 2019-08-05,progjob,frontend,senior,React Native,1
 2019-08-05,progjob,frontend,senior,Redux,1
@@ -12526,6 +12546,7 @@ week,channel,role,grade,skill,posts
 2019-08-05,progjob,fullstack,middle,Node.js,1
 2019-08-05,progjob,fullstack,middle,PostgreSQL,1
 2019-08-05,progjob,fullstack,middle,SQL,1
+2019-08-05,progjob,fullstack,middle,Spring,1
 2019-08-05,progjob,mobile,,React Native,1
 2019-08-05,progjob,mobile,,Redux,1
 2019-08-05,progjob,mobile,,Swift,1
@@ -12567,6 +12588,7 @@ week,channel,role,grade,skill,posts
 2019-08-05,progjob,software_engineer,,Scrum,1
 2019-08-05,progjob,software_engineer,,Spring,1
 2019-08-05,progjob,software_engineer,middle,C#,2
+2019-08-05,progjob,software_engineer,middle,Unity,1
 2019-08-05,progjob,software_engineer,senior,C++,1
 2019-08-05,progjob,software_engineer,senior,Hadoop,1
 2019-08-05,progjob,software_engineer,senior,Java,1
@@ -12782,20 +12804,19 @@ week,channel,role,grade,skill,posts
 2019-08-12,javascript_jobs_feed,frontend,junior,Android,1
 2019-08-12,javascript_jobs_feed,frontend,junior,Angular,1
 2019-08-12,javascript_jobs_feed,frontend,junior,Bitbucket,1
-2019-08-12,javascript_jobs_feed,frontend,junior,CSS,5
-2019-08-12,javascript_jobs_feed,frontend,junior,Git,6
-2019-08-12,javascript_jobs_feed,frontend,junior,HTML,5
+2019-08-12,javascript_jobs_feed,frontend,junior,CSS,2
+2019-08-12,javascript_jobs_feed,frontend,junior,Git,3
+2019-08-12,javascript_jobs_feed,frontend,junior,HTML,2
 2019-08-12,javascript_jobs_feed,frontend,junior,HTTP,1
-2019-08-12,javascript_jobs_feed,frontend,junior,JavaScript,8
+2019-08-12,javascript_jobs_feed,frontend,junior,JavaScript,5
 2019-08-12,javascript_jobs_feed,frontend,junior,Jira,1
-2019-08-12,javascript_jobs_feed,frontend,junior,Less,2
+2019-08-12,javascript_jobs_feed,frontend,junior,Less,1
 2019-08-12,javascript_jobs_feed,frontend,junior,Linux,1
 2019-08-12,javascript_jobs_feed,frontend,junior,MongoDB,1
 2019-08-12,javascript_jobs_feed,frontend,junior,Node.js,2
-2019-08-12,javascript_jobs_feed,frontend,junior,Photoshop,1
 2019-08-12,javascript_jobs_feed,frontend,junior,PostgreSQL,2
 2019-08-12,javascript_jobs_feed,frontend,junior,REST,3
-2019-08-12,javascript_jobs_feed,frontend,junior,React,6
+2019-08-12,javascript_jobs_feed,frontend,junior,React,4
 2019-08-12,javascript_jobs_feed,frontend,junior,Redux,3
 2019-08-12,javascript_jobs_feed,frontend,junior,Ruby on Rails,2
 2019-08-12,javascript_jobs_feed,frontend,junior,SCSS,1
@@ -13005,6 +13026,7 @@ week,channel,role,grade,skill,posts
 2019-08-12,progjob,backend,,PHP,2
 2019-08-12,progjob,backend,,PostgreSQL,3
 2019-08-12,progjob,backend,,Python,4
+2019-08-12,progjob,backend,,REST,1
 2019-08-12,progjob,backend,,RabbitMQ,1
 2019-08-12,progjob,backend,,Redis,3
 2019-08-12,progjob,backend,,Ruby,1
@@ -13037,6 +13059,7 @@ week,channel,role,grade,skill,posts
 2019-08-12,progjob,backend,middle,SQL,2
 2019-08-12,progjob,backend,middle,Symfony,2
 2019-08-12,progjob,backend,middle,WordPress,1
+2019-08-12,progjob,backend,middle,Yii,1
 2019-08-12,progjob,backend,middle,ООП,1
 2019-08-12,progjob,backend,senior,1С-Битрикс,1
 2019-08-12,progjob,backend,senior,Agile,1
@@ -13057,6 +13080,7 @@ week,channel,role,grade,skill,posts
 2019-08-12,progjob,backend,senior,React Native,1
 2019-08-12,progjob,backend,senior,Redis,1
 2019-08-12,progjob,backend,senior,Ruby on Rails,1
+2019-08-12,progjob,backend,senior,Spring,2
 2019-08-12,progjob,backend,senior,WebSocket,1
 2019-08-12,progjob,backend,senior,Yii,1
 2019-08-12,progjob,data_engineer,middle,Docker,1
@@ -13304,21 +13328,21 @@ week,channel,role,grade,skill,posts
 2019-08-19,javascript_jobs_feed,frontend,,Bash,1
 2019-08-19,javascript_jobs_feed,frontend,,Bitbucket,1
 2019-08-19,javascript_jobs_feed,frontend,,CI/CD,1
-2019-08-19,javascript_jobs_feed,frontend,,CSS,17
+2019-08-19,javascript_jobs_feed,frontend,,CSS,16
 2019-08-19,javascript_jobs_feed,frontend,,Dart,1
 2019-08-19,javascript_jobs_feed,frontend,,Design patterns,1
 2019-08-19,javascript_jobs_feed,frontend,,DevTools,1
 2019-08-19,javascript_jobs_feed,frontend,,Elasticsearch,1
-2019-08-19,javascript_jobs_feed,frontend,,Git,10
+2019-08-19,javascript_jobs_feed,frontend,,Git,9
 2019-08-19,javascript_jobs_feed,frontend,,GitFlow,2
 2019-08-19,javascript_jobs_feed,frontend,,GitHub,1
 2019-08-19,javascript_jobs_feed,frontend,,GitLab,1
 2019-08-19,javascript_jobs_feed,frontend,,Gradle,1
 2019-08-19,javascript_jobs_feed,frontend,,GraphQL,1
-2019-08-19,javascript_jobs_feed,frontend,,HTML,18
+2019-08-19,javascript_jobs_feed,frontend,,HTML,17
 2019-08-19,javascript_jobs_feed,frontend,,HTTP,1
 2019-08-19,javascript_jobs_feed,frontend,,JSON,1
-2019-08-19,javascript_jobs_feed,frontend,,JavaScript,25
+2019-08-19,javascript_jobs_feed,frontend,,JavaScript,24
 2019-08-19,javascript_jobs_feed,frontend,,Jest,1
 2019-08-19,javascript_jobs_feed,frontend,,Jira,3
 2019-08-19,javascript_jobs_feed,frontend,,Kanban,2
@@ -13339,34 +13363,24 @@ week,channel,role,grade,skill,posts
 2019-08-19,javascript_jobs_feed,frontend,,Redux,10
 2019-08-19,javascript_jobs_feed,frontend,,SCSS,1
 2019-08-19,javascript_jobs_feed,frontend,,SVN,1
-2019-08-19,javascript_jobs_feed,frontend,,Sass,6
+2019-08-19,javascript_jobs_feed,frontend,,Sass,5
 2019-08-19,javascript_jobs_feed,frontend,,Scrum,5
 2019-08-19,javascript_jobs_feed,frontend,,Selenium,1
 2019-08-19,javascript_jobs_feed,frontend,,TypeScript,8
-2019-08-19,javascript_jobs_feed,frontend,,Vue.js,11
+2019-08-19,javascript_jobs_feed,frontend,,Vue.js,10
 2019-08-19,javascript_jobs_feed,frontend,,WebSocket,1
 2019-08-19,javascript_jobs_feed,frontend,,Webpack,8
 2019-08-19,javascript_jobs_feed,frontend,,XML,1
 2019-08-19,javascript_jobs_feed,frontend,,XSD,1
 2019-08-19,javascript_jobs_feed,frontend,,YADRO,1
 2019-08-19,javascript_jobs_feed,frontend,,YARN,2
-2019-08-19,javascript_jobs_feed,frontend,,jQuery,1
-2019-08-19,javascript_jobs_feed,frontend,intern,CSS,1
-2019-08-19,javascript_jobs_feed,frontend,intern,Git,1
-2019-08-19,javascript_jobs_feed,frontend,intern,HTML,1
-2019-08-19,javascript_jobs_feed,frontend,intern,JavaScript,1
-2019-08-19,javascript_jobs_feed,frontend,intern,React,1
-2019-08-19,javascript_jobs_feed,frontend,intern,Redux,1
 2019-08-19,javascript_jobs_feed,frontend,junior,Android,1
-2019-08-19,javascript_jobs_feed,frontend,junior,CSS,2
-2019-08-19,javascript_jobs_feed,frontend,junior,Git,2
-2019-08-19,javascript_jobs_feed,frontend,junior,HTML,2
-2019-08-19,javascript_jobs_feed,frontend,junior,JavaScript,2
-2019-08-19,javascript_jobs_feed,frontend,junior,Less,1
+2019-08-19,javascript_jobs_feed,frontend,junior,CSS,1
+2019-08-19,javascript_jobs_feed,frontend,junior,Git,1
+2019-08-19,javascript_jobs_feed,frontend,junior,HTML,1
+2019-08-19,javascript_jobs_feed,frontend,junior,JavaScript,1
 2019-08-19,javascript_jobs_feed,frontend,junior,PostgreSQL,1
-2019-08-19,javascript_jobs_feed,frontend,junior,React,1
 2019-08-19,javascript_jobs_feed,frontend,junior,Ruby on Rails,1
-2019-08-19,javascript_jobs_feed,frontend,junior,Sass,1
 2019-08-19,javascript_jobs_feed,frontend,junior,Scrum,1
 2019-08-19,javascript_jobs_feed,frontend,junior,iOS,1
 2019-08-19,javascript_jobs_feed,frontend,lead,Docker,1
@@ -13605,9 +13619,10 @@ week,channel,role,grade,skill,posts
 2019-08-19,progjob,backend,middle,SOAP,1
 2019-08-19,progjob,backend,middle,SOLID,2
 2019-08-19,progjob,backend,middle,SQL,2
+2019-08-19,progjob,backend,middle,Spring,2
 2019-08-19,progjob,backend,middle,Symfony,1
 2019-08-19,progjob,backend,middle,WebSocket,1
-2019-08-19,progjob,backend,middle,Yii,1
+2019-08-19,progjob,backend,middle,Yii,2
 2019-08-19,progjob,backend,middle,asyncio,1
 2019-08-19,progjob,backend,middle,ООП,2
 2019-08-19,progjob,backend,senior,.NET,2
@@ -13728,6 +13743,7 @@ week,channel,role,grade,skill,posts
 2019-08-19,progjob,other_it,middle,C++,1
 2019-08-19,progjob,software_engineer,middle,C#,1
 2019-08-19,progjob,software_engineer,middle,C++,1
+2019-08-19,progjob,software_engineer,middle,Unity,1
 2019-08-19,progjob,software_engineer,senior,C,1
 2019-08-19,progjob,software_engineer,senior,C++,1
 2019-08-19,progjob,software_engineer,senior,Delphi,1
@@ -13738,6 +13754,7 @@ week,channel,role,grade,skill,posts
 2019-08-19,progjob,support,junior,MySQL,1
 2019-08-19,progjob,support,junior,PHP,1
 2019-08-19,progjob,support,junior,Redis,1
+2019-08-19,progjob,support,junior,Yii,1
 2019-08-19,progjob,sysadmin,,Asterisk,1
 2019-08-19,progjob,sysadmin,,CI/CD,1
 2019-08-19,progjob,sysadmin,,CentOS,1
@@ -13857,7 +13874,7 @@ week,channel,role,grade,skill,posts
 2019-08-26,javascript_jobs_feed,frontend,,Agile,3
 2019-08-26,javascript_jobs_feed,frontend,,Angular,6
 2019-08-26,javascript_jobs_feed,frontend,,CI/CD,1
-2019-08-26,javascript_jobs_feed,frontend,,CSS,12
+2019-08-26,javascript_jobs_feed,frontend,,CSS,11
 2019-08-26,javascript_jobs_feed,frontend,,DDD,1
 2019-08-26,javascript_jobs_feed,frontend,,Elasticsearch,1
 2019-08-26,javascript_jobs_feed,frontend,,Express,2
@@ -13866,12 +13883,12 @@ week,channel,role,grade,skill,posts
 2019-08-26,javascript_jobs_feed,frontend,,Go,2
 2019-08-26,javascript_jobs_feed,frontend,,Gradle,1
 2019-08-26,javascript_jobs_feed,frontend,,GraphQL,2
-2019-08-26,javascript_jobs_feed,frontend,,HTML,12
+2019-08-26,javascript_jobs_feed,frontend,,HTML,11
 2019-08-26,javascript_jobs_feed,frontend,,JSON,1
-2019-08-26,javascript_jobs_feed,frontend,,JavaScript,18
+2019-08-26,javascript_jobs_feed,frontend,,JavaScript,17
 2019-08-26,javascript_jobs_feed,frontend,,Jira,1
 2019-08-26,javascript_jobs_feed,frontend,,Kubernetes,1
-2019-08-26,javascript_jobs_feed,frontend,,Less,5
+2019-08-26,javascript_jobs_feed,frontend,,Less,4
 2019-08-26,javascript_jobs_feed,frontend,,MVC,1
 2019-08-26,javascript_jobs_feed,frontend,,MySQL,1
 2019-08-26,javascript_jobs_feed,frontend,,Node.js,8
@@ -13890,16 +13907,16 @@ week,channel,role,grade,skill,posts
 2019-08-26,javascript_jobs_feed,frontend,,SOLID,3
 2019-08-26,javascript_jobs_feed,frontend,,SQL,1
 2019-08-26,javascript_jobs_feed,frontend,,Salesforce,1
-2019-08-26,javascript_jobs_feed,frontend,,Sass,5
+2019-08-26,javascript_jobs_feed,frontend,,Sass,4
 2019-08-26,javascript_jobs_feed,frontend,,Swagger,2
 2019-08-26,javascript_jobs_feed,frontend,,TypeScript,5
 2019-08-26,javascript_jobs_feed,frontend,,Vue.js,7
 2019-08-26,javascript_jobs_feed,frontend,,WebSocket,1
-2019-08-26,javascript_jobs_feed,frontend,,Webpack,5
+2019-08-26,javascript_jobs_feed,frontend,,Webpack,4
 2019-08-26,javascript_jobs_feed,frontend,,XML,1
 2019-08-26,javascript_jobs_feed,frontend,,YARN,1
 2019-08-26,javascript_jobs_feed,frontend,,gRPC,1
-2019-08-26,javascript_jobs_feed,frontend,,jQuery,2
+2019-08-26,javascript_jobs_feed,frontend,,jQuery,1
 2019-08-26,javascript_jobs_feed,frontend,,ООП,1
 2019-08-26,javascript_jobs_feed,frontend,junior,JavaScript,1
 2019-08-26,javascript_jobs_feed,frontend,junior,React,1
@@ -14041,11 +14058,13 @@ week,channel,role,grade,skill,posts
 2019-08-26,progjob,backend,,Node.js,1
 2019-08-26,progjob,backend,,PHP,1
 2019-08-26,progjob,backend,,REST,1
+2019-08-26,progjob,backend,,Yii,1
 2019-08-26,progjob,backend,lead,.NET,1
 2019-08-26,progjob,backend,middle,.NET,1
 2019-08-26,progjob,backend,middle,1С-Битрикс,1
 2019-08-26,progjob,backend,middle,C#,1
 2019-08-26,progjob,backend,middle,C++,1
+2019-08-26,progjob,backend,middle,CI/CD,1
 2019-08-26,progjob,backend,middle,Django,1
 2019-08-26,progjob,backend,middle,Docker,1
 2019-08-26,progjob,backend,middle,Git,3
@@ -14065,6 +14084,7 @@ week,channel,role,grade,skill,posts
 2019-08-26,progjob,backend,middle,ООП,1
 2019-08-26,progjob,backend,senior,.NET,1
 2019-08-26,progjob,backend,senior,ASP.NET,1
+2019-08-26,progjob,backend,senior,AWS,1
 2019-08-26,progjob,backend,senior,C#,2
 2019-08-26,progjob,backend,senior,Celery,2
 2019-08-26,progjob,backend,senior,Django,2
@@ -14092,6 +14112,7 @@ week,channel,role,grade,skill,posts
 2019-08-26,progjob,backend,senior,SQL,2
 2019-08-26,progjob,backend,senior,Scala,1
 2019-08-26,progjob,backend,senior,Symfony,3
+2019-08-26,progjob,backend,senior,Yii,2
 2019-08-26,progjob,backend,senior,ООП,2
 2019-08-26,progjob,data_engineer,middle,Docker,1
 2019-08-26,progjob,data_engineer,middle,Elasticsearch,1
@@ -14151,6 +14172,7 @@ week,channel,role,grade,skill,posts
 2019-08-26,progjob,frontend,middle,Node.js,1
 2019-08-26,progjob,frontend,middle,React,3
 2019-08-26,progjob,frontend,middle,TypeScript,1
+2019-08-26,progjob,frontend,middle,Unity,1
 2019-08-26,progjob,frontend,middle,Vue.js,1
 2019-08-26,progjob,frontend,senior,CSS,1
 2019-08-26,progjob,frontend,senior,Docker,1
@@ -14192,6 +14214,7 @@ week,channel,role,grade,skill,posts
 2019-08-26,progjob,fullstack,senior,PHP,1
 2019-08-26,progjob,fullstack,senior,Redis,1
 2019-08-26,progjob,fullstack,senior,Symfony,1
+2019-08-26,progjob,fullstack,senior,Yii,1
 2019-08-26,progjob,fullstack,senior,ООП,1
 2019-08-26,progjob,manager,,Android,1
 2019-08-26,progjob,manager,lead,1С,1
@@ -14339,40 +14362,32 @@ week,channel,role,grade,skill,posts
 2019-09-02,javascript_jobs_feed,frontend,,XML,1
 2019-09-02,javascript_jobs_feed,frontend,,YARN,1
 2019-09-02,javascript_jobs_feed,frontend,,jQuery,2
-2019-09-02,javascript_jobs_feed,frontend,intern,CSS,3
-2019-09-02,javascript_jobs_feed,frontend,intern,Git,3
-2019-09-02,javascript_jobs_feed,frontend,intern,HTML,3
-2019-09-02,javascript_jobs_feed,frontend,intern,JavaScript,3
-2019-09-02,javascript_jobs_feed,frontend,intern,React,3
-2019-09-02,javascript_jobs_feed,frontend,intern,Redux,3
 2019-09-02,javascript_jobs_feed,frontend,junior,1С,1
 2019-09-02,javascript_jobs_feed,frontend,junior,Agile,1
 2019-09-02,javascript_jobs_feed,frontend,junior,Angular,1
 2019-09-02,javascript_jobs_feed,frontend,junior,Atlassian,1
 2019-09-02,javascript_jobs_feed,frontend,junior,CI/CD,1
-2019-09-02,javascript_jobs_feed,frontend,junior,CSS,6
+2019-09-02,javascript_jobs_feed,frontend,junior,CSS,4
 2019-09-02,javascript_jobs_feed,frontend,junior,DevOps,1
 2019-09-02,javascript_jobs_feed,frontend,junior,Docker,1
 2019-09-02,javascript_jobs_feed,frontend,junior,Express,1
-2019-09-02,javascript_jobs_feed,frontend,junior,Git,6
+2019-09-02,javascript_jobs_feed,frontend,junior,Git,4
 2019-09-02,javascript_jobs_feed,frontend,junior,GitHub,1
 2019-09-02,javascript_jobs_feed,frontend,junior,Go,1
 2019-09-02,javascript_jobs_feed,frontend,junior,GraphQL,1
-2019-09-02,javascript_jobs_feed,frontend,junior,HTML,6
+2019-09-02,javascript_jobs_feed,frontend,junior,HTML,4
 2019-09-02,javascript_jobs_feed,frontend,junior,JSON,1
-2019-09-02,javascript_jobs_feed,frontend,junior,JavaScript,7
+2019-09-02,javascript_jobs_feed,frontend,junior,JavaScript,5
 2019-09-02,javascript_jobs_feed,frontend,junior,Jenkins,1
 2019-09-02,javascript_jobs_feed,frontend,junior,Jest,1
 2019-09-02,javascript_jobs_feed,frontend,junior,Jira,1
 2019-09-02,javascript_jobs_feed,frontend,junior,Kubernetes,1
 2019-09-02,javascript_jobs_feed,frontend,junior,Microservices,1
 2019-09-02,javascript_jobs_feed,frontend,junior,Node.js,2
-2019-09-02,javascript_jobs_feed,frontend,junior,React,5
+2019-09-02,javascript_jobs_feed,frontend,junior,React,3
 2019-09-02,javascript_jobs_feed,frontend,junior,React Native,1
 2019-09-02,javascript_jobs_feed,frontend,junior,Redux,2
-2019-09-02,javascript_jobs_feed,frontend,junior,SCSS,2
 2019-09-02,javascript_jobs_feed,frontend,junior,SQL,1
-2019-09-02,javascript_jobs_feed,frontend,junior,Sass,2
 2019-09-02,javascript_jobs_feed,frontend,junior,TypeScript,2
 2019-09-02,javascript_jobs_feed,frontend,junior,Vue.js,1
 2019-09-02,javascript_jobs_feed,frontend,junior,Webpack,2
@@ -14510,6 +14525,7 @@ week,channel,role,grade,skill,posts
 2019-09-02,progjob,backend,,PHP,1
 2019-09-02,progjob,backend,,PostgreSQL,2
 2019-09-02,progjob,backend,,Python,2
+2019-09-02,progjob,backend,,Spring,1
 2019-09-02,progjob,backend,,ООП,1
 2019-09-02,progjob,backend,intern,AWS,1
 2019-09-02,progjob,backend,intern,CSS,1
@@ -14527,6 +14543,7 @@ week,channel,role,grade,skill,posts
 2019-09-02,progjob,backend,middle,.NET,1
 2019-09-02,progjob,backend,middle,1С-Битрикс,1
 2019-09-02,progjob,backend,middle,C#,1
+2019-09-02,progjob,backend,middle,CI/CD,1
 2019-09-02,progjob,backend,middle,CSS,1
 2019-09-02,progjob,backend,middle,DevOps,1
 2019-09-02,progjob,backend,middle,Django,1
@@ -14554,6 +14571,7 @@ week,channel,role,grade,skill,posts
 2019-09-02,progjob,backend,middle,Ruby,1
 2019-09-02,progjob,backend,middle,SOLID,1
 2019-09-02,progjob,backend,middle,SQL,1
+2019-09-02,progjob,backend,middle,Spring,1
 2019-09-02,progjob,backend,middle,Symfony,1
 2019-09-02,progjob,backend,middle,T-SQL,1
 2019-09-02,progjob,backend,middle,Vue.js,2
@@ -14838,20 +14856,13 @@ week,channel,role,grade,skill,posts
 2019-09-09,javascript_jobs_feed,frontend,,YouTrack,1
 2019-09-09,javascript_jobs_feed,frontend,,jQuery,2
 2019-09-09,javascript_jobs_feed,frontend,,ООП,3
-2019-09-09,javascript_jobs_feed,frontend,intern,CSS,1
-2019-09-09,javascript_jobs_feed,frontend,intern,Git,1
-2019-09-09,javascript_jobs_feed,frontend,intern,HTML,1
-2019-09-09,javascript_jobs_feed,frontend,intern,JavaScript,1
-2019-09-09,javascript_jobs_feed,frontend,intern,React,1
-2019-09-09,javascript_jobs_feed,frontend,intern,Redux,1
-2019-09-09,javascript_jobs_feed,frontend,junior,CSS,6
+2019-09-09,javascript_jobs_feed,frontend,junior,CSS,5
 2019-09-09,javascript_jobs_feed,frontend,junior,Git,4
-2019-09-09,javascript_jobs_feed,frontend,junior,GitHub,1
-2019-09-09,javascript_jobs_feed,frontend,junior,HTML,6
-2019-09-09,javascript_jobs_feed,frontend,junior,JavaScript,5
+2019-09-09,javascript_jobs_feed,frontend,junior,HTML,5
+2019-09-09,javascript_jobs_feed,frontend,junior,JavaScript,4
 2019-09-09,javascript_jobs_feed,frontend,junior,Less,3
 2019-09-09,javascript_jobs_feed,frontend,junior,Node.js,3
-2019-09-09,javascript_jobs_feed,frontend,junior,React,2
+2019-09-09,javascript_jobs_feed,frontend,junior,React,1
 2019-09-09,javascript_jobs_feed,frontend,junior,Sass,3
 2019-09-09,javascript_jobs_feed,frontend,junior,TypeScript,3
 2019-09-09,javascript_jobs_feed,frontend,junior,Vue.js,3
@@ -15002,6 +15013,7 @@ week,channel,role,grade,skill,posts
 2019-09-09,progjob,backend,,Java,1
 2019-09-09,progjob,backend,,MySQL,2
 2019-09-09,progjob,backend,,PHP,2
+2019-09-09,progjob,backend,,Spring,1
 2019-09-09,progjob,backend,,WordPress,1
 2019-09-09,progjob,backend,,jQuery,1
 2019-09-09,progjob,backend,,ООП,1
@@ -15046,6 +15058,7 @@ week,channel,role,grade,skill,posts
 2019-09-09,progjob,backend,middle,Scala,1
 2019-09-09,progjob,backend,middle,Scrum,1
 2019-09-09,progjob,backend,middle,Vue.js,1
+2019-09-09,progjob,backend,middle,Yii,1
 2019-09-09,progjob,backend,middle,asyncio,1
 2019-09-09,progjob,backend,senior,C#,1
 2019-09-09,progjob,backend,senior,C++,2
@@ -15087,6 +15100,7 @@ week,channel,role,grade,skill,posts
 2019-09-09,progjob,devops,,REST,1
 2019-09-09,progjob,devops,junior,Ansible,1
 2019-09-09,progjob,devops,junior,Bash,1
+2019-09-09,progjob,devops,junior,CI/CD,1
 2019-09-09,progjob,devops,junior,DevOps,1
 2019-09-09,progjob,devops,junior,Git,1
 2019-09-09,progjob,devops,middle,DevOps,1
@@ -15100,6 +15114,7 @@ week,channel,role,grade,skill,posts
 2019-09-09,progjob,devops,middle,Python,2
 2019-09-09,progjob,devops,senior,Ansible,1
 2019-09-09,progjob,devops,senior,Bash,1
+2019-09-09,progjob,devops,senior,CI/CD,2
 2019-09-09,progjob,devops,senior,DNS,1
 2019-09-09,progjob,devops,senior,DevOps,1
 2019-09-09,progjob,devops,senior,Docker,1
@@ -15202,6 +15217,7 @@ week,channel,role,grade,skill,posts
 2019-09-09,progjob,mobile,middle,iOS,2
 2019-09-09,progjob,mobile,middle,ООП,1
 2019-09-09,progjob,mobile,senior,iOS,1
+2019-09-09,progjob,qa,senior,CI/CD,1
 2019-09-09,progjob,qa,senior,Git,1
 2019-09-09,progjob,qa,senior,JUnit,1
 2019-09-09,progjob,qa,senior,Java,1
@@ -15273,7 +15289,7 @@ week,channel,role,grade,skill,posts
 2019-09-16,devjobs,designer,,Blender,1
 2019-09-16,devjobs,designer,,C#,1
 2019-09-16,devjobs,designer,,Photoshop,3
-2019-09-16,devjobs,designer,,Unity,2
+2019-09-16,devjobs,designer,,Unity,3
 2019-09-16,devjobs,manager,,A/B-тесты,1
 2019-09-16,devjobs,manager,,Excel,1
 2019-09-16,devjobs,manager,,Unity,1
@@ -15515,6 +15531,7 @@ week,channel,role,grade,skill,posts
 2019-09-16,progjob,backend,lead,Redis,1
 2019-09-16,progjob,backend,lead,Ruby on Rails,1
 2019-09-16,progjob,backend,middle,1С-Битрикс,2
+2019-09-16,progjob,backend,middle,CI/CD,1
 2019-09-16,progjob,backend,middle,CSS,1
 2019-09-16,progjob,backend,middle,DevOps,1
 2019-09-16,progjob,backend,middle,Docker,2
@@ -15542,11 +15559,13 @@ week,channel,role,grade,skill,posts
 2019-09-16,progjob,backend,middle,Ruby on Rails,2
 2019-09-16,progjob,backend,middle,SOLID,1
 2019-09-16,progjob,backend,middle,SQL,4
+2019-09-16,progjob,backend,middle,Spring,3
 2019-09-16,progjob,backend,middle,Symfony,1
 2019-09-16,progjob,backend,middle,jQuery,1
 2019-09-16,progjob,backend,middle,ООП,1
 2019-09-16,progjob,backend,senior,.NET,2
 2019-09-16,progjob,backend,senior,ASP.NET,2
+2019-09-16,progjob,backend,senior,AWS,1
 2019-09-16,progjob,backend,senior,Angular,1
 2019-09-16,progjob,backend,senior,C#,2
 2019-09-16,progjob,backend,senior,Django,1
@@ -15561,7 +15580,7 @@ week,channel,role,grade,skill,posts
 2019-09-16,progjob,backend,senior,PHP,5
 2019-09-16,progjob,backend,senior,PostgreSQL,1
 2019-09-16,progjob,backend,senior,Python,3
-2019-09-16,progjob,backend,senior,REST,1
+2019-09-16,progjob,backend,senior,REST,2
 2019-09-16,progjob,backend,senior,Redis,2
 2019-09-16,progjob,backend,senior,SQL,3
 2019-09-16,progjob,backend,senior,Symfony,2
@@ -15577,6 +15596,7 @@ week,channel,role,grade,skill,posts
 2019-09-16,progjob,devops,,SRE,1
 2019-09-16,progjob,devops,,Unix,1
 2019-09-16,progjob,devops,middle,Bash,2
+2019-09-16,progjob,devops,middle,CI/CD,1
 2019-09-16,progjob,devops,middle,DevOps,1
 2019-09-16,progjob,devops,middle,Docker,2
 2019-09-16,progjob,devops,middle,Elasticsearch,1
@@ -15969,6 +15989,7 @@ week,channel,role,grade,skill,posts
 2019-09-23,progjob,backend,lead,PHP,1
 2019-09-23,progjob,backend,lead,RabbitMQ,1
 2019-09-23,progjob,backend,lead,Redis,1
+2019-09-23,progjob,backend,lead,Yii,1
 2019-09-23,progjob,backend,middle,1С-Битрикс,2
 2019-09-23,progjob,backend,middle,Agile,1
 2019-09-23,progjob,backend,middle,Angular,1
@@ -15999,7 +16020,9 @@ week,channel,role,grade,skill,posts
 2019-09-23,progjob,backend,middle,Ruby on Rails,1
 2019-09-23,progjob,backend,middle,SOLID,1
 2019-09-23,progjob,backend,middle,SQL,2
+2019-09-23,progjob,backend,middle,Spring,2
 2019-09-23,progjob,backend,middle,Vue.js,1
+2019-09-23,progjob,backend,middle,Yii,4
 2019-09-23,progjob,backend,middle,ООП,3
 2019-09-23,progjob,backend,senior,.NET,1
 2019-09-23,progjob,backend,senior,Angular,1
@@ -16025,6 +16048,7 @@ week,channel,role,grade,skill,posts
 2019-09-23,progjob,backend,senior,SQL,1
 2019-09-23,progjob,backend,senior,Scala,1
 2019-09-23,progjob,backend,senior,Spark,1
+2019-09-23,progjob,backend,senior,Spring,1
 2019-09-23,progjob,backend,senior,Symfony,2
 2019-09-23,progjob,backend,senior,Tableau,1
 2019-09-23,progjob,backend,senior,WPF,1
@@ -16032,6 +16056,7 @@ week,channel,role,grade,skill,posts
 2019-09-23,progjob,backend,senior,asyncio,2
 2019-09-23,progjob,backend,senior,ООП,1
 2019-09-23,progjob,data_analyst,senior,SAP,1
+2019-09-23,progjob,devops,senior,AWS,1
 2019-09-23,progjob,devops,senior,DevOps,1
 2019-09-23,progjob,devops,senior,Docker,1
 2019-09-23,progjob,devops,senior,Linux,1
@@ -16475,6 +16500,7 @@ week,channel,role,grade,skill,posts
 2019-09-30,progjob,backend,lead,PostgreSQL,1
 2019-09-30,progjob,backend,lead,SQL,1
 2019-09-30,progjob,backend,lead,Symfony,1
+2019-09-30,progjob,backend,lead,Yii,1
 2019-09-30,progjob,backend,middle,.NET,2
 2019-09-30,progjob,backend,middle,ASP.NET,1
 2019-09-30,progjob,backend,middle,Apache,1
@@ -16497,8 +16523,10 @@ week,channel,role,grade,skill,posts
 2019-09-30,progjob,backend,middle,PHP,5
 2019-09-30,progjob,backend,middle,PostgreSQL,5
 2019-09-30,progjob,backend,middle,Python,4
+2019-09-30,progjob,backend,middle,REST,1
 2019-09-30,progjob,backend,middle,Redis,2
 2019-09-30,progjob,backend,middle,SQL,3
+2019-09-30,progjob,backend,middle,Spring,2
 2019-09-30,progjob,backend,middle,TypeScript,1
 2019-09-30,progjob,backend,middle,Vue.js,1
 2019-09-30,progjob,backend,middle,Yii,1
@@ -16506,6 +16534,7 @@ week,channel,role,grade,skill,posts
 2019-09-30,progjob,backend,middle,ООП,1
 2019-09-30,progjob,backend,senior,.NET,1
 2019-09-30,progjob,backend,senior,1С-Битрикс,1
+2019-09-30,progjob,backend,senior,AWS,1
 2019-09-30,progjob,backend,senior,C#,2
 2019-09-30,progjob,backend,senior,Celery,1
 2019-09-30,progjob,backend,senior,Chef,1
@@ -16587,6 +16616,7 @@ week,channel,role,grade,skill,posts
 2019-09-30,progjob,frontend,,C#,1
 2019-09-30,progjob,frontend,,CSS,6
 2019-09-30,progjob,frontend,,Docker,1
+2019-09-30,progjob,frontend,,Figma,1
 2019-09-30,progjob,frontend,,Firebird,1
 2019-09-30,progjob,frontend,,Git,3
 2019-09-30,progjob,frontend,,HTML,5
@@ -16860,16 +16890,10 @@ week,channel,role,grade,skill,posts
 2019-10-07,javascript_jobs_feed,frontend,,YouTrack,1
 2019-10-07,javascript_jobs_feed,frontend,,jQuery,2
 2019-10-07,javascript_jobs_feed,frontend,,ООП,3
-2019-10-07,javascript_jobs_feed,frontend,junior,CSS,1
-2019-10-07,javascript_jobs_feed,frontend,junior,Git,2
-2019-10-07,javascript_jobs_feed,frontend,junior,GitHub,1
-2019-10-07,javascript_jobs_feed,frontend,junior,HTML,1
-2019-10-07,javascript_jobs_feed,frontend,junior,JavaScript,2
+2019-10-07,javascript_jobs_feed,frontend,junior,Git,1
+2019-10-07,javascript_jobs_feed,frontend,junior,JavaScript,1
 2019-10-07,javascript_jobs_feed,frontend,junior,Oracle,1
-2019-10-07,javascript_jobs_feed,frontend,junior,React,1
-2019-10-07,javascript_jobs_feed,frontend,junior,SCSS,1
 2019-10-07,javascript_jobs_feed,frontend,junior,SQL,1
-2019-10-07,javascript_jobs_feed,frontend,junior,Sass,1
 2019-10-07,javascript_jobs_feed,frontend,junior,ООП,1
 2019-10-07,javascript_jobs_feed,frontend,middle,Agile,1
 2019-10-07,javascript_jobs_feed,frontend,middle,Angular,4
@@ -16972,6 +16996,7 @@ week,channel,role,grade,skill,posts
 2019-10-07,progjob,backend,,Redis,1
 2019-10-07,progjob,backend,,Ruby,1
 2019-10-07,progjob,backend,,Symfony,1
+2019-10-07,progjob,backend,,Yii,1
 2019-10-07,progjob,backend,,ООП,1
 2019-10-07,progjob,backend,intern,Django,1
 2019-10-07,progjob,backend,intern,PHP,1
@@ -16979,7 +17004,9 @@ week,channel,role,grade,skill,posts
 2019-10-07,progjob,backend,lead,Java,1
 2019-10-07,progjob,backend,middle,1С-Битрикс,1
 2019-10-07,progjob,backend,middle,ASP.NET,1
+2019-10-07,progjob,backend,middle,AWS,2
 2019-10-07,progjob,backend,middle,C#,1
+2019-10-07,progjob,backend,middle,CI/CD,1
 2019-10-07,progjob,backend,middle,CSS,1
 2019-10-07,progjob,backend,middle,Design patterns,2
 2019-10-07,progjob,backend,middle,Django,2
@@ -17001,13 +17028,14 @@ week,channel,role,grade,skill,posts
 2019-10-07,progjob,backend,middle,PHPUnit,1
 2019-10-07,progjob,backend,middle,PostgreSQL,5
 2019-10-07,progjob,backend,middle,Python,4
-2019-10-07,progjob,backend,middle,REST,1
+2019-10-07,progjob,backend,middle,REST,2
 2019-10-07,progjob,backend,middle,Ruby,2
 2019-10-07,progjob,backend,middle,Ruby on Rails,2
 2019-10-07,progjob,backend,middle,SOLID,1
 2019-10-07,progjob,backend,middle,SQL,3
+2019-10-07,progjob,backend,middle,Spring,2
 2019-10-07,progjob,backend,middle,Symfony,5
-2019-10-07,progjob,backend,middle,Yii,1
+2019-10-07,progjob,backend,middle,Yii,2
 2019-10-07,progjob,backend,middle,ООП,7
 2019-10-07,progjob,backend,senior,Django,1
 2019-10-07,progjob,backend,senior,Docker,1
@@ -17027,6 +17055,7 @@ week,channel,role,grade,skill,posts
 2019-10-07,progjob,backend,senior,Redis,1
 2019-10-07,progjob,backend,senior,SOAP,1
 2019-10-07,progjob,backend,senior,SQL,2
+2019-10-07,progjob,backend,senior,Spring,3
 2019-10-07,progjob,backend,senior,XML,1
 2019-10-07,progjob,data_analyst,senior,Python,1
 2019-10-07,progjob,developer_1c,,1С,2
@@ -17081,6 +17110,7 @@ week,channel,role,grade,skill,posts
 2019-10-07,progjob,frontend,lead,JavaScript,2
 2019-10-07,progjob,frontend,lead,Linux,1
 2019-10-07,progjob,frontend,lead,Vue.js,1
+2019-10-07,progjob,frontend,middle,AWS,1
 2019-10-07,progjob,frontend,middle,CSS,2
 2019-10-07,progjob,frontend,middle,Canva,1
 2019-10-07,progjob,frontend,middle,Django,1
@@ -17145,10 +17175,12 @@ week,channel,role,grade,skill,posts
 2019-10-07,progjob,software_engineer,intern,Python,1
 2019-10-07,progjob,software_engineer,middle,C#,1
 2019-10-07,progjob,software_engineer,middle,C++,1
+2019-10-07,progjob,software_engineer,middle,Unity,1
 2019-10-07,progjob,software_engineer,senior,C#,1
 2019-10-07,progjob,software_engineer,senior,WPF,1
 2019-10-07,progjob,support,,1С-Битрикс,1
 2019-10-07,progjob,sysadmin,middle,CentOS,1
+2019-10-07,progjob,sysadmin,middle,Linux,2
 2019-10-07,progjob,sysadmin,middle,MS SQL Server,1
 2019-10-07,progjob,sysadmin,middle,RHEL,1
 2019-10-07,progjob,sysadmin,middle,TCP,1
@@ -17531,11 +17563,12 @@ week,channel,role,grade,skill,posts
 2019-10-14,progjob,backend,middle,PHP,8
 2019-10-14,progjob,backend,middle,PostgreSQL,3
 2019-10-14,progjob,backend,middle,Python,4
-2019-10-14,progjob,backend,middle,REST,2
+2019-10-14,progjob,backend,middle,REST,3
 2019-10-14,progjob,backend,middle,Ruby on Rails,1
 2019-10-14,progjob,backend,middle,SOAP,1
 2019-10-14,progjob,backend,middle,SOLID,1
 2019-10-14,progjob,backend,middle,SQL,5
+2019-10-14,progjob,backend,middle,Spring,3
 2019-10-14,progjob,backend,middle,TCP/IP,1
 2019-10-14,progjob,backend,middle,Unix,1
 2019-10-14,progjob,backend,middle,WPF,1
@@ -17544,6 +17577,7 @@ week,channel,role,grade,skill,posts
 2019-10-14,progjob,backend,middle,ООП,5
 2019-10-14,progjob,backend,senior,.NET,2
 2019-10-14,progjob,backend,senior,1С-Битрикс,1
+2019-10-14,progjob,backend,senior,AWS,1
 2019-10-14,progjob,backend,senior,C#,2
 2019-10-14,progjob,backend,senior,DevOps,1
 2019-10-14,progjob,backend,senior,Django,3
@@ -17567,6 +17601,7 @@ week,channel,role,grade,skill,posts
 2019-10-14,progjob,backend,senior,React,1
 2019-10-14,progjob,backend,senior,SQL,3
 2019-10-14,progjob,backend,senior,Scrum,1
+2019-10-14,progjob,backend,senior,Spring,1
 2019-10-14,progjob,backend,senior,TypeScript,1
 2019-10-14,progjob,backend,senior,ООП,1
 2019-10-14,progjob,data_analyst,,Python,1
@@ -17713,6 +17748,7 @@ week,channel,role,grade,skill,posts
 2019-10-14,progjob,qa,middle,Scrum,1
 2019-10-14,progjob,qa,middle,Selenium,1
 2019-10-14,progjob,sysadmin,middle,Bash,1
+2019-10-14,progjob,sysadmin,middle,Linux,1
 2019-10-14,pydevjob,backend,,Python,1
 2019-10-21,datajobschannel,data_engineer,,AWS,1
 2019-10-21,datajobschannel,data_engineer,,Airflow,1
@@ -17852,32 +17888,31 @@ week,channel,role,grade,skill,posts
 2019-10-21,javascript_jobs_feed,frontend,,Angular,4
 2019-10-21,javascript_jobs_feed,frontend,,Atlassian,1
 2019-10-21,javascript_jobs_feed,frontend,,CI/CD,3
-2019-10-21,javascript_jobs_feed,frontend,,CSS,11
+2019-10-21,javascript_jobs_feed,frontend,,CSS,10
 2019-10-21,javascript_jobs_feed,frontend,,Confluence,1
 2019-10-21,javascript_jobs_feed,frontend,,DevOps,2
 2019-10-21,javascript_jobs_feed,frontend,,Docker,1
 2019-10-21,javascript_jobs_feed,frontend,,Express,1
-2019-10-21,javascript_jobs_feed,frontend,,Git,6
+2019-10-21,javascript_jobs_feed,frontend,,Git,5
 2019-10-21,javascript_jobs_feed,frontend,,GitHub,2
 2019-10-21,javascript_jobs_feed,frontend,,Go,1
 2019-10-21,javascript_jobs_feed,frontend,,GraphQL,1
-2019-10-21,javascript_jobs_feed,frontend,,HTML,14
+2019-10-21,javascript_jobs_feed,frontend,,HTML,13
 2019-10-21,javascript_jobs_feed,frontend,,JSON,2
-2019-10-21,javascript_jobs_feed,frontend,,JavaScript,18
+2019-10-21,javascript_jobs_feed,frontend,,JavaScript,17
 2019-10-21,javascript_jobs_feed,frontend,,Jenkins,1
 2019-10-21,javascript_jobs_feed,frontend,,Jest,1
 2019-10-21,javascript_jobs_feed,frontend,,Jira,2
 2019-10-21,javascript_jobs_feed,frontend,,Kubernetes,1
-2019-10-21,javascript_jobs_feed,frontend,,Less,2
+2019-10-21,javascript_jobs_feed,frontend,,Less,1
 2019-10-21,javascript_jobs_feed,frontend,,MobX,1
 2019-10-21,javascript_jobs_feed,frontend,,Node.js,3
 2019-10-21,javascript_jobs_feed,frontend,,Nuxt,1
-2019-10-21,javascript_jobs_feed,frontend,,Photoshop,1
 2019-10-21,javascript_jobs_feed,frontend,,REST,2
 2019-10-21,javascript_jobs_feed,frontend,,React,12
 2019-10-21,javascript_jobs_feed,frontend,,React Native,1
 2019-10-21,javascript_jobs_feed,frontend,,Redux,7
-2019-10-21,javascript_jobs_feed,frontend,,SCSS,4
+2019-10-21,javascript_jobs_feed,frontend,,SCSS,3
 2019-10-21,javascript_jobs_feed,frontend,,SQL,1
 2019-10-21,javascript_jobs_feed,frontend,,Sass,4
 2019-10-21,javascript_jobs_feed,frontend,,Spark,1
@@ -17888,16 +17923,6 @@ week,channel,role,grade,skill,posts
 2019-10-21,javascript_jobs_feed,frontend,,XML,1
 2019-10-21,javascript_jobs_feed,frontend,,jQuery,1
 2019-10-21,javascript_jobs_feed,frontend,,ООП,2
-2019-10-21,javascript_jobs_feed,frontend,intern,CSS,1
-2019-10-21,javascript_jobs_feed,frontend,intern,Figma,1
-2019-10-21,javascript_jobs_feed,frontend,intern,Git,1
-2019-10-21,javascript_jobs_feed,frontend,intern,GitHub,1
-2019-10-21,javascript_jobs_feed,frontend,intern,HTML,1
-2019-10-21,javascript_jobs_feed,frontend,intern,JavaScript,1
-2019-10-21,javascript_jobs_feed,frontend,intern,Photoshop,1
-2019-10-21,javascript_jobs_feed,frontend,intern,React,1
-2019-10-21,javascript_jobs_feed,frontend,intern,Redux,1
-2019-10-21,javascript_jobs_feed,frontend,intern,Sass,1
 2019-10-21,javascript_jobs_feed,frontend,junior,Docker,1
 2019-10-21,javascript_jobs_feed,frontend,junior,GraphQL,1
 2019-10-21,javascript_jobs_feed,frontend,junior,JavaScript,1
@@ -18057,6 +18082,7 @@ week,channel,role,grade,skill,posts
 2019-10-21,progjob,backend,,Spring,1
 2019-10-21,progjob,backend,,Vue.js,1
 2019-10-21,progjob,backend,,WordPress,1
+2019-10-21,progjob,backend,,Yii,1
 2019-10-21,progjob,backend,,jQuery,3
 2019-10-21,progjob,backend,,ООП,1
 2019-10-21,progjob,backend,junior,1С-Битрикс,1
@@ -18100,7 +18126,7 @@ week,channel,role,grade,skill,posts
 2019-10-21,progjob,backend,middle,PostgreSQL,6
 2019-10-21,progjob,backend,middle,PowerShell,1
 2019-10-21,progjob,backend,middle,Python,5
-2019-10-21,progjob,backend,middle,REST,2
+2019-10-21,progjob,backend,middle,REST,3
 2019-10-21,progjob,backend,middle,Ruby,1
 2019-10-21,progjob,backend,middle,Ruby on Rails,1
 2019-10-21,progjob,backend,middle,S3,1
@@ -18108,9 +18134,11 @@ week,channel,role,grade,skill,posts
 2019-10-21,progjob,backend,middle,SQLAlchemy,1
 2019-10-21,progjob,backend,middle,SVN,1
 2019-10-21,progjob,backend,middle,Snowflake,1
+2019-10-21,progjob,backend,middle,Spring,2
 2019-10-21,progjob,backend,middle,Symfony,2
 2019-10-21,progjob,backend,middle,Windows,1
 2019-10-21,progjob,backend,middle,WordPress,1
+2019-10-21,progjob,backend,middle,Yii,5
 2019-10-21,progjob,backend,middle,jQuery,2
 2019-10-21,progjob,backend,middle,matplotlib,1
 2019-10-21,progjob,backend,middle,pandas,1
@@ -18150,7 +18178,9 @@ week,channel,role,grade,skill,posts
 2019-10-21,progjob,designer,,Photoshop,1
 2019-10-21,progjob,devops,,Debian,1
 2019-10-21,progjob,devops,,Linux,1
+2019-10-21,progjob,devops,middle,AWS,1
 2019-10-21,progjob,devops,middle,Ansible,1
+2019-10-21,progjob,devops,middle,CI/CD,1
 2019-10-21,progjob,devops,middle,DevOps,3
 2019-10-21,progjob,devops,middle,Docker,1
 2019-10-21,progjob,devops,middle,Git,1
@@ -18247,6 +18277,7 @@ week,channel,role,grade,skill,posts
 2019-10-21,progjob,software_engineer,,PHP,1
 2019-10-21,progjob,software_engineer,,Ruby on Rails,1
 2019-10-21,progjob,software_engineer,middle,C#,1
+2019-10-21,progjob,software_engineer,middle,Unity,1
 2019-10-21,progjob,software_engineer,middle,Visual Studio,1
 2019-10-21,progjob,software_engineer,middle,WPF,1
 2019-10-21,progjob,software_engineer,senior,ABAP,1
@@ -18414,34 +18445,33 @@ week,channel,role,grade,skill,posts
 2019-10-28,javascript_jobs_feed,frontend,,Agile,1
 2019-10-28,javascript_jobs_feed,frontend,,Angular,6
 2019-10-28,javascript_jobs_feed,frontend,,C#,1
-2019-10-28,javascript_jobs_feed,frontend,,CSS,16
+2019-10-28,javascript_jobs_feed,frontend,,CSS,14
 2019-10-28,javascript_jobs_feed,frontend,,Confluence,1
 2019-10-28,javascript_jobs_feed,frontend,,Design patterns,2
 2019-10-28,javascript_jobs_feed,frontend,,Docker,1
 2019-10-28,javascript_jobs_feed,frontend,,Electron,1
-2019-10-28,javascript_jobs_feed,frontend,,Git,14
+2019-10-28,javascript_jobs_feed,frontend,,Git,12
 2019-10-28,javascript_jobs_feed,frontend,,GitLab,1
 2019-10-28,javascript_jobs_feed,frontend,,GraphQL,1
-2019-10-28,javascript_jobs_feed,frontend,,HTML,18
+2019-10-28,javascript_jobs_feed,frontend,,HTML,16
 2019-10-28,javascript_jobs_feed,frontend,,HTTP,1
 2019-10-28,javascript_jobs_feed,frontend,,JSON,3
 2019-10-28,javascript_jobs_feed,frontend,,Java,1
-2019-10-28,javascript_jobs_feed,frontend,,JavaScript,24
+2019-10-28,javascript_jobs_feed,frontend,,JavaScript,22
 2019-10-28,javascript_jobs_feed,frontend,,Jira,2
 2019-10-28,javascript_jobs_feed,frontend,,Kanban,1
-2019-10-28,javascript_jobs_feed,frontend,,Less,3
+2019-10-28,javascript_jobs_feed,frontend,,Less,1
 2019-10-28,javascript_jobs_feed,frontend,,Linux,1
 2019-10-28,javascript_jobs_feed,frontend,,MVC,1
 2019-10-28,javascript_jobs_feed,frontend,,MobX,2
 2019-10-28,javascript_jobs_feed,frontend,,Next.js,1
 2019-10-28,javascript_jobs_feed,frontend,,Node.js,1
-2019-10-28,javascript_jobs_feed,frontend,,Photoshop,2
 2019-10-28,javascript_jobs_feed,frontend,,REST,4
 2019-10-28,javascript_jobs_feed,frontend,,React,13
 2019-10-28,javascript_jobs_feed,frontend,,React Native,1
 2019-10-28,javascript_jobs_feed,frontend,,Redmine,1
 2019-10-28,javascript_jobs_feed,frontend,,Redux,9
-2019-10-28,javascript_jobs_feed,frontend,,SCSS,5
+2019-10-28,javascript_jobs_feed,frontend,,SCSS,3
 2019-10-28,javascript_jobs_feed,frontend,,SQL,2
 2019-10-28,javascript_jobs_feed,frontend,,SVN,1
 2019-10-28,javascript_jobs_feed,frontend,,Sass,3
@@ -18681,8 +18711,10 @@ week,channel,role,grade,skill,posts
 2019-10-28,progjob,backend,middle,SQL,2
 2019-10-28,progjob,backend,middle,Scala,1
 2019-10-28,progjob,backend,middle,Scrum,1
+2019-10-28,progjob,backend,middle,Spring,1
 2019-10-28,progjob,backend,middle,Symfony,2
 2019-10-28,progjob,backend,middle,XML,1
+2019-10-28,progjob,backend,middle,Yii,2
 2019-10-28,progjob,backend,middle,jQuery,1
 2019-10-28,progjob,backend,middle,ООП,9
 2019-10-28,progjob,backend,senior,Go,1
@@ -18696,6 +18728,7 @@ week,channel,role,grade,skill,posts
 2019-10-28,progjob,backend,senior,Swift,1
 2019-10-28,progjob,backend,senior,Symfony,1
 2019-10-28,progjob,backend,senior,Unix,1
+2019-10-28,progjob,backend,senior,Yii,1
 2019-10-28,progjob,backend,senior,ООП,2
 2019-10-28,progjob,data_analyst,,Python,1
 2019-10-28,progjob,data_analyst,,SQL,1
@@ -18993,23 +19026,21 @@ week,channel,role,grade,skill,posts
 2019-11-04,javascript_jobs_feed,frontend,,gRPC,1
 2019-11-04,javascript_jobs_feed,frontend,,jQuery,4
 2019-11-04,javascript_jobs_feed,frontend,,ООП,3
-2019-11-04,javascript_jobs_feed,frontend,junior,CSS,2
+2019-11-04,javascript_jobs_feed,frontend,junior,CSS,1
 2019-11-04,javascript_jobs_feed,frontend,junior,Docker,1
-2019-11-04,javascript_jobs_feed,frontend,junior,Git,2
-2019-11-04,javascript_jobs_feed,frontend,junior,GitHub,1
-2019-11-04,javascript_jobs_feed,frontend,junior,HTML,2
-2019-11-04,javascript_jobs_feed,frontend,junior,JavaScript,2
+2019-11-04,javascript_jobs_feed,frontend,junior,Git,1
+2019-11-04,javascript_jobs_feed,frontend,junior,HTML,1
+2019-11-04,javascript_jobs_feed,frontend,junior,JavaScript,1
 2019-11-04,javascript_jobs_feed,frontend,junior,Linux,1
 2019-11-04,javascript_jobs_feed,frontend,junior,MongoDB,1
 2019-11-04,javascript_jobs_feed,frontend,junior,Python,1
-2019-11-04,javascript_jobs_feed,frontend,junior,React,2
+2019-11-04,javascript_jobs_feed,frontend,junior,React,1
 2019-11-04,javascript_jobs_feed,frontend,junior,React Native,1
 2019-11-04,javascript_jobs_feed,frontend,junior,Redis,1
 2019-11-04,javascript_jobs_feed,frontend,junior,Redux,1
-2019-11-04,javascript_jobs_feed,frontend,junior,SCSS,3
+2019-11-04,javascript_jobs_feed,frontend,junior,SCSS,2
 2019-11-04,javascript_jobs_feed,frontend,junior,SEO,1
 2019-11-04,javascript_jobs_feed,frontend,junior,SQL,1
-2019-11-04,javascript_jobs_feed,frontend,junior,Sass,1
 2019-11-04,javascript_jobs_feed,frontend,junior,T-SQL,1
 2019-11-04,javascript_jobs_feed,frontend,junior,Webpack,1
 2019-11-04,javascript_jobs_feed,frontend,lead,Angular,2
@@ -19167,6 +19198,7 @@ week,channel,role,grade,skill,posts
 2019-11-04,progjob,backend,,Redis,1
 2019-11-04,progjob,backend,,Symfony,1
 2019-11-04,progjob,backend,,WordPress,1
+2019-11-04,progjob,backend,junior,AWS,1
 2019-11-04,progjob,backend,junior,CI/CD,1
 2019-11-04,progjob,backend,junior,DevOps,1
 2019-11-04,progjob,backend,junior,Docker,1
@@ -19203,10 +19235,11 @@ week,channel,role,grade,skill,posts
 2019-11-04,progjob,backend,middle,React,1
 2019-11-04,progjob,backend,middle,SQL,3
 2019-11-04,progjob,backend,middle,Spark,1
-2019-11-04,progjob,backend,middle,Spring,1
+2019-11-04,progjob,backend,middle,Spring,2
 2019-11-04,progjob,backend,middle,Symfony,3
 2019-11-04,progjob,backend,middle,T-SQL,1
 2019-11-04,progjob,backend,middle,TypeScript,1
+2019-11-04,progjob,backend,middle,Yii,1
 2019-11-04,progjob,backend,middle,ООП,3
 2019-11-04,progjob,backend,senior,CSS,2
 2019-11-04,progjob,backend,senior,Django,1
@@ -19225,6 +19258,7 @@ week,channel,role,grade,skill,posts
 2019-11-04,progjob,backend,senior,PHPUnit,1
 2019-11-04,progjob,backend,senior,PostgreSQL,3
 2019-11-04,progjob,backend,senior,Python,3
+2019-11-04,progjob,backend,senior,REST,1
 2019-11-04,progjob,backend,senior,RabbitMQ,1
 2019-11-04,progjob,backend,senior,Redis,3
 2019-11-04,progjob,backend,senior,SQL,1
@@ -19276,6 +19310,7 @@ week,channel,role,grade,skill,posts
 2019-11-04,progjob,fullstack,middle,JavaScript,1
 2019-11-04,progjob,fullstack,middle,PHP,1
 2019-11-04,progjob,fullstack,senior,.NET,1
+2019-11-04,progjob,fullstack,senior,CI/CD,1
 2019-11-04,progjob,fullstack,senior,Entity Framework,1
 2019-11-04,progjob,fullstack,senior,GitFlow,1
 2019-11-04,progjob,fullstack,senior,JavaScript,2
@@ -19451,32 +19486,30 @@ week,channel,role,grade,skill,posts
 2019-11-11,javascript_jobs_feed,frontend,,C#,1
 2019-11-11,javascript_jobs_feed,frontend,,C++,1
 2019-11-11,javascript_jobs_feed,frontend,,CI/CD,1
-2019-11-11,javascript_jobs_feed,frontend,,CSS,17
+2019-11-11,javascript_jobs_feed,frontend,,CSS,15
 2019-11-11,javascript_jobs_feed,frontend,,Confluence,1
 2019-11-11,javascript_jobs_feed,frontend,,Design patterns,1
 2019-11-11,javascript_jobs_feed,frontend,,Django,1
 2019-11-11,javascript_jobs_feed,frontend,,Docker,3
 2019-11-11,javascript_jobs_feed,frontend,,Electron,1
-2019-11-11,javascript_jobs_feed,frontend,,Git,14
+2019-11-11,javascript_jobs_feed,frontend,,Git,12
 2019-11-11,javascript_jobs_feed,frontend,,GitFlow,3
 2019-11-11,javascript_jobs_feed,frontend,,GitHub,1
-2019-11-11,javascript_jobs_feed,frontend,,GitLab,4
+2019-11-11,javascript_jobs_feed,frontend,,GitLab,2
 2019-11-11,javascript_jobs_feed,frontend,,GraphQL,3
-2019-11-11,javascript_jobs_feed,frontend,,HTML,19
+2019-11-11,javascript_jobs_feed,frontend,,HTML,17
 2019-11-11,javascript_jobs_feed,frontend,,HTTP,1
-2019-11-11,javascript_jobs_feed,frontend,,JSON,5
+2019-11-11,javascript_jobs_feed,frontend,,JSON,3
 2019-11-11,javascript_jobs_feed,frontend,,Java,1
-2019-11-11,javascript_jobs_feed,frontend,,JavaScript,33
+2019-11-11,javascript_jobs_feed,frontend,,JavaScript,31
 2019-11-11,javascript_jobs_feed,frontend,,Jenkins,1
 2019-11-11,javascript_jobs_feed,frontend,,Jest,1
 2019-11-11,javascript_jobs_feed,frontend,,Jira,1
 2019-11-11,javascript_jobs_feed,frontend,,Kanban,1
-2019-11-11,javascript_jobs_feed,frontend,,Laravel,1
 2019-11-11,javascript_jobs_feed,frontend,,Less,2
 2019-11-11,javascript_jobs_feed,frontend,,Linux,3
 2019-11-11,javascript_jobs_feed,frontend,,MVC,1
-2019-11-11,javascript_jobs_feed,frontend,,MongoDB,3
-2019-11-11,javascript_jobs_feed,frontend,,MySQL,2
+2019-11-11,javascript_jobs_feed,frontend,,MongoDB,1
 2019-11-11,javascript_jobs_feed,frontend,,NestJS,1
 2019-11-11,javascript_jobs_feed,frontend,,Next.js,1
 2019-11-11,javascript_jobs_feed,frontend,,Node.js,4
@@ -19485,22 +19518,22 @@ week,channel,role,grade,skill,posts
 2019-11-11,javascript_jobs_feed,frontend,,PHP,1
 2019-11-11,javascript_jobs_feed,frontend,,Python,2
 2019-11-11,javascript_jobs_feed,frontend,,REST,2
-2019-11-11,javascript_jobs_feed,frontend,,React,23
+2019-11-11,javascript_jobs_feed,frontend,,React,22
 2019-11-11,javascript_jobs_feed,frontend,,React Native,1
-2019-11-11,javascript_jobs_feed,frontend,,Redux,17
+2019-11-11,javascript_jobs_feed,frontend,,Redux,16
 2019-11-11,javascript_jobs_feed,frontend,,Ruby on Rails,1
-2019-11-11,javascript_jobs_feed,frontend,,SCSS,8
+2019-11-11,javascript_jobs_feed,frontend,,SCSS,6
 2019-11-11,javascript_jobs_feed,frontend,,SOLID,1
 2019-11-11,javascript_jobs_feed,frontend,,SQL,2
-2019-11-11,javascript_jobs_feed,frontend,,Sass,6
+2019-11-11,javascript_jobs_feed,frontend,,Sass,4
 2019-11-11,javascript_jobs_feed,frontend,,Scrum,1
 2019-11-11,javascript_jobs_feed,frontend,,TypeScript,11
 2019-11-11,javascript_jobs_feed,frontend,,Vue.js,8
 2019-11-11,javascript_jobs_feed,frontend,,WebSocket,3
-2019-11-11,javascript_jobs_feed,frontend,,Webpack,9
+2019-11-11,javascript_jobs_feed,frontend,,Webpack,7
 2019-11-11,javascript_jobs_feed,frontend,,XML,1
 2019-11-11,javascript_jobs_feed,frontend,,YouTrack,3
-2019-11-11,javascript_jobs_feed,frontend,,jQuery,4
+2019-11-11,javascript_jobs_feed,frontend,,jQuery,2
 2019-11-11,javascript_jobs_feed,frontend,,macOS,1
 2019-11-11,javascript_jobs_feed,frontend,,ООП,9
 2019-11-11,javascript_jobs_feed,frontend,junior,CSS,3
@@ -19708,6 +19741,7 @@ week,channel,role,grade,skill,posts
 2019-11-11,progjob,backend,,RabbitMQ,1
 2019-11-11,progjob,backend,,Redis,2
 2019-11-11,progjob,backend,,Scala,1
+2019-11-11,progjob,backend,,Spring,1
 2019-11-11,progjob,backend,,Yii,2
 2019-11-11,progjob,backend,,ООП,1
 2019-11-11,progjob,backend,junior,JavaScript,1
@@ -19742,7 +19776,9 @@ week,channel,role,grade,skill,posts
 2019-11-11,progjob,backend,middle,SQL,3
 2019-11-11,progjob,backend,middle,Scala,1
 2019-11-11,progjob,backend,middle,Spark,1
+2019-11-11,progjob,backend,middle,Spring,1
 2019-11-11,progjob,backend,middle,Symfony,2
+2019-11-11,progjob,backend,middle,Yii,3
 2019-11-11,progjob,backend,middle,jQuery,1
 2019-11-11,progjob,backend,middle,ООП,4
 2019-11-11,progjob,backend,senior,Agile,1
@@ -19771,6 +19807,7 @@ week,channel,role,grade,skill,posts
 2019-11-11,progjob,backend,senior,Symfony,1
 2019-11-11,progjob,backend,senior,TypeScript,1
 2019-11-11,progjob,backend,senior,Vue.js,1
+2019-11-11,progjob,backend,senior,Yii,1
 2019-11-11,progjob,data_analyst,senior,MySQL,1
 2019-11-11,progjob,data_scientist,,Git,1
 2019-11-11,progjob,data_scientist,,Python,1
@@ -19820,10 +19857,12 @@ week,channel,role,grade,skill,posts
 2019-11-11,progjob,frontend,,Linux,1
 2019-11-11,progjob,frontend,,MySQL,1
 2019-11-11,progjob,frontend,,PHP,1
+2019-11-11,progjob,frontend,,REST,1
 2019-11-11,progjob,frontend,,React,4
 2019-11-11,progjob,frontend,,React Native,1
 2019-11-11,progjob,frontend,,Redux,2
 2019-11-11,progjob,frontend,,SOLID,1
+2019-11-11,progjob,frontend,,Spring,1
 2019-11-11,progjob,frontend,,TypeScript,1
 2019-11-11,progjob,frontend,,Vue.js,1
 2019-11-11,progjob,frontend,,WebSocket,1
@@ -19874,6 +19913,7 @@ week,channel,role,grade,skill,posts
 2019-11-11,progjob,software_engineer,middle,ABAP,1
 2019-11-11,progjob,software_engineer,middle,C#,2
 2019-11-11,progjob,software_engineer,middle,SAP,1
+2019-11-11,progjob,software_engineer,middle,Unity,2
 2019-11-11,progjob,software_engineer,middle,ООП,1
 2019-11-11,progjob,sysadmin,senior,Hadoop,1
 2019-11-11,progjob,sysadmin,senior,LDAP,1
@@ -20051,76 +20091,71 @@ week,channel,role,grade,skill,posts
 2019-11-18,javascript_jobs_feed,backend,senior,SQL,1
 2019-11-18,javascript_jobs_feed,frontend,,AWS,1
 2019-11-18,javascript_jobs_feed,frontend,,Angular,7
-2019-11-18,javascript_jobs_feed,frontend,,Bitbucket,4
 2019-11-18,javascript_jobs_feed,frontend,,C#,2
 2019-11-18,javascript_jobs_feed,frontend,,CI/CD,1
-2019-11-18,javascript_jobs_feed,frontend,,CSS,31
+2019-11-18,javascript_jobs_feed,frontend,,CSS,26
 2019-11-18,javascript_jobs_feed,frontend,,Confluence,1
 2019-11-18,javascript_jobs_feed,frontend,,Design patterns,1
 2019-11-18,javascript_jobs_feed,frontend,,Django,1
 2019-11-18,javascript_jobs_feed,frontend,,Docker,2
 2019-11-18,javascript_jobs_feed,frontend,,Electron,1
 2019-11-18,javascript_jobs_feed,frontend,,Express,2
-2019-11-18,javascript_jobs_feed,frontend,,Figma,4
-2019-11-18,javascript_jobs_feed,frontend,,Git,24
+2019-11-18,javascript_jobs_feed,frontend,,Git,19
 2019-11-18,javascript_jobs_feed,frontend,,GitFlow,1
-2019-11-18,javascript_jobs_feed,frontend,,GitHub,4
-2019-11-18,javascript_jobs_feed,frontend,,GitLab,4
+2019-11-18,javascript_jobs_feed,frontend,,GitLab,3
 2019-11-18,javascript_jobs_feed,frontend,,GraphQL,2
-2019-11-18,javascript_jobs_feed,frontend,,HTML,29
+2019-11-18,javascript_jobs_feed,frontend,,HTML,24
 2019-11-18,javascript_jobs_feed,frontend,,JSON,3
-2019-11-18,javascript_jobs_feed,frontend,,JavaScript,39
+2019-11-18,javascript_jobs_feed,frontend,,JavaScript,34
 2019-11-18,javascript_jobs_feed,frontend,,Jenkins,1
 2019-11-18,javascript_jobs_feed,frontend,,Jest,3
 2019-11-18,javascript_jobs_feed,frontend,,Jira,2
-2019-11-18,javascript_jobs_feed,frontend,,Laravel,5
-2019-11-18,javascript_jobs_feed,frontend,,Less,5
+2019-11-18,javascript_jobs_feed,frontend,,Less,1
 2019-11-18,javascript_jobs_feed,frontend,,Linux,4
 2019-11-18,javascript_jobs_feed,frontend,,MobX,5
-2019-11-18,javascript_jobs_feed,frontend,,MongoDB,4
-2019-11-18,javascript_jobs_feed,frontend,,MySQL,2
+2019-11-18,javascript_jobs_feed,frontend,,MongoDB,3
+2019-11-18,javascript_jobs_feed,frontend,,MySQL,1
 2019-11-18,javascript_jobs_feed,frontend,,NestJS,2
 2019-11-18,javascript_jobs_feed,frontend,,Next.js,1
 2019-11-18,javascript_jobs_feed,frontend,,Node.js,7
-2019-11-18,javascript_jobs_feed,frontend,,Nuxt,6
+2019-11-18,javascript_jobs_feed,frontend,,Nuxt,2
 2019-11-18,javascript_jobs_feed,frontend,,Outlook,1
 2019-11-18,javascript_jobs_feed,frontend,,PHP,1
-2019-11-18,javascript_jobs_feed,frontend,,Photoshop,4
 2019-11-18,javascript_jobs_feed,frontend,,PostgreSQL,1
 2019-11-18,javascript_jobs_feed,frontend,,REST,3
 2019-11-18,javascript_jobs_feed,frontend,,React,27
 2019-11-18,javascript_jobs_feed,frontend,,React Native,4
-2019-11-18,javascript_jobs_feed,frontend,,Redux,19
+2019-11-18,javascript_jobs_feed,frontend,,Redux,18
 2019-11-18,javascript_jobs_feed,frontend,,SAP,2
-2019-11-18,javascript_jobs_feed,frontend,,SCSS,13
+2019-11-18,javascript_jobs_feed,frontend,,SCSS,8
 2019-11-18,javascript_jobs_feed,frontend,,SOLID,1
-2019-11-18,javascript_jobs_feed,frontend,,SVG,4
-2019-11-18,javascript_jobs_feed,frontend,,Sass,10
+2019-11-18,javascript_jobs_feed,frontend,,SVG,1
+2019-11-18,javascript_jobs_feed,frontend,,Sass,5
 2019-11-18,javascript_jobs_feed,frontend,,TypeScript,14
-2019-11-18,javascript_jobs_feed,frontend,,Vue.js,13
+2019-11-18,javascript_jobs_feed,frontend,,Vue.js,9
 2019-11-18,javascript_jobs_feed,frontend,,WebSocket,5
-2019-11-18,javascript_jobs_feed,frontend,,Webpack,9
+2019-11-18,javascript_jobs_feed,frontend,,Webpack,8
 2019-11-18,javascript_jobs_feed,frontend,,XML,1
 2019-11-18,javascript_jobs_feed,frontend,,YARN,1
 2019-11-18,javascript_jobs_feed,frontend,,YouTrack,2
-2019-11-18,javascript_jobs_feed,frontend,,jQuery,8
+2019-11-18,javascript_jobs_feed,frontend,,jQuery,7
 2019-11-18,javascript_jobs_feed,frontend,,ООП,6
 2019-11-18,javascript_jobs_feed,frontend,junior,Agile,3
 2019-11-18,javascript_jobs_feed,frontend,junior,Angular,2
 2019-11-18,javascript_jobs_feed,frontend,junior,C#,2
-2019-11-18,javascript_jobs_feed,frontend,junior,CSS,5
-2019-11-18,javascript_jobs_feed,frontend,junior,Git,7
+2019-11-18,javascript_jobs_feed,frontend,junior,CSS,3
+2019-11-18,javascript_jobs_feed,frontend,junior,Git,5
 2019-11-18,javascript_jobs_feed,frontend,junior,Gradle,1
-2019-11-18,javascript_jobs_feed,frontend,junior,HTML,5
+2019-11-18,javascript_jobs_feed,frontend,junior,HTML,3
 2019-11-18,javascript_jobs_feed,frontend,junior,Java,2
-2019-11-18,javascript_jobs_feed,frontend,junior,JavaScript,7
+2019-11-18,javascript_jobs_feed,frontend,junior,JavaScript,5
 2019-11-18,javascript_jobs_feed,frontend,junior,Jenkins,2
 2019-11-18,javascript_jobs_feed,frontend,junior,Jira,2
 2019-11-18,javascript_jobs_feed,frontend,junior,OWASP,1
 2019-11-18,javascript_jobs_feed,frontend,junior,Python,2
 2019-11-18,javascript_jobs_feed,frontend,junior,REST,1
-2019-11-18,javascript_jobs_feed,frontend,junior,React,7
-2019-11-18,javascript_jobs_feed,frontend,junior,Redux,3
+2019-11-18,javascript_jobs_feed,frontend,junior,React,5
+2019-11-18,javascript_jobs_feed,frontend,junior,Redux,1
 2019-11-18,javascript_jobs_feed,frontend,junior,TypeScript,3
 2019-11-18,javascript_jobs_feed,frontend,junior,Vue.js,2
 2019-11-18,javascript_jobs_feed,frontend,junior,WebSocket,2
@@ -20329,7 +20364,7 @@ week,channel,role,grade,skill,posts
 2019-11-18,progjob,backend,middle,Kotlin,2
 2019-11-18,progjob,backend,middle,Kubernetes,1
 2019-11-18,progjob,backend,middle,Laravel,2
-2019-11-18,progjob,backend,middle,Linux,1
+2019-11-18,progjob,backend,middle,Linux,2
 2019-11-18,progjob,backend,middle,MS SQL Server,2
 2019-11-18,progjob,backend,middle,MongoDB,4
 2019-11-18,progjob,backend,middle,MySQL,5
@@ -20340,7 +20375,7 @@ week,channel,role,grade,skill,posts
 2019-11-18,progjob,backend,middle,PL/SQL,1
 2019-11-18,progjob,backend,middle,PostgreSQL,5
 2019-11-18,progjob,backend,middle,Python,1
-2019-11-18,progjob,backend,middle,REST,1
+2019-11-18,progjob,backend,middle,REST,2
 2019-11-18,progjob,backend,middle,RabbitMQ,2
 2019-11-18,progjob,backend,middle,Redis,1
 2019-11-18,progjob,backend,middle,SQL,3
@@ -20348,6 +20383,7 @@ week,channel,role,grade,skill,posts
 2019-11-18,progjob,backend,middle,Scala,1
 2019-11-18,progjob,backend,middle,Scrum,1
 2019-11-18,progjob,backend,middle,Spark,1
+2019-11-18,progjob,backend,middle,Spring,3
 2019-11-18,progjob,backend,middle,Symfony,2
 2019-11-18,progjob,backend,middle,TypeScript,1
 2019-11-18,progjob,backend,middle,Yii,2
@@ -20375,9 +20411,11 @@ week,channel,role,grade,skill,posts
 2019-11-18,progjob,backend,senior,PL/SQL,1
 2019-11-18,progjob,backend,senior,PostgreSQL,3
 2019-11-18,progjob,backend,senior,Python,5
+2019-11-18,progjob,backend,senior,REST,1
 2019-11-18,progjob,backend,senior,Ruby,3
 2019-11-18,progjob,backend,senior,Ruby on Rails,1
 2019-11-18,progjob,backend,senior,SQL,3
+2019-11-18,progjob,backend,senior,Spring,2
 2019-11-18,progjob,backend,senior,TypeScript,1
 2019-11-18,progjob,backend,senior,Ubuntu,1
 2019-11-18,progjob,backend,senior,Unix,1
@@ -20445,7 +20483,9 @@ week,channel,role,grade,skill,posts
 2019-11-18,progjob,fullstack,middle,MySQL,1
 2019-11-18,progjob,fullstack,middle,Node.js,1
 2019-11-18,progjob,fullstack,middle,PHP,2
+2019-11-18,progjob,fullstack,middle,Yii,1
 2019-11-18,progjob,fullstack,middle,ООП,1
+2019-11-18,progjob,fullstack,senior,AWS,1
 2019-11-18,progjob,fullstack,senior,Angular,1
 2019-11-18,progjob,fullstack,senior,HTML,1
 2019-11-18,progjob,fullstack,senior,Java,1
@@ -20671,43 +20711,37 @@ week,channel,role,grade,skill,posts
 2019-11-25,javascript_jobs_feed,frontend,,.NET,1
 2019-11-25,javascript_jobs_feed,frontend,,Agile,2
 2019-11-25,javascript_jobs_feed,frontend,,Angular,7
-2019-11-25,javascript_jobs_feed,frontend,,Bitbucket,1
 2019-11-25,javascript_jobs_feed,frontend,,CI/CD,1
-2019-11-25,javascript_jobs_feed,frontend,,CSS,19
+2019-11-25,javascript_jobs_feed,frontend,,CSS,17
 2019-11-25,javascript_jobs_feed,frontend,,Confluence,1
 2019-11-25,javascript_jobs_feed,frontend,,Cypress,1
 2019-11-25,javascript_jobs_feed,frontend,,Docker,1
-2019-11-25,javascript_jobs_feed,frontend,,Figma,1
-2019-11-25,javascript_jobs_feed,frontend,,Git,13
+2019-11-25,javascript_jobs_feed,frontend,,Git,11
 2019-11-25,javascript_jobs_feed,frontend,,GitFlow,2
-2019-11-25,javascript_jobs_feed,frontend,,GitHub,1
 2019-11-25,javascript_jobs_feed,frontend,,GitLab,2
 2019-11-25,javascript_jobs_feed,frontend,,GitLab CI,1
 2019-11-25,javascript_jobs_feed,frontend,,Go,1
 2019-11-25,javascript_jobs_feed,frontend,,GraphQL,6
-2019-11-25,javascript_jobs_feed,frontend,,HTML,18
+2019-11-25,javascript_jobs_feed,frontend,,HTML,16
 2019-11-25,javascript_jobs_feed,frontend,,HTTP,1
 2019-11-25,javascript_jobs_feed,frontend,,JSON,3
 2019-11-25,javascript_jobs_feed,frontend,,Java,1
-2019-11-25,javascript_jobs_feed,frontend,,JavaScript,33
+2019-11-25,javascript_jobs_feed,frontend,,JavaScript,31
 2019-11-25,javascript_jobs_feed,frontend,,Jenkins,1
 2019-11-25,javascript_jobs_feed,frontend,,Jest,3
 2019-11-25,javascript_jobs_feed,frontend,,Jira,2
 2019-11-25,javascript_jobs_feed,frontend,,Kanban,1
-2019-11-25,javascript_jobs_feed,frontend,,Laravel,2
-2019-11-25,javascript_jobs_feed,frontend,,Less,6
-2019-11-25,javascript_jobs_feed,frontend,,Linux,2
+2019-11-25,javascript_jobs_feed,frontend,,Less,5
+2019-11-25,javascript_jobs_feed,frontend,,Linux,1
 2019-11-25,javascript_jobs_feed,frontend,,Microservices,1
 2019-11-25,javascript_jobs_feed,frontend,,MobX,1
 2019-11-25,javascript_jobs_feed,frontend,,MongoDB,2
-2019-11-25,javascript_jobs_feed,frontend,,MySQL,1
 2019-11-25,javascript_jobs_feed,frontend,,NestJS,1
 2019-11-25,javascript_jobs_feed,frontend,,Next.js,2
 2019-11-25,javascript_jobs_feed,frontend,,Node.js,8
-2019-11-25,javascript_jobs_feed,frontend,,Nuxt,2
+2019-11-25,javascript_jobs_feed,frontend,,Nuxt,1
 2019-11-25,javascript_jobs_feed,frontend,,Outlook,1
-2019-11-25,javascript_jobs_feed,frontend,,PHP,4
-2019-11-25,javascript_jobs_feed,frontend,,Photoshop,1
+2019-11-25,javascript_jobs_feed,frontend,,PHP,3
 2019-11-25,javascript_jobs_feed,frontend,,PostgreSQL,1
 2019-11-25,javascript_jobs_feed,frontend,,Python,1
 2019-11-25,javascript_jobs_feed,frontend,,REST,3
@@ -20715,13 +20749,13 @@ week,channel,role,grade,skill,posts
 2019-11-25,javascript_jobs_feed,frontend,,React Native,1
 2019-11-25,javascript_jobs_feed,frontend,,Redux,10
 2019-11-25,javascript_jobs_feed,frontend,,Ruby,1
-2019-11-25,javascript_jobs_feed,frontend,,SCSS,6
+2019-11-25,javascript_jobs_feed,frontend,,SCSS,5
 2019-11-25,javascript_jobs_feed,frontend,,SOLID,1
-2019-11-25,javascript_jobs_feed,frontend,,Sass,9
+2019-11-25,javascript_jobs_feed,frontend,,Sass,8
 2019-11-25,javascript_jobs_feed,frontend,,Scrum,2
 2019-11-25,javascript_jobs_feed,frontend,,TypeScript,10
 2019-11-25,javascript_jobs_feed,frontend,,Unix,1
-2019-11-25,javascript_jobs_feed,frontend,,Vue.js,10
+2019-11-25,javascript_jobs_feed,frontend,,Vue.js,8
 2019-11-25,javascript_jobs_feed,frontend,,WebSocket,6
 2019-11-25,javascript_jobs_feed,frontend,,Webpack,9
 2019-11-25,javascript_jobs_feed,frontend,,XML,1
@@ -20734,31 +20768,29 @@ week,channel,role,grade,skill,posts
 2019-11-25,javascript_jobs_feed,frontend,junior,Agile,1
 2019-11-25,javascript_jobs_feed,frontend,junior,Angular,2
 2019-11-25,javascript_jobs_feed,frontend,junior,C#,1
-2019-11-25,javascript_jobs_feed,frontend,junior,CSS,8
+2019-11-25,javascript_jobs_feed,frontend,junior,CSS,5
 2019-11-25,javascript_jobs_feed,frontend,junior,Docker,1
-2019-11-25,javascript_jobs_feed,frontend,junior,Git,7
-2019-11-25,javascript_jobs_feed,frontend,junior,HTML,8
+2019-11-25,javascript_jobs_feed,frontend,junior,Git,5
+2019-11-25,javascript_jobs_feed,frontend,junior,HTML,5
 2019-11-25,javascript_jobs_feed,frontend,junior,Java,1
-2019-11-25,javascript_jobs_feed,frontend,junior,JavaScript,9
+2019-11-25,javascript_jobs_feed,frontend,junior,JavaScript,6
 2019-11-25,javascript_jobs_feed,frontend,junior,Jenkins,1
-2019-11-25,javascript_jobs_feed,frontend,junior,Jest,1
 2019-11-25,javascript_jobs_feed,frontend,junior,Jira,1
 2019-11-25,javascript_jobs_feed,frontend,junior,Linux,2
 2019-11-25,javascript_jobs_feed,frontend,junior,MongoDB,1
 2019-11-25,javascript_jobs_feed,frontend,junior,Python,3
-2019-11-25,javascript_jobs_feed,frontend,junior,React,7
+2019-11-25,javascript_jobs_feed,frontend,junior,React,5
 2019-11-25,javascript_jobs_feed,frontend,junior,React Native,1
 2019-11-25,javascript_jobs_feed,frontend,junior,Redis,1
-2019-11-25,javascript_jobs_feed,frontend,junior,Redux,6
+2019-11-25,javascript_jobs_feed,frontend,junior,Redux,4
 2019-11-25,javascript_jobs_feed,frontend,junior,SCSS,1
 2019-11-25,javascript_jobs_feed,frontend,junior,SQL,1
 2019-11-25,javascript_jobs_feed,frontend,junior,Sass,1
 2019-11-25,javascript_jobs_feed,frontend,junior,T-SQL,1
 2019-11-25,javascript_jobs_feed,frontend,junior,TypeScript,1
-2019-11-25,javascript_jobs_feed,frontend,junior,Vue.js,2
+2019-11-25,javascript_jobs_feed,frontend,junior,Vue.js,1
 2019-11-25,javascript_jobs_feed,frontend,junior,WebSocket,1
-2019-11-25,javascript_jobs_feed,frontend,junior,Webpack,2
-2019-11-25,javascript_jobs_feed,frontend,junior,jQuery,1
+2019-11-25,javascript_jobs_feed,frontend,junior,Webpack,1
 2019-11-25,javascript_jobs_feed,frontend,lead,Angular,4
 2019-11-25,javascript_jobs_feed,frontend,lead,CI/CD,2
 2019-11-25,javascript_jobs_feed,frontend,lead,CSS,1
@@ -20920,6 +20952,7 @@ week,channel,role,grade,skill,posts
 2019-11-25,progjob,backend,lead,PHP,1
 2019-11-25,progjob,backend,lead,PostgreSQL,1
 2019-11-25,progjob,backend,lead,Ruby on Rails,1
+2019-11-25,progjob,backend,lead,Spring,1
 2019-11-25,progjob,backend,lead,Symfony,1
 2019-11-25,progjob,backend,lead,ООП,1
 2019-11-25,progjob,backend,middle,1С-Битрикс,3
@@ -20967,6 +21000,7 @@ week,channel,role,grade,skill,posts
 2019-11-25,progjob,designer,,JavaScript,1
 2019-11-25,progjob,developer_1c,,1С,1
 2019-11-25,progjob,developer_1c,senior,1С,1
+2019-11-25,progjob,devops,middle,CI/CD,1
 2019-11-25,progjob,devops,middle,DevOps,1
 2019-11-25,progjob,devops,middle,Docker,1
 2019-11-25,progjob,devops,middle,Linux,1
@@ -21033,6 +21067,7 @@ week,channel,role,grade,skill,posts
 2019-11-25,progjob,fullstack,,PHP,1
 2019-11-25,progjob,fullstack,,SQL,1
 2019-11-25,progjob,fullstack,,Vue.js,1
+2019-11-25,progjob,fullstack,,Yii,1
 2019-11-25,progjob,fullstack,,ООП,1
 2019-11-25,progjob,fullstack,lead,Angular,1
 2019-11-25,progjob,fullstack,lead,CSS,1
@@ -21085,6 +21120,7 @@ week,channel,role,grade,skill,posts
 2019-11-25,progjob,software_engineer,middle,C++,1
 2019-11-25,progjob,software_engineer,middle,Eltex,1
 2019-11-25,progjob,software_engineer,middle,SOLID,1
+2019-11-25,progjob,software_engineer,middle,Unity,1
 2019-11-25,progjob,software_engineer,middle,ООП,1
 2019-11-25,progjob,software_engineer,senior,C++,1
 2019-11-25,progjob,software_engineer,senior,Java,1
@@ -21335,27 +21371,24 @@ week,channel,role,grade,skill,posts
 2019-12-02,javascript_jobs_feed,backend,senior,TCP,1
 2019-12-02,javascript_jobs_feed,frontend,,.NET,1
 2019-12-02,javascript_jobs_feed,frontend,,Agile,1
-2019-12-02,javascript_jobs_feed,frontend,,Angular,13
-2019-12-02,javascript_jobs_feed,frontend,,Bitbucket,1
+2019-12-02,javascript_jobs_feed,frontend,,Angular,12
 2019-12-02,javascript_jobs_feed,frontend,,C#,1
 2019-12-02,javascript_jobs_feed,frontend,,CI/CD,2
-2019-12-02,javascript_jobs_feed,frontend,,CSS,15
+2019-12-02,javascript_jobs_feed,frontend,,CSS,13
 2019-12-02,javascript_jobs_feed,frontend,,Confluence,1
 2019-12-02,javascript_jobs_feed,frontend,,Django,1
 2019-12-02,javascript_jobs_feed,frontend,,Elasticsearch,1
 2019-12-02,javascript_jobs_feed,frontend,,Express,2
-2019-12-02,javascript_jobs_feed,frontend,,Figma,1
-2019-12-02,javascript_jobs_feed,frontend,,Git,16
+2019-12-02,javascript_jobs_feed,frontend,,Git,15
 2019-12-02,javascript_jobs_feed,frontend,,GitFlow,1
-2019-12-02,javascript_jobs_feed,frontend,,GitHub,1
 2019-12-02,javascript_jobs_feed,frontend,,GitLab,1
 2019-12-02,javascript_jobs_feed,frontend,,GraphQL,1
-2019-12-02,javascript_jobs_feed,frontend,,HTML,17
+2019-12-02,javascript_jobs_feed,frontend,,HTML,15
 2019-12-02,javascript_jobs_feed,frontend,,JSON,3
-2019-12-02,javascript_jobs_feed,frontend,,JavaScript,32
+2019-12-02,javascript_jobs_feed,frontend,,JavaScript,30
 2019-12-02,javascript_jobs_feed,frontend,,Jira,1
-2019-12-02,javascript_jobs_feed,frontend,,Laravel,2
-2019-12-02,javascript_jobs_feed,frontend,,Less,4
+2019-12-02,javascript_jobs_feed,frontend,,Laravel,1
+2019-12-02,javascript_jobs_feed,frontend,,Less,3
 2019-12-02,javascript_jobs_feed,frontend,,Linux,1
 2019-12-02,javascript_jobs_feed,frontend,,MS SQL Server,1
 2019-12-02,javascript_jobs_feed,frontend,,MobX,2
@@ -21365,41 +21398,40 @@ week,channel,role,grade,skill,posts
 2019-12-02,javascript_jobs_feed,frontend,,NestJS,1
 2019-12-02,javascript_jobs_feed,frontend,,Next.js,1
 2019-12-02,javascript_jobs_feed,frontend,,Node.js,8
-2019-12-02,javascript_jobs_feed,frontend,,Nuxt,2
-2019-12-02,javascript_jobs_feed,frontend,,Photoshop,1
+2019-12-02,javascript_jobs_feed,frontend,,Nuxt,1
 2019-12-02,javascript_jobs_feed,frontend,,PostgreSQL,1
 2019-12-02,javascript_jobs_feed,frontend,,REST,4
 2019-12-02,javascript_jobs_feed,frontend,,RabbitMQ,1
 2019-12-02,javascript_jobs_feed,frontend,,React,25
 2019-12-02,javascript_jobs_feed,frontend,,React Native,2
 2019-12-02,javascript_jobs_feed,frontend,,Redux,13
-2019-12-02,javascript_jobs_feed,frontend,,SCSS,9
+2019-12-02,javascript_jobs_feed,frontend,,SCSS,8
 2019-12-02,javascript_jobs_feed,frontend,,SOLID,1
-2019-12-02,javascript_jobs_feed,frontend,,Sass,7
+2019-12-02,javascript_jobs_feed,frontend,,Sass,6
 2019-12-02,javascript_jobs_feed,frontend,,Scrum,3
 2019-12-02,javascript_jobs_feed,frontend,,Symfony,1
 2019-12-02,javascript_jobs_feed,frontend,,TeamCity,1
-2019-12-02,javascript_jobs_feed,frontend,,TypeScript,11
+2019-12-02,javascript_jobs_feed,frontend,,TypeScript,10
 2019-12-02,javascript_jobs_feed,frontend,,Unix,1
 2019-12-02,javascript_jobs_feed,frontend,,Use case,1
-2019-12-02,javascript_jobs_feed,frontend,,Vue.js,8
-2019-12-02,javascript_jobs_feed,frontend,,WebSocket,5
+2019-12-02,javascript_jobs_feed,frontend,,Vue.js,7
+2019-12-02,javascript_jobs_feed,frontend,,WebSocket,4
 2019-12-02,javascript_jobs_feed,frontend,,Webpack,7
 2019-12-02,javascript_jobs_feed,frontend,,YouTrack,1
-2019-12-02,javascript_jobs_feed,frontend,,jQuery,3
+2019-12-02,javascript_jobs_feed,frontend,,jQuery,2
 2019-12-02,javascript_jobs_feed,frontend,,ООП,4
 2019-12-02,javascript_jobs_feed,frontend,junior,Angular,1
-2019-12-02,javascript_jobs_feed,frontend,junior,CSS,3
+2019-12-02,javascript_jobs_feed,frontend,junior,CSS,2
 2019-12-02,javascript_jobs_feed,frontend,junior,Django,1
 2019-12-02,javascript_jobs_feed,frontend,junior,Docker,1
-2019-12-02,javascript_jobs_feed,frontend,junior,Git,3
+2019-12-02,javascript_jobs_feed,frontend,junior,Git,2
 2019-12-02,javascript_jobs_feed,frontend,junior,GitHub,1
-2019-12-02,javascript_jobs_feed,frontend,junior,HTML,3
-2019-12-02,javascript_jobs_feed,frontend,junior,JavaScript,3
+2019-12-02,javascript_jobs_feed,frontend,junior,HTML,2
+2019-12-02,javascript_jobs_feed,frontend,junior,JavaScript,2
 2019-12-02,javascript_jobs_feed,frontend,junior,REST,1
 2019-12-02,javascript_jobs_feed,frontend,junior,React,2
 2019-12-02,javascript_jobs_feed,frontend,junior,Redux,1
-2019-12-02,javascript_jobs_feed,frontend,junior,Vue.js,2
+2019-12-02,javascript_jobs_feed,frontend,junior,Vue.js,1
 2019-12-02,javascript_jobs_feed,frontend,lead,Angular,3
 2019-12-02,javascript_jobs_feed,frontend,lead,Bitbucket,1
 2019-12-02,javascript_jobs_feed,frontend,lead,CI/CD,1
@@ -21545,28 +21577,16 @@ week,channel,role,grade,skill,posts
 2019-12-02,javascript_jobs_feed,mobile,junior,React Native,1
 2019-12-02,javascript_jobs_feed,mobile,junior,Redux,1
 2019-12-02,javascript_jobs_feed,mobile,junior,iOS,1
-2019-12-02,javascript_jobs_feed,mobile,middle,Agile,1
-2019-12-02,javascript_jobs_feed,mobile,middle,Android,1
 2019-12-02,javascript_jobs_feed,mobile,middle,Angular,1
-2019-12-02,javascript_jobs_feed,mobile,middle,CI/CD,1
 2019-12-02,javascript_jobs_feed,mobile,middle,CSS,1
-2019-12-02,javascript_jobs_feed,mobile,middle,Go,1
 2019-12-02,javascript_jobs_feed,mobile,middle,HTML,1
-2019-12-02,javascript_jobs_feed,mobile,middle,Java,1
 2019-12-02,javascript_jobs_feed,mobile,middle,JavaScript,1
-2019-12-02,javascript_jobs_feed,mobile,middle,Jest,1
-2019-12-02,javascript_jobs_feed,mobile,middle,MongoDB,2
+2019-12-02,javascript_jobs_feed,mobile,middle,MongoDB,1
 2019-12-02,javascript_jobs_feed,mobile,middle,Node.js,1
-2019-12-02,javascript_jobs_feed,mobile,middle,Objective-C,1
-2019-12-02,javascript_jobs_feed,mobile,middle,PostgreSQL,1
-2019-12-02,javascript_jobs_feed,mobile,middle,Python,1
-2019-12-02,javascript_jobs_feed,mobile,middle,React,2
-2019-12-02,javascript_jobs_feed,mobile,middle,React Native,2
+2019-12-02,javascript_jobs_feed,mobile,middle,React,1
+2019-12-02,javascript_jobs_feed,mobile,middle,React Native,1
 2019-12-02,javascript_jobs_feed,mobile,middle,Scrum,1
-2019-12-02,javascript_jobs_feed,mobile,middle,TypeScript,1
 2019-12-02,javascript_jobs_feed,mobile,middle,Vue.js,1
-2019-12-02,javascript_jobs_feed,mobile,middle,WebSocket,1
-2019-12-02,javascript_jobs_feed,mobile,middle,iOS,1
 2019-12-02,javascript_jobs_feed,other_it,,JavaScript,1
 2019-12-02,jc_it,mobile,,Android,1
 2019-12-02,jc_it,mobile,,iOS,1
@@ -21598,6 +21618,7 @@ week,channel,role,grade,skill,posts
 2019-12-02,progjob,backend,,SQL,1
 2019-12-02,progjob,backend,,SVN,1
 2019-12-02,progjob,backend,,Symfony,1
+2019-12-02,progjob,backend,,Yii,1
 2019-12-02,progjob,backend,,ООП,4
 2019-12-02,progjob,backend,intern,1С-Битрикс,1
 2019-12-02,progjob,backend,intern,ASP.NET,1
@@ -21640,6 +21661,7 @@ week,channel,role,grade,skill,posts
 2019-12-02,progjob,backend,middle,Python,3
 2019-12-02,progjob,backend,middle,Ruby on Rails,1
 2019-12-02,progjob,backend,middle,SQL,1
+2019-12-02,progjob,backend,middle,Spring,2
 2019-12-02,progjob,backend,middle,Web API,1
 2019-12-02,progjob,backend,middle,WordPress,1
 2019-12-02,progjob,backend,middle,jQuery,1
@@ -21696,6 +21718,7 @@ week,channel,role,grade,skill,posts
 2019-12-02,progjob,frontend,,HTML,3
 2019-12-02,progjob,frontend,,JavaScript,6
 2019-12-02,progjob,frontend,,Less,1
+2019-12-02,progjob,frontend,,REST,1
 2019-12-02,progjob,frontend,,React,4
 2019-12-02,progjob,frontend,,React Native,2
 2019-12-02,progjob,frontend,,Redux,2
@@ -21709,6 +21732,7 @@ week,channel,role,grade,skill,posts
 2019-12-02,progjob,frontend,middle,JavaScript,2
 2019-12-02,progjob,frontend,middle,PHP,1
 2019-12-02,progjob,frontend,middle,Python,1
+2019-12-02,progjob,frontend,middle,REST,1
 2019-12-02,progjob,frontend,middle,React,2
 2019-12-02,progjob,frontend,middle,React Native,1
 2019-12-02,progjob,frontend,middle,Webpack,1
@@ -21735,6 +21759,7 @@ week,channel,role,grade,skill,posts
 2019-12-02,progjob,fullstack,lead,Git,1
 2019-12-02,progjob,fullstack,lead,JavaScript,1
 2019-12-02,progjob,fullstack,lead,PHP,1
+2019-12-02,progjob,fullstack,middle,AWS,1
 2019-12-02,progjob,fullstack,middle,CSS,1
 2019-12-02,progjob,fullstack,middle,Docker,1
 2019-12-02,progjob,fullstack,middle,HTML,1
@@ -21745,6 +21770,7 @@ week,channel,role,grade,skill,posts
 2019-12-02,progjob,fullstack,middle,Node.js,2
 2019-12-02,progjob,fullstack,middle,PHP,1
 2019-12-02,progjob,fullstack,middle,PostgreSQL,1
+2019-12-02,progjob,fullstack,middle,REST,1
 2019-12-02,progjob,fullstack,middle,React,1
 2019-12-02,progjob,fullstack,middle,Redis,1
 2019-12-02,progjob,fullstack,middle,Vue.js,2
@@ -21933,65 +21959,55 @@ week,channel,role,grade,skill,posts
 2019-12-09,javascript_jobs_feed,backend,,TypeScript,1
 2019-12-09,javascript_jobs_feed,frontend,,AWS,1
 2019-12-09,javascript_jobs_feed,frontend,,Angular,3
-2019-12-09,javascript_jobs_feed,frontend,,Bitbucket,3
+2019-12-09,javascript_jobs_feed,frontend,,Bitbucket,2
 2019-12-09,javascript_jobs_feed,frontend,,CI/CD,1
-2019-12-09,javascript_jobs_feed,frontend,,CSS,9
+2019-12-09,javascript_jobs_feed,frontend,,CSS,8
 2019-12-09,javascript_jobs_feed,frontend,,Confluence,1
 2019-12-09,javascript_jobs_feed,frontend,,Docker,3
-2019-12-09,javascript_jobs_feed,frontend,,Figma,1
-2019-12-09,javascript_jobs_feed,frontend,,Git,8
-2019-12-09,javascript_jobs_feed,frontend,,GitHub,1
-2019-12-09,javascript_jobs_feed,frontend,,GitLab,1
-2019-12-09,javascript_jobs_feed,frontend,,GitLab CI,2
+2019-12-09,javascript_jobs_feed,frontend,,Git,7
+2019-12-09,javascript_jobs_feed,frontend,,GitLab CI,1
 2019-12-09,javascript_jobs_feed,frontend,,Go,1
 2019-12-09,javascript_jobs_feed,frontend,,Gradle,1
-2019-12-09,javascript_jobs_feed,frontend,,GraphQL,1
-2019-12-09,javascript_jobs_feed,frontend,,HTML,8
+2019-12-09,javascript_jobs_feed,frontend,,HTML,7
 2019-12-09,javascript_jobs_feed,frontend,,HTTP,1
 2019-12-09,javascript_jobs_feed,frontend,,JSON,1
 2019-12-09,javascript_jobs_feed,frontend,,JUnit,1
 2019-12-09,javascript_jobs_feed,frontend,,Java,1
-2019-12-09,javascript_jobs_feed,frontend,,JavaScript,17
+2019-12-09,javascript_jobs_feed,frontend,,JavaScript,16
 2019-12-09,javascript_jobs_feed,frontend,,Jenkins,1
 2019-12-09,javascript_jobs_feed,frontend,,Jest,2
 2019-12-09,javascript_jobs_feed,frontend,,Jira,1
-2019-12-09,javascript_jobs_feed,frontend,,Laravel,1
-2019-12-09,javascript_jobs_feed,frontend,,Less,1
 2019-12-09,javascript_jobs_feed,frontend,,Linux,1
 2019-12-09,javascript_jobs_feed,frontend,,Microservices,1
 2019-12-09,javascript_jobs_feed,frontend,,MongoDB,1
-2019-12-09,javascript_jobs_feed,frontend,,MySQL,1
 2019-12-09,javascript_jobs_feed,frontend,,Node.js,3
-2019-12-09,javascript_jobs_feed,frontend,,Nuxt,1
-2019-12-09,javascript_jobs_feed,frontend,,Photoshop,1
-2019-12-09,javascript_jobs_feed,frontend,,REST,3
+2019-12-09,javascript_jobs_feed,frontend,,REST,2
 2019-12-09,javascript_jobs_feed,frontend,,React,10
 2019-12-09,javascript_jobs_feed,frontend,,React Native,2
 2019-12-09,javascript_jobs_feed,frontend,,Redux,2
-2019-12-09,javascript_jobs_feed,frontend,,SCSS,3
+2019-12-09,javascript_jobs_feed,frontend,,SCSS,2
 2019-12-09,javascript_jobs_feed,frontend,,SVN,1
-2019-12-09,javascript_jobs_feed,frontend,,Sass,3
+2019-12-09,javascript_jobs_feed,frontend,,Sass,2
 2019-12-09,javascript_jobs_feed,frontend,,Spring,1
 2019-12-09,javascript_jobs_feed,frontend,,Spring Boot,1
 2019-12-09,javascript_jobs_feed,frontend,,Spring Cloud,1
 2019-12-09,javascript_jobs_feed,frontend,,TypeScript,3
-2019-12-09,javascript_jobs_feed,frontend,,Vue.js,6
-2019-12-09,javascript_jobs_feed,frontend,,WebSocket,3
-2019-12-09,javascript_jobs_feed,frontend,,Webpack,5
+2019-12-09,javascript_jobs_feed,frontend,,Vue.js,5
+2019-12-09,javascript_jobs_feed,frontend,,WebSocket,2
+2019-12-09,javascript_jobs_feed,frontend,,Webpack,4
 2019-12-09,javascript_jobs_feed,frontend,,XML,1
 2019-12-09,javascript_jobs_feed,frontend,,YouTrack,2
 2019-12-09,javascript_jobs_feed,frontend,,jQuery,1
-2019-12-09,javascript_jobs_feed,frontend,,ООП,5
+2019-12-09,javascript_jobs_feed,frontend,,ООП,4
 2019-12-09,javascript_jobs_feed,frontend,junior,Angular,1
-2019-12-09,javascript_jobs_feed,frontend,junior,CSS,2
-2019-12-09,javascript_jobs_feed,frontend,junior,Git,3
-2019-12-09,javascript_jobs_feed,frontend,junior,HTML,3
-2019-12-09,javascript_jobs_feed,frontend,junior,JavaScript,3
+2019-12-09,javascript_jobs_feed,frontend,junior,CSS,1
+2019-12-09,javascript_jobs_feed,frontend,junior,Git,2
+2019-12-09,javascript_jobs_feed,frontend,junior,HTML,2
+2019-12-09,javascript_jobs_feed,frontend,junior,JavaScript,2
 2019-12-09,javascript_jobs_feed,frontend,junior,React,2
 2019-12-09,javascript_jobs_feed,frontend,junior,Redux,1
 2019-12-09,javascript_jobs_feed,frontend,junior,SCSS,1
 2019-12-09,javascript_jobs_feed,frontend,junior,TypeScript,1
-2019-12-09,javascript_jobs_feed,frontend,junior,Vue.js,1
 2019-12-09,javascript_jobs_feed,frontend,lead,Docker,1
 2019-12-09,javascript_jobs_feed,frontend,lead,GitLab,1
 2019-12-09,javascript_jobs_feed,frontend,lead,GraphQL,1
@@ -22156,6 +22172,8 @@ week,channel,role,grade,skill,posts
 2019-12-09,progjob,backend,middle,Python,1
 2019-12-09,progjob,backend,middle,RabbitMQ,1
 2019-12-09,progjob,backend,middle,SQL,1
+2019-12-09,progjob,backend,middle,Spring,3
+2019-12-09,progjob,backend,middle,Yii,1
 2019-12-09,progjob,backend,middle,ООП,2
 2019-12-09,progjob,backend,senior,.NET,2
 2019-12-09,progjob,backend,senior,ASP.NET,3
@@ -22184,6 +22202,7 @@ week,channel,role,grade,skill,posts
 2019-12-09,progjob,backend,senior,Redis,4
 2019-12-09,progjob,backend,senior,SQL,3
 2019-12-09,progjob,backend,senior,Shell,1
+2019-12-09,progjob,backend,senior,Spring,1
 2019-12-09,progjob,backend,senior,Unix,1
 2019-12-09,progjob,backend,senior,Yii,2
 2019-12-09,progjob,backend,senior,jQuery,2
@@ -22215,6 +22234,7 @@ week,channel,role,grade,skill,posts
 2019-12-09,progjob,devops,middle,PHP,1
 2019-12-09,progjob,devops,middle,Python,1
 2019-12-09,progjob,devops,senior,Bash,2
+2019-12-09,progjob,devops,senior,CI/CD,1
 2019-12-09,progjob,devops,senior,DevOps,2
 2019-12-09,progjob,devops,senior,Docker,2
 2019-12-09,progjob,devops,senior,Kafka,1
@@ -22272,6 +22292,7 @@ week,channel,role,grade,skill,posts
 2019-12-09,progjob,fullstack,middle,Nginx,1
 2019-12-09,progjob,fullstack,middle,Node.js,1
 2019-12-09,progjob,fullstack,middle,PHP,1
+2019-12-09,progjob,fullstack,middle,Spring,1
 2019-12-09,progjob,fullstack,middle,ООП,1
 2019-12-09,progjob,fullstack,senior,CSS,1
 2019-12-09,progjob,fullstack,senior,JavaScript,2
@@ -22416,70 +22437,65 @@ week,channel,role,grade,skill,posts
 2019-12-16,javascript_jobs_feed,frontend,,Agile,1
 2019-12-16,javascript_jobs_feed,frontend,,Android,1
 2019-12-16,javascript_jobs_feed,frontend,,Angular,4
-2019-12-16,javascript_jobs_feed,frontend,,Bitbucket,1
 2019-12-16,javascript_jobs_feed,frontend,,C++,1
 2019-12-16,javascript_jobs_feed,frontend,,CI/CD,2
-2019-12-16,javascript_jobs_feed,frontend,,CSS,8
+2019-12-16,javascript_jobs_feed,frontend,,CSS,7
 2019-12-16,javascript_jobs_feed,frontend,,ClickHouse,1
 2019-12-16,javascript_jobs_feed,frontend,,Django,1
 2019-12-16,javascript_jobs_feed,frontend,,Elasticsearch,1
 2019-12-16,javascript_jobs_feed,frontend,,Express,1
-2019-12-16,javascript_jobs_feed,frontend,,Figma,1
-2019-12-16,javascript_jobs_feed,frontend,,Git,8
-2019-12-16,javascript_jobs_feed,frontend,,GitHub,1
-2019-12-16,javascript_jobs_feed,frontend,,GitLab,2
-2019-12-16,javascript_jobs_feed,frontend,,GitLab CI,1
-2019-12-16,javascript_jobs_feed,frontend,,GraphQL,2
-2019-12-16,javascript_jobs_feed,frontend,,HTML,10
+2019-12-16,javascript_jobs_feed,frontend,,Git,7
+2019-12-16,javascript_jobs_feed,frontend,,GitLab,1
+2019-12-16,javascript_jobs_feed,frontend,,GraphQL,1
+2019-12-16,javascript_jobs_feed,frontend,,HTML,9
 2019-12-16,javascript_jobs_feed,frontend,,HTTP,3
 2019-12-16,javascript_jobs_feed,frontend,,HTTPS,1
-2019-12-16,javascript_jobs_feed,frontend,,JavaScript,19
+2019-12-16,javascript_jobs_feed,frontend,,JavaScript,18
 2019-12-16,javascript_jobs_feed,frontend,,Jest,3
 2019-12-16,javascript_jobs_feed,frontend,,Jira,1
 2019-12-16,javascript_jobs_feed,frontend,,Kanban,1
-2019-12-16,javascript_jobs_feed,frontend,,Laravel,2
-2019-12-16,javascript_jobs_feed,frontend,,Less,2
+2019-12-16,javascript_jobs_feed,frontend,,Laravel,1
+2019-12-16,javascript_jobs_feed,frontend,,Less,1
 2019-12-16,javascript_jobs_feed,frontend,,Linux,2
 2019-12-16,javascript_jobs_feed,frontend,,MobX,1
-2019-12-16,javascript_jobs_feed,frontend,,MySQL,2
+2019-12-16,javascript_jobs_feed,frontend,,MySQL,1
 2019-12-16,javascript_jobs_feed,frontend,,NestJS,1
 2019-12-16,javascript_jobs_feed,frontend,,Next.js,1
 2019-12-16,javascript_jobs_feed,frontend,,Nginx,1
 2019-12-16,javascript_jobs_feed,frontend,,Node.js,6
-2019-12-16,javascript_jobs_feed,frontend,,Nuxt,3
-2019-12-16,javascript_jobs_feed,frontend,,Photoshop,1
+2019-12-16,javascript_jobs_feed,frontend,,Nuxt,2
 2019-12-16,javascript_jobs_feed,frontend,,PostgreSQL,1
 2019-12-16,javascript_jobs_feed,frontend,,Python,1
-2019-12-16,javascript_jobs_feed,frontend,,REST,5
+2019-12-16,javascript_jobs_feed,frontend,,REST,4
 2019-12-16,javascript_jobs_feed,frontend,,RabbitMQ,1
 2019-12-16,javascript_jobs_feed,frontend,,React,13
 2019-12-16,javascript_jobs_feed,frontend,,React Native,1
 2019-12-16,javascript_jobs_feed,frontend,,Redis,1
 2019-12-16,javascript_jobs_feed,frontend,,Redux,6
 2019-12-16,javascript_jobs_feed,frontend,,Ruby on Rails,1
-2019-12-16,javascript_jobs_feed,frontend,,SCSS,4
+2019-12-16,javascript_jobs_feed,frontend,,SCSS,3
 2019-12-16,javascript_jobs_feed,frontend,,SOLID,1
-2019-12-16,javascript_jobs_feed,frontend,,Sass,3
+2019-12-16,javascript_jobs_feed,frontend,,Sass,2
 2019-12-16,javascript_jobs_feed,frontend,,Scrum,1
 2019-12-16,javascript_jobs_feed,frontend,,Symfony,1
 2019-12-16,javascript_jobs_feed,frontend,,TypeScript,3
-2019-12-16,javascript_jobs_feed,frontend,,Vue.js,9
+2019-12-16,javascript_jobs_feed,frontend,,Vue.js,7
 2019-12-16,javascript_jobs_feed,frontend,,Web API,1
-2019-12-16,javascript_jobs_feed,frontend,,WebSocket,4
-2019-12-16,javascript_jobs_feed,frontend,,Webpack,9
+2019-12-16,javascript_jobs_feed,frontend,,WebSocket,3
+2019-12-16,javascript_jobs_feed,frontend,,Webpack,8
 2019-12-16,javascript_jobs_feed,frontend,,YouTrack,2
 2019-12-16,javascript_jobs_feed,frontend,,gRPC,1
 2019-12-16,javascript_jobs_feed,frontend,,iOS,1
 2019-12-16,javascript_jobs_feed,frontend,,jQuery,2
-2019-12-16,javascript_jobs_feed,frontend,,ООП,4
+2019-12-16,javascript_jobs_feed,frontend,,ООП,3
 2019-12-16,javascript_jobs_feed,frontend,junior,Agile,1
 2019-12-16,javascript_jobs_feed,frontend,junior,Angular,1
-2019-12-16,javascript_jobs_feed,frontend,junior,CSS,3
-2019-12-16,javascript_jobs_feed,frontend,junior,Git,2
-2019-12-16,javascript_jobs_feed,frontend,junior,HTML,3
+2019-12-16,javascript_jobs_feed,frontend,junior,CSS,2
+2019-12-16,javascript_jobs_feed,frontend,junior,Git,1
+2019-12-16,javascript_jobs_feed,frontend,junior,HTML,2
 2019-12-16,javascript_jobs_feed,frontend,junior,HTTP,1
 2019-12-16,javascript_jobs_feed,frontend,junior,HTTPS,1
-2019-12-16,javascript_jobs_feed,frontend,junior,JavaScript,3
+2019-12-16,javascript_jobs_feed,frontend,junior,JavaScript,2
 2019-12-16,javascript_jobs_feed,frontend,junior,Jira,1
 2019-12-16,javascript_jobs_feed,frontend,junior,Less,1
 2019-12-16,javascript_jobs_feed,frontend,junior,REST,1
@@ -22487,7 +22503,7 @@ week,channel,role,grade,skill,posts
 2019-12-16,javascript_jobs_feed,frontend,junior,Redux,1
 2019-12-16,javascript_jobs_feed,frontend,junior,Sass,1
 2019-12-16,javascript_jobs_feed,frontend,junior,TypeScript,1
-2019-12-16,javascript_jobs_feed,frontend,junior,Vue.js,2
+2019-12-16,javascript_jobs_feed,frontend,junior,Vue.js,1
 2019-12-16,javascript_jobs_feed,frontend,junior,WebSocket,1
 2019-12-16,javascript_jobs_feed,frontend,junior,Webpack,1
 2019-12-16,javascript_jobs_feed,frontend,lead,Docker,1
@@ -22609,6 +22625,7 @@ week,channel,role,grade,skill,posts
 2019-12-16,progjob,backend,,Ruby,2
 2019-12-16,progjob,backend,,Ruby on Rails,2
 2019-12-16,progjob,backend,,SQL,1
+2019-12-16,progjob,backend,,Spring,2
 2019-12-16,progjob,backend,junior,Angular,1
 2019-12-16,progjob,backend,junior,CSS,1
 2019-12-16,progjob,backend,junior,Groovy,1
@@ -22616,6 +22633,7 @@ week,channel,role,grade,skill,posts
 2019-12-16,progjob,backend,junior,Java,1
 2019-12-16,progjob,backend,junior,JavaScript,1
 2019-12-16,progjob,backend,junior,React,1
+2019-12-16,progjob,backend,junior,Spring,1
 2019-12-16,progjob,backend,middle,1С-Битрикс,1
 2019-12-16,progjob,backend,middle,CSS,1
 2019-12-16,progjob,backend,middle,Celery,1
@@ -22641,6 +22659,7 @@ week,channel,role,grade,skill,posts
 2019-12-16,progjob,backend,middle,Symfony,3
 2019-12-16,progjob,backend,middle,WordPress,1
 2019-12-16,progjob,backend,middle,XML,1
+2019-12-16,progjob,backend,middle,Yii,1
 2019-12-16,progjob,backend,middle,jQuery,1
 2019-12-16,progjob,backend,middle,ООП,1
 2019-12-16,progjob,backend,senior,.NET,1
@@ -22661,8 +22680,10 @@ week,channel,role,grade,skill,posts
 2019-12-16,progjob,backend,senior,PHP,5
 2019-12-16,progjob,backend,senior,PostgreSQL,3
 2019-12-16,progjob,backend,senior,Python,1
+2019-12-16,progjob,backend,senior,REST,1
 2019-12-16,progjob,backend,senior,RabbitMQ,1
 2019-12-16,progjob,backend,senior,Redis,2
+2019-12-16,progjob,backend,senior,Spring,1
 2019-12-16,progjob,backend,senior,Symfony,2
 2019-12-16,progjob,backend,senior,Unix,1
 2019-12-16,progjob,backend,senior,ООП,2
@@ -22695,6 +22716,7 @@ week,channel,role,grade,skill,posts
 2019-12-16,progjob,devops,,iptables,1
 2019-12-16,progjob,devops,middle,DevOps,1
 2019-12-16,progjob,devops,senior,DevOps,1
+2019-12-16,progjob,frontend,,AWS,1
 2019-12-16,progjob,frontend,,Django,1
 2019-12-16,progjob,frontend,,Docker,1
 2019-12-16,progjob,frontend,,GraphQL,1
@@ -22745,6 +22767,7 @@ week,channel,role,grade,skill,posts
 2019-12-16,progjob,fullstack,middle,RabbitMQ,1
 2019-12-16,progjob,fullstack,middle,Ruby on Rails,1
 2019-12-16,progjob,fullstack,middle,SCSS,1
+2019-12-16,progjob,fullstack,middle,Spring,1
 2019-12-16,progjob,fullstack,senior,Java,1
 2019-12-16,progjob,manager,lead,Agile,1
 2019-12-16,progjob,manager,lead,Scrum,1
@@ -22897,59 +22920,48 @@ week,channel,role,grade,skill,posts
 2019-12-23,javascript_jobs_feed,frontend,,Android,1
 2019-12-23,javascript_jobs_feed,frontend,,Angular,4
 2019-12-23,javascript_jobs_feed,frontend,,Azure DevOps,1
-2019-12-23,javascript_jobs_feed,frontend,,Bitbucket,2
-2019-12-23,javascript_jobs_feed,frontend,,CSS,10
+2019-12-23,javascript_jobs_feed,frontend,,Bitbucket,1
+2019-12-23,javascript_jobs_feed,frontend,,CSS,9
 2019-12-23,javascript_jobs_feed,frontend,,Express,1
-2019-12-23,javascript_jobs_feed,frontend,,Figma,1
-2019-12-23,javascript_jobs_feed,frontend,,Git,7
-2019-12-23,javascript_jobs_feed,frontend,,GitHub,1
-2019-12-23,javascript_jobs_feed,frontend,,GitLab,1
-2019-12-23,javascript_jobs_feed,frontend,,GitLab CI,1
-2019-12-23,javascript_jobs_feed,frontend,,GraphQL,2
-2019-12-23,javascript_jobs_feed,frontend,,HTML,11
-2019-12-23,javascript_jobs_feed,frontend,,JavaScript,17
+2019-12-23,javascript_jobs_feed,frontend,,Git,6
+2019-12-23,javascript_jobs_feed,frontend,,GraphQL,1
+2019-12-23,javascript_jobs_feed,frontend,,HTML,10
+2019-12-23,javascript_jobs_feed,frontend,,JavaScript,16
 2019-12-23,javascript_jobs_feed,frontend,,Jira,1
-2019-12-23,javascript_jobs_feed,frontend,,Laravel,1
-2019-12-23,javascript_jobs_feed,frontend,,Less,3
+2019-12-23,javascript_jobs_feed,frontend,,Less,2
 2019-12-23,javascript_jobs_feed,frontend,,Linux,3
 2019-12-23,javascript_jobs_feed,frontend,,Microservices,2
 2019-12-23,javascript_jobs_feed,frontend,,MobX,1
-2019-12-23,javascript_jobs_feed,frontend,,MySQL,1
 2019-12-23,javascript_jobs_feed,frontend,,Node.js,6
-2019-12-23,javascript_jobs_feed,frontend,,Nuxt,1
-2019-12-23,javascript_jobs_feed,frontend,,Photoshop,1
 2019-12-23,javascript_jobs_feed,frontend,,PostgreSQL,2
-2019-12-23,javascript_jobs_feed,frontend,,REST,5
+2019-12-23,javascript_jobs_feed,frontend,,REST,4
 2019-12-23,javascript_jobs_feed,frontend,,React,9
 2019-12-23,javascript_jobs_feed,frontend,,React Native,1
 2019-12-23,javascript_jobs_feed,frontend,,Redis,2
 2019-12-23,javascript_jobs_feed,frontend,,Redux,5
-2019-12-23,javascript_jobs_feed,frontend,,SCSS,1
 2019-12-23,javascript_jobs_feed,frontend,,SVN,1
-2019-12-23,javascript_jobs_feed,frontend,,Sass,3
+2019-12-23,javascript_jobs_feed,frontend,,Sass,2
 2019-12-23,javascript_jobs_feed,frontend,,TypeScript,3
-2019-12-23,javascript_jobs_feed,frontend,,Vue.js,5
-2019-12-23,javascript_jobs_feed,frontend,,WebSocket,3
-2019-12-23,javascript_jobs_feed,frontend,,Webpack,1
+2019-12-23,javascript_jobs_feed,frontend,,Vue.js,4
+2019-12-23,javascript_jobs_feed,frontend,,WebSocket,2
 2019-12-23,javascript_jobs_feed,frontend,,YouTrack,2
 2019-12-23,javascript_jobs_feed,frontend,,gRPC,1
 2019-12-23,javascript_jobs_feed,frontend,,jQuery,3
-2019-12-23,javascript_jobs_feed,frontend,,ООП,4
+2019-12-23,javascript_jobs_feed,frontend,,ООП,3
 2019-12-23,javascript_jobs_feed,frontend,junior,Agile,1
 2019-12-23,javascript_jobs_feed,frontend,junior,Angular,1
-2019-12-23,javascript_jobs_feed,frontend,junior,CSS,2
-2019-12-23,javascript_jobs_feed,frontend,junior,Git,1
-2019-12-23,javascript_jobs_feed,frontend,junior,HTML,2
+2019-12-23,javascript_jobs_feed,frontend,junior,CSS,1
+2019-12-23,javascript_jobs_feed,frontend,junior,HTML,1
 2019-12-23,javascript_jobs_feed,frontend,junior,HTTP,1
 2019-12-23,javascript_jobs_feed,frontend,junior,HTTPS,1
-2019-12-23,javascript_jobs_feed,frontend,junior,JavaScript,2
+2019-12-23,javascript_jobs_feed,frontend,junior,JavaScript,1
 2019-12-23,javascript_jobs_feed,frontend,junior,Jira,1
 2019-12-23,javascript_jobs_feed,frontend,junior,Less,1
 2019-12-23,javascript_jobs_feed,frontend,junior,REST,1
 2019-12-23,javascript_jobs_feed,frontend,junior,React,1
 2019-12-23,javascript_jobs_feed,frontend,junior,Sass,1
 2019-12-23,javascript_jobs_feed,frontend,junior,TypeScript,1
-2019-12-23,javascript_jobs_feed,frontend,junior,Vue.js,2
+2019-12-23,javascript_jobs_feed,frontend,junior,Vue.js,1
 2019-12-23,javascript_jobs_feed,frontend,junior,WebSocket,1
 2019-12-23,javascript_jobs_feed,frontend,junior,Webpack,1
 2019-12-23,javascript_jobs_feed,frontend,middle,Android,2
@@ -23065,12 +23077,14 @@ week,channel,role,grade,skill,posts
 2019-12-23,progjob,backend,,MongoDB,1
 2019-12-23,progjob,backend,,REST,1
 2019-12-23,progjob,backend,,SQL,2
+2019-12-23,progjob,backend,,Spring,1
 2019-12-23,progjob,backend,lead,Hibernate,1
 2019-12-23,progjob,backend,lead,Java,1
 2019-12-23,progjob,backend,lead,PostgreSQL,1
 2019-12-23,progjob,backend,lead,Python,1
 2019-12-23,progjob,backend,lead,REST,1
 2019-12-23,progjob,backend,lead,RabbitMQ,1
+2019-12-23,progjob,backend,lead,Spring,1
 2019-12-23,progjob,backend,middle,Django,1
 2019-12-23,progjob,backend,middle,JavaScript,1
 2019-12-23,progjob,backend,middle,Linux,2
@@ -23081,6 +23095,7 @@ week,channel,role,grade,skill,posts
 2019-12-23,progjob,backend,middle,PHP,3
 2019-12-23,progjob,backend,middle,Python,1
 2019-12-23,progjob,backend,middle,Symfony,1
+2019-12-23,progjob,backend,middle,Yii,1
 2019-12-23,progjob,backend,senior,DevOps,1
 2019-12-23,progjob,backend,senior,Docker,1
 2019-12-23,progjob,backend,senior,Git,1
@@ -23094,6 +23109,7 @@ week,channel,role,grade,skill,posts
 2019-12-23,progjob,backend,senior,Redis,1
 2019-12-23,progjob,backend,senior,Ruby,1
 2019-12-23,progjob,backend,senior,Ruby on Rails,1
+2019-12-23,progjob,backend,senior,Spring,1
 2019-12-23,progjob,data_analyst,senior,SQL,1
 2019-12-23,progjob,devops,middle,Linux,1
 2019-12-23,progjob,devops,senior,Bash,2
@@ -23234,38 +23250,9 @@ week,channel,role,grade,skill,posts
 2019-12-30,getitrussia,mobile,,REST,1
 2019-12-30,getitrussia,mobile,,Swift,1
 2019-12-30,getitrussia,mobile,,iOS,1
-2019-12-30,javascript_jobs_feed,frontend,,Bitbucket,1
-2019-12-30,javascript_jobs_feed,frontend,,CSS,1
-2019-12-30,javascript_jobs_feed,frontend,,Figma,1
-2019-12-30,javascript_jobs_feed,frontend,,Git,1
-2019-12-30,javascript_jobs_feed,frontend,,GitHub,1
-2019-12-30,javascript_jobs_feed,frontend,,GitLab,1
-2019-12-30,javascript_jobs_feed,frontend,,GitLab CI,1
-2019-12-30,javascript_jobs_feed,frontend,,GraphQL,1
-2019-12-30,javascript_jobs_feed,frontend,,HTML,1
-2019-12-30,javascript_jobs_feed,frontend,,JavaScript,1
-2019-12-30,javascript_jobs_feed,frontend,,Laravel,1
-2019-12-30,javascript_jobs_feed,frontend,,Less,1
-2019-12-30,javascript_jobs_feed,frontend,,MySQL,1
-2019-12-30,javascript_jobs_feed,frontend,,Nuxt,1
-2019-12-30,javascript_jobs_feed,frontend,,Photoshop,1
-2019-12-30,javascript_jobs_feed,frontend,,REST,1
-2019-12-30,javascript_jobs_feed,frontend,,SCSS,1
-2019-12-30,javascript_jobs_feed,frontend,,Sass,1
-2019-12-30,javascript_jobs_feed,frontend,,Vue.js,1
-2019-12-30,javascript_jobs_feed,frontend,,WebSocket,1
-2019-12-30,javascript_jobs_feed,frontend,,Webpack,1
-2019-12-30,javascript_jobs_feed,frontend,,ООП,1
-2019-12-30,javascript_jobs_feed,frontend,junior,CSS,2
-2019-12-30,javascript_jobs_feed,frontend,junior,Git,3
-2019-12-30,javascript_jobs_feed,frontend,junior,GitHub,1
-2019-12-30,javascript_jobs_feed,frontend,junior,HTML,2
-2019-12-30,javascript_jobs_feed,frontend,junior,JavaScript,3
-2019-12-30,javascript_jobs_feed,frontend,junior,React,2
-2019-12-30,javascript_jobs_feed,frontend,junior,Redux,1
-2019-12-30,javascript_jobs_feed,frontend,junior,SCSS,1
-2019-12-30,javascript_jobs_feed,frontend,junior,Sass,1
-2019-12-30,javascript_jobs_feed,frontend,junior,Vue.js,1
+2019-12-30,javascript_jobs_feed,frontend,junior,Git,1
+2019-12-30,javascript_jobs_feed,frontend,junior,JavaScript,1
+2019-12-30,javascript_jobs_feed,frontend,junior,React,1
 2019-12-30,javascript_jobs_feed,frontend,lead,CSS,1
 2019-12-30,javascript_jobs_feed,frontend,lead,HTML,1
 2019-12-30,javascript_jobs_feed,frontend,lead,JavaScript,1
@@ -23402,6 +23389,7 @@ week,channel,role,grade,skill,posts
 2019-12-30,progjob,fullstack,senior,Java,2
 2019-12-30,progjob,fullstack,senior,JavaScript,1
 2019-12-30,progjob,fullstack,senior,Node.js,1
+2019-12-30,progjob,fullstack,senior,Spring,1
 2019-12-30,progjob,fullstack,senior,Vue.js,1
 2019-12-30,progjob,fullstack,senior,Webpack,1
 2019-12-30,progjob,mobile,,Android,1

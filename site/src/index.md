@@ -142,7 +142,7 @@ history.replaceState(null, "", stackHash ? `#${stackHash}` : location.pathname +
 
 <div class="card">
 
-<p class="note-small">Навыки через запятую, сравнение с долями «${stackCell.label}». Вилка по всем IT-вакансиям из раздела ниже.</p>
+<p class="note-small">Навыки через запятую, сравнение с долями «${stackCell.label}» в Telegram. Вилка из раздела ниже: она посчитана по вакансиям портала «Работа в России» сразу для всех направлений.</p>
 
 ${stackCell.posts.size ? stackReport(stackCell.rows, effects.effects, {mine, name: (e) => SKILL[e.skill] ?? e.skill, fdr: effects.fdr, label: stackCell.label, baseYear: stackCell.baseYear, onAdd: addSkill}) : html`<p>Для «${stackCell.label}» данных недостаточно, выберите все грейды или другое направление.</p>`}
 
@@ -150,7 +150,8 @@ ${stackCell.posts.size ? stackReport(stackCell.rows, effects.effects, {mine, nam
 
 ```js
 const name = (e) => SKILL[e.skill] ?? e.skill;
-const confirmed = (sign) => effects.effects.filter((e) => e.q_bh < effects.fdr && Math.sign(e.pct) === sign).sort((a, b) => sign * (b.pct - a.pct));
+// The heading names only effects the sensitivity run confirms as well.
+const confirmed = (sign) => effects.effects.filter((e) => e.q_bh < effects.fdr && e.robust === true && Math.sign(e.pct) === sign).sort((a, b) => sign * (b.pct - a.pct));
 const ups = confirmed(1).slice(0, 2).map((e) => lowerFirst(name(e)));
 const downs = confirmed(-1).slice(0, 2).map((e) => lowerFirst(name(e)));
 const moneyTitle =

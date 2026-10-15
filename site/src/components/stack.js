@@ -49,7 +49,7 @@ export function stackReport(rows, effects, {mine, name, fdr, label, baseYear, on
   return html`<div class="stack">
     ${found.length
       ? html`<table class="stack-table">
-          <thead><tr><th>Навык</th><th>Доля постов</th>${baseYear ? html`<th>С ${baseYear}</th>` : ""}<th>Вилка</th></tr></thead>
+          <thead><tr><th>Навык</th><th>Доля постов</th>${baseYear ? html`<th>С ${baseYear}</th>` : ""}<th>Вилка (портал)</th></tr></thead>
           <tbody>${found.map(
             ({r, e}) => html`<tr><td>${r.skill}</td><td>${pct(r.share)}</td>${baseYear ? html`<td style=${`color: ${changeColor(r.change)}`}>${changeText(r.change)}</td>` : ""}<td>${effectText(e)}</td></tr>`
           )}</tbody>

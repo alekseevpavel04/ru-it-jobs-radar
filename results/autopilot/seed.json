@@ -1,16 +1,16 @@
 {
   "source_script": "src/radar/autopilot/seed.py",
   "command": "python -m radar.autopilot.seed",
-  "commit": "54310e4-dirty",
-  "created_at": "2026-10-15T10:19:07+00:00",
+  "commit": "f0b4f20-dirty",
+  "created_at": "2026-10-15T11:04:08+00:00",
   "metrics": {
     "it_units": {
-      "value": 178075,
+      "value": 175712,
       "n": null,
       "denominator": null
     },
     "it_units_held_back": {
-      "value": 20,
+      "value": 15,
       "n": null,
       "denominator": null
     },
@@ -20,7 +20,7 @@
       "denominator": null
     },
     "units_without_fields_open_weeks": {
-      "value": 238,
+      "value": 178,
       "n": null,
       "denominator": null
     },
@@ -35,12 +35,12 @@
       "denominator": null
     },
     "post_rows": {
-      "value": 84291,
+      "value": 83865,
       "n": null,
       "denominator": null
     },
     "skill_rows": {
-      "value": 508509,
+      "value": 503862,
       "n": null,
       "denominator": null
     },
@@ -50,7 +50,7 @@
       "denominator": null
     },
     "week_hashes.2026-10-12": {
-      "value": 185,
+      "value": 189,
       "n": null,
       "denominator": null
     }

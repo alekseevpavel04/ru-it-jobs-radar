@@ -31,7 +31,7 @@ from typing import Any
 from radar.config import ROOT
 from radar.results import write_result
 from radar.site.market_facts import share
-from radar.site.skill_trends import DIRECTIONS
+from radar.site.skill_trends import DIRECTIONS, NO_SKILL_CELLS
 from radar.site.within import benjamini_hochberg, panel, within_change
 
 AGGREGATES = ROOT / "aggregates" / "telegram"
@@ -81,6 +81,8 @@ def plural(n: int, forms: tuple[str, str, str]) -> str:
 
 
 def directions_of(role: str) -> list[str]:
+    if role in NO_SKILL_CELLS:
+        return []
     return ["it"] + [d for d, roles in DIRECTIONS.items() if role in roles]
 
 
