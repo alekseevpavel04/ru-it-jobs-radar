@@ -20,7 +20,7 @@ const group = Generators.input(groupInput);
 const sortInput = Inputs.radio(new Map([["по доле", "share"], ["по росту", "growth"]]), {label: "Порядок", value: "share"});
 const sortBy = Generators.input(sortInput);
 // Temporary: looks of the dumbbell for the author to pick one.
-const variantInput = Inputs.radio(VARIANTS, {label: "Вид", value: "previous"});
+const variantInput = Inputs.radio(VARIANTS, {label: "Вид", value: "colored_arrow_groups"});
 const variant = Generators.input(variantInput);
 ```
 

@@ -17,12 +17,16 @@ export const DOWN = "#cf222e";
 const NOISE = "#9a9890";
 const BASE = "#8c8a84";
 
+// A skill is new when the base year barely had it: under newBelow posts and under this share of the
+// group's posts (in a small group ten posts can be a fair share, that is not "new").
+const NEW_MAX_SHARE = 0.005;
+
 // Change of two shares beyond the 95 % interval of their difference (normal approximation, both samples
 // large here: hundreds to tens of thousands of posts).
 export function change(base, recent, newBelow) {
   const p1 = base.n / base.of, p2 = recent.n / recent.of;
   const se = Math.sqrt((p1 * (1 - p1)) / base.of + (p2 * (1 - p2)) / recent.of);
-  return {diff: p2 - p1, isNew: base.n < newBelow, significant: Math.abs(p2 - p1) > 1.96 * se};
+  return {diff: p2 - p1, isNew: base.n < newBelow && p1 < NEW_MAX_SHARE, significant: Math.abs(p2 - p1) > 1.96 * se};
 }
 
 export const changeColor = (c) => (!c.significant ? NOISE : c.diff > 0 ? UP : DOWN);
@@ -37,6 +41,7 @@ export const VARIANTS = new Map([
   ["доля у точки", "label"],
   ["цветная точка", "colored"],
   ["цветная точка и стрелка", "colored_arrow"],
+  ["цветная точка и стрелка блоками", "colored_arrow_groups"],
   ["стрелка", "arrow"]
 ]);
 
@@ -47,6 +52,7 @@ const LEGEND = {
   band: (now, base) => html`<span><i class="band"></i><i class="now"></i>сейчас, ${now}</span><span><i class="hollow"></i>${base}</span>`,
   grid: (now, base) => html`<span><i class="now"></i>сейчас, ${now}</span><span><i class="hollow"></i>${base}</span>`,
   label: (now, base) => html`<span><i class="now"></i>сейчас, ${now}, доля подписана</span><span><i class="hollow"></i>${base}</span>`,
+  colored_arrow_groups: (now, base) => html`<span><i class="up-dot"></i><i class="down-dot"></i>сейчас, ${now}</span><span><i class="base"></i>${base}</span><span>стрелка показывает, куда сдвинулась доля</span>`,
   colored_arrow: (now, base) => html`<span><i class="up-dot"></i><i class="down-dot"></i>сейчас, ${now}</span><span><i class="base"></i>${base}</span><span>стрелка показывает, куда сдвинулась доля</span>`,
   colored: (now, base) => html`<span><i class="up-dot"></i><i class="down-dot"></i>сейчас, ${now}</span><span><i class="base"></i>${base}</span>`,
   arrow: (now, base) => html`<span>от ${base} к «сейчас» (${now})</span>`
@@ -152,12 +158,14 @@ function plotFor(rows, {width, recentLabel, variant, top}) {
 export function skillChart(rows, {width, recentLabel, baseYear, variant}) {
   const top = Math.max(...rows.map((r) => Math.max(r.share, r.base.share)));
   const legend = html`<div class="dot-legend">${LEGEND[variant](recentLabel, baseYear)}</div>`;
-  if (variant !== "groups") return html`<div>${legend}${plotFor(rows, {width, recentLabel, variant, top})}</div>`;
+  // The block looks draw each block with the marks of their single-chart look.
+  const inner = {groups: "groups", colored_arrow_groups: "colored_arrow"}[variant];
+  if (!inner) return html`<div>${legend}${plotFor(rows, {width, recentLabel, variant, top})}</div>`;
   // One scale for the three blocks, so a dot sits at the same place whatever block it is in.
   const blocks = [
     ["Растут", rows.filter((r) => r.change.significant && r.change.diff > 0)],
     ["В пределах шума", rows.filter((r) => !r.change.significant)],
     ["Падают", rows.filter((r) => r.change.significant && r.change.diff < 0)]
   ].filter(([, part]) => part.length);
-  return html`<div>${legend}${blocks.map(([title, part]) => html`<h3 class="skill-block">${title} <span>${part.length}</span></h3>${plotFor(part, {width, recentLabel, variant, top})}`)}</div>`;
+  return html`<div>${legend}${blocks.map(([title, part]) => html`<h3 class="skill-block">${title} <span>${part.length}</span></h3>${plotFor(part, {width, recentLabel, variant: inner, top})}`)}</div>`;
 }
