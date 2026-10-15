@@ -310,7 +310,6 @@ MARKET_RESULT: dict[str, Any] = {
     **PROVENANCE,
     "ml_roles": ["data_scientist", "ml_engineer", "mlops"],
     "panel_years": [2025, 2026],
-    "salary_years": [2025, 2026],
     "metrics": {
         "telegram_recent_salary.ml.junior.stated": share_metric(52, 223),
         "telegram_recent_salary.ml.junior.from_median": {"value": 100000, "rows": 51},
@@ -712,12 +711,3 @@ def test_skill_trends_keep_the_pooled_cut_apart_from_the_years() -> None:
     assert [(s.year, s.posts_mentioning, s.posts) for s in cicd] == [(None, 305, 3313), (2025, 170, 1880)]
     assert any(s.skill == "A/B-тесты" and s.group == "ml_junior" for s in doc.shares)
     assert doc.base_year == 2022
-
-
-def test_salary_grades_keep_medians_only_where_the_result_has_them() -> None:
-    doc = telegram_years(MARKET_RESULT, "results/market/facts.json")
-    cells = {(g.scope, g.grade): g for g in doc.salary_grades}
-    assert cells["ml", "junior"].from_median == 100000 and cells["ml", "junior"].from_rows == 51
-    assert cells["ml", "junior"].to_median is None and cells["ml", "junior"].stated == 52
-    assert cells["ml", "intern"].from_median is None and cells["ml", "intern"].posts == 221
-    assert [g.grade for g in doc.salary_grades] == ["intern", "junior"]

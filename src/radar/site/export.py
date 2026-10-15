@@ -328,17 +328,6 @@ class TelegramFormatYear(Row):
     posts_with_format: int
 
 
-class SalaryGrade(Row):
-    scope: Literal["it", "ml"]
-    grade: Literal["intern", "junior", "middle", "senior"]
-    posts: int
-    stated: int
-    from_median: int | None
-    from_rows: int | None
-    to_median: int | None
-    to_rows: int | None
-
-
 class TelegramYears(Provenance):
     """The Telegram history by year of results/market/facts.json: all channels, and the panel of
     channels with IT posts in every panel year, because the channel mix changes over the years."""
@@ -351,8 +340,6 @@ class TelegramYears(Provenance):
     years: list[TelegramYear]
     skills: list[TelegramSkillYear]
     work_format: list[TelegramFormatYear]
-    salary_years: list[int]
-    salary_grades: list[SalaryGrade]
 
 
 class SkillEffect(Row):
@@ -764,9 +751,6 @@ def provenance(doc: Mapping[str, Any], source_file: str) -> dict[str, str]:
 
 _YEAR_KEY = re.compile(r"^(?P<prefix>telegram|telegram_panel)_year\.(?P<year>\d{4})\.(?P<name>\w+)$")
 _SKILL_KEY = re.compile(r"^(?P<prefix>telegram|telegram_panel)_ml_skill\.(?P<year>\d{4})\.(?P<skill>.+)$")
-_SALARY_KEY = re.compile(
-    r"^telegram_recent_salary\.(?P<scope>it|ml)\.(?P<grade>\w+)\.(?P<name>stated|from_median|to_median)$"
-)
 _FORMAT_KEY = re.compile(
     r"^telegram(?P<ml>_ml)?_work_format\.(?P<year>\d{4})\.(?P<group>junior|other)\.(?P<format>office|hybrid|remote)$"
 )
@@ -778,18 +762,7 @@ def telegram_years(doc: Mapping[str, Any], source_file: str) -> TelegramYears:
     years: dict[tuple[str, int], dict[str, int]] = defaultdict(dict)
     skill_rows: list[TelegramSkillYear] = []
     formats: list[TelegramFormatYear] = []
-    salary: dict[tuple[str, str], dict[str, int | None]] = defaultdict(
-        lambda: {"from_median": None, "from_rows": None, "to_median": None, "to_rows": None}
-    )
     for key, m in metrics.items():
-        if found := _SALARY_KEY.match(key):
-            cell = salary[found["scope"], found["grade"]]
-            if found["name"] == "stated":
-                cell["posts"], cell["stated"] = m["denominator"], m["n"]
-            else:
-                end = found["name"].removesuffix("_median")
-                cell[f"{end}_median"], cell[f"{end}_rows"] = m["value"], m["rows"]
-            continue
         if found := _YEAR_KEY.match(key):
             row = years["panel" if found["prefix"] == "telegram_panel" else "all", int(found["year"])]
             name = found["name"]
@@ -836,11 +809,6 @@ def telegram_years(doc: Mapping[str, Any], source_file: str) -> TelegramYears:
         ),
         skills=sorted(skill_rows, key=lambda r: (r.scope, r.skill, r.year)),
         work_format=sorted(formats, key=lambda r: (r.scope, r.year, r.group, r.work_format)),
-        salary_years=doc["salary_years"],
-        salary_grades=sorted(
-            (SalaryGrade(scope=scope, grade=grade, **cell) for (scope, grade), cell in salary.items()),
-            key=lambda r: (r.scope, ["intern", "junior", "middle", "senior"].index(r.grade)),
-        ),
     )
 
 
