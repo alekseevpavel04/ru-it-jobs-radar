@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/quarterly.py",
   "command": "python -m radar.site.quarterly --quarter 2026Q3",
-  "commit": "f0b4f20-dirty",
-  "created_at": "2026-10-15T11:08:01+00:00",
+  "commit": "2deb038-dirty",
+  "created_at": "2026-10-15T11:41:49+00:00",
   "metrics": {
     "channels.now": {
       "value": 58,
@@ -15,134 +15,134 @@
       "denominator": null
     },
     "posts.it.now": {
-      "value": 4664,
+      "value": 19471,
       "n": null,
       "denominator": null
     },
     "posts.it.before": {
-      "value": 6022,
+      "value": 23806,
       "n": null,
       "denominator": null
     },
     "posts.it.both_channels_now": {
-      "value": 0.9953,
-      "n": 4642,
-      "denominator": 4664
+      "value": 0.9989,
+      "n": 19449,
+      "denominator": 19471
     },
     "posts.it.both_channels_before": {
       "value": 1.0,
-      "n": 6022,
-      "denominator": 6022
+      "n": 23806,
+      "denominator": 23806
     },
     "share.it.Python.now": {
-      "value": 0.2493,
+      "value": 0.2579,
       "n": null,
       "denominator": null
     },
     "share.it.Python.before": {
-      "value": 0.2369,
+      "value": 0.2403,
       "n": null,
       "denominator": null
     },
     "change.it.Python": {
-      "value": 0.0125,
+      "value": 0.0175,
       "n": null,
       "denominator": null,
-      "p": 0.264,
-      "q_bh": 0.522
+      "p": 0.111,
+      "q_bh": 0.235
     },
     "share.it.SQL.now": {
-      "value": 0.177,
+      "value": 0.186,
       "n": null,
       "denominator": null
     },
     "share.it.SQL.before": {
-      "value": 0.1671,
+      "value": 0.1781,
       "n": null,
       "denominator": null
     },
     "change.it.SQL": {
-      "value": 0.0098,
+      "value": 0.0079,
       "n": null,
       "denominator": null,
-      "p": 0.511,
-      "q_bh": 0.697
+      "p": 0.34,
+      "q_bh": 0.464
     },
     "share.it.PostgreSQL.now": {
-      "value": 0.1239,
+      "value": 0.1428,
       "n": null,
       "denominator": null
     },
     "share.it.PostgreSQL.before": {
-      "value": 0.1382,
+      "value": 0.151,
       "n": null,
       "denominator": null
     },
     "change.it.PostgreSQL": {
-      "value": -0.0143,
+      "value": -0.0082,
       "n": null,
       "denominator": null,
-      "p": 0.13,
-      "q_bh": 0.48
+      "p": 0.46,
+      "q_bh": 0.552
     },
     "share.it.Docker.now": {
-      "value": 0.1202,
+      "value": 0.1267,
       "n": null,
       "denominator": null
     },
     "share.it.Docker.before": {
-      "value": 0.1218,
+      "value": 0.1307,
       "n": null,
       "denominator": null
     },
     "change.it.Docker": {
-      "value": -0.0016,
+      "value": -0.004,
       "n": null,
       "denominator": null,
-      "p": 0.888,
-      "q_bh": 0.888
+      "p": 0.68,
+      "q_bh": 0.785
     },
-    "share.it.REST.now": {
-      "value": 0.1065,
+    "share.it.Git.now": {
+      "value": 0.1146,
       "n": null,
       "denominator": null
     },
-    "share.it.REST.before": {
-      "value": 0.1004,
+    "share.it.Git.before": {
+      "value": 0.1246,
       "n": null,
       "denominator": null
     },
-    "change.it.REST": {
-      "value": 0.0061,
+    "change.it.Git": {
+      "value": -0.01,
       "n": null,
       "denominator": null,
-      "p": 0.417,
-      "q_bh": 0.596
+      "p": 0.062,
+      "q_bh": 0.16
     },
     "share.it.CI/CD.now": {
-      "value": 0.1054,
+      "value": 0.1129,
       "n": null,
       "denominator": null
     },
     "share.it.CI/CD.before": {
-      "value": 0.0947,
+      "value": 0.0902,
       "n": null,
       "denominator": null
     },
     "change.it.CI/CD": {
-      "value": 0.0107,
+      "value": 0.0227,
       "n": null,
       "denominator": null,
-      "p": 0.16,
-      "q_bh": 0.48
+      "p": 0.0005,
+      "q_bh": 0.00375
     },
     "share.it.Java.now": {
-      "value": 0.1027,
+      "value": 0.1098,
       "n": null,
       "denominator": null
     },
     "share.it.Java.before": {
-      "value": 0.1127,
+      "value": 0.1198,
       "n": null,
       "denominator": null
     },
@@ -150,2235 +150,5558 @@
       "value": -0.01,
       "n": null,
       "denominator": null,
-      "p": 0.105,
-      "q_bh": 0.449
+      "p": 0.0013,
+      "q_bh": 0.00783
     },
-    "share.it.Git.now": {
-      "value": 0.1018,
+    "share.it.REST.now": {
+      "value": 0.1077,
       "n": null,
       "denominator": null
     },
-    "share.it.Git.before": {
-      "value": 0.1134,
+    "share.it.REST.before": {
+      "value": 0.1023,
       "n": null,
       "denominator": null
     },
-    "change.it.Git": {
-      "value": -0.0116,
+    "change.it.REST": {
+      "value": 0.0054,
       "n": null,
       "denominator": null,
-      "p": 0.229,
-      "q_bh": 0.522
+      "p": 0.293,
+      "q_bh": 0.459
     },
     "share.it.Kubernetes.now": {
-      "value": 0.093,
+      "value": 0.0971,
       "n": null,
       "denominator": null
     },
     "share.it.Kubernetes.before": {
-      "value": 0.089,
+      "value": 0.0864,
       "n": null,
       "denominator": null
     },
     "change.it.Kubernetes": {
-      "value": 0.0039,
+      "value": 0.0107,
       "n": null,
       "denominator": null,
-      "p": 0.589,
-      "q_bh": 0.707
+      "p": 0.059,
+      "q_bh": 0.16
     },
     "share.it.Linux.now": {
-      "value": 0.0904,
+      "value": 0.0934,
       "n": null,
       "denominator": null
     },
     "share.it.Linux.before": {
-      "value": 0.0871,
+      "value": 0.0974,
       "n": null,
       "denominator": null
     },
     "change.it.Linux": {
-      "value": 0.0032,
+      "value": -0.004,
       "n": null,
       "denominator": null,
-      "p": 0.692,
-      "q_bh": 0.784
+      "p": 0.302,
+      "q_bh": 0.459
     },
     "share.it.Kafka.now": {
-      "value": 0.0847,
+      "value": 0.0921,
       "n": null,
       "denominator": null
     },
     "share.it.Kafka.before": {
-      "value": 0.0774,
+      "value": 0.0798,
       "n": null,
       "denominator": null
     },
     "change.it.Kafka": {
-      "value": 0.0073,
+      "value": 0.0123,
       "n": null,
       "denominator": null,
-      "p": 0.264,
-      "q_bh": 0.522
+      "p": 0.06,
+      "q_bh": 0.16
     },
     "share.it.React.now": {
-      "value": 0.0693,
+      "value": 0.0811,
       "n": null,
       "denominator": null
     },
     "share.it.React.before": {
-      "value": 0.0827,
+      "value": 0.0854,
       "n": null,
       "denominator": null
     },
     "change.it.React": {
-      "value": -0.0134,
+      "value": -0.0043,
       "n": null,
       "denominator": null,
-      "p": 0.0116,
-      "q_bh": 0.112
-    },
-    "share.it.Go.now": {
-      "value": 0.0686,
-      "n": null,
-      "denominator": null
-    },
-    "share.it.Go.before": {
-      "value": 0.0617,
-      "n": null,
-      "denominator": null
-    },
-    "change.it.Go": {
-      "value": 0.0069,
-      "n": null,
-      "denominator": null,
-      "p": 0.296,
-      "q_bh": 0.522
-    },
-    "share.it.TypeScript.now": {
-      "value": 0.0625,
-      "n": null,
-      "denominator": null
-    },
-    "share.it.TypeScript.before": {
-      "value": 0.0724,
-      "n": null,
-      "denominator": null
-    },
-    "change.it.TypeScript": {
-      "value": -0.0098,
-      "n": null,
-      "denominator": null,
-      "p": 0.153,
-      "q_bh": 0.48
-    },
-    "share.it.Microservices.now": {
-      "value": 0.0646,
-      "n": null,
-      "denominator": null
-    },
-    "share.it.Microservices.before": {
-      "value": 0.0602,
-      "n": null,
-      "denominator": null
-    },
-    "change.it.Microservices": {
-      "value": 0.0044,
-      "n": null,
-      "denominator": null,
-      "p": 0.414,
-      "q_bh": 0.596
+      "p": 0.118,
+      "q_bh": 0.235
     },
     "share.it.JavaScript.now": {
-      "value": 0.0594,
+      "value": 0.0734,
       "n": null,
       "denominator": null
     },
     "share.it.JavaScript.before": {
-      "value": 0.0925,
+      "value": 0.0959,
       "n": null,
       "denominator": null
     },
     "change.it.JavaScript": {
-      "value": -0.0332,
+      "value": -0.0225,
       "n": null,
       "denominator": null,
       "p": 0.0005,
-      "q_bh": 0.0075
+      "q_bh": 0.00375
+    },
+    "share.it.TypeScript.now": {
+      "value": 0.0707,
+      "n": null,
+      "denominator": null
+    },
+    "share.it.TypeScript.before": {
+      "value": 0.072,
+      "n": null,
+      "denominator": null
+    },
+    "change.it.TypeScript": {
+      "value": -0.0012,
+      "n": null,
+      "denominator": null,
+      "p": 0.733,
+      "q_bh": 0.813
+    },
+    "share.it.Microservices.now": {
+      "value": 0.0671,
+      "n": null,
+      "denominator": null
+    },
+    "share.it.Microservices.before": {
+      "value": 0.0621,
+      "n": null,
+      "denominator": null
+    },
+    "change.it.Microservices": {
+      "value": 0.005,
+      "n": null,
+      "denominator": null,
+      "p": 0.306,
+      "q_bh": 0.459
+    },
+    "share.it.Go.now": {
+      "value": 0.0668,
+      "n": null,
+      "denominator": null
+    },
+    "share.it.Go.before": {
+      "value": 0.0612,
+      "n": null,
+      "denominator": null
+    },
+    "change.it.Go": {
+      "value": 0.0055,
+      "n": null,
+      "denominator": null,
+      "p": 0.064,
+      "q_bh": 0.16
     },
     "share.it.DevOps.now": {
-      "value": 0.0508,
+      "value": 0.0579,
       "n": null,
       "denominator": null
     },
     "share.it.DevOps.before": {
-      "value": 0.0566,
+      "value": 0.0547,
       "n": null,
       "denominator": null
     },
     "change.it.DevOps": {
-      "value": -0.0058,
+      "value": 0.0031,
       "n": null,
       "denominator": null,
-      "p": 0.288,
-      "q_bh": 0.522
-    },
-    "share.it.C#.now": {
-      "value": 0.0424,
-      "n": null,
-      "denominator": null
-    },
-    "share.it.C#.before": {
-      "value": 0.0329,
-      "n": null,
-      "denominator": null
-    },
-    "change.it.C#": {
-      "value": 0.0094,
-      "n": null,
-      "denominator": null,
-      "p": 0.057,
-      "q_bh": 0.342
+      "p": 0.206,
+      "q_bh": 0.386
     },
     "share.it.Redis.now": {
-      "value": 0.0406,
+      "value": 0.0495,
       "n": null,
       "denominator": null
     },
     "share.it.Redis.before": {
-      "value": 0.0482,
+      "value": 0.0487,
       "n": null,
       "denominator": null
     },
     "change.it.Redis": {
-      "value": -0.0076,
+      "value": 0.0008,
       "n": null,
       "denominator": null,
-      "p": 0.084,
-      "q_bh": 0.42
-    },
-    "share.it.ClickHouse.now": {
-      "value": 0.0393,
-      "n": null,
-      "denominator": null
-    },
-    "share.it.ClickHouse.before": {
-      "value": 0.0412,
-      "n": null,
-      "denominator": null
-    },
-    "change.it.ClickHouse": {
-      "value": -0.0019,
-      "n": null,
-      "denominator": null,
-      "p": 0.706,
-      "q_bh": 0.784
-    },
-    "share.it.RabbitMQ.now": {
-      "value": 0.0346,
-      "n": null,
-      "denominator": null
-    },
-    "share.it.RabbitMQ.before": {
-      "value": 0.0379,
-      "n": null,
-      "denominator": null
-    },
-    "change.it.RabbitMQ": {
-      "value": -0.0033,
-      "n": null,
-      "denominator": null,
-      "p": 0.576,
-      "q_bh": 0.707
-    },
-    "share.it.Airflow.now": {
-      "value": 0.0339,
-      "n": null,
-      "denominator": null
-    },
-    "share.it.Airflow.before": {
-      "value": 0.0332,
-      "n": null,
-      "denominator": null
-    },
-    "change.it.Airflow": {
-      "value": 0.0007,
-      "n": null,
-      "denominator": null,
-      "p": 0.846,
-      "q_bh": 0.876
-    },
-    "share.it..NET.now": {
-      "value": 0.0312,
-      "n": null,
-      "denominator": null
-    },
-    "share.it..NET.before": {
-      "value": 0.0202,
-      "n": null,
-      "denominator": null
-    },
-    "change.it..NET": {
-      "value": 0.011,
-      "n": null,
-      "denominator": null,
-      "p": 0.015,
-      "q_bh": 0.112
+      "p": 0.896,
+      "q_bh": 0.927
     },
     "share.it.FastAPI.now": {
-      "value": 0.0338,
+      "value": 0.0421,
       "n": null,
       "denominator": null
     },
     "share.it.FastAPI.before": {
-      "value": 0.0366,
+      "value": 0.0344,
       "n": null,
       "denominator": null
     },
     "change.it.FastAPI": {
-      "value": -0.0028,
+      "value": 0.0077,
       "n": null,
       "denominator": null,
-      "p": 0.54,
-      "q_bh": 0.704
+      "p": 0.081,
+      "q_bh": 0.187
     },
-    "share.it.1С.now": {
-      "value": 0.0267,
+    "share.it.ClickHouse.now": {
+      "value": 0.0419,
       "n": null,
       "denominator": null
     },
-    "share.it.1С.before": {
-      "value": 0.0278,
+    "share.it.ClickHouse.before": {
+      "value": 0.0387,
       "n": null,
       "denominator": null
     },
-    "change.it.1С": {
-      "value": -0.0011,
+    "change.it.ClickHouse": {
+      "value": 0.0031,
       "n": null,
       "denominator": null,
-      "p": 0.751,
-      "q_bh": 0.804
+      "p": 0.306,
+      "q_bh": 0.459
     },
-    "share.it.Jira.now": {
-      "value": 0.0316,
+    "share.it.RabbitMQ.now": {
+      "value": 0.0403,
       "n": null,
       "denominator": null
     },
-    "share.it.Jira.before": {
-      "value": 0.0274,
+    "share.it.RabbitMQ.before": {
+      "value": 0.0456,
       "n": null,
       "denominator": null
     },
-    "change.it.Jira": {
-      "value": 0.0042,
+    "change.it.RabbitMQ": {
+      "value": -0.0054,
       "n": null,
       "denominator": null,
-      "p": 0.245,
-      "q_bh": 0.522
+      "p": 0.39,
+      "q_bh": 0.509
     },
-    "share.it.HTTP.now": {
-      "value": 0.0303,
+    "share.it.C#.now": {
+      "value": 0.0367,
       "n": null,
       "denominator": null
     },
-    "share.it.HTTP.before": {
-      "value": 0.0336,
+    "share.it.C#.before": {
+      "value": 0.0364,
       "n": null,
       "denominator": null
     },
-    "change.it.HTTP": {
-      "value": -0.0033,
+    "change.it.C#": {
+      "value": 0.0003,
       "n": null,
       "denominator": null,
-      "p": 0.394,
-      "q_bh": 0.596
+      "p": 0.941,
+      "q_bh": 0.941
+    },
+    "share.it.Airflow.now": {
+      "value": 0.0365,
+      "n": null,
+      "denominator": null
+    },
+    "share.it.Airflow.before": {
+      "value": 0.0286,
+      "n": null,
+      "denominator": null
+    },
+    "change.it.Airflow": {
+      "value": 0.008,
+      "n": null,
+      "denominator": null,
+      "p": 0.03,
+      "q_bh": 0.129
     },
     "share.it.ООП.now": {
-      "value": 0.0293,
+      "value": 0.0349,
       "n": null,
       "denominator": null
     },
     "share.it.ООП.before": {
-      "value": 0.0355,
+      "value": 0.0407,
       "n": null,
       "denominator": null
     },
     "change.it.ООП": {
-      "value": -0.0062,
+      "value": -0.0058,
       "n": null,
       "denominator": null,
-      "p": 0.242,
-      "q_bh": 0.522
+      "p": 0.052,
+      "q_bh": 0.16
     },
-    "share.it.ETL.now": {
-      "value": 0.029,
+    "share.it.Node.js.now": {
+      "value": 0.0348,
       "n": null,
       "denominator": null
     },
-    "share.it.ETL.before": {
-      "value": 0.0258,
+    "share.it.Node.js.before": {
+      "value": 0.0397,
       "n": null,
       "denominator": null
     },
-    "change.it.ETL": {
-      "value": 0.0031,
+    "change.it.Node.js": {
+      "value": -0.0049,
       "n": null,
       "denominator": null,
-      "p": 0.353,
-      "q_bh": 0.588
+      "p": 0.329,
+      "q_bh": 0.464
     },
     "share.it.CSS.now": {
-      "value": 0.0253,
+      "value": 0.0339,
       "n": null,
       "denominator": null
     },
     "share.it.CSS.before": {
-      "value": 0.0486,
+      "value": 0.0494,
       "n": null,
       "denominator": null
     },
     "change.it.CSS": {
-      "value": -0.0234,
+      "value": -0.0155,
+      "n": null,
+      "denominator": null,
+      "p": 0.0005,
+      "q_bh": 0.00375
+    },
+    "share.it.HTTP.now": {
+      "value": 0.0336,
+      "n": null,
+      "denominator": null
+    },
+    "share.it.HTTP.before": {
+      "value": 0.0342,
+      "n": null,
+      "denominator": null
+    },
+    "change.it.HTTP": {
+      "value": -0.0007,
+      "n": null,
+      "denominator": null,
+      "p": 0.759,
+      "q_bh": 0.813
+    },
+    "share.it.HTML.now": {
+      "value": 0.0327,
+      "n": null,
+      "denominator": null
+    },
+    "share.it.HTML.before": {
+      "value": 0.0487,
+      "n": null,
+      "denominator": null
+    },
+    "change.it.HTML": {
+      "value": -0.016,
+      "n": null,
+      "denominator": null,
+      "p": 0.0005,
+      "q_bh": 0.00375
+    },
+    "share.it.Jira.now": {
+      "value": 0.0325,
+      "n": null,
+      "denominator": null
+    },
+    "share.it.Jira.before": {
+      "value": 0.0307,
+      "n": null,
+      "denominator": null
+    },
+    "change.it.Jira": {
+      "value": 0.0019,
+      "n": null,
+      "denominator": null,
+      "p": 0.438,
+      "q_bh": 0.547
+    },
+    "share.it.ETL.now": {
+      "value": 0.0311,
+      "n": null,
+      "denominator": null
+    },
+    "share.it.ETL.before": {
+      "value": 0.0251,
+      "n": null,
+      "denominator": null
+    },
+    "change.it.ETL": {
+      "value": 0.006,
+      "n": null,
+      "denominator": null,
+      "p": 0.002,
+      "q_bh": 0.01
+    },
+    "posts.backend.now": {
+      "value": 4292,
+      "n": null,
+      "denominator": null
+    },
+    "posts.backend.before": {
+      "value": 5775,
+      "n": null,
+      "denominator": null
+    },
+    "posts.backend.both_channels_now": {
+      "value": 0.9939,
+      "n": 4266,
+      "denominator": 4292
+    },
+    "posts.backend.both_channels_before": {
+      "value": 0.9972,
+      "n": 5759,
+      "denominator": 5775
+    },
+    "share.backend.Python.now": {
+      "value": 0.3823,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.Python.before": {
+      "value": 0.3724,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.Python": {
+      "value": 0.0099,
+      "n": null,
+      "denominator": null,
+      "p": 0.364,
+      "q_bh": 0.601
+    },
+    "share.backend.PostgreSQL.now": {
+      "value": 0.376,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.PostgreSQL.before": {
+      "value": 0.4019,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.PostgreSQL": {
+      "value": -0.026,
+      "n": null,
+      "denominator": null,
+      "p": 0.481,
+      "q_bh": 0.627
+    },
+    "share.backend.Java.now": {
+      "value": 0.2857,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.Java.before": {
+      "value": 0.3016,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.Java": {
+      "value": -0.0158,
+      "n": null,
+      "denominator": null,
+      "p": 0.0914,
+      "q_bh": 0.339
+    },
+    "share.backend.Docker.now": {
+      "value": 0.2731,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.Docker.before": {
+      "value": 0.3046,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.Docker": {
+      "value": -0.0315,
+      "n": null,
+      "denominator": null,
+      "p": 0.352,
+      "q_bh": 0.601
+    },
+    "share.backend.Kafka.now": {
+      "value": 0.2268,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.Kafka.before": {
+      "value": 0.2112,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.Kafka": {
+      "value": 0.0157,
+      "n": null,
+      "denominator": null,
+      "p": 0.398,
+      "q_bh": 0.601
+    },
+    "share.backend.SQL.now": {
+      "value": 0.2095,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.SQL.before": {
+      "value": 0.2138,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.SQL": {
+      "value": -0.0043,
+      "n": null,
+      "denominator": null,
+      "p": 0.661,
+      "q_bh": 0.826
+    },
+    "share.backend.Kubernetes.now": {
+      "value": 0.2055,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.Kubernetes.before": {
+      "value": 0.1936,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.Kubernetes": {
+      "value": 0.0119,
+      "n": null,
+      "denominator": null,
+      "p": 0.436,
+      "q_bh": 0.601
+    },
+    "share.backend.Microservices.now": {
+      "value": 0.2025,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.Microservices.before": {
+      "value": 0.1796,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.Microservices": {
+      "value": 0.0229,
+      "n": null,
+      "denominator": null,
+      "p": 0.136,
+      "q_bh": 0.408
+    },
+    "share.backend.Go.now": {
+      "value": 0.2016,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.Go.before": {
+      "value": 0.1792,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.Go": {
+      "value": 0.0224,
+      "n": null,
+      "denominator": null,
+      "p": 0.00545,
+      "q_bh": 0.036
+    },
+    "share.backend.REST.now": {
+      "value": 0.1838,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.REST.before": {
+      "value": 0.1833,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.REST": {
+      "value": 0.0005,
+      "n": null,
+      "denominator": null,
+      "p": 0.98,
+      "q_bh": 0.98
+    },
+    "share.backend.Git.now": {
+      "value": 0.1812,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.Git.before": {
+      "value": 0.2112,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.Git": {
+      "value": -0.03,
+      "n": null,
+      "denominator": null,
+      "p": 0.049,
+      "q_bh": 0.21
+    },
+    "share.backend.CI/CD.now": {
+      "value": 0.1757,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.CI/CD.before": {
+      "value": 0.1405,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.CI/CD": {
+      "value": 0.0352,
+      "n": null,
+      "denominator": null,
+      "p": 0.003,
+      "q_bh": 0.03
+    },
+    "share.backend.Redis.now": {
+      "value": 0.1611,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.Redis.before": {
+      "value": 0.1571,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.Redis": {
+      "value": 0.004,
+      "n": null,
+      "denominator": null,
+      "p": 0.839,
+      "q_bh": 0.899
+    },
+    "share.backend.FastAPI.now": {
+      "value": 0.1302,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.FastAPI.before": {
+      "value": 0.1095,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.FastAPI": {
+      "value": 0.0207,
+      "n": null,
+      "denominator": null,
+      "p": 0.243,
+      "q_bh": 0.521
+    },
+    "share.backend.RabbitMQ.now": {
+      "value": 0.1193,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.RabbitMQ.before": {
+      "value": 0.1494,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.RabbitMQ": {
+      "value": -0.0301,
+      "n": null,
+      "denominator": null,
+      "p": 0.2,
+      "q_bh": 0.521
+    },
+    "share.backend.Linux.now": {
+      "value": 0.1183,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.Linux.before": {
+      "value": 0.1282,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.Linux": {
+      "value": -0.0098,
+      "n": null,
+      "denominator": null,
+      "p": 0.33,
+      "q_bh": 0.601
+    },
+    "share.backend.ООП.now": {
+      "value": 0.0939,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.ООП.before": {
+      "value": 0.1047,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.ООП": {
+      "value": -0.0108,
+      "n": null,
+      "denominator": null,
+      "p": 0.242,
+      "q_bh": 0.521
+    },
+    "share.backend.Spring.now": {
+      "value": 0.0945,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.Spring.before": {
+      "value": 0.1325,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.Spring": {
+      "value": -0.038,
+      "n": null,
+      "denominator": null,
+      "p": 0.013,
+      "q_bh": 0.065
+    },
+    "share.backend.Django.now": {
+      "value": 0.0865,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.Django.before": {
+      "value": 0.0915,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.Django": {
+      "value": -0.0049,
+      "n": null,
+      "denominator": null,
+      "p": 0.761,
+      "q_bh": 0.899
+    },
+    "share.backend..NET.now": {
+      "value": 0.0758,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend..NET.before": {
+      "value": 0.0672,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend..NET": {
+      "value": 0.0087,
+      "n": null,
+      "denominator": null,
+      "p": 0.102,
+      "q_bh": 0.339
+    },
+    "share.backend.C#.now": {
+      "value": 0.0748,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.C#.before": {
+      "value": 0.068,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.C#": {
+      "value": 0.0068,
+      "n": null,
+      "denominator": null,
+      "p": 0.388,
+      "q_bh": 0.601
+    },
+    "share.backend.MySQL.now": {
+      "value": 0.0736,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.MySQL.before": {
+      "value": 0.0956,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.MySQL": {
+      "value": -0.022,
+      "n": null,
+      "denominator": null,
+      "p": 0.006,
+      "q_bh": 0.036
+    },
+    "share.backend.Spring Boot.now": {
+      "value": 0.0728,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.Spring Boot.before": {
+      "value": 0.0955,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.Spring Boot": {
+      "value": -0.0226,
+      "n": null,
+      "denominator": null,
+      "p": 0.001,
+      "q_bh": 0.015
+    },
+    "share.backend.MongoDB.now": {
+      "value": 0.069,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.MongoDB.before": {
+      "value": 0.0693,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.MongoDB": {
+      "value": -0.0003,
+      "n": null,
+      "denominator": null,
+      "p": 0.96,
+      "q_bh": 0.98
+    },
+    "share.backend.gRPC.now": {
+      "value": 0.0656,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.gRPC.before": {
+      "value": 0.0667,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.gRPC": {
+      "value": -0.0011,
+      "n": null,
+      "denominator": null,
+      "p": 0.825,
+      "q_bh": 0.899
+    },
+    "share.backend.PHP.now": {
+      "value": 0.0723,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.PHP.before": {
+      "value": 0.0944,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.PHP": {
+      "value": -0.0221,
+      "n": null,
+      "denominator": null,
+      "p": 0.0005,
+      "q_bh": 0.015
+    },
+    "share.backend.ClickHouse.now": {
+      "value": 0.0645,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.ClickHouse.before": {
+      "value": 0.0687,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.ClickHouse": {
+      "value": -0.0042,
+      "n": null,
+      "denominator": null,
+      "p": 0.414,
+      "q_bh": 0.601
+    },
+    "share.backend.SOLID.now": {
+      "value": 0.0605,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.SOLID.before": {
+      "value": 0.0582,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.SOLID": {
+      "value": 0.0023,
+      "n": null,
+      "denominator": null,
+      "p": 0.839,
+      "q_bh": 0.899
+    },
+    "share.backend.DevOps.now": {
+      "value": 0.0587,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.DevOps.before": {
+      "value": 0.0532,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.DevOps": {
+      "value": 0.0055,
+      "n": null,
+      "denominator": null,
+      "p": 0.237,
+      "q_bh": 0.521
+    },
+    "share.backend.HTTP.now": {
+      "value": 0.0553,
+      "n": null,
+      "denominator": null
+    },
+    "share.backend.HTTP.before": {
+      "value": 0.0609,
+      "n": null,
+      "denominator": null
+    },
+    "change.backend.HTTP": {
+      "value": -0.0055,
+      "n": null,
+      "denominator": null,
+      "p": 0.441,
+      "q_bh": 0.601
+    },
+    "posts.frontend.now": {
+      "value": 1498,
+      "n": null,
+      "denominator": null
+    },
+    "posts.frontend.before": {
+      "value": 1983,
+      "n": null,
+      "denominator": null
+    },
+    "posts.frontend.both_channels_now": {
+      "value": 0.972,
+      "n": 1456,
+      "denominator": 1498
+    },
+    "posts.frontend.both_channels_before": {
+      "value": 0.9965,
+      "n": 1976,
+      "denominator": 1983
+    },
+    "share.frontend.React.now": {
+      "value": 0.6895,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.React.before": {
+      "value": 0.6953,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.React": {
+      "value": -0.0058,
+      "n": null,
+      "denominator": null,
+      "p": 0.863,
+      "q_bh": 0.925
+    },
+    "share.frontend.TypeScript.now": {
+      "value": 0.5806,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.TypeScript.before": {
+      "value": 0.5605,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.TypeScript": {
+      "value": 0.0201,
+      "n": null,
+      "denominator": null,
+      "p": 0.373,
+      "q_bh": 0.622
+    },
+    "share.frontend.JavaScript.now": {
+      "value": 0.5476,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.JavaScript.before": {
+      "value": 0.6089,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.JavaScript": {
+      "value": -0.0613,
+      "n": null,
+      "denominator": null,
+      "p": 0.009,
+      "q_bh": 0.0639
+    },
+    "share.frontend.CSS.now": {
+      "value": 0.3246,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.CSS.before": {
+      "value": 0.4071,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.CSS": {
+      "value": -0.0825,
+      "n": null,
+      "denominator": null,
+      "p": 0.0005,
+      "q_bh": 0.015
+    },
+    "share.frontend.HTML.now": {
+      "value": 0.2942,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.HTML.before": {
+      "value": 0.3805,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.HTML": {
+      "value": -0.0863,
+      "n": null,
+      "denominator": null,
+      "p": 0.003,
+      "q_bh": 0.045
+    },
+    "share.frontend.Git.now": {
+      "value": 0.2496,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Git.before": {
+      "value": 0.2614,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Git": {
+      "value": -0.0118,
+      "n": null,
+      "denominator": null,
+      "p": 0.654,
+      "q_bh": 0.825
+    },
+    "share.frontend.REST.now": {
+      "value": 0.1958,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.REST.before": {
+      "value": 0.1925,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.REST": {
+      "value": 0.0034,
+      "n": null,
+      "denominator": null,
+      "p": 0.808,
+      "q_bh": 0.898
+    },
+    "share.frontend.Redux.now": {
+      "value": 0.1924,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Redux.before": {
+      "value": 0.2173,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Redux": {
+      "value": -0.0249,
+      "n": null,
+      "denominator": null,
+      "p": 0.216,
+      "q_bh": 0.535
+    },
+    "share.frontend.Webpack.now": {
+      "value": 0.1713,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Webpack.before": {
+      "value": 0.1707,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Webpack": {
+      "value": 0.0006,
+      "n": null,
+      "denominator": null,
+      "p": 0.962,
+      "q_bh": 0.969
+    },
+    "share.frontend.Node.js.now": {
+      "value": 0.1544,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Node.js.before": {
+      "value": 0.1858,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Node.js": {
+      "value": -0.0313,
+      "n": null,
+      "denominator": null,
+      "p": 0.648,
+      "q_bh": 0.825
+    },
+    "share.frontend.CI/CD.now": {
+      "value": 0.1341,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.CI/CD.before": {
+      "value": 0.1056,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.CI/CD": {
+      "value": 0.0285,
+      "n": null,
+      "denominator": null,
+      "p": 0.188,
+      "q_bh": 0.513
+    },
+    "share.frontend.Vue.js.now": {
+      "value": 0.1311,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Vue.js.before": {
+      "value": 0.1524,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Vue.js": {
+      "value": -0.0213,
+      "n": null,
+      "denominator": null,
+      "p": 0.178,
+      "q_bh": 0.513
+    },
+    "share.frontend.Next.js.now": {
+      "value": 0.1161,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Next.js.before": {
+      "value": 0.1118,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Next.js": {
+      "value": 0.0043,
+      "n": null,
+      "denominator": null,
+      "p": 0.709,
+      "q_bh": 0.837
+    },
+    "share.frontend.Docker.now": {
+      "value": 0.0864,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Docker.before": {
+      "value": 0.0868,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Docker": {
+      "value": -0.0005,
+      "n": null,
+      "denominator": null,
+      "p": 0.969,
+      "q_bh": 0.969
+    },
+    "share.frontend.Vite.now": {
+      "value": 0.0836,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Vite.before": {
+      "value": 0.0648,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Vite": {
+      "value": 0.0188,
+      "n": null,
+      "denominator": null,
+      "p": 0.297,
+      "q_bh": 0.572
+    },
+    "share.frontend.MobX.now": {
+      "value": 0.0696,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.MobX.before": {
+      "value": 0.0835,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.MobX": {
+      "value": -0.0139,
+      "n": null,
+      "denominator": null,
+      "p": 0.232,
+      "q_bh": 0.535
+    },
+    "share.frontend.Jest.now": {
+      "value": 0.068,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Jest.before": {
+      "value": 0.0505,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Jest": {
+      "value": 0.0176,
+      "n": null,
+      "denominator": null,
+      "p": 0.0297,
+      "q_bh": 0.149
+    },
+    "share.frontend.WebSocket.now": {
+      "value": 0.0661,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.WebSocket.before": {
+      "value": 0.06,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.WebSocket": {
+      "value": 0.006,
+      "n": null,
+      "denominator": null,
+      "p": 0.475,
+      "q_bh": 0.713
+    },
+    "share.frontend.Figma.now": {
+      "value": 0.0615,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Figma.before": {
+      "value": 0.0578,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Figma": {
+      "value": 0.0037,
+      "n": null,
+      "denominator": null,
+      "p": 0.645,
+      "q_bh": 0.825
+    },
+    "share.frontend.Tailwind CSS.now": {
+      "value": 0.057,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Tailwind CSS.before": {
+      "value": 0.0605,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Tailwind CSS": {
+      "value": -0.0034,
+      "n": null,
+      "denominator": null,
+      "p": 0.725,
+      "q_bh": 0.837
+    },
+    "share.frontend.Angular.now": {
+      "value": 0.0556,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Angular.before": {
+      "value": 0.0903,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Angular": {
+      "value": -0.0347,
+      "n": null,
+      "denominator": null,
+      "p": 0.062,
+      "q_bh": 0.266
+    },
+    "share.frontend.GraphQL.now": {
+      "value": 0.0506,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.GraphQL.before": {
+      "value": 0.0588,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.GraphQL": {
+      "value": -0.0082,
+      "n": null,
+      "denominator": null,
+      "p": 0.305,
+      "q_bh": 0.572
+    },
+    "share.frontend.SCSS.now": {
+      "value": 0.0526,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.SCSS.before": {
+      "value": 0.0661,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.SCSS": {
+      "value": -0.0135,
+      "n": null,
+      "denominator": null,
+      "p": 0.327,
+      "q_bh": 0.577
+    },
+    "share.frontend.GitLab.now": {
+      "value": 0.0497,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.GitLab.before": {
+      "value": 0.0612,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.GitLab": {
+      "value": -0.0115,
+      "n": null,
+      "denominator": null,
+      "p": 0.149,
+      "q_bh": 0.513
+    },
+    "share.frontend.Agile.now": {
+      "value": 0.0362,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Agile.before": {
+      "value": 0.0335,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Agile": {
+      "value": 0.0028,
+      "n": null,
+      "denominator": null,
+      "p": 0.66,
+      "q_bh": 0.825
+    },
+    "share.frontend.SOLID.now": {
+      "value": 0.0356,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.SOLID.before": {
+      "value": 0.0158,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.SOLID": {
+      "value": 0.0198,
+      "n": null,
+      "denominator": null,
+      "p": 0.007,
+      "q_bh": 0.0639
+    },
+    "share.frontend.ООП.now": {
+      "value": 0.034,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.ООП.before": {
+      "value": 0.0408,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.ООП": {
+      "value": -0.0068,
+      "n": null,
+      "denominator": null,
+      "p": 0.303,
+      "q_bh": 0.572
+    },
+    "share.frontend.HTTP.now": {
+      "value": 0.0306,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.HTTP.before": {
+      "value": 0.039,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.HTTP": {
+      "value": -0.0084,
+      "n": null,
+      "denominator": null,
+      "p": 0.184,
+      "q_bh": 0.513
+    },
+    "share.frontend.Playwright.now": {
+      "value": 0.031,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Playwright.before": {
+      "value": 0.0175,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Playwright": {
+      "value": 0.0135,
+      "n": null,
+      "denominator": null,
+      "p": 0.0106,
+      "q_bh": 0.0639
+    },
+    "share.frontend.Nuxt.now": {
+      "value": 0.0257,
+      "n": null,
+      "denominator": null
+    },
+    "share.frontend.Nuxt.before": {
+      "value": 0.02,
+      "n": null,
+      "denominator": null
+    },
+    "change.frontend.Nuxt": {
+      "value": 0.0057,
+      "n": null,
+      "denominator": null,
+      "p": 0.415,
+      "q_bh": 0.655
+    },
+    "posts.qa.now": {
+      "value": 2815,
+      "n": null,
+      "denominator": null
+    },
+    "posts.qa.before": {
+      "value": 3066,
+      "n": null,
+      "denominator": null
+    },
+    "posts.qa.both_channels_now": {
+      "value": 0.9908,
+      "n": 2789,
+      "denominator": 2815
+    },
+    "posts.qa.both_channels_before": {
+      "value": 0.9961,
+      "n": 3054,
+      "denominator": 3066
+    },
+    "share.qa.SQL.now": {
+      "value": 0.2009,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.SQL.before": {
+      "value": 0.203,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.SQL": {
+      "value": -0.0021,
+      "n": null,
+      "denominator": null,
+      "p": 0.885,
+      "q_bh": 0.91
+    },
+    "share.qa.Java.now": {
+      "value": 0.1559,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Java.before": {
+      "value": 0.1711,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Java": {
+      "value": -0.0152,
+      "n": null,
+      "denominator": null,
+      "p": 0.318,
+      "q_bh": 0.636
+    },
+    "share.qa.Python.now": {
+      "value": 0.1541,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Python.before": {
+      "value": 0.1778,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Python": {
+      "value": -0.0237,
+      "n": null,
+      "denominator": null,
+      "p": 0.018,
+      "q_bh": 0.18
+    },
+    "share.qa.REST.now": {
+      "value": 0.1458,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.REST.before": {
+      "value": 0.1438,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.REST": {
+      "value": 0.002,
+      "n": null,
+      "denominator": null,
+      "p": 0.846,
+      "q_bh": 0.91
+    },
+    "share.qa.Postman.now": {
+      "value": 0.1283,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Postman.before": {
+      "value": 0.1213,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Postman": {
+      "value": 0.007,
+      "n": null,
+      "denominator": null,
+      "p": 0.43,
+      "q_bh": 0.665
+    },
+    "share.qa.CI/CD.now": {
+      "value": 0.1226,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.CI/CD.before": {
+      "value": 0.1027,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.CI/CD": {
+      "value": 0.0198,
+      "n": null,
+      "denominator": null,
+      "p": 0.045,
+      "q_bh": 0.3
+    },
+    "share.qa.Git.now": {
+      "value": 0.1083,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Git.before": {
+      "value": 0.1206,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Git": {
+      "value": -0.0123,
+      "n": null,
+      "denominator": null,
+      "p": 0.296,
+      "q_bh": 0.636
+    },
+    "share.qa.Jira.now": {
+      "value": 0.076,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Jira.before": {
+      "value": 0.0816,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Jira": {
+      "value": -0.0056,
+      "n": null,
+      "denominator": null,
+      "p": 0.443,
+      "q_bh": 0.665
+    },
+    "share.qa.Linux.now": {
+      "value": 0.0784,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Linux.before": {
+      "value": 0.0763,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Linux": {
+      "value": 0.0021,
+      "n": null,
+      "denominator": null,
+      "p": 0.892,
+      "q_bh": 0.91
+    },
+    "share.qa.Kafka.now": {
+      "value": 0.0741,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Kafka.before": {
+      "value": 0.0392,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Kafka": {
+      "value": 0.0348,
+      "n": null,
+      "denominator": null,
+      "p": 0.002,
+      "q_bh": 0.0503
+    },
+    "share.qa.Docker.now": {
+      "value": 0.0645,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Docker.before": {
+      "value": 0.0578,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Docker": {
+      "value": 0.0067,
+      "n": null,
+      "denominator": null,
+      "p": 0.299,
+      "q_bh": 0.636
+    },
+    "share.qa.PostgreSQL.now": {
+      "value": 0.063,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.PostgreSQL.before": {
+      "value": 0.055,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.PostgreSQL": {
+      "value": 0.008,
+      "n": null,
+      "denominator": null,
+      "p": 0.293,
+      "q_bh": 0.636
+    },
+    "share.qa.Selenium.now": {
+      "value": 0.06,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Selenium.before": {
+      "value": 0.0813,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Selenium": {
+      "value": -0.0213,
+      "n": null,
+      "denominator": null,
+      "p": 0.05,
+      "q_bh": 0.3
+    },
+    "share.qa.Swagger.now": {
+      "value": 0.0569,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Swagger.before": {
+      "value": 0.0399,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Swagger": {
+      "value": 0.017,
+      "n": null,
+      "denominator": null,
+      "p": 0.00335,
+      "q_bh": 0.0503
+    },
+    "share.qa.Playwright.now": {
+      "value": 0.0583,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Playwright.before": {
+      "value": 0.0453,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Playwright": {
+      "value": 0.0129,
+      "n": null,
+      "denominator": null,
+      "p": 0.169,
+      "q_bh": 0.562
+    },
+    "share.qa.HTTP.now": {
+      "value": 0.051,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.HTTP.before": {
+      "value": 0.0464,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.HTTP": {
+      "value": 0.0046,
+      "n": null,
+      "denominator": null,
+      "p": 0.426,
+      "q_bh": 0.665
+    },
+    "share.qa.Android.now": {
+      "value": 0.0526,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Android.before": {
+      "value": 0.0454,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Android": {
+      "value": 0.0072,
+      "n": null,
+      "denominator": null,
+      "p": 0.206,
+      "q_bh": 0.562
+    },
+    "share.qa.Microservices.now": {
+      "value": 0.0497,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Microservices.before": {
+      "value": 0.0481,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Microservices": {
+      "value": 0.0016,
+      "n": null,
+      "denominator": null,
+      "p": 0.848,
+      "q_bh": 0.91
+    },
+    "share.qa.pytest.now": {
+      "value": 0.0484,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.pytest.before": {
+      "value": 0.0511,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.pytest": {
+      "value": -0.0028,
+      "n": null,
+      "denominator": null,
+      "p": 0.63,
+      "q_bh": 0.86
+    },
+    "share.qa.Allure.now": {
+      "value": 0.0464,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Allure.before": {
+      "value": 0.0441,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Allure": {
+      "value": 0.0023,
+      "n": null,
+      "denominator": null,
+      "p": 0.706,
+      "q_bh": 0.882
+    },
+    "share.qa.JavaScript.now": {
+      "value": 0.047,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.JavaScript.before": {
+      "value": 0.0477,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.JavaScript": {
+      "value": -0.0007,
+      "n": null,
+      "denominator": null,
+      "p": 0.896,
+      "q_bh": 0.91
+    },
+    "share.qa.C#.now": {
+      "value": 0.0465,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.C#.before": {
+      "value": 0.0475,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.C#": {
+      "value": -0.001,
+      "n": null,
+      "denominator": null,
+      "p": 0.91,
+      "q_bh": 0.91
+    },
+    "share.qa.Kubernetes.now": {
+      "value": 0.0461,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Kubernetes.before": {
+      "value": 0.0329,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Kubernetes": {
+      "value": 0.0132,
+      "n": null,
+      "denominator": null,
+      "p": 0.126,
+      "q_bh": 0.473
+    },
+    "share.qa.DevTools.now": {
+      "value": 0.0414,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.DevTools.before": {
+      "value": 0.0332,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.DevTools": {
+      "value": 0.0081,
+      "n": null,
+      "denominator": null,
+      "p": 0.188,
+      "q_bh": 0.562
+    },
+    "share.qa.Jenkins.now": {
+      "value": 0.0431,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Jenkins.before": {
+      "value": 0.041,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Jenkins": {
+      "value": 0.0022,
+      "n": null,
+      "denominator": null,
+      "p": 0.686,
+      "q_bh": 0.882
+    },
+    "share.qa.iOS.now": {
+      "value": 0.043,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.iOS.before": {
+      "value": 0.0342,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.iOS": {
+      "value": 0.0088,
+      "n": null,
+      "denominator": null,
+      "p": 0.0871,
+      "q_bh": 0.436
+    },
+    "share.qa.JSON.now": {
+      "value": 0.0399,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.JSON.before": {
+      "value": 0.0343,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.JSON": {
+      "value": 0.0056,
+      "n": null,
+      "denominator": null,
+      "p": 0.36,
+      "q_bh": 0.665
+    },
+    "share.qa.SOAP.now": {
+      "value": 0.0384,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.SOAP.before": {
+      "value": 0.041,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.SOAP": {
+      "value": -0.0026,
+      "n": null,
+      "denominator": null,
+      "p": 0.613,
+      "q_bh": 0.86
+    },
+    "share.qa.GitLab CI.now": {
+      "value": 0.0356,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.GitLab CI.before": {
+      "value": 0.0256,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.GitLab CI": {
+      "value": 0.01,
+      "n": null,
+      "denominator": null,
+      "p": 0.427,
+      "q_bh": 0.665
+    },
+    "share.qa.Kotlin.now": {
+      "value": 0.0324,
+      "n": null,
+      "denominator": null
+    },
+    "share.qa.Kotlin.before": {
+      "value": 0.0248,
+      "n": null,
+      "denominator": null
+    },
+    "change.qa.Kotlin": {
+      "value": 0.0075,
+      "n": null,
+      "denominator": null,
+      "p": 0.102,
+      "q_bh": 0.437
+    },
+    "posts.analytics.now": {
+      "value": 2753,
+      "n": null,
+      "denominator": null
+    },
+    "posts.analytics.before": {
+      "value": 3203,
+      "n": null,
+      "denominator": null
+    },
+    "posts.analytics.both_channels_now": {
+      "value": 0.9931,
+      "n": 2734,
+      "denominator": 2753
+    },
+    "posts.analytics.both_channels_before": {
+      "value": 0.9981,
+      "n": 3197,
+      "denominator": 3203
+    },
+    "share.analytics.SQL.now": {
+      "value": 0.3223,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.SQL.before": {
+      "value": 0.2866,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.SQL": {
+      "value": 0.0357,
+      "n": null,
+      "denominator": null,
+      "p": 0.183,
+      "q_bh": 0.343
+    },
+    "share.analytics.Python.now": {
+      "value": 0.182,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.Python.before": {
+      "value": 0.1506,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.Python": {
+      "value": 0.0314,
+      "n": null,
+      "denominator": null,
+      "p": 0.246,
+      "q_bh": 0.388
+    },
+    "share.analytics.Excel.now": {
+      "value": 0.0888,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.Excel.before": {
+      "value": 0.0545,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.Excel": {
+      "value": 0.0344,
+      "n": null,
+      "denominator": null,
+      "p": 0.012,
+      "q_bh": 0.0562
+    },
+    "share.analytics.Power BI.now": {
+      "value": 0.0882,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.Power BI.before": {
+      "value": 0.0639,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.Power BI": {
+      "value": 0.0243,
+      "n": null,
+      "denominator": null,
+      "p": 0.047,
+      "q_bh": 0.108
+    },
+    "share.analytics.Tableau.now": {
+      "value": 0.0858,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.Tableau.before": {
+      "value": 0.052,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.Tableau": {
+      "value": 0.0338,
+      "n": null,
+      "denominator": null,
+      "p": 0.014,
+      "q_bh": 0.0562
+    },
+    "share.analytics.BPMN.now": {
+      "value": 0.0654,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.BPMN.before": {
+      "value": 0.0783,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.BPMN": {
+      "value": -0.0128,
+      "n": null,
+      "denominator": null,
+      "p": 0.0776,
+      "q_bh": 0.162
+    },
+    "share.analytics.REST.now": {
+      "value": 0.0595,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.REST.before": {
+      "value": 0.0602,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.REST": {
+      "value": -0.0006,
+      "n": null,
+      "denominator": null,
+      "p": 0.922,
+      "q_bh": 0.985
+    },
+    "share.analytics.UML.now": {
+      "value": 0.0524,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.UML.before": {
+      "value": 0.0671,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.UML": {
+      "value": -0.0147,
+      "n": null,
+      "denominator": null,
+      "p": 0.035,
+      "q_bh": 0.0955
+    },
+    "share.analytics.1С.now": {
+      "value": 0.0445,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.1С.before": {
+      "value": 0.0431,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.1С": {
+      "value": 0.0014,
+      "n": null,
+      "denominator": null,
+      "p": 0.863,
+      "q_bh": 0.985
+    },
+    "share.analytics.PostgreSQL.now": {
+      "value": 0.0505,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.PostgreSQL.before": {
+      "value": 0.0357,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.PostgreSQL": {
+      "value": 0.0148,
+      "n": null,
+      "denominator": null,
+      "p": 0.014,
+      "q_bh": 0.0562
+    },
+    "share.analytics.ClickHouse.now": {
+      "value": 0.047,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.ClickHouse.before": {
+      "value": 0.0285,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.ClickHouse": {
+      "value": 0.0185,
+      "n": null,
+      "denominator": null,
+      "p": 0.015,
+      "q_bh": 0.0562
+    },
+    "share.analytics.pandas.now": {
+      "value": 0.0464,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.pandas.before": {
+      "value": 0.0249,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.pandas": {
+      "value": 0.0215,
+      "n": null,
+      "denominator": null,
+      "p": 0.006,
+      "q_bh": 0.0562
+    },
+    "share.analytics.Jira.now": {
+      "value": 0.0304,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.Jira.before": {
+      "value": 0.0263,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.Jira": {
+      "value": 0.0041,
+      "n": null,
+      "denominator": null,
+      "p": 0.695,
+      "q_bh": 0.907
+    },
+    "share.analytics.A/B-тесты.now": {
+      "value": 0.041,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.A/B-тесты.before": {
+      "value": 0.0233,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.A/B-тесты": {
+      "value": 0.0177,
+      "n": null,
+      "denominator": null,
+      "p": 0.001,
+      "q_bh": 0.015
+    },
+    "share.analytics.ETL.now": {
+      "value": 0.0392,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.ETL.before": {
+      "value": 0.0211,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.ETL": {
+      "value": 0.0181,
+      "n": null,
+      "denominator": null,
+      "p": 0.001,
+      "q_bh": 0.015
+    },
+    "share.analytics.JSON.now": {
+      "value": 0.0282,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.JSON.before": {
+      "value": 0.0269,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.JSON": {
+      "value": 0.0012,
+      "n": null,
+      "denominator": null,
+      "p": 0.851,
+      "q_bh": 0.985
+    },
+    "share.analytics.Kafka.now": {
+      "value": 0.0317,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.Kafka.before": {
+      "value": 0.0222,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.Kafka": {
+      "value": 0.0095,
+      "n": null,
+      "denominator": null,
+      "p": 0.04,
+      "q_bh": 0.1
+    },
+    "share.analytics.Confluence.now": {
+      "value": 0.026,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.Confluence.before": {
+      "value": 0.026,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.Confluence": {
+      "value": -0.0001,
+      "n": null,
+      "denominator": null,
+      "p": 0.985,
+      "q_bh": 0.985
+    },
+    "share.analytics.NumPy.now": {
+      "value": 0.0317,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.NumPy.before": {
+      "value": 0.0162,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.NumPy": {
+      "value": 0.0155,
+      "n": null,
+      "denominator": null,
+      "p": 0.008,
+      "q_bh": 0.0562
+    },
+    "share.analytics.Airflow.now": {
+      "value": 0.0319,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.Airflow.before": {
+      "value": 0.0219,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.Airflow": {
+      "value": 0.01,
+      "n": null,
+      "denominator": null,
+      "p": 0.203,
+      "q_bh": 0.358
+    },
+    "share.analytics.Looker.now": {
+      "value": 0.0244,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.Looker.before": {
+      "value": 0.0085,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.Looker": {
+      "value": 0.0159,
+      "n": null,
+      "denominator": null,
+      "p": 0.031,
+      "q_bh": 0.093
+    },
+    "share.analytics.SOAP.now": {
+      "value": 0.0254,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.SOAP.before": {
+      "value": 0.0193,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.SOAP": {
+      "value": 0.0061,
+      "n": null,
+      "denominator": null,
+      "p": 0.412,
+      "q_bh": 0.589
+    },
+    "share.analytics.XML.now": {
+      "value": 0.0234,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.XML.before": {
+      "value": 0.0237,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.XML": {
+      "value": -0.0003,
+      "n": null,
+      "denominator": null,
+      "p": 0.937,
+      "q_bh": 0.985
+    },
+    "share.analytics.Agile.now": {
+      "value": 0.0181,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.Agile.before": {
+      "value": 0.0202,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.Agile": {
+      "value": -0.0021,
+      "n": null,
+      "denominator": null,
+      "p": 0.761,
+      "q_bh": 0.951
+    },
+    "share.analytics.Git.now": {
+      "value": 0.023,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.Git.before": {
+      "value": 0.0167,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.Git": {
+      "value": 0.0063,
+      "n": null,
+      "denominator": null,
+      "p": 0.228,
+      "q_bh": 0.38
+    },
+    "share.analytics.Superset.now": {
+      "value": 0.0234,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.Superset.before": {
+      "value": 0.0135,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.Superset": {
+      "value": 0.0099,
+      "n": null,
+      "denominator": null,
+      "p": 0.081,
+      "q_bh": 0.162
+    },
+    "share.analytics.PowerPoint.now": {
+      "value": 0.0099,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.PowerPoint.before": {
+      "value": 0.0126,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.PowerPoint": {
+      "value": -0.0027,
+      "n": null,
+      "denominator": null,
+      "p": 0.609,
+      "q_bh": 0.83
+    },
+    "share.analytics.RabbitMQ.now": {
+      "value": 0.0124,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.RabbitMQ.before": {
+      "value": 0.0058,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.RabbitMQ": {
+      "value": 0.0066,
+      "n": null,
+      "denominator": null,
+      "p": 0.0221,
+      "q_bh": 0.0737
+    },
+    "share.analytics.Microservices.now": {
+      "value": 0.0177,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.Microservices.before": {
+      "value": 0.0108,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.Microservices": {
+      "value": 0.0068,
+      "n": null,
+      "denominator": null,
+      "p": 0.296,
+      "q_bh": 0.444
+    },
+    "share.analytics.1С:ERP.now": {
+      "value": 0.0174,
+      "n": null,
+      "denominator": null
+    },
+    "share.analytics.1С:ERP.before": {
+      "value": 0.0172,
+      "n": null,
+      "denominator": null
+    },
+    "change.analytics.1С:ERP": {
+      "value": 0.0002,
+      "n": null,
+      "denominator": null,
+      "p": 0.959,
+      "q_bh": 0.985
+    },
+    "posts.ml.now": {
+      "value": 1843,
+      "n": null,
+      "denominator": null
+    },
+    "posts.ml.before": {
+      "value": 1841,
+      "n": null,
+      "denominator": null
+    },
+    "posts.ml.both_channels_now": {
+      "value": 0.987,
+      "n": 1819,
+      "denominator": 1843
+    },
+    "posts.ml.both_channels_before": {
+      "value": 0.9973,
+      "n": 1836,
+      "denominator": 1841
+    },
+    "share.ml.Python.now": {
+      "value": 0.5368,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.Python.before": {
+      "value": 0.4899,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.Python": {
+      "value": 0.047,
+      "n": null,
+      "denominator": null,
+      "p": 0.062,
+      "q_bh": 0.116
+    },
+    "share.ml.SQL.now": {
+      "value": 0.2118,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.SQL.before": {
+      "value": 0.1845,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.SQL": {
+      "value": 0.0273,
+      "n": null,
+      "denominator": null,
+      "p": 0.092,
+      "q_bh": 0.153
+    },
+    "share.ml.Docker.now": {
+      "value": 0.1749,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.Docker.before": {
+      "value": 0.1535,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.Docker": {
+      "value": 0.0214,
+      "n": null,
+      "denominator": null,
+      "p": 0.131,
+      "q_bh": 0.197
+    },
+    "share.ml.PyTorch.now": {
+      "value": 0.1711,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.PyTorch.before": {
+      "value": 0.1953,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.PyTorch": {
+      "value": -0.0242,
+      "n": null,
+      "denominator": null,
+      "p": 0.069,
+      "q_bh": 0.122
+    },
+    "share.ml.RAG.now": {
+      "value": 0.1308,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.RAG.before": {
+      "value": 0.0824,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.RAG": {
+      "value": 0.0485,
+      "n": null,
+      "denominator": null,
+      "p": 0.0005,
+      "q_bh": 0.005
+    },
+    "share.ml.Kubernetes.now": {
+      "value": 0.1103,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.Kubernetes.before": {
+      "value": 0.0748,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.Kubernetes": {
+      "value": 0.0355,
+      "n": null,
+      "denominator": null,
+      "p": 0.008,
+      "q_bh": 0.03
+    },
+    "share.ml.CI/CD.now": {
+      "value": 0.1022,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.CI/CD.before": {
+      "value": 0.0754,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.CI/CD": {
+      "value": 0.0268,
+      "n": null,
+      "denominator": null,
+      "p": 0.017,
+      "q_bh": 0.051
+    },
+    "share.ml.MLOps.now": {
+      "value": 0.101,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.MLOps.before": {
+      "value": 0.0599,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.MLOps": {
+      "value": 0.0411,
+      "n": null,
+      "denominator": null,
+      "p": 0.007,
+      "q_bh": 0.03
+    },
+    "share.ml.Git.now": {
+      "value": 0.0878,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.Git.before": {
+      "value": 0.104,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.Git": {
+      "value": -0.0162,
+      "n": null,
+      "denominator": null,
+      "p": 0.277,
+      "q_bh": 0.378
+    },
+    "share.ml.pandas.now": {
+      "value": 0.0923,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.pandas.before": {
+      "value": 0.1242,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.pandas": {
+      "value": -0.0319,
+      "n": null,
+      "denominator": null,
+      "p": 0.028,
+      "q_bh": 0.0646
+    },
+    "share.ml.PostgreSQL.now": {
+      "value": 0.0836,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.PostgreSQL.before": {
+      "value": 0.0622,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.PostgreSQL": {
+      "value": 0.0214,
+      "n": null,
+      "denominator": null,
+      "p": 0.047,
+      "q_bh": 0.094
+    },
+    "share.ml.FastAPI.now": {
+      "value": 0.0834,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.FastAPI.before": {
+      "value": 0.0546,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.FastAPI": {
+      "value": 0.0289,
+      "n": null,
+      "denominator": null,
+      "p": 0.004,
+      "q_bh": 0.03
+    },
+    "share.ml.LangChain.now": {
+      "value": 0.0826,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.LangChain.before": {
+      "value": 0.059,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.LangChain": {
+      "value": 0.0237,
+      "n": null,
+      "denominator": null,
+      "p": 0.00641,
+      "q_bh": 0.03
+    },
+    "share.ml.NumPy.now": {
+      "value": 0.0824,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.NumPy.before": {
+      "value": 0.1079,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.NumPy": {
+      "value": -0.0255,
+      "n": null,
+      "denominator": null,
+      "p": 0.1,
+      "q_bh": 0.158
+    },
+    "share.ml.scikit-learn.now": {
+      "value": 0.0786,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.scikit-learn.before": {
+      "value": 0.112,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.scikit-learn": {
+      "value": -0.0334,
+      "n": null,
+      "denominator": null,
+      "p": 0.022,
+      "q_bh": 0.06
+    },
+    "share.ml.Airflow.now": {
+      "value": 0.0742,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.Airflow.before": {
+      "value": 0.0721,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.Airflow": {
+      "value": 0.0021,
+      "n": null,
+      "denominator": null,
+      "p": 0.81,
+      "q_bh": 0.81
+    },
+    "share.ml.Kafka.now": {
+      "value": 0.0657,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.Kafka.before": {
+      "value": 0.0372,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.Kafka": {
+      "value": 0.0285,
+      "n": null,
+      "denominator": null,
+      "p": 0.025,
+      "q_bh": 0.0625
+    },
+    "share.ml.A/B-тесты.now": {
+      "value": 0.0632,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.A/B-тесты.before": {
+      "value": 0.0368,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.A/B-тесты": {
+      "value": 0.0263,
+      "n": null,
+      "denominator": null,
+      "p": 0.0005,
+      "q_bh": 0.005
+    },
+    "share.ml.REST.now": {
+      "value": 0.0574,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.REST.before": {
+      "value": 0.0382,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.REST": {
+      "value": 0.0192,
+      "n": null,
+      "denominator": null,
+      "p": 0.00788,
+      "q_bh": 0.03
+    },
+    "share.ml.Spark.now": {
+      "value": 0.055,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.Spark.before": {
+      "value": 0.0677,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.Spark": {
+      "value": -0.0127,
+      "n": null,
+      "denominator": null,
+      "p": 0.375,
+      "q_bh": 0.469
+    },
+    "share.ml.Hadoop.now": {
+      "value": 0.0487,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.Hadoop.before": {
+      "value": 0.0541,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.Hadoop": {
+      "value": -0.0053,
+      "n": null,
+      "denominator": null,
+      "p": 0.549,
+      "q_bh": 0.61
+    },
+    "share.ml.DevOps.now": {
+      "value": 0.0412,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.DevOps.before": {
+      "value": 0.0328,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.DevOps": {
+      "value": 0.0085,
+      "n": null,
+      "denominator": null,
+      "p": 0.313,
+      "q_bh": 0.408
+    },
+    "share.ml.LangGraph.now": {
+      "value": 0.0461,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.LangGraph.before": {
+      "value": 0.0231,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.LangGraph": {
+      "value": 0.023,
+      "n": null,
+      "denominator": null,
+      "p": 0.014,
+      "q_bh": 0.0467
+    },
+    "share.ml.MLflow.now": {
+      "value": 0.0473,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.MLflow.before": {
+      "value": 0.0442,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.MLflow": {
+      "value": 0.0031,
+      "n": null,
+      "denominator": null,
+      "p": 0.665,
+      "q_bh": 0.713
+    },
+    "share.ml.TensorFlow.now": {
+      "value": 0.0476,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.TensorFlow.before": {
+      "value": 0.1075,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.TensorFlow": {
+      "value": -0.0599,
+      "n": null,
+      "denominator": null,
+      "p": 0.0005,
+      "q_bh": 0.005
+    },
+    "share.ml.Linux.now": {
+      "value": 0.0454,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.Linux.before": {
+      "value": 0.0362,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.Linux": {
+      "value": 0.0092,
+      "n": null,
+      "denominator": null,
+      "p": 0.26,
+      "q_bh": 0.371
+    },
+    "share.ml.Redis.now": {
+      "value": 0.0391,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.Redis.before": {
+      "value": 0.0238,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.Redis": {
+      "value": 0.0153,
+      "n": null,
+      "denominator": null,
+      "p": 0.044,
+      "q_bh": 0.094
+    },
+    "share.ml.Microservices.now": {
+      "value": 0.0381,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.Microservices.before": {
+      "value": 0.0421,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.Microservices": {
+      "value": -0.004,
+      "n": null,
+      "denominator": null,
+      "p": 0.691,
+      "q_bh": 0.715
+    },
+    "share.ml.Hugging Face.now": {
+      "value": 0.0413,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.Hugging Face.before": {
+      "value": 0.0334,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.Hugging Face": {
+      "value": 0.0078,
+      "n": null,
+      "denominator": null,
+      "p": 0.411,
+      "q_bh": 0.493
+    },
+    "share.ml.CatBoost.now": {
+      "value": 0.0414,
+      "n": null,
+      "denominator": null
+    },
+    "share.ml.CatBoost.before": {
+      "value": 0.0368,
+      "n": null,
+      "denominator": null
+    },
+    "change.ml.CatBoost": {
+      "value": 0.0045,
+      "n": null,
+      "denominator": null,
+      "p": 0.547,
+      "q_bh": 0.61
+    },
+    "posts.dataeng.now": {
+      "value": 1051,
+      "n": null,
+      "denominator": null
+    },
+    "posts.dataeng.before": {
+      "value": 1168,
+      "n": null,
+      "denominator": null
+    },
+    "posts.dataeng.both_channels_now": {
+      "value": 0.9753,
+      "n": 1025,
+      "denominator": 1051
+    },
+    "posts.dataeng.both_channels_before": {
+      "value": 0.9966,
+      "n": 1164,
+      "denominator": 1168
+    },
+    "share.dataeng.Python.now": {
+      "value": 0.5604,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.Python.before": {
+      "value": 0.4903,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.Python": {
+      "value": 0.0701,
+      "n": null,
+      "denominator": null,
+      "p": 0.00126,
+      "q_bh": 0.00943
+    },
+    "share.dataeng.SQL.now": {
+      "value": 0.5478,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.SQL.before": {
+      "value": 0.5224,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.SQL": {
+      "value": 0.0254,
+      "n": null,
+      "denominator": null,
+      "p": 0.588,
+      "q_bh": 0.735
+    },
+    "share.dataeng.Airflow.now": {
+      "value": 0.3811,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.Airflow.before": {
+      "value": 0.3026,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.Airflow": {
+      "value": 0.0785,
+      "n": null,
+      "denominator": null,
+      "p": 0.073,
+      "q_bh": 0.169
+    },
+    "share.dataeng.ETL.now": {
+      "value": 0.3633,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.ETL.before": {
+      "value": 0.3412,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.ETL": {
+      "value": 0.0221,
+      "n": null,
+      "denominator": null,
+      "p": 0.475,
+      "q_bh": 0.648
+    },
+    "share.dataeng.Spark.now": {
+      "value": 0.3114,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.Spark.before": {
+      "value": 0.2525,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.Spark": {
+      "value": 0.0589,
+      "n": null,
+      "denominator": null,
+      "p": 0.017,
+      "q_bh": 0.0464
+    },
+    "share.dataeng.ClickHouse.now": {
+      "value": 0.2834,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.ClickHouse.before": {
+      "value": 0.2312,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.ClickHouse": {
+      "value": 0.0522,
+      "n": null,
+      "denominator": null,
+      "p": 0.014,
+      "q_bh": 0.042
+    },
+    "share.dataeng.PostgreSQL.now": {
+      "value": 0.1951,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.PostgreSQL.before": {
+      "value": 0.2056,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.PostgreSQL": {
+      "value": -0.0105,
+      "n": null,
+      "denominator": null,
+      "p": 0.888,
+      "q_bh": 0.968
+    },
+    "share.dataeng.Kafka.now": {
+      "value": 0.1987,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.Kafka.before": {
+      "value": 0.1916,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.Kafka": {
+      "value": 0.0071,
+      "n": null,
+      "denominator": null,
+      "p": 0.697,
+      "q_bh": 0.836
+    },
+    "share.dataeng.Hadoop.now": {
+      "value": 0.1901,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.Hadoop.before": {
+      "value": 0.2005,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.Hadoop": {
+      "value": -0.0104,
+      "n": null,
+      "denominator": null,
+      "p": 0.734,
+      "q_bh": 0.847
+    },
+    "share.dataeng.ELT.now": {
+      "value": 0.1835,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.ELT.before": {
+      "value": 0.1116,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.ELT": {
+      "value": 0.0719,
+      "n": null,
+      "denominator": null,
+      "p": 0.003,
+      "q_bh": 0.015
+    },
+    "share.dataeng.Git.now": {
+      "value": 0.1475,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.Git.before": {
+      "value": 0.0947,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.Git": {
+      "value": 0.0528,
+      "n": null,
+      "denominator": null,
+      "p": 0.007,
+      "q_bh": 0.0233
+    },
+    "share.dataeng.dbt.now": {
+      "value": 0.1386,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.dbt.before": {
+      "value": 0.0678,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.dbt": {
+      "value": 0.0708,
       "n": null,
       "denominator": null,
       "p": 0.0005,
       "q_bh": 0.0075
     },
-    "posts.backend.now": {
-      "value": 926,
+    "share.dataeng.Greenplum.now": {
+      "value": 0.1329,
       "n": null,
       "denominator": null
     },
-    "posts.backend.before": {
-      "value": 1302,
+    "share.dataeng.Greenplum.before": {
+      "value": 0.1173,
       "n": null,
       "denominator": null
     },
-    "posts.backend.both_channels_now": {
-      "value": 0.9784,
-      "n": 906,
-      "denominator": 926
-    },
-    "posts.backend.both_channels_before": {
-      "value": 0.9516,
-      "n": 1239,
-      "denominator": 1302
-    },
-    "share.backend.Python.now": {
-      "value": 0.382,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.Python.before": {
-      "value": 0.3968,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.Python": {
-      "value": -0.0148,
+    "change.dataeng.Greenplum": {
+      "value": 0.0156,
       "n": null,
       "denominator": null,
-      "p": 0.527,
-      "q_bh": 0.88
+      "p": 0.278,
+      "q_bh": 0.491
     },
-    "share.backend.PostgreSQL.now": {
-      "value": 0.3307,
+    "share.dataeng.S3.now": {
+      "value": 0.133,
       "n": null,
       "denominator": null
     },
-    "share.backend.PostgreSQL.before": {
-      "value": 0.3884,
+    "share.dataeng.S3.before": {
+      "value": 0.067,
       "n": null,
       "denominator": null
     },
-    "change.backend.PostgreSQL": {
-      "value": -0.0577,
-      "n": null,
-      "denominator": null,
-      "p": 0.042,
-      "q_bh": 0.315
-    },
-    "share.backend.Java.now": {
-      "value": 0.2869,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.Java.before": {
-      "value": 0.2938,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.Java": {
-      "value": -0.0068,
+    "change.dataeng.S3": {
+      "value": 0.066,
       "n": null,
       "denominator": null,
-      "p": 0.736,
-      "q_bh": 0.88
+      "p": 0.003,
+      "q_bh": 0.015
     },
-    "share.backend.Docker.now": {
-      "value": 0.258,
+    "share.dataeng.CI/CD.now": {
+      "value": 0.122,
       "n": null,
       "denominator": null
     },
-    "share.backend.Docker.before": {
-      "value": 0.3014,
+    "share.dataeng.CI/CD.before": {
+      "value": 0.1065,
       "n": null,
       "denominator": null
     },
-    "change.backend.Docker": {
-      "value": -0.0434,
-      "n": null,
-      "denominator": null,
-      "p": 0.173,
-      "q_bh": 0.642
-    },
-    "share.backend.Kubernetes.now": {
-      "value": 0.2069,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.Kubernetes.before": {
-      "value": 0.2013,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.Kubernetes": {
-      "value": 0.0056,
+    "change.dataeng.CI/CD": {
+      "value": 0.0155,
       "n": null,
       "denominator": null,
-      "p": 0.851,
-      "q_bh": 0.88
+      "p": 0.423,
+      "q_bh": 0.604
     },
-    "share.backend.SQL.now": {
-      "value": 0.2005,
+    "share.dataeng.Docker.now": {
+      "value": 0.1038,
       "n": null,
       "denominator": null
     },
-    "share.backend.SQL.before": {
-      "value": 0.2095,
+    "share.dataeng.Docker.before": {
+      "value": 0.0874,
       "n": null,
       "denominator": null
     },
-    "change.backend.SQL": {
-      "value": -0.009,
-      "n": null,
-      "denominator": null,
-      "p": 0.764,
-      "q_bh": 0.88
-    },
-    "share.backend.Kafka.now": {
-      "value": 0.2072,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.Kafka.before": {
-      "value": 0.21,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.Kafka": {
-      "value": -0.0028,
+    "change.dataeng.Docker": {
+      "value": 0.0165,
       "n": null,
       "denominator": null,
-      "p": 0.889,
-      "q_bh": 0.889
+      "p": 0.237,
+      "q_bh": 0.444
     },
-    "share.backend.Go.now": {
-      "value": 0.2044,
+    "share.dataeng.PySpark.now": {
+      "value": 0.1002,
       "n": null,
       "denominator": null
     },
-    "share.backend.Go.before": {
-      "value": 0.2009,
+    "share.dataeng.PySpark.before": {
+      "value": 0.0611,
       "n": null,
       "denominator": null
     },
-    "change.backend.Go": {
-      "value": 0.0035,
+    "change.dataeng.PySpark": {
+      "value": 0.0391,
       "n": null,
       "denominator": null,
-      "p": 0.844,
-      "q_bh": 0.88
+      "p": 0.000947,
+      "q_bh": 0.00943
     },
-    "share.backend.Microservices.now": {
-      "value": 0.1952,
+    "share.dataeng.Kubernetes.now": {
+      "value": 0.0994,
       "n": null,
       "denominator": null
     },
-    "share.backend.Microservices.before": {
-      "value": 0.1874,
+    "share.dataeng.Kubernetes.before": {
+      "value": 0.0741,
       "n": null,
       "denominator": null
     },
-    "change.backend.Microservices": {
-      "value": 0.0078,
+    "change.dataeng.Kubernetes": {
+      "value": 0.0253,
       "n": null,
       "denominator": null,
-      "p": 0.703,
-      "q_bh": 0.88
+      "p": 0.139,
+      "q_bh": 0.298
     },
-    "share.backend.REST.now": {
-      "value": 0.193,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.REST.before": {
-      "value": 0.2097,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.REST": {
-      "value": -0.0167,
-      "n": null,
-      "denominator": null,
-      "p": 0.456,
-      "q_bh": 0.855
-    },
-    "share.backend.Git.now": {
-      "value": 0.1675,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.Git.before": {
-      "value": 0.198,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.Git": {
-      "value": -0.0305,
-      "n": null,
-      "denominator": null,
-      "p": 0.302,
-      "q_bh": 0.642
-    },
-    "share.backend.CI/CD.now": {
-      "value": 0.1652,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.CI/CD.before": {
-      "value": 0.171,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.CI/CD": {
-      "value": -0.0058,
-      "n": null,
-      "denominator": null,
-      "p": 0.812,
-      "q_bh": 0.88
-    },
-    "share.backend.Redis.now": {
-      "value": 0.1337,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.Redis.before": {
-      "value": 0.164,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.Redis": {
-      "value": -0.0303,
-      "n": null,
-      "denominator": null,
-      "p": 0.056,
-      "q_bh": 0.336
-    },
-    "share.backend.Linux.now": {
-      "value": 0.1179,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.Linux.before": {
-      "value": 0.1253,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.Linux": {
-      "value": -0.0074,
-      "n": null,
-      "denominator": null,
-      "p": 0.71,
-      "q_bh": 0.88
-    },
-    "share.backend.RabbitMQ.now": {
-      "value": 0.1113,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.RabbitMQ.before": {
-      "value": 0.1359,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.RabbitMQ": {
-      "value": -0.0246,
-      "n": null,
-      "denominator": null,
-      "p": 0.289,
-      "q_bh": 0.642
-    },
-    "share.backend.FastAPI.now": {
-      "value": 0.1062,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.FastAPI.before": {
-      "value": 0.1249,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.FastAPI": {
-      "value": -0.0187,
-      "n": null,
-      "denominator": null,
-      "p": 0.321,
-      "q_bh": 0.642
-    },
-    "share.backend..NET.now": {
-      "value": 0.0879,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend..NET.before": {
-      "value": 0.0543,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend..NET": {
-      "value": 0.0335,
-      "n": null,
-      "denominator": null,
-      "p": 0.019,
-      "q_bh": 0.285
-    },
-    "share.backend.ООП.now": {
-      "value": 0.0845,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.ООП.before": {
-      "value": 0.0987,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.ООП": {
-      "value": -0.0142,
-      "n": null,
-      "denominator": null,
-      "p": 0.321,
-      "q_bh": 0.642
-    },
-    "share.backend.Spring.now": {
-      "value": 0.092,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.Spring.before": {
-      "value": 0.1071,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.Spring": {
-      "value": -0.0152,
-      "n": null,
-      "denominator": null,
-      "p": 0.257,
-      "q_bh": 0.642
-    },
-    "share.backend.C#.now": {
-      "value": 0.0782,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.C#.before": {
-      "value": 0.0608,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.C#": {
-      "value": 0.0174,
-      "n": null,
-      "denominator": null,
-      "p": 0.295,
-      "q_bh": 0.642
-    },
-    "share.backend.gRPC.now": {
-      "value": 0.0725,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.gRPC.before": {
-      "value": 0.09,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.gRPC": {
-      "value": -0.0175,
-      "n": null,
-      "denominator": null,
-      "p": 0.147,
-      "q_bh": 0.63
-    },
-    "share.backend.Spring Boot.now": {
-      "value": 0.0743,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.Spring Boot.before": {
-      "value": 0.081,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.Spring Boot": {
-      "value": -0.0067,
-      "n": null,
-      "denominator": null,
-      "p": 0.579,
-      "q_bh": 0.88
-    },
-    "share.backend.ClickHouse.now": {
-      "value": 0.0639,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.ClickHouse.before": {
-      "value": 0.0718,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.ClickHouse": {
-      "value": -0.008,
-      "n": null,
-      "denominator": null,
-      "p": 0.676,
-      "q_bh": 0.88
-    },
-    "share.backend.Django.now": {
-      "value": 0.0682,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.Django.before": {
-      "value": 0.1057,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.Django": {
-      "value": -0.0375,
-      "n": null,
-      "denominator": null,
-      "p": 0.034,
-      "q_bh": 0.315
-    },
-    "share.backend.SOLID.now": {
-      "value": 0.0535,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.SOLID.before": {
-      "value": 0.0604,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.SOLID": {
-      "value": -0.0069,
-      "n": null,
-      "denominator": null,
-      "p": 0.663,
-      "q_bh": 0.88
-    },
-    "share.backend.Kotlin.now": {
-      "value": 0.0538,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.Kotlin.before": {
-      "value": 0.0677,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.Kotlin": {
-      "value": -0.0139,
-      "n": null,
-      "denominator": null,
-      "p": 0.195,
-      "q_bh": 0.642
-    },
-    "share.backend.HTTP.now": {
-      "value": 0.0499,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.HTTP.before": {
-      "value": 0.0683,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.HTTP": {
-      "value": -0.0185,
-      "n": null,
-      "denominator": null,
-      "p": 0.0765,
-      "q_bh": 0.382
-    },
-    "share.backend.Design patterns.now": {
-      "value": 0.0492,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.Design patterns.before": {
-      "value": 0.0535,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.Design patterns": {
-      "value": -0.0043,
-      "n": null,
-      "denominator": null,
-      "p": 0.66,
-      "q_bh": 0.88
-    },
-    "share.backend.MySQL.now": {
-      "value": 0.0448,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.MySQL.before": {
-      "value": 0.0777,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.MySQL": {
-      "value": -0.033,
-      "n": null,
-      "denominator": null,
-      "p": 0.015,
-      "q_bh": 0.285
-    },
-    "share.backend.AWS.now": {
-      "value": 0.0427,
-      "n": null,
-      "denominator": null
-    },
-    "share.backend.AWS.before": {
-      "value": 0.0325,
-      "n": null,
-      "denominator": null
-    },
-    "change.backend.AWS": {
-      "value": 0.0102,
-      "n": null,
-      "denominator": null,
-      "p": 0.54,
-      "q_bh": 0.88
-    },
-    "posts.qa.now": {
-      "value": 727,
-      "n": null,
-      "denominator": null
-    },
-    "posts.qa.before": {
-      "value": 906,
-      "n": null,
-      "denominator": null
-    },
-    "posts.qa.both_channels_now": {
-      "value": 0.9766,
-      "n": 710,
-      "denominator": 727
-    },
-    "posts.qa.both_channels_before": {
-      "value": 0.9845,
-      "n": 892,
-      "denominator": 906
-    },
-    "share.qa.SQL.now": {
-      "value": 0.1802,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.SQL.before": {
-      "value": 0.1716,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.SQL": {
-      "value": 0.0086,
-      "n": null,
-      "denominator": null,
-      "p": 0.664,
-      "q_bh": 0.995
-    },
-    "share.qa.Python.now": {
-      "value": 0.1491,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.Python.before": {
-      "value": 0.1553,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.Python": {
-      "value": -0.0063,
-      "n": null,
-      "denominator": null,
-      "p": 0.737,
-      "q_bh": 0.995
-    },
-    "share.qa.Java.now": {
-      "value": 0.1244,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.Java.before": {
-      "value": 0.1375,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.Java": {
-      "value": -0.0132,
-      "n": null,
-      "denominator": null,
-      "p": 0.535,
-      "q_bh": 0.995
-    },
-    "share.qa.REST.now": {
-      "value": 0.1117,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.REST.before": {
-      "value": 0.1145,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.REST": {
-      "value": -0.0028,
-      "n": null,
-      "denominator": null,
-      "p": 0.881,
-      "q_bh": 0.995
-    },
-    "share.qa.Postman.now": {
-      "value": 0.1022,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.Postman.before": {
-      "value": 0.1121,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.Postman": {
-      "value": -0.0099,
-      "n": null,
-      "denominator": null,
-      "p": 0.583,
-      "q_bh": 0.995
-    },
-    "share.qa.Git.now": {
-      "value": 0.0899,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.Git.before": {
-      "value": 0.0943,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.Git": {
-      "value": -0.0044,
-      "n": null,
-      "denominator": null,
-      "p": 0.851,
-      "q_bh": 0.995
-    },
-    "share.qa.CI/CD.now": {
-      "value": 0.0871,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.CI/CD.before": {
-      "value": 0.0789,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.CI/CD": {
-      "value": 0.0081,
-      "n": null,
-      "denominator": null,
-      "p": 0.57,
-      "q_bh": 0.995
-    },
-    "share.qa.Linux.now": {
+    "share.dataeng.Hive.now": {
       "value": 0.0866,
       "n": null,
       "denominator": null
     },
-    "share.qa.Linux.before": {
-      "value": 0.0587,
+    "share.dataeng.Hive.before": {
+      "value": 0.0862,
       "n": null,
       "denominator": null
     },
-    "change.qa.Linux": {
-      "value": 0.0279,
+    "change.dataeng.Hive": {
+      "value": 0.0005,
       "n": null,
       "denominator": null,
-      "p": 0.123,
-      "q_bh": 0.995
+      "p": 0.968,
+      "q_bh": 0.968
     },
-    "share.qa.Docker.now": {
-      "value": 0.0588,
+    "share.dataeng.Trino.now": {
+      "value": 0.0847,
       "n": null,
       "denominator": null
     },
-    "share.qa.Docker.before": {
+    "share.dataeng.Trino.before": {
+      "value": 0.0338,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.Trino": {
       "value": 0.051,
       "n": null,
+      "denominator": null,
+      "p": 0.0005,
+      "q_bh": 0.0075
+    },
+    "share.dataeng.Oracle.now": {
+      "value": 0.0804,
+      "n": null,
       "denominator": null
     },
-    "change.qa.Docker": {
-      "value": 0.0078,
+    "share.dataeng.Oracle.before": {
+      "value": 0.0795,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.Oracle": {
+      "value": 0.0009,
       "n": null,
       "denominator": null,
-      "p": 0.524,
-      "q_bh": 0.995
+      "p": 0.935,
+      "q_bh": 0.968
     },
-    "share.qa.Kafka.now": {
-      "value": 0.0647,
+    "share.dataeng.pandas.now": {
+      "value": 0.0754,
       "n": null,
       "denominator": null
     },
-    "share.qa.Kafka.before": {
-      "value": 0.0558,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.Kafka": {
-      "value": 0.0089,
-      "n": null,
-      "denominator": null,
-      "p": 0.47,
-      "q_bh": 0.995
-    },
-    "share.qa.PostgreSQL.now": {
-      "value": 0.0581,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.PostgreSQL.before": {
-      "value": 0.0509,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.PostgreSQL": {
-      "value": 0.0072,
-      "n": null,
-      "denominator": null,
-      "p": 0.552,
-      "q_bh": 0.995
-    },
-    "share.qa.Swagger.now": {
-      "value": 0.0513,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.Swagger.before": {
-      "value": 0.0324,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.Swagger": {
-      "value": 0.0189,
-      "n": null,
-      "denominator": null,
-      "p": 0.141,
-      "q_bh": 0.995
-    },
-    "share.qa.Playwright.now": {
-      "value": 0.0558,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.Playwright.before": {
-      "value": 0.0358,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.Playwright": {
-      "value": 0.02,
-      "n": null,
-      "denominator": null,
-      "p": 0.368,
-      "q_bh": 0.995
-    },
-    "share.qa.HTTP.now": {
-      "value": 0.0461,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.HTTP.before": {
-      "value": 0.0411,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.HTTP": {
-      "value": 0.0049,
-      "n": null,
-      "denominator": null,
-      "p": 0.64,
-      "q_bh": 0.995
-    },
-    "share.qa.Selenium.now": {
-      "value": 0.0446,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.Selenium.before": {
-      "value": 0.0573,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.Selenium": {
-      "value": -0.0127,
-      "n": null,
-      "denominator": null,
-      "p": 0.284,
-      "q_bh": 0.995
-    },
-    "share.qa.Android.now": {
-      "value": 0.0489,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.Android.before": {
-      "value": 0.0366,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.Android": {
-      "value": 0.0123,
-      "n": null,
-      "denominator": null,
-      "p": 0.317,
-      "q_bh": 0.995
-    },
-    "share.qa.Allure.now": {
-      "value": 0.0454,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.Allure.before": {
-      "value": 0.0468,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.Allure": {
-      "value": -0.0014,
-      "n": null,
-      "denominator": null,
-      "p": 0.972,
-      "q_bh": 0.995
-    },
-    "share.qa.Jira.now": {
-      "value": 0.0478,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.Jira.before": {
-      "value": 0.064,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.Jira": {
-      "value": -0.0162,
-      "n": null,
-      "denominator": null,
-      "p": 0.172,
-      "q_bh": 0.995
-    },
-    "share.qa.pytest.now": {
-      "value": 0.0424,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.pytest.before": {
-      "value": 0.0398,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.pytest": {
-      "value": 0.0026,
-      "n": null,
-      "denominator": null,
-      "p": 0.884,
-      "q_bh": 0.995
-    },
-    "share.qa.C#.now": {
+    "share.dataeng.pandas.before": {
       "value": 0.046,
       "n": null,
       "denominator": null
     },
-    "share.qa.C#.before": {
-      "value": 0.0517,
+    "change.dataeng.pandas": {
+      "value": 0.0295,
+      "n": null,
+      "denominator": null,
+      "p": 0.005,
+      "q_bh": 0.0187
+    },
+    "share.dataeng.Java.now": {
+      "value": 0.0683,
       "n": null,
       "denominator": null
     },
-    "change.qa.C#": {
+    "share.dataeng.Java.before": {
+      "value": 0.0931,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.Java": {
+      "value": -0.0249,
+      "n": null,
+      "denominator": null,
+      "p": 0.327,
+      "q_bh": 0.545
+    },
+    "share.dataeng.HDFS.now": {
+      "value": 0.0683,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.HDFS.before": {
+      "value": 0.0501,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.HDFS": {
+      "value": 0.0182,
+      "n": null,
+      "denominator": null,
+      "p": 0.0733,
+      "q_bh": 0.169
+    },
+    "share.dataeng.Scala.now": {
+      "value": 0.07,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.Scala.before": {
+      "value": 0.0795,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.Scala": {
+      "value": -0.0095,
+      "n": null,
+      "denominator": null,
+      "p": 0.407,
+      "q_bh": 0.604
+    },
+    "share.dataeng.AWS.now": {
+      "value": 0.0681,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.AWS.before": {
+      "value": 0.084,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.AWS": {
+      "value": -0.0159,
+      "n": null,
+      "denominator": null,
+      "p": 0.184,
+      "q_bh": 0.368
+    },
+    "share.dataeng.Iceberg.now": {
+      "value": 0.0617,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.Iceberg.before": {
+      "value": 0.0319,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.Iceberg": {
+      "value": 0.0297,
+      "n": null,
+      "denominator": null,
+      "p": 0.004,
+      "q_bh": 0.0171
+    },
+    "share.dataeng.Linux.now": {
+      "value": 0.0564,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.Linux.before": {
+      "value": 0.0712,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.Linux": {
+      "value": -0.0148,
+      "n": null,
+      "denominator": null,
+      "p": 0.403,
+      "q_bh": 0.604
+    },
+    "share.dataeng.MS SQL Server.now": {
+      "value": 0.049,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.MS SQL Server.before": {
+      "value": 0.0604,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.MS SQL Server": {
+      "value": -0.0114,
+      "n": null,
+      "denominator": null,
+      "p": 0.557,
+      "q_bh": 0.727
+    },
+    "share.dataeng.Power BI.now": {
+      "value": 0.0466,
+      "n": null,
+      "denominator": null
+    },
+    "share.dataeng.Power BI.before": {
+      "value": 0.0486,
+      "n": null,
+      "denominator": null
+    },
+    "change.dataeng.Power BI": {
+      "value": -0.002,
+      "n": null,
+      "denominator": null,
+      "p": 0.917,
+      "q_bh": 0.968
+    },
+    "posts.devops.now": {
+      "value": 1043,
+      "n": null,
+      "denominator": null
+    },
+    "posts.devops.before": {
+      "value": 1516,
+      "n": null,
+      "denominator": null
+    },
+    "posts.devops.both_channels_now": {
+      "value": 0.9856,
+      "n": 1028,
+      "denominator": 1043
+    },
+    "posts.devops.both_channels_before": {
+      "value": 0.9763,
+      "n": 1480,
+      "denominator": 1516
+    },
+    "share.devops.DevOps.now": {
+      "value": 0.4619,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.DevOps.before": {
+      "value": 0.428,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.DevOps": {
+      "value": 0.034,
+      "n": null,
+      "denominator": null,
+      "p": 0.101,
+      "q_bh": 0.311
+    },
+    "share.devops.Linux.now": {
+      "value": 0.319,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Linux.before": {
+      "value": 0.3475,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Linux": {
+      "value": -0.0284,
+      "n": null,
+      "denominator": null,
+      "p": 0.183,
+      "q_bh": 0.366
+    },
+    "share.devops.Kubernetes.now": {
+      "value": 0.274,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Kubernetes.before": {
+      "value": 0.2541,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Kubernetes": {
+      "value": 0.0199,
+      "n": null,
+      "denominator": null,
+      "p": 0.278,
+      "q_bh": 0.463
+    },
+    "share.devops.CI/CD.now": {
+      "value": 0.2218,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.CI/CD.before": {
+      "value": 0.186,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.CI/CD": {
+      "value": 0.0358,
+      "n": null,
+      "denominator": null,
+      "p": 0.048,
+      "q_bh": 0.24
+    },
+    "share.devops.Docker.now": {
+      "value": 0.215,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Docker.before": {
+      "value": 0.2252,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Docker": {
+      "value": -0.0102,
+      "n": null,
+      "denominator": null,
+      "p": 0.555,
+      "q_bh": 0.691
+    },
+    "share.devops.Ansible.now": {
+      "value": 0.144,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Ansible.before": {
+      "value": 0.1746,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Ansible": {
+      "value": -0.0306,
+      "n": null,
+      "denominator": null,
+      "p": 0.0457,
+      "q_bh": 0.24
+    },
+    "share.devops.Python.now": {
+      "value": 0.1408,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Python.before": {
+      "value": 0.1466,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Python": {
       "value": -0.0058,
       "n": null,
       "denominator": null,
-      "p": 0.604,
-      "q_bh": 0.995
+      "p": 0.729,
+      "q_bh": 0.781
     },
-    "share.qa.Microservices.now": {
-      "value": 0.0406,
+    "share.devops.PostgreSQL.now": {
+      "value": 0.1282,
       "n": null,
       "denominator": null
     },
-    "share.qa.Microservices.before": {
-      "value": 0.0369,
+    "share.devops.PostgreSQL.before": {
+      "value": 0.148,
       "n": null,
       "denominator": null
     },
-    "change.qa.Microservices": {
-      "value": 0.0037,
+    "change.devops.PostgreSQL": {
+      "value": -0.0198,
       "n": null,
       "denominator": null,
-      "p": 0.706,
-      "q_bh": 0.995
+      "p": 0.172,
+      "q_bh": 0.366
     },
-    "share.qa.DevTools.now": {
+    "share.devops.Terraform.now": {
+      "value": 0.1161,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Terraform.before": {
+      "value": 0.0987,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Terraform": {
+      "value": 0.0174,
+      "n": null,
+      "denominator": null,
+      "p": 0.243,
+      "q_bh": 0.434
+    },
+    "share.devops.Grafana.now": {
+      "value": 0.11,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Grafana.before": {
+      "value": 0.1226,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Grafana": {
+      "value": -0.0126,
+      "n": null,
+      "denominator": null,
+      "p": 0.345,
+      "q_bh": 0.545
+    },
+    "share.devops.Prometheus.now": {
+      "value": 0.1046,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Prometheus.before": {
+      "value": 0.1095,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Prometheus": {
+      "value": -0.0048,
+      "n": null,
+      "denominator": null,
+      "p": 0.704,
+      "q_bh": 0.781
+    },
+    "share.devops.Bash.now": {
+      "value": 0.104,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Bash.before": {
+      "value": 0.1236,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Bash": {
+      "value": -0.0197,
+      "n": null,
+      "denominator": null,
+      "p": 0.135,
+      "q_bh": 0.311
+    },
+    "share.devops.AWS.now": {
+      "value": 0.0773,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.AWS.before": {
+      "value": 0.0424,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.AWS": {
+      "value": 0.0349,
+      "n": null,
+      "denominator": null,
+      "p": 0.014,
+      "q_bh": 0.14
+    },
+    "share.devops.SRE.now": {
+      "value": 0.0708,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.SRE.before": {
+      "value": 0.0473,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.SRE": {
+      "value": 0.0235,
+      "n": null,
+      "denominator": null,
+      "p": 0.132,
+      "q_bh": 0.311
+    },
+    "share.devops.GitLab CI.now": {
+      "value": 0.062,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.GitLab CI.before": {
+      "value": 0.0548,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.GitLab CI": {
+      "value": 0.0072,
+      "n": null,
+      "denominator": null,
+      "p": 0.458,
+      "q_bh": 0.624
+    },
+    "share.devops.Git.now": {
+      "value": 0.0681,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Git.before": {
+      "value": 0.0892,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Git": {
+      "value": -0.0211,
+      "n": null,
+      "denominator": null,
+      "p": 0.062,
+      "q_bh": 0.266
+    },
+    "share.devops.GitLab.now": {
+      "value": 0.0641,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.GitLab.before": {
+      "value": 0.0815,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.GitLab": {
+      "value": -0.0174,
+      "n": null,
+      "denominator": null,
+      "p": 0.112,
+      "q_bh": 0.311
+    },
+    "share.devops.ELK.now": {
+      "value": 0.0543,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.ELK.before": {
+      "value": 0.0629,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.ELK": {
+      "value": -0.0086,
+      "n": null,
+      "denominator": null,
+      "p": 0.38,
+      "q_bh": 0.571
+    },
+    "share.devops.Jenkins.now": {
+      "value": 0.0478,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Jenkins.before": {
+      "value": 0.0738,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Jenkins": {
+      "value": -0.026,
+      "n": null,
+      "denominator": null,
+      "p": 0.025,
+      "q_bh": 0.188
+    },
+    "share.devops.Go.now": {
+      "value": 0.0455,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Go.before": {
+      "value": 0.0432,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Go": {
+      "value": 0.0023,
+      "n": null,
+      "denominator": null,
+      "p": 0.811,
+      "q_bh": 0.839
+    },
+    "share.devops.Kafka.now": {
+      "value": 0.0495,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Kafka.before": {
+      "value": 0.0645,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Kafka": {
+      "value": -0.015,
+      "n": null,
+      "denominator": null,
+      "p": 0.125,
+      "q_bh": 0.311
+    },
+    "share.devops.SQL.now": {
+      "value": 0.0477,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.SQL.before": {
+      "value": 0.0461,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.SQL": {
+      "value": 0.0016,
+      "n": null,
+      "denominator": null,
+      "p": 0.938,
+      "q_bh": 0.938
+    },
+    "share.devops.Zabbix.now": {
+      "value": 0.0494,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Zabbix.before": {
+      "value": 0.0763,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Zabbix": {
+      "value": -0.0269,
+      "n": null,
+      "denominator": null,
+      "p": 0.0077,
+      "q_bh": 0.115
+    },
+    "share.devops.DevSecOps.now": {
+      "value": 0.0455,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.DevSecOps.before": {
+      "value": 0.0358,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.DevSecOps": {
+      "value": 0.0097,
+      "n": null,
+      "denominator": null,
+      "p": 0.246,
+      "q_bh": 0.434
+    },
+    "share.devops.GCP.now": {
+      "value": 0.0361,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.GCP.before": {
+      "value": 0.0191,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.GCP": {
+      "value": 0.0169,
+      "n": null,
+      "denominator": null,
+      "p": 0.103,
+      "q_bh": 0.311
+    },
+    "share.devops.Helm.now": {
+      "value": 0.0342,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Helm.before": {
+      "value": 0.0397,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Helm": {
+      "value": -0.0055,
+      "n": null,
+      "denominator": null,
+      "p": 0.486,
+      "q_bh": 0.634
+    },
+    "share.devops.Nginx.now": {
+      "value": 0.0424,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Nginx.before": {
+      "value": 0.0794,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Nginx": {
+      "value": -0.037,
+      "n": null,
+      "denominator": null,
+      "p": 0.0005,
+      "q_bh": 0.015
+    },
+    "share.devops.IaC.now": {
       "value": 0.035,
       "n": null,
       "denominator": null
     },
-    "share.qa.DevTools.before": {
-      "value": 0.0294,
+    "share.devops.IaC.before": {
+      "value": 0.0314,
       "n": null,
       "denominator": null
     },
-    "change.qa.DevTools": {
-      "value": 0.0056,
+    "change.devops.IaC": {
+      "value": 0.0036,
       "n": null,
       "denominator": null,
-      "p": 0.539,
-      "q_bh": 0.995
+      "p": 0.627,
+      "q_bh": 0.724
     },
-    "share.qa.iOS.now": {
+    "share.devops.Windows.now": {
+      "value": 0.0318,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.Windows.before": {
+      "value": 0.0378,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.Windows": {
+      "value": -0.006,
+      "n": null,
+      "denominator": null,
+      "p": 0.437,
+      "q_bh": 0.624
+    },
+    "share.devops.DNS.now": {
+      "value": 0.0336,
+      "n": null,
+      "denominator": null
+    },
+    "share.devops.DNS.before": {
+      "value": 0.0296,
+      "n": null,
+      "denominator": null
+    },
+    "change.devops.DNS": {
+      "value": 0.004,
+      "n": null,
+      "denominator": null,
+      "p": 0.576,
+      "q_bh": 0.691
+    },
+    "posts.mobile.now": {
+      "value": 535,
+      "n": null,
+      "denominator": null
+    },
+    "posts.mobile.before": {
+      "value": 946,
+      "n": null,
+      "denominator": null
+    },
+    "posts.mobile.both_channels_now": {
+      "value": 0.985,
+      "n": 527,
+      "denominator": 535
+    },
+    "posts.mobile.both_channels_before": {
+      "value": 0.9926,
+      "n": 939,
+      "denominator": 946
+    },
+    "share.mobile.Android.now": {
+      "value": 0.3405,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.Android.before": {
+      "value": 0.3361,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.Android": {
+      "value": 0.0045,
+      "n": null,
+      "denominator": null,
+      "p": 0.904,
+      "q_bh": 0.962
+    },
+    "share.mobile.iOS.now": {
+      "value": 0.3409,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.iOS.before": {
+      "value": 0.3057,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.iOS": {
+      "value": 0.0352,
+      "n": null,
+      "denominator": null,
+      "p": 0.304,
+      "q_bh": 0.567
+    },
+    "share.mobile.Kotlin.now": {
+      "value": 0.2203,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.Kotlin.before": {
+      "value": 0.1586,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.Kotlin": {
+      "value": 0.0617,
+      "n": null,
+      "denominator": null,
+      "p": 0.031,
+      "q_bh": 0.163
+    },
+    "share.mobile.Flutter.now": {
+      "value": 0.1684,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.Flutter.before": {
+      "value": 0.161,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.Flutter": {
+      "value": 0.0074,
+      "n": null,
+      "denominator": null,
+      "p": 0.73,
+      "q_bh": 0.958
+    },
+    "share.mobile.Swift.now": {
+      "value": 0.1191,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.Swift.before": {
+      "value": 0.0966,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.Swift": {
+      "value": 0.0226,
+      "n": null,
+      "denominator": null,
+      "p": 0.322,
+      "q_bh": 0.567
+    },
+    "share.mobile.Git.now": {
+      "value": 0.0986,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.Git.before": {
+      "value": 0.0994,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.Git": {
+      "value": -0.0008,
+      "n": null,
+      "denominator": null,
+      "p": 0.962,
+      "q_bh": 0.962
+    },
+    "share.mobile.REST.now": {
+      "value": 0.0911,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.REST.before": {
+      "value": 0.0636,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.REST": {
+      "value": 0.0275,
+      "n": null,
+      "denominator": null,
+      "p": 0.125,
+      "q_bh": 0.37
+    },
+    "share.mobile.Unity.now": {
+      "value": 0.1121,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.Unity.before": {
+      "value": 0.1142,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.Unity": {
+      "value": -0.0021,
+      "n": null,
+      "denominator": null,
+      "p": 0.931,
+      "q_bh": 0.962
+    },
+    "share.mobile.Java.now": {
+      "value": 0.0843,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.Java.before": {
+      "value": 0.0825,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.Java": {
+      "value": 0.0018,
+      "n": null,
+      "denominator": null,
+      "p": 0.936,
+      "q_bh": 0.962
+    },
+    "share.mobile.React Native.now": {
+      "value": 0.0753,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.React Native.before": {
+      "value": 0.1266,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.React Native": {
+      "value": -0.0513,
+      "n": null,
+      "denominator": null,
+      "p": 0.00275,
+      "q_bh": 0.0288
+    },
+    "share.mobile.CI/CD.now": {
+      "value": 0.0822,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.CI/CD.before": {
+      "value": 0.0379,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.CI/CD": {
+      "value": 0.0443,
+      "n": null,
+      "denominator": null,
+      "p": 0.001,
+      "q_bh": 0.021
+    },
+    "share.mobile.MVVM.now": {
+      "value": 0.0682,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.MVVM.before": {
+      "value": 0.0674,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.MVVM": {
+      "value": 0.0008,
+      "n": null,
+      "denominator": null,
+      "p": 0.957,
+      "q_bh": 0.962
+    },
+    "share.mobile.ООП.now": {
+      "value": 0.0498,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.ООП.before": {
+      "value": 0.0395,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.ООП": {
+      "value": 0.0103,
+      "n": null,
+      "denominator": null,
+      "p": 0.453,
+      "q_bh": 0.679
+    },
+    "share.mobile.SOLID.now": {
+      "value": 0.0624,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.SOLID.before": {
+      "value": 0.0331,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.SOLID": {
+      "value": 0.0293,
+      "n": null,
+      "denominator": null,
+      "p": 0.0124,
+      "q_bh": 0.0868
+    },
+    "share.mobile.Firebase.now": {
+      "value": 0.0609,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.Firebase.before": {
       "value": 0.0385,
       "n": null,
       "denominator": null
     },
-    "share.qa.iOS.before": {
-      "value": 0.0253,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.iOS": {
-      "value": 0.0132,
+    "change.mobile.Firebase": {
+      "value": 0.0224,
       "n": null,
       "denominator": null,
-      "p": 0.134,
-      "q_bh": 0.995
+      "p": 0.0628,
+      "q_bh": 0.264
     },
-    "share.qa.JSON.now": {
+    "share.mobile.Jetpack Compose.now": {
+      "value": 0.0519,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.Jetpack Compose.before": {
+      "value": 0.0303,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.Jetpack Compose": {
+      "value": 0.0216,
+      "n": null,
+      "denominator": null,
+      "p": 0.153,
+      "q_bh": 0.37
+    },
+    "share.mobile.C#.now": {
+      "value": 0.0471,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.C#.before": {
+      "value": 0.0672,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.C#": {
+      "value": -0.0201,
+      "n": null,
+      "denominator": null,
+      "p": 0.159,
+      "q_bh": 0.37
+    },
+    "share.mobile.Dart.now": {
+      "value": 0.0406,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.Dart.before": {
+      "value": 0.0488,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.Dart": {
+      "value": -0.0082,
+      "n": null,
+      "denominator": null,
+      "p": 0.489,
+      "q_bh": 0.685
+    },
+    "share.mobile.Clean architecture.now": {
+      "value": 0.043,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.Clean architecture.before": {
+      "value": 0.0312,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.Clean architecture": {
+      "value": 0.0118,
+      "n": null,
+      "denominator": null,
+      "p": 0.324,
+      "q_bh": 0.567
+    },
+    "share.mobile.JavaScript.now": {
+      "value": 0.0353,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.JavaScript.before": {
+      "value": 0.0445,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.JavaScript": {
+      "value": -0.0092,
+      "n": null,
+      "denominator": null,
+      "p": 0.409,
+      "q_bh": 0.661
+    },
+    "share.mobile.Kotlin Multiplatform.now": {
+      "value": 0.0391,
+      "n": null,
+      "denominator": null
+    },
+    "share.mobile.Kotlin Multiplatform.before": {
+      "value": 0.021,
+      "n": null,
+      "denominator": null
+    },
+    "change.mobile.Kotlin Multiplatform": {
+      "value": 0.0181,
+      "n": null,
+      "denominator": null,
+      "p": 0.131,
+      "q_bh": 0.37
+    },
+    "posts.fullstack.now": {
+      "value": 716,
+      "n": null,
+      "denominator": null
+    },
+    "posts.fullstack.before": {
+      "value": 842,
+      "n": null,
+      "denominator": null
+    },
+    "posts.fullstack.both_channels_now": {
+      "value": 0.9581,
+      "n": 686,
+      "denominator": 716
+    },
+    "posts.fullstack.both_channels_before": {
+      "value": 0.9976,
+      "n": 840,
+      "denominator": 842
+    },
+    "share.fullstack.React.now": {
+      "value": 0.4905,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.React.before": {
+      "value": 0.4626,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.React": {
+      "value": 0.0279,
+      "n": null,
+      "denominator": null,
+      "p": 0.499,
+      "q_bh": 0.685
+    },
+    "share.fullstack.Node.js.now": {
+      "value": 0.3049,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.Node.js.before": {
+      "value": 0.2985,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.Node.js": {
+      "value": 0.0064,
+      "n": null,
+      "denominator": null,
+      "p": 0.866,
+      "q_bh": 0.902
+    },
+    "share.fullstack.TypeScript.now": {
+      "value": 0.3115,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.TypeScript.before": {
+      "value": 0.2897,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.TypeScript": {
+      "value": 0.0219,
+      "n": null,
+      "denominator": null,
+      "p": 0.435,
+      "q_bh": 0.653
+    },
+    "share.fullstack.JavaScript.now": {
+      "value": 0.2779,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.JavaScript.before": {
+      "value": 0.4219,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.JavaScript": {
+      "value": -0.144,
+      "n": null,
+      "denominator": null,
+      "p": 0.0005,
+      "q_bh": 0.00424
+    },
+    "share.fullstack.PostgreSQL.now": {
+      "value": 0.2573,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.PostgreSQL.before": {
+      "value": 0.2502,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.PostgreSQL": {
+      "value": 0.0071,
+      "n": null,
+      "denominator": null,
+      "p": 0.872,
+      "q_bh": 0.902
+    },
+    "share.fullstack.Python.now": {
+      "value": 0.2247,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.Python.before": {
+      "value": 0.1766,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.Python": {
+      "value": 0.0481,
+      "n": null,
+      "denominator": null,
+      "p": 0.024,
+      "q_bh": 0.0954
+    },
+    "share.fullstack.Docker.now": {
+      "value": 0.2037,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.Docker.before": {
+      "value": 0.1574,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.Docker": {
+      "value": 0.0462,
+      "n": null,
+      "denominator": null,
+      "p": 0.033,
+      "q_bh": 0.11
+    },
+    "share.fullstack.REST.now": {
+      "value": 0.1529,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.REST.before": {
+      "value": 0.1184,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.REST": {
+      "value": 0.0345,
+      "n": null,
+      "denominator": null,
+      "p": 0.057,
+      "q_bh": 0.171
+    },
+    "share.fullstack.CI/CD.now": {
+      "value": 0.1379,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.CI/CD.before": {
+      "value": 0.0812,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.CI/CD": {
+      "value": 0.0566,
+      "n": null,
+      "denominator": null,
+      "p": 0.000565,
+      "q_bh": 0.00424
+    },
+    "share.fullstack.Git.now": {
+      "value": 0.1369,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.Git.before": {
+      "value": 0.1526,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.Git": {
+      "value": -0.0157,
+      "n": null,
+      "denominator": null,
+      "p": 0.548,
+      "q_bh": 0.685
+    },
+    "share.fullstack.Next.js.now": {
+      "value": 0.1286,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.Next.js.before": {
+      "value": 0.0958,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.Next.js": {
       "value": 0.0328,
       "n": null,
-      "denominator": null
+      "denominator": null,
+      "p": 0.191,
+      "q_bh": 0.382
     },
-    "share.qa.JSON.before": {
-      "value": 0.0327,
+    "share.fullstack.Vue.js.now": {
+      "value": 0.1246,
       "n": null,
       "denominator": null
     },
-    "change.qa.JSON": {
+    "share.fullstack.Vue.js.before": {
+      "value": 0.1409,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.Vue.js": {
+      "value": -0.0163,
+      "n": null,
+      "denominator": null,
+      "p": 0.38,
+      "q_bh": 0.633
+    },
+    "share.fullstack.PHP.now": {
+      "value": 0.132,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.PHP.before": {
+      "value": 0.1574,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.PHP": {
+      "value": -0.0253,
+      "n": null,
+      "denominator": null,
+      "p": 0.178,
+      "q_bh": 0.382
+    },
+    "share.fullstack.SQL.now": {
+      "value": 0.1155,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.SQL.before": {
+      "value": 0.1154,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.SQL": {
       "value": 0.0001,
       "n": null,
       "denominator": null,
       "p": 0.995,
       "q_bh": 0.995
     },
-    "share.qa.Kubernetes.now": {
-      "value": 0.0308,
+    "share.fullstack.Redis.now": {
+      "value": 0.1071,
       "n": null,
       "denominator": null
     },
-    "share.qa.Kubernetes.before": {
-      "value": 0.0301,
+    "share.fullstack.Redis.before": {
+      "value": 0.0823,
       "n": null,
       "denominator": null
     },
-    "change.qa.Kubernetes": {
-      "value": 0.0006,
+    "change.fullstack.Redis": {
+      "value": 0.0248,
       "n": null,
       "denominator": null,
-      "p": 0.981,
-      "q_bh": 0.995
+      "p": 0.111,
+      "q_bh": 0.278
     },
-    "share.qa.Jenkins.now": {
-      "value": 0.0331,
+    "share.fullstack.Angular.now": {
+      "value": 0.0955,
       "n": null,
       "denominator": null
     },
-    "share.qa.Jenkins.before": {
-      "value": 0.0317,
+    "share.fullstack.Angular.before": {
+      "value": 0.0734,
       "n": null,
       "denominator": null
     },
-    "change.qa.Jenkins": {
-      "value": 0.0013,
-      "n": null,
-      "denominator": null,
-      "p": 0.883,
-      "q_bh": 0.995
-    },
-    "share.qa.Kotlin.now": {
-      "value": 0.03,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.Kotlin.before": {
-      "value": 0.0305,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.Kotlin": {
-      "value": -0.0005,
-      "n": null,
-      "denominator": null,
-      "p": 0.954,
-      "q_bh": 0.995
-    },
-    "share.qa.JavaScript.now": {
-      "value": 0.0314,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.JavaScript.before": {
-      "value": 0.0395,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.JavaScript": {
-      "value": -0.0081,
-      "n": null,
-      "denominator": null,
-      "p": 0.4,
-      "q_bh": 0.995
-    },
-    "share.qa.ООП.now": {
-      "value": 0.0254,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.ООП.before": {
-      "value": 0.0168,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.ООП": {
-      "value": 0.0087,
-      "n": null,
-      "denominator": null,
-      "p": 0.265,
-      "q_bh": 0.995
-    },
-    "share.qa.RabbitMQ.now": {
-      "value": 0.0279,
-      "n": null,
-      "denominator": null
-    },
-    "share.qa.RabbitMQ.before": {
-      "value": 0.0156,
-      "n": null,
-      "denominator": null
-    },
-    "change.qa.RabbitMQ": {
-      "value": 0.0122,
-      "n": null,
-      "denominator": null,
-      "p": 0.105,
-      "q_bh": 0.995
-    },
-    "posts.analytics.now": {
-      "value": 704,
-      "n": null,
-      "denominator": null
-    },
-    "posts.analytics.before": {
-      "value": 712,
-      "n": null,
-      "denominator": null
-    },
-    "posts.analytics.both_channels_now": {
-      "value": 0.9631,
-      "n": 678,
-      "denominator": 704
-    },
-    "posts.analytics.both_channels_before": {
-      "value": 0.9579,
-      "n": 682,
-      "denominator": 712
-    },
-    "share.analytics.SQL.now": {
-      "value": 0.2674,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.SQL.before": {
-      "value": 0.2486,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.SQL": {
-      "value": 0.0188,
-      "n": null,
-      "denominator": null,
-      "p": 0.478,
-      "q_bh": 0.741
-    },
-    "share.analytics.Excel.now": {
-      "value": 0.098,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.Excel.before": {
-      "value": 0.0766,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.Excel": {
-      "value": 0.0214,
-      "n": null,
-      "denominator": null,
-      "p": 0.673,
-      "q_bh": 0.808
-    },
-    "share.analytics.Python.now": {
-      "value": 0.1248,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.Python.before": {
-      "value": 0.1538,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.Python": {
-      "value": -0.029,
-      "n": null,
-      "denominator": null,
-      "p": 0.167,
-      "q_bh": 0.741
-    },
-    "share.analytics.Power BI.now": {
-      "value": 0.0918,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.Power BI.before": {
-      "value": 0.0614,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.Power BI": {
-      "value": 0.0304,
-      "n": null,
-      "denominator": null,
-      "p": 0.093,
-      "q_bh": 0.741
-    },
-    "share.analytics.BPMN.now": {
-      "value": 0.0594,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.BPMN.before": {
-      "value": 0.0663,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.BPMN": {
-      "value": -0.0069,
-      "n": null,
-      "denominator": null,
-      "p": 0.718,
-      "q_bh": 0.808
-    },
-    "share.analytics.REST.now": {
-      "value": 0.0682,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.REST.before": {
-      "value": 0.0475,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.REST": {
-      "value": 0.0207,
-      "n": null,
-      "denominator": null,
-      "p": 0.4,
-      "q_bh": 0.741
-    },
-    "share.analytics.Tableau.now": {
-      "value": 0.0848,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.Tableau.before": {
-      "value": 0.0539,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.Tableau": {
-      "value": 0.0309,
-      "n": null,
-      "denominator": null,
-      "p": 0.373,
-      "q_bh": 0.741
-    },
-    "share.analytics.UML.now": {
-      "value": 0.0541,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.UML.before": {
-      "value": 0.0578,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.UML": {
-      "value": -0.0036,
-      "n": null,
-      "denominator": null,
-      "p": 0.809,
-      "q_bh": 0.857
-    },
-    "share.analytics.Jira.now": {
-      "value": 0.0345,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.Jira.before": {
-      "value": 0.0222,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.Jira": {
-      "value": 0.0123,
-      "n": null,
-      "denominator": null,
-      "p": 0.259,
-      "q_bh": 0.741
-    },
-    "share.analytics.1С.now": {
-      "value": 0.0393,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.1С.before": {
-      "value": 0.0346,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.1С": {
-      "value": 0.0048,
-      "n": null,
-      "denominator": null,
-      "p": 0.69,
-      "q_bh": 0.808
-    },
-    "share.analytics.JSON.now": {
-      "value": 0.0281,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.JSON.before": {
-      "value": 0.0204,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.JSON": {
-      "value": 0.0078,
-      "n": null,
-      "denominator": null,
-      "p": 0.494,
-      "q_bh": 0.741
-    },
-    "share.analytics.Kafka.now": {
-      "value": 0.0277,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.Kafka.before": {
-      "value": 0.0188,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.Kafka": {
-      "value": 0.0089,
-      "n": null,
-      "denominator": null,
-      "p": 0.38,
-      "q_bh": 0.741
-    },
-    "share.analytics.SOAP.now": {
-      "value": 0.0275,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.SOAP.before": {
-      "value": 0.0156,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.SOAP": {
-      "value": 0.0119,
-      "n": null,
-      "denominator": null,
-      "p": 0.44,
-      "q_bh": 0.741
-    },
-    "share.analytics.Confluence.now": {
-      "value": 0.0195,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.Confluence.before": {
-      "value": 0.0201,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.Confluence": {
-      "value": -0.0007,
-      "n": null,
-      "denominator": null,
-      "p": 0.945,
-      "q_bh": 0.945
-    },
-    "share.analytics.ClickHouse.now": {
-      "value": 0.0337,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.ClickHouse.before": {
-      "value": 0.0384,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.ClickHouse": {
-      "value": -0.0047,
-      "n": null,
-      "denominator": null,
-      "p": 0.689,
-      "q_bh": 0.808
-    },
-    "share.analytics.ETL.now": {
-      "value": 0.0348,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.ETL.before": {
-      "value": 0.0264,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.ETL": {
-      "value": 0.0085,
-      "n": null,
-      "denominator": null,
-      "p": 0.393,
-      "q_bh": 0.741
-    },
-    "share.analytics.PostgreSQL.now": {
-      "value": 0.041,
-      "n": null,
-      "denominator": null
-    },
-    "share.analytics.PostgreSQL.before": {
-      "value": 0.0293,
-      "n": null,
-      "denominator": null
-    },
-    "change.analytics.PostgreSQL": {
-      "value": 0.0116,
+    "change.fullstack.Angular": {
+      "value": 0.0221,
       "n": null,
       "denominator": null,
       "p": 0.369,
-      "q_bh": 0.741
+      "q_bh": 0.633
     },
-    "share.analytics.Looker.now": {
-      "value": 0.0335,
+    "share.fullstack..NET.now": {
+      "value": 0.0962,
       "n": null,
       "denominator": null
     },
-    "share.analytics.Looker.before": {
-      "value": 0.0071,
+    "share.fullstack..NET.before": {
+      "value": 0.0815,
       "n": null,
       "denominator": null
     },
-    "change.analytics.Looker": {
-      "value": 0.0264,
+    "change.fullstack..NET": {
+      "value": 0.0148,
       "n": null,
       "denominator": null,
-      "p": 0.479,
-      "q_bh": 0.741
+      "p": 0.424,
+      "q_bh": 0.653
     },
-    "posts.ml.now": {
-      "value": 478,
+    "share.fullstack.C#.now": {
+      "value": 0.0898,
       "n": null,
       "denominator": null
     },
-    "posts.ml.before": {
-      "value": 569,
+    "share.fullstack.C#.before": {
+      "value": 0.0635,
       "n": null,
       "denominator": null
     },
-    "posts.ml.both_channels_now": {
-      "value": 0.9414,
-      "n": 450,
-      "denominator": 478
-    },
-    "posts.ml.both_channels_before": {
-      "value": 0.9736,
-      "n": 554,
-      "denominator": 569
-    },
-    "share.ml.Python.now": {
-      "value": 0.551,
-      "n": null,
-      "denominator": null
-    },
-    "share.ml.Python.before": {
-      "value": 0.472,
-      "n": null,
-      "denominator": null
-    },
-    "change.ml.Python": {
-      "value": 0.079,
+    "change.fullstack.C#": {
+      "value": 0.0263,
       "n": null,
       "denominator": null,
-      "p": 0.117,
-      "q_bh": 0.324
+      "p": 0.0688,
+      "q_bh": 0.188
     },
-    "share.ml.SQL.now": {
-      "value": 0.2447,
+    "share.fullstack.CSS.now": {
+      "value": 0.0881,
       "n": null,
       "denominator": null
     },
-    "share.ml.SQL.before": {
-      "value": 0.1884,
+    "share.fullstack.CSS.before": {
+      "value": 0.1698,
       "n": null,
       "denominator": null
     },
-    "change.ml.SQL": {
-      "value": 0.0563,
+    "change.fullstack.CSS": {
+      "value": -0.0817,
       "n": null,
       "denominator": null,
-      "p": 0.131,
-      "q_bh": 0.324
+      "p": 0.0005,
+      "q_bh": 0.00424
     },
-    "share.ml.Docker.now": {
-      "value": 0.1981,
+    "share.fullstack.HTML.now": {
+      "value": 0.0871,
       "n": null,
       "denominator": null
     },
-    "share.ml.Docker.before": {
-      "value": 0.1603,
+    "share.fullstack.HTML.before": {
+      "value": 0.1688,
       "n": null,
       "denominator": null
     },
-    "change.ml.Docker": {
-      "value": 0.0378,
+    "change.fullstack.HTML": {
+      "value": -0.0818,
       "n": null,
       "denominator": null,
-      "p": 0.197,
-      "q_bh": 0.352
+      "p": 0.0005,
+      "q_bh": 0.00424
     },
-    "share.ml.PyTorch.now": {
-      "value": 0.1342,
+    "share.fullstack.Kubernetes.now": {
+      "value": 0.0809,
       "n": null,
       "denominator": null
     },
-    "share.ml.PyTorch.before": {
-      "value": 0.1687,
+    "share.fullstack.Kubernetes.before": {
+      "value": 0.0513,
       "n": null,
       "denominator": null
     },
-    "change.ml.PyTorch": {
-      "value": -0.0344,
+    "change.fullstack.Kubernetes": {
+      "value": 0.0296,
       "n": null,
       "denominator": null,
-      "p": 0.195,
-      "q_bh": 0.352
+      "p": 0.0254,
+      "q_bh": 0.0954
     },
-    "share.ml.CI/CD.now": {
-      "value": 0.1272,
+    "share.fullstack.Java.now": {
+      "value": 0.0684,
       "n": null,
       "denominator": null
     },
-    "share.ml.CI/CD.before": {
-      "value": 0.0692,
+    "share.fullstack.Java.before": {
+      "value": 0.0773,
       "n": null,
       "denominator": null
     },
-    "change.ml.CI/CD": {
-      "value": 0.058,
+    "change.fullstack.Java": {
+      "value": -0.0089,
       "n": null,
       "denominator": null,
-      "p": 0.041,
-      "q_bh": 0.205
+      "p": 0.529,
+      "q_bh": 0.685
     },
-    "share.ml.RAG.now": {
-      "value": 0.1198,
-      "n": null,
-      "denominator": null
-    },
-    "share.ml.RAG.before": {
-      "value": 0.1414,
-      "n": null,
-      "denominator": null
-    },
-    "change.ml.RAG": {
-      "value": -0.0216,
-      "n": null,
-      "denominator": null,
-      "p": 0.335,
-      "q_bh": 0.524
-    },
-    "share.ml.Kubernetes.now": {
-      "value": 0.1171,
-      "n": null,
-      "denominator": null
-    },
-    "share.ml.Kubernetes.before": {
-      "value": 0.0787,
-      "n": null,
-      "denominator": null
-    },
-    "change.ml.Kubernetes": {
-      "value": 0.0384,
-      "n": null,
-      "denominator": null,
-      "p": 0.137,
-      "q_bh": 0.324
-    },
-    "share.ml.PostgreSQL.now": {
-      "value": 0.0942,
-      "n": null,
-      "denominator": null
-    },
-    "share.ml.PostgreSQL.before": {
+    "share.fullstack.Go.now": {
       "value": 0.069,
       "n": null,
       "denominator": null
     },
-    "change.ml.PostgreSQL": {
-      "value": 0.0252,
+    "share.fullstack.Go.before": {
+      "value": 0.0385,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.Go": {
+      "value": 0.0305,
       "n": null,
       "denominator": null,
-      "p": 0.281,
-      "q_bh": 0.468
+      "p": 0.019,
+      "q_bh": 0.095
     },
-    "share.ml.Airflow.now": {
-      "value": 0.1059,
+    "share.fullstack.MySQL.now": {
+      "value": 0.0703,
       "n": null,
       "denominator": null
     },
-    "share.ml.Airflow.before": {
-      "value": 0.0728,
+    "share.fullstack.MySQL.before": {
+      "value": 0.0859,
       "n": null,
       "denominator": null
     },
-    "change.ml.Airflow": {
+    "change.fullstack.MySQL": {
+      "value": -0.0156,
+      "n": null,
+      "denominator": null,
+      "p": 0.279,
+      "q_bh": 0.522
+    },
+    "share.fullstack.Laravel.now": {
+      "value": 0.0642,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.Laravel.before": {
+      "value": 0.0715,
+      "n": null,
+      "denominator": null
+    },
+    "change.fullstack.Laravel": {
+      "value": -0.0073,
+      "n": null,
+      "denominator": null,
+      "p": 0.589,
+      "q_bh": 0.707
+    },
+    "share.fullstack.Tailwind CSS.now": {
+      "value": 0.0633,
+      "n": null,
+      "denominator": null
+    },
+    "share.fullstack.Tailwind CSS.before": {
       "value": 0.0331,
       "n": null,
-      "denominator": null,
-      "p": 0.167,
-      "q_bh": 0.348
-    },
-    "share.ml.Git.now": {
-      "value": 0.0933,
-      "n": null,
       "denominator": null
     },
-    "share.ml.Git.before": {
-      "value": 0.105,
-      "n": null,
-      "denominator": null
-    },
-    "change.ml.Git": {
-      "value": -0.0117,
+    "change.fullstack.Tailwind CSS": {
+      "value": 0.0303,
       "n": null,
       "denominator": null,
-      "p": 0.555,
-      "q_bh": 0.661
+      "p": 0.019,
+      "q_bh": 0.095
     },
-    "share.ml.LangChain.now": {
-      "value": 0.0915,
+    "share.fullstack.Microservices.now": {
+      "value": 0.0597,
       "n": null,
       "denominator": null
     },
-    "share.ml.LangChain.before": {
-      "value": 0.0841,
+    "share.fullstack.Microservices.before": {
+      "value": 0.0436,
       "n": null,
       "denominator": null
     },
-    "change.ml.LangChain": {
-      "value": 0.0074,
+    "change.fullstack.Microservices": {
+      "value": 0.0161,
       "n": null,
       "denominator": null,
-      "p": 0.757,
-      "q_bh": 0.806
+      "p": 0.174,
+      "q_bh": 0.382
     },
-    "share.ml.Kafka.now": {
-      "value": 0.0839,
+    "share.fullstack.Express.now": {
+      "value": 0.0547,
       "n": null,
       "denominator": null
     },
-    "share.ml.Kafka.before": {
-      "value": 0.0235,
+    "share.fullstack.Express.before": {
+      "value": 0.0508,
       "n": null,
       "denominator": null
     },
-    "change.ml.Kafka": {
-      "value": 0.0605,
+    "change.fullstack.Express": {
+      "value": 0.0039,
       "n": null,
       "denominator": null,
-      "p": 0.0005,
-      "q_bh": 0.0124
+      "p": 0.842,
+      "q_bh": 0.902
     },
-    "share.ml.MLOps.now": {
-      "value": 0.0943,
+    "share.fullstack.FastAPI.now": {
+      "value": 0.0419,
       "n": null,
       "denominator": null
     },
-    "share.ml.MLOps.before": {
-      "value": 0.0514,
+    "share.fullstack.FastAPI.before": {
+      "value": 0.051,
       "n": null,
       "denominator": null
     },
-    "change.ml.MLOps": {
-      "value": 0.0429,
+    "change.fullstack.FastAPI": {
+      "value": -0.0092,
       "n": null,
       "denominator": null,
-      "p": 0.029,
-      "q_bh": 0.181
+      "p": 0.541,
+      "q_bh": 0.685
     },
-    "share.ml.A/B-тесты.now": {
-      "value": 0.0842,
+    "share.fullstack.NestJS.now": {
+      "value": 0.0482,
       "n": null,
       "denominator": null
     },
-    "share.ml.A/B-тесты.before": {
-      "value": 0.0451,
+    "share.fullstack.NestJS.before": {
+      "value": 0.0533,
       "n": null,
       "denominator": null
     },
-    "change.ml.A/B-тесты": {
-      "value": 0.039,
+    "change.fullstack.NestJS": {
+      "value": -0.0051,
       "n": null,
       "denominator": null,
-      "p": 0.0118,
-      "q_bh": 0.0986
+      "p": 0.663,
+      "q_bh": 0.766
     },
-    "share.ml.FastAPI.now": {
+    "posts.security.now": {
+      "value": 1073,
+      "n": null,
+      "denominator": null
+    },
+    "posts.security.before": {
+      "value": 1088,
+      "n": null,
+      "denominator": null
+    },
+    "posts.security.both_channels_now": {
+      "value": 0.9879,
+      "n": 1060,
+      "denominator": 1073
+    },
+    "posts.security.both_channels_before": {
+      "value": 0.9926,
+      "n": 1080,
+      "denominator": 1088
+    },
+    "share.security.Linux.now": {
+      "value": 0.3026,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.Linux.before": {
+      "value": 0.2815,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.Linux": {
+      "value": 0.0212,
+      "n": null,
+      "denominator": null,
+      "p": 0.285,
+      "q_bh": 0.79
+    },
+    "share.security.Python.now": {
+      "value": 0.2674,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.Python.before": {
+      "value": 0.2346,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.Python": {
+      "value": 0.0329,
+      "n": null,
+      "denominator": null,
+      "p": 0.0828,
+      "q_bh": 0.79
+    },
+    "share.security.Windows.now": {
+      "value": 0.2113,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.Windows.before": {
+      "value": 0.1821,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.Windows": {
+      "value": 0.0292,
+      "n": null,
+      "denominator": null,
+      "p": 0.231,
+      "q_bh": 0.79
+    },
+    "share.security.OWASP.now": {
+      "value": 0.1445,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.OWASP.before": {
+      "value": 0.1734,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.OWASP": {
+      "value": -0.0289,
+      "n": null,
+      "denominator": null,
+      "p": 0.0687,
+      "q_bh": 0.79
+    },
+    "share.security.Bash.now": {
+      "value": 0.1172,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.Bash.before": {
+      "value": 0.1115,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.Bash": {
+      "value": 0.0058,
+      "n": null,
+      "denominator": null,
+      "p": 0.676,
+      "q_bh": 0.79
+    },
+    "share.security.Go.now": {
+      "value": 0.1061,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.Go.before": {
+      "value": 0.1137,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.Go": {
+      "value": -0.0076,
+      "n": null,
+      "denominator": null,
+      "p": 0.577,
+      "q_bh": 0.79
+    },
+    "share.security.Kubernetes.now": {
+      "value": 0.1038,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.Kubernetes.before": {
+      "value": 0.0844,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.Kubernetes": {
+      "value": 0.0194,
+      "n": null,
+      "denominator": null,
+      "p": 0.182,
+      "q_bh": 0.79
+    },
+    "share.security.CI/CD.now": {
+      "value": 0.1012,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.CI/CD.before": {
+      "value": 0.0941,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.CI/CD": {
+      "value": 0.0071,
+      "n": null,
+      "denominator": null,
+      "p": 0.7,
+      "q_bh": 0.79
+    },
+    "share.security.PowerShell.now": {
+      "value": 0.0944,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.PowerShell.before": {
+      "value": 0.0688,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.PowerShell": {
+      "value": 0.0256,
+      "n": null,
+      "denominator": null,
+      "p": 0.0314,
+      "q_bh": 0.79
+    },
+    "share.security.SAST.now": {
+      "value": 0.0951,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.SAST.before": {
+      "value": 0.1009,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.SAST": {
+      "value": -0.0059,
+      "n": null,
+      "denominator": null,
+      "p": 0.651,
+      "q_bh": 0.79
+    },
+    "share.security.AWS.now": {
       "value": 0.081,
       "n": null,
       "denominator": null
     },
-    "share.ml.FastAPI.before": {
-      "value": 0.0755,
+    "share.security.AWS.before": {
+      "value": 0.039,
       "n": null,
       "denominator": null
     },
-    "change.ml.FastAPI": {
-      "value": 0.0054,
+    "change.security.AWS": {
+      "value": 0.0421,
       "n": null,
       "denominator": null,
-      "p": 0.773,
-      "q_bh": 0.806
+      "p": 0.229,
+      "q_bh": 0.79
     },
-    "share.ml.pandas.now": {
-      "value": 0.0742,
+    "share.security.DAST.now": {
+      "value": 0.0844,
       "n": null,
       "denominator": null
     },
-    "share.ml.pandas.before": {
-      "value": 0.1024,
+    "share.security.DAST.before": {
+      "value": 0.0959,
       "n": null,
       "denominator": null
     },
-    "change.ml.pandas": {
-      "value": -0.0282,
+    "change.security.DAST": {
+      "value": -0.0115,
       "n": null,
       "denominator": null,
-      "p": 0.143,
-      "q_bh": 0.324
+      "p": 0.356,
+      "q_bh": 0.79
     },
-    "share.ml.REST.now": {
-      "value": 0.0601,
+    "share.security.Pentest.now": {
+      "value": 0.081,
       "n": null,
       "denominator": null
     },
-    "share.ml.REST.before": {
-      "value": 0.0476,
+    "share.security.Pentest.before": {
+      "value": 0.1,
       "n": null,
       "denominator": null
     },
-    "change.ml.REST": {
-      "value": 0.0125,
+    "change.security.Pentest": {
+      "value": -0.019,
       "n": null,
       "denominator": null,
-      "p": 0.461,
-      "q_bh": 0.593
+      "p": 0.432,
+      "q_bh": 0.79
     },
-    "share.ml.Microservices.now": {
-      "value": 0.0538,
+    "share.security.TCP/IP.now": {
+      "value": 0.0745,
       "n": null,
       "denominator": null
     },
-    "share.ml.Microservices.before": {
-      "value": 0.0383,
+    "share.security.TCP/IP.before": {
+      "value": 0.0821,
       "n": null,
       "denominator": null
     },
-    "change.ml.Microservices": {
-      "value": 0.0155,
+    "change.security.TCP/IP": {
+      "value": -0.0076,
       "n": null,
       "denominator": null,
-      "p": 0.474,
-      "q_bh": 0.593
+      "p": 0.515,
+      "q_bh": 0.79
     },
-    "share.ml.NumPy.now": {
-      "value": 0.0601,
+    "share.security.DNS.now": {
+      "value": 0.0732,
       "n": null,
       "denominator": null
     },
-    "share.ml.NumPy.before": {
-      "value": 0.0927,
+    "share.security.DNS.before": {
+      "value": 0.0543,
       "n": null,
       "denominator": null
     },
-    "change.ml.NumPy": {
-      "value": -0.0326,
+    "change.security.DNS": {
+      "value": 0.0188,
       "n": null,
       "denominator": null,
-      "p": 0.073,
-      "q_bh": 0.304
+      "p": 0.382,
+      "q_bh": 0.79
     },
-    "share.ml.scikit-learn.now": {
-      "value": 0.0567,
+    "share.security.DevSecOps.now": {
+      "value": 0.0638,
       "n": null,
       "denominator": null
     },
-    "share.ml.scikit-learn.before": {
-      "value": 0.0852,
+    "share.security.DevSecOps.before": {
+      "value": 0.0668,
       "n": null,
       "denominator": null
     },
-    "change.ml.scikit-learn": {
-      "value": -0.0285,
+    "change.security.DevSecOps": {
+      "value": -0.003,
       "n": null,
       "denominator": null,
-      "p": 0.107,
-      "q_bh": 0.324
+      "p": 0.784,
+      "q_bh": 0.817
     },
-    "share.ml.LangGraph.now": {
+    "share.security.Docker.now": {
+      "value": 0.0555,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.Docker.before": {
+      "value": 0.0606,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.Docker": {
+      "value": -0.0051,
+      "n": null,
+      "denominator": null,
+      "p": 0.618,
+      "q_bh": 0.79
+    },
+    "share.security.Kaspersky.now": {
+      "value": 0.0571,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.Kaspersky.before": {
+      "value": 0.0594,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.Kaspersky": {
+      "value": -0.0024,
+      "n": null,
+      "denominator": null,
+      "p": 0.817,
+      "q_bh": 0.817
+    },
+    "share.security.Java.now": {
+      "value": 0.0565,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.Java.before": {
+      "value": 0.0691,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.Java": {
+      "value": -0.0126,
+      "n": null,
+      "denominator": null,
+      "p": 0.573,
+      "q_bh": 0.79
+    },
+    "share.security.Azure.now": {
+      "value": 0.0502,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.Azure.before": {
+      "value": 0.0197,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.Azure": {
+      "value": 0.0305,
+      "n": null,
+      "denominator": null,
+      "p": 0.711,
+      "q_bh": 0.79
+    },
+    "share.security.DevOps.now": {
+      "value": 0.0489,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.DevOps.before": {
+      "value": 0.0444,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.DevOps": {
+      "value": 0.0045,
+      "n": null,
+      "denominator": null,
+      "p": 0.622,
+      "q_bh": 0.79
+    },
+    "share.security.SQL.now": {
+      "value": 0.0514,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.SQL.before": {
+      "value": 0.049,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.SQL": {
+      "value": 0.0024,
+      "n": null,
+      "denominator": null,
+      "p": 0.801,
+      "q_bh": 0.817
+    },
+    "share.security.C++.now": {
+      "value": 0.0488,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.C++.before": {
+      "value": 0.0591,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.C++": {
+      "value": -0.0103,
+      "n": null,
+      "denominator": null,
+      "p": 0.631,
+      "q_bh": 0.79
+    },
+    "share.security.SCA.now": {
       "value": 0.0507,
       "n": null,
       "denominator": null
     },
-    "share.ml.LangGraph.before": {
-      "value": 0.0544,
+    "share.security.SCA.before": {
+      "value": 0.0659,
       "n": null,
       "denominator": null
     },
-    "change.ml.LangGraph": {
-      "value": -0.0036,
+    "change.security.SCA": {
+      "value": -0.0151,
       "n": null,
       "denominator": null,
-      "p": 0.806,
-      "q_bh": 0.806
+      "p": 0.256,
+      "q_bh": 0.79
     },
-    "share.ml.Redis.now": {
-      "value": 0.0387,
+    "share.security.HTTP.now": {
+      "value": 0.0488,
       "n": null,
       "denominator": null
     },
-    "share.ml.Redis.before": {
-      "value": 0.0345,
+    "share.security.HTTP.before": {
+      "value": 0.0556,
       "n": null,
       "denominator": null
     },
-    "change.ml.Redis": {
-      "value": 0.0043,
+    "change.security.HTTP": {
+      "value": -0.0068,
       "n": null,
       "denominator": null,
-      "p": 0.783,
-      "q_bh": 0.806
+      "p": 0.48,
+      "q_bh": 0.79
     },
-    "share.ml.MCP.now": {
-      "value": 0.0448,
+    "share.security.GCP.now": {
+      "value": 0.0454,
       "n": null,
       "denominator": null
     },
-    "share.ml.MCP.before": {
-      "value": 0.0094,
+    "share.security.GCP.before": {
+      "value": 0.0245,
       "n": null,
       "denominator": null
     },
-    "change.ml.MCP": {
-      "value": 0.0354,
+    "change.security.GCP": {
+      "value": 0.0209,
       "n": null,
       "denominator": null,
-      "p": 0.000995,
-      "q_bh": 0.0124
+      "p": 0.711,
+      "q_bh": 0.79
     },
-    "share.ml.Spark.now": {
-      "value": 0.04,
+    "share.security.JavaScript.now": {
+      "value": 0.0458,
       "n": null,
       "denominator": null
     },
-    "share.ml.Spark.before": {
-      "value": 0.0525,
+    "share.security.JavaScript.before": {
+      "value": 0.0516,
       "n": null,
       "denominator": null
     },
-    "change.ml.Spark": {
-      "value": -0.0126,
+    "change.security.JavaScript": {
+      "value": -0.0058,
       "n": null,
       "denominator": null,
-      "p": 0.366,
-      "q_bh": 0.538
+      "p": 0.607,
+      "q_bh": 0.79
     },
-    "share.ml.LlamaIndex.now": {
-      "value": 0.0397,
+    "share.security.Active Directory.now": {
+      "value": 0.0417,
       "n": null,
       "denominator": null
     },
-    "share.ml.LlamaIndex.before": {
-      "value": 0.0306,
+    "share.security.Active Directory.before": {
+      "value": 0.0465,
       "n": null,
       "denominator": null
     },
-    "change.ml.LlamaIndex": {
-      "value": 0.0091,
+    "change.security.Active Directory": {
+      "value": -0.0048,
       "n": null,
       "denominator": null,
-      "p": 0.46,
-      "q_bh": 0.593
+      "p": 0.591,
+      "q_bh": 0.79
+    },
+    "share.security.TLS.now": {
+      "value": 0.0356,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.TLS.before": {
+      "value": 0.0219,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.TLS": {
+      "value": 0.0137,
+      "n": null,
+      "denominator": null,
+      "p": 0.47,
+      "q_bh": 0.79
+    },
+    "share.security.Microservices.now": {
+      "value": 0.0389,
+      "n": null,
+      "denominator": null
+    },
+    "share.security.Microservices.before": {
+      "value": 0.0323,
+      "n": null,
+      "denominator": null
+    },
+    "change.security.Microservices": {
+      "value": 0.0067,
+      "n": null,
+      "denominator": null,
+      "p": 0.711,
+      "q_bh": 0.79
     }
   },
   "quarter": "2026Q3",
-  "compared_with": "2025Q3",
-  "min_quarter_posts": 300,
+  "last_year": [
+    "2025-10-01",
+    "2026-10-01"
+  ],
+  "year_before": [
+    "2024-10-01",
+    "2025-10-01"
+  ],
+  "min_period_posts": 300,
   "min_mentions": 20,
   "top_skills": 30,
   "fdr": 0.05

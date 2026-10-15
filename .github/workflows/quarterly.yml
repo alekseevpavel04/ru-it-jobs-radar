@@ -1,0 +1,71 @@
+name: quarterly
+
+# The quarterly skill report (radar.site.quarterly): the twelve months to the end of the finished quarter
+# against the twelve before, from the weekly counts the daily autopilot.yml keeps in aggregates/telegram.
+# The report goes to docs/quarterly and results/quarterly on main and out as a GitHub release, so that
+# watching the repository's releases is how a reader gets the next one.
+on:
+  schedule:
+    # the 3rd day of a quarter: the daily runs have counted the posts of the quarter's last days by then
+    - cron: "0 6 3 1,4,7,10 *"
+  workflow_dispatch:
+    inputs:
+      quarter:
+        description: "Quarter to report, e.g. 2026Q3; empty for the last finished one"
+        default: ""
+
+permissions:
+  contents: read
+
+# The daily run commits to the same branch; the report waits for it rather than racing it.
+concurrency:
+  group: autopilot
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    env:
+      PYTHONPATH: src
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7.6.0
+        with:
+          version: "0.10.5"
+          enable-cache: true
+      - run: uv python install 3.11
+      - run: uv sync --frozen --only-group autopilot
+      - id: report
+        name: Write the report
+        run: |
+          quarter="${{ inputs.quarter }}"
+          if [ -z "$quarter" ]; then
+            quarter=$(uv run --no-sync python -c "from datetime import date; from radar.site.quarterly import last_finished; print(last_finished(date.today()))")
+          fi
+          uv run --no-sync python -m radar.site.quarterly --quarter "$quarter"
+          echo "quarter=$quarter" >> "$GITHUB_OUTPUT"
+      - name: Commit and release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          QUARTER: ${{ steps.report.outputs.quarter }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "docs/quarterly/${QUARTER}.md" "results/quarterly/${QUARTER}.json"
+          if ! git diff --cached --quiet; then
+            git commit -q -m "Add the quarterly skill report for ${QUARTER}"
+            git pull -q --rebase origin main
+            git push origin HEAD:main
+          fi
+          title="$(head -1 "docs/quarterly/${QUARTER}.md" | sed 's/^# //')"
+          if gh release view "skills-${QUARTER}" > /dev/null 2>&1; then
+            gh release edit "skills-${QUARTER}" --title "$title" --notes-file <(tail -n +3 "docs/quarterly/${QUARTER}.md")
+          else
+            gh release create "skills-${QUARTER}" --target main --title "$title" \
+              --notes-file <(tail -n +3 "docs/quarterly/${QUARTER}.md")
+          fi
