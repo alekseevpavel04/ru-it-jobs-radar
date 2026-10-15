@@ -3016,6 +3016,16 @@ dependencies = [
 ]
 
 [package.dev-dependencies]
+autopilot = [
+    { name = "httpx" },
+    { name = "lxml" },
+    { name = "numpy" },
+    { name = "psutil" },
+    { name = "pyarrow" },
+    { name = "pydantic" },
+    { name = "tokenizers" },
+    { name = "tzdata" },
+]
 dev = [
     { name = "lxml-stubs" },
     { name = "mypy" },
@@ -3067,6 +3077,16 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
+autopilot = [
+    { name = "httpx", specifier = "==0.28.1" },
+    { name = "lxml", specifier = "==6.1.3" },
+    { name = "numpy", specifier = "==2.4.6" },
+    { name = "psutil", specifier = "==7.2.2" },
+    { name = "pyarrow", specifier = "==25.0.1" },
+    { name = "pydantic", specifier = "==2.13.5" },
+    { name = "tokenizers", specifier = "==0.23.2" },
+    { name = "tzdata", specifier = "==2026.5" },
+]
 dev = [
     { name = "lxml-stubs", specifier = "==0.5.1" },
     { name = "mypy", specifier = "==2.4.0" },

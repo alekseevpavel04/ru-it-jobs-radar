@@ -1,0 +1,81 @@
+{
+  "source_script": "src/radar/autopilot/checks.py",
+  "command": "python -m radar.autopilot.checks parity",
+  "commit": "54310e4-dirty",
+  "created_at": "2026-10-15T10:19:57+00:00",
+  "metrics": {
+    "metrics_clickhouse": {
+      "value": 9074,
+      "n": null,
+      "denominator": null
+    },
+    "it_units": {
+      "value": 178095,
+      "n": null,
+      "denominator": null
+    },
+    "all_units_metrics_differing": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "committed_metrics_differing": {
+      "value": 1441,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "all_units_differing": [],
+  "committed_differing": [
+    "directions.2026.analytics",
+    "directions.2026.backend",
+    "directions.2026.dataeng",
+    "directions.2026.design",
+    "directions.2026.devops",
+    "directions.2026.frontend",
+    "directions.2026.fullstack",
+    "directions.2026.management",
+    "directions.2026.ml",
+    "directions.2026.mobile",
+    "directions.2026.other",
+    "directions.2026.qa",
+    "directions.2026.security",
+    "grades.2026.graded",
+    "grades.2026.junior",
+    "grades.2026.middle",
+    "grades.2026.senior",
+    "posts.analytics_all.2026",
+    "posts.analytics_all.recent",
+    "posts.analytics_senior.2026",
+    "posts.analytics_senior.recent",
+    "posts.backend_all.2026",
+    "posts.backend_all.recent",
+    "posts.backend_junior.2026",
+    "posts.backend_junior.recent",
+    "posts.backend_middle.2026",
+    "posts.backend_middle.recent",
+    "posts.frontend_all.2026",
+    "posts.frontend_all.recent",
+    "posts.fullstack_all.2026",
+    "posts.fullstack_all.recent",
+    "posts.fullstack_senior.2026",
+    "posts.fullstack_senior.recent",
+    "posts.it_all.2026",
+    "posts.it_all.recent",
+    "posts.it_junior.2026",
+    "posts.it_junior.recent",
+    "posts.it_middle.2026",
+    "posts.it_middle.recent",
+    "posts.it_senior.2026",
+    "posts.it_senior.recent",
+    "posts.ml_all.2026",
+    "posts.ml_all.recent",
+    "posts.ml_senior.2026",
+    "posts.ml_senior.recent",
+    "posts.qa_all.2026",
+    "posts.qa_all.recent",
+    "posts.qa_middle.2026",
+    "posts.qa_middle.recent",
+    "posts.qa_senior.2026"
+  ]
+}

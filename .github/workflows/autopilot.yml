@@ -1,0 +1,153 @@
+name: autopilot
+
+# The site's Telegram skill data, kept up to date without the local stack (radar.autopilot):
+# new posts of the channels -> the student on the runner's CPU -> the weekly counts of
+# aggregates/telegram (counts, cursors and text hashes only; post texts stay on the runner) ->
+# results/market/skill_trends.json -> site/src/data/skill_trends.json, committed to main and
+# deployed with site.yml. A commit pushed with GITHUB_TOKEN starts no other workflow, so the
+# deployment is called from here.
+on:
+  schedule:
+    # 06:30 in Moscow, after the night's posts; the runner start often lags the cron by minutes
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+    inputs:
+      time_budget:
+        description: "Seconds for collection and extraction; the posts left wait for the next run"
+        default: "3000"
+
+permissions:
+  contents: read
+
+# Two runs would read the same cursors and count the same posts twice.
+concurrency:
+  group: autopilot
+  cancel-in-progress: false
+
+env:
+  LLAMA_TAG: b11052
+  LLAMA_SHA256: 4393f4e075757857d1f361420487d9d602516c64f7cd8c0035e1758e0c72355a
+  HF_REPO: alekseevpavel04/ru-it-vacancy-extractor-qwen3-1.7b
+  HF_REVISION: b0ad08bdf75011d9272718256b77dc85f302d824
+  MODEL: qwen3_1p7b_r16_clean
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: write
+    outputs:
+      commit: ${{ steps.commit.outputs.commit }}
+      problems: ${{ steps.daily.outputs.problems }}
+    env:
+      PYTHONPATH: src:airflow/include
+      RADAR_USER_AGENT: "ru-it-jobs-radar/0.1 (+https://github.com/alekseevpavel04/ru-it-jobs-radar)"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7.6.0
+        with:
+          version: "0.10.5"
+          enable-cache: true
+      - run: uv python install 3.11
+      # Only what the daily run imports; the project's full dependencies take minutes.
+      - run: uv sync --frozen --only-group autopilot
+
+      - id: llama-cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/llama
+          key: llama-${{ env.LLAMA_TAG }}-ubuntu-x64-${{ env.LLAMA_SHA256 }}
+      - if: steps.llama-cache.outputs.cache-hit != 'true'
+        name: Download the llama.cpp CPU build
+        run: |
+          curl -fsSL -o /tmp/llama.tgz "https://github.com/ggml-org/llama.cpp/releases/download/${LLAMA_TAG}/llama-${LLAMA_TAG}-bin-ubuntu-x64.tar.gz"
+          echo "${LLAMA_SHA256}  /tmp/llama.tgz" | sha256sum -c
+          mkdir -p ~/llama && tar -xzf /tmp/llama.tgz -C ~/llama --strip-components=1
+
+      - id: model-cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            models/gguf/${{ env.MODEL }}
+            models/merged/${{ env.MODEL }}
+          key: student-${{ env.HF_REVISION }}
+      - if: steps.model-cache.outputs.cache-hit != 'true'
+        name: Download the student from Hugging Face
+        run: |
+          base="https://huggingface.co/${HF_REPO}/resolve/${HF_REVISION}"
+          mkdir -p "models/gguf/${MODEL}" "models/merged/${MODEL}"
+          curl -fsSL -o "models/gguf/${MODEL}/${MODEL}-Q4_K_M.gguf" "${base}/gguf/${MODEL}-Q4_K_M.gguf"
+          curl -fsSL -o "models/merged/${MODEL}/tokenizer.json" "${base}/tokenizer.json"
+          curl -fsSL -o "models/merged/${MODEL}/dataset_meta.json" "${base}/dataset_meta.json"
+          sha256sum -c <<EOF
+          8159abbceaa20ac01aba8305e2ce480d1c75f0bc8fd71740b4db673030a0e9f2  models/gguf/${MODEL}/${MODEL}-Q4_K_M.gguf
+          476870a1f2fb6f6a2759a6ede2383bf9d5d738f17844563b65c91965b722ae09  models/merged/${MODEL}/tokenizer.json
+          4115ad9081f0f2ba82ffdc9f0498a664e4f92845afc283c0648b438b0bd8552a  models/merged/${MODEL}/dataset_meta.json
+          EOF
+
+      # The flags the student was scored with (scripts/llm_server.sh student): f16 KV cache, 4096
+      # tokens per slot, the chat template of the GGUF; one slot on the runner's four CPUs.
+      - name: Start llama-server
+        run: |
+          nohup ~/llama/llama-server -m "models/gguf/${MODEL}/${MODEL}-Q4_K_M.gguf" --alias "${MODEL}-Q4_K_M" \
+            --host 127.0.0.1 --port 8080 -t 4 -np 1 -c 4096 -fa on -ctk f16 -ctv f16 -cram 0 --jinja \
+            > "${RUNNER_TEMP}/llama.log" 2>&1 &
+          for _ in $(seq 120); do
+            curl -fs http://127.0.0.1:8080/health > /dev/null && exit 0
+            sleep 1
+          done
+          tail -20 "${RUNNER_TEMP}/llama.log"
+          exit 1
+
+      - id: daily
+        name: Collect and count the new posts
+        run: |
+          uv run --no-sync python -m radar.autopilot.daily --base-url http://127.0.0.1:8080 \
+            --time-budget "${{ inputs.time_budget || '3000' }}"
+          echo "problems=$(jq '.metrics.channels_failed.value + .metrics.collector_aborted.value + .metrics.extraction_errors.value' results/autopilot/daily.json)" >> "$GITHUB_OUTPUT"
+      - run: uv run --no-sync python -m radar.site.skill_trends --from-aggregates aggregates/telegram
+      # site.yml scans the built site for anything but aggregates before it deploys
+      - run: uv run --no-sync python -m radar.site.export --skill-trends-only
+
+      - id: commit
+        name: Commit the counts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aggregates/telegram results/autopilot/daily.json results/market/skill_trends.json site/src/data/skill_trends.json
+          if git diff --cached --quiet; then
+            echo "commit=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -q -m "Add the Telegram posts of $(TZ=Europe/Moscow date +%Y-%m-%d) to the weekly counts"
+          # a push to main during the run would refuse ours; the bot touches only its own files
+          git pull -q --rebase origin main
+          git push origin HEAD:main
+          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - if: failure()
+        run: tail -50 "${RUNNER_TEMP}/llama.log"
+
+  pages:
+    needs: update
+    if: needs.update.outputs.commit != ''
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/site.yml
+    with:
+      ref: ${{ needs.update.outputs.commit }}
+
+  # A channel the collector could not read or a request the server failed does not stop the counts
+  # or the deployment; it fails the run afterwards, so the owner gets the failure email.
+  verdict:
+    needs: [update, pages]
+    if: always() && needs.update.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "pages: ${{ needs.pages.result }}, channel and request problems: ${{ needs.update.outputs.problems }}"
+          test "${{ needs.pages.result }}" != "failure" && test "${{ needs.update.outputs.problems }}" = "0"

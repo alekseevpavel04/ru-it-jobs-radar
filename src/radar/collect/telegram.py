@@ -56,7 +56,6 @@ from radar.collect.writer import SUCCESS, PartitionWriter, partition_dir, raw_ro
 from radar.config import ROOT
 from radar.pii import DEFAULT_KEEP_HANDLES, clean_text
 from radar.results import write_result
-from radar.stream.producer import publish_after_collect
 
 log = logging.getLogger("radar.collect.telegram")
 
@@ -81,6 +80,13 @@ VOLATILE = ("views", "edited", "rule_kind", "vacancies_in_post", "rules_version"
 
 class ChannelError(RuntimeError):
     pass
+
+
+def publish_after_collect(source: str, dt: date, root: Path | None = None) -> bool:
+    # Imported on use: the daily site run (radar.autopilot.daily) collects without the stream client.
+    from radar.stream.producer import publish_after_collect as publish
+
+    return publish(source, dt, root)
 
 
 def load_channels(path: Path = CONFIG) -> list[dict[str, Any]]:

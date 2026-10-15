@@ -1,0 +1,81 @@
+{
+  "source_script": "src/radar/autopilot/seed.py",
+  "command": "python -m radar.autopilot.seed",
+  "commit": "54310e4-dirty",
+  "created_at": "2026-10-15T10:19:07+00:00",
+  "metrics": {
+    "it_units": {
+      "value": 178075,
+      "n": null,
+      "denominator": null
+    },
+    "it_units_held_back": {
+      "value": 20,
+      "n": null,
+      "denominator": null
+    },
+    "channels_held_back": {
+      "value": 45,
+      "n": null,
+      "denominator": null
+    },
+    "units_without_fields_open_weeks": {
+      "value": 238,
+      "n": null,
+      "denominator": null
+    },
+    "units_without_fields_older": {
+      "value": 0,
+      "n": null,
+      "denominator": null
+    },
+    "cursors": {
+      "value": 58,
+      "n": null,
+      "denominator": null
+    },
+    "post_rows": {
+      "value": 84291,
+      "n": null,
+      "denominator": null
+    },
+    "skill_rows": {
+      "value": 508509,
+      "n": null,
+      "denominator": null
+    },
+    "week_hashes.2026-10-05": {
+      "value": 728,
+      "n": null,
+      "denominator": null
+    },
+    "week_hashes.2026-10-12": {
+      "value": 185,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "first_year": 2019,
+  "open_weeks": [
+    "2026-10-05",
+    "2026-10-12"
+  ],
+  "files": [
+    "posts/2019.csv",
+    "posts/2020.csv",
+    "posts/2021.csv",
+    "posts/2022.csv",
+    "posts/2023.csv",
+    "posts/2024.csv",
+    "posts/2025.csv",
+    "posts/2026.csv",
+    "skills/2019.csv",
+    "skills/2020.csv",
+    "skills/2021.csv",
+    "skills/2022.csv",
+    "skills/2023.csv",
+    "skills/2024.csv",
+    "skills/2025.csv",
+    "skills/2026.csv"
+  ]
+}

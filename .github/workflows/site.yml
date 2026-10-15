@@ -2,7 +2,8 @@ name: site
 
 # Builds the public site from the committed export (site/src/data) and deploys it to GitHub Pages.
 # The runner cannot reach ClickHouse: the data are exported locally (python -m radar.site.export)
-# and committed, and this workflow only builds and publishes them.
+# and committed, and this workflow only builds and publishes them. The daily autopilot.yml calls it
+# after committing the day's skill data: its push with GITHUB_TOKEN does not trigger this workflow.
 on:
   push:
     branches: [main]
@@ -11,10 +12,12 @@ on:
       - "src/radar/site/scan_dist.py"
       - ".github/workflows/site.yml"
   workflow_dispatch:
-  # No daily rebuild yet: it goes on together with the daily data commit. Until then the site is
-  # rebuilt on a change under site/ or by hand.
-  # schedule:
-  #   - cron: "30 5 * * *"
+  workflow_call:
+    inputs:
+      ref:
+        description: "Commit to build: the caller's own commit, not the one that started its run"
+        type: string
+        required: true
 
 permissions:
   contents: read
@@ -34,6 +37,8 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          # empty on push and dispatch: the commit of the event
+          ref: ${{ inputs.ref }}
           persist-credentials: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
