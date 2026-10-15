@@ -25,7 +25,7 @@ def test_cells_cover_all_it_the_direction_and_the_grade() -> None:
     assert skill_trends.cells_of("designer", None) == ["it_all"]
 
 
-def test_thresholds_and_junior_skills_for_everyone() -> None:
+def test_cells_need_enough_posts_and_mentions() -> None:
     sizes = [
         size(2022, "ml_engineer", "middle", 100),
         size(2025, "ml_engineer", "middle", 400),
@@ -40,7 +40,7 @@ def test_thresholds_and_junior_skills_for_everyone() -> None:
     ]
     m = skill_trends.trends(sizes, skills)
     assert m["posts.ml_all.recent"] == {"value": 650}
-    assert m["share.ml_junior.pandas.recent"] == {"value": 0.1, "n": 25, "denominator": 250, "own": True}
+    assert m["share.ml_junior.pandas.recent"] == {"value": 0.1, "n": 25, "denominator": 250}
     assert m["share.ml_all.pandas.recent"]["n"] == 30
     assert "share.ml_junior.Rare.recent" not in m
     # 150 recent posts: the mobile junior cell is too small to show

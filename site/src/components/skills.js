@@ -6,13 +6,6 @@ import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {COLOR, int, pct, points} from "./labels.js";
 
-export const GROUP_LABEL = {
-  it_all: "Всё IT",
-  it_junior: "Стажёры и джуны, всё IT",
-  ml_all: "ML и Data Science",
-  ml_junior: "Стажёры и джуны в ML"
-};
-
 // Directions and grades of radar.site.skill_trends; a cell of the data is "<direction>_<grade>".
 export const DIRECTION = {
   it: "Всё IT",

@@ -393,7 +393,6 @@ class SkillShare(Row):
     year: int | None
     posts_mentioning: int
     posts: int
-    own: bool | None = None  # pooled rows: the group's top or fast-growing skill, not a junior's companion
 
 
 class SkillTrends(Provenance):
@@ -899,7 +898,6 @@ def skill_trends(doc: Mapping[str, Any], source_file: str) -> SkillTrends:
                     year=year,
                     posts_mentioning=m["n"],
                     posts=m["denominator"],
-                    own=m.get("own"),
                 )
             )
     return SkillTrends(

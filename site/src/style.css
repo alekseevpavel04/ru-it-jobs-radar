@@ -178,31 +178,10 @@ details.more summary {
   margin-right: 14px;
 }
 
-.dot-legend i.dark {
-  background: #2b2b2b;
-}
 
-.dot-legend i.ring {
-  background: white;
-  border: 2px solid #8c8a84;
-  width: 9px;
-  height: 9px;
-}
 
-.dot-legend i.more-line,
-.dot-legend i.less-line {
-  width: 20px;
-  height: 4px;
-  border-radius: 2px;
-}
 
-.dot-legend i.more-line {
-  background: #2f6fde;
-}
 
-.dot-legend i.less-line {
-  background: #cf222e;
-}
 
 .dot-legend i.up-dot {
   background: #1a7f37;

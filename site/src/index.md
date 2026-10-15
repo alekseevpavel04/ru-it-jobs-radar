@@ -33,9 +33,7 @@ const years = [...posts.keys()].filter((y) => y !== null).sort();
 // enough posts that year shows the recent shares only.
 const baseYear = posts.has(trends.base_year) ? trends.base_year : null;
 const recentLabel = `${trends.recent_years[0]}-${trends.recent_years.at(-1)}`;
-// Only the cell's own skills: its top and its fastest growers, not the companions of its juniors.
-const own = new Set(trends.shares.filter((s) => s.group === cell && s.year === null && s.own).map((s) => s.skill));
-const rows = [...d3.group(trends.shares.filter((s) => s.group === cell && own.has(s.skill)), (s) => s.skill)].map(([skill, list]) => {
+const rows = [...d3.group(trends.shares.filter((s) => s.group === cell), (s) => s.skill)].map(([skill, list]) => {
   const recent = list.find((s) => s.year === null);
   const series = years.map((y) => list.find((s) => s.year === y)).map((s, i) => ({year: years[i], share: s.posts_mentioning / s.posts, n: s.posts_mentioning, of: s.posts}));
   const base = baseYear ? series.find((x) => x.year === baseYear) : null;

@@ -9,11 +9,10 @@ and a grade (all, or one of GRADES; posts without a grade count in "all" only), 
 Only shares a reader can lean on leave the file:
 
 - a cell is kept when it has MIN_CELL_POSTS posts or more in RECENT_YEARS;
-- a skill is listed for a cell (own) when MIN_MENTIONS or more posts of RECENT_YEARS name it, the TOP_SKILLS
+- a skill is listed for a cell when MIN_MENTIONS or more posts of RECENT_YEARS name it, the TOP_SKILLS
   most named of each cell, plus the GROWTH_SKILLS outside that top whose share gained most points since
   BASE_YEAR among those with at least GROWTH_MIN_SHARE of the cell's posts (points, not a ratio: a ratio
-  makes a skill with a near-zero base look like the fastest grower); the "all grades" cell of a direction
-  also gets the skills listed for its juniors, so a junior share always has the share of everyone next to it;
+  makes a skill with a near-zero base look like the fastest grower);
 - a year of a cell's series is kept when the cell has MIN_YEAR_POSTS posts or more that year; without
   BASE_YEAR a cell has its recent shares only, with no change to show.
 """
@@ -107,11 +106,6 @@ def trends(sizes: Iterable[Mapping[str, Any]], skills: Iterable[Mapping[str, Any
     own = {c: [s for s, n in recent[c].most_common() if n >= MIN_MENTIONS][:TOP_SKILLS] for c in cells}
     for c in cells:
         own[c] += growing(c, posts, counts, recent[c], skip=own[c])
-    listed = {c: list(own[c]) for c in cells}
-    for c in cells:
-        direction, grade = c.rsplit("_", 1)
-        if grade == "junior" and f"{direction}_all" in listed:
-            listed[f"{direction}_all"] += [s for s in own[c] if s not in listed[f"{direction}_all"]]
 
     metrics: dict[str, Any] = {}
     for c in sorted(cells):
@@ -120,9 +114,8 @@ def trends(sizes: Iterable[Mapping[str, Any]], skills: Iterable[Mapping[str, Any
         metrics[f"posts.{c}.recent"] = {"value": recent_posts}
         for y in kept_years:
             metrics[f"posts.{c}.{y}"] = {"value": posts[c][y]}
-        for s in listed[c]:
-            # own: the cell's top or fastest-growing skill; otherwise listed only to sit next to its juniors
-            metrics[f"share.{c}.{s}.recent"] = share(recent[c][s], recent_posts) | {"own": s in own[c]}
+        for s in own[c]:
+            metrics[f"share.{c}.{s}.recent"] = share(recent[c][s], recent_posts)
             for y in kept_years:
                 metrics[f"share.{c}.{s}.{y}"] = share(counts[c][y][s], posts[c][y])
     return metrics
