@@ -10,7 +10,9 @@ counts, ids and field names go to results/gold/full_review.json.
     python -m radar.eval.gold_review compare            # parse the edited files, write the result
 
 A record counts as reviewed when its block carries the mark `[x] прочитано`; the author ticks it after
-reading, so a file read halfway is reported as such rather than as full agreement. Edited blocks are
+reading, so a file read halfway is reported as such rather than as full agreement. When the author
+reads everything without ticking, `--author-read-all DATE` records that statement as a separate field
+next to the zero tick count; the ticks are never set on the author's behalf. Edited blocks are
 validated against the extraction schema; a broken block stops the comparison with its record number.
 Corrected labels go to data/review/gold/<split>.corrected.jsonl in the gold format, so a re-score on
 the corrected gold can sit next to the original numbers.
@@ -124,6 +126,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("cmd", choices=("export", "compare"))
     parser.add_argument("--splits", nargs="+", default=list(SPLITS), choices=SPLITS)
+    parser.add_argument("--author-read-all", metavar="DATE", help="the author's word that every record was read")
     args = parser.parse_args(argv)
     gold_dir, out_dir = data_dir() / "gold", data_dir() / "review" / "gold"
     if args.cmd == "export":
@@ -141,6 +144,12 @@ def main(argv: list[str] | None = None) -> int:
     if not metrics:
         print("no review files", file=sys.stderr)
         return 1
+    if args.author_read_all:
+        metrics["author_read_all"] = {
+            "value": True,
+            "date": args.author_read_all,
+            "note": "the author's statement that every record of the splits was read; no per-record ticks",
+        }
     write_result("gold/full_review.json", metrics, source_script="src/radar/eval/gold_review.py")
     return 0
 

@@ -1,0 +1,235 @@
+{
+  "source_script": "src/radar/eval/gold_review.py",
+  "command": "python -m radar.eval.gold_review compare --author-read-all 2026-10-15",
+  "commit": "ea15f08-dirty",
+  "created_at": "2026-10-15T06:47:40+00:00",
+  "metrics": {
+    "tg_test.records_read": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 130
+    },
+    "tg_test.records_changed": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 130
+    },
+    "tg_test.field_changed.role": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 130
+    },
+    "tg_test.field_changed.grade": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 130
+    },
+    "tg_test.field_changed.skills": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 130
+    },
+    "tg_test.field_changed.salary": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 130
+    },
+    "tg_test.field_changed.work_format": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 130
+    },
+    "tg_test.field_changed.cities": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 130
+    },
+    "tg_test.field_changed.experience_years": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 130
+    },
+    "tg_test.field_changed.employment_type": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 130
+    },
+    "tg_test.field_changed.lang": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 130
+    },
+    "test.records_read": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 440
+    },
+    "test.records_changed": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 440
+    },
+    "test.field_changed.role": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 440
+    },
+    "test.field_changed.grade": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 440
+    },
+    "test.field_changed.skills": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 440
+    },
+    "test.field_changed.salary": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 440
+    },
+    "test.field_changed.work_format": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 440
+    },
+    "test.field_changed.cities": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 440
+    },
+    "test.field_changed.experience_years": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 440
+    },
+    "test.field_changed.employment_type": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 440
+    },
+    "test.field_changed.lang": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 440
+    },
+    "tg_dev.records_read": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 54
+    },
+    "tg_dev.records_changed": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 54
+    },
+    "tg_dev.field_changed.role": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 54
+    },
+    "tg_dev.field_changed.grade": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 54
+    },
+    "tg_dev.field_changed.skills": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 54
+    },
+    "tg_dev.field_changed.salary": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 54
+    },
+    "tg_dev.field_changed.work_format": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 54
+    },
+    "tg_dev.field_changed.cities": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 54
+    },
+    "tg_dev.field_changed.experience_years": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 54
+    },
+    "tg_dev.field_changed.employment_type": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 54
+    },
+    "tg_dev.field_changed.lang": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 54
+    },
+    "dev.records_read": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 165
+    },
+    "dev.records_changed": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 165
+    },
+    "dev.field_changed.role": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 165
+    },
+    "dev.field_changed.grade": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 165
+    },
+    "dev.field_changed.skills": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 165
+    },
+    "dev.field_changed.salary": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 165
+    },
+    "dev.field_changed.work_format": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 165
+    },
+    "dev.field_changed.cities": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 165
+    },
+    "dev.field_changed.experience_years": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 165
+    },
+    "dev.field_changed.employment_type": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 165
+    },
+    "dev.field_changed.lang": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 165
+    },
+    "author_read_all": {
+      "value": 1.0,
+      "n": null,
+      "denominator": null,
+      "date": "2026-10-15",
+      "note": "the author's statement that every record of the splits was read; no per-record ticks"
+    }
+  }
+}

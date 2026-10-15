@@ -64,3 +64,17 @@ def test_broken_block_names_the_record(dirs: tuple[Path, Path]) -> None:
     )
     with pytest.raises(SystemExit, match="record 1"):
         gold_review.compare(gold, out, "tg_test")
+
+
+def test_author_statement_sits_next_to_zero_ticks(
+    dirs: tuple[Path, Path], tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    gold, _ = dirs
+    gold_review.export(gold, tmp_path / "review" / "gold", "tg_test")
+    written: dict[str, dict] = {}
+    monkeypatch.setattr(gold_review, "data_dir", lambda: tmp_path)
+    monkeypatch.setattr(gold_review, "write_result", lambda path, metrics, **_: written.update({path: metrics}))
+    assert gold_review.main(["compare", "--splits", "tg_test", "--author-read-all", "2026-10-15"]) == 0
+    metrics = written["gold/full_review.json"]
+    assert metrics["tg_test.records_read"]["n"] == 0
+    assert metrics["author_read_all"]["value"] is True and metrics["author_read_all"]["date"] == "2026-10-15"
