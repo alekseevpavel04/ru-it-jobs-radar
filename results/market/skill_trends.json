@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/site/skill_trends.py",
   "command": "python -m radar.site.skill_trends --from-aggregates aggregates/telegram",
-  "commit": "94bc303",
+  "commit": "ab40043",
   "created_at": "2026-10-15T13:26:15+00:00",
   "metrics": {
     "panel.analytics_all.base": {

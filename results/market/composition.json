@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/site/composition.py",
   "command": "python -m radar.site.composition",
-  "commit": "434c383-dirty",
+  "commit": "ba0e02c-dirty",
   "created_at": "2026-10-15T12:02:04+00:00",
   "metrics": {
     "pooled.it_all.Python": {

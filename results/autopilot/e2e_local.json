@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/autopilot/daily.py",
   "command": "python -m radar.autopilot.daily --base-url http://127.0.0.1:8097 --channel progjob --channel myitjob --aggregates C:/Users/PC/AppData/Local/Temp/radar/agg --time-budget 420 --result autopilot/e2e_local.json",
-  "commit": "54310e4-dirty",
+  "commit": "de73925-dirty",
   "created_at": "2026-10-15T10:27:25+00:00",
   "metrics": {
     "channels": {

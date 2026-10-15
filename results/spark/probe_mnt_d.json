@@ -1,7 +1,7 @@
 {
   "source_script": "jobs/spark/bench.py",
   "command": "python jobs/spark/bench.py --days 3 --result probe_mnt_d.json",
-  "commit": "4dac101-dirty",
+  "commit": "f391315-dirty",
   "created_at": "2026-10-13T20:40:04+00:00",
   "metrics": {
     "raw_rows": {
