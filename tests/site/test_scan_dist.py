@@ -21,7 +21,7 @@ ROW_MODELS = {
     "lifetime_observed": export.LifetimeObserved,
     "forecast_history": export.ForecastHistory,
 }
-DOCUMENTS = {"meta", "lifetime", "forecast", "telegram_years", "skill_effects", "vacancy_history"}
+DOCUMENTS = {"meta", "lifetime", "forecast", "telegram_years", "skill_effects", "vacancy_history", "skill_trends"}
 
 
 def test_scanner_allows_exactly_the_fields_the_export_writes() -> None:

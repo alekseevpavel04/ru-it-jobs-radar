@@ -108,7 +108,9 @@ ROW_FILES["salaries_telegram"] = frozenset(
 )
 ROW_FILES["forecast_history"] = frozenset({"week", "skill", "posts_mentioning", "posts_it"})
 # Documents copied from results/ with their provenance; the forbidden keys are checked in them too.
-DOCUMENT_FILES = frozenset({"meta", "lifetime", "forecast", "telegram_years", "skill_effects", "vacancy_history"})
+DOCUMENT_FILES = frozenset(
+    {"meta", "lifetime", "forecast", "telegram_years", "skill_effects", "vacancy_history", "skill_trends"}
+)
 ALLOWED = {**ROW_FILES, **{name: frozenset() for name in DOCUMENT_FILES}}
 
 FORBIDDEN_KEYS = frozenset(

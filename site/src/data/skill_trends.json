@@ -1,0 +1,5893 @@
+{
+  "source_file": "results/market/skill_trends.json",
+  "source_script": "src/radar/site/skill_trends.py",
+  "commit": "8215b22-dirty",
+  "created_at": "2026-10-15T07:13:43+00:00",
+  "recent_years": [
+    2025,
+    2026
+  ],
+  "min_mentions": 20,
+  "min_year_posts": 300,
+  "groups": [
+    {
+      "group": "it_all",
+      "year": null,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "year": 2019,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "year": 2020,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "year": 2021,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "year": 2022,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "year": 2023,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "year": 2024,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "year": 2025,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "year": 2026,
+      "posts": 18606
+    },
+    {
+      "group": "it_junior",
+      "year": null,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "year": 2019,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "year": 2020,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "year": 2021,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "year": 2022,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "year": 2023,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "year": 2024,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "year": 2025,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "year": 2026,
+      "posts": 3215
+    },
+    {
+      "group": "ml_all",
+      "year": null,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "year": 2021,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "year": 2022,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "year": 2023,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "year": 2024,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "year": 2025,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "year": 2026,
+      "posts": 1433
+    },
+    {
+      "group": "ml_junior",
+      "year": null,
+      "posts": 444
+    }
+  ],
+  "shares": [
+    {
+      "group": "it_all",
+      "skill": "C#",
+      "year": null,
+      "posts_mentioning": 1420,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "C#",
+      "year": 2019,
+      "posts_mentioning": 416,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "C#",
+      "year": 2020,
+      "posts_mentioning": 533,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "C#",
+      "year": 2021,
+      "posts_mentioning": 1713,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "C#",
+      "year": 2022,
+      "posts_mentioning": 1710,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "C#",
+      "year": 2023,
+      "posts_mentioning": 1362,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "C#",
+      "year": 2024,
+      "posts_mentioning": 1188,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "C#",
+      "year": 2025,
+      "posts_mentioning": 814,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "C#",
+      "year": 2026,
+      "posts_mentioning": 606,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "C++",
+      "year": null,
+      "posts_mentioning": 1287,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "C++",
+      "year": 2019,
+      "posts_mentioning": 246,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "C++",
+      "year": 2020,
+      "posts_mentioning": 376,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "C++",
+      "year": 2021,
+      "posts_mentioning": 678,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "C++",
+      "year": 2022,
+      "posts_mentioning": 897,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "C++",
+      "year": 2023,
+      "posts_mentioning": 1046,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "C++",
+      "year": 2024,
+      "posts_mentioning": 968,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "C++",
+      "year": 2025,
+      "posts_mentioning": 818,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "C++",
+      "year": 2026,
+      "posts_mentioning": 469,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "CI/CD",
+      "year": null,
+      "posts_mentioning": 4081,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "CI/CD",
+      "year": 2019,
+      "posts_mentioning": 270,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "CI/CD",
+      "year": 2020,
+      "posts_mentioning": 348,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "CI/CD",
+      "year": 2021,
+      "posts_mentioning": 865,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "CI/CD",
+      "year": 2022,
+      "posts_mentioning": 1111,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "CI/CD",
+      "year": 2023,
+      "posts_mentioning": 1393,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "CI/CD",
+      "year": 2024,
+      "posts_mentioning": 1897,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "CI/CD",
+      "year": 2025,
+      "posts_mentioning": 2120,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "CI/CD",
+      "year": 2026,
+      "posts_mentioning": 1961,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "CSS",
+      "year": null,
+      "posts_mentioning": 1579,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "CSS",
+      "year": 2019,
+      "posts_mentioning": 2098,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "CSS",
+      "year": 2020,
+      "posts_mentioning": 1734,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "CSS",
+      "year": 2021,
+      "posts_mentioning": 1686,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "CSS",
+      "year": 2022,
+      "posts_mentioning": 1348,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "CSS",
+      "year": 2023,
+      "posts_mentioning": 1299,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "CSS",
+      "year": 2024,
+      "posts_mentioning": 1163,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "CSS",
+      "year": 2025,
+      "posts_mentioning": 1093,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "CSS",
+      "year": 2026,
+      "posts_mentioning": 486,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "ClickHouse",
+      "year": null,
+      "posts_mentioning": 1521,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "ClickHouse",
+      "year": 2019,
+      "posts_mentioning": 47,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "ClickHouse",
+      "year": 2020,
+      "posts_mentioning": 166,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "ClickHouse",
+      "year": 2021,
+      "posts_mentioning": 401,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "ClickHouse",
+      "year": 2022,
+      "posts_mentioning": 439,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "ClickHouse",
+      "year": 2023,
+      "posts_mentioning": 735,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "ClickHouse",
+      "year": 2024,
+      "posts_mentioning": 1083,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "ClickHouse",
+      "year": 2025,
+      "posts_mentioning": 881,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "ClickHouse",
+      "year": 2026,
+      "posts_mentioning": 640,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "DevOps",
+      "year": null,
+      "posts_mentioning": 2184,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "DevOps",
+      "year": 2019,
+      "posts_mentioning": 188,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "DevOps",
+      "year": 2020,
+      "posts_mentioning": 369,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "DevOps",
+      "year": 2021,
+      "posts_mentioning": 712,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "DevOps",
+      "year": 2022,
+      "posts_mentioning": 1236,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "DevOps",
+      "year": 2023,
+      "posts_mentioning": 1275,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "DevOps",
+      "year": 2024,
+      "posts_mentioning": 1429,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "DevOps",
+      "year": 2025,
+      "posts_mentioning": 1265,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "DevOps",
+      "year": 2026,
+      "posts_mentioning": 919,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Django",
+      "year": null,
+      "posts_mentioning": 944,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Django",
+      "year": 2019,
+      "posts_mentioning": 188,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Django",
+      "year": 2020,
+      "posts_mentioning": 255,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Django",
+      "year": 2021,
+      "posts_mentioning": 732,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Django",
+      "year": 2022,
+      "posts_mentioning": 680,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Django",
+      "year": 2023,
+      "posts_mentioning": 802,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Django",
+      "year": 2024,
+      "posts_mentioning": 874,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Django",
+      "year": 2025,
+      "posts_mentioning": 589,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Django",
+      "year": 2026,
+      "posts_mentioning": 355,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Docker",
+      "year": null,
+      "posts_mentioning": 4811,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Docker",
+      "year": 2019,
+      "posts_mentioning": 618,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Docker",
+      "year": 2020,
+      "posts_mentioning": 1117,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Docker",
+      "year": 2021,
+      "posts_mentioning": 2286,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Docker",
+      "year": 2022,
+      "posts_mentioning": 2434,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Docker",
+      "year": 2023,
+      "posts_mentioning": 2830,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Docker",
+      "year": 2024,
+      "posts_mentioning": 3561,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Docker",
+      "year": 2025,
+      "posts_mentioning": 2859,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Docker",
+      "year": 2026,
+      "posts_mentioning": 1952,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Excel",
+      "year": null,
+      "posts_mentioning": 768,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Excel",
+      "year": 2019,
+      "posts_mentioning": 14,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Excel",
+      "year": 2020,
+      "posts_mentioning": 34,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Excel",
+      "year": 2021,
+      "posts_mentioning": 93,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Excel",
+      "year": 2022,
+      "posts_mentioning": 132,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Excel",
+      "year": 2023,
+      "posts_mentioning": 255,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Excel",
+      "year": 2024,
+      "posts_mentioning": 273,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Excel",
+      "year": 2025,
+      "posts_mentioning": 358,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Excel",
+      "year": 2026,
+      "posts_mentioning": 410,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "FastAPI",
+      "year": null,
+      "posts_mentioning": 1450,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "FastAPI",
+      "year": 2019,
+      "posts_mentioning": 0,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "FastAPI",
+      "year": 2020,
+      "posts_mentioning": 3,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "FastAPI",
+      "year": 2021,
+      "posts_mentioning": 164,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "FastAPI",
+      "year": 2022,
+      "posts_mentioning": 251,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "FastAPI",
+      "year": 2023,
+      "posts_mentioning": 456,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "FastAPI",
+      "year": 2024,
+      "posts_mentioning": 831,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "FastAPI",
+      "year": 2025,
+      "posts_mentioning": 825,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "FastAPI",
+      "year": 2026,
+      "posts_mentioning": 625,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Git",
+      "year": null,
+      "posts_mentioning": 4463,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Git",
+      "year": 2019,
+      "posts_mentioning": 2036,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Git",
+      "year": 2020,
+      "posts_mentioning": 2365,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Git",
+      "year": 2021,
+      "posts_mentioning": 3280,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Git",
+      "year": 2022,
+      "posts_mentioning": 3094,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Git",
+      "year": 2023,
+      "posts_mentioning": 3247,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Git",
+      "year": 2024,
+      "posts_mentioning": 3449,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Git",
+      "year": 2025,
+      "posts_mentioning": 2741,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Git",
+      "year": 2026,
+      "posts_mentioning": 1722,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Go",
+      "year": null,
+      "posts_mentioning": 2574,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Go",
+      "year": 2019,
+      "posts_mentioning": 233,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Go",
+      "year": 2020,
+      "posts_mentioning": 345,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Go",
+      "year": 2021,
+      "posts_mentioning": 716,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Go",
+      "year": 2022,
+      "posts_mentioning": 1107,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Go",
+      "year": 2023,
+      "posts_mentioning": 1356,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Go",
+      "year": 2024,
+      "posts_mentioning": 1763,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Go",
+      "year": 2025,
+      "posts_mentioning": 1444,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Go",
+      "year": 2026,
+      "posts_mentioning": 1130,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "HTML",
+      "year": null,
+      "posts_mentioning": 1543,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "HTML",
+      "year": 2019,
+      "posts_mentioning": 2027,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "HTML",
+      "year": 2020,
+      "posts_mentioning": 1673,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "HTML",
+      "year": 2021,
+      "posts_mentioning": 1628,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "HTML",
+      "year": 2022,
+      "posts_mentioning": 1384,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "HTML",
+      "year": 2023,
+      "posts_mentioning": 1376,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "HTML",
+      "year": 2024,
+      "posts_mentioning": 1150,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "HTML",
+      "year": 2025,
+      "posts_mentioning": 1075,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "HTML",
+      "year": 2026,
+      "posts_mentioning": 468,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "HTTP",
+      "year": null,
+      "posts_mentioning": 1291,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "HTTP",
+      "year": 2019,
+      "posts_mentioning": 229,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "HTTP",
+      "year": 2020,
+      "posts_mentioning": 252,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "HTTP",
+      "year": 2021,
+      "posts_mentioning": 480,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "HTTP",
+      "year": 2022,
+      "posts_mentioning": 494,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "HTTP",
+      "year": 2023,
+      "posts_mentioning": 596,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "HTTP",
+      "year": 2024,
+      "posts_mentioning": 811,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "HTTP",
+      "year": 2025,
+      "posts_mentioning": 740,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "HTTP",
+      "year": 2026,
+      "posts_mentioning": 551,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Java",
+      "year": null,
+      "posts_mentioning": 4211,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Java",
+      "year": 2019,
+      "posts_mentioning": 679,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Java",
+      "year": 2020,
+      "posts_mentioning": 1055,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Java",
+      "year": 2021,
+      "posts_mentioning": 1966,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Java",
+      "year": 2022,
+      "posts_mentioning": 2869,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Java",
+      "year": 2023,
+      "posts_mentioning": 3133,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Java",
+      "year": 2024,
+      "posts_mentioning": 3067,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Java",
+      "year": 2025,
+      "posts_mentioning": 2591,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Java",
+      "year": 2026,
+      "posts_mentioning": 1620,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "JavaScript",
+      "year": null,
+      "posts_mentioning": 3674,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "JavaScript",
+      "year": 2019,
+      "posts_mentioning": 3936,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "JavaScript",
+      "year": 2020,
+      "posts_mentioning": 3686,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "JavaScript",
+      "year": 2021,
+      "posts_mentioning": 3831,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "JavaScript",
+      "year": 2022,
+      "posts_mentioning": 3019,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "JavaScript",
+      "year": 2023,
+      "posts_mentioning": 2790,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "JavaScript",
+      "year": 2024,
+      "posts_mentioning": 2434,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "JavaScript",
+      "year": 2025,
+      "posts_mentioning": 2263,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "JavaScript",
+      "year": 2026,
+      "posts_mentioning": 1411,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Jira",
+      "year": null,
+      "posts_mentioning": 1334,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Jira",
+      "year": 2019,
+      "posts_mentioning": 311,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Jira",
+      "year": 2020,
+      "posts_mentioning": 395,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Jira",
+      "year": 2021,
+      "posts_mentioning": 713,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Jira",
+      "year": 2022,
+      "posts_mentioning": 744,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Jira",
+      "year": 2023,
+      "posts_mentioning": 822,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Jira",
+      "year": 2024,
+      "posts_mentioning": 934,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Jira",
+      "year": 2025,
+      "posts_mentioning": 761,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Jira",
+      "year": 2026,
+      "posts_mentioning": 573,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Kafka",
+      "year": null,
+      "posts_mentioning": 3217,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Kafka",
+      "year": 2019,
+      "posts_mentioning": 120,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Kafka",
+      "year": 2020,
+      "posts_mentioning": 219,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Kafka",
+      "year": 2021,
+      "posts_mentioning": 811,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Kafka",
+      "year": 2022,
+      "posts_mentioning": 1075,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Kafka",
+      "year": 2023,
+      "posts_mentioning": 1414,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Kafka",
+      "year": 2024,
+      "posts_mentioning": 2106,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Kafka",
+      "year": 2025,
+      "posts_mentioning": 1811,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Kafka",
+      "year": 2026,
+      "posts_mentioning": 1406,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Kubernetes",
+      "year": null,
+      "posts_mentioning": 3435,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Kubernetes",
+      "year": 2019,
+      "posts_mentioning": 202,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Kubernetes",
+      "year": 2020,
+      "posts_mentioning": 410,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Kubernetes",
+      "year": 2021,
+      "posts_mentioning": 1086,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Kubernetes",
+      "year": 2022,
+      "posts_mentioning": 1446,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Kubernetes",
+      "year": 2023,
+      "posts_mentioning": 1668,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Kubernetes",
+      "year": 2024,
+      "posts_mentioning": 2296,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Kubernetes",
+      "year": 2025,
+      "posts_mentioning": 1929,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Kubernetes",
+      "year": 2026,
+      "posts_mentioning": 1506,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Linux",
+      "year": null,
+      "posts_mentioning": 3516,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Linux",
+      "year": 2019,
+      "posts_mentioning": 584,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Linux",
+      "year": 2020,
+      "posts_mentioning": 858,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Linux",
+      "year": 2021,
+      "posts_mentioning": 1612,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Linux",
+      "year": 2022,
+      "posts_mentioning": 2017,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Linux",
+      "year": 2023,
+      "posts_mentioning": 2561,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Linux",
+      "year": 2024,
+      "posts_mentioning": 2696,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Linux",
+      "year": 2025,
+      "posts_mentioning": 2149,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Linux",
+      "year": 2026,
+      "posts_mentioning": 1367,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Microservices",
+      "year": null,
+      "posts_mentioning": 2536,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Microservices",
+      "year": 2019,
+      "posts_mentioning": 155,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Microservices",
+      "year": 2020,
+      "posts_mentioning": 283,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Microservices",
+      "year": 2021,
+      "posts_mentioning": 737,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Microservices",
+      "year": 2022,
+      "posts_mentioning": 976,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Microservices",
+      "year": 2023,
+      "posts_mentioning": 1180,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Microservices",
+      "year": 2024,
+      "posts_mentioning": 1507,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Microservices",
+      "year": 2025,
+      "posts_mentioning": 1382,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Microservices",
+      "year": 2026,
+      "posts_mentioning": 1154,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Node.js",
+      "year": null,
+      "posts_mentioning": 2013,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Node.js",
+      "year": 2019,
+      "posts_mentioning": 1399,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Node.js",
+      "year": 2020,
+      "posts_mentioning": 1452,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Node.js",
+      "year": 2021,
+      "posts_mentioning": 1429,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Node.js",
+      "year": 2022,
+      "posts_mentioning": 1180,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Node.js",
+      "year": 2023,
+      "posts_mentioning": 1028,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Node.js",
+      "year": 2024,
+      "posts_mentioning": 1042,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Node.js",
+      "year": 2025,
+      "posts_mentioning": 1056,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Node.js",
+      "year": 2026,
+      "posts_mentioning": 957,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "PostgreSQL",
+      "year": null,
+      "posts_mentioning": 5440,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "PostgreSQL",
+      "year": 2019,
+      "posts_mentioning": 756,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "PostgreSQL",
+      "year": 2020,
+      "posts_mentioning": 1115,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "PostgreSQL",
+      "year": 2021,
+      "posts_mentioning": 2521,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "PostgreSQL",
+      "year": 2022,
+      "posts_mentioning": 2789,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "PostgreSQL",
+      "year": 2023,
+      "posts_mentioning": 3495,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "PostgreSQL",
+      "year": 2024,
+      "posts_mentioning": 4332,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "PostgreSQL",
+      "year": 2025,
+      "posts_mentioning": 3350,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "PostgreSQL",
+      "year": 2026,
+      "posts_mentioning": 2090,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Postman",
+      "year": null,
+      "posts_mentioning": 762,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Postman",
+      "year": 2019,
+      "posts_mentioning": 8,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Postman",
+      "year": 2020,
+      "posts_mentioning": 26,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Postman",
+      "year": 2021,
+      "posts_mentioning": 69,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Postman",
+      "year": 2022,
+      "posts_mentioning": 104,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Postman",
+      "year": 2023,
+      "posts_mentioning": 217,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Postman",
+      "year": 2024,
+      "posts_mentioning": 433,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Postman",
+      "year": 2025,
+      "posts_mentioning": 421,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Postman",
+      "year": 2026,
+      "posts_mentioning": 341,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Python",
+      "year": null,
+      "posts_mentioning": 9402,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Python",
+      "year": 2019,
+      "posts_mentioning": 764,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Python",
+      "year": 2020,
+      "posts_mentioning": 1180,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Python",
+      "year": 2021,
+      "posts_mentioning": 2987,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Python",
+      "year": 2022,
+      "posts_mentioning": 3634,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Python",
+      "year": 2023,
+      "posts_mentioning": 5094,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Python",
+      "year": 2024,
+      "posts_mentioning": 6489,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Python",
+      "year": 2025,
+      "posts_mentioning": 5462,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Python",
+      "year": 2026,
+      "posts_mentioning": 3940,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "REST",
+      "year": null,
+      "posts_mentioning": 3866,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "REST",
+      "year": 2019,
+      "posts_mentioning": 764,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "REST",
+      "year": 2020,
+      "posts_mentioning": 853,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "REST",
+      "year": 2021,
+      "posts_mentioning": 1420,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "REST",
+      "year": 2022,
+      "posts_mentioning": 1748,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "REST",
+      "year": 2023,
+      "posts_mentioning": 2075,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "REST",
+      "year": 2024,
+      "posts_mentioning": 2481,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "REST",
+      "year": 2025,
+      "posts_mentioning": 2287,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "REST",
+      "year": 2026,
+      "posts_mentioning": 1579,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "RabbitMQ",
+      "year": null,
+      "posts_mentioning": 1602,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "RabbitMQ",
+      "year": 2019,
+      "posts_mentioning": 151,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "RabbitMQ",
+      "year": 2020,
+      "posts_mentioning": 308,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "RabbitMQ",
+      "year": 2021,
+      "posts_mentioning": 866,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "RabbitMQ",
+      "year": 2022,
+      "posts_mentioning": 868,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "RabbitMQ",
+      "year": 2023,
+      "posts_mentioning": 1076,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "RabbitMQ",
+      "year": 2024,
+      "posts_mentioning": 1301,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "RabbitMQ",
+      "year": 2025,
+      "posts_mentioning": 946,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "RabbitMQ",
+      "year": 2026,
+      "posts_mentioning": 656,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "React",
+      "year": null,
+      "posts_mentioning": 4300,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "React",
+      "year": 2019,
+      "posts_mentioning": 2845,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "React",
+      "year": 2020,
+      "posts_mentioning": 2553,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "React",
+      "year": 2021,
+      "posts_mentioning": 2616,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "React",
+      "year": 2022,
+      "posts_mentioning": 2236,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "React",
+      "year": 2023,
+      "posts_mentioning": 2146,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "React",
+      "year": 2024,
+      "posts_mentioning": 2036,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "React",
+      "year": 2025,
+      "posts_mentioning": 2241,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "React",
+      "year": 2026,
+      "posts_mentioning": 2059,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Redis",
+      "year": null,
+      "posts_mentioning": 1892,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Redis",
+      "year": 2019,
+      "posts_mentioning": 350,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Redis",
+      "year": 2020,
+      "posts_mentioning": 516,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Redis",
+      "year": 2021,
+      "posts_mentioning": 936,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Redis",
+      "year": 2022,
+      "posts_mentioning": 1010,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Redis",
+      "year": 2023,
+      "posts_mentioning": 1155,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Redis",
+      "year": 2024,
+      "posts_mentioning": 1444,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Redis",
+      "year": 2025,
+      "posts_mentioning": 1093,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Redis",
+      "year": 2026,
+      "posts_mentioning": 799,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "SQL",
+      "year": null,
+      "posts_mentioning": 6914,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "SQL",
+      "year": 2019,
+      "posts_mentioning": 675,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "SQL",
+      "year": 2020,
+      "posts_mentioning": 1034,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "SQL",
+      "year": 2021,
+      "posts_mentioning": 2898,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "SQL",
+      "year": 2022,
+      "posts_mentioning": 3275,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "SQL",
+      "year": 2023,
+      "posts_mentioning": 4141,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "SQL",
+      "year": 2024,
+      "posts_mentioning": 4792,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "SQL",
+      "year": 2025,
+      "posts_mentioning": 4009,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "SQL",
+      "year": 2026,
+      "posts_mentioning": 2905,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Spring",
+      "year": null,
+      "posts_mentioning": 949,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Spring",
+      "year": 2019,
+      "posts_mentioning": 69,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Spring",
+      "year": 2020,
+      "posts_mentioning": 147,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Spring",
+      "year": 2021,
+      "posts_mentioning": 343,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Spring",
+      "year": 2022,
+      "posts_mentioning": 515,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Spring",
+      "year": 2023,
+      "posts_mentioning": 669,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Spring",
+      "year": 2024,
+      "posts_mentioning": 798,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Spring",
+      "year": 2025,
+      "posts_mentioning": 639,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Spring",
+      "year": 2026,
+      "posts_mentioning": 310,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "TypeScript",
+      "year": null,
+      "posts_mentioning": 3234,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "TypeScript",
+      "year": 2019,
+      "posts_mentioning": 1204,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "TypeScript",
+      "year": 2020,
+      "posts_mentioning": 1489,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "TypeScript",
+      "year": 2021,
+      "posts_mentioning": 1840,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "TypeScript",
+      "year": 2022,
+      "posts_mentioning": 1691,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "TypeScript",
+      "year": 2023,
+      "posts_mentioning": 1532,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "TypeScript",
+      "year": 2024,
+      "posts_mentioning": 1635,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "TypeScript",
+      "year": 2025,
+      "posts_mentioning": 1751,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "TypeScript",
+      "year": 2026,
+      "posts_mentioning": 1483,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "Vue.js",
+      "year": null,
+      "posts_mentioning": 1320,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "Vue.js",
+      "year": 2019,
+      "posts_mentioning": 1042,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "Vue.js",
+      "year": 2020,
+      "posts_mentioning": 1065,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "Vue.js",
+      "year": 2021,
+      "posts_mentioning": 1013,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "Vue.js",
+      "year": 2022,
+      "posts_mentioning": 880,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "Vue.js",
+      "year": 2023,
+      "posts_mentioning": 782,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "Vue.js",
+      "year": 2024,
+      "posts_mentioning": 740,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "Vue.js",
+      "year": 2025,
+      "posts_mentioning": 593,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "Vue.js",
+      "year": 2026,
+      "posts_mentioning": 727,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "pandas",
+      "year": null,
+      "posts_mentioning": 809,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "pandas",
+      "year": 2019,
+      "posts_mentioning": 39,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "pandas",
+      "year": 2020,
+      "posts_mentioning": 62,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "pandas",
+      "year": 2021,
+      "posts_mentioning": 205,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "pandas",
+      "year": 2022,
+      "posts_mentioning": 187,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "pandas",
+      "year": 2023,
+      "posts_mentioning": 267,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "pandas",
+      "year": 2024,
+      "posts_mentioning": 454,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "pandas",
+      "year": 2025,
+      "posts_mentioning": 515,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "pandas",
+      "year": 2026,
+      "posts_mentioning": 294,
+      "posts": 18606
+    },
+    {
+      "group": "it_all",
+      "skill": "ООП",
+      "year": null,
+      "posts_mentioning": 1396,
+      "posts": 46400
+    },
+    {
+      "group": "it_all",
+      "skill": "ООП",
+      "year": 2019,
+      "posts_mentioning": 607,
+      "posts": 9621
+    },
+    {
+      "group": "it_all",
+      "skill": "ООП",
+      "year": 2020,
+      "posts_mentioning": 703,
+      "posts": 12234
+    },
+    {
+      "group": "it_all",
+      "skill": "ООП",
+      "year": 2021,
+      "posts_mentioning": 1092,
+      "posts": 19279
+    },
+    {
+      "group": "it_all",
+      "skill": "ООП",
+      "year": 2022,
+      "posts_mentioning": 1171,
+      "posts": 27514
+    },
+    {
+      "group": "it_all",
+      "skill": "ООП",
+      "year": 2023,
+      "posts_mentioning": 1250,
+      "posts": 31206
+    },
+    {
+      "group": "it_all",
+      "skill": "ООП",
+      "year": 2024,
+      "posts_mentioning": 1081,
+      "posts": 31817
+    },
+    {
+      "group": "it_all",
+      "skill": "ООП",
+      "year": 2025,
+      "posts_mentioning": 873,
+      "posts": 27794
+    },
+    {
+      "group": "it_all",
+      "skill": "ООП",
+      "year": 2026,
+      "posts_mentioning": 523,
+      "posts": 18606
+    },
+    {
+      "group": "it_junior",
+      "skill": "C#",
+      "year": null,
+      "posts_mentioning": 249,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "C#",
+      "year": 2019,
+      "posts_mentioning": 28,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "C#",
+      "year": 2020,
+      "posts_mentioning": 31,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "C#",
+      "year": 2021,
+      "posts_mentioning": 78,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "C#",
+      "year": 2022,
+      "posts_mentioning": 146,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "C#",
+      "year": 2023,
+      "posts_mentioning": 179,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "C#",
+      "year": 2024,
+      "posts_mentioning": 114,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "C#",
+      "year": 2025,
+      "posts_mentioning": 143,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "C#",
+      "year": 2026,
+      "posts_mentioning": 106,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "CI/CD",
+      "year": null,
+      "posts_mentioning": 332,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "CI/CD",
+      "year": 2019,
+      "posts_mentioning": 6,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "CI/CD",
+      "year": 2020,
+      "posts_mentioning": 14,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "CI/CD",
+      "year": 2021,
+      "posts_mentioning": 35,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "CI/CD",
+      "year": 2022,
+      "posts_mentioning": 66,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "CI/CD",
+      "year": 2023,
+      "posts_mentioning": 71,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "CI/CD",
+      "year": 2024,
+      "posts_mentioning": 133,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "CI/CD",
+      "year": 2025,
+      "posts_mentioning": 184,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "CI/CD",
+      "year": 2026,
+      "posts_mentioning": 148,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "CSS",
+      "year": null,
+      "posts_mentioning": 522,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "CSS",
+      "year": 2019,
+      "posts_mentioning": 148,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "CSS",
+      "year": 2020,
+      "posts_mentioning": 153,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "CSS",
+      "year": 2021,
+      "posts_mentioning": 168,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "CSS",
+      "year": 2022,
+      "posts_mentioning": 241,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "CSS",
+      "year": 2023,
+      "posts_mentioning": 344,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "CSS",
+      "year": 2024,
+      "posts_mentioning": 275,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "CSS",
+      "year": 2025,
+      "posts_mentioning": 338,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "CSS",
+      "year": 2026,
+      "posts_mentioning": 184,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "DevOps",
+      "year": null,
+      "posts_mentioning": 285,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "DevOps",
+      "year": 2019,
+      "posts_mentioning": 5,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "DevOps",
+      "year": 2020,
+      "posts_mentioning": 7,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "DevOps",
+      "year": 2021,
+      "posts_mentioning": 27,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "DevOps",
+      "year": 2022,
+      "posts_mentioning": 82,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "DevOps",
+      "year": 2023,
+      "posts_mentioning": 123,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "DevOps",
+      "year": 2024,
+      "posts_mentioning": 190,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "DevOps",
+      "year": 2025,
+      "posts_mentioning": 152,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "DevOps",
+      "year": 2026,
+      "posts_mentioning": 133,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Django",
+      "year": null,
+      "posts_mentioning": 208,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Django",
+      "year": 2019,
+      "posts_mentioning": 4,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Django",
+      "year": 2020,
+      "posts_mentioning": 12,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Django",
+      "year": 2021,
+      "posts_mentioning": 24,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Django",
+      "year": 2022,
+      "posts_mentioning": 84,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Django",
+      "year": 2023,
+      "posts_mentioning": 112,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Django",
+      "year": 2024,
+      "posts_mentioning": 100,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Django",
+      "year": 2025,
+      "posts_mentioning": 144,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Django",
+      "year": 2026,
+      "posts_mentioning": 64,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Docker",
+      "year": null,
+      "posts_mentioning": 656,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Docker",
+      "year": 2019,
+      "posts_mentioning": 23,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Docker",
+      "year": 2020,
+      "posts_mentioning": 43,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Docker",
+      "year": 2021,
+      "posts_mentioning": 96,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Docker",
+      "year": 2022,
+      "posts_mentioning": 189,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Docker",
+      "year": 2023,
+      "posts_mentioning": 207,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Docker",
+      "year": 2024,
+      "posts_mentioning": 332,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Docker",
+      "year": 2025,
+      "posts_mentioning": 423,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Docker",
+      "year": 2026,
+      "posts_mentioning": 233,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Excel",
+      "year": null,
+      "posts_mentioning": 347,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Excel",
+      "year": 2019,
+      "posts_mentioning": 3,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Excel",
+      "year": 2020,
+      "posts_mentioning": 4,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Excel",
+      "year": 2021,
+      "posts_mentioning": 13,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Excel",
+      "year": 2022,
+      "posts_mentioning": 21,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Excel",
+      "year": 2023,
+      "posts_mentioning": 52,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Excel",
+      "year": 2024,
+      "posts_mentioning": 60,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Excel",
+      "year": 2025,
+      "posts_mentioning": 169,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Excel",
+      "year": 2026,
+      "posts_mentioning": 178,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "FastAPI",
+      "year": null,
+      "posts_mentioning": 271,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "FastAPI",
+      "year": 2019,
+      "posts_mentioning": 0,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "FastAPI",
+      "year": 2020,
+      "posts_mentioning": 0,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "FastAPI",
+      "year": 2021,
+      "posts_mentioning": 4,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "FastAPI",
+      "year": 2022,
+      "posts_mentioning": 28,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "FastAPI",
+      "year": 2023,
+      "posts_mentioning": 42,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "FastAPI",
+      "year": 2024,
+      "posts_mentioning": 69,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "FastAPI",
+      "year": 2025,
+      "posts_mentioning": 166,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "FastAPI",
+      "year": 2026,
+      "posts_mentioning": 105,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Git",
+      "year": null,
+      "posts_mentioning": 1142,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Git",
+      "year": 2019,
+      "posts_mentioning": 158,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Git",
+      "year": 2020,
+      "posts_mentioning": 161,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Git",
+      "year": 2021,
+      "posts_mentioning": 243,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Git",
+      "year": 2022,
+      "posts_mentioning": 473,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Git",
+      "year": 2023,
+      "posts_mentioning": 514,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Git",
+      "year": 2024,
+      "posts_mentioning": 538,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Git",
+      "year": 2025,
+      "posts_mentioning": 685,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Git",
+      "year": 2026,
+      "posts_mentioning": 457,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Go",
+      "year": null,
+      "posts_mentioning": 252,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Go",
+      "year": 2019,
+      "posts_mentioning": 12,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Go",
+      "year": 2020,
+      "posts_mentioning": 9,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Go",
+      "year": 2021,
+      "posts_mentioning": 23,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Go",
+      "year": 2022,
+      "posts_mentioning": 58,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Go",
+      "year": 2023,
+      "posts_mentioning": 91,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Go",
+      "year": 2024,
+      "posts_mentioning": 136,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Go",
+      "year": 2025,
+      "posts_mentioning": 145,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Go",
+      "year": 2026,
+      "posts_mentioning": 107,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTML",
+      "year": null,
+      "posts_mentioning": 536,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTML",
+      "year": 2019,
+      "posts_mentioning": 162,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTML",
+      "year": 2020,
+      "posts_mentioning": 141,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTML",
+      "year": 2021,
+      "posts_mentioning": 163,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTML",
+      "year": 2022,
+      "posts_mentioning": 258,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTML",
+      "year": 2023,
+      "posts_mentioning": 369,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTML",
+      "year": 2024,
+      "posts_mentioning": 276,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTML",
+      "year": 2025,
+      "posts_mentioning": 353,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTML",
+      "year": 2026,
+      "posts_mentioning": 183,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTTP",
+      "year": null,
+      "posts_mentioning": 264,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTTP",
+      "year": 2019,
+      "posts_mentioning": 8,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTTP",
+      "year": 2020,
+      "posts_mentioning": 9,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTTP",
+      "year": 2021,
+      "posts_mentioning": 28,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTTP",
+      "year": 2022,
+      "posts_mentioning": 86,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTTP",
+      "year": 2023,
+      "posts_mentioning": 88,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTTP",
+      "year": 2024,
+      "posts_mentioning": 110,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTTP",
+      "year": 2025,
+      "posts_mentioning": 178,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "HTTP",
+      "year": 2026,
+      "posts_mentioning": 86,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Java",
+      "year": null,
+      "posts_mentioning": 685,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Java",
+      "year": 2019,
+      "posts_mentioning": 26,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Java",
+      "year": 2020,
+      "posts_mentioning": 33,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Java",
+      "year": 2021,
+      "posts_mentioning": 96,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Java",
+      "year": 2022,
+      "posts_mentioning": 306,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Java",
+      "year": 2023,
+      "posts_mentioning": 424,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Java",
+      "year": 2024,
+      "posts_mentioning": 337,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Java",
+      "year": 2025,
+      "posts_mentioning": 408,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Java",
+      "year": 2026,
+      "posts_mentioning": 277,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "JavaScript",
+      "year": null,
+      "posts_mentioning": 749,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "JavaScript",
+      "year": 2019,
+      "posts_mentioning": 217,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "JavaScript",
+      "year": 2020,
+      "posts_mentioning": 215,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "JavaScript",
+      "year": 2021,
+      "posts_mentioning": 259,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "JavaScript",
+      "year": 2022,
+      "posts_mentioning": 434,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "JavaScript",
+      "year": 2023,
+      "posts_mentioning": 535,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "JavaScript",
+      "year": 2024,
+      "posts_mentioning": 404,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "JavaScript",
+      "year": 2025,
+      "posts_mentioning": 517,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "JavaScript",
+      "year": 2026,
+      "posts_mentioning": 232,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Jira",
+      "year": null,
+      "posts_mentioning": 270,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Jira",
+      "year": 2019,
+      "posts_mentioning": 19,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Jira",
+      "year": 2020,
+      "posts_mentioning": 18,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Jira",
+      "year": 2021,
+      "posts_mentioning": 43,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Jira",
+      "year": 2022,
+      "posts_mentioning": 77,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Jira",
+      "year": 2023,
+      "posts_mentioning": 87,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Jira",
+      "year": 2024,
+      "posts_mentioning": 114,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Jira",
+      "year": 2025,
+      "posts_mentioning": 150,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Jira",
+      "year": 2026,
+      "posts_mentioning": 120,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Kafka",
+      "year": null,
+      "posts_mentioning": 221,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Kafka",
+      "year": 2019,
+      "posts_mentioning": 2,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Kafka",
+      "year": 2020,
+      "posts_mentioning": 5,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Kafka",
+      "year": 2021,
+      "posts_mentioning": 26,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Kafka",
+      "year": 2022,
+      "posts_mentioning": 49,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Kafka",
+      "year": 2023,
+      "posts_mentioning": 52,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Kafka",
+      "year": 2024,
+      "posts_mentioning": 99,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Kafka",
+      "year": 2025,
+      "posts_mentioning": 149,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Kafka",
+      "year": 2026,
+      "posts_mentioning": 72,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Linux",
+      "year": null,
+      "posts_mentioning": 510,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Linux",
+      "year": 2019,
+      "posts_mentioning": 32,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Linux",
+      "year": 2020,
+      "posts_mentioning": 44,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Linux",
+      "year": 2021,
+      "posts_mentioning": 104,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Linux",
+      "year": 2022,
+      "posts_mentioning": 235,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Linux",
+      "year": 2023,
+      "posts_mentioning": 260,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Linux",
+      "year": 2024,
+      "posts_mentioning": 282,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Linux",
+      "year": 2025,
+      "posts_mentioning": 315,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Linux",
+      "year": 2026,
+      "posts_mentioning": 195,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Microservices",
+      "year": null,
+      "posts_mentioning": 211,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Microservices",
+      "year": 2019,
+      "posts_mentioning": 5,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Microservices",
+      "year": 2020,
+      "posts_mentioning": 7,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Microservices",
+      "year": 2021,
+      "posts_mentioning": 30,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Microservices",
+      "year": 2022,
+      "posts_mentioning": 56,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Microservices",
+      "year": 2023,
+      "posts_mentioning": 78,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Microservices",
+      "year": 2024,
+      "posts_mentioning": 113,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Microservices",
+      "year": 2025,
+      "posts_mentioning": 123,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Microservices",
+      "year": 2026,
+      "posts_mentioning": 88,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Node.js",
+      "year": null,
+      "posts_mentioning": 215,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Node.js",
+      "year": 2019,
+      "posts_mentioning": 45,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Node.js",
+      "year": 2020,
+      "posts_mentioning": 53,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Node.js",
+      "year": 2021,
+      "posts_mentioning": 95,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Node.js",
+      "year": 2022,
+      "posts_mentioning": 114,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Node.js",
+      "year": 2023,
+      "posts_mentioning": 100,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Node.js",
+      "year": 2024,
+      "posts_mentioning": 124,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Node.js",
+      "year": 2025,
+      "posts_mentioning": 144,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Node.js",
+      "year": 2026,
+      "posts_mentioning": 71,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "PostgreSQL",
+      "year": null,
+      "posts_mentioning": 686,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "PostgreSQL",
+      "year": 2019,
+      "posts_mentioning": 31,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "PostgreSQL",
+      "year": 2020,
+      "posts_mentioning": 42,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "PostgreSQL",
+      "year": 2021,
+      "posts_mentioning": 111,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "PostgreSQL",
+      "year": 2022,
+      "posts_mentioning": 263,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "PostgreSQL",
+      "year": 2023,
+      "posts_mentioning": 291,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "PostgreSQL",
+      "year": 2024,
+      "posts_mentioning": 343,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "PostgreSQL",
+      "year": 2025,
+      "posts_mentioning": 457,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "PostgreSQL",
+      "year": 2026,
+      "posts_mentioning": 229,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Postman",
+      "year": null,
+      "posts_mentioning": 236,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Postman",
+      "year": 2019,
+      "posts_mentioning": 2,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Postman",
+      "year": 2020,
+      "posts_mentioning": 3,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Postman",
+      "year": 2021,
+      "posts_mentioning": 17,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Postman",
+      "year": 2022,
+      "posts_mentioning": 15,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Postman",
+      "year": 2023,
+      "posts_mentioning": 32,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Postman",
+      "year": 2024,
+      "posts_mentioning": 114,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Postman",
+      "year": 2025,
+      "posts_mentioning": 141,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Postman",
+      "year": 2026,
+      "posts_mentioning": 95,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Python",
+      "year": null,
+      "posts_mentioning": 1743,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Python",
+      "year": 2019,
+      "posts_mentioning": 36,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Python",
+      "year": 2020,
+      "posts_mentioning": 71,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Python",
+      "year": 2021,
+      "posts_mentioning": 180,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Python",
+      "year": 2022,
+      "posts_mentioning": 434,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Python",
+      "year": 2023,
+      "posts_mentioning": 628,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Python",
+      "year": 2024,
+      "posts_mentioning": 688,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Python",
+      "year": 2025,
+      "posts_mentioning": 1038,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Python",
+      "year": 2026,
+      "posts_mentioning": 705,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "REST",
+      "year": null,
+      "posts_mentioning": 667,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "REST",
+      "year": 2019,
+      "posts_mentioning": 33,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "REST",
+      "year": 2020,
+      "posts_mentioning": 38,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "REST",
+      "year": 2021,
+      "posts_mentioning": 81,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "REST",
+      "year": 2022,
+      "posts_mentioning": 215,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "REST",
+      "year": 2023,
+      "posts_mentioning": 240,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "REST",
+      "year": 2024,
+      "posts_mentioning": 310,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "REST",
+      "year": 2025,
+      "posts_mentioning": 423,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "REST",
+      "year": 2026,
+      "posts_mentioning": 244,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "React",
+      "year": null,
+      "posts_mentioning": 645,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "React",
+      "year": 2019,
+      "posts_mentioning": 147,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "React",
+      "year": 2020,
+      "posts_mentioning": 116,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "React",
+      "year": 2021,
+      "posts_mentioning": 176,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "React",
+      "year": 2022,
+      "posts_mentioning": 289,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "React",
+      "year": 2023,
+      "posts_mentioning": 324,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "React",
+      "year": 2024,
+      "posts_mentioning": 293,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "React",
+      "year": 2025,
+      "posts_mentioning": 402,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "React",
+      "year": 2026,
+      "posts_mentioning": 243,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "SQL",
+      "year": null,
+      "posts_mentioning": 1484,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "SQL",
+      "year": 2019,
+      "posts_mentioning": 43,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "SQL",
+      "year": 2020,
+      "posts_mentioning": 65,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "SQL",
+      "year": 2021,
+      "posts_mentioning": 215,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "SQL",
+      "year": 2022,
+      "posts_mentioning": 410,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "SQL",
+      "year": 2023,
+      "posts_mentioning": 549,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "SQL",
+      "year": 2024,
+      "posts_mentioning": 607,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "SQL",
+      "year": 2025,
+      "posts_mentioning": 869,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "SQL",
+      "year": 2026,
+      "posts_mentioning": 615,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Spring",
+      "year": null,
+      "posts_mentioning": 196,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Spring",
+      "year": 2019,
+      "posts_mentioning": 1,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Spring",
+      "year": 2020,
+      "posts_mentioning": 3,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Spring",
+      "year": 2021,
+      "posts_mentioning": 14,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Spring",
+      "year": 2022,
+      "posts_mentioning": 85,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Spring",
+      "year": 2023,
+      "posts_mentioning": 117,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Spring",
+      "year": 2024,
+      "posts_mentioning": 95,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Spring",
+      "year": 2025,
+      "posts_mentioning": 131,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Spring",
+      "year": 2026,
+      "posts_mentioning": 65,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "TypeScript",
+      "year": null,
+      "posts_mentioning": 483,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "TypeScript",
+      "year": 2019,
+      "posts_mentioning": 41,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "TypeScript",
+      "year": 2020,
+      "posts_mentioning": 56,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "TypeScript",
+      "year": 2021,
+      "posts_mentioning": 100,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "TypeScript",
+      "year": 2022,
+      "posts_mentioning": 148,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "TypeScript",
+      "year": 2023,
+      "posts_mentioning": 199,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "TypeScript",
+      "year": 2024,
+      "posts_mentioning": 202,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "TypeScript",
+      "year": 2025,
+      "posts_mentioning": 301,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "TypeScript",
+      "year": 2026,
+      "posts_mentioning": 182,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "Vue.js",
+      "year": null,
+      "posts_mentioning": 216,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "Vue.js",
+      "year": 2019,
+      "posts_mentioning": 40,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "Vue.js",
+      "year": 2020,
+      "posts_mentioning": 64,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "Vue.js",
+      "year": 2021,
+      "posts_mentioning": 55,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "Vue.js",
+      "year": 2022,
+      "posts_mentioning": 87,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "Vue.js",
+      "year": 2023,
+      "posts_mentioning": 92,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "Vue.js",
+      "year": 2024,
+      "posts_mentioning": 116,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "Vue.js",
+      "year": 2025,
+      "posts_mentioning": 151,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "Vue.js",
+      "year": 2026,
+      "posts_mentioning": 65,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "pandas",
+      "year": null,
+      "posts_mentioning": 205,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "pandas",
+      "year": 2019,
+      "posts_mentioning": 1,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "pandas",
+      "year": 2020,
+      "posts_mentioning": 7,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "pandas",
+      "year": 2021,
+      "posts_mentioning": 18,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "pandas",
+      "year": 2022,
+      "posts_mentioning": 38,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "pandas",
+      "year": 2023,
+      "posts_mentioning": 62,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "pandas",
+      "year": 2024,
+      "posts_mentioning": 64,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "pandas",
+      "year": 2025,
+      "posts_mentioning": 131,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "pandas",
+      "year": 2026,
+      "posts_mentioning": 74,
+      "posts": 3215
+    },
+    {
+      "group": "it_junior",
+      "skill": "ООП",
+      "year": null,
+      "posts_mentioning": 410,
+      "posts": 7569
+    },
+    {
+      "group": "it_junior",
+      "skill": "ООП",
+      "year": 2019,
+      "posts_mentioning": 22,
+      "posts": 479
+    },
+    {
+      "group": "it_junior",
+      "skill": "ООП",
+      "year": 2020,
+      "posts_mentioning": 39,
+      "posts": 635
+    },
+    {
+      "group": "it_junior",
+      "skill": "ООП",
+      "year": 2021,
+      "posts_mentioning": 71,
+      "posts": 1200
+    },
+    {
+      "group": "it_junior",
+      "skill": "ООП",
+      "year": 2022,
+      "posts_mentioning": 206,
+      "posts": 2271
+    },
+    {
+      "group": "it_junior",
+      "skill": "ООП",
+      "year": 2023,
+      "posts_mentioning": 275,
+      "posts": 3742
+    },
+    {
+      "group": "it_junior",
+      "skill": "ООП",
+      "year": 2024,
+      "posts_mentioning": 208,
+      "posts": 3916
+    },
+    {
+      "group": "it_junior",
+      "skill": "ООП",
+      "year": 2025,
+      "posts_mentioning": 264,
+      "posts": 4354
+    },
+    {
+      "group": "it_junior",
+      "skill": "ООП",
+      "year": 2026,
+      "posts_mentioning": 146,
+      "posts": 3215
+    },
+    {
+      "group": "ml_all",
+      "skill": "A/B-тесты",
+      "year": null,
+      "posts_mentioning": 164,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "A/B-тесты",
+      "year": 2021,
+      "posts_mentioning": 10,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "A/B-тесты",
+      "year": 2022,
+      "posts_mentioning": 17,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "A/B-тесты",
+      "year": 2023,
+      "posts_mentioning": 31,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "A/B-тесты",
+      "year": 2024,
+      "posts_mentioning": 78,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "A/B-тесты",
+      "year": 2025,
+      "posts_mentioning": 70,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "A/B-тесты",
+      "year": 2026,
+      "posts_mentioning": 94,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "Airflow",
+      "year": null,
+      "posts_mentioning": 240,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "Airflow",
+      "year": 2021,
+      "posts_mentioning": 28,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "Airflow",
+      "year": 2022,
+      "posts_mentioning": 42,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "Airflow",
+      "year": 2023,
+      "posts_mentioning": 81,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "Airflow",
+      "year": 2024,
+      "posts_mentioning": 157,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "Airflow",
+      "year": 2025,
+      "posts_mentioning": 125,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "Airflow",
+      "year": 2026,
+      "posts_mentioning": 115,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "CI/CD",
+      "year": null,
+      "posts_mentioning": 305,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "CI/CD",
+      "year": 2021,
+      "posts_mentioning": 15,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "CI/CD",
+      "year": 2022,
+      "posts_mentioning": 32,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "CI/CD",
+      "year": 2023,
+      "posts_mentioning": 29,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "CI/CD",
+      "year": 2024,
+      "posts_mentioning": 96,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "CI/CD",
+      "year": 2025,
+      "posts_mentioning": 154,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "CI/CD",
+      "year": 2026,
+      "posts_mentioning": 151,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "CatBoost",
+      "year": null,
+      "posts_mentioning": 127,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "CatBoost",
+      "year": 2021,
+      "posts_mentioning": 19,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "CatBoost",
+      "year": 2022,
+      "posts_mentioning": 13,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "CatBoost",
+      "year": 2023,
+      "posts_mentioning": 39,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "CatBoost",
+      "year": 2024,
+      "posts_mentioning": 57,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "CatBoost",
+      "year": 2025,
+      "posts_mentioning": 84,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "CatBoost",
+      "year": 2026,
+      "posts_mentioning": 43,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "DevOps",
+      "year": null,
+      "posts_mentioning": 144,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "DevOps",
+      "year": 2021,
+      "posts_mentioning": 7,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "DevOps",
+      "year": 2022,
+      "posts_mentioning": 25,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "DevOps",
+      "year": 2023,
+      "posts_mentioning": 29,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "DevOps",
+      "year": 2024,
+      "posts_mentioning": 41,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "DevOps",
+      "year": 2025,
+      "posts_mentioning": 80,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "DevOps",
+      "year": 2026,
+      "posts_mentioning": 64,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "Docker",
+      "year": null,
+      "posts_mentioning": 561,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "Docker",
+      "year": 2021,
+      "posts_mentioning": 68,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "Docker",
+      "year": 2022,
+      "posts_mentioning": 74,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "Docker",
+      "year": 2023,
+      "posts_mentioning": 130,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "Docker",
+      "year": 2024,
+      "posts_mentioning": 257,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "Docker",
+      "year": 2025,
+      "posts_mentioning": 301,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "Docker",
+      "year": 2026,
+      "posts_mentioning": 260,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "FastAPI",
+      "year": null,
+      "posts_mentioning": 253,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "FastAPI",
+      "year": 2021,
+      "posts_mentioning": 6,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "FastAPI",
+      "year": 2022,
+      "posts_mentioning": 8,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "FastAPI",
+      "year": 2023,
+      "posts_mentioning": 26,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "FastAPI",
+      "year": 2024,
+      "posts_mentioning": 60,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "FastAPI",
+      "year": 2025,
+      "posts_mentioning": 127,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "FastAPI",
+      "year": 2026,
+      "posts_mentioning": 126,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "Git",
+      "year": null,
+      "posts_mentioning": 310,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "Git",
+      "year": 2021,
+      "posts_mentioning": 74,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "Git",
+      "year": 2022,
+      "posts_mentioning": 77,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "Git",
+      "year": 2023,
+      "posts_mentioning": 123,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "Git",
+      "year": 2024,
+      "posts_mentioning": 207,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "Git",
+      "year": 2025,
+      "posts_mentioning": 178,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "Git",
+      "year": 2026,
+      "posts_mentioning": 132,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "Hadoop",
+      "year": null,
+      "posts_mentioning": 162,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "Hadoop",
+      "year": 2021,
+      "posts_mentioning": 46,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "Hadoop",
+      "year": 2022,
+      "posts_mentioning": 44,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "Hadoop",
+      "year": 2023,
+      "posts_mentioning": 58,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "Hadoop",
+      "year": 2024,
+      "posts_mentioning": 84,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "Hadoop",
+      "year": 2025,
+      "posts_mentioning": 87,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "Hadoop",
+      "year": 2026,
+      "posts_mentioning": 75,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "Hugging Face",
+      "year": null,
+      "posts_mentioning": 122,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "Hugging Face",
+      "year": 2021,
+      "posts_mentioning": 0,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "Hugging Face",
+      "year": 2022,
+      "posts_mentioning": 1,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "Hugging Face",
+      "year": 2023,
+      "posts_mentioning": 7,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "Hugging Face",
+      "year": 2024,
+      "posts_mentioning": 35,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "Hugging Face",
+      "year": 2025,
+      "posts_mentioning": 72,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "Hugging Face",
+      "year": 2026,
+      "posts_mentioning": 50,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "Kafka",
+      "year": null,
+      "posts_mentioning": 183,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "Kafka",
+      "year": 2021,
+      "posts_mentioning": 15,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "Kafka",
+      "year": 2022,
+      "posts_mentioning": 18,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "Kafka",
+      "year": 2023,
+      "posts_mentioning": 34,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "Kafka",
+      "year": 2024,
+      "posts_mentioning": 55,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "Kafka",
+      "year": 2025,
+      "posts_mentioning": 77,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "Kafka",
+      "year": 2026,
+      "posts_mentioning": 106,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "Kubernetes",
+      "year": null,
+      "posts_mentioning": 334,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "Kubernetes",
+      "year": 2021,
+      "posts_mentioning": 31,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "Kubernetes",
+      "year": 2022,
+      "posts_mentioning": 31,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "Kubernetes",
+      "year": 2023,
+      "posts_mentioning": 60,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "Kubernetes",
+      "year": 2024,
+      "posts_mentioning": 100,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "Kubernetes",
+      "year": 2025,
+      "posts_mentioning": 159,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "Kubernetes",
+      "year": 2026,
+      "posts_mentioning": 175,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "LangChain",
+      "year": null,
+      "posts_mentioning": 248,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "LangChain",
+      "year": 2021,
+      "posts_mentioning": 0,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "LangChain",
+      "year": 2022,
+      "posts_mentioning": 0,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "LangChain",
+      "year": 2023,
+      "posts_mentioning": 17,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "LangChain",
+      "year": 2024,
+      "posts_mentioning": 50,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "LangChain",
+      "year": 2025,
+      "posts_mentioning": 124,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "LangChain",
+      "year": 2026,
+      "posts_mentioning": 124,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "LangGraph",
+      "year": null,
+      "posts_mentioning": 130,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "LangGraph",
+      "year": 2021,
+      "posts_mentioning": 0,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "LangGraph",
+      "year": 2022,
+      "posts_mentioning": 0,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "LangGraph",
+      "year": 2023,
+      "posts_mentioning": 0,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "LangGraph",
+      "year": 2024,
+      "posts_mentioning": 0,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "LangGraph",
+      "year": 2025,
+      "posts_mentioning": 63,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "LangGraph",
+      "year": 2026,
+      "posts_mentioning": 67,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "Linux",
+      "year": null,
+      "posts_mentioning": 137,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "Linux",
+      "year": 2021,
+      "posts_mentioning": 53,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "Linux",
+      "year": 2022,
+      "posts_mentioning": 44,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "Linux",
+      "year": 2023,
+      "posts_mentioning": 84,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "Linux",
+      "year": 2024,
+      "posts_mentioning": 107,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "Linux",
+      "year": 2025,
+      "posts_mentioning": 76,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "Linux",
+      "year": 2026,
+      "posts_mentioning": 61,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "MLOps",
+      "year": null,
+      "posts_mentioning": 281,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "MLOps",
+      "year": 2021,
+      "posts_mentioning": 8,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "MLOps",
+      "year": 2022,
+      "posts_mentioning": 42,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "MLOps",
+      "year": 2023,
+      "posts_mentioning": 59,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "MLOps",
+      "year": 2024,
+      "posts_mentioning": 109,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "MLOps",
+      "year": 2025,
+      "posts_mentioning": 123,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "MLOps",
+      "year": 2026,
+      "posts_mentioning": 158,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "MLflow",
+      "year": null,
+      "posts_mentioning": 156,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "MLflow",
+      "year": 2021,
+      "posts_mentioning": 15,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "MLflow",
+      "year": 2022,
+      "posts_mentioning": 17,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "MLflow",
+      "year": 2023,
+      "posts_mentioning": 36,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "MLflow",
+      "year": 2024,
+      "posts_mentioning": 60,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "MLflow",
+      "year": 2025,
+      "posts_mentioning": 82,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "MLflow",
+      "year": 2026,
+      "posts_mentioning": 74,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "Microservices",
+      "year": null,
+      "posts_mentioning": 134,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "Microservices",
+      "year": 2021,
+      "posts_mentioning": 11,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "Microservices",
+      "year": 2022,
+      "posts_mentioning": 8,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "Microservices",
+      "year": 2023,
+      "posts_mentioning": 23,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "Microservices",
+      "year": 2024,
+      "posts_mentioning": 76,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "Microservices",
+      "year": 2025,
+      "posts_mentioning": 76,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "Microservices",
+      "year": 2026,
+      "posts_mentioning": 58,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "NumPy",
+      "year": null,
+      "posts_mentioning": 311,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "NumPy",
+      "year": 2021,
+      "posts_mentioning": 76,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "NumPy",
+      "year": 2022,
+      "posts_mentioning": 50,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "NumPy",
+      "year": 2023,
+      "posts_mentioning": 100,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "NumPy",
+      "year": 2024,
+      "posts_mentioning": 172,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "NumPy",
+      "year": 2025,
+      "posts_mentioning": 214,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "NumPy",
+      "year": 2026,
+      "posts_mentioning": 97,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "PostgreSQL",
+      "year": null,
+      "posts_mentioning": 255,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "PostgreSQL",
+      "year": 2021,
+      "posts_mentioning": 23,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "PostgreSQL",
+      "year": 2022,
+      "posts_mentioning": 36,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "PostgreSQL",
+      "year": 2023,
+      "posts_mentioning": 69,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "PostgreSQL",
+      "year": 2024,
+      "posts_mentioning": 133,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "PostgreSQL",
+      "year": 2025,
+      "posts_mentioning": 120,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "PostgreSQL",
+      "year": 2026,
+      "posts_mentioning": 135,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "PyTorch",
+      "year": null,
+      "posts_mentioning": 589,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "PyTorch",
+      "year": 2021,
+      "posts_mentioning": 89,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "PyTorch",
+      "year": 2022,
+      "posts_mentioning": 83,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "PyTorch",
+      "year": 2023,
+      "posts_mentioning": 191,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "PyTorch",
+      "year": 2024,
+      "posts_mentioning": 365,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "PyTorch",
+      "year": 2025,
+      "posts_mentioning": 374,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "PyTorch",
+      "year": 2026,
+      "posts_mentioning": 215,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "Python",
+      "year": null,
+      "posts_mentioning": 1726,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "Python",
+      "year": 2021,
+      "posts_mentioning": 263,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "Python",
+      "year": 2022,
+      "posts_mentioning": 272,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "Python",
+      "year": 2023,
+      "posts_mentioning": 486,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "Python",
+      "year": 2024,
+      "posts_mentioning": 897,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "Python",
+      "year": 2025,
+      "posts_mentioning": 933,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "Python",
+      "year": 2026,
+      "posts_mentioning": 793,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "RAG",
+      "year": null,
+      "posts_mentioning": 391,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "RAG",
+      "year": 2021,
+      "posts_mentioning": 0,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "RAG",
+      "year": 2022,
+      "posts_mentioning": 0,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "RAG",
+      "year": 2023,
+      "posts_mentioning": 1,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "RAG",
+      "year": 2024,
+      "posts_mentioning": 48,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "RAG",
+      "year": 2025,
+      "posts_mentioning": 185,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "RAG",
+      "year": 2026,
+      "posts_mentioning": 206,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "REST",
+      "year": null,
+      "posts_mentioning": 166,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "REST",
+      "year": 2021,
+      "posts_mentioning": 6,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "REST",
+      "year": 2022,
+      "posts_mentioning": 8,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "REST",
+      "year": 2023,
+      "posts_mentioning": 21,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "REST",
+      "year": 2024,
+      "posts_mentioning": 42,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "REST",
+      "year": 2025,
+      "posts_mentioning": 90,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "REST",
+      "year": 2026,
+      "posts_mentioning": 76,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "SQL",
+      "year": null,
+      "posts_mentioning": 665,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "SQL",
+      "year": 2021,
+      "posts_mentioning": 100,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "SQL",
+      "year": 2022,
+      "posts_mentioning": 125,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "SQL",
+      "year": 2023,
+      "posts_mentioning": 214,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "SQL",
+      "year": 2024,
+      "posts_mentioning": 395,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "SQL",
+      "year": 2025,
+      "posts_mentioning": 357,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "SQL",
+      "year": 2026,
+      "posts_mentioning": 308,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "Spark",
+      "year": null,
+      "posts_mentioning": 187,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "Spark",
+      "year": 2021,
+      "posts_mentioning": 44,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "Spark",
+      "year": 2022,
+      "posts_mentioning": 52,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "Spark",
+      "year": 2023,
+      "posts_mentioning": 65,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "Spark",
+      "year": 2024,
+      "posts_mentioning": 131,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "Spark",
+      "year": 2025,
+      "posts_mentioning": 106,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "Spark",
+      "year": 2026,
+      "posts_mentioning": 81,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "TensorFlow",
+      "year": null,
+      "posts_mentioning": 229,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "TensorFlow",
+      "year": 2021,
+      "posts_mentioning": 87,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "TensorFlow",
+      "year": 2022,
+      "posts_mentioning": 50,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "TensorFlow",
+      "year": 2023,
+      "posts_mentioning": 101,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "TensorFlow",
+      "year": 2024,
+      "posts_mentioning": 186,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "TensorFlow",
+      "year": 2025,
+      "posts_mentioning": 180,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "TensorFlow",
+      "year": 2026,
+      "posts_mentioning": 49,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "Transformers",
+      "year": null,
+      "posts_mentioning": 142,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "Transformers",
+      "year": 2021,
+      "posts_mentioning": 7,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "Transformers",
+      "year": 2022,
+      "posts_mentioning": 4,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "Transformers",
+      "year": 2023,
+      "posts_mentioning": 25,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "Transformers",
+      "year": 2024,
+      "posts_mentioning": 52,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "Transformers",
+      "year": 2025,
+      "posts_mentioning": 104,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "Transformers",
+      "year": 2026,
+      "posts_mentioning": 38,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "pandas",
+      "year": null,
+      "posts_mentioning": 345,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "pandas",
+      "year": 2021,
+      "posts_mentioning": 89,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "pandas",
+      "year": 2022,
+      "posts_mentioning": 60,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "pandas",
+      "year": 2023,
+      "posts_mentioning": 117,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "pandas",
+      "year": 2024,
+      "posts_mentioning": 219,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "pandas",
+      "year": 2025,
+      "posts_mentioning": 237,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "pandas",
+      "year": 2026,
+      "posts_mentioning": 108,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "scikit-learn",
+      "year": null,
+      "posts_mentioning": 299,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "scikit-learn",
+      "year": 2021,
+      "posts_mentioning": 75,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "scikit-learn",
+      "year": 2022,
+      "posts_mentioning": 54,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "scikit-learn",
+      "year": 2023,
+      "posts_mentioning": 86,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "scikit-learn",
+      "year": 2024,
+      "posts_mentioning": 190,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "scikit-learn",
+      "year": 2025,
+      "posts_mentioning": 211,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "scikit-learn",
+      "year": 2026,
+      "posts_mentioning": 88,
+      "posts": 1433
+    },
+    {
+      "group": "ml_all",
+      "skill": "ООП",
+      "year": null,
+      "posts_mentioning": 85,
+      "posts": 3313
+    },
+    {
+      "group": "ml_all",
+      "skill": "ООП",
+      "year": 2021,
+      "posts_mentioning": 10,
+      "posts": 455
+    },
+    {
+      "group": "ml_all",
+      "skill": "ООП",
+      "year": 2022,
+      "posts_mentioning": 16,
+      "posts": 542
+    },
+    {
+      "group": "ml_all",
+      "skill": "ООП",
+      "year": 2023,
+      "posts_mentioning": 27,
+      "posts": 1038
+    },
+    {
+      "group": "ml_all",
+      "skill": "ООП",
+      "year": 2024,
+      "posts_mentioning": 47,
+      "posts": 1786
+    },
+    {
+      "group": "ml_all",
+      "skill": "ООП",
+      "year": 2025,
+      "posts_mentioning": 57,
+      "posts": 1880
+    },
+    {
+      "group": "ml_all",
+      "skill": "ООП",
+      "year": 2026,
+      "posts_mentioning": 28,
+      "posts": 1433
+    },
+    {
+      "group": "ml_junior",
+      "skill": "A/B-тесты",
+      "year": null,
+      "posts_mentioning": 27,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "Airflow",
+      "year": null,
+      "posts_mentioning": 20,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "CI/CD",
+      "year": null,
+      "posts_mentioning": 20,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "Docker",
+      "year": null,
+      "posts_mentioning": 49,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "FastAPI",
+      "year": null,
+      "posts_mentioning": 31,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "Git",
+      "year": null,
+      "posts_mentioning": 58,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "LangChain",
+      "year": null,
+      "posts_mentioning": 33,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "LangGraph",
+      "year": null,
+      "posts_mentioning": 22,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "NumPy",
+      "year": null,
+      "posts_mentioning": 65,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "PyTorch",
+      "year": null,
+      "posts_mentioning": 76,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "Python",
+      "year": null,
+      "posts_mentioning": 297,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "RAG",
+      "year": null,
+      "posts_mentioning": 53,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "REST",
+      "year": null,
+      "posts_mentioning": 28,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "SQL",
+      "year": null,
+      "posts_mentioning": 134,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "TensorFlow",
+      "year": null,
+      "posts_mentioning": 25,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "Transformers",
+      "year": null,
+      "posts_mentioning": 26,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "pandas",
+      "year": null,
+      "posts_mentioning": 74,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "scikit-learn",
+      "year": null,
+      "posts_mentioning": 57,
+      "posts": 444
+    },
+    {
+      "group": "ml_junior",
+      "skill": "ООП",
+      "year": null,
+      "posts_mentioning": 21,
+      "posts": 444
+    }
+  ]
+}

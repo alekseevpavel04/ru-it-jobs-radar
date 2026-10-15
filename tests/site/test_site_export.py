@@ -14,6 +14,7 @@ from radar.site.export import (
     HISTORY,
     MARKET_FACTS,
     SKILL_EFFECTS,
+    SKILL_TRENDS,
     ExtractedSalary,
     Forecast,
     ForecastHistory,
@@ -26,6 +27,7 @@ from radar.site.export import (
     SkillEffects,
     SkillJunior,
     SkillTotal,
+    SkillTrends,
     TelegramYears,
     VacancyHistory,
     WeeklyTelegram,
@@ -38,6 +40,7 @@ from radar.site.export import (
     render,
     salary_min_n,
     skill_effects,
+    skill_trends,
     skills,
     skills_junior,
     telegram_years,
@@ -66,6 +69,7 @@ DOCUMENT_MODELS: dict[str, type[BaseModel]] = {
     "telegram_years.json": TelegramYears,
     "skill_effects.json": SkillEffects,
     "vacancy_history.json": VacancyHistory,
+    "skill_trends.json": SkillTrends,
 }
 DOCUMENTS = tuple(DOCUMENT_MODELS)
 
@@ -306,7 +310,11 @@ MARKET_RESULT: dict[str, Any] = {
     **PROVENANCE,
     "ml_roles": ["data_scientist", "ml_engineer", "mlops"],
     "panel_years": [2025, 2026],
+    "salary_years": [2025, 2026],
     "metrics": {
+        "telegram_recent_salary.ml.junior.stated": share_metric(52, 223),
+        "telegram_recent_salary.ml.junior.from_median": {"value": 100000, "rows": 51},
+        "telegram_recent_salary.ml.intern.stated": share_metric(8, 221),
         "telegram_panel.channels": share_metric(39, 58),
         "telegram_year.last_week": {"value": "2026-10-12"},
         **{
@@ -370,7 +378,27 @@ HISTORY_RESULT: dict[str, Any] = {
     },
 }
 
-RESULTS = {MARKET_FACTS: MARKET_RESULT, SKILL_EFFECTS: EFFECTS_RESULT, HISTORY: HISTORY_RESULT}
+TRENDS_RESULT: dict[str, Any] = {
+    **PROVENANCE,
+    "recent_years": [2025, 2026],
+    "min_mentions": 20,
+    "min_year_posts": 300,
+    "metrics": {
+        "posts.ml_all.recent": {"value": 3313},
+        "posts.ml_all.2025": {"value": 1880},
+        "share.ml_all.CI/CD.recent": share_metric(305, 3313),
+        "share.ml_all.CI/CD.2025": share_metric(170, 1880),
+        "posts.ml_junior.recent": {"value": 444},
+        "share.ml_junior.A/B-тесты.recent": share_metric(27, 444),
+    },
+}
+
+RESULTS = {
+    MARKET_FACTS: MARKET_RESULT,
+    SKILL_EFFECTS: EFFECTS_RESULT,
+    HISTORY: HISTORY_RESULT,
+    SKILL_TRENDS: TRENDS_RESULT,
+}
 
 
 def built(marts: dict[str, list[dict[str, Any]]]) -> dict[str, Any]:
@@ -665,3 +693,24 @@ def test_telegram_salaries_leave_the_portal_rows_of_the_extracted_mart_out(
 ) -> None:
     (row,) = built(marts)["salaries_telegram.json"]
     assert (row.level, row.grade, row.with_from, row.salary_from_median) == ("grade", "junior", 146, 80000)
+
+
+def test_skill_trends_keep_the_pooled_cut_apart_from_the_years() -> None:
+    doc = skill_trends(TRENDS_RESULT, "results/market/skill_trends.json")
+    assert [(g.group, g.year, g.posts) for g in doc.groups] == [
+        ("ml_all", None, 3313),
+        ("ml_all", 2025, 1880),
+        ("ml_junior", None, 444),
+    ]
+    cicd = [s for s in doc.shares if s.skill == "CI/CD"]
+    assert [(s.year, s.posts_mentioning, s.posts) for s in cicd] == [(None, 305, 3313), (2025, 170, 1880)]
+    assert any(s.skill == "A/B-тесты" and s.group == "ml_junior" for s in doc.shares)
+
+
+def test_salary_grades_keep_medians_only_where_the_result_has_them() -> None:
+    doc = telegram_years(MARKET_RESULT, "results/market/facts.json")
+    cells = {(g.scope, g.grade): g for g in doc.salary_grades}
+    assert cells["ml", "junior"].from_median == 100000 and cells["ml", "junior"].from_rows == 51
+    assert cells["ml", "junior"].to_median is None and cells["ml", "junior"].stated == 52
+    assert cells["ml", "intern"].from_median is None and cells["ml", "intern"].posts == 221
+    assert [g.grade for g in doc.salary_grades] == ["intern", "junior"]

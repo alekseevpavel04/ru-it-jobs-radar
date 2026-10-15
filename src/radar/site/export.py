@@ -41,6 +41,7 @@ FORECAST = RESULTS / "models" / "forecast.json"
 MARKET_FACTS = RESULTS / "market" / "facts.json"
 SKILL_EFFECTS = RESULTS / "models" / "skill_effects.json"
 HISTORY = RESULTS / "dbt" / "history.json"
+SKILL_TRENDS = RESULTS / "market" / "skill_trends.json"
 FORECAST_SOURCE = "telegram"
 FORECAST_TARGET = f"{FORECAST_SOURCE}.share"
 JUNIOR_GRADES = ("intern", "junior")
@@ -327,6 +328,17 @@ class TelegramFormatYear(Row):
     posts_with_format: int
 
 
+class SalaryGrade(Row):
+    scope: Literal["it", "ml"]
+    grade: Literal["intern", "junior", "middle", "senior"]
+    posts: int
+    stated: int
+    from_median: int | None
+    from_rows: int | None
+    to_median: int | None
+    to_rows: int | None
+
+
 class TelegramYears(Provenance):
     """The Telegram history by year of results/market/facts.json: all channels, and the panel of
     channels with IT posts in every panel year, because the channel mix changes over the years."""
@@ -339,6 +351,8 @@ class TelegramYears(Provenance):
     years: list[TelegramYear]
     skills: list[TelegramSkillYear]
     work_format: list[TelegramFormatYear]
+    salary_years: list[int]
+    salary_grades: list[SalaryGrade]
 
 
 class SkillEffect(Row):
@@ -362,6 +376,34 @@ class SkillEffects(Provenance):
     ci_level: float
     effects: list[SkillEffect]
     limits: list[str]
+
+
+SkillGroup = Literal["it_all", "it_junior", "ml_all", "ml_junior"]
+
+
+class SkillGroupYear(Row):
+    group: SkillGroup
+    year: int | None  # None: the pooled recent years
+    posts: int
+
+
+class SkillShare(Row):
+    group: SkillGroup
+    skill: str
+    year: int | None
+    posts_mentioning: int
+    posts: int
+
+
+class SkillTrends(Provenance):
+    """Skills of Telegram posts by year and group from results/market/skill_trends.json; only the skills
+    and years that pass the file's thresholds are there."""
+
+    recent_years: list[int]
+    min_mentions: int
+    min_year_posts: int
+    groups: list[SkillGroupYear]
+    shares: list[SkillShare]
 
 
 class VacancyHistory(Provenance):
@@ -717,6 +759,9 @@ def provenance(doc: Mapping[str, Any], source_file: str) -> dict[str, str]:
 
 _YEAR_KEY = re.compile(r"^(?P<prefix>telegram|telegram_panel)_year\.(?P<year>\d{4})\.(?P<name>\w+)$")
 _SKILL_KEY = re.compile(r"^(?P<prefix>telegram|telegram_panel)_ml_skill\.(?P<year>\d{4})\.(?P<skill>.+)$")
+_SALARY_KEY = re.compile(
+    r"^telegram_recent_salary\.(?P<scope>it|ml)\.(?P<grade>\w+)\.(?P<name>stated|from_median|to_median)$"
+)
 _FORMAT_KEY = re.compile(
     r"^telegram(?P<ml>_ml)?_work_format\.(?P<year>\d{4})\.(?P<group>junior|other)\.(?P<format>office|hybrid|remote)$"
 )
@@ -728,7 +773,18 @@ def telegram_years(doc: Mapping[str, Any], source_file: str) -> TelegramYears:
     years: dict[tuple[str, int], dict[str, int]] = defaultdict(dict)
     skill_rows: list[TelegramSkillYear] = []
     formats: list[TelegramFormatYear] = []
+    salary: dict[tuple[str, str], dict[str, int | None]] = defaultdict(
+        lambda: {"from_median": None, "from_rows": None, "to_median": None, "to_rows": None}
+    )
     for key, m in metrics.items():
+        if found := _SALARY_KEY.match(key):
+            cell = salary[found["scope"], found["grade"]]
+            if found["name"] == "stated":
+                cell["posts"], cell["stated"] = m["denominator"], m["n"]
+            else:
+                end = found["name"].removesuffix("_median")
+                cell[f"{end}_median"], cell[f"{end}_rows"] = m["value"], m["rows"]
+            continue
         if found := _YEAR_KEY.match(key):
             row = years["panel" if found["prefix"] == "telegram_panel" else "all", int(found["year"])]
             name = found["name"]
@@ -775,6 +831,11 @@ def telegram_years(doc: Mapping[str, Any], source_file: str) -> TelegramYears:
         ),
         skills=sorted(skill_rows, key=lambda r: (r.scope, r.skill, r.year)),
         work_format=sorted(formats, key=lambda r: (r.scope, r.year, r.group, r.work_format)),
+        salary_years=doc["salary_years"],
+        salary_grades=sorted(
+            (SalaryGrade(scope=scope, grade=grade, **cell) for (scope, grade), cell in salary.items()),
+            key=lambda r: (r.scope, ["intern", "junior", "middle", "senior"].index(r.grade)),
+        ),
     )
 
 
@@ -819,6 +880,28 @@ def vacancy_history(doc: Mapping[str, Any], source_file: str) -> VacancyHistory:
     )
 
 
+def skill_trends(doc: Mapping[str, Any], source_file: str) -> SkillTrends:
+    groups, shares = [], []
+    for key, m in doc["metrics"].items():
+        kind, *rest = key.split(".")
+        year = None if rest[-1] == "recent" else int(rest[-1])
+        if kind == "posts":
+            groups.append(SkillGroupYear(group=rest[0], year=year, posts=m["value"]))
+        elif kind == "share":
+            skill = ".".join(rest[1:-1])
+            shares.append(
+                SkillShare(group=rest[0], skill=skill, year=year, posts_mentioning=m["n"], posts=m["denominator"])
+            )
+    return SkillTrends(
+        **provenance(doc, source_file),
+        recent_years=doc["recent_years"],
+        min_mentions=doc["min_mentions"],
+        min_year_posts=doc["min_year_posts"],
+        groups=sorted(groups, key=lambda r: (r.group, r.year or 0)),
+        shares=sorted(shares, key=lambda r: (r.group, r.skill, r.year or 0)),
+    )
+
+
 def periods(skill_rows: Iterable[dict[str, Any]]) -> dict[str, Period]:
     found: dict[str, Period] = {}
     for r in skill_rows:
@@ -838,7 +921,7 @@ def build(
 ) -> dict[str, Any]:
     """File name -> rows, or one document for meta.json and each file built from results/.
 
-    results maps MARKET_FACTS, SKILL_EFFECTS and HISTORY to their parsed result files.
+    results maps MARKET_FACTS, SKILL_EFFECTS, HISTORY and SKILL_TRENDS to their parsed result files.
     """
     weekly = marts["mart_weekly_dynamics"]
     sizes = bucket_sizes(marts["mart_junior"])
@@ -889,7 +972,10 @@ def build(
         salary_min_n_coverage=round(median_ci_coverage(salary_min_n()), 4),
         files={name: len(rows) for name, rows in files.items()},
     )
-    rel = {path: path.relative_to(ROOT).as_posix() for path in (SURVIVAL, MARKET_FACTS, SKILL_EFFECTS, HISTORY)}
+    rel = {
+        path: path.relative_to(ROOT).as_posix()
+        for path in (SURVIVAL, MARKET_FACTS, SKILL_EFFECTS, HISTORY, SKILL_TRENDS)
+    }
     return {
         "meta.json": meta,
         "lifetime.json": lifetime(survival, rel[SURVIVAL]),
@@ -897,6 +983,7 @@ def build(
         "telegram_years.json": telegram_years(results[MARKET_FACTS], rel[MARKET_FACTS]),
         "skill_effects.json": skill_effects(results[SKILL_EFFECTS], rel[SKILL_EFFECTS]),
         "vacancy_history.json": vacancy_history(results[HISTORY], rel[HISTORY]),
+        "skill_trends.json": skill_trends(results[SKILL_TRENDS], rel[SKILL_TRENDS]),
         **files,
     }
 
@@ -947,7 +1034,10 @@ def main() -> int:
         git_commit(),
         forecast_doc=forecast_doc,
         forecast_history=history,
-        results={path: json.loads(path.read_text(encoding="utf-8")) for path in (MARKET_FACTS, SKILL_EFFECTS, HISTORY)},
+        results={
+            path: json.loads(path.read_text(encoding="utf-8"))
+            for path in (MARKET_FACTS, SKILL_EFFECTS, HISTORY, SKILL_TRENDS)
+        },
     )
     sizes = write(docs, args.out)
     meta: Meta = docs["meta.json"]
