@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node scripts/observable.mjs build",
     "dev": "node scripts/observable.mjs preview",
-    "shots": "node scripts/shoot.mjs --dir dist --out ../logs/site/shots --pages index,salaries,methodology,404,digest/,digest/2026-W40 --base /ru-it-jobs-radar/ --widths 1440,390"
+    "shots": "node scripts/shoot.mjs --dir dist --out ../logs/site/shots --pages index,methodology,404,digest/,digest/2026-W40 --base /ru-it-jobs-radar/ --widths 1440,390"
   },
   "devDependencies": {
     "@observablehq/framework": "1.13.4",

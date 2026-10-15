@@ -6,36 +6,45 @@ toc: false
 # Какие навыки нужны в IT
 
 ```js
-import {SKILL, int, plural} from "./components/labels.js";
+import {SKILL, int, pct, plural} from "./components/labels.js";
 import {DIRECTION, GRADE_GROUP, change, gradeChart, skillChart} from "./components/skills.js";
+import {FDR, effectsChart} from "./components/effects.js";
 
 const trends = FileAttachment("data/skill_trends.json").json();
+const effects = FileAttachment("data/skill_effects.json").json();
 ```
 
-<p class="lead">Что просят вакансии из публичных Telegram-каналов, по направлениям IT и грейдам. Навыки, роль и грейд из текста поста читает модель проекта. Показаны только доли, под которыми достаточно постов. <a href="./methodology#skills">Как считается</a>.</p>
-
-## Кого ищут
+<p class="lead">Кого ищут, какие навыки просят и за какие платят больше, по вакансиям из публичных Telegram-каналов. Роль, грейд и навыки из текста читает модель проекта. <a href="./methodology">Как считается</a>.</p>
 
 ```js
-const lastWeek = trends.recent_years.at(-1);
-const gradedShare = (y) => {
+// Headings say what the data shows, so they are computed: a claim is made only while the data holds it.
+const lowerFirst = (s) => (/^[А-ЯЁ][а-яё]/.test(s) ? s[0].toLowerCase() + s.slice(1) : s);
+const listRu = (xs) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} и ${xs.at(-1)}`);
+const lastYear = trends.recent_years.at(-1);
+const gradeShare = (year, grade) => {
+  const g = trends.grades.find((r) => r.year === year && r.grade === grade);
+  return g.posts / g.graded;
+};
+const midDrop = gradeShare(trends.base_year, "middle") - gradeShare(lastYear, "middle");
+const juniorRise = gradeShare(lastYear, "junior") - gradeShare(trends.base_year, "junior");
+const gradeTitle = midDrop > 0.05 ? "Мидлов ищут всё реже" : juniorRise > 0.05 ? "Джунов ищут всё чаще" : "Кого ищут";
+const graded = [...new Set(trends.grades.map((g) => g.year))].map((y) => {
   const g = trends.grades.find((r) => r.year === y);
   return g.graded / g.total;
-};
-const shares = [...new Set(trends.grades.map((g) => g.year))].map(gradedShare);
+});
 ```
+
+<h2>${gradeTitle}</h2>
 
 <div class="card">
 
-<p class="note-small">Доля стажёров и джунов, мидлов, сеньоров и лидов среди IT-постов, где указан грейд (он указан в ${Math.round(d3.min(shares) * 100)}-${Math.round(d3.max(shares) * 100)} % постов); ${lastWeek} год неполный. <a href="./methodology#grades">Как считается</a>.</p>
+<p class="note-small">Доля среди IT-постов, где указан грейд (а он указан в ${Math.round(d3.min(graded) * 100)}-${Math.round(d3.max(graded) * 100)} % постов); ${lastYear} год неполный.</p>
 
 ```js
-gradeChart(trends.grades, {width, partialYear: lastWeek})
+gradeChart(trends.grades, {width, partialYear: lastYear})
 ```
 
 </div>
-
-## Что просят
 
 ```js
 const directionInput = Inputs.select(new Map(Object.entries(DIRECTION).map(([k, v]) => [v, k])), {label: "Направление", value: "it"});
@@ -45,8 +54,6 @@ const grade = Generators.input(gradeInput);
 const sortInput = Inputs.radio(new Map([["по доле", "share"], ["по росту", "growth"]]), {label: "Порядок", value: "share"});
 const sortBy = Generators.input(sortInput);
 ```
-
-<div class="filters stacked">${directionInput}${gradeInput}${sortInput}</div>
 
 ```js
 const cell = `${direction}_${grade}`;
@@ -67,7 +74,20 @@ const rows = [...d3.group(trends.shares.filter((s) => s.group === cell), (s) => 
 const growthKey = (r) => (r.change?.significant ? r.change.diff : 0);
 const ordered = rows.slice().sort(sortBy === "share" || !baseYear ? (a, b) => b.share - a.share : (a, b) => growthKey(b) - growthKey(a));
 const label = `${DIRECTION[direction]}, ${GRADE_GROUP[grade].toLowerCase()}`;
+const top = rows.slice().sort((a, b) => b.share - a.share)[0];
+const riser = rows.filter((r) => r.change?.significant && r.change.diff > 0).sort((a, b) => b.change.diff - a.change.diff)[0];
+const skillTitle = !posts.size
+  ? "Что просят"
+  : !riser
+    ? `Чаще всего просят ${top.skill}`
+    : riser === top
+      ? `${top.skill} просят чаще всех, и его доля растёт быстрее всех`
+      : `Чаще всего просят ${top.skill}, быстрее всех растёт ${riser.skill}`;
 ```
+
+<h2>${skillTitle}</h2>
+
+<div class="filters stacked">${directionInput}${gradeInput}${sortInput}</div>
 
 <div class="card">
 
@@ -78,6 +98,28 @@ ${!posts.size
 ```js
 // Always display a node: a block that displays nothing keeps its previous output.
 display(posts.size ? skillChart(ordered, {width, recentLabel, baseYear}) : document.createElement("span"));
+```
+
+</div>
+
+```js
+const name = (e) => SKILL[e.skill] ?? e.skill;
+const level = Math.round(effects.ci_level * 100);
+const confirmed = (sign) => effects.effects.filter((e) => e.q_bh < FDR && Math.sign(e.pct) === sign).sort((a, b) => sign * (b.pct - a.pct));
+const ups = confirmed(1).slice(0, 2).map((e) => lowerFirst(name(e)));
+const downs = confirmed(-1).slice(0, 2).map((e) => lowerFirst(name(e)));
+const moneyTitle =
+  ups.length && downs.length ? `Больше платят за ${listRu(ups)}, меньше за ${listRu(downs)}` : ups.length ? `Больше платят за ${listRu(ups)}` : downs.length ? `Меньше платят за ${listRu(downs)}` : "Сколько добавляет навык к вилке";
+```
+
+<h2>${moneyTitle}</h2>
+
+<div class="card">
+
+<p class="note-small">Разница середины вилки у вакансий с навыком и у похожих без него, полоса ${level} % интервал; ${int(effects.rows)} вакансий, почти все с портала «Работа в России». <a href="./methodology#skill-effects">Как считается</a>.</p>
+
+```js
+effectsChart(effects.effects, {width, name})
 ```
 
 </div>

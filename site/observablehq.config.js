@@ -22,7 +22,6 @@ export default {
   // The order is the order of the "Назад" and "Дальше" links: the questions of a reader come first.
   pages: [
     {name: "Навыки", path: "/index"},
-    {name: "Навыки и деньги", path: "/salaries"},
     {name: "О данных", path: "/methodology"}
   ],
   header: `<div class="radar-header">Открытые источники, без hh.ru · данные по ${longDate(meta.data_through)} · <a href="/methodology">О данных</a></div>`,
