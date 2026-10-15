@@ -1,8 +1,8 @@
-"""Weekly market digest: one short Russian page per ISO week in site/src/digest, built from the marts.
+"""Weekly market digest: one short Russian page per ISO week in data/digest, built from the marts.
 
     python -m radar.site.digest queries [--week 2026-W40]
-    python -m radar.site.digest render --bundle bundle.json [--out site/src/digest]
-    python -m radar.site.digest run [--week 2026-W40] [--out site/src/digest]
+    python -m radar.site.digest render --bundle bundle.json [--out data/digest]
+    python -m radar.site.digest run [--week 2026-W40] [--out data/digest]
 
 The n8n workflow (infra/n8n/workflows/weekly_digest.json) calls `queries` for the SELECTs of the
 latest complete week, sends each to ClickHouse as the read-only account, saves the answers as one
@@ -28,7 +28,9 @@ from typing import Any
 
 from radar.config import ROOT
 
-OUT = ROOT / "site" / "src" / "digest"
+# The digest is an n8n scenario of the local stack and stays local: a week moves skill shares by about as
+# much as their noise, so the site publishes a quarterly report instead (radar.site.quarterly).
+OUT = ROOT / "data" / "digest"
 WORKFLOW = "infra/n8n/workflows/weekly_digest.json"
 # Moscow has kept UTC+3 without daylight saving since 2014; a fixed offset spares the container tzdata.
 MSK = timezone(timedelta(hours=3), "MSK")
@@ -753,7 +755,7 @@ def render_salaries(issue: Issue) -> list[str]:
     if issue.compared_with is None:
         lines += [
             "Сравнения зарплат с прошлым выпуском нет: это первый выпуск. Его медианы сохранены в "
-            f"`site/src/digest/data/{issue.week}.json`, следующий выпуск сравнит с ними.",
+            f"`data/digest/data/{issue.week}.json`, следующий выпуск сравнит с ними.",
             "",
         ]
     return lines
@@ -783,7 +785,7 @@ def render(issue: Issue) -> str:
     lines += [
         "---",
         "",
-        f"Числа выпуска лежат в репозитории в `site/src/digest/data/{issue.week}.json`. Источник: витрины "
+        f"Числа выпуска лежат в `data/digest/data/{issue.week}.json`. Источник: витрины "
         "mart_weekly_dynamics, mart_skills_weekly, mart_skills и mart_salaries. Выпуск собирает модуль "
         f"`radar.site.digest`; по расписанию его вызывает сценарий n8n `{WORKFLOW}` по понедельникам в 09:00 "
         "по Москве.",

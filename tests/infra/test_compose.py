@@ -35,8 +35,8 @@ WRITABLE_BINDS = {
     # radar_publish: the site export and its result file, left for review.
     ("airflow-scheduler", "../../site/src/data"),
     ("airflow-scheduler", "../../results/site"),
-    # The weekly digest writes its pages for the site build.
-    ("n8n", "../../site/src/digest"),
+    # The weekly digest writes its pages locally; the site publishes a quarterly report instead.
+    ("n8n", "../../data/digest"),
 }
 
 

@@ -49,7 +49,7 @@ n8n_compose() { compose --profile mlops "$@"; }
 n8n_cli() { n8n_compose exec -T n8n n8n "$@"; }
 
 # The bind mount of the digest pages needs the directory on the host before the container starts.
-mkdir -p "$RADAR_ROOT/site/src/digest"
+mkdir -p "$RADAR_ROOT/data/digest"
 
 if $reset_owner; then
   n8n_compose stop n8n
@@ -113,7 +113,7 @@ if $run_once; then
     tail -n 40 "$run_log" >&2
     exit 1
   fi
-  echo "done, node output in logs/n8n/run.log; issues: $(ls "$RADAR_ROOT/site/src/digest/data" | tr '\n' ' ')"
+  echo "done, node output in logs/n8n/run.log; issues: $(ls "$RADAR_ROOT/data/digest/data" | tr '\n' ' ')"
 fi
 echo
 echo "n8n: http://localhost:5678 ($OWNER_EMAIL); workflows published: ${ids[*]}"

@@ -149,7 +149,7 @@
       "parameters": {
         "width": 1100,
         "height": 160,
-        "content": "## Weekly market digest\nPython (`radar.site.digest`) names the latest complete ISO week and its SELECTs on `marts.*`; n8n sends them to ClickHouse as the read-only account, bundles the answers and has Python render `site/src/digest/<week>.md`, the issue figures in `data/<week>.json` and the index. Workflow source: `infra/n8n/workflows/weekly_digest.json`, imported by `scripts/n8n_import.sh`."
+        "content": "## Weekly market digest\nPython (`radar.site.digest`) names the latest complete ISO week and its SELECTs on `marts.*`; n8n sends them to ClickHouse as the read-only account, bundles the answers and has Python render `data/digest/<week>.md` (local only; the site publishes a quarterly report), the issue figures in `data/<week>.json` and the index. Workflow source: `infra/n8n/workflows/weekly_digest.json`, imported by `scripts/n8n_import.sh`."
       }
     }
   ],

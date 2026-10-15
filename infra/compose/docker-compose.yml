@@ -551,7 +551,7 @@ services:
     volumes:
       - n8n-data:/home/node/.n8n
       - ../../src:/opt/radar/src:ro
-      - ../../site/src/digest:/opt/radar/site/src/digest
+      - ../../data/digest:/opt/radar/data/digest
       - ../n8n/workflows:/opt/radar/infra/n8n/workflows:ro
     tmpfs:
       - /home/node/.n8n-files:mode=0700,uid=1000,gid=1000

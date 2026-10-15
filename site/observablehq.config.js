@@ -25,7 +25,7 @@ export default {
     {name: "О данных", path: "/methodology"}
   ],
   header: `<div class="radar-header">Открытые источники, без hh.ru · данные по ${longDate(meta.data_through)} · <a href="/methodology">О данных</a></div>`,
-  footer: `Выгрузка данных ${longDate(meta.exported_at)} · <a href="/digest/">Недельные выпуски</a> · Код, витрины и методика: <a href="${REPO}">${REPO.replace("https://", "")}</a>`,
+  footer: `Выгрузка данных ${longDate(meta.exported_at)} · Код, витрины и методика: <a href="${REPO}">${REPO.replace("https://", "")}</a>`,
   toc: false,
   search: false,
   // The default stylesheet links Google Fonts; the site loads nothing from other hosts.
