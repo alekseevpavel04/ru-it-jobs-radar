@@ -1,8 +1,8 @@
 {
   "source_file": "results/market/skill_trends.json",
   "source_script": "src/radar/site/skill_trends.py",
-  "commit": "215d255-dirty",
-  "created_at": "2026-10-15T08:37:14+00:00",
+  "commit": "73157d4-dirty",
+  "created_at": "2026-10-15T09:11:24+00:00",
   "recent_years": [
     2025,
     2026
@@ -56637,6 +56637,176 @@
       "year": 2026,
       "posts_mentioning": 18,
       "posts": 434
+    }
+  ],
+  "grades": [
+    {
+      "year": 2019,
+      "grade": "junior",
+      "posts": 479,
+      "graded": 5279,
+      "total": 9621
+    },
+    {
+      "year": 2019,
+      "grade": "middle",
+      "posts": 2578,
+      "graded": 5279,
+      "total": 9621
+    },
+    {
+      "year": 2019,
+      "grade": "senior",
+      "posts": 2222,
+      "graded": 5279,
+      "total": 9621
+    },
+    {
+      "year": 2020,
+      "grade": "junior",
+      "posts": 635,
+      "graded": 7972,
+      "total": 12234
+    },
+    {
+      "year": 2020,
+      "grade": "middle",
+      "posts": 4033,
+      "graded": 7972,
+      "total": 12234
+    },
+    {
+      "year": 2020,
+      "grade": "senior",
+      "posts": 3304,
+      "graded": 7972,
+      "total": 12234
+    },
+    {
+      "year": 2021,
+      "grade": "junior",
+      "posts": 1200,
+      "graded": 12953,
+      "total": 19279
+    },
+    {
+      "year": 2021,
+      "grade": "middle",
+      "posts": 6615,
+      "graded": 12953,
+      "total": 19279
+    },
+    {
+      "year": 2021,
+      "grade": "senior",
+      "posts": 5138,
+      "graded": 12953,
+      "total": 19279
+    },
+    {
+      "year": 2022,
+      "grade": "junior",
+      "posts": 2271,
+      "graded": 16966,
+      "total": 27514
+    },
+    {
+      "year": 2022,
+      "grade": "middle",
+      "posts": 7473,
+      "graded": 16966,
+      "total": 27514
+    },
+    {
+      "year": 2022,
+      "grade": "senior",
+      "posts": 7222,
+      "graded": 16966,
+      "total": 27514
+    },
+    {
+      "year": 2023,
+      "grade": "junior",
+      "posts": 3742,
+      "graded": 20561,
+      "total": 31206
+    },
+    {
+      "year": 2023,
+      "grade": "middle",
+      "posts": 8279,
+      "graded": 20561,
+      "total": 31206
+    },
+    {
+      "year": 2023,
+      "grade": "senior",
+      "posts": 8540,
+      "graded": 20561,
+      "total": 31206
+    },
+    {
+      "year": 2024,
+      "grade": "junior",
+      "posts": 3916,
+      "graded": 20163,
+      "total": 31817
+    },
+    {
+      "year": 2024,
+      "grade": "middle",
+      "posts": 8106,
+      "graded": 20163,
+      "total": 31817
+    },
+    {
+      "year": 2024,
+      "grade": "senior",
+      "posts": 8141,
+      "graded": 20163,
+      "total": 31817
+    },
+    {
+      "year": 2025,
+      "grade": "junior",
+      "posts": 4354,
+      "graded": 17079,
+      "total": 27794
+    },
+    {
+      "year": 2025,
+      "grade": "middle",
+      "posts": 5416,
+      "graded": 17079,
+      "total": 27794
+    },
+    {
+      "year": 2025,
+      "grade": "senior",
+      "posts": 7309,
+      "graded": 17079,
+      "total": 27794
+    },
+    {
+      "year": 2026,
+      "grade": "junior",
+      "posts": 3219,
+      "graded": 12555,
+      "total": 18630
+    },
+    {
+      "year": 2026,
+      "grade": "middle",
+      "posts": 3358,
+      "graded": 12555,
+      "total": 18630
+    },
+    {
+      "year": 2026,
+      "grade": "senior",
+      "posts": 5978,
+      "graded": 12555,
+      "total": 18630
     }
   ]
 }

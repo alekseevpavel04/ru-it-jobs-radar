@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/skill_trends.py",
   "command": "python -m radar.site.skill_trends",
-  "commit": "215d255-dirty",
-  "created_at": "2026-10-15T08:37:14+00:00",
+  "commit": "73157d4-dirty",
+  "created_at": "2026-10-15T09:11:24+00:00",
   "metrics": {
     "posts.analytics_all.recent": {
       "value": 5117,
@@ -40773,6 +40773,166 @@
       "value": 0.0392,
       "n": 17,
       "denominator": 434
+    },
+    "grades.2019.graded": {
+      "value": 0.5487,
+      "n": 5279,
+      "denominator": 9621
+    },
+    "grades.2019.junior": {
+      "value": 0.0907,
+      "n": 479,
+      "denominator": 5279
+    },
+    "grades.2019.middle": {
+      "value": 0.4884,
+      "n": 2578,
+      "denominator": 5279
+    },
+    "grades.2019.senior": {
+      "value": 0.4209,
+      "n": 2222,
+      "denominator": 5279
+    },
+    "grades.2020.graded": {
+      "value": 0.6516,
+      "n": 7972,
+      "denominator": 12234
+    },
+    "grades.2020.junior": {
+      "value": 0.0797,
+      "n": 635,
+      "denominator": 7972
+    },
+    "grades.2020.middle": {
+      "value": 0.5059,
+      "n": 4033,
+      "denominator": 7972
+    },
+    "grades.2020.senior": {
+      "value": 0.4145,
+      "n": 3304,
+      "denominator": 7972
+    },
+    "grades.2021.graded": {
+      "value": 0.6719,
+      "n": 12953,
+      "denominator": 19279
+    },
+    "grades.2021.junior": {
+      "value": 0.0926,
+      "n": 1200,
+      "denominator": 12953
+    },
+    "grades.2021.middle": {
+      "value": 0.5107,
+      "n": 6615,
+      "denominator": 12953
+    },
+    "grades.2021.senior": {
+      "value": 0.3967,
+      "n": 5138,
+      "denominator": 12953
+    },
+    "grades.2022.graded": {
+      "value": 0.6166,
+      "n": 16966,
+      "denominator": 27514
+    },
+    "grades.2022.junior": {
+      "value": 0.1339,
+      "n": 2271,
+      "denominator": 16966
+    },
+    "grades.2022.middle": {
+      "value": 0.4405,
+      "n": 7473,
+      "denominator": 16966
+    },
+    "grades.2022.senior": {
+      "value": 0.4257,
+      "n": 7222,
+      "denominator": 16966
+    },
+    "grades.2023.graded": {
+      "value": 0.6589,
+      "n": 20561,
+      "denominator": 31206
+    },
+    "grades.2023.junior": {
+      "value": 0.182,
+      "n": 3742,
+      "denominator": 20561
+    },
+    "grades.2023.middle": {
+      "value": 0.4027,
+      "n": 8279,
+      "denominator": 20561
+    },
+    "grades.2023.senior": {
+      "value": 0.4153,
+      "n": 8540,
+      "denominator": 20561
+    },
+    "grades.2024.graded": {
+      "value": 0.6337,
+      "n": 20163,
+      "denominator": 31817
+    },
+    "grades.2024.junior": {
+      "value": 0.1942,
+      "n": 3916,
+      "denominator": 20163
+    },
+    "grades.2024.middle": {
+      "value": 0.402,
+      "n": 8106,
+      "denominator": 20163
+    },
+    "grades.2024.senior": {
+      "value": 0.4038,
+      "n": 8141,
+      "denominator": 20163
+    },
+    "grades.2025.graded": {
+      "value": 0.6145,
+      "n": 17079,
+      "denominator": 27794
+    },
+    "grades.2025.junior": {
+      "value": 0.2549,
+      "n": 4354,
+      "denominator": 17079
+    },
+    "grades.2025.middle": {
+      "value": 0.3171,
+      "n": 5416,
+      "denominator": 17079
+    },
+    "grades.2025.senior": {
+      "value": 0.428,
+      "n": 7309,
+      "denominator": 17079
+    },
+    "grades.2026.graded": {
+      "value": 0.6739,
+      "n": 12555,
+      "denominator": 18630
+    },
+    "grades.2026.junior": {
+      "value": 0.2564,
+      "n": 3219,
+      "denominator": 12555
+    },
+    "grades.2026.middle": {
+      "value": 0.2675,
+      "n": 3358,
+      "denominator": 12555
+    },
+    "grades.2026.senior": {
+      "value": 0.4761,
+      "n": 5978,
+      "denominator": 12555
     }
   },
   "directions": {
@@ -40832,6 +40992,7 @@
   "growth_min_share": 0.005,
   "definitions": {
     "cells": "<direction>_<grade>: Telegram single-vacancy IT posts of the direction's roles (it: all IT) and of the grade (all: every post, a post without a grade included).",
+    "grades": "grades.<year>.<grade>: posts of the grade of the IT posts that name a grade; grades.<year>.graded: IT posts that name a grade of all IT posts.",
     "share": "posts of the cell naming the skill (extracted skills) of the cell's posts; recent pools 2025-2026, a year by the week's Monday."
   }
 }

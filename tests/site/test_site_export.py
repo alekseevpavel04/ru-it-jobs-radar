@@ -395,6 +395,8 @@ TRENDS_RESULT: dict[str, Any] = {
         "share.ml_all.CI/CD.2025": share_metric(170, 1880),
         "posts.ml_junior.recent": {"value": 444},
         "share.ml_junior.A/B-тесты.recent": share_metric(27, 444),
+        "grades.2025.graded": share_metric(17079, 27794),
+        "grades.2025.junior": share_metric(4354, 17079),
     },
 }
 
@@ -711,3 +713,4 @@ def test_skill_trends_keep_the_pooled_cut_apart_from_the_years() -> None:
     assert [(s.year, s.posts_mentioning, s.posts) for s in cicd] == [(None, 305, 3313), (2025, 170, 1880)]
     assert any(s.skill == "A/B-тесты" and s.group == "ml_junior" for s in doc.shares)
     assert doc.base_year == 2022
+    assert [(g.year, g.grade, g.posts, g.graded, g.total) for g in doc.grades] == [(2025, "junior", 4354, 17079, 27794)]

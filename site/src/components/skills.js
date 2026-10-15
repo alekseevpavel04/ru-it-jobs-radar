@@ -118,3 +118,56 @@ export function skillChart(rows, {width, recentLabel, baseYear, row = 16, font =
   const parts = BLOCKS.map((b) => [b, rows.filter((r) => b.test(r.change))]).filter(([, part]) => part.length);
   return html`<div>${legend}${parts.map(([b, part]) => html`${heading(b)}${blockPlot(part, {width, recentLabel, top, row, font})}`)}</div>`;
 }
+
+// The grade mix of all IT by year: a line per grade, labelled at its end, the unfinished year dashed.
+const GRADE_LINE = [
+  {grade: "junior", label: "стажёры и джуны", short: "джуны", color: "#3987e5"},
+  {grade: "middle", label: "мидлы", short: "мидлы", color: "#d4a017"},
+  {grade: "senior", label: "сеньоры и лиды", short: "сеньоры", color: "#7a3fb0"}
+];
+
+export function gradeChart(grades, {width, partialYear}) {
+  const narrow = width < 600;
+  const rows = grades.map((g) => ({...g, share: g.posts / g.graded}));
+  const years = [...new Set(rows.map((r) => r.year))].sort();
+  const last = years.at(-1);
+  // End labels of close lines are pushed apart symmetrically; the dots stay where they are.
+  const GAP = 0.045;
+  const ends = GRADE_LINE.map((g) => ({...g, y: rows.find((r) => r.grade === g.grade && r.year === last).share})).sort((a, b) => a.y - b.y);
+  for (let pass = 0; pass < 50; pass++) {
+    for (let i = 1; i < ends.length; i++) {
+      const overlap = GAP - (ends[i].y - ends[i - 1].y);
+      if (overlap > 0) {
+        ends[i].y += overlap / 2;
+        ends[i - 1].y -= overlap / 2;
+      }
+    }
+  }
+  const labelY = new Map(ends.map((e) => [e.grade, e.y]));
+  const marks = [];
+  for (const {grade, label, short, color} of GRADE_LINE) {
+    const line = rows.filter((r) => r.grade === grade);
+    const done = line.filter((r) => r.year !== partialYear);
+    const tail = line.filter((r) => r.year >= last - 1);
+    marks.push(
+      Plot.line(done, {x: "year", y: "share", stroke: color, strokeWidth: 2.6}),
+      partialYear ? Plot.line(tail, {x: "year", y: "share", stroke: color, strokeWidth: 2.6, strokeDasharray: "4,3"}) : null,
+      Plot.dot(line, {x: "year", y: "share", r: 3.5, fill: (r) => (r.year === partialYear ? "white" : color), stroke: color, strokeWidth: 1.8}),
+      Plot.text(line.filter((r) => r.year === last), {x: "year", y: () => labelY.get(grade), text: (r) => `${narrow ? short : label} ${pct(r.share)}`, dx: 10, textAnchor: "start", fill: color, fontWeight: 700})
+    );
+  }
+  return Plot.plot({
+    width,
+    height: narrow ? 260 : 300,
+    marginLeft: 44,
+    marginRight: narrow ? 104 : 190,
+    marginTop: 12,
+    x: {domain: years, type: "point", label: null, tickFormat: (y) => (y === partialYear ? `${y}*` : `${y}`), ticks: narrow ? years.filter((y) => y % 2 === 0) : years},
+    y: {domain: [0, 0.6], grid: true, label: null, tickFormat: (x) => `${Math.round(x * 100)} %`, ticks: 4},
+    style: {fontSize: narrow ? "12px" : "14px"},
+    marks: [
+      ...marks,
+      Plot.tip(rows, Plot.pointer({x: "year", y: "share", title: (r) => `${r.year}, ${GRADE_LINE.find((g) => g.grade === r.grade).label}: ${int(r.posts)} из ${int(r.graded)} (${pct(r.share)})\nгрейд указан в ${int(r.graded)} постах из ${int(r.total)}`}))
+    ]
+  });
+}

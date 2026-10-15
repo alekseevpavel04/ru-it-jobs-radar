@@ -72,3 +72,17 @@ def _counts(
         counts["backend_middle"][r["year"]][r["skill"]] += r["posts"]
     recent: Counter[str] = sum((counts["backend_middle"][y] for y in skill_trends.RECENT_YEARS), Counter())
     return posts, counts, recent
+
+
+def test_grade_mix_counts_only_posts_that_name_a_grade() -> None:
+    sizes = [
+        size(2025, "backend", "junior", 30),
+        size(2025, "qa", "intern", 10),
+        size(2025, "backend", "middle", 20),
+        size(2025, "backend", "lead", 40),
+        size(2025, "backend", None, 100),
+    ]
+    m = skill_trends.grade_mix(sizes)
+    assert m["grades.2025.graded"] == {"value": 0.5, "n": 100, "denominator": 200}
+    assert m["grades.2025.junior"] == {"value": 0.4, "n": 40, "denominator": 100}
+    assert m["grades.2025.senior"]["n"] == 40

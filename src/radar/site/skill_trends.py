@@ -15,6 +15,9 @@ Only shares a reader can lean on leave the file:
   makes a skill with a near-zero base look like the fastest grower);
 - a year of a cell's series is kept when the cell has MIN_YEAR_POSTS posts or more that year; without
   BASE_YEAR a cell has its recent shares only, with no change to show.
+
+It also writes the grade mix of all IT by year: each grade of GRADES as a share of the posts that name a
+grade, with how many posts name one at all.
 """
 
 import argparse
@@ -91,7 +94,27 @@ def growing(
     return sorted(candidates, key=lambda s: (-growth(s), -recent[s]))[:GROWTH_SKILLS]
 
 
+def grade_mix(sizes: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
+    """Each grade's share of the IT posts that name a grade, by year, and how many name one."""
+    named: dict[int, Counter[str]] = defaultdict(Counter)
+    total: Counter[int] = Counter()
+    for r in sizes:
+        year = int(r["year"])
+        total[year] += int(r["posts"])
+        for g, names in GRADES.items():
+            if r["grade"] in names:
+                named[year][g] += int(r["posts"])
+    metrics: dict[str, Any] = {}
+    for year in sorted(total):
+        graded = sum(named[year].values())
+        metrics[f"grades.{year}.graded"] = share(graded, total[year])
+        for g in GRADES:
+            metrics[f"grades.{year}.{g}"] = share(named[year][g], graded)
+    return metrics
+
+
 def trends(sizes: Iterable[Mapping[str, Any]], skills: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
+    sizes = list(sizes)
     posts: dict[str, Counter[int]] = defaultdict(Counter)
     for r in sizes:
         for c in cells_of(r["role"], r["grade"]):
@@ -118,7 +141,7 @@ def trends(sizes: Iterable[Mapping[str, Any]], skills: Iterable[Mapping[str, Any
             metrics[f"share.{c}.{s}.recent"] = share(recent[c][s], recent_posts)
             for y in kept_years:
                 metrics[f"share.{c}.{s}.{y}"] = share(counts[c][y][s], posts[c][y])
-    return metrics
+    return metrics | grade_mix(sizes)
 
 
 def main() -> int:
@@ -143,6 +166,8 @@ def main() -> int:
         definitions={
             "cells": "<direction>_<grade>: Telegram single-vacancy IT posts of the direction's roles (it: all IT) "
             "and of the grade (all: every post, a post without a grade included).",
+            "grades": "grades.<year>.<grade>: posts of the grade of the IT posts that name a grade; "
+            "grades.<year>.graded: IT posts that name a grade of all IT posts.",
             "share": "posts of the cell naming the skill (extracted skills) of the cell's posts; recent pools "
             f"{RECENT_YEARS[0]}-{RECENT_YEARS[-1]}, a year by the week's Monday.",
         },

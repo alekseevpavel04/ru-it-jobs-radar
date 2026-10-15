@@ -7,12 +7,35 @@ toc: false
 
 ```js
 import {SKILL, int, plural} from "./components/labels.js";
-import {DIRECTION, GRADE_GROUP, change, skillChart} from "./components/skills.js";
+import {DIRECTION, GRADE_GROUP, change, gradeChart, skillChart} from "./components/skills.js";
 
 const trends = FileAttachment("data/skill_trends.json").json();
 ```
 
 <p class="lead">Что просят вакансии из публичных Telegram-каналов, по направлениям IT и грейдам. Навыки, роль и грейд из текста поста читает модель проекта. Показаны только доли, под которыми достаточно постов. <a href="./methodology#skills">Как считается</a>.</p>
+
+## Кого ищут
+
+```js
+const lastWeek = trends.recent_years.at(-1);
+const gradedShare = (y) => {
+  const g = trends.grades.find((r) => r.year === y);
+  return g.graded / g.total;
+};
+const shares = [...new Set(trends.grades.map((g) => g.year))].map(gradedShare);
+```
+
+<div class="card">
+
+<p class="note-small">Доля стажёров и джунов, мидлов, сеньоров и лидов среди IT-постов, где указан грейд (он указан в ${Math.round(d3.min(shares) * 100)}-${Math.round(d3.max(shares) * 100)} % постов); ${lastWeek} год неполный. <a href="./methodology#grades">Как считается</a>.</p>
+
+```js
+gradeChart(trends.grades, {width, partialYear: lastWeek})
+```
+
+</div>
+
+## Что просят
 
 ```js
 const directionInput = Inputs.select(new Map(Object.entries(DIRECTION).map(([k, v]) => [v, k])), {label: "Направление", value: "it"});
