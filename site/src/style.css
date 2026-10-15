@@ -328,3 +328,5 @@ details.more summary {
 .stack-list li { padding: 0.1rem 0; }
 
 .csv-link { margin-left: 0.35rem; padding: 0 0.4rem; border: 1px solid var(--theme-foreground-faint); border-radius: 4px; font-size: 11px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.stack-add { width: 1.4rem; height: 1.4rem; margin-right: 0.45rem; padding: 0; border: 1px solid var(--theme-foreground-faint); border-radius: 50%; background: var(--theme-background); color: var(--theme-foreground-focus); font: 600 14px/1 var(--sans-serif); cursor: pointer; vertical-align: 1px; }
+.stack-add:hover { background: var(--theme-foreground-focus); color: var(--theme-background); }

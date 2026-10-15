@@ -25,7 +25,8 @@ export const parseStack = (text) => [...new Set(text.split(/[,;\n]/).map((s) => 
 
 // rows: the cell's skills as on the main chart ({key, skill, share, change}); effects: skill_effects.json
 // effects; name: the display name of an effect; fdr: the false discovery rate of the effect blocks.
-export function stackReport(rows, effects, {mine, name, fdr, label, baseYear}) {
+// onAdd(skill) puts a suggested skill into the reader's list.
+export function stackReport(rows, effects, {mine, name, fdr, label, baseYear, onAdd}) {
   const byName = new Map();
   for (const r of rows) for (const n of [r.key, r.skill]) byName.set(canon(n), r);
   const effectOf = new Map();
@@ -44,7 +45,7 @@ export function stackReport(rows, effects, {mine, name, fdr, label, baseYear}) {
     .slice(0, 5);
   const effectText = (e) =>
     !e ? html`<span class="muted">не оценивали</span>` : e.q_bh < fdr ? html`<b style=${`color: ${e.pct > 0 ? UP : DOWN}`}>${signedPct(e.pct)}</b>` : html`<span class="muted">не доказано</span>`;
-  const list = (xs, text) => (xs.length ? html`<ul class="stack-list">${xs.map((r) => html`<li><b>${r.skill}</b> <span class="muted">${text(r)}</span></li>`)}</ul>` : html`<p class="muted">Таких нет.</p>`);
+  const list = (xs, text) => (xs.length ? html`<ul class="stack-list">${xs.map((r) => html`<li><button class="stack-add" title=${`Добавить ${r.skill} в мои навыки`} onclick=${() => onAdd(r.skill)}>+</button><b>${r.skill}</b> <span class="muted">${text(r)}</span></li>`)}</ul>` : html`<p class="muted">Таких нет.</p>`);
   return html`<div class="stack">
     ${found.length
       ? html`<table class="stack-table">

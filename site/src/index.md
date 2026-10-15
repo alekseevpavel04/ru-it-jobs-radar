@@ -37,6 +37,25 @@ const graded = [...new Set(trends.grades.map((g) => g.year))].map((y) => {
 ```
 
 ```js
+// The skills of a cell (direction and grade) as the chart and the stack check read them.
+function cellData(direction, grade) {
+  const cell = `${direction}_${grade}`;
+  const posts = new Map(trends.groups.filter((g) => g.group === cell).map((g) => [g.year, g.posts]));
+  // The base year of the result file (2022): from then on the channel set is steady. A cell without
+  // enough posts that year shows the recent shares only.
+  const baseYear = posts.has(trends.base_year) ? trends.base_year : null;
+  const rows = [...d3.group(trends.shares.filter((s) => s.group === cell), (s) => s.skill)].map(([skill, list]) => {
+    const recent = list.find((s) => s.year === null);
+    const b = baseYear ? list.find((s) => s.year === baseYear) : null;
+    const base = b ? {share: b.posts_mentioning / b.posts, n: b.posts_mentioning, of: b.posts} : null;
+    const now = {n: recent.posts_mentioning, of: recent.posts};
+    return {key: skill, skill: SKILL[skill] ?? skill, share: now.n / now.of, ...now, base, change: base ? change(base, now) : null};
+  });
+  return {cell, posts, baseYear, rows, label: `${DIRECTION[direction]}, ${GRADE_GROUP[grade].toLowerCase()}`};
+}
+```
+
+```js
 const directionInput = Inputs.select(new Map(Object.entries(DIRECTION).map(([k, v]) => [v, k])), {label: "Направление", value: "it"});
 const direction = Generators.input(directionInput);
 const gradeInput = Inputs.radio(new Map(Object.entries(GRADE_GROUP).map(([k, v]) => [v, k])), {label: "Грейд", value: "all"});
@@ -46,23 +65,11 @@ const sortBy = Generators.input(sortInput);
 ```
 
 ```js
-const cell = `${direction}_${grade}`;
-const posts = new Map(trends.groups.filter((g) => g.group === cell).map((g) => [g.year, g.posts]));
-// The base year of the result file (2022): from then on the channel set is steady. A cell without
-// enough posts that year shows the recent shares only.
-const baseYear = posts.has(trends.base_year) ? trends.base_year : null;
+const {cell, posts, baseYear, rows, label} = cellData(direction, grade);
 const recentLabel = `${trends.recent_years[0]}-${trends.recent_years.at(-1)}`;
-const rows = [...d3.group(trends.shares.filter((s) => s.group === cell), (s) => s.skill)].map(([skill, list]) => {
-  const recent = list.find((s) => s.year === null);
-  const b = baseYear ? list.find((s) => s.year === baseYear) : null;
-  const base = b ? {share: b.posts_mentioning / b.posts, n: b.posts_mentioning, of: b.posts} : null;
-  const now = {n: recent.posts_mentioning, of: recent.posts};
-  return {key: skill, skill: SKILL[skill] ?? skill, share: now.n / now.of, ...now, base, change: base ? change(base, now) : null};
-});
 // Growth order: significant rises by size, noise in the middle, falls last.
 const growthKey = (r) => (r.change?.significant ? r.change.diff : 0);
 const ordered = rows.slice().sort(sortBy === "share" || !baseYear ? (a, b) => b.share - a.share : (a, b) => growthKey(b) - growthKey(a));
-const label = `${DIRECTION[direction]}, ${GRADE_GROUP[grade].toLowerCase()}`;
 const round4 = (x) => (x == null ? null : Math.round(x * 10000) / 10000);
 const skillsCsv = () =>
   csvLink(
@@ -109,27 +116,38 @@ display(posts.size ? skillChart(ordered, {width, recentLabel, baseYear}) : docum
 ## Проверьте свой стек
 
 ```js
-// The stack lives in the address (#stack=Python,SQL), so a reader can share the result.
-const stackFromHash = () => {
-  const m = location.hash.match(/stack=([^&]*)/);
+// The stack and its cell live in the address (#stack=Python,SQL&dir=ml&grade=junior), so a reader can
+// share the result.
+const fromHash = (key) => {
+  const m = location.hash.match(new RegExp(`${key}=([^&]*)`));
   return m ? decodeURIComponent(m[1]) : "";
 };
-const stackInput = Inputs.text({label: "Ваши навыки", placeholder: "Python, SQL, Docker", value: stackFromHash(), width: Math.min(width, 520)});
+const stackInput = Inputs.text({label: "Ваши навыки", placeholder: "Python, SQL, Docker", value: fromHash("stack"), width: Math.min(width, 520)});
 const stackText = Generators.input(stackInput);
+const stackDirectionInput = Inputs.select(new Map(Object.entries(DIRECTION).map(([k, v]) => [v, k])), {label: "Направление", value: DIRECTION[fromHash("dir")] ? fromHash("dir") : "it"});
+const stackDirection = Generators.input(stackDirectionInput);
+const stackGradeInput = Inputs.radio(new Map(Object.entries(GRADE_GROUP).map(([k, v]) => [v, k])), {label: "Грейд", value: GRADE_GROUP[fromHash("grade")] ? fromHash("grade") : "all"});
+const stackGrade = Generators.input(stackGradeInput);
 ```
 
-<div class="filters stacked">${stackInput}</div>
+<div class="filters stacked">${stackDirectionInput}${stackGradeInput}${stackInput}</div>
 
 ```js
 const mine = parseStack(stackText);
-history.replaceState(null, "", mine.length ? `#stack=${encodeURIComponent(mine.join(","))}` : location.pathname + location.search);
+const stackCell = cellData(stackDirection, stackGrade);
+const addSkill = (skill) => {
+  stackInput.value = [...mine, skill].join(", ");
+  stackInput.dispatchEvent(new Event("input", {bubbles: true}));
+};
+const stackHash = [mine.length ? `stack=${encodeURIComponent(mine.join(","))}` : "", stackDirection !== "it" ? `dir=${stackDirection}` : "", stackGrade !== "all" ? `grade=${stackGrade}` : ""].filter(Boolean).join("&");
+history.replaceState(null, "", stackHash ? `#${stackHash}` : location.pathname + location.search);
 ```
 
 <div class="card">
 
-<p class="note-small">Навыки через запятую; сравнение с направлением и грейдом, выбранными выше: «${label}». Вилка по всем IT-вакансиям из раздела ниже.</p>
+<p class="note-small">Навыки через запятую, сравнение с долями «${stackCell.label}». Вилка по всем IT-вакансиям из раздела ниже.</p>
 
-${posts.size ? stackReport(rows, effects.effects, {mine, name: (e) => SKILL[e.skill] ?? e.skill, fdr: effects.fdr, label, baseYear}) : html`<p>Для «${label}» данных недостаточно, выберите выше все грейды или другое направление.</p>`}
+${stackCell.posts.size ? stackReport(stackCell.rows, effects.effects, {mine, name: (e) => SKILL[e.skill] ?? e.skill, fdr: effects.fdr, label: stackCell.label, baseYear: stackCell.baseYear, onAdd: addSkill}) : html`<p>Для «${stackCell.label}» данных недостаточно, выберите все грейды или другое направление.</p>`}
 
 </div>
 
