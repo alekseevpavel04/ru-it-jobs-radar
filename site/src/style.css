@@ -425,3 +425,22 @@ details.more summary {
 .dot-legend i.down-dot {
   background: #cf222e;
 }
+
+.dot-legend i.band {
+  width: 22px;
+  height: 9px;
+  border-radius: 4px;
+  background: #e3e1db;
+  margin-right: 4px;
+}
+
+h3.skill-block {
+  font-size: 14px;
+  margin: 1rem 0 0.2rem;
+  color: var(--theme-foreground);
+}
+
+h3.skill-block span {
+  color: var(--theme-foreground-muted);
+  font-weight: 400;
+}

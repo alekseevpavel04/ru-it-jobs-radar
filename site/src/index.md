@@ -19,8 +19,8 @@ const groupInput = Inputs.radio(new Map([["Всё IT", "it_all"], ["ML", "ml_all
 const group = Generators.input(groupInput);
 const sortInput = Inputs.radio(new Map([["по доле", "share"], ["по росту", "growth"]]), {label: "Порядок", value: "share"});
 const sortBy = Generators.input(sortInput);
-// Temporary: four looks of the dumbbell for the author to pick one.
-const variantInput = Inputs.radio(VARIANTS, {label: "Вид", value: "grid"});
+// Temporary: looks of the dumbbell for the author to pick one.
+const variantInput = Inputs.radio(VARIANTS, {label: "Вид", value: "previous"});
 const variant = Generators.input(variantInput);
 ```
 
