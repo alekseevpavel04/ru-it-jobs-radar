@@ -212,3 +212,33 @@ details.more summary {
 .dot-legend + .block-head {
   margin-top: 1.1rem;
 }
+
+/* Column titles above the skill-effect blocks, over the two right-hand columns of the plot. */
+.effects-head {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--theme-foreground-muted);
+  margin: 0.6rem 0 0.2rem;
+  text-align: right;
+}
+
+.effects-head span:first-child {
+  width: 76px;
+}
+
+.effects-head span:last-child {
+  width: 114px;
+}
+
+@media (max-width: 600px) {
+  .effects-head span:first-child {
+    width: 50px;
+    margin-right: 6px;
+  }
+
+  .effects-head span:last-child {
+    width: 62px;
+  }
+}

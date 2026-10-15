@@ -343,6 +343,9 @@ def effect(skill: str, rows: int, naive: float, pct: float, p_holm: float) -> di
         "value": 0.0,
         "skill": skill,
         "rows_with_skill": rows,
+        "rows_kept": rows * 2,
+        "rows_kept_with_skill": rows - 10,
+        "q_bh": p_holm / 2,
         "naive_pct": naive,
         "pct": pct,
         "pct_ci_low": pct - 10,
@@ -361,6 +364,7 @@ EFFECTS_RESULT: dict[str, Any] = {
         "treatments": {"value": 2},
         "estimated": share_metric(2, 2),
         "significant_holm": share_metric(1, 2),
+        "significant_bh": share_metric(1, 2),
         "overlap.Kubernetes": share_metric(372, 7429),
         "effect.Kubernetes": effect("Kubernetes", 162, 106.1, -5.4, 1.0),
         "effect.Microservices": effect("Microservices", 127, 135.3, 24.2, 0.02),
@@ -675,11 +679,11 @@ def test_telegram_years_keep_counts_with_their_base() -> None:
 
 def test_skill_effects_copy_the_estimates_and_check_their_count() -> None:
     doc = skill_effects(EFFECTS_RESULT, "results/models/skill_effects.json")
-    assert [(e.skill, e.naive_pct, e.pct, e.p_holm) for e in doc.effects] == [
-        ("Kubernetes", 106.1, -5.4, 1.0),
-        ("Microservices", 135.3, 24.2, 0.02),
+    assert [(e.skill, e.rows_kept, e.pct, e.p_holm) for e in doc.effects] == [
+        ("Kubernetes", 324, -5.4, 1.0),
+        ("Microservices", 254, 24.2, 0.02),
     ]
-    assert (doc.rows, doc.estimated, doc.significant_holm, doc.ci_level) == (7429, 2, 1, 0.95)
+    assert (doc.rows, doc.estimated, doc.significant_holm, doc.significant_bh, doc.ci_level) == (7429, 2, 1, 1, 0.95)
     broken = {**EFFECTS_RESULT, "metrics": {**EFFECTS_RESULT["metrics"], "estimated": share_metric(3, 3)}}
     with pytest.raises(ValueError, match="estimated"):
         skill_effects(broken, "results/models/skill_effects.json")

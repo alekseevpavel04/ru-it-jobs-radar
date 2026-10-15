@@ -358,21 +358,24 @@ class TelegramYears(Provenance):
 class SkillEffect(Row):
     skill: str
     rows_with_skill: int
-    naive_pct: float
+    rows_kept: int  # the comparable vacancies the estimate rests on: the overlap band, with and without
+    rows_kept_with_skill: int
     pct: float
     pct_ci_low: float
     pct_ci_high: float
     p_holm: float
+    q_bh: float
 
 
 class SkillEffects(Provenance):
-    """Skill and posted salary of results/models/skill_effects.json: the naive gap and the double ML
-    estimate at equal role, grade, region, experience and other skills, with its interval."""
+    """Skill and posted salary of results/models/skill_effects.json: the double ML estimate at equal role,
+    grade, region, experience and other skills, with its interval and the comparable vacancies behind it."""
 
     rows: int
     treatments: int
     estimated: int
     significant_holm: int
+    significant_bh: int
     ci_level: float
     effects: list[SkillEffect]
     limits: list[str]
@@ -847,11 +850,13 @@ def skill_effects(doc: Mapping[str, Any], source_file: str) -> SkillEffects:
         SkillEffect(
             skill=m["skill"],
             rows_with_skill=m["rows_with_skill"],
-            naive_pct=m["naive_pct"],
+            rows_kept=m["rows_kept"],
+            rows_kept_with_skill=m["rows_kept_with_skill"],
             pct=m["pct"],
             pct_ci_low=m["pct_ci_low"],
             pct_ci_high=m["pct_ci_high"],
             p_holm=m["p_holm"],
+            q_bh=m["q_bh"],
         )
         for key, m in metrics.items()
         if key.startswith("effect.")
@@ -864,6 +869,7 @@ def skill_effects(doc: Mapping[str, Any], source_file: str) -> SkillEffects:
         treatments=metrics["treatments"]["value"],
         estimated=metrics["estimated"]["n"],
         significant_holm=metrics["significant_holm"]["n"],
+        significant_bh=metrics["significant_bh"]["n"],
         ci_level=doc["scenario"]["level"],
         effects=sorted(effects, key=lambda e: (-e.rows_with_skill, e.skill)),
         limits=doc["limits_ru"],
