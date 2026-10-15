@@ -381,12 +381,14 @@ HISTORY_RESULT: dict[str, Any] = {
 TRENDS_RESULT: dict[str, Any] = {
     **PROVENANCE,
     "recent_years": [2025, 2026],
+    "base_year": 2022,
     "min_mentions": 20,
     "min_year_posts": 300,
+    "new_below": 10,
     "metrics": {
         "posts.ml_all.recent": {"value": 3313},
         "posts.ml_all.2025": {"value": 1880},
-        "share.ml_all.CI/CD.recent": share_metric(305, 3313),
+        "share.ml_all.CI/CD.recent": {**share_metric(305, 3313), "own": True},
         "share.ml_all.CI/CD.2025": share_metric(170, 1880),
         "posts.ml_junior.recent": {"value": 444},
         "share.ml_junior.A/B-тесты.recent": share_metric(27, 444),
@@ -705,6 +707,7 @@ def test_skill_trends_keep_the_pooled_cut_apart_from_the_years() -> None:
     cicd = [s for s in doc.shares if s.skill == "CI/CD"]
     assert [(s.year, s.posts_mentioning, s.posts) for s in cicd] == [(None, 305, 3313), (2025, 170, 1880)]
     assert any(s.skill == "A/B-тесты" and s.group == "ml_junior" for s in doc.shares)
+    assert cicd[0].own is True and cicd[1].own is None and doc.base_year == 2022
 
 
 def test_salary_grades_keep_medians_only_where_the_result_has_them() -> None:

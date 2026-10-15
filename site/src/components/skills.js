@@ -11,19 +11,18 @@ export const GROUP_LABEL = {
 };
 
 export const BASE_DOT = "#e63946";
-// Below this many base-year posts naming the skill a relative change is not worth a number.
-const MIN_BASE_POSTS = 10;
+
 
 // Change of two shares beyond the 95 % interval of their difference (normal approximation, both samples
 // large here: hundreds to tens of thousands of posts).
-export function change(base, recent) {
+export function change(base, recent, newBelow) {
   const p1 = base.n / base.of, p2 = recent.n / recent.of;
   const se = Math.sqrt((p1 * (1 - p1)) / base.of + (p2 * (1 - p2)) / recent.of);
-  return {relative: base.n >= MIN_BASE_POSTS ? p2 / p1 - 1 : null, significant: Math.abs(p2 - p1) > 1.96 * se, up: p2 > p1};
+  return {relative: base.n >= newBelow ? p2 / p1 - 1 : null, significant: Math.abs(p2 - p1) > 1.96 * se, up: p2 > p1};
 }
 
-const changeText = (c) =>
-  c.relative === null ? "с нуля" : !c.significant ? "≈" : `${c.up ? "+" : "−"}${int(Math.abs(Math.round(c.relative * 100)))} %`;
+const changeText = (c, narrow) =>
+  c.relative === null ? (narrow ? "новый" : "новый навык") : !c.significant ? "≈" : `${c.up ? "+" : "−"}${int(Math.abs(Math.round(c.relative * 100)))} %`;
 const changeColor = (c) => (!c.significant ? COLOR.muted : c.up ? COLOR.accent : COLOR.bar);
 
 export function skillBars(rows, {width, recentLabel}) {
@@ -34,8 +33,8 @@ export function skillBars(rows, {width, recentLabel}) {
   return Plot.plot({
     width,
     height: rows.length * 30 + 16,
-    marginLeft: narrow ? 104 : 160,
-    marginRight: narrow ? 116 : 170,
+    marginLeft: narrow ? 96 : 160,
+    marginRight: narrow ? 112 : 190,
     marginTop: 4,
     marginBottom: 8,
     x: {domain: [0, top * 1.04], axis: null},
@@ -44,8 +43,8 @@ export function skillBars(rows, {width, recentLabel}) {
     marks: [
       Plot.barX(rows, {y: "skill", x: "share", fill: COLOR.bar, rx: 5, insetTop: 8, insetBottom: 8}),
       Plot.dot(rows, {y: "skill", x: (r) => r.base.share, r: 5, fill: BASE_DOT, stroke: "white", strokeWidth: 1.5}),
-      Plot.text(rows, {y: "skill", text: (r) => pct(r.share), frameAnchor: "right", textAnchor: "end", dx: narrow ? 52 : 76, fontWeight: 600, fill: COLOR.bar}),
-      Plot.text(rows, {y: "skill", text: (r) => changeText(r.change), frameAnchor: "right", textAnchor: "end", dx: narrow ? 112 : 164, fill: (r) => changeColor(r.change), fontWeight: 700}),
+      Plot.text(rows, {y: "skill", text: (r) => pct(r.share), frameAnchor: "right", textAnchor: "end", dx: narrow ? 46 : 76, fontWeight: 600, fill: COLOR.bar}),
+      Plot.text(rows, {y: "skill", text: (r) => changeText(r.change, narrow), frameAnchor: "right", textAnchor: "end", dx: narrow ? 108 : 184, fill: (r) => changeColor(r.change), fontWeight: 700}),
       Plot.tip(rows, Plot.pointerY({y: "skill", x: "share", title: tip}))
     ]
   });

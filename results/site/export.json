@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/export.py",
   "command": "python -m radar.site.export",
-  "commit": "8215b22-dirty",
-  "created_at": "2026-10-15T07:16:06+00:00",
+  "commit": "790ea9b-dirty",
+  "created_at": "2026-10-15T07:42:23+00:00",
   "metrics": {
     "bytes_meta": {
       "value": 988,
@@ -35,7 +35,7 @@
       "denominator": null
     },
     "bytes_skill_trends": {
-      "value": 113431,
+      "value": 170257,
       "n": null,
       "denominator": null
     },
@@ -125,7 +125,7 @@
       "denominator": null
     },
     "bytes_salaries_telegram": {
-      "value": 53029,
+      "value": 53030,
       "n": null,
       "denominator": null
     },

@@ -24,20 +24,19 @@ const sortBy = Generators.input(sortInput);
 <div class="filters">${groupInput}${sortInput}</div>
 
 ```js
-const TOP = 20;
 const posts = new Map(trends.groups.filter((g) => g.group === group).map((g) => [g.year, g.posts]));
 const years = [...posts.keys()].filter((y) => y !== null).sort();
-// 2022: from then on the channel set is steady (39 channels wrote every year); in 2019 a few frontend
-// channels made up much of the sample, so a change from 2019 would describe the channels, not demand.
-const BASE_YEAR = 2022;
-const baseYear = years.includes(BASE_YEAR) ? BASE_YEAR : years[0];
+// The base year of the result file (2022): from then on the channel set is steady.
+const baseYear = trends.base_year;
 const recentLabel = `${trends.recent_years[0]}-${trends.recent_years.at(-1)}`;
-const rows = [...d3.group(trends.shares.filter((s) => s.group === group), (s) => s.skill)].map(([skill, list]) => {
+// Only the group's own skills: its top and its fastest growers, not the companions of its juniors.
+const own = new Set(trends.shares.filter((s) => s.group === group && s.year === null && s.own).map((s) => s.skill));
+const rows = [...d3.group(trends.shares.filter((s) => s.group === group && own.has(s.skill)), (s) => s.skill)].map(([skill, list]) => {
   const recent = list.find((s) => s.year === null);
   const series = years.map((y) => list.find((s) => s.year === y)).map((s, i) => ({year: years[i], share: s.posts_mentioning / s.posts, n: s.posts_mentioning, of: s.posts}));
   const base = series.find((x) => x.year === baseYear);
   const now = {n: recent.posts_mentioning, of: recent.posts};
-  return {skill: SKILL[skill] ?? skill, share: now.n / now.of, ...now, base, series, change: change(base, now)};
+  return {skill: SKILL[skill] ?? skill, share: now.n / now.of, ...now, base, series, change: change(base, now, trends.new_below)};
 });
 // Growth order: a new skill first, then significant rises by size, noise in the middle, falls last.
 const growthKey = (r) => (r.change.relative === null ? Infinity : r.change.significant ? r.change.relative : 0);
@@ -46,16 +45,12 @@ const ordered = rows.slice().sort(sortBy === "share" ? (a, b) => b.share - a.sha
 
 <div class="card">
 
-<p class="note-small">${GROUP_LABEL[group]}: доля постов, где назван навык, за ${recentLabel} (${int(posts.get(null))} постов) и в ${baseYear} году (${int(posts.get(baseYear))}). Справа рост доли с ${baseYear} года в процентах; «≈» значит, что изменение не выходит за случайный разброс. База ${baseYear} год: с него набор каналов устойчивый, <a href="./methodology#telegram">почему</a>. Наведите на строку, чтобы увидеть долю по каждому году.</p>
+<p class="note-small">${GROUP_LABEL[group]}: доля постов, где назван навык, за ${recentLabel} (${int(posts.get(null))} постов) и в ${baseYear} году (${int(posts.get(baseYear))}). Справа рост доли с ${baseYear} года в процентах; «≈» значит, что изменение не выходит за случайный разброс, «новый навык» значит, что в ${baseYear} году его назвали меньше ${trends.new_below} постов. В списке ${rows.length} ${plural(rows.length, ["навык", "навыка", "навыков"])}: самые частые и самые быстрорастущие. База ${baseYear} год: с него набор каналов устойчивый, <a href="./methodology#telegram">почему</a>. Наведите на строку, чтобы увидеть долю по каждому году.</p>
 
 <div class="dot-legend"><span><i class="bar"></i>${recentLabel}</span><span><i class="base"></i>${baseYear}</span></div>
 
 ```js
-display(skillBars(ordered.slice(0, TOP), {width, recentLabel}));
-if (ordered.length > TOP) {
-  const rest = ordered.length - TOP;
-  display(html`<details class="more"><summary>Ещё ${rest} ${plural(rest, ["навык", "навыка", "навыков"])}</summary>${skillBars(ordered.slice(TOP), {width, recentLabel})}</details>`);
-}
+skillBars(ordered, {width, recentLabel})
 ```
 
 </div>

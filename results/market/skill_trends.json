@@ -1,11 +1,11 @@
 {
   "source_script": "src/radar/site/skill_trends.py",
   "command": "python -m radar.site.skill_trends",
-  "commit": "8215b22-dirty",
-  "created_at": "2026-10-15T07:13:43+00:00",
+  "commit": "790ea9b-dirty",
+  "created_at": "2026-10-15T07:41:46+00:00",
   "metrics": {
     "posts.it_all.recent": {
-      "value": 46400,
+      "value": 46424,
       "n": null,
       "denominator": null
     },
@@ -45,14 +45,15 @@
       "denominator": null
     },
     "posts.it_all.2026": {
-      "value": 18606,
+      "value": 18630,
       "n": null,
       "denominator": null
     },
     "share.it_all.Python.recent": {
       "value": 0.2026,
-      "n": 9402,
-      "denominator": 46400
+      "n": 9405,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.Python.2019": {
       "value": 0.0794,
@@ -90,14 +91,15 @@
       "denominator": 27794
     },
     "share.it_all.Python.2026": {
-      "value": 0.2118,
-      "n": 3940,
-      "denominator": 18606
+      "value": 0.2116,
+      "n": 3943,
+      "denominator": 18630
     },
     "share.it_all.SQL.recent": {
       "value": 0.149,
-      "n": 6914,
-      "denominator": 46400
+      "n": 6917,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.SQL.2019": {
       "value": 0.0702,
@@ -136,13 +138,14 @@
     },
     "share.it_all.SQL.2026": {
       "value": 0.1561,
-      "n": 2905,
-      "denominator": 18606
+      "n": 2908,
+      "denominator": 18630
     },
     "share.it_all.PostgreSQL.recent": {
-      "value": 0.1172,
-      "n": 5440,
-      "denominator": 46400
+      "value": 0.1173,
+      "n": 5444,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.PostgreSQL.2019": {
       "value": 0.0786,
@@ -180,14 +183,15 @@
       "denominator": 27794
     },
     "share.it_all.PostgreSQL.2026": {
-      "value": 0.1123,
-      "n": 2090,
-      "denominator": 18606
+      "value": 0.1124,
+      "n": 2094,
+      "denominator": 18630
     },
     "share.it_all.Docker.recent": {
       "value": 0.1037,
-      "n": 4811,
-      "denominator": 46400
+      "n": 4813,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.Docker.2019": {
       "value": 0.0642,
@@ -226,13 +230,14 @@
     },
     "share.it_all.Docker.2026": {
       "value": 0.1049,
-      "n": 1952,
-      "denominator": 18606
+      "n": 1954,
+      "denominator": 18630
     },
     "share.it_all.Git.recent": {
       "value": 0.0962,
-      "n": 4463,
-      "denominator": 46400
+      "n": 4465,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.Git.2019": {
       "value": 0.2116,
@@ -270,14 +275,15 @@
       "denominator": 27794
     },
     "share.it_all.Git.2026": {
-      "value": 0.0926,
-      "n": 1722,
-      "denominator": 18606
+      "value": 0.0925,
+      "n": 1724,
+      "denominator": 18630
     },
     "share.it_all.React.recent": {
       "value": 0.0927,
-      "n": 4300,
-      "denominator": 46400
+      "n": 4302,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.React.2019": {
       "value": 0.2957,
@@ -315,14 +321,15 @@
       "denominator": 27794
     },
     "share.it_all.React.2026": {
-      "value": 0.1107,
-      "n": 2059,
-      "denominator": 18606
+      "value": 0.1106,
+      "n": 2061,
+      "denominator": 18630
     },
     "share.it_all.Java.recent": {
       "value": 0.0908,
-      "n": 4211,
-      "denominator": 46400
+      "n": 4213,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.Java.2019": {
       "value": 0.0706,
@@ -361,13 +368,14 @@
     },
     "share.it_all.Java.2026": {
       "value": 0.0871,
-      "n": 1620,
-      "denominator": 18606
+      "n": 1622,
+      "denominator": 18630
     },
     "share.it_all.CI/CD.recent": {
       "value": 0.088,
-      "n": 4081,
-      "denominator": 46400
+      "n": 4083,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.CI/CD.2019": {
       "value": 0.0281,
@@ -406,13 +414,14 @@
     },
     "share.it_all.CI/CD.2026": {
       "value": 0.1054,
-      "n": 1961,
-      "denominator": 18606
+      "n": 1963,
+      "denominator": 18630
     },
     "share.it_all.REST.recent": {
       "value": 0.0833,
-      "n": 3866,
-      "denominator": 46400
+      "n": 3867,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.REST.2019": {
       "value": 0.0794,
@@ -450,14 +459,15 @@
       "denominator": 27794
     },
     "share.it_all.REST.2026": {
-      "value": 0.0849,
-      "n": 1579,
-      "denominator": 18606
+      "value": 0.0848,
+      "n": 1580,
+      "denominator": 18630
     },
     "share.it_all.JavaScript.recent": {
       "value": 0.0792,
-      "n": 3674,
-      "denominator": 46400
+      "n": 3675,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.JavaScript.2019": {
       "value": 0.4091,
@@ -496,13 +506,14 @@
     },
     "share.it_all.JavaScript.2026": {
       "value": 0.0758,
-      "n": 1411,
-      "denominator": 18606
+      "n": 1412,
+      "denominator": 18630
     },
     "share.it_all.Linux.recent": {
       "value": 0.0758,
-      "n": 3516,
-      "denominator": 46400
+      "n": 3518,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.Linux.2019": {
       "value": 0.0607,
@@ -541,13 +552,14 @@
     },
     "share.it_all.Linux.2026": {
       "value": 0.0735,
-      "n": 1367,
-      "denominator": 18606
+      "n": 1369,
+      "denominator": 18630
     },
     "share.it_all.Kubernetes.recent": {
       "value": 0.074,
-      "n": 3435,
-      "denominator": 46400
+      "n": 3437,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.Kubernetes.2019": {
       "value": 0.021,
@@ -586,13 +598,14 @@
     },
     "share.it_all.Kubernetes.2026": {
       "value": 0.0809,
-      "n": 1506,
-      "denominator": 18606
+      "n": 1508,
+      "denominator": 18630
     },
     "share.it_all.TypeScript.recent": {
       "value": 0.0697,
-      "n": 3234,
-      "denominator": 46400
+      "n": 3235,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.TypeScript.2019": {
       "value": 0.1251,
@@ -631,13 +644,14 @@
     },
     "share.it_all.TypeScript.2026": {
       "value": 0.0797,
-      "n": 1483,
-      "denominator": 18606
+      "n": 1484,
+      "denominator": 18630
     },
     "share.it_all.Kafka.recent": {
-      "value": 0.0693,
-      "n": 3217,
-      "denominator": 46400
+      "value": 0.0694,
+      "n": 3221,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.Kafka.2019": {
       "value": 0.0125,
@@ -675,14 +689,15 @@
       "denominator": 27794
     },
     "share.it_all.Kafka.2026": {
-      "value": 0.0756,
-      "n": 1406,
-      "denominator": 18606
+      "value": 0.0757,
+      "n": 1410,
+      "denominator": 18630
     },
     "share.it_all.Go.recent": {
       "value": 0.0555,
-      "n": 2574,
-      "denominator": 46400
+      "n": 2576,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.Go.2019": {
       "value": 0.0242,
@@ -720,14 +735,15 @@
       "denominator": 27794
     },
     "share.it_all.Go.2026": {
-      "value": 0.0607,
-      "n": 1130,
-      "denominator": 18606
+      "value": 0.0608,
+      "n": 1132,
+      "denominator": 18630
     },
     "share.it_all.Microservices.recent": {
-      "value": 0.0547,
+      "value": 0.0546,
       "n": 2536,
-      "denominator": 46400
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.Microservices.2019": {
       "value": 0.0161,
@@ -765,14 +781,15 @@
       "denominator": 27794
     },
     "share.it_all.Microservices.2026": {
-      "value": 0.062,
+      "value": 0.0619,
       "n": 1154,
-      "denominator": 18606
+      "denominator": 18630
     },
     "share.it_all.DevOps.recent": {
-      "value": 0.0471,
+      "value": 0.047,
       "n": 2184,
-      "denominator": 46400
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.DevOps.2019": {
       "value": 0.0195,
@@ -810,14 +827,15 @@
       "denominator": 27794
     },
     "share.it_all.DevOps.2026": {
-      "value": 0.0494,
+      "value": 0.0493,
       "n": 919,
-      "denominator": 18606
+      "denominator": 18630
     },
     "share.it_all.Node.js.recent": {
       "value": 0.0434,
-      "n": 2013,
-      "denominator": 46400
+      "n": 2015,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.Node.js.2019": {
       "value": 0.1454,
@@ -855,14 +873,15 @@
       "denominator": 27794
     },
     "share.it_all.Node.js.2026": {
-      "value": 0.0514,
-      "n": 957,
-      "denominator": 18606
+      "value": 0.0515,
+      "n": 959,
+      "denominator": 18630
     },
     "share.it_all.Redis.recent": {
       "value": 0.0408,
-      "n": 1892,
-      "denominator": 46400
+      "n": 1894,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.Redis.2019": {
       "value": 0.0364,
@@ -900,14 +919,15 @@
       "denominator": 27794
     },
     "share.it_all.Redis.2026": {
-      "value": 0.0429,
-      "n": 799,
-      "denominator": 18606
+      "value": 0.043,
+      "n": 801,
+      "denominator": 18630
     },
     "share.it_all.RabbitMQ.recent": {
       "value": 0.0345,
-      "n": 1602,
-      "denominator": 46400
+      "n": 1603,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.RabbitMQ.2019": {
       "value": 0.0157,
@@ -946,13 +966,14 @@
     },
     "share.it_all.RabbitMQ.2026": {
       "value": 0.0353,
-      "n": 656,
-      "denominator": 18606
+      "n": 657,
+      "denominator": 18630
     },
     "share.it_all.CSS.recent": {
       "value": 0.034,
-      "n": 1579,
-      "denominator": 46400
+      "n": 1580,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.CSS.2019": {
       "value": 0.2181,
@@ -991,13 +1012,14 @@
     },
     "share.it_all.CSS.2026": {
       "value": 0.0261,
-      "n": 486,
-      "denominator": 18606
+      "n": 487,
+      "denominator": 18630
     },
     "share.it_all.HTML.recent": {
-      "value": 0.0333,
+      "value": 0.0332,
       "n": 1543,
-      "denominator": 46400
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.HTML.2019": {
       "value": 0.2107,
@@ -1035,14 +1057,15 @@
       "denominator": 27794
     },
     "share.it_all.HTML.2026": {
-      "value": 0.0252,
+      "value": 0.0251,
       "n": 468,
-      "denominator": 18606
+      "denominator": 18630
     },
     "share.it_all.ClickHouse.recent": {
       "value": 0.0328,
-      "n": 1521,
-      "denominator": 46400
+      "n": 1523,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.ClickHouse.2019": {
       "value": 0.0049,
@@ -1080,14 +1103,15 @@
       "denominator": 27794
     },
     "share.it_all.ClickHouse.2026": {
-      "value": 0.0344,
-      "n": 640,
-      "denominator": 18606
+      "value": 0.0345,
+      "n": 642,
+      "denominator": 18630
     },
     "share.it_all.FastAPI.recent": {
       "value": 0.0312,
       "n": 1450,
-      "denominator": 46400
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.FastAPI.2019": {
       "value": 0.0,
@@ -1125,14 +1149,15 @@
       "denominator": 27794
     },
     "share.it_all.FastAPI.2026": {
-      "value": 0.0336,
+      "value": 0.0335,
       "n": 625,
-      "denominator": 18606
+      "denominator": 18630
     },
     "share.it_all.C#.recent": {
       "value": 0.0306,
-      "n": 1420,
-      "denominator": 46400
+      "n": 1421,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.C#.2019": {
       "value": 0.0432,
@@ -1171,13 +1196,14 @@
     },
     "share.it_all.C#.2026": {
       "value": 0.0326,
-      "n": 606,
-      "denominator": 18606
+      "n": 607,
+      "denominator": 18630
     },
     "share.it_all.ООП.recent": {
       "value": 0.0301,
       "n": 1396,
-      "denominator": 46400
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.ООП.2019": {
       "value": 0.0631,
@@ -1217,12 +1243,13 @@
     "share.it_all.ООП.2026": {
       "value": 0.0281,
       "n": 523,
-      "denominator": 18606
+      "denominator": 18630
     },
     "share.it_all.Jira.recent": {
-      "value": 0.0288,
+      "value": 0.0287,
       "n": 1334,
-      "denominator": 46400
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.Jira.2019": {
       "value": 0.0323,
@@ -1262,12 +1289,13 @@
     "share.it_all.Jira.2026": {
       "value": 0.0308,
       "n": 573,
-      "denominator": 18606
+      "denominator": 18630
     },
     "share.it_all.Vue.js.recent": {
       "value": 0.0284,
       "n": 1320,
-      "denominator": 46400
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.Vue.js.2019": {
       "value": 0.1083,
@@ -1305,14 +1333,15 @@
       "denominator": 27794
     },
     "share.it_all.Vue.js.2026": {
-      "value": 0.0391,
+      "value": 0.039,
       "n": 727,
-      "denominator": 18606
+      "denominator": 18630
     },
     "share.it_all.HTTP.recent": {
       "value": 0.0278,
-      "n": 1291,
-      "denominator": 46400
+      "n": 1292,
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.HTTP.2019": {
       "value": 0.0238,
@@ -1351,13 +1380,14 @@
     },
     "share.it_all.HTTP.2026": {
       "value": 0.0296,
-      "n": 551,
-      "denominator": 18606
+      "n": 552,
+      "denominator": 18630
     },
     "share.it_all.C++.recent": {
       "value": 0.0277,
       "n": 1287,
-      "denominator": 46400
+      "denominator": 46424,
+      "own": true
     },
     "share.it_all.C++.2019": {
       "value": 0.0256,
@@ -1397,12 +1427,473 @@
     "share.it_all.C++.2026": {
       "value": 0.0252,
       "n": 469,
-      "denominator": 18606
+      "denominator": 18630
+    },
+    "share.it_all.RAG.recent": {
+      "value": 0.0138,
+      "n": 640,
+      "denominator": 46424,
+      "own": true
+    },
+    "share.it_all.RAG.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 9621
+    },
+    "share.it_all.RAG.2020": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 12234
+    },
+    "share.it_all.RAG.2021": {
+      "value": 0.0001,
+      "n": 1,
+      "denominator": 19279
+    },
+    "share.it_all.RAG.2022": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 27514
+    },
+    "share.it_all.RAG.2023": {
+      "value": 0.0,
+      "n": 1,
+      "denominator": 31206
+    },
+    "share.it_all.RAG.2024": {
+      "value": 0.0017,
+      "n": 54,
+      "denominator": 31817
+    },
+    "share.it_all.RAG.2025": {
+      "value": 0.009,
+      "n": 250,
+      "denominator": 27794
+    },
+    "share.it_all.RAG.2026": {
+      "value": 0.0209,
+      "n": 390,
+      "denominator": 18630
+    },
+    "share.it_all.Playwright.recent": {
+      "value": 0.0093,
+      "n": 430,
+      "denominator": 46424,
+      "own": true
+    },
+    "share.it_all.Playwright.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 9621
+    },
+    "share.it_all.Playwright.2020": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 12234
+    },
+    "share.it_all.Playwright.2021": {
+      "value": 0.0001,
+      "n": 2,
+      "denominator": 19279
+    },
+    "share.it_all.Playwright.2022": {
+      "value": 0.0002,
+      "n": 6,
+      "denominator": 27514
+    },
+    "share.it_all.Playwright.2023": {
+      "value": 0.0013,
+      "n": 42,
+      "denominator": 31206
+    },
+    "share.it_all.Playwright.2024": {
+      "value": 0.0035,
+      "n": 112,
+      "denominator": 31817
+    },
+    "share.it_all.Playwright.2025": {
+      "value": 0.0069,
+      "n": 193,
+      "denominator": 27794
+    },
+    "share.it_all.Playwright.2026": {
+      "value": 0.0127,
+      "n": 237,
+      "denominator": 18630
+    },
+    "share.it_all.LangChain.recent": {
+      "value": 0.0079,
+      "n": 366,
+      "denominator": 46424,
+      "own": true
+    },
+    "share.it_all.LangChain.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 9621
+    },
+    "share.it_all.LangChain.2020": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 12234
+    },
+    "share.it_all.LangChain.2021": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 19279
+    },
+    "share.it_all.LangChain.2022": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 27514
+    },
+    "share.it_all.LangChain.2023": {
+      "value": 0.0008,
+      "n": 26,
+      "denominator": 31206
+    },
+    "share.it_all.LangChain.2024": {
+      "value": 0.0021,
+      "n": 68,
+      "denominator": 31817
+    },
+    "share.it_all.LangChain.2025": {
+      "value": 0.0067,
+      "n": 187,
+      "denominator": 27794
+    },
+    "share.it_all.LangChain.2026": {
+      "value": 0.0096,
+      "n": 179,
+      "denominator": 18630
+    },
+    "share.it_all.Observability.recent": {
+      "value": 0.006,
+      "n": 277,
+      "denominator": 46424,
+      "own": true
+    },
+    "share.it_all.Observability.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 9621
+    },
+    "share.it_all.Observability.2020": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 12234
+    },
+    "share.it_all.Observability.2021": {
+      "value": 0.0002,
+      "n": 4,
+      "denominator": 19279
+    },
+    "share.it_all.Observability.2022": {
+      "value": 0.0004,
+      "n": 10,
+      "denominator": 27514
+    },
+    "share.it_all.Observability.2023": {
+      "value": 0.0008,
+      "n": 24,
+      "denominator": 31206
+    },
+    "share.it_all.Observability.2024": {
+      "value": 0.0047,
+      "n": 150,
+      "denominator": 31817
+    },
+    "share.it_all.Observability.2025": {
+      "value": 0.0038,
+      "n": 107,
+      "denominator": 27794
+    },
+    "share.it_all.Observability.2026": {
+      "value": 0.0091,
+      "n": 170,
+      "denominator": 18630
+    },
+    "share.it_all.Vite.recent": {
+      "value": 0.0087,
+      "n": 402,
+      "denominator": 46424,
+      "own": true
+    },
+    "share.it_all.Vite.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 9621
+    },
+    "share.it_all.Vite.2020": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 12234
+    },
+    "share.it_all.Vite.2021": {
+      "value": 0.0001,
+      "n": 1,
+      "denominator": 19279
+    },
+    "share.it_all.Vite.2022": {
+      "value": 0.0007,
+      "n": 19,
+      "denominator": 27514
+    },
+    "share.it_all.Vite.2023": {
+      "value": 0.0021,
+      "n": 64,
+      "denominator": 31206
+    },
+    "share.it_all.Vite.2024": {
+      "value": 0.0027,
+      "n": 87,
+      "denominator": 31817
+    },
+    "share.it_all.Vite.2025": {
+      "value": 0.0056,
+      "n": 156,
+      "denominator": 27794
+    },
+    "share.it_all.Vite.2026": {
+      "value": 0.0132,
+      "n": 246,
+      "denominator": 18630
+    },
+    "share.it_all.SEO.recent": {
+      "value": 0.0065,
+      "n": 302,
+      "denominator": 46424,
+      "own": true
+    },
+    "share.it_all.SEO.2019": {
+      "value": 0.0009,
+      "n": 9,
+      "denominator": 9621
+    },
+    "share.it_all.SEO.2020": {
+      "value": 0.0015,
+      "n": 18,
+      "denominator": 12234
+    },
+    "share.it_all.SEO.2021": {
+      "value": 0.001,
+      "n": 19,
+      "denominator": 19279
+    },
+    "share.it_all.SEO.2022": {
+      "value": 0.0006,
+      "n": 17,
+      "denominator": 27514
+    },
+    "share.it_all.SEO.2023": {
+      "value": 0.0014,
+      "n": 44,
+      "denominator": 31206
+    },
+    "share.it_all.SEO.2024": {
+      "value": 0.0025,
+      "n": 78,
+      "denominator": 31817
+    },
+    "share.it_all.SEO.2025": {
+      "value": 0.0029,
+      "n": 80,
+      "denominator": 27794
+    },
+    "share.it_all.SEO.2026": {
+      "value": 0.0119,
+      "n": 222,
+      "denominator": 18630
+    },
+    "share.it_all.DevTools.recent": {
+      "value": 0.0052,
+      "n": 240,
+      "denominator": 46424,
+      "own": true
+    },
+    "share.it_all.DevTools.2019": {
+      "value": 0.0005,
+      "n": 5,
+      "denominator": 9621
+    },
+    "share.it_all.DevTools.2020": {
+      "value": 0.0003,
+      "n": 4,
+      "denominator": 12234
+    },
+    "share.it_all.DevTools.2021": {
+      "value": 0.001,
+      "n": 19,
+      "denominator": 19279
+    },
+    "share.it_all.DevTools.2022": {
+      "value": 0.0005,
+      "n": 14,
+      "denominator": 27514
+    },
+    "share.it_all.DevTools.2023": {
+      "value": 0.001,
+      "n": 31,
+      "denominator": 31206
+    },
+    "share.it_all.DevTools.2024": {
+      "value": 0.0032,
+      "n": 101,
+      "denominator": 31817
+    },
+    "share.it_all.DevTools.2025": {
+      "value": 0.0043,
+      "n": 119,
+      "denominator": 27794
+    },
+    "share.it_all.DevTools.2026": {
+      "value": 0.0065,
+      "n": 121,
+      "denominator": 18630
+    },
+    "share.it_all.Tailwind CSS.recent": {
+      "value": 0.0059,
+      "n": 274,
+      "denominator": 46424,
+      "own": true
+    },
+    "share.it_all.Tailwind CSS.2019": {
+      "value": 0.0002,
+      "n": 2,
+      "denominator": 9621
+    },
+    "share.it_all.Tailwind CSS.2020": {
+      "value": 0.0006,
+      "n": 7,
+      "denominator": 12234
+    },
+    "share.it_all.Tailwind CSS.2021": {
+      "value": 0.0007,
+      "n": 14,
+      "denominator": 19279
+    },
+    "share.it_all.Tailwind CSS.2022": {
+      "value": 0.0008,
+      "n": 23,
+      "denominator": 27514
+    },
+    "share.it_all.Tailwind CSS.2023": {
+      "value": 0.0012,
+      "n": 38,
+      "denominator": 31206
+    },
+    "share.it_all.Tailwind CSS.2024": {
+      "value": 0.005,
+      "n": 159,
+      "denominator": 31817
+    },
+    "share.it_all.Tailwind CSS.2025": {
+      "value": 0.0056,
+      "n": 155,
+      "denominator": 27794
+    },
+    "share.it_all.Tailwind CSS.2026": {
+      "value": 0.0064,
+      "n": 119,
+      "denominator": 18630
+    },
+    "share.it_all.OWASP.recent": {
+      "value": 0.0076,
+      "n": 352,
+      "denominator": 46424,
+      "own": true
+    },
+    "share.it_all.OWASP.2019": {
+      "value": 0.0005,
+      "n": 5,
+      "denominator": 9621
+    },
+    "share.it_all.OWASP.2020": {
+      "value": 0.0002,
+      "n": 2,
+      "denominator": 12234
+    },
+    "share.it_all.OWASP.2021": {
+      "value": 0.0007,
+      "n": 14,
+      "denominator": 19279
+    },
+    "share.it_all.OWASP.2022": {
+      "value": 0.0011,
+      "n": 30,
+      "denominator": 27514
+    },
+    "share.it_all.OWASP.2023": {
+      "value": 0.0046,
+      "n": 142,
+      "denominator": 31206
+    },
+    "share.it_all.OWASP.2024": {
+      "value": 0.0063,
+      "n": 199,
+      "denominator": 31817
+    },
+    "share.it_all.OWASP.2025": {
+      "value": 0.0078,
+      "n": 216,
+      "denominator": 27794
+    },
+    "share.it_all.OWASP.2026": {
+      "value": 0.0073,
+      "n": 136,
+      "denominator": 18630
+    },
+    "share.it_all.dbt.recent": {
+      "value": 0.0061,
+      "n": 282,
+      "denominator": 46424,
+      "own": true
+    },
+    "share.it_all.dbt.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 9621
+    },
+    "share.it_all.dbt.2020": {
+      "value": 0.0002,
+      "n": 2,
+      "denominator": 12234
+    },
+    "share.it_all.dbt.2021": {
+      "value": 0.0007,
+      "n": 13,
+      "denominator": 19279
+    },
+    "share.it_all.dbt.2022": {
+      "value": 0.0009,
+      "n": 25,
+      "denominator": 27514
+    },
+    "share.it_all.dbt.2023": {
+      "value": 0.0025,
+      "n": 78,
+      "denominator": 31206
+    },
+    "share.it_all.dbt.2024": {
+      "value": 0.003,
+      "n": 94,
+      "denominator": 31817
+    },
+    "share.it_all.dbt.2025": {
+      "value": 0.0046,
+      "n": 128,
+      "denominator": 27794
+    },
+    "share.it_all.dbt.2026": {
+      "value": 0.0083,
+      "n": 154,
+      "denominator": 18630
     },
     "share.it_all.Excel.recent": {
       "value": 0.0166,
-      "n": 768,
-      "denominator": 46400
+      "n": 769,
+      "denominator": 46424,
+      "own": false
     },
     "share.it_all.Excel.2019": {
       "value": 0.0015,
@@ -1440,14 +1931,15 @@
       "denominator": 27794
     },
     "share.it_all.Excel.2026": {
-      "value": 0.022,
-      "n": 410,
-      "denominator": 18606
+      "value": 0.0221,
+      "n": 411,
+      "denominator": 18630
     },
     "share.it_all.Postman.recent": {
       "value": 0.0164,
       "n": 762,
-      "denominator": 46400
+      "denominator": 46424,
+      "own": false
     },
     "share.it_all.Postman.2019": {
       "value": 0.0008,
@@ -1487,12 +1979,13 @@
     "share.it_all.Postman.2026": {
       "value": 0.0183,
       "n": 341,
-      "denominator": 18606
+      "denominator": 18630
     },
     "share.it_all.Django.recent": {
       "value": 0.0203,
       "n": 944,
-      "denominator": 46400
+      "denominator": 46424,
+      "own": false
     },
     "share.it_all.Django.2019": {
       "value": 0.0195,
@@ -1532,12 +2025,13 @@
     "share.it_all.Django.2026": {
       "value": 0.0191,
       "n": 355,
-      "denominator": 18606
+      "denominator": 18630
     },
     "share.it_all.pandas.recent": {
       "value": 0.0174,
       "n": 809,
-      "denominator": 46400
+      "denominator": 46424,
+      "own": false
     },
     "share.it_all.pandas.2019": {
       "value": 0.0041,
@@ -1577,12 +2071,13 @@
     "share.it_all.pandas.2026": {
       "value": 0.0158,
       "n": 294,
-      "denominator": 18606
+      "denominator": 18630
     },
     "share.it_all.Spring.recent": {
-      "value": 0.0205,
+      "value": 0.0204,
       "n": 949,
-      "denominator": 46400
+      "denominator": 46424,
+      "own": false
     },
     "share.it_all.Spring.2019": {
       "value": 0.0072,
@@ -1620,12 +2115,380 @@
       "denominator": 27794
     },
     "share.it_all.Spring.2026": {
-      "value": 0.0167,
+      "value": 0.0166,
       "n": 310,
-      "denominator": 18606
+      "denominator": 18630
+    },
+    "share.it_all.Selenium.recent": {
+      "value": 0.01,
+      "n": 464,
+      "denominator": 46424,
+      "own": false
+    },
+    "share.it_all.Selenium.2019": {
+      "value": 0.0046,
+      "n": 44,
+      "denominator": 9621
+    },
+    "share.it_all.Selenium.2020": {
+      "value": 0.0047,
+      "n": 57,
+      "denominator": 12234
+    },
+    "share.it_all.Selenium.2021": {
+      "value": 0.0061,
+      "n": 117,
+      "denominator": 19279
+    },
+    "share.it_all.Selenium.2022": {
+      "value": 0.005,
+      "n": 137,
+      "denominator": 27514
+    },
+    "share.it_all.Selenium.2023": {
+      "value": 0.0061,
+      "n": 190,
+      "denominator": 31206
+    },
+    "share.it_all.Selenium.2024": {
+      "value": 0.0104,
+      "n": 330,
+      "denominator": 31817
+    },
+    "share.it_all.Selenium.2025": {
+      "value": 0.0099,
+      "n": 276,
+      "denominator": 27794
+    },
+    "share.it_all.Selenium.2026": {
+      "value": 0.0101,
+      "n": 188,
+      "denominator": 18630
+    },
+    "share.it_all.BPMN.recent": {
+      "value": 0.0104,
+      "n": 483,
+      "denominator": 46424,
+      "own": false
+    },
+    "share.it_all.BPMN.2019": {
+      "value": 0.0007,
+      "n": 7,
+      "denominator": 9621
+    },
+    "share.it_all.BPMN.2020": {
+      "value": 0.0023,
+      "n": 28,
+      "denominator": 12234
+    },
+    "share.it_all.BPMN.2021": {
+      "value": 0.0039,
+      "n": 75,
+      "denominator": 19279
+    },
+    "share.it_all.BPMN.2022": {
+      "value": 0.0064,
+      "n": 175,
+      "denominator": 27514
+    },
+    "share.it_all.BPMN.2023": {
+      "value": 0.0108,
+      "n": 338,
+      "denominator": 31206
+    },
+    "share.it_all.BPMN.2024": {
+      "value": 0.012,
+      "n": 382,
+      "denominator": 31817
+    },
+    "share.it_all.BPMN.2025": {
+      "value": 0.0089,
+      "n": 246,
+      "denominator": 27794
+    },
+    "share.it_all.BPMN.2026": {
+      "value": 0.0127,
+      "n": 237,
+      "denominator": 18630
+    },
+    "share.it_all.PowerPoint.recent": {
+      "value": 0.0029,
+      "n": 135,
+      "denominator": 46424,
+      "own": false
+    },
+    "share.it_all.PowerPoint.2019": {
+      "value": 0.0001,
+      "n": 1,
+      "denominator": 9621
+    },
+    "share.it_all.PowerPoint.2020": {
+      "value": 0.0002,
+      "n": 2,
+      "denominator": 12234
+    },
+    "share.it_all.PowerPoint.2021": {
+      "value": 0.0006,
+      "n": 11,
+      "denominator": 19279
+    },
+    "share.it_all.PowerPoint.2022": {
+      "value": 0.0003,
+      "n": 9,
+      "denominator": 27514
+    },
+    "share.it_all.PowerPoint.2023": {
+      "value": 0.0012,
+      "n": 36,
+      "denominator": 31206
+    },
+    "share.it_all.PowerPoint.2024": {
+      "value": 0.0014,
+      "n": 46,
+      "denominator": 31817
+    },
+    "share.it_all.PowerPoint.2025": {
+      "value": 0.0028,
+      "n": 79,
+      "denominator": 27794
+    },
+    "share.it_all.PowerPoint.2026": {
+      "value": 0.003,
+      "n": 56,
+      "denominator": 18630
+    },
+    "share.it_all.UML.recent": {
+      "value": 0.008,
+      "n": 372,
+      "denominator": 46424,
+      "own": false
+    },
+    "share.it_all.UML.2019": {
+      "value": 0.0004,
+      "n": 4,
+      "denominator": 9621
+    },
+    "share.it_all.UML.2020": {
+      "value": 0.0022,
+      "n": 27,
+      "denominator": 12234
+    },
+    "share.it_all.UML.2021": {
+      "value": 0.0039,
+      "n": 76,
+      "denominator": 19279
+    },
+    "share.it_all.UML.2022": {
+      "value": 0.0058,
+      "n": 160,
+      "denominator": 27514
+    },
+    "share.it_all.UML.2023": {
+      "value": 0.0095,
+      "n": 295,
+      "denominator": 31206
+    },
+    "share.it_all.UML.2024": {
+      "value": 0.01,
+      "n": 319,
+      "denominator": 31817
+    },
+    "share.it_all.UML.2025": {
+      "value": 0.0076,
+      "n": 212,
+      "denominator": 27794
+    },
+    "share.it_all.UML.2026": {
+      "value": 0.0086,
+      "n": 160,
+      "denominator": 18630
+    },
+    "share.it_all.SQLAlchemy.recent": {
+      "value": 0.0088,
+      "n": 408,
+      "denominator": 46424,
+      "own": false
+    },
+    "share.it_all.SQLAlchemy.2019": {
+      "value": 0.0011,
+      "n": 11,
+      "denominator": 9621
+    },
+    "share.it_all.SQLAlchemy.2020": {
+      "value": 0.0014,
+      "n": 17,
+      "denominator": 12234
+    },
+    "share.it_all.SQLAlchemy.2021": {
+      "value": 0.0077,
+      "n": 148,
+      "denominator": 19279
+    },
+    "share.it_all.SQLAlchemy.2022": {
+      "value": 0.0037,
+      "n": 103,
+      "denominator": 27514
+    },
+    "share.it_all.SQLAlchemy.2023": {
+      "value": 0.0045,
+      "n": 140,
+      "denominator": 31206
+    },
+    "share.it_all.SQLAlchemy.2024": {
+      "value": 0.0084,
+      "n": 268,
+      "denominator": 31817
+    },
+    "share.it_all.SQLAlchemy.2025": {
+      "value": 0.0076,
+      "n": 210,
+      "denominator": 27794
+    },
+    "share.it_all.SQLAlchemy.2026": {
+      "value": 0.0106,
+      "n": 198,
+      "denominator": 18630
+    },
+    "share.it_all.gRPC.recent": {
+      "value": 0.0184,
+      "n": 855,
+      "denominator": 46424,
+      "own": false
+    },
+    "share.it_all.gRPC.2019": {
+      "value": 0.0028,
+      "n": 27,
+      "denominator": 9621
+    },
+    "share.it_all.gRPC.2020": {
+      "value": 0.0076,
+      "n": 93,
+      "denominator": 12234
+    },
+    "share.it_all.gRPC.2021": {
+      "value": 0.0075,
+      "n": 144,
+      "denominator": 19279
+    },
+    "share.it_all.gRPC.2022": {
+      "value": 0.0072,
+      "n": 197,
+      "denominator": 27514
+    },
+    "share.it_all.gRPC.2023": {
+      "value": 0.0108,
+      "n": 336,
+      "denominator": 31206
+    },
+    "share.it_all.gRPC.2024": {
+      "value": 0.0145,
+      "n": 462,
+      "denominator": 31817
+    },
+    "share.it_all.gRPC.2025": {
+      "value": 0.0168,
+      "n": 468,
+      "denominator": 27794
+    },
+    "share.it_all.gRPC.2026": {
+      "value": 0.0208,
+      "n": 387,
+      "denominator": 18630
+    },
+    "share.it_all.A/B-тесты.recent": {
+      "value": 0.0105,
+      "n": 489,
+      "denominator": 46424,
+      "own": false
+    },
+    "share.it_all.A/B-тесты.2019": {
+      "value": 0.0017,
+      "n": 16,
+      "denominator": 9621
+    },
+    "share.it_all.A/B-тесты.2020": {
+      "value": 0.0023,
+      "n": 28,
+      "denominator": 12234
+    },
+    "share.it_all.A/B-тесты.2021": {
+      "value": 0.0037,
+      "n": 71,
+      "denominator": 19279
+    },
+    "share.it_all.A/B-тесты.2022": {
+      "value": 0.0029,
+      "n": 79,
+      "denominator": 27514
+    },
+    "share.it_all.A/B-тесты.2023": {
+      "value": 0.0045,
+      "n": 139,
+      "denominator": 31206
+    },
+    "share.it_all.A/B-тесты.2024": {
+      "value": 0.0072,
+      "n": 228,
+      "denominator": 31817
+    },
+    "share.it_all.A/B-тесты.2025": {
+      "value": 0.0084,
+      "n": 234,
+      "denominator": 27794
+    },
+    "share.it_all.A/B-тесты.2026": {
+      "value": 0.0137,
+      "n": 255,
+      "denominator": 18630
+    },
+    "share.it_all.GitLab CI.recent": {
+      "value": 0.0174,
+      "n": 810,
+      "denominator": 46424,
+      "own": false
+    },
+    "share.it_all.GitLab CI.2019": {
+      "value": 0.0017,
+      "n": 16,
+      "denominator": 9621
+    },
+    "share.it_all.GitLab CI.2020": {
+      "value": 0.006,
+      "n": 74,
+      "denominator": 12234
+    },
+    "share.it_all.GitLab CI.2021": {
+      "value": 0.0078,
+      "n": 150,
+      "denominator": 19279
+    },
+    "share.it_all.GitLab CI.2022": {
+      "value": 0.0056,
+      "n": 154,
+      "denominator": 27514
+    },
+    "share.it_all.GitLab CI.2023": {
+      "value": 0.0065,
+      "n": 204,
+      "denominator": 31206
+    },
+    "share.it_all.GitLab CI.2024": {
+      "value": 0.0123,
+      "n": 392,
+      "denominator": 31817
+    },
+    "share.it_all.GitLab CI.2025": {
+      "value": 0.0162,
+      "n": 449,
+      "denominator": 27794
+    },
+    "share.it_all.GitLab CI.2026": {
+      "value": 0.0194,
+      "n": 361,
+      "denominator": 18630
     },
     "posts.it_junior.recent": {
-      "value": 7569,
+      "value": 7573,
       "n": null,
       "denominator": null
     },
@@ -1665,14 +2528,15 @@
       "denominator": null
     },
     "posts.it_junior.2026": {
-      "value": 3215,
+      "value": 3219,
       "n": null,
       "denominator": null
     },
     "share.it_junior.Python.recent": {
-      "value": 0.2303,
-      "n": 1743,
-      "denominator": 7569
+      "value": 0.2304,
+      "n": 1745,
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Python.2019": {
       "value": 0.0752,
@@ -1710,14 +2574,15 @@
       "denominator": 4354
     },
     "share.it_junior.Python.2026": {
-      "value": 0.2193,
-      "n": 705,
-      "denominator": 3215
+      "value": 0.2196,
+      "n": 707,
+      "denominator": 3219
     },
     "share.it_junior.SQL.recent": {
-      "value": 0.1961,
+      "value": 0.196,
       "n": 1484,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.SQL.2019": {
       "value": 0.0898,
@@ -1755,14 +2620,15 @@
       "denominator": 4354
     },
     "share.it_junior.SQL.2026": {
-      "value": 0.1913,
+      "value": 0.1911,
       "n": 615,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.Git.recent": {
-      "value": 0.1509,
+      "value": 0.1508,
       "n": 1142,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Git.2019": {
       "value": 0.3299,
@@ -1800,14 +2666,15 @@
       "denominator": 4354
     },
     "share.it_junior.Git.2026": {
-      "value": 0.1421,
+      "value": 0.142,
       "n": 457,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.JavaScript.recent": {
-      "value": 0.099,
+      "value": 0.0989,
       "n": 749,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.JavaScript.2019": {
       "value": 0.453,
@@ -1845,14 +2712,15 @@
       "denominator": 4354
     },
     "share.it_junior.JavaScript.2026": {
-      "value": 0.0722,
+      "value": 0.0721,
       "n": 232,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.PostgreSQL.recent": {
-      "value": 0.0906,
-      "n": 686,
-      "denominator": 7569
+      "value": 0.0908,
+      "n": 688,
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.PostgreSQL.2019": {
       "value": 0.0647,
@@ -1890,14 +2758,15 @@
       "denominator": 4354
     },
     "share.it_junior.PostgreSQL.2026": {
-      "value": 0.0712,
-      "n": 229,
-      "denominator": 3215
+      "value": 0.0718,
+      "n": 231,
+      "denominator": 3219
     },
     "share.it_junior.Java.recent": {
-      "value": 0.0905,
-      "n": 685,
-      "denominator": 7569
+      "value": 0.0907,
+      "n": 687,
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Java.2019": {
       "value": 0.0543,
@@ -1935,14 +2804,15 @@
       "denominator": 4354
     },
     "share.it_junior.Java.2026": {
-      "value": 0.0862,
-      "n": 277,
-      "denominator": 3215
+      "value": 0.0867,
+      "n": 279,
+      "denominator": 3219
     },
     "share.it_junior.REST.recent": {
       "value": 0.0881,
       "n": 667,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.REST.2019": {
       "value": 0.0689,
@@ -1980,14 +2850,15 @@
       "denominator": 4354
     },
     "share.it_junior.REST.2026": {
-      "value": 0.0759,
+      "value": 0.0758,
       "n": 244,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.Docker.recent": {
-      "value": 0.0867,
+      "value": 0.0866,
       "n": 656,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Docker.2019": {
       "value": 0.048,
@@ -2025,14 +2896,15 @@
       "denominator": 4354
     },
     "share.it_junior.Docker.2026": {
-      "value": 0.0725,
+      "value": 0.0724,
       "n": 233,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.React.recent": {
       "value": 0.0852,
       "n": 645,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.React.2019": {
       "value": 0.3069,
@@ -2070,14 +2942,15 @@
       "denominator": 4354
     },
     "share.it_junior.React.2026": {
-      "value": 0.0756,
+      "value": 0.0755,
       "n": 243,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.HTML.recent": {
       "value": 0.0708,
       "n": 536,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.HTML.2019": {
       "value": 0.3382,
@@ -2115,14 +2988,15 @@
       "denominator": 4354
     },
     "share.it_junior.HTML.2026": {
-      "value": 0.0569,
+      "value": 0.0568,
       "n": 183,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.CSS.recent": {
-      "value": 0.069,
+      "value": 0.0689,
       "n": 522,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.CSS.2019": {
       "value": 0.309,
@@ -2162,12 +3036,13 @@
     "share.it_junior.CSS.2026": {
       "value": 0.0572,
       "n": 184,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.Linux.recent": {
-      "value": 0.0674,
+      "value": 0.0673,
       "n": 510,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Linux.2019": {
       "value": 0.0668,
@@ -2205,14 +3080,15 @@
       "denominator": 4354
     },
     "share.it_junior.Linux.2026": {
-      "value": 0.0607,
+      "value": 0.0606,
       "n": 195,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.TypeScript.recent": {
       "value": 0.0638,
       "n": 483,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.TypeScript.2019": {
       "value": 0.0856,
@@ -2250,14 +3126,15 @@
       "denominator": 4354
     },
     "share.it_junior.TypeScript.2026": {
-      "value": 0.0566,
+      "value": 0.0565,
       "n": 182,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.ООП.recent": {
-      "value": 0.0542,
+      "value": 0.0541,
       "n": 410,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.ООП.2019": {
       "value": 0.0459,
@@ -2297,12 +3174,13 @@
     "share.it_junior.ООП.2026": {
       "value": 0.0454,
       "n": 146,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.Excel.recent": {
       "value": 0.0458,
       "n": 347,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Excel.2019": {
       "value": 0.0063,
@@ -2340,14 +3218,15 @@
       "denominator": 4354
     },
     "share.it_junior.Excel.2026": {
-      "value": 0.0554,
+      "value": 0.0553,
       "n": 178,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.CI/CD.recent": {
-      "value": 0.0439,
-      "n": 332,
-      "denominator": 7569
+      "value": 0.044,
+      "n": 333,
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.CI/CD.2019": {
       "value": 0.0125,
@@ -2385,14 +3264,15 @@
       "denominator": 4354
     },
     "share.it_junior.CI/CD.2026": {
-      "value": 0.046,
-      "n": 148,
-      "denominator": 3215
+      "value": 0.0463,
+      "n": 149,
+      "denominator": 3219
     },
     "share.it_junior.DevOps.recent": {
-      "value": 0.0377,
+      "value": 0.0376,
       "n": 285,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.DevOps.2019": {
       "value": 0.0104,
@@ -2430,14 +3310,15 @@
       "denominator": 4354
     },
     "share.it_junior.DevOps.2026": {
-      "value": 0.0414,
+      "value": 0.0413,
       "n": 133,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.FastAPI.recent": {
       "value": 0.0358,
       "n": 271,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.FastAPI.2019": {
       "value": 0.0,
@@ -2475,14 +3356,15 @@
       "denominator": 4354
     },
     "share.it_junior.FastAPI.2026": {
-      "value": 0.0327,
+      "value": 0.0326,
       "n": 105,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.Jira.recent": {
       "value": 0.0357,
       "n": 270,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Jira.2019": {
       "value": 0.0397,
@@ -2522,12 +3404,13 @@
     "share.it_junior.Jira.2026": {
       "value": 0.0373,
       "n": 120,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.HTTP.recent": {
       "value": 0.0349,
       "n": 264,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.HTTP.2019": {
       "value": 0.0167,
@@ -2567,12 +3450,13 @@
     "share.it_junior.HTTP.2026": {
       "value": 0.0267,
       "n": 86,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.Go.recent": {
       "value": 0.0333,
       "n": 252,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Go.2019": {
       "value": 0.0251,
@@ -2610,14 +3494,15 @@
       "denominator": 4354
     },
     "share.it_junior.Go.2026": {
-      "value": 0.0333,
+      "value": 0.0332,
       "n": 107,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.C#.recent": {
       "value": 0.0329,
       "n": 249,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.C#.2019": {
       "value": 0.0585,
@@ -2655,14 +3540,15 @@
       "denominator": 4354
     },
     "share.it_junior.C#.2026": {
-      "value": 0.033,
+      "value": 0.0329,
       "n": 106,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.Postman.recent": {
       "value": 0.0312,
       "n": 236,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Postman.2019": {
       "value": 0.0042,
@@ -2702,12 +3588,13 @@
     "share.it_junior.Postman.2026": {
       "value": 0.0295,
       "n": 95,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.Kafka.recent": {
-      "value": 0.0292,
-      "n": 221,
-      "denominator": 7569
+      "value": 0.0294,
+      "n": 223,
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Kafka.2019": {
       "value": 0.0042,
@@ -2745,14 +3632,15 @@
       "denominator": 4354
     },
     "share.it_junior.Kafka.2026": {
-      "value": 0.0224,
-      "n": 72,
-      "denominator": 3215
+      "value": 0.023,
+      "n": 74,
+      "denominator": 3219
     },
     "share.it_junior.Vue.js.recent": {
       "value": 0.0285,
       "n": 216,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Vue.js.2019": {
       "value": 0.0835,
@@ -2792,12 +3680,13 @@
     "share.it_junior.Vue.js.2026": {
       "value": 0.0202,
       "n": 65,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.Node.js.recent": {
       "value": 0.0284,
       "n": 215,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Node.js.2019": {
       "value": 0.0939,
@@ -2837,12 +3726,13 @@
     "share.it_junior.Node.js.2026": {
       "value": 0.0221,
       "n": 71,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.Microservices.recent": {
       "value": 0.0279,
       "n": 211,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Microservices.2019": {
       "value": 0.0104,
@@ -2880,14 +3770,15 @@
       "denominator": 4354
     },
     "share.it_junior.Microservices.2026": {
-      "value": 0.0274,
+      "value": 0.0273,
       "n": 88,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.Django.recent": {
       "value": 0.0275,
       "n": 208,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Django.2019": {
       "value": 0.0084,
@@ -2927,12 +3818,13 @@
     "share.it_junior.Django.2026": {
       "value": 0.0199,
       "n": 64,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.pandas.recent": {
       "value": 0.0271,
       "n": 205,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.pandas.2019": {
       "value": 0.0021,
@@ -2972,12 +3864,13 @@
     "share.it_junior.pandas.2026": {
       "value": 0.023,
       "n": 74,
-      "denominator": 3215
+      "denominator": 3219
     },
     "share.it_junior.Spring.recent": {
       "value": 0.0259,
       "n": 196,
-      "denominator": 7569
+      "denominator": 7573,
+      "own": true
     },
     "share.it_junior.Spring.2019": {
       "value": 0.0021,
@@ -3017,10 +3910,470 @@
     "share.it_junior.Spring.2026": {
       "value": 0.0202,
       "n": 65,
-      "denominator": 3215
+      "denominator": 3219
+    },
+    "share.it_junior.Selenium.recent": {
+      "value": 0.0137,
+      "n": 104,
+      "denominator": 7573,
+      "own": true
+    },
+    "share.it_junior.Selenium.2019": {
+      "value": 0.0042,
+      "n": 2,
+      "denominator": 479
+    },
+    "share.it_junior.Selenium.2020": {
+      "value": 0.0031,
+      "n": 2,
+      "denominator": 635
+    },
+    "share.it_junior.Selenium.2021": {
+      "value": 0.0083,
+      "n": 10,
+      "denominator": 1200
+    },
+    "share.it_junior.Selenium.2022": {
+      "value": 0.0031,
+      "n": 7,
+      "denominator": 2271
+    },
+    "share.it_junior.Selenium.2023": {
+      "value": 0.0059,
+      "n": 22,
+      "denominator": 3742
+    },
+    "share.it_junior.Selenium.2024": {
+      "value": 0.0084,
+      "n": 33,
+      "denominator": 3916
+    },
+    "share.it_junior.Selenium.2025": {
+      "value": 0.0152,
+      "n": 66,
+      "denominator": 4354
+    },
+    "share.it_junior.Selenium.2026": {
+      "value": 0.0118,
+      "n": 38,
+      "denominator": 3219
+    },
+    "share.it_junior.BPMN.recent": {
+      "value": 0.0135,
+      "n": 102,
+      "denominator": 7573,
+      "own": true
+    },
+    "share.it_junior.BPMN.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 479
+    },
+    "share.it_junior.BPMN.2020": {
+      "value": 0.0016,
+      "n": 1,
+      "denominator": 635
+    },
+    "share.it_junior.BPMN.2021": {
+      "value": 0.0025,
+      "n": 3,
+      "denominator": 1200
+    },
+    "share.it_junior.BPMN.2022": {
+      "value": 0.0035,
+      "n": 8,
+      "denominator": 2271
+    },
+    "share.it_junior.BPMN.2023": {
+      "value": 0.0069,
+      "n": 26,
+      "denominator": 3742
+    },
+    "share.it_junior.BPMN.2024": {
+      "value": 0.0089,
+      "n": 35,
+      "denominator": 3916
+    },
+    "share.it_junior.BPMN.2025": {
+      "value": 0.0115,
+      "n": 50,
+      "denominator": 4354
+    },
+    "share.it_junior.BPMN.2026": {
+      "value": 0.0162,
+      "n": 52,
+      "denominator": 3219
+    },
+    "share.it_junior.DevTools.recent": {
+      "value": 0.0127,
+      "n": 96,
+      "denominator": 7573,
+      "own": true
+    },
+    "share.it_junior.DevTools.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 479
+    },
+    "share.it_junior.DevTools.2020": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 635
+    },
+    "share.it_junior.DevTools.2021": {
+      "value": 0.0067,
+      "n": 8,
+      "denominator": 1200
+    },
+    "share.it_junior.DevTools.2022": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 2271
+    },
+    "share.it_junior.DevTools.2023": {
+      "value": 0.0029,
+      "n": 11,
+      "denominator": 3742
+    },
+    "share.it_junior.DevTools.2024": {
+      "value": 0.0092,
+      "n": 36,
+      "denominator": 3916
+    },
+    "share.it_junior.DevTools.2025": {
+      "value": 0.0138,
+      "n": 60,
+      "denominator": 4354
+    },
+    "share.it_junior.DevTools.2026": {
+      "value": 0.0112,
+      "n": 36,
+      "denominator": 3219
+    },
+    "share.it_junior.PowerPoint.recent": {
+      "value": 0.0106,
+      "n": 80,
+      "denominator": 7573,
+      "own": true
+    },
+    "share.it_junior.PowerPoint.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 479
+    },
+    "share.it_junior.PowerPoint.2020": {
+      "value": 0.0016,
+      "n": 1,
+      "denominator": 635
+    },
+    "share.it_junior.PowerPoint.2021": {
+      "value": 0.0025,
+      "n": 3,
+      "denominator": 1200
+    },
+    "share.it_junior.PowerPoint.2022": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 2271
+    },
+    "share.it_junior.PowerPoint.2023": {
+      "value": 0.0019,
+      "n": 7,
+      "denominator": 3742
+    },
+    "share.it_junior.PowerPoint.2024": {
+      "value": 0.0041,
+      "n": 16,
+      "denominator": 3916
+    },
+    "share.it_junior.PowerPoint.2025": {
+      "value": 0.0103,
+      "n": 45,
+      "denominator": 4354
+    },
+    "share.it_junior.PowerPoint.2026": {
+      "value": 0.0109,
+      "n": 35,
+      "denominator": 3219
+    },
+    "share.it_junior.RAG.recent": {
+      "value": 0.0104,
+      "n": 79,
+      "denominator": 7573,
+      "own": true
+    },
+    "share.it_junior.RAG.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 479
+    },
+    "share.it_junior.RAG.2020": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 635
+    },
+    "share.it_junior.RAG.2021": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1200
+    },
+    "share.it_junior.RAG.2022": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 2271
+    },
+    "share.it_junior.RAG.2023": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 3742
+    },
+    "share.it_junior.RAG.2024": {
+      "value": 0.0005,
+      "n": 2,
+      "denominator": 3916
+    },
+    "share.it_junior.RAG.2025": {
+      "value": 0.0096,
+      "n": 42,
+      "denominator": 4354
+    },
+    "share.it_junior.RAG.2026": {
+      "value": 0.0115,
+      "n": 37,
+      "denominator": 3219
+    },
+    "share.it_junior.UML.recent": {
+      "value": 0.01,
+      "n": 76,
+      "denominator": 7573,
+      "own": true
+    },
+    "share.it_junior.UML.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 479
+    },
+    "share.it_junior.UML.2020": {
+      "value": 0.0016,
+      "n": 1,
+      "denominator": 635
+    },
+    "share.it_junior.UML.2021": {
+      "value": 0.0033,
+      "n": 4,
+      "denominator": 1200
+    },
+    "share.it_junior.UML.2022": {
+      "value": 0.0026,
+      "n": 6,
+      "denominator": 2271
+    },
+    "share.it_junior.UML.2023": {
+      "value": 0.0037,
+      "n": 14,
+      "denominator": 3742
+    },
+    "share.it_junior.UML.2024": {
+      "value": 0.0084,
+      "n": 33,
+      "denominator": 3916
+    },
+    "share.it_junior.UML.2025": {
+      "value": 0.009,
+      "n": 39,
+      "denominator": 4354
+    },
+    "share.it_junior.UML.2026": {
+      "value": 0.0115,
+      "n": 37,
+      "denominator": 3219
+    },
+    "share.it_junior.SQLAlchemy.recent": {
+      "value": 0.0086,
+      "n": 65,
+      "denominator": 7573,
+      "own": true
+    },
+    "share.it_junior.SQLAlchemy.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 479
+    },
+    "share.it_junior.SQLAlchemy.2020": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 635
+    },
+    "share.it_junior.SQLAlchemy.2021": {
+      "value": 0.0025,
+      "n": 3,
+      "denominator": 1200
+    },
+    "share.it_junior.SQLAlchemy.2022": {
+      "value": 0.0031,
+      "n": 7,
+      "denominator": 2271
+    },
+    "share.it_junior.SQLAlchemy.2023": {
+      "value": 0.0032,
+      "n": 12,
+      "denominator": 3742
+    },
+    "share.it_junior.SQLAlchemy.2024": {
+      "value": 0.0074,
+      "n": 29,
+      "denominator": 3916
+    },
+    "share.it_junior.SQLAlchemy.2025": {
+      "value": 0.0103,
+      "n": 45,
+      "denominator": 4354
+    },
+    "share.it_junior.SQLAlchemy.2026": {
+      "value": 0.0062,
+      "n": 20,
+      "denominator": 3219
+    },
+    "share.it_junior.gRPC.recent": {
+      "value": 0.0082,
+      "n": 62,
+      "denominator": 7573,
+      "own": true
+    },
+    "share.it_junior.gRPC.2019": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 479
+    },
+    "share.it_junior.gRPC.2020": {
+      "value": 0.0016,
+      "n": 1,
+      "denominator": 635
+    },
+    "share.it_junior.gRPC.2021": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 1200
+    },
+    "share.it_junior.gRPC.2022": {
+      "value": 0.0022,
+      "n": 5,
+      "denominator": 2271
+    },
+    "share.it_junior.gRPC.2023": {
+      "value": 0.0013,
+      "n": 5,
+      "denominator": 3742
+    },
+    "share.it_junior.gRPC.2024": {
+      "value": 0.0056,
+      "n": 22,
+      "denominator": 3916
+    },
+    "share.it_junior.gRPC.2025": {
+      "value": 0.0087,
+      "n": 38,
+      "denominator": 4354
+    },
+    "share.it_junior.gRPC.2026": {
+      "value": 0.0075,
+      "n": 24,
+      "denominator": 3219
+    },
+    "share.it_junior.A/B-тесты.recent": {
+      "value": 0.007,
+      "n": 53,
+      "denominator": 7573,
+      "own": true
+    },
+    "share.it_junior.A/B-тесты.2019": {
+      "value": 0.0021,
+      "n": 1,
+      "denominator": 479
+    },
+    "share.it_junior.A/B-тесты.2020": {
+      "value": 0.0031,
+      "n": 2,
+      "denominator": 635
+    },
+    "share.it_junior.A/B-тесты.2021": {
+      "value": 0.005,
+      "n": 6,
+      "denominator": 1200
+    },
+    "share.it_junior.A/B-тесты.2022": {
+      "value": 0.0013,
+      "n": 3,
+      "denominator": 2271
+    },
+    "share.it_junior.A/B-тесты.2023": {
+      "value": 0.0019,
+      "n": 7,
+      "denominator": 3742
+    },
+    "share.it_junior.A/B-тесты.2024": {
+      "value": 0.0031,
+      "n": 12,
+      "denominator": 3916
+    },
+    "share.it_junior.A/B-тесты.2025": {
+      "value": 0.0046,
+      "n": 20,
+      "denominator": 4354
+    },
+    "share.it_junior.A/B-тесты.2026": {
+      "value": 0.0103,
+      "n": 33,
+      "denominator": 3219
+    },
+    "share.it_junior.GitLab CI.recent": {
+      "value": 0.0069,
+      "n": 52,
+      "denominator": 7573,
+      "own": true
+    },
+    "share.it_junior.GitLab CI.2019": {
+      "value": 0.0021,
+      "n": 1,
+      "denominator": 479
+    },
+    "share.it_junior.GitLab CI.2020": {
+      "value": 0.0079,
+      "n": 5,
+      "denominator": 635
+    },
+    "share.it_junior.GitLab CI.2021": {
+      "value": 0.0083,
+      "n": 10,
+      "denominator": 1200
+    },
+    "share.it_junior.GitLab CI.2022": {
+      "value": 0.0022,
+      "n": 5,
+      "denominator": 2271
+    },
+    "share.it_junior.GitLab CI.2023": {
+      "value": 0.0032,
+      "n": 12,
+      "denominator": 3742
+    },
+    "share.it_junior.GitLab CI.2024": {
+      "value": 0.01,
+      "n": 39,
+      "denominator": 3916
+    },
+    "share.it_junior.GitLab CI.2025": {
+      "value": 0.0067,
+      "n": 29,
+      "denominator": 4354
+    },
+    "share.it_junior.GitLab CI.2026": {
+      "value": 0.0071,
+      "n": 23,
+      "denominator": 3219
     },
     "posts.ml_all.recent": {
-      "value": 3313,
+      "value": 3316,
       "n": null,
       "denominator": null
     },
@@ -3050,14 +4403,15 @@
       "denominator": null
     },
     "posts.ml_all.2026": {
-      "value": 1433,
+      "value": 1436,
       "n": null,
       "denominator": null
     },
     "share.ml_all.Python.recent": {
-      "value": 0.521,
-      "n": 1726,
-      "denominator": 3313
+      "value": 0.5208,
+      "n": 1727,
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.Python.2021": {
       "value": 0.578,
@@ -3085,14 +4439,15 @@
       "denominator": 1880
     },
     "share.ml_all.Python.2026": {
-      "value": 0.5534,
-      "n": 793,
-      "denominator": 1433
+      "value": 0.5529,
+      "n": 794,
+      "denominator": 1436
     },
     "share.ml_all.SQL.recent": {
-      "value": 0.2007,
+      "value": 0.2005,
       "n": 665,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.SQL.2021": {
       "value": 0.2198,
@@ -3120,14 +4475,15 @@
       "denominator": 1880
     },
     "share.ml_all.SQL.2026": {
-      "value": 0.2149,
+      "value": 0.2145,
       "n": 308,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.PyTorch.recent": {
-      "value": 0.1778,
+      "value": 0.1776,
       "n": 589,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.PyTorch.2021": {
       "value": 0.1956,
@@ -3155,14 +4511,15 @@
       "denominator": 1880
     },
     "share.ml_all.PyTorch.2026": {
-      "value": 0.15,
+      "value": 0.1497,
       "n": 215,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.Docker.recent": {
-      "value": 0.1693,
+      "value": 0.1692,
       "n": 561,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.Docker.2021": {
       "value": 0.1495,
@@ -3190,14 +4547,15 @@
       "denominator": 1880
     },
     "share.ml_all.Docker.2026": {
-      "value": 0.1814,
+      "value": 0.1811,
       "n": 260,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.RAG.recent": {
-      "value": 0.118,
+      "value": 0.1179,
       "n": 391,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.RAG.2021": {
       "value": 0.0,
@@ -3225,14 +4583,15 @@
       "denominator": 1880
     },
     "share.ml_all.RAG.2026": {
-      "value": 0.1438,
+      "value": 0.1435,
       "n": 206,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.pandas.recent": {
-      "value": 0.1041,
+      "value": 0.104,
       "n": 345,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.pandas.2021": {
       "value": 0.1956,
@@ -3260,14 +4619,15 @@
       "denominator": 1880
     },
     "share.ml_all.pandas.2026": {
-      "value": 0.0754,
+      "value": 0.0752,
       "n": 108,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.Kubernetes.recent": {
-      "value": 0.1008,
+      "value": 0.1007,
       "n": 334,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.Kubernetes.2021": {
       "value": 0.0681,
@@ -3295,14 +4655,15 @@
       "denominator": 1880
     },
     "share.ml_all.Kubernetes.2026": {
-      "value": 0.1221,
+      "value": 0.1219,
       "n": 175,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.NumPy.recent": {
-      "value": 0.0939,
+      "value": 0.0938,
       "n": 311,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.NumPy.2021": {
       "value": 0.167,
@@ -3330,14 +4691,15 @@
       "denominator": 1880
     },
     "share.ml_all.NumPy.2026": {
-      "value": 0.0677,
+      "value": 0.0675,
       "n": 97,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.Git.recent": {
-      "value": 0.0936,
-      "n": 310,
-      "denominator": 3313
+      "value": 0.0938,
+      "n": 311,
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.Git.2021": {
       "value": 0.1626,
@@ -3365,14 +4727,15 @@
       "denominator": 1880
     },
     "share.ml_all.Git.2026": {
-      "value": 0.0921,
-      "n": 132,
-      "denominator": 1433
+      "value": 0.0926,
+      "n": 133,
+      "denominator": 1436
     },
     "share.ml_all.CI/CD.recent": {
-      "value": 0.0921,
+      "value": 0.092,
       "n": 305,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.CI/CD.2021": {
       "value": 0.033,
@@ -3400,14 +4763,15 @@
       "denominator": 1880
     },
     "share.ml_all.CI/CD.2026": {
-      "value": 0.1054,
+      "value": 0.1052,
       "n": 151,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.scikit-learn.recent": {
-      "value": 0.0903,
+      "value": 0.0902,
       "n": 299,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.scikit-learn.2021": {
       "value": 0.1648,
@@ -3435,14 +4799,15 @@
       "denominator": 1880
     },
     "share.ml_all.scikit-learn.2026": {
-      "value": 0.0614,
+      "value": 0.0613,
       "n": 88,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.MLOps.recent": {
-      "value": 0.0848,
+      "value": 0.0847,
       "n": 281,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.MLOps.2021": {
       "value": 0.0176,
@@ -3470,14 +4835,15 @@
       "denominator": 1880
     },
     "share.ml_all.MLOps.2026": {
-      "value": 0.1103,
+      "value": 0.11,
       "n": 158,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.PostgreSQL.recent": {
-      "value": 0.077,
+      "value": 0.0769,
       "n": 255,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.PostgreSQL.2021": {
       "value": 0.0505,
@@ -3505,14 +4871,15 @@
       "denominator": 1880
     },
     "share.ml_all.PostgreSQL.2026": {
-      "value": 0.0942,
+      "value": 0.094,
       "n": 135,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.FastAPI.recent": {
-      "value": 0.0764,
+      "value": 0.0763,
       "n": 253,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.FastAPI.2021": {
       "value": 0.0132,
@@ -3540,14 +4907,15 @@
       "denominator": 1880
     },
     "share.ml_all.FastAPI.2026": {
-      "value": 0.0879,
+      "value": 0.0877,
       "n": 126,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.LangChain.recent": {
-      "value": 0.0749,
+      "value": 0.0748,
       "n": 248,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.LangChain.2021": {
       "value": 0.0,
@@ -3575,14 +4943,15 @@
       "denominator": 1880
     },
     "share.ml_all.LangChain.2026": {
-      "value": 0.0865,
+      "value": 0.0864,
       "n": 124,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.Airflow.recent": {
       "value": 0.0724,
       "n": 240,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.Airflow.2021": {
       "value": 0.0615,
@@ -3610,14 +4979,15 @@
       "denominator": 1880
     },
     "share.ml_all.Airflow.2026": {
-      "value": 0.0803,
+      "value": 0.0801,
       "n": 115,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.TensorFlow.recent": {
       "value": 0.0691,
       "n": 229,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.TensorFlow.2021": {
       "value": 0.1912,
@@ -3645,14 +5015,15 @@
       "denominator": 1880
     },
     "share.ml_all.TensorFlow.2026": {
-      "value": 0.0342,
+      "value": 0.0341,
       "n": 49,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.Spark.recent": {
       "value": 0.0564,
       "n": 187,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.Spark.2021": {
       "value": 0.0967,
@@ -3680,14 +5051,15 @@
       "denominator": 1880
     },
     "share.ml_all.Spark.2026": {
-      "value": 0.0565,
+      "value": 0.0564,
       "n": 81,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.Kafka.recent": {
       "value": 0.0552,
       "n": 183,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.Kafka.2021": {
       "value": 0.033,
@@ -3715,14 +5087,15 @@
       "denominator": 1880
     },
     "share.ml_all.Kafka.2026": {
-      "value": 0.074,
+      "value": 0.0738,
       "n": 106,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.REST.recent": {
       "value": 0.0501,
       "n": 166,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.REST.2021": {
       "value": 0.0132,
@@ -3750,14 +5123,15 @@
       "denominator": 1880
     },
     "share.ml_all.REST.2026": {
-      "value": 0.053,
+      "value": 0.0529,
       "n": 76,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.A/B-тесты.recent": {
       "value": 0.0495,
       "n": 164,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.A/B-тесты.2021": {
       "value": 0.022,
@@ -3785,14 +5159,15 @@
       "denominator": 1880
     },
     "share.ml_all.A/B-тесты.2026": {
-      "value": 0.0656,
+      "value": 0.0655,
       "n": 94,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.Hadoop.recent": {
       "value": 0.0489,
       "n": 162,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.Hadoop.2021": {
       "value": 0.1011,
@@ -3820,14 +5195,15 @@
       "denominator": 1880
     },
     "share.ml_all.Hadoop.2026": {
-      "value": 0.0523,
+      "value": 0.0522,
       "n": 75,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.MLflow.recent": {
-      "value": 0.0471,
+      "value": 0.047,
       "n": 156,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.MLflow.2021": {
       "value": 0.033,
@@ -3855,14 +5231,15 @@
       "denominator": 1880
     },
     "share.ml_all.MLflow.2026": {
-      "value": 0.0516,
+      "value": 0.0515,
       "n": 74,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.DevOps.recent": {
-      "value": 0.0435,
+      "value": 0.0434,
       "n": 144,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.DevOps.2021": {
       "value": 0.0154,
@@ -3890,14 +5267,15 @@
       "denominator": 1880
     },
     "share.ml_all.DevOps.2026": {
-      "value": 0.0447,
+      "value": 0.0446,
       "n": 64,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.Transformers.recent": {
-      "value": 0.0429,
+      "value": 0.0428,
       "n": 142,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.Transformers.2021": {
       "value": 0.0154,
@@ -3927,12 +5305,13 @@
     "share.ml_all.Transformers.2026": {
       "value": 0.0265,
       "n": 38,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.Linux.recent": {
-      "value": 0.0414,
-      "n": 137,
-      "denominator": 3313
+      "value": 0.0416,
+      "n": 138,
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.Linux.2021": {
       "value": 0.1165,
@@ -3960,14 +5339,15 @@
       "denominator": 1880
     },
     "share.ml_all.Linux.2026": {
-      "value": 0.0426,
-      "n": 61,
-      "denominator": 1433
+      "value": 0.0432,
+      "n": 62,
+      "denominator": 1436
     },
     "share.ml_all.Microservices.recent": {
       "value": 0.0404,
       "n": 134,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.Microservices.2021": {
       "value": 0.0242,
@@ -3995,14 +5375,15 @@
       "denominator": 1880
     },
     "share.ml_all.Microservices.2026": {
-      "value": 0.0405,
+      "value": 0.0404,
       "n": 58,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.LangGraph.recent": {
       "value": 0.0392,
       "n": 130,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.LangGraph.2021": {
       "value": 0.0,
@@ -4030,14 +5411,15 @@
       "denominator": 1880
     },
     "share.ml_all.LangGraph.2026": {
-      "value": 0.0468,
+      "value": 0.0467,
       "n": 67,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.CatBoost.recent": {
       "value": 0.0383,
       "n": 127,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.CatBoost.2021": {
       "value": 0.0418,
@@ -4065,14 +5447,15 @@
       "denominator": 1880
     },
     "share.ml_all.CatBoost.2026": {
-      "value": 0.03,
+      "value": 0.0299,
       "n": 43,
-      "denominator": 1433
+      "denominator": 1436
     },
     "share.ml_all.Hugging Face.recent": {
       "value": 0.0368,
       "n": 122,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": true
     },
     "share.ml_all.Hugging Face.2021": {
       "value": 0.0,
@@ -4100,14 +5483,87 @@
       "denominator": 1880
     },
     "share.ml_all.Hugging Face.2026": {
-      "value": 0.0349,
+      "value": 0.0348,
       "n": 50,
-      "denominator": 1433
+      "denominator": 1436
+    },
+    "share.ml_all.Fine-tuning.recent": {
+      "value": 0.0329,
+      "n": 109,
+      "denominator": 3316,
+      "own": true
+    },
+    "share.ml_all.Fine-tuning.2021": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 455
+    },
+    "share.ml_all.Fine-tuning.2022": {
+      "value": 0.0,
+      "n": 0,
+      "denominator": 542
+    },
+    "share.ml_all.Fine-tuning.2023": {
+      "value": 0.0019,
+      "n": 2,
+      "denominator": 1038
+    },
+    "share.ml_all.Fine-tuning.2024": {
+      "value": 0.0157,
+      "n": 28,
+      "denominator": 1786
+    },
+    "share.ml_all.Fine-tuning.2025": {
+      "value": 0.0335,
+      "n": 63,
+      "denominator": 1880
+    },
+    "share.ml_all.Fine-tuning.2026": {
+      "value": 0.032,
+      "n": 46,
+      "denominator": 1436
+    },
+    "share.ml_all.GPT.recent": {
+      "value": 0.0326,
+      "n": 108,
+      "denominator": 3316,
+      "own": true
+    },
+    "share.ml_all.GPT.2021": {
+      "value": 0.0088,
+      "n": 4,
+      "denominator": 455
+    },
+    "share.ml_all.GPT.2022": {
+      "value": 0.0129,
+      "n": 7,
+      "denominator": 542
+    },
+    "share.ml_all.GPT.2023": {
+      "value": 0.0318,
+      "n": 33,
+      "denominator": 1038
+    },
+    "share.ml_all.GPT.2024": {
+      "value": 0.0252,
+      "n": 45,
+      "denominator": 1786
+    },
+    "share.ml_all.GPT.2025": {
+      "value": 0.041,
+      "n": 77,
+      "denominator": 1880
+    },
+    "share.ml_all.GPT.2026": {
+      "value": 0.0216,
+      "n": 31,
+      "denominator": 1436
     },
     "share.ml_all.ООП.recent": {
-      "value": 0.0257,
+      "value": 0.0256,
       "n": 85,
-      "denominator": 3313
+      "denominator": 3316,
+      "own": false
     },
     "share.ml_all.ООП.2021": {
       "value": 0.022,
@@ -4137,7 +5593,7 @@
     "share.ml_all.ООП.2026": {
       "value": 0.0195,
       "n": 28,
-      "denominator": 1433
+      "denominator": 1436
     },
     "posts.ml_junior.recent": {
       "value": 444,
@@ -4147,97 +5603,116 @@
     "share.ml_junior.Python.recent": {
       "value": 0.6689,
       "n": 297,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.SQL.recent": {
       "value": 0.3018,
       "n": 134,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.PyTorch.recent": {
       "value": 0.1712,
       "n": 76,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.pandas.recent": {
       "value": 0.1667,
       "n": 74,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.NumPy.recent": {
       "value": 0.1464,
       "n": 65,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.Git.recent": {
       "value": 0.1306,
       "n": 58,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.scikit-learn.recent": {
       "value": 0.1284,
       "n": 57,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.RAG.recent": {
       "value": 0.1194,
       "n": 53,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.Docker.recent": {
       "value": 0.1104,
       "n": 49,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.LangChain.recent": {
       "value": 0.0743,
       "n": 33,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.FastAPI.recent": {
       "value": 0.0698,
       "n": 31,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.REST.recent": {
       "value": 0.0631,
       "n": 28,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.A/B-тесты.recent": {
       "value": 0.0608,
       "n": 27,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.Transformers.recent": {
       "value": 0.0586,
       "n": 26,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.TensorFlow.recent": {
       "value": 0.0563,
       "n": 25,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.LangGraph.recent": {
       "value": 0.0495,
       "n": 22,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.ООП.recent": {
       "value": 0.0473,
       "n": 21,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.Airflow.recent": {
       "value": 0.045,
       "n": 20,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     },
     "share.ml_junior.CI/CD.recent": {
       "value": 0.045,
       "n": 20,
-      "denominator": 444
+      "denominator": 444,
+      "own": true
     }
   },
   "groups": [
@@ -4253,6 +5728,10 @@
   "min_mentions": 20,
   "min_year_posts": 300,
   "top_skills": 30,
+  "base_year": 2022,
+  "growth_skills": 10,
+  "growth_min_share": 0.005,
+  "new_below": 10,
   "definitions": {
     "groups": "it_all: Telegram single-vacancy IT posts; it_junior: graded intern or junior; ml_all: roles data_scientist, ml_engineer, mlops; ml_junior: both.",
     "share": "posts of the group naming the skill (extracted skills) of the group's posts; recent pools 2025-2026, a year by the week's Monday."
