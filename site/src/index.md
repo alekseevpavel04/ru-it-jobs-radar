@@ -50,7 +50,7 @@ const label = `${DIRECTION[direction]}, ${GRADE_GROUP[grade].toLowerCase()}`;
 
 ${!posts.size
   ? html`<p>Для сочетания «${label}» данных недостаточно: за ${recentLabel} меньше ${int(trends.min_cell_posts)} постов. Выберите все грейды или другое направление.</p>`
-  : html`<p class="note-small">${label}: доля постов, где назван навык, за ${recentLabel} (${int(posts.get(null))} постов)${baseYear ? html` и в ${baseYear} году (${int(posts.get(baseYear))}). Справа изменение доли с ${baseYear} года в процентных пунктах; «≈» значит, что изменение не выходит за случайный разброс. База ${baseYear} год: с него набор каналов устойчивый, <a href="./methodology#telegram">почему</a>` : html`. За ${trends.base_year} год постов этой группы меньше ${int(trends.min_year_posts)}, поэтому без сравнения, только доля сейчас`}. В списке ${rows.length} ${plural(rows.length, ["навык", "навыка", "навыков"])}${baseYear ? ": самые частые и самые быстрорастущие" : ""}. Наведите на строку, чтобы увидеть числа.</p>`}
+  : html`<p class="note-small">${baseYear ? html`Доля постов с навыком за ${recentLabel} (${int(posts.get(null))} ${plural(posts.get(null), ["пост", "поста", "постов"])}) против ${baseYear} года (${int(posts.get(baseYear))}), справа изменение в п. п., «≈» значит в пределах случайного разброса.` : html`Доля постов с навыком за ${recentLabel} (${int(posts.get(null))} ${plural(posts.get(null), ["пост", "поста", "постов"])}); за ${trends.base_year} год данных мало, поэтому без сравнения.`}</p>`}
 
 ```js
 // Always display a node: a block that displays nothing keeps its previous output.

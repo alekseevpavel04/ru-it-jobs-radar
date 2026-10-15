@@ -7,7 +7,7 @@ toc: false
 
 ```js
 import {SKILL, GRADE, COLOR, int, share, signedPct} from "./components/labels.js";
-import {FDR, effectsChart} from "./components/effects.js";
+import {effectsChart} from "./components/effects.js";
 
 const effects = FileAttachment("data/skill_effects.json").json();
 const years = FileAttachment("data/telegram_years.json").json();
@@ -20,19 +20,16 @@ const years = FileAttachment("data/telegram_years.json").json();
 ```js
 const name = (e) => SKILL[e.skill] ?? e.skill;
 const level = Math.round(effects.ci_level * 100);
-const k8s = effects.effects.find((e) => e.skill === "Kubernetes");
 
 ```
 
 <div class="card">
 
-<p class="note-small">Сравниваются похожие вакансии: та же роль, грейд, регион, опыт, формат работы и остальной стек, одни с навыком, другие без. Точка показывает, на сколько процентов выше или ниже середина вилки у вакансий с навыком, полоса показывает ${level} % интервал. Чем меньше сравнимых вакансий, тем шире полоса: у Kubernetes их ${int(k8s.rows_kept)}, поэтому его ${signedPct(k8s.pct)} неотличимы от нуля. Навык попадает в «повышают» или «понижают», если эффект подтверждён с поправкой на ${effects.estimated} проверок (доля ложных находок до ${Math.round(FDR * 100)} %, поправка Бенджамини-Хохберга): таких ${effects.significant_bh} из ${effects.estimated}.</p>
+<p class="note-small">На сколько процентов выше или ниже середина вилки у вакансий с навыком, чем у похожих без него (${int(effects.rows)} вакансий, почти все с портала «Работа в России»); полоса показывает ${level} % интервал. <a href="./methodology#skill-effects">Как считается</a>.</p>
 
 ```js
 effectsChart(effects.effects, {width, name})
 ```
-
-<p class="note-small">${int(effects.rows)} вакансий с вилкой в рублях, почти все с портала «Работа в России». Это связь, а не обещание: выучив навык, этих процентов к офферу не получишь. <a href="./methodology#skill-effects">Ограничения оценки</a>.</p>
 
 </div>
 
