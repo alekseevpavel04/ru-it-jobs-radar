@@ -25,11 +25,6 @@ export const DOWN = "#cf222e";
 const NOISE = "#9a9890";
 const BASE = "#8c8a84";
 
-// A faint rule between rows across the whole width, from the skill name to the numbers on the right:
-// half a row below each row's centre, so it never runs through the text.
-export const rowRules = (rows, y, {left, right, row}) =>
-  Plot.ruleY(rows, {y, dy: row / 2, stroke: "#e6e4df", strokeWidth: 1, insetLeft: -left, insetRight: -right});
-
 // Change of two shares beyond the 95 % interval of their difference (normal approximation, both samples
 // large here: hundreds to tens of thousands of posts).
 export function change(base, recent) {
@@ -69,7 +64,6 @@ function blockPlot(rows, {width, recentLabel, top, row, font}) {
     // A phone keeps 12px whatever the desktop size, and cuts long names short (the tooltip has them).
     style: {fontSize: `${narrow ? 12 : font}px`},
     marks: [
-      rowRules(rows, "skill", {left: narrow ? 96 : 160, right, row}),
       Plot.arrow(rows, {y1: "skill", y2: "skill", x1: base, x2: "share", stroke: "#bdbab2", strokeWidth: 1.6, headLength: Math.min(6, row / 4), insetStart: 5, insetEnd: dot + 2}),
       Plot.dot(rows, {y: "skill", x: base, r: Math.max(2.5, dot / 1.9), fill: BASE}),
       Plot.dot(rows, {y: "skill", x: "share", r: dot, fill: (r) => changeColor(r.change), stroke: "white", strokeWidth: 1.5}),
@@ -102,7 +96,6 @@ function nowPlot(rows, {width, recentLabel, row, font}) {
     // A phone keeps 12px whatever the desktop size, and cuts long names short (the tooltip has them).
     style: {fontSize: `${narrow ? 12 : font}px`},
     marks: [
-      rowRules(rows, "skill", {left: narrow ? 96 : 160, right: 16, row}),
       Plot.dot(rows, {y: "skill", x: "share", r: dot, fill: COLOR.bar, stroke: "white", strokeWidth: 1.5}),
       Plot.text(rows, {y: "skill", x: "share", text: (r) => pct(r.share), dx: dot + 5, textAnchor: "start", fontWeight: 650, fill: COLOR.bar}),
       Plot.tip(rows, Plot.pointerY({y: "skill", x: "share", title: (r) => `${r.skill}

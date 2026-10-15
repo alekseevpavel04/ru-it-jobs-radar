@@ -4,7 +4,7 @@
 import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {COLOR, int, signedPct} from "./labels.js";
-import {DOWN, UP, rowRules} from "./skills.js";
+import {DOWN, UP} from "./skills.js";
 
 const NOISE = "#9a9890";
 // The share of false findings the Benjamini-Hochberg test allows among the skills it marks.
@@ -34,7 +34,6 @@ function blockPlot(rows, {width, color, reach, name, row, font}) {
     y: {domain: rows.map(name), label: null, tickSize: 0, tickFormat: (t) => (narrow && t.length > 15 ? `${t.slice(0, 14)}…` : t)},
     style: {fontSize: `${narrow ? 12 : font}px`},
     marks: [
-      rowRules(rows, name, {left: narrow ? 118 : 200, right, row}),
       Plot.ruleX([0], {stroke: "#9a9890"}),
       Plot.link(rows, {y1: name, y2: name, x1: "pct_ci_low", x2: "pct_ci_high", stroke: color, strokeOpacity: 0.35, strokeWidth: band, strokeLinecap: "round"}),
       Plot.dot(rows, {y: name, x: "pct", r: dot, fill: color, stroke: "white", strokeWidth: 1.5}),
