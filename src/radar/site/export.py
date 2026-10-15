@@ -378,7 +378,7 @@ class SkillEffects(Provenance):
     limits: list[str]
 
 
-SkillGroup = Literal["it_all", "it_junior", "ml_all", "ml_junior"]
+SkillGroup = str  # "<direction>_<grade>", see radar.site.skill_trends
 
 
 class SkillGroupYear(Row):
@@ -402,6 +402,7 @@ class SkillTrends(Provenance):
 
     recent_years: list[int]
     base_year: int
+    min_cell_posts: int
     min_mentions: int
     min_year_posts: int
     groups: list[SkillGroupYear]
@@ -905,6 +906,7 @@ def skill_trends(doc: Mapping[str, Any], source_file: str) -> SkillTrends:
         **provenance(doc, source_file),
         recent_years=doc["recent_years"],
         base_year=doc["base_year"],
+        min_cell_posts=doc["min_cell_posts"],
         min_mentions=doc["min_mentions"],
         min_year_posts=doc["min_year_posts"],
         groups=sorted(groups, key=lambda r: (r.group, r.year or 0)),

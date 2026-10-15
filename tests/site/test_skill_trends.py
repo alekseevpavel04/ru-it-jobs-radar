@@ -1,4 +1,4 @@
-"""radar.site.skill_trends: thresholds on mentions and on yearly posts, junior skills listed for everyone."""
+"""radar.site.skill_trends: cells by direction and grade, thresholds on posts and mentions, growers by points."""
 
 from collections import Counter, defaultdict
 from typing import Any
@@ -6,41 +6,58 @@ from typing import Any
 from radar.site import skill_trends
 
 
-def size(year: int, ml: int, junior: int, posts: int) -> dict[str, Any]:
-    return {"year": year, "ml": ml, "junior": junior, "posts": posts}
+def size(year: int, role: str | None, grade: str | None, posts: int) -> dict[str, Any]:
+    return {"year": year, "role": role, "grade": grade, "posts": posts}
 
 
-def mention(year: int, ml: int, junior: int, skill: str, posts: int) -> dict[str, object]:
-    return {"year": year, "ml": ml, "junior": junior, "skill": skill, "posts": posts}
+def mention(year: int, role: str | None, grade: str | None, skill: str, posts: int) -> dict[str, Any]:
+    return {"year": year, "role": role, "grade": grade, "skill": skill, "posts": posts}
+
+
+def test_cells_cover_all_it_the_direction_and_the_grade() -> None:
+    assert skill_trends.cells_of("ml_engineer", "intern") == ["it_all", "it_junior", "ml_all", "ml_junior"]
+    assert skill_trends.cells_of("system_analyst", "lead") == [
+        "it_all",
+        "it_senior",
+        "analytics_all",
+        "analytics_senior",
+    ]
+    assert skill_trends.cells_of("designer", None) == ["it_all"]
 
 
 def test_thresholds_and_junior_skills_for_everyone() -> None:
-    sizes = [size(2022, 1, 0, 100), size(2025, 1, 0, 400), size(2025, 1, 1, 50), size(2026, 0, 0, 1000)]
+    sizes = [
+        size(2022, "ml_engineer", "middle", 100),
+        size(2025, "ml_engineer", "middle", 400),
+        size(2025, "ml_engineer", "junior", 250),
+        size(2025, "mobile", "junior", 150),
+    ]
     skills = [
-        mention(2025, 1, 0, "Docker", 60),
-        mention(2025, 1, 1, "pandas", 25),
-        mention(2025, 1, 0, "pandas", 5),
-        mention(2025, 1, 1, "Rare", 3),
+        mention(2025, "ml_engineer", "middle", "Docker", 60),
+        mention(2025, "ml_engineer", "junior", "pandas", 25),
+        mention(2025, "ml_engineer", "middle", "pandas", 5),
+        mention(2025, "ml_engineer", "junior", "Rare", 3),
     ]
     m = skill_trends.trends(sizes, skills)
-    assert m["posts.ml_all.recent"] == {"value": 450}
-    assert m["share.ml_junior.pandas.recent"] == {"value": 0.5, "n": 25, "denominator": 50, "own": True}
+    assert m["posts.ml_all.recent"] == {"value": 650}
+    assert m["share.ml_junior.pandas.recent"] == {"value": 0.1, "n": 25, "denominator": 250, "own": True}
     assert m["share.ml_all.pandas.recent"]["n"] == 30
     assert "share.ml_junior.Rare.recent" not in m
+    # 150 recent posts: the mobile junior cell is too small to show
+    assert "posts.mobile_junior.recent" not in m
+    # 100 posts in 2022: no base year for ML, recent shares only
     assert "posts.ml_all.2022" not in m and "share.ml_all.Docker.2022" not in m
-    assert m["share.ml_all.Docker.2025"] == {"value": 0.1333, "n": 60, "denominator": 450}
-    assert m["share.ml_all.Docker.recent"]["own"] is True
-    assert "posts.ml_junior.2025" not in m
+    assert m["share.ml_all.Docker.2025"] == {"value": 0.0923, "n": 60, "denominator": 650}
 
 
 def test_fast_growers_rank_by_points_not_by_ratio() -> None:
-    sizes = [size(2022, 0, 0, 1000), size(2025, 0, 0, 1000)]
-    skills = [mention(2022, 0, 0, f"S{i}", 300 - i) for i in range(35)]
-    skills += [mention(2025, 0, 0, f"S{i}", 300 - i) for i in range(35)]
+    sizes = [size(2022, "backend", "middle", 1000), size(2025, "backend", "middle", 1000)]
+    skills = [mention(2022, "backend", "middle", f"S{i}", 300 - i) for i in range(35)]
+    skills += [mention(2025, "backend", "middle", f"S{i}", 300 - i) for i in range(35)]
     # Tiny: 1 -> 20 posts, a twentyfold ratio but 1.9 points; Grown: 100 -> 160 posts, 6 points.
-    skills += [mention(2022, 0, 0, "Tiny", 1), mention(2025, 0, 0, "Tiny", 20)]
-    skills += [mention(2022, 0, 0, "Grown", 100), mention(2025, 0, 0, "Grown", 160)]
-    grown = skill_trends.growing("it_all", *_counts(sizes, skills))
+    skills += [mention(2022, "backend", "middle", "Tiny", 1), mention(2025, "backend", "middle", "Tiny", 20)]
+    skills += [mention(2022, "backend", "middle", "Grown", 100), mention(2025, "backend", "middle", "Grown", 160)]
+    grown = skill_trends.growing("backend_middle", *_counts(sizes, skills))
     assert grown.index("Grown") < grown.index("Tiny")
 
 
@@ -50,8 +67,8 @@ def _counts(
     posts: dict[str, Counter[int]] = defaultdict(Counter)
     counts: dict[str, dict[int, Counter[str]]] = defaultdict(lambda: defaultdict(Counter))
     for r in sizes:
-        posts["it_all"][r["year"]] += r["posts"]
+        posts["backend_middle"][r["year"]] += r["posts"]
     for r in skills:
-        counts["it_all"][r["year"]][r["skill"]] += r["posts"]
-    recent: Counter[str] = sum((counts["it_all"][y] for y in skill_trends.RECENT_YEARS), Counter())
+        counts["backend_middle"][r["year"]][r["skill"]] += r["posts"]
+    recent: Counter[str] = sum((counts["backend_middle"][y] for y in skill_trends.RECENT_YEARS), Counter())
     return posts, counts, recent

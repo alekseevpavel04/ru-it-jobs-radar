@@ -1,18 +1,21 @@
-"""Skills of the site: what Telegram vacancy posts name, by year, for all IT, IT juniors, ML and ML juniors.
+"""Skills of the site: what Telegram vacancy posts name, by year, for a direction of IT and a grade.
 
     python -m radar.site.skill_trends
 
-Writes results/market/skill_trends.json. The skills are the extracted ones (staging.int_extracted_weekly_units,
-single-vacancy IT posts after the weekly cross-post dedup), the same as the yearly series of
-results/market/facts.json. Only shares a reader can lean on leave the file:
+Writes results/market/skill_trends.json. The skills, roles and grades are the extracted ones
+(staging.int_extracted_weekly_units, single-vacancy IT posts after the weekly cross-post dedup), the same as
+the yearly series of results/market/facts.json. A cell is a direction (all IT or one of DIRECTIONS, by role)
+and a grade (all, or one of GRADES; posts without a grade count in "all" only), named "<direction>_<grade>".
+Only shares a reader can lean on leave the file:
 
-- a skill is listed for a group (own) when MIN_MENTIONS or more posts of RECENT_YEARS name it, the TOP_SKILLS
-  most named of each group, plus the GROWTH_SKILLS outside that top whose share gained most points since
-  BASE_YEAR among those with at least GROWTH_MIN_SHARE of the group's posts (points, not a ratio: a ratio
-  makes a skill with a near-zero base look like the fastest grower); all IT and ML also get the skills
-  listed for their juniors, so a junior share always has the share of everyone next to it;
-- a year of a group's series is kept when the group has MIN_YEAR_POSTS posts or more that year, so the
-  ML series starts later and ML juniors have the two-year cut only.
+- a cell is kept when it has MIN_CELL_POSTS posts or more in RECENT_YEARS;
+- a skill is listed for a cell (own) when MIN_MENTIONS or more posts of RECENT_YEARS name it, the TOP_SKILLS
+  most named of each cell, plus the GROWTH_SKILLS outside that top whose share gained most points since
+  BASE_YEAR among those with at least GROWTH_MIN_SHARE of the cell's posts (points, not a ratio: a ratio
+  makes a skill with a near-zero base look like the fastest grower); the "all grades" cell of a direction
+  also gets the skills listed for its juniors, so a junior share always has the share of everyone next to it;
+- a year of a cell's series is kept when the cell has MIN_YEAR_POSTS posts or more that year; without
+  BASE_YEAR a cell has its recent shares only, with no change to show.
 """
 
 import argparse
@@ -23,11 +26,21 @@ from typing import Any
 
 from radar.config import load_dotenv
 from radar.results import write_result
-from radar.site.market_facts import JUNIOR_GRADES, ML_ROLES, RECENT_YEARS, YEARS, _recent_group, fetch, share
+from radar.site.market_facts import JUNIOR_GRADES, ML_ROLES, RECENT_YEARS, YEARS, fetch, share
 from radar.stream.clickhouse import ClickHouse
 
-GROUPS = ("it_all", "it_junior", "ml_all", "ml_junior")
-JUNIORS_OF = {"it_all": "it_junior", "ml_all": "ml_junior"}
+DIRECTIONS: dict[str, tuple[str, ...]] = {
+    "backend": ("backend",),
+    "frontend": ("frontend",),
+    "qa": ("qa",),
+    "analytics": ("data_analyst", "business_analyst", "system_analyst"),
+    "ml": ML_ROLES,
+    "dataeng": ("data_engineer",),
+    "devops": ("devops", "sysadmin"),
+    "mobile": ("mobile",),
+}
+GRADES: dict[str, tuple[str, ...]] = {"junior": JUNIOR_GRADES, "middle": ("middle",), "senior": ("senior", "lead")}
+MIN_CELL_POSTS = 200
 MIN_MENTIONS = 20
 MIN_YEAR_POSTS = 300
 TOP_SKILLS = 30
@@ -36,33 +49,38 @@ BASE_YEAR = 2022
 GROWTH_SKILLS = 10
 GROWTH_MIN_SHARE = 0.005
 
-_UNITS = f"FROM staging.int_extracted_weekly_units WHERE source = 'telegram' AND is_it AND toYear(week) IN {YEARS}"
 SIZE_SQL = f"""
-SELECT toYear(week) AS year, role IN {ML_ROLES} AS ml, grade IN {JUNIOR_GRADES} AS junior, count() AS posts
-{_UNITS}
-GROUP BY year, ml, junior
+SELECT toYear(week) AS year, role, grade, count() AS posts
+FROM staging.int_extracted_weekly_units WHERE source = 'telegram' AND is_it AND toYear(week) IN {YEARS}
+GROUP BY year, role, grade
 """
 SKILL_SQL = f"""
-SELECT toYear(week) AS year, role IN {ML_ROLES} AS ml, grade IN {JUNIOR_GRADES} AS junior, skill, count() AS posts
+SELECT toYear(week) AS year, role, grade, skill, count() AS posts
 FROM staging.int_extracted_weekly_units ARRAY JOIN skills AS skill
 WHERE source = 'telegram' AND is_it AND toYear(week) IN {YEARS}
-GROUP BY year, ml, junior, skill
+GROUP BY year, role, grade, skill
 """
+
+
+def cells_of(role: str | None, grade: str | None) -> list[str]:
+    directions = ["it"] + [d for d, roles in DIRECTIONS.items() if role in roles]
+    grades = ["all"] + [g for g, names in GRADES.items() if grade in names]
+    return [f"{d}_{g}" for d in directions for g in grades]
 
 
 def growing(
-    group: str,
+    cell: str,
     posts: Mapping[str, Counter[int]],
     counts: Mapping[str, Mapping[int, Counter[str]]],
     recent: Counter[str],
     skip: Iterable[str] = (),
 ) -> list[str]:
     """The skills outside skip whose share gained most points since BASE_YEAR; none without that year."""
-    base_posts = posts[group][BASE_YEAR]
-    recent_posts = sum(posts[group][y] for y in RECENT_YEARS)
+    base_posts = posts[cell][BASE_YEAR]
+    recent_posts = sum(posts[cell][y] for y in RECENT_YEARS)
     if base_posts < MIN_YEAR_POSTS or not recent_posts:
         return []
-    base = counts[group][BASE_YEAR]
+    base = counts[cell][BASE_YEAR]
 
     def growth(skill: str) -> float:
         return recent[skill] / recent_posts - base[skill] / base_posts
@@ -77,33 +95,36 @@ def growing(
 def trends(sizes: Iterable[Mapping[str, Any]], skills: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
     posts: dict[str, Counter[int]] = defaultdict(Counter)
     for r in sizes:
-        for g in _recent_group(r["ml"], r["junior"]):
-            posts[g][int(r["year"])] += int(r["posts"])
+        for c in cells_of(r["role"], r["grade"]):
+            posts[c][int(r["year"])] += int(r["posts"])
     counts: dict[str, dict[int, Counter[str]]] = defaultdict(lambda: defaultdict(Counter))
     for r in skills:
-        for g in _recent_group(r["ml"], r["junior"]):
-            counts[g][int(r["year"])][r["skill"]] += int(r["posts"])
+        for c in cells_of(r["role"], r["grade"]):
+            counts[c][int(r["year"])][r["skill"]] += int(r["posts"])
 
-    recent = {g: sum((counts[g][y] for y in RECENT_YEARS), Counter()) for g in GROUPS}
-    own = {g: [s for s, n in recent[g].most_common() if n >= MIN_MENTIONS][:TOP_SKILLS] for g in GROUPS}
-    for g in GROUPS:
-        own[g] += growing(g, posts, counts, recent[g], skip=own[g])
-    listed = {g: list(own[g]) for g in GROUPS}
-    for parent, junior in JUNIORS_OF.items():
-        listed[parent] += [s for s in own[junior] if s not in listed[parent]]
+    cells = [c for c in posts if sum(posts[c][y] for y in RECENT_YEARS) >= MIN_CELL_POSTS]
+    recent = {c: sum((counts[c][y] for y in RECENT_YEARS), Counter()) for c in cells}
+    own = {c: [s for s, n in recent[c].most_common() if n >= MIN_MENTIONS][:TOP_SKILLS] for c in cells}
+    for c in cells:
+        own[c] += growing(c, posts, counts, recent[c], skip=own[c])
+    listed = {c: list(own[c]) for c in cells}
+    for c in cells:
+        direction, grade = c.rsplit("_", 1)
+        if grade == "junior" and f"{direction}_all" in listed:
+            listed[f"{direction}_all"] += [s for s in own[c] if s not in listed[f"{direction}_all"]]
 
     metrics: dict[str, Any] = {}
-    for g in GROUPS:
-        recent_posts = sum(posts[g][y] for y in RECENT_YEARS)
-        kept_years = [y for y in YEARS if posts[g][y] >= MIN_YEAR_POSTS]
-        metrics[f"posts.{g}.recent"] = {"value": recent_posts}
+    for c in sorted(cells):
+        recent_posts = sum(posts[c][y] for y in RECENT_YEARS)
+        kept_years = [y for y in YEARS if posts[c][y] >= MIN_YEAR_POSTS]
+        metrics[f"posts.{c}.recent"] = {"value": recent_posts}
         for y in kept_years:
-            metrics[f"posts.{g}.{y}"] = {"value": posts[g][y]}
-        for s in listed[g]:
-            # own: the group's top or fastest-growing skill; otherwise listed only to sit next to its juniors
-            metrics[f"share.{g}.{s}.recent"] = share(recent[g][s], recent_posts) | {"own": s in own[g]}
+            metrics[f"posts.{c}.{y}"] = {"value": posts[c][y]}
+        for s in listed[c]:
+            # own: the cell's top or fastest-growing skill; otherwise listed only to sit next to its juniors
+            metrics[f"share.{c}.{s}.recent"] = share(recent[c][s], recent_posts) | {"own": s in own[c]}
             for y in kept_years:
-                metrics[f"share.{g}.{s}.{y}"] = share(counts[g][y][s], posts[g][y])
+                metrics[f"share.{c}.{s}.{y}"] = share(counts[c][y][s], posts[c][y])
     return metrics
 
 
@@ -116,8 +137,10 @@ def main() -> int:
         "market/skill_trends.json",
         metrics,
         source_script="src/radar/site/skill_trends.py",
-        groups=list(GROUPS),
+        directions={d: list(roles) for d, roles in DIRECTIONS.items()},
+        grades={g: list(names) for g, names in GRADES.items()},
         recent_years=list(RECENT_YEARS),
+        min_cell_posts=MIN_CELL_POSTS,
         min_mentions=MIN_MENTIONS,
         min_year_posts=MIN_YEAR_POSTS,
         top_skills=TOP_SKILLS,
@@ -125,9 +148,9 @@ def main() -> int:
         growth_skills=GROWTH_SKILLS,
         growth_min_share=GROWTH_MIN_SHARE,
         definitions={
-            "groups": "it_all: Telegram single-vacancy IT posts; it_junior: graded intern or junior; ml_all: roles "
-            f"{', '.join(ML_ROLES)}; ml_junior: both.",
-            "share": "posts of the group naming the skill (extracted skills) of the group's posts; recent pools "
+            "cells": "<direction>_<grade>: Telegram single-vacancy IT posts of the direction's roles (it: all IT) "
+            "and of the grade (all: every post, a post without a grade included).",
+            "share": "posts of the cell naming the skill (extracted skills) of the cell's posts; recent pools "
             f"{RECENT_YEARS[0]}-{RECENT_YEARS[-1]}, a year by the week's Monday.",
         },
     )

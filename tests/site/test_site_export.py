@@ -382,6 +382,7 @@ TRENDS_RESULT: dict[str, Any] = {
     **PROVENANCE,
     "recent_years": [2025, 2026],
     "base_year": 2022,
+    "min_cell_posts": 200,
     "min_mentions": 20,
     "min_year_posts": 300,
     "metrics": {
