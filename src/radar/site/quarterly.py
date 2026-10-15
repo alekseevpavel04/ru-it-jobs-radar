@@ -54,6 +54,22 @@ LABEL = {
     "fullstack": "Fullstack",
     "security": "Инфобезопасность",
 }
+# Short names for the chart and the headline.
+SHORT = {**LABEL, "ml": "ML и DS", "devops": "DevOps", "mobile": "Мобильная разработка"}
+IN = {
+    "it": "во всём IT",
+    "backend": "в Backend",
+    "frontend": "во Frontend",
+    "qa": "в тестировании",
+    "analytics": "в аналитике",
+    "ml": "в ML и Data Science",
+    "dataeng": "в инженерии данных",
+    "devops": "в DevOps",
+    "mobile": "в мобильной разработке",
+    "fullstack": "в Fullstack",
+    "security": "в инфобезопасности",
+}
+RAW = "https://raw.githubusercontent.com/alekseevpavel04/ru-it-jobs-radar/main/"
 MONTH = [
     "январь",
     "февраль",
@@ -198,48 +214,166 @@ def _points(x: float) -> str:
     return f"{x * 100:+.1f}".replace(".", ",").replace("-", "−") + " п. п."
 
 
-def notes(rep: Mapping[str, Any]) -> str:
+def moves(rep: Mapping[str, Any]) -> list[tuple[str, dict[str, Any]]]:
+    """(direction, skill row) of every change beyond noise."""
+    return [(c["direction"], r) for c in rep["cells"] for r in c["skills"] if r["q"] < FDR]
+
+
+def _and(items: list[str]) -> str:
+    return items[0] if len(items) == 1 else f"{', '.join(items[:-1])} и {items[-1]}"
+
+
+def leaders(rep: Mapping[str, Any], sign: int, k: int = 3) -> list[tuple[str, dict[str, Any]]]:
+    """The k largest changes of one sign, each skill once (HTML falls in Frontend and Fullstack alike) and at
+    most two a direction, so that one direction does not take the whole summary."""
+    seen: set[str] = set()
+    per: Counter[str] = Counter()
+    out = []
+    for d, r in sorted((m for m in moves(rep) if sign * m[1]["diff"] > 0), key=lambda m: -abs(m[1]["diff"])):
+        if r["skill"] not in seen and per[d] < 2:
+            seen.add(r["skill"])
+            per[d] += 1
+            out.append((d, r))
+    return out[:k]
+
+
+def headline(rep: Mapping[str, Any]) -> str:
+    def named(part: list[tuple[str, dict[str, Any]]]) -> str:
+        groups: dict[str, list[str]] = {}
+        for d, r in part:
+            groups.setdefault(d, []).append(r["skill"])
+        return ", ".join(f"{_and(skills)} {IN[d]}" for d, skills in groups.items())
+
+    up, down = leaders(rep, 1), leaders(rep, -1)
+    # "вырос навык", "выросли навыки"
+    grew = "вырос" if len(up) == 1 else "выросли"
+    fell = "упал" if len(down) == 1 else "упали"
+    parts = [f"Сильнее всего за год {grew} {named(up)}" if up else "", f"{fell} {named(down)}" if down else ""]
+    text = "; ".join(p for p in parts if p)
+    return (text[0].upper() + text[1:] + ".") if text else "Заметных изменений за год нет."
+
+
+def _table(rows: list[tuple[str, dict[str, Any]]], with_direction: bool) -> list[str]:
+    head = (
+        "| Навык | Направление | Год назад | За год | Изменение |"
+        if with_direction
+        else "| Навык | Год назад | За год | Изменение |"
+    )
+    out = [head, "|---|---|---:|---:|---:|" if with_direction else "|---|---:|---:|---:|"]
+    for d, r in rows:
+        where = f" {LABEL[d]} |" if with_direction else ""
+        sign = "▲" if r["diff"] > 0 else "▼"
+        out.append(f"| {r['skill']} |{where} {_pct(r['before'])} | {_pct(r['now'])} | {sign} {_points(r['diff'])} |")
+    return out
+
+
+def notes(rep: Mapping[str, Any], image: str | None = None) -> str:
     first, middle, end = rep["window"]
     m = rep["metrics"]
+    top = leaders(rep, 1) + leaders(rep, -1)
     lines = [
-        f"# Навыки в IT-вакансиях Telegram за год {span(middle, end)}",
+        f"# Навыки в IT за год {span(middle, end)}",
         "",
-        f"Сравнение с предыдущими двенадцатью месяцами ({span(first, middle)}). Доля IT-постов с навыком в "
-        f"публичных каналах ({m['channels.now']['value']} за последний год, {m['channels.before']['value']} за "
-        "предыдущий). Сравнение идёт внутри каналов, которые публиковали вакансии направления в оба года, с "
-        "одинаковым весом канала в обоих: так новый или замолчавший канал не сдвигает доли сам по себе. Изменение "
-        "в процентных пунктах. Навык попадает в «выросли» или «упали», если изменение выходит за случайный разброс "
-        "и по постам, и по каналам и проходит поправку Бенджамини-Хохберга на "
-        f"{round(FDR * 100)} % среди навыков направления; остальное в пределах шума. Роль, грейд и навыки из "
-        f"текста читает модель проекта. Все навыки и направления на сайте: {SITE}",
+        f"{headline(rep)} Сравнение с предыдущими двенадцатью месяцами, доля IT-постов с навыком в публичных "
+        f"Telegram-каналах. Все навыки по направлениям и грейдам на [сайте]({SITE}).",
+        "",
     ]
+    if image:
+        lines += [f"![Что изменилось за год]({image})", ""]
+    if top:
+        lines += ["## Главное", "", *_table(sorted(top, key=lambda x: -x[1]["diff"]), with_direction=True), ""]
+    lines += ["## По направлениям"]
     for cell in rep["cells"]:
-        rows = cell["skills"]
-        up = sorted((r for r in rows if r["q"] < FDR and r["diff"] > 0), key=lambda r: -r["diff"])
-        down = sorted((r for r in rows if r["q"] < FDR and r["diff"] < 0), key=lambda r: r["diff"])
-        lines += ["", f"## {LABEL[cell['direction']]}", ""]
-        lines.append(
-            f"{_int(cell['posts_now'])} {plural(cell['posts_now'], ('пост', 'поста', 'постов'))} против "
-            f"{_int(cell['posts_before'])} годом раньше, {cell['channels']} "
-            f"{plural(cell['channels'], ('канал', 'канала', 'каналов'))} в оба года."
-        )
-        lines.append("")
-        for title, part in (("Выросли", up), ("Упали", down)):
-            if part:
-                lines.append(
-                    f"- **{title}:** "
-                    + "; ".join(
-                        f"{r['skill']} {_pct(r['before'])} → {_pct(r['now'])} ({_points(r['diff'])})" for r in part
-                    )
-                    + "."
-                )
-        rest, of = len(rows) - len(up) - len(down), f"{len(rows)} {plural(len(rows), ('навыка', 'навыков', 'навыков'))}"
-        lines.append(
-            f"- Без заметных изменений {rest} из {of}."
-            if up or down
-            else f"- Заметных изменений нет ни у одного из {of}."
-        )
+        d, rows = cell["direction"], cell["skills"]
+        moved = sorted(((d, r) for r in rows if r["q"] < FDR), key=lambda x: -x[1]["diff"])
+        steady = [r["skill"] for r in sorted(rows, key=lambda r: -r["now"]) if r["q"] >= FDR][:6]
+        lines += [
+            "",
+            f"### {LABEL[d]}",
+            "",
+            f"{_int(cell['posts_now'])} {plural(cell['posts_now'], ('пост', 'поста', 'постов'))} за год, "
+            f"{cell['channels']} {plural(cell['channels'], ('канал', 'канала', 'каналов'))} в оба года.",
+            "",
+        ]
+        lines += [*_table(moved, with_direction=False), ""] if moved else ["Заметных изменений нет.", ""]
+        if steady:
+            lines.append(f"Без заметных изменений: {', '.join(steady)}.")
+    lines += [
+        "",
+        "<details>",
+        "<summary>Как считается</summary>",
+        "",
+        f"Последние двенадцать месяцев ({span(middle, end)}) против предыдущих ({span(first, middle)}). "
+        f"Каналов {m['channels.now']['value']} за последний год и {m['channels.before']['value']} за предыдущий. "
+        "Изменение доли считается внутри каналов, которые публиковали вакансии направления в оба года, с одинаковым "
+        "весом канала в обоих: так новый или замолчавший канал не сдвигает доли сам по себе. В таблицах только "
+        "изменения, которые выходят за случайный разброс и по постам, и по каналам и проходят поправку "
+        f"Бенджамини-Хохберга на {round(FDR * 100)} % среди навыков направления. Роль, грейд и навыки из текста "
+        "поста читает модель проекта. Числа выпуска лежат в `results/quarterly/`, код в `src/radar/site/quarterly.py`.",
+        "",
+        "</details>",
+    ]
     return "\n".join(lines) + "\n"
+
+
+def chart(rows: list[tuple[str, str, float]], subtitle: str, path: Path) -> None:
+    """Bars of the largest changes, each skill once and at most three a direction: (direction, skill, change)."""
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib import font_manager
+
+    fonts = {f.name for f in font_manager.fontManager.ttflist}
+    plt.rcParams.update({"font.family": "Segoe UI" if "Segoe UI" in fonts else "DejaVu Sans", "font.size": 13})
+    up, down, muted, ink = "#1a7f37", "#cf222e", "#6b6963", "#1a1a1a"
+    picked: list[tuple[str, str, float]] = []
+    per: Counter[str] = Counter()
+    seen: set[str] = set()
+    for d, skill, diff in sorted(rows, key=lambda r: -abs(r[2])):
+        if per[d] < 3 and skill not in seen and len(picked) < 14:
+            picked.append((d, skill, diff))
+            per[d] += 1
+            seen.add(skill)
+    picked.sort(key=lambda r: r[2])
+    fig, ax = plt.subplots(figsize=(11, 0.42 * len(picked) + 1.8))
+    ys = range(len(picked))
+    ax.barh(list(ys), [r[2] * 100 for r in picked], color=[up if r[2] > 0 else down for r in picked], height=0.62)
+    ax.set_yticks(list(ys), [f"{skill}  ·  {SHORT[d]}" for d, skill, _ in picked])
+    ax.tick_params(axis="y", length=0, labelsize=12.5)
+    ax.axvline(0, color=muted, lw=1)
+    for i, (_, _, diff) in enumerate(picked):
+        color = up if diff > 0 else down
+        ax.text(
+            diff * 100 + (0.15 if diff > 0 else -0.15),
+            i,
+            _points(diff).replace(" п. п.", ""),
+            va="center",
+            ha="left" if diff > 0 else "right",
+            fontsize=12,
+            fontweight="bold",
+            color=color,
+        )
+    reach = max(abs(r[2]) for r in picked) * 100 * 1.2
+    ax.set_xlim(-reach, reach)
+    ax.set_xticks([])
+    for side in ("top", "right", "left", "bottom"):
+        ax.spines[side].set_visible(False)
+    fig.subplots_adjust(top=0.8)
+    fig.text(0.02, 0.985, "Что изменилось за год", fontsize=19, fontweight="bold", color=ink, va="top")
+    fig.text(0.02, 0.985 - 0.4 / fig.get_figheight(), subtitle, fontsize=12.5, color=muted, va="top")
+    fig.text(0.02, -0.02, f"Радар IT-вакансий · {SITE}", fontsize=9.5, color=muted, va="top")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(path, dpi=200, bbox_inches="tight", pad_inches=0.25)
+    plt.close(fig)
+
+
+def chart_subtitle(quarter: str) -> str:
+    _, middle, end = window(quarter)
+    return (
+        f"Изменение доли IT-постов Telegram с навыком, п. п.: {span(middle, end)} против\n"
+        "предыдущих 12 месяцев, внутри одних и тех же каналов; только изменения сверх случайного разброса"
+    )
 
 
 def main() -> int:
@@ -266,8 +400,14 @@ def main() -> int:
         fdr=FDR,
     )
     NOTES.mkdir(parents=True, exist_ok=True)
+    picture = NOTES / f"{quarter}.png"
+    found = [(d, r["skill"], r["diff"]) for d, r in moves(rep)]
+    if found:
+        chart(found, chart_subtitle(quarter), picture)
+    # an absolute address: the same text becomes the release notes, where a relative path does not resolve
+    image = f"{RAW}{picture.relative_to(ROOT).as_posix()}" if found else None
     out = NOTES / f"{quarter}.md"
-    out.write_text(notes(rep), encoding="utf-8", newline="\n")
+    out.write_text(notes(rep, image), encoding="utf-8", newline="\n")
     print(f"{len(rep['metrics'])} metrics -> {path}; notes -> {out}")
     return 0
 

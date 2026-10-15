@@ -40,10 +40,15 @@ def test_report_calls_out_a_real_rise_and_keeps_noise_quiet() -> None:
     by_skill = {r["skill"]: r for r in rep["cells"][0]["skills"]}
     assert round(by_skill["Python"]["diff"], 4) == 0.1 and by_skill["Python"]["q"] < 0.05
     assert by_skill["SQL"]["q"] > 0.05
-    text = notes(rep)
-    assert text.startswith("# Навыки в IT-вакансиях Telegram за год с октября 2025 по сентябрь 2026")
+    text = notes(rep, image="https://example.org/2026Q3.png")
+    assert text.startswith("# Навыки в IT за год с октября 2025 по сентябрь 2026")
+    assert "Сильнее всего за год вырос Python во всём IT." in text
+    assert "![Что изменилось за год](https://example.org/2026Q3.png)" in text
+    # the summary table names each skill once, the direction tables list only the moves beyond noise
+    assert text.count("| Python | Всё IT |") + text.count("| Python | Backend |") == 1
+    assert "| Python | 15,1 % | 25,1 % | ▲ +10,0 п. п. |" in text
+    assert "Без заметных изменений: SQL." in text
     assert "(с октября 2024 по сентябрь 2025)" in text
-    assert "Без заметных изменений 1 из 2 навыков." in text
     assert "—" not in text
 
 

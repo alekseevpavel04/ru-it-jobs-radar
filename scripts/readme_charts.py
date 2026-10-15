@@ -16,11 +16,11 @@ from chart_style import ACCENT, GRID, INK, LIGHT, MUTED, NAVY, PALE, TEAL, frame
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
 from radar.config import RESULTS, ROOT
+from radar.site import quarterly
 
 OUT = ROOT / "docs" / "img" / "readme"
 UP, DOWN, NOISE = "#1a7f37", "#cf222e", "#9a9890"
 QUARTER = "2026Q3"
-CELL = {"it": "Всё IT", "ml": "ML и DS", "dataeng": "Инженерия данных", "backend": "Backend", "frontend": "Frontend"}
 
 
 def result(relpath: str) -> dict[str, Any]:
@@ -92,53 +92,16 @@ def key_numbers() -> None:
 
 
 def year_changes() -> None:
+    """The quarterly report's own picture (radar.site.quarterly.chart), from its result file."""
     m = metrics(f"quarterly/{QUARTER}.json")
-    rows = []
-    for key, v in m.items():
-        if key.startswith("change."):
-            cell, skill = key.split(".", 2)[1:]
-            if cell in CELL and v["q_bh"] < 0.05:
-                rows.append((cell, skill, v["value"]))
-    # the largest moves, at most three a direction so that one direction does not fill the chart
-    rows.sort(key=lambda r: -abs(r[2]))
-    picked: list[tuple[str, str, float]] = []
-    per: dict[str, int] = {}
-    for r in rows:
-        if per.get(r[0], 0) < 3 and len(picked) < 14:
-            picked.append(r)
-            per[r[0]] = per.get(r[0], 0) + 1
-    picked.sort(key=lambda r: r[2])
-    fig, ax = plt.subplots(figsize=(11, 0.42 * len(picked) + 1.6))
-    y = range(len(picked))
-    colors = [UP if d > 0 else DOWN for _, _, d in picked]
-    ax.barh(list(y), [d * 100 for _, _, d in picked], color=colors, height=0.62)
-    ax.set_yticks(list(y), [f"{s}  ·  {CELL[c]}" for c, s, _ in picked])
-    ax.tick_params(axis="y", length=0, labelsize=12.5)
-    ax.axvline(0, color=MUTED, lw=1)
-    for i, (_, _, d) in enumerate(picked):
-        label = f"{'+' if d > 0 else '−'}{num(abs(d) * 100)}"
-        ax.text(
-            d * 100 + (0.15 if d > 0 else -0.15),
-            i,
-            label,
-            va="center",
-            ha="left" if d > 0 else "right",
-            fontsize=12,
-            fontweight="bold",
-            color=UP if d > 0 else DOWN,
-        )
-    reach = max(abs(d) for _, _, d in picked) * 100 * 1.2
-    ax.set_xlim(-reach, reach)
-    ax.set_xticks([])
-    ax.spines["bottom"].set_visible(False)
-    frame(
-        fig,
-        "Что изменилось за год",
-        "Изменение доли IT-постов Telegram с навыком, п. п.: с октября 2025 по сентябрь 2026 против\n"
-        "предыдущих 12 месяцев, внутри одних и тех же каналов; только изменения сверх случайного разброса",
-        top=0.8,
-    )
-    save(fig, "year_changes.png")
+    rows = [
+        (key.split(".", 2)[1], key.split(".", 2)[2], v["value"])
+        for key, v in m.items()
+        if key.startswith("change.") and v["q_bh"] < 0.05
+    ]
+    out = OUT / "year_changes.png"
+    quarterly.chart(rows, quarterly.chart_subtitle(QUARTER), out)
+    print(out)
 
 
 def _box(ax: plt.Axes, x: float, y: float, w: float, h: float, title: str, body: str, color: str) -> None:

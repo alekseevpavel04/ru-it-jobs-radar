@@ -3019,6 +3019,7 @@ dependencies = [
 autopilot = [
     { name = "httpx" },
     { name = "lxml" },
+    { name = "matplotlib" },
     { name = "numpy" },
     { name = "psutil" },
     { name = "pyarrow" },
@@ -3080,6 +3081,7 @@ requires-dist = [
 autopilot = [
     { name = "httpx", specifier = "==0.28.1" },
     { name = "lxml", specifier = "==6.1.3" },
+    { name = "matplotlib", specifier = "==3.11.2" },
     { name = "numpy", specifier = "==2.4.6" },
     { name = "psutil", specifier = "==7.2.2" },
     { name = "pyarrow", specifier = "==25.0.1" },
