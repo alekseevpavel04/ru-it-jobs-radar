@@ -9,7 +9,7 @@ without vacancies (see docs/sources.md, Telegram 1.5), so they are used only wit
 import re
 from dataclasses import dataclass
 
-RULES_VERSION = 2
+RULES_VERSION = 3
 
 AD = re.compile(r"\berid\b|#реклама|^\s*реклама\b|партн[её]рский (пост|материал)|на правах рекламы", re.I | re.M)
 RESUME = re.compile(
@@ -17,6 +17,11 @@ RESUME = re.compile(
     r"|рассмотрю предложения|open to work|в поиске работы|резюме:",
     re.I,
 )
+# A post that opens with a résumé or a digest of résumés. javascript_jobs_feed publishes "Лучшие резюме и
+# вакансии за <день>", "Обзор за <день>" and "Резюме за <день>" since 2025, and RESUME below lets a head
+# with "#резюме" through whenever it also carries a marker hashtag such as #junior. The pattern runs on the
+# lowercased text; dbt/macros/telegram_rules.sql applies the same one to posts collected under older rules.
+RESUME_HEAD = re.compile(r"^[^a-zа-яё0-9]*(резюме|лучшие резюме|топ резюме|обзор за|ищу работу)")
 ROLE = (
     r"разработчик|developer|engineer|инженер|аналитик|analyst|тестировщик|\bqa\b|\baqa\b|\bqaa\b|tester|тестиров"
     r"|pentest|пентест|\bsdet\b|devops|программист|дизайнер|designer"
@@ -129,6 +134,8 @@ def classify(text: str, links: list[str]) -> Verdict:
         return Verdict("no_text")
     if AD.search(text):
         return Verdict("ad")
+    if RESUME_HEAD.match(text.lower()):
+        return Verdict("resume")
     blob = text + "\n" + "\n".join(links)
     sig = signals(blob)
     head = text[:300]

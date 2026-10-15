@@ -29,7 +29,7 @@ latest AS (
         JSONExtract(payload, 'job_links', 'Array(String)') AS job_links,
         ingested_at
     FROM {{ source('raw', 'telegram') }} FINAL
-    WHERE source = 'telegram' AND is_vacancy
+    WHERE source = 'telegram' AND is_vacancy AND NOT {{ telegram_resume_head('text') }}
     ORDER BY source_id, fetched_at DESC
     LIMIT 1 BY source_id
 ),
