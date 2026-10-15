@@ -57,7 +57,7 @@ Plot.plot({
   y: {domain: rows.map((d) => d.skill), label: null, tickSize: 0},
   style: {fontSize: "13px"},
   marks: [
-    Plot.link(rows, {y1: "skill", y2: "skill", x1: "all", x2: "jun", stroke: (d) => (d.diff >= 0.005 ? COLOR.accent : "#c9c6be"), strokeWidth: 4, strokeLinecap: "round"}),
+    Plot.link(rows, {y1: "skill", y2: "skill", x1: "all", x2: "jun", stroke: "#d9d6cf", strokeWidth: 4, strokeLinecap: "round"}),
     Plot.dot(rows, {y: "skill", x: "all", r: 6, fill: COLOR.bar, stroke: "white", strokeWidth: 1.5}),
     Plot.dot(rows, {y: "skill", x: "jun", r: 7, fill: COLOR.accent, stroke: "white", strokeWidth: 1.5}),
     Plot.text(rows, {y: "skill", text: (d) => points(d.diff), frameAnchor: "right", textAnchor: "end", dx: width < 600 ? 66 : 92, fill: (d) => (d.diff >= 0.005 ? COLOR.accent : COLOR.muted), fontWeight: 650}),

@@ -348,3 +348,14 @@ details.more summary {
 .dot-legend i.all {
   background: #1d3557;
 }
+
+.dot-legend i.bar {
+  width: 22px;
+  height: 9px;
+  border-radius: 5px;
+  background: #1d3557;
+}
+
+.dot-legend i.base {
+  background: #e63946;
+}
