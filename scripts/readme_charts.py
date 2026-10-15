@@ -254,7 +254,39 @@ def composition() -> None:
     save(fig, "composition.png")
 
 
+def social_preview() -> None:
+    """The card GitHub shows when the repository link is shared: 1280 x 640, the size GitHub asks for."""
+    tg = metrics("collect/telegram.json")
+    test = metrics("extract/final_test.json")
+    fig = plt.figure(figsize=(12.8, 6.4), dpi=100)
+    fig.patch.set_facecolor(NAVY)
+    fig.text(0.06, 0.84, "ru-it-jobs-radar", fontsize=40, fontweight="bold", color="white", va="top")
+    fig.text(
+        0.06,
+        0.68,
+        "Радар IT-вакансий России: какие навыки просят,\nкак меняется спрос и за что платят больше",
+        fontsize=21,
+        color="#d9e2ec",
+        va="top",
+        linespacing=1.35,
+    )
+    tiles = [
+        (f"{thousands(tg['posts']['value'])} тыс.", "постов Telegram"),
+        (num(test["tg_test/sft_1p7b_r16_clean/macro_f1"]["value"], 2), "F1 своей Qwen3-1.7B"),
+        ("каждый день", "сайт обновляется сам"),
+    ]
+    for i, (big, small) in enumerate(tiles):
+        x = 0.06 + i * 0.31
+        fig.text(x, 0.3, big, fontsize=34, fontweight="bold", color=ACCENT, va="center")
+        fig.text(x, 0.17, small, fontsize=17, color="#d9e2ec", va="center")
+    OUT.mkdir(parents=True, exist_ok=True)
+    fig.savefig(OUT / "social_preview.png", dpi=100, facecolor=NAVY)
+    plt.close(fig)
+    print(OUT / "social_preview.png")
+
+
 def main() -> None:
+    social_preview()
     key_numbers()
     year_changes()
     pipeline()
