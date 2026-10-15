@@ -14,28 +14,36 @@ results/models/skill_effects.json (skill and salary, double ML) and results/dbt/
 (closures that came back), as the counts and estimates these files hold. Rerunnable: the files are
 rewritten whole, rows in a fixed order, so a daily rerun changes only what the data changed. Also
 writes results/site/export.json (rows and bytes per file).
+
+    python -m radar.site.export --skill-trends-only
+
+rewrites skill_trends.json alone from results/market/skill_trends.json: the daily GitHub Actions run
+(.github/workflows/autopilot.yml) has no ClickHouse, and the other files stay as last exported.
 """
 
 import argparse
 import json
-import re
 import math
+import re
 import sys
 from collections import defaultdict
 from collections.abc import Iterable, Mapping
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from statistics import NormalDist
-from typing import Any, Literal
+from typing import TYPE_CHECKING, Any, Literal
 from zoneinfo import ZoneInfo
 
 from pydantic import BaseModel, ConfigDict
 
 from radar.config import RESULTS, ROOT, load_dotenv
-from radar.models import forecast
-from radar.models.forecast import SiteForecast
 from radar.results import git_commit, write_result
 from radar.stream.clickhouse import ClickHouse
+
+# The forecast pulls in numpy, pandas, scikit-learn and statsmodels; the daily site run
+# (--skill-trends-only) has none of them.
+if TYPE_CHECKING:
+    from radar.models.forecast import SiteForecast
 
 OUT = ROOT / "site" / "src" / "data"
 SURVIVAL = RESULTS / "models" / "survival.json"
@@ -388,19 +396,45 @@ class SkillShare(Row):
     posts: int
 
 
-class GradeYear(Row):
-    year: int
-    grade: Literal["junior", "middle", "senior"]
-    posts: int
-    graded: int  # IT posts of the year that name a grade, the base of the share
-    total: int  # all IT posts of the year
+class SkillChange(Row):
+    """Change of a skill's share since the base year, measured within the channels of both periods."""
+
+    group: SkillGroup
+    skill: str
+    diff: float
+    p: float
+    q_bh: float  # Benjamini-Hochberg over the cell's skills; the site marks a change beyond noise below 0.05
 
 
-class DirectionYear(Row):
+class MixYear(Row):
+    """A grade's or a direction's share in a year, at fixed channel weights over the panel channels."""
+
     year: int
-    direction: str
-    posts: int
-    total: int  # IT posts of the year of the panel channels
+    key: str
+    share: float
+
+
+class MixChange(Row):
+    """Change of that share from the first year to the last, with its q over the grades or directions."""
+
+    key: str
+    diff: float
+    q_bh: float
+
+
+class Mix(Row):
+    panel_channels: int
+    channels: int
+    panel_posts: int  # posts of the panel channels, of all_posts
+    all_posts: int
+    years: list[MixYear]
+    changes: list[MixChange]
+
+
+class GradedYear(Row):
+    year: int
+    graded: int  # IT posts of the year that name a grade
+    total: int
 
 
 class SkillTrends(Provenance):
@@ -413,10 +447,11 @@ class SkillTrends(Provenance):
     min_mentions: int
     min_year_posts: int
     groups: list[SkillGroupYear]
-    shares: list[SkillShare]
-    grades: list[GradeYear]
-    direction_panel_channels: int
-    directions: list[DirectionYear]
+    shares: list[SkillShare]  # the pooled recent years
+    changes: list[SkillChange]
+    grades: Mix
+    graded: list[GradedYear]
+    directions: Mix
 
 
 class VacancyHistory(Provenance):
@@ -710,9 +745,11 @@ def lifetime(doc: Mapping[str, Any], source_file: str) -> Lifetime:
 
 
 def forecast_files(
-    result: Mapping[str, Any], site: SiteForecast, source_file: str, weeks: int = TELEGRAM_WEEKS
+    result: Mapping[str, Any], site: "SiteForecast", source_file: str, weeks: int = TELEGRAM_WEEKS
 ) -> tuple[Forecast, list[ForecastHistory]]:
     """The forecast document and the last `weeks` weeks of its series, shares as counts with their base."""
+    from radar.models import forecast
+
     shown = range(max(0, len(site.weeks) - weeks), len(site.weeks))
     history = [
         ForecastHistory(
@@ -891,28 +928,47 @@ def vacancy_history(doc: Mapping[str, Any], source_file: str) -> VacancyHistory:
     )
 
 
+def mix(metrics: Mapping[str, Any], kind: str) -> Mix:
+    years, changes = [], []
+    for key, m in metrics.items():
+        k, *rest = key.split(".")
+        if k != kind or rest[0].startswith("panel") or rest[-1] == "graded":
+            continue
+        if rest[0] == "change":
+            changes.append(MixChange(key=rest[1], diff=m["value"], q_bh=m["q_bh"]))
+        else:
+            years.append(MixYear(year=int(rest[0]), key=rest[1], share=m["value"]))
+    channels, posts = metrics[f"{kind}.panel_channels"], metrics[f"{kind}.panel_posts"]
+    return Mix(
+        panel_channels=channels["n"],
+        channels=channels["denominator"],
+        panel_posts=posts["n"],
+        all_posts=posts["denominator"],
+        years=sorted(years, key=lambda r: (r.year, r.key)),
+        changes=sorted(changes, key=lambda r: r.key),
+    )
+
+
 def skill_trends(doc: Mapping[str, Any], source_file: str) -> SkillTrends:
-    groups, shares, grades, directions = [], [], [], []
+    groups, shares, changes, graded = [], [], [], []
     for key, m in doc["metrics"].items():
         kind, *rest = key.split(".")
-        if kind == "directions":
-            if rest[0] != "panel_channels":
-                directions.append(
-                    DirectionYear(year=int(rest[0]), direction=rest[1], posts=m["n"], total=m["denominator"])
-                )
+        if kind in ("directions", "grades"):
+            if kind == "grades" and rest[-1] == "graded":
+                graded.append(GradedYear(year=int(rest[0]), graded=m["n"], total=m["denominator"]))
             continue
-        if kind == "grades":
-            if rest[1] != "graded":
-                total = doc["metrics"][f"grades.{rest[0]}.graded"]["denominator"]
-                grades.append(
-                    GradeYear(year=int(rest[0]), grade=rest[1], posts=m["n"], graded=m["denominator"], total=total)
-                )
+        if kind == "panel":
+            continue
+        if kind == "change":
+            changes.append(
+                SkillChange(group=rest[0], skill=".".join(rest[1:]), diff=m["value"], p=m["p"], q_bh=m["q_bh"])
+            )
             continue
         year = None if rest[-1] == "recent" else int(rest[-1])
         if kind == "posts":
             groups.append(SkillGroupYear(group=rest[0], year=year, posts=m["value"]))
-        elif kind == "share" and year in (None, doc["base_year"]):
-            # the site compares the pooled recent years with the base year; other years stay in results/
+        elif kind == "share" and year is None:
+            # the site shows the pooled recent years and the change; yearly shares stay in results/
             skill = ".".join(rest[1:-1])
             shares.append(
                 SkillShare(
@@ -932,9 +988,10 @@ def skill_trends(doc: Mapping[str, Any], source_file: str) -> SkillTrends:
         min_year_posts=doc["min_year_posts"],
         groups=sorted(groups, key=lambda r: (r.group, r.year or 0)),
         shares=sorted(shares, key=lambda r: (r.group, r.skill, r.year or 0)),
-        grades=sorted(grades, key=lambda r: (r.year, r.grade)),
-        direction_panel_channels=doc["metrics"]["directions.panel_channels"]["n"],
-        directions=sorted(directions, key=lambda r: (r.year, r.direction)),
+        changes=sorted(changes, key=lambda r: (r.group, r.skill)),
+        grades=mix(doc["metrics"], "grades"),
+        graded=sorted(graded, key=lambda r: r.year),
+        directions=mix(doc["metrics"], "directions"),
     )
 
 
@@ -1045,7 +1102,19 @@ def write(docs: Mapping[str, Any], out: Path) -> dict[str, int]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--out", type=Path, default=OUT)
+    parser.add_argument(
+        "--skill-trends-only",
+        action="store_true",
+        help="rewrite only skill_trends.json from results/, without ClickHouse (the daily site run)",
+    )
     args = parser.parse_args()
+    if args.skill_trends_only:
+        doc = json.loads(SKILL_TRENDS.read_text(encoding="utf-8"))
+        sizes = write({"skill_trends.json": skill_trends(doc, SKILL_TRENDS.relative_to(ROOT).as_posix())}, args.out)
+        print(f"skill_trends.json	{sizes['skill_trends.json']} bytes")
+        return 0
+
+    from radar.models import forecast
 
     load_dotenv()
     with ClickHouse() as ch:

@@ -33,14 +33,6 @@ export const DOWN = "#cf222e";
 const NOISE = "#9a9890";
 const BASE = "#8c8a84";
 
-// Change of two shares beyond the 95 % interval of their difference (normal approximation, both samples
-// large here: hundreds to tens of thousands of posts).
-export function change(base, recent) {
-  const p1 = base.n / base.of, p2 = recent.n / recent.of;
-  const se = Math.sqrt((p1 * (1 - p1)) / base.of + (p2 * (1 - p2)) / recent.of);
-  return {diff: p2 - p1, significant: Math.abs(p2 - p1) > 1.96 * se};
-}
-
 export const changeColor = (c) => (!c.significant ? NOISE : c.diff > 0 ? UP : DOWN);
 export const changeText = (c) => (c.significant ? points(c.diff) : "≈");
 
@@ -124,7 +116,7 @@ function nowPlot(rows, {width, row, font}) {
 export function skillChart(rows, {width, recentLabel, baseYear, row = 16, font = 14}) {
   if (!baseYear) return nowPlot(rows, {width, row, font});
   const top = Math.max(...rows.map((r) => Math.max(r.share, r.base.share)));
-  const legend = html`<div class="dot-legend"><span><i class="up-dot"></i><i class="down-dot"></i>сейчас, ${recentLabel}</span><span><i class="base"></i>${baseYear}</span><span>стрелка показывает, куда сдвинулась доля</span></div>`;
+  const legend = html`<div class="dot-legend"><span><i class="up-dot"></i><i class="down-dot"></i>сейчас, ${recentLabel}</span><span><i class="base"></i>${baseYear} в тех же каналах</span><span>стрелка показывает, куда сдвинулась доля</span></div>`;
   const left = nameMargin(rows, {width, font});
   const parts = BLOCKS.map((b) => [b, rows.filter((r) => b.test(r.change))]).filter(([, part]) => part.length);
   return html`<div>${legend}${parts.map(([b, part]) => html`${heading(b)}${blockPlot(part, {width, top, row, font, left})}`)}</div>`;
@@ -137,9 +129,10 @@ const GRADE_LINE = [
   {grade: "senior", label: "сеньоры и лиды", short: "сеньоры", color: "#7a3fb0"}
 ];
 
+// grades: the fixed-weight mix of skill_trends.json, as for directionTiles.
 export function gradeChart(grades, {width, partialYear}) {
   const narrow = width < 600;
-  const rows = grades.map((g) => ({...g, share: g.posts / g.graded}));
+  const rows = grades.years.map((g) => ({...g, grade: g.key}));
   const years = [...new Set(rows.map((r) => r.year))].sort();
   const last = years.at(-1);
   // End labels of close lines are pushed apart symmetrically; the dots stay where they are.
@@ -184,15 +177,17 @@ export function gradeChart(grades, {width, partialYear}) {
 
 // Each direction's share of all IT posts of the panel channels by year, one small chart per direction:
 // the share of the last year in big type, the change since the base year coloured as on the rest of the page.
+// directions: the fixed-weight mix of skill_trends.json ({years: [{year, key, share}], changes: [{key, diff, q_bh}]}).
 export function directionTiles(directions, {width, partialYear}) {
   const narrow = width < 600;
-  const years = [...new Set(directions.map((d) => d.year))].sort();
+  const years = [...new Set(directions.years.map((d) => d.year))].sort();
   const first = years[0], last = years.at(-1);
   const tiles = Object.keys(MIX_LABEL)
     .map((key) => {
-      const line = directions.filter((d) => d.direction === key).map((d) => ({...d, share: d.posts / d.total}));
-      const a = line.find((d) => d.year === first), b = line.find((d) => d.year === last);
-      return {key, line, a, b, c: change({n: a.posts, of: a.total}, {n: b.posts, of: b.total})};
+      const line = directions.years.filter((d) => d.key === key);
+      const b = line.find((d) => d.year === last);
+      const ch = directions.changes.find((d) => d.key === key);
+      return {key, line, b, c: {diff: ch.diff, significant: ch.q_bh < 0.05}};
     })
     .sort((x, y) => y.c.diff - x.c.diff);
   const cols = narrow ? 2 : 4;

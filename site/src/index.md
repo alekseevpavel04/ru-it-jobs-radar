@@ -7,7 +7,7 @@ toc: false
 
 ```js
 import {SKILL, int, pct, plural} from "./components/labels.js";
-import {DIRECTION, GRADE_GROUP, MIX_LABEL, change, directionTiles, gradeChart, skillChart} from "./components/skills.js";
+import {DIRECTION, GRADE_GROUP, MIX_LABEL, directionTiles, gradeChart, skillChart} from "./components/skills.js";
 import {effectsChart} from "./components/effects.js";
 import {parseStack, stackReport} from "./components/stack.js";
 import {csvLink} from "./components/csv.js";
@@ -23,17 +23,13 @@ const effects = FileAttachment("data/skill_effects.json").json();
 const lowerFirst = (s) => (/^[А-ЯЁ][а-яё]/.test(s) ? s[0].toLowerCase() + s.slice(1) : s);
 const listRu = (xs) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} и ${xs.at(-1)}`);
 const lastYear = trends.recent_years.at(-1);
-const gradeShare = (year, grade) => {
-  const g = trends.grades.find((r) => r.year === year && r.grade === grade);
-  return g.posts / g.graded;
-};
-const midDrop = gradeShare(trends.base_year, "middle") - gradeShare(lastYear, "middle");
-const juniorRise = gradeShare(lastYear, "junior") - gradeShare(trends.base_year, "junior");
-const gradeTitle = midDrop > 0.05 ? "Мидлов ищут всё реже" : juniorRise > 0.05 ? "Джунов ищут всё чаще" : "Кого ищут";
-const graded = [...new Set(trends.grades.map((g) => g.year))].map((y) => {
-  const g = trends.grades.find((r) => r.year === y);
-  return g.graded / g.total;
-});
+// Grade and direction shares are at fixed channel weights (skill_trends.json); a heading claims a change only
+// when it is beyond noise.
+const gradeChange = Object.fromEntries(trends.grades.changes.map((c) => [c.key, c]));
+const moved = (c, sign) => c && c.q_bh < 0.05 && Math.sign(c.diff) === sign;
+const seniorsUp = moved(gradeChange.senior, 1), middlesDown = moved(gradeChange.middle, -1), juniorsUp = moved(gradeChange.junior, 1);
+const gradeTitle = seniorsUp && middlesDown ? "Сеньоров ищут всё чаще, мидлов реже" : seniorsUp ? "Сеньоров ищут всё чаще" : middlesDown ? "Мидлов ищут всё реже" : juniorsUp ? "Джунов ищут всё чаще" : "Кого ищут";
+const graded = trends.graded.map((g) => g.graded / g.total);
 ```
 
 ```js
@@ -41,16 +37,18 @@ const graded = [...new Set(trends.grades.map((g) => g.year))].map((y) => {
 function cellData(direction, grade) {
   const cell = `${direction}_${grade}`;
   const posts = new Map(trends.groups.filter((g) => g.group === cell).map((g) => [g.year, g.posts]));
-  // The base year of the result file (2022): from then on the channel set is steady. A cell without
-  // enough posts that year shows the recent shares only.
-  const baseYear = posts.has(trends.base_year) ? trends.base_year : null;
-  const rows = [...d3.group(trends.shares.filter((s) => s.group === cell), (s) => s.skill)].map(([skill, list]) => {
-    const recent = list.find((s) => s.year === null);
-    const b = baseYear ? list.find((s) => s.year === baseYear) : null;
-    const base = b ? {share: b.posts_mentioning / b.posts, n: b.posts_mentioning, of: b.posts} : null;
-    const now = {n: recent.posts_mentioning, of: recent.posts};
-    return {key: skill, skill: SKILL[skill] ?? skill, share: now.n / now.of, ...now, base, change: base ? change(base, now) : null};
-  });
+  // The change since the base year is measured within channels (a channel that started posting since
+  // then would move a pooled share by itself), so the grey dot is today's share minus that change: the
+  // base year in the same channels. A cell without enough posts that year shows the recent shares only.
+  const changes = new Map(trends.changes.filter((c) => c.group === cell).map((c) => [c.skill, c]));
+  const baseYear = changes.size ? trends.base_year : null;
+  const rows = trends.shares
+    .filter((s) => s.group === cell && s.year === null)
+    .map(({skill, posts_mentioning: n, posts: of}) => {
+      const c = baseYear ? changes.get(skill) : null;
+      const share = n / of;
+      return {key: skill, skill: SKILL[skill] ?? skill, share, n, of, base: c ? {share: share - c.diff} : null, change: c ? {diff: c.diff, significant: c.q_bh < 0.05} : null};
+    });
   return {cell, posts, baseYear, rows, label: `${DIRECTION[direction]}, ${GRADE_GROUP[grade].toLowerCase()}`};
 }
 ```
@@ -79,8 +77,7 @@ const skillsCsv = () =>
       [`share_${recentLabel}`, (r) => round4(r.share)],
       ["posts_with_skill", (r) => r.n],
       ["posts", (r) => r.of],
-      [`share_${baseYear ?? "base"}`, (r) => round4(r.base?.share)],
-      ["change_points", (r) => (r.change ? round4(r.change.diff * 100) : null)],
+      [`change_points_since_${baseYear ?? "base"}_within_channels`, (r) => (r.change ? round4(r.change.diff * 100) : null)],
       ["beyond_noise", (r) => (r.change ? r.change.significant : null)]
     ],
     `skills_${cell}.csv`
@@ -104,7 +101,7 @@ const skillTitle = !posts.size
 
 ${!posts.size
   ? html`<p>Для сочетания «${label}» данных недостаточно: за ${recentLabel} меньше ${int(trends.min_cell_posts)} постов. Выберите все грейды или другое направление.</p>`
-  : html`<p class="note-small">${baseYear ? html`Доля постов с навыком за ${recentLabel} (${int(posts.get(null))} ${plural(posts.get(null), ["пост", "поста", "постов"])}) против ${baseYear} года (${int(posts.get(baseYear))}), справа изменение в п. п. ${skillsCsv()}` : html`Доля постов с навыком за ${recentLabel} (${int(posts.get(null))} ${plural(posts.get(null), ["пост", "поста", "постов"])}); за ${trends.base_year} год данных мало, поэтому без сравнения. ${skillsCsv()}`}</p>`}
+  : html`<p class="note-small">${baseYear ? html`Доля постов с навыком за ${recentLabel} (${int(posts.get(null))} ${plural(posts.get(null), ["пост", "поста", "постов"])}); справа изменение с ${baseYear} года в п. п., посчитанное внутри одних и тех же каналов. ${skillsCsv()}` : html`Доля постов с навыком за ${recentLabel} (${int(posts.get(null))} ${plural(posts.get(null), ["пост", "поста", "постов"])}); за ${trends.base_year} год данных мало, поэтому без сравнения. ${skillsCsv()}`}</p>`}
 
 ```js
 // Always display a node: a block that displays nothing keeps its previous output.
@@ -175,19 +172,16 @@ effectsChart(effects.effects, {width, name})
 
 ```js
 // The direction that gained most and the one that lost most since the base year, if the change is real.
-const dirYears = [...new Set(trends.directions.map((d) => d.year))].sort();
-const dirChanges = [...new Set(trends.directions.map((d) => d.direction))]
-  .filter((k) => k !== "other" && DIRECTION[k])
-  .map((k) => {
-    const at = (y) => trends.directions.find((d) => d.direction === k && d.year === y);
-    const a = at(dirYears[0]), b = at(dirYears.at(-1));
-    return {name: DIRECTION[k], c: change({n: a.posts, of: a.total}, {n: b.posts, of: b.total})};
-  })
-  .filter((d) => d.c.significant)
-  .sort((x, y) => y.c.diff - x.c.diff);
-const gainer = dirChanges.find((d) => d.c.diff > 0);
-const loser = dirChanges.at(-1)?.c.diff < 0 ? dirChanges.at(-1) : null;
-const otherNow = trends.directions.find((d) => d.direction === "other" && d.year === dirYears.at(-1));
+const dirYears = [...new Set(trends.directions.years.map((d) => d.year))].sort();
+const dirChanges = trends.directions.changes
+  .filter((c) => DIRECTION[c.key] && c.q_bh < 0.05)
+  .map((c) => ({name: DIRECTION[c.key], diff: c.diff}))
+  .sort((x, y) => y.diff - x.diff);
+const gainer = dirChanges.find((d) => d.diff > 0);
+const loser = dirChanges.at(-1)?.diff < 0 ? dirChanges.at(-1) : null;
+const otherNow = trends.directions.years.find((d) => d.key === "other" && d.year === dirYears.at(-1));
+const mixCsv = (mix, labels, name) =>
+  csvLink(mix.years, [["year", (d) => d.year], ["key", (d) => labels[d.key] ?? d.key], ["share_fixed_channel_weights", (d) => d.share]], name);
 const dirTitle = gainer && loser ? `${gainer.name} растёт, ${loser.name} теряет долю` : "Какие направления растут";
 ```
 
@@ -195,7 +189,7 @@ const dirTitle = gainer && loser ? `${gainer.name} растёт, ${loser.name} �
 
 <div class="card">
 
-<p class="note-small">Доля среди всех IT-постов ${int(trends.direction_panel_channels)} каналов, которые писали вакансии каждый год с ${dirYears[0]}-го (так новые каналы не сдвигают доли); остальные ${pct(otherNow.posts / otherNow.total)} это прочие роли; справа изменение с ${dirYears[0]} года в п. п. ${csvLink(trends.directions, [["year", (d) => d.year], ["direction", (d) => MIX_LABEL[d.direction] ?? "Прочие роли"], ["share", (d) => Math.round((d.posts / d.total) * 10000) / 10000], ["posts", (d) => d.posts], ["panel_posts", (d) => d.total]], "directions.csv")}</p>
+<p class="note-small">Доля среди всех IT-постов ${int(trends.directions.panel_channels)} каналов, которые писали вакансии каждый год с ${dirYears[0]}-го, при постоянном весе каждого канала: так ни новые, ни выросшие каналы не сдвигают доли; остальные ${pct(otherNow.share)} это прочие роли; справа изменение с ${dirYears[0]} года в п. п. ${mixCsv(trends.directions, {...MIX_LABEL, other: "Прочие роли"}, "directions.csv")}</p>
 
 ```js
 directionTiles(trends.directions, {width, partialYear: lastYear})
@@ -207,7 +201,7 @@ directionTiles(trends.directions, {width, partialYear: lastYear})
 
 <div class="card">
 
-<p class="note-small">Доля среди IT-постов, где указан грейд (а он указан в ${Math.round(d3.min(graded) * 100)}-${Math.round(d3.max(graded) * 100)} % постов); ${lastYear} год неполный. ${csvLink(trends.grades, [["year", (g) => g.year], ["grade", (g) => g.grade], ["share", (g) => Math.round((g.posts / g.graded) * 10000) / 10000], ["posts", (g) => g.posts], ["graded_posts", (g) => g.graded]], "grades.csv")}</p>
+<p class="note-small">Доля среди IT-постов с грейдом (он указан в ${Math.round(d3.min(graded) * 100)}-${Math.round(d3.max(graded) * 100)} % постов) в ${int(trends.grades.panel_channels)} каналах, которые писали такие посты каждый год с ${trends.base_year}-го, при постоянном весе каждого канала; ${lastYear} год неполный. ${mixCsv(trends.grades, {junior: "стажёры и джуны", middle: "мидлы", senior: "сеньоры и лиды"}, "grades.csv")}</p>
 
 ```js
 gradeChart(trends.grades, {width, partialYear: lastYear})

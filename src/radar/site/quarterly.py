@@ -10,13 +10,8 @@ quarter of its Monday. The comparison is with the same quarter a year earlier, s
 pass for a trend. A month moves a share by about as much as its noise (Python between 16.7 % and 24.7 % of
 the months of 2025-2026, about 2 000 posts a month), a quarter holds about 6 000 posts.
 
-The change is measured within channels: a channel that starts or stops posting moves a pooled share by
-itself (javascript_jobs_feed gave 253 of 569 frontend posts of 2026Q3 and almost none a year earlier, and
-the pooled CSS share fell by 20 points). Each channel with posts of the cell in both quarters weighs
-n1 n2 / (n1 + n2) in both (the Mantel-Haenszel weight of a risk difference); the shares shown are the
-weighted shares of those channels, and the test is z = diff / sqrt(p (1 - p) / sum of weights) with p the
-skill's share over both quarters in those channels, the variance of the weighted difference when nothing
-changed.
+The change is measured within channels (radar.site.within): a channel that starts or stops posting moves
+a pooled share by itself, and the shares shown are the weighted shares of the channels of both quarters.
 
 Per cell (all IT and each direction of radar.site.skill_trends, all grades) with MIN_QUARTER_POSTS posts or
 more in both quarters in the channels of both: the TOP_SKILLS skills most named in the quarter, each named
@@ -31,13 +26,13 @@ from collections import Counter, defaultdict
 from collections.abc import Iterable, Mapping
 from datetime import date
 from pathlib import Path
-from statistics import NormalDist
 from typing import Any
 
 from radar.config import ROOT
 from radar.results import write_result
 from radar.site.market_facts import share
 from radar.site.skill_trends import DIRECTIONS
+from radar.site.within import benjamini_hochberg, panel, within_change
 
 AGGREGATES = ROOT / "aggregates" / "telegram"
 NOTES = ROOT / "docs" / "quarterly"
@@ -99,32 +94,6 @@ def read_years(folder: Path, years: Iterable[int]) -> list[dict[str, str]]:
     return rows
 
 
-def benjamini_hochberg(p: list[float]) -> list[float]:
-    m = len(p)
-    order = sorted(range(m), key=lambda i: p[i])
-    q = [0.0] * m
-    running = 1.0
-    for rank in range(m, 0, -1):
-        i = order[rank - 1]
-        running = min(running, p[i] * m / rank)
-        q[i] = running
-    return q
-
-
-def within_channels(
-    size: Mapping[str, Mapping[str, int]], named: Mapping[str, Mapping[str, int]], now: str, before: str
-) -> tuple[float, float, float]:
-    """Weighted shares before and now over the channels in size, and the two-sided p of the change."""
-    weights = {c: n[before] * n[now] / (n[before] + n[now]) for c, n in size.items()}
-    total = sum(weights.values())
-    hit = {c: named.get(c, {}) for c in size}
-    was = sum(w * hit[c].get(before, 0) / size[c][before] for c, w in weights.items()) / total
-    is_ = sum(w * hit[c].get(now, 0) / size[c][now] for c, w in weights.items()) / total
-    p = sum(hit[c].get(q, 0) for c in size for q in (before, now)) / sum(size[c][before] + size[c][now] for c in size)
-    se = (p * (1 - p) / total) ** 0.5
-    return was, is_, (2 * (1 - NormalDist().cdf(abs(is_ - was) / se)) if se else 1.0)
-
-
 def report(posts: Iterable[Mapping[str, Any]], skills: Iterable[Mapping[str, Any]], quarter: str) -> dict[str, Any]:
     before = year_before(quarter)
     # cell -> channel -> quarter -> posts; cell -> skill -> channel -> quarter -> posts naming the skill
@@ -151,7 +120,7 @@ def report(posts: Iterable[Mapping[str, Any]], skills: Iterable[Mapping[str, Any
     }
     cells = []
     for d in LABEL:
-        both = {c: n for c, n in size[d].items() if n[quarter] and n[before]}
+        both = {c: size[d][c] for c in panel(size[d], (before, quarter))}
         n_now = sum(n[quarter] for n in size[d].values())
         n_before = sum(n[before] for n in size[d].values())
         kept_now, kept_before = sum(n[quarter] for n in both.values()), sum(n[before] for n in both.values())
@@ -163,7 +132,8 @@ def report(posts: Iterable[Mapping[str, Any]], skills: Iterable[Mapping[str, Any
         metrics[f"posts.{d}.both_channels_before"] = share(kept_before, n_before)
         mentions = Counter({s: sum(c[quarter] for c in by_channel.values()) for s, by_channel in named[d].items()})
         listed = [s for s, n in mentions.most_common() if n >= MIN_MENTIONS][:TOP_SKILLS]
-        measured = [within_channels(both, named[d][s], quarter, before) for s in listed]
+        found = within_change(both, {s: named[d][s] for s in listed}, before, quarter)
+        measured = [found[s] for s in listed]
         q_values = benjamini_hochberg([m[2] for m in measured])
         rows = []
         for s, (was, is_, pj), qj in zip(listed, measured, q_values, strict=True):

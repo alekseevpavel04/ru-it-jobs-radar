@@ -1,17 +1,18 @@
-"""radar.site.skill_trends: cells by direction and grade, thresholds on posts and mentions, growers by points."""
+"""radar.site.skill_trends: cells, thresholds on posts and mentions, change within channels, growers by points."""
 
-from collections import Counter, defaultdict
 from typing import Any
 
 from radar.site import skill_trends
 
 
-def size(year: int, role: str | None, grade: str | None, posts: int) -> dict[str, Any]:
-    return {"year": year, "role": role, "grade": grade, "posts": posts}
+def size(year: int, role: str | None, grade: str | None, posts: int, channel: str = "c1") -> dict[str, Any]:
+    return {"year": year, "channel": channel, "role": role, "grade": grade, "posts": posts}
 
 
-def mention(year: int, role: str | None, grade: str | None, skill: str, posts: int) -> dict[str, Any]:
-    return {"year": year, "role": role, "grade": grade, "skill": skill, "posts": posts}
+def mention(
+    year: int, role: str | None, grade: str | None, skill: str, posts: int, channel: str = "c1"
+) -> dict[str, Any]:
+    return {"year": year, "channel": channel, "role": role, "grade": grade, "skill": skill, "posts": posts}
 
 
 def test_cells_cover_all_it_the_direction_and_the_grade() -> None:
@@ -57,21 +58,30 @@ def test_fast_growers_rank_by_points_not_by_ratio() -> None:
     # Tiny: 1 -> 20 posts, a twentyfold ratio but 1.9 points; Grown: 100 -> 160 posts, 6 points.
     skills += [mention(2022, "backend", "middle", "Tiny", 1), mention(2025, "backend", "middle", "Tiny", 20)]
     skills += [mention(2022, "backend", "middle", "Grown", 100), mention(2025, "backend", "middle", "Grown", 160)]
-    grown = skill_trends.growing("backend_middle", *_counts(sizes, skills))
-    assert grown.index("Grown") < grown.index("Tiny")
+    m = skill_trends.trends(sizes, skills)
+    listed = [k.split(".")[2] for k in m if k.startswith("share.backend_middle.") and k.endswith(".recent")]
+    assert listed[:30] == [f"S{i}" for i in range(30)]
+    assert listed[30:32] == ["Grown", "Tiny"]
+    assert m["change.backend_middle.Grown"]["value"] == 0.06
 
 
-def _counts(
-    sizes: list[dict[str, Any]], skills: list[dict[str, Any]]
-) -> tuple[dict[str, Counter[int]], dict[str, dict[int, Counter[str]]], Counter[str]]:
-    posts: dict[str, Counter[int]] = defaultdict(Counter)
-    counts: dict[str, dict[int, Counter[str]]] = defaultdict(lambda: defaultdict(Counter))
-    for r in sizes:
-        posts["backend_middle"][r["year"]] += r["posts"]
-    for r in skills:
-        counts["backend_middle"][r["year"]][r["skill"]] += r["posts"]
-    recent: Counter[str] = sum((counts["backend_middle"][y] for y in skill_trends.RECENT_YEARS), Counter())
-    return posts, counts, recent
+def test_a_new_channel_does_not_move_the_change() -> None:
+    # c2 posts only in 2025, none of them with Python: pooled, Python would fall from 30 % to 15 %.
+    sizes = [size(2022, "backend", "middle", 1000), size(2025, "backend", "middle", 1000)]
+    sizes += [size(2025, "backend", "middle", 1000, channel="c2")]
+    skills = [mention(2022, "backend", "middle", "Python", 300), mention(2025, "backend", "middle", "Python", 300)]
+    m = skill_trends.trends(sizes, skills)
+    assert m["share.backend_middle.Python.recent"]["value"] == 0.15
+    assert m["change.backend_middle.Python"] == {"value": 0.0, "p": 1.0, "q_bh": 1.0, "base": 0.3, "recent": 0.3}
+    assert m["panel.backend_middle.recent"] == {"value": 0.5, "n": 1000, "denominator": 2000}
+
+
+def test_skills_tied_in_mentions_go_by_name() -> None:
+    sizes = [size(2025, "backend", "middle", 1000)]
+    skills = [mention(2025, "backend", "middle", f"S{i:02d}", 300 - i) for i in range(29)]
+    skills += [mention(2025, "backend", "middle", name, 50) for name in ("Zeta", "Alpha")]
+    m = skill_trends.trends(sizes, skills)
+    assert "share.backend_middle.Alpha.recent" in m and "share.backend_middle.Zeta.recent" not in m
 
 
 def test_grade_mix_counts_only_posts_that_name_a_grade() -> None:
@@ -84,8 +94,17 @@ def test_grade_mix_counts_only_posts_that_name_a_grade() -> None:
     ]
     m = skill_trends.grade_mix(sizes)
     assert m["grades.2025.graded"] == {"value": 0.5, "n": 100, "denominator": 200}
-    assert m["grades.2025.junior"] == {"value": 0.4, "n": 40, "denominator": 100}
-    assert m["grades.2025.senior"]["n"] == 40
+    assert m["grades.2025.junior"] == {"value": 0.4}
+    assert m["grades.2025.senior"] == {"value": 0.4}
+
+
+def test_a_growing_junior_channel_does_not_lift_the_junior_share() -> None:
+    # Channel j posts juniors only and grows tenfold; inside each channel nothing changes.
+    sizes = [size(y, "backend", "middle", 100, channel="m") for y in (2022, 2026)]
+    sizes += [size(2022, "backend", "junior", 10, channel="j"), size(2026, "backend", "junior", 100, channel="j")]
+    m = skill_trends.grade_mix(sizes)
+    assert m["grades.2022.junior"] == m["grades.2026.junior"]
+    assert m["grades.change.junior"]["value"] == 0.0
 
 
 def test_direction_mix_keeps_only_channels_of_every_year() -> None:
@@ -95,7 +114,7 @@ def test_direction_mix_keeps_only_channels_of_every_year() -> None:
     rows += [{"year": y, "channel": "b", "role": "ml_engineer", "posts": 50} for y in range(2024, 2027)]
     m = skill_trends.direction_mix(rows)
     assert m["directions.panel_channels"] == {"value": 0.5, "n": 1, "denominator": 2}
-    assert m["directions.2026.backend"] == {"value": 0.5, "n": 10, "denominator": 20}
-    assert m["directions.2026.ml"]["n"] == 0
-    assert m["directions.2026.design"]["n"] == 10
-    assert sum(v["n"] for k, v in m.items() if k.startswith("directions.2026.")) == 20
+    assert m["directions.2026.backend"] == {"value": 0.5}
+    assert m["directions.2026.ml"] == {"value": 0.0}
+    assert m["directions.2026.design"] == {"value": 0.5}
+    assert round(sum(v["value"] for k, v in m.items() if k.startswith("directions.2026.")), 4) == 1.0

@@ -394,12 +394,22 @@ TRENDS_RESULT: dict[str, Any] = {
         "share.ml_all.CI/CD.recent": share_metric(305, 3313),
         "share.ml_all.CI/CD.2025": share_metric(170, 1880),
         "share.ml_all.CI/CD.2022": share_metric(50, 542),
+        "change.ml_all.CI/CD": {"value": 0.0331, "p": 0.0004, "q_bh": 0.0008, "base": 0.0589, "recent": 0.092},
+        "change.ml_all.Next.js": {"value": 0.01, "p": 0.2, "q_bh": 0.2, "base": 0.0, "recent": 0.01},
+        "panel.ml_all.recent": share_metric(2021, 3313),
         "posts.ml_junior.recent": {"value": 444},
         "share.ml_junior.A/B-тесты.recent": share_metric(27, 444),
         "grades.2025.graded": share_metric(17079, 27794),
+        "grades.panel_channels": share_metric(39, 58),
+        "grades.panel_posts": share_metric(60000, 66000),
+        "grades.2022.junior": {"value": 0.196},
+        "grades.2025.junior": {"value": 0.197},
+        "grades.change.junior": {"value": 0.001, "p": 0.99, "q_bh": 0.99},
         "directions.panel_channels": share_metric(39, 58),
-        "directions.2025.ml": share_metric(1239, 22944),
-        "grades.2025.junior": share_metric(4354, 17079),
+        "directions.panel_posts": share_metric(110000, 120000),
+        "directions.2022.ml": {"value": 0.027},
+        "directions.2025.ml": {"value": 0.067},
+        "directions.change.ml": {"value": 0.04, "p": 0.0005, "q_bh": 0.001},
     },
 }
 
@@ -716,10 +726,15 @@ def test_skill_trends_keep_the_pooled_cut_apart_from_the_years() -> None:
         ("ml_junior", None, 444),
     ]
     cicd = [s for s in doc.shares if s.skill == "CI/CD"]
-    # only the base year and the pooled recent years reach the site
-    assert [(s.year, s.posts_mentioning, s.posts) for s in cicd] == [(None, 305, 3313), (2022, 50, 542)]
+    # only the pooled recent years reach the site, with the change measured within channels
+    assert [(s.year, s.posts_mentioning, s.posts) for s in cicd] == [(None, 305, 3313)]
+    assert [(c.group, c.skill, c.diff, c.q_bh) for c in doc.changes] == [
+        ("ml_all", "CI/CD", 0.0331, 0.0008),
+        ("ml_all", "Next.js", 0.01, 0.2),
+    ]
     assert any(s.skill == "A/B-тесты" and s.group == "ml_junior" for s in doc.shares)
     assert doc.base_year == 2022
-    assert [(g.year, g.grade, g.posts, g.graded, g.total) for g in doc.grades] == [(2025, "junior", 4354, 17079, 27794)]
-    assert doc.direction_panel_channels == 39
-    assert [(d.year, d.direction, d.posts, d.total) for d in doc.directions] == [(2025, "ml", 1239, 22944)]
+    assert [(g.year, g.graded, g.total) for g in doc.graded] == [(2025, 17079, 27794)]
+    assert [(y.year, y.key, y.share) for y in doc.grades.years] == [(2022, "junior", 0.196), (2025, "junior", 0.197)]
+    assert [(c.key, c.diff, c.q_bh) for c in doc.directions.changes] == [("ml", 0.04, 0.001)]
+    assert (doc.directions.panel_channels, doc.directions.channels, doc.directions.panel_posts) == (39, 58, 110000)
