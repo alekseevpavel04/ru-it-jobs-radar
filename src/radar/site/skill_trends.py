@@ -7,10 +7,10 @@ single-vacancy IT posts after the weekly cross-post dedup), the same as the year
 results/market/facts.json. Only shares a reader can lean on leave the file:
 
 - a skill is listed for a group (own) when MIN_MENTIONS or more posts of RECENT_YEARS name it, the TOP_SKILLS
-  most named of each group, plus the GROWTH_SKILLS that grew most since BASE_YEAR among those with at
-  least GROWTH_MIN_SHARE of the group's posts (a skill with fewer than NEW_BELOW posts in BASE_YEAR counts
-  as new and ranks first); all IT and ML also get the skills listed for their juniors, so a junior share
-  always has the share of everyone next to it;
+  most named of each group, plus the GROWTH_SKILLS outside that top whose share gained most points since
+  BASE_YEAR among those with at least GROWTH_MIN_SHARE of the group's posts (points, not a ratio: a ratio
+  makes a skill with a near-zero base look like the fastest grower); all IT and ML also get the skills
+  listed for their juniors, so a junior share always has the share of everyone next to it;
 - a year of a group's series is kept when the group has MIN_YEAR_POSTS posts or more that year, so the
   ML series starts later and ML juniors have the two-year cut only.
 """
@@ -56,8 +56,9 @@ def growing(
     posts: Mapping[str, Counter[int]],
     counts: Mapping[str, Mapping[int, Counter[str]]],
     recent: Counter[str],
+    skip: Iterable[str] = (),
 ) -> list[str]:
-    """The skills that grew most since BASE_YEAR, new ones first; none for a group without that year."""
+    """The skills outside skip whose share gained most points since BASE_YEAR; none without that year."""
     base_posts = posts[group][BASE_YEAR]
     recent_posts = sum(posts[group][y] for y in RECENT_YEARS)
     if base_posts < MIN_YEAR_POSTS or not recent_posts:
@@ -65,11 +66,12 @@ def growing(
     base = counts[group][BASE_YEAR]
 
     def growth(skill: str) -> float:
-        if base[skill] < NEW_BELOW:
-            return float("inf")
-        return (recent[skill] / recent_posts) / (base[skill] / base_posts) - 1
+        return recent[skill] / recent_posts - base[skill] / base_posts
 
-    candidates = [s for s, n in recent.items() if n >= MIN_MENTIONS and n / recent_posts >= GROWTH_MIN_SHARE]
+    skipped = set(skip)
+    candidates = [
+        s for s, n in recent.items() if s not in skipped and n >= MIN_MENTIONS and n / recent_posts >= GROWTH_MIN_SHARE
+    ]
     return sorted(candidates, key=lambda s: (-growth(s), -recent[s]))[:GROWTH_SKILLS]
 
 
@@ -86,7 +88,7 @@ def trends(sizes: Iterable[Mapping[str, Any]], skills: Iterable[Mapping[str, Any
     recent = {g: sum((counts[g][y] for y in RECENT_YEARS), Counter()) for g in GROUPS}
     own = {g: [s for s, n in recent[g].most_common() if n >= MIN_MENTIONS][:TOP_SKILLS] for g in GROUPS}
     for g in GROUPS:
-        own[g] += [s for s in growing(g, posts, counts, recent[g]) if s not in own[g]]
+        own[g] += growing(g, posts, counts, recent[g], skip=own[g])
     listed = {g: list(own[g]) for g in GROUPS}
     for parent, junior in JUNIORS_OF.items():
         listed[parent] += [s for s in own[junior] if s not in listed[parent]]

@@ -33,13 +33,15 @@ def test_thresholds_and_junior_skills_for_everyone() -> None:
     assert "posts.ml_junior.2025" not in m
 
 
-def test_fast_growers_join_the_top_and_new_ones_lead() -> None:
+def test_fast_growers_rank_by_points_not_by_ratio() -> None:
     sizes = [size(2022, 0, 0, 1000), size(2025, 0, 0, 1000)]
     skills = [mention(2022, 0, 0, f"S{i}", 300 - i) for i in range(35)]
     skills += [mention(2025, 0, 0, f"S{i}", 300 - i) for i in range(35)]
-    skills += [mention(2022, 0, 0, "Grown", 10), mention(2025, 0, 0, "Grown", 40), mention(2025, 0, 0, "Fresh", 30)]
+    # Tiny: 1 -> 20 posts, a twentyfold ratio but 1.9 points; Grown: 100 -> 160 posts, 6 points.
+    skills += [mention(2022, 0, 0, "Tiny", 1), mention(2025, 0, 0, "Tiny", 20)]
+    skills += [mention(2022, 0, 0, "Grown", 100), mention(2025, 0, 0, "Grown", 160)]
     grown = skill_trends.growing("it_all", *_counts(sizes, skills))
-    assert grown[:2] == ["Fresh", "Grown"]
+    assert grown.index("Grown") < grown.index("Tiny")
 
 
 def _counts(

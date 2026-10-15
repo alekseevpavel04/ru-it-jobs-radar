@@ -416,3 +416,12 @@ details.more summary {
 .dot-legend i.less-line {
   background: #cf222e;
 }
+
+.dot-legend i.up-dot {
+  background: #1a7f37;
+  margin-right: 2px;
+}
+
+.dot-legend i.down-dot {
+  background: #cf222e;
+}
