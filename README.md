@@ -8,6 +8,8 @@
 - Модель: <https://huggingface.co/alekseevpavel04/ru-it-vacancy-extractor-qwen3-1.7b>
 - Датасет: <https://huggingface.co/datasets/alekseevpavel04/ru-it-vacancies>
 
+[![Главная сайта: доля IT-постов Telegram с навыком за 2025-2026 против 2022 года, снимок 15.10.2026](docs/img/site_skills.png)](https://alekseevpavel04.github.io/ru-it-jobs-radar/)
+
 Все системы подбирались на dev, отложенный test посчитан один раз в конце (раздел «Как считался тест»). Каждое число в этом файле обёрнуто в HTML-комментарий с путём к файлу и ключом и пересчитывается из [`results/`](results/) скриптом [`scripts/verify_numbers.py`](scripts/verify_numbers.py), расхождение роняет проверку.
 
 ## Главные числа
