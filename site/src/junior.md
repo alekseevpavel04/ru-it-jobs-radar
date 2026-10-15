@@ -38,13 +38,15 @@ const rows = [...jun.values()]
   .map((d) => ({...d, diff: d.jun - d.all}))
   .sort((a, b) => b.diff - a.diff);
 const more = rows.filter((d) => d.diff > 0).length;
+// Blue when juniors are asked the skill more often, red when less; a gap under half a point stays grey.
+const tone = (d) => (Math.abs(d.diff) < 0.005 ? "#9a9890" : d.diff > 0 ? "#2f6fde" : "#cf222e");
 ```
 
 <div class="card">
 
 <p class="note-small">${GROUP_LABEL[juniorGroup]}: ${int(postsOf(juniorGroup))} постов против всех ${int(postsOf(allGroup))} постов группы «${GROUP_LABEL[allGroup]}». Навык показан, если его назвали хотя бы ${int(trends.min_mentions)} постов для джунов. У джуна чаще: ${more} из ${rows.length}.</p>
 
-<div class="dot-legend"><span><i class="jun"></i>стажёры и джуны</span><span><i class="all"></i>все посты группы</span></div>
+<div class="dot-legend"><span><i class="dark"></i>стажёры и джуны</span><span><i class="ring"></i>все посты группы</span><span><i class="more-line"></i>у джуна чаще</span><span><i class="less-line"></i>у джуна реже</span></div>
 
 ```js
 Plot.plot({
@@ -57,10 +59,10 @@ Plot.plot({
   y: {domain: rows.map((d) => d.skill), label: null, tickSize: 0},
   style: {fontSize: "13px"},
   marks: [
-    Plot.link(rows, {y1: "skill", y2: "skill", x1: "all", x2: "jun", stroke: "#d9d6cf", strokeWidth: 4, strokeLinecap: "round"}),
-    Plot.dot(rows, {y: "skill", x: "all", r: 6, fill: COLOR.bar, stroke: "white", strokeWidth: 1.5}),
-    Plot.dot(rows, {y: "skill", x: "jun", r: 7, fill: COLOR.accent, stroke: "white", strokeWidth: 1.5}),
-    Plot.text(rows, {y: "skill", text: (d) => points(d.diff), frameAnchor: "right", textAnchor: "end", dx: width < 600 ? 66 : 92, fill: (d) => (d.diff >= 0.005 ? COLOR.accent : COLOR.muted), fontWeight: 650}),
+    Plot.link(rows, {y1: "skill", y2: "skill", x1: "all", x2: "jun", stroke: tone, strokeWidth: 4, strokeLinecap: "round"}),
+    Plot.dot(rows, {y: "skill", x: "all", r: 5.5, fill: "white", stroke: "#8c8a84", strokeWidth: 2}),
+    Plot.dot(rows, {y: "skill", x: "jun", r: 6.5, fill: "#2b2b2b", stroke: "white", strokeWidth: 1.5}),
+    Plot.text(rows, {y: "skill", text: (d) => points(d.diff), frameAnchor: "right", textAnchor: "end", dx: width < 600 ? 66 : 92, fill: tone, fontWeight: 650}),
     Plot.tip(rows, Plot.pointerY({y: "skill", x: "jun", title: (d) => `${d.skill}\nу джунов ${share(d.j.posts_mentioning, d.j.posts)}\nу всех ${share(d.a.posts_mentioning, d.a.posts)}`}))
   ]
 })
