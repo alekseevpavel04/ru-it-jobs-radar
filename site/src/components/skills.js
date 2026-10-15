@@ -21,7 +21,7 @@ export const DIRECTION = {
   security: "Инфобезопасность"
 };
 // Tiles of the direction mix: the eight skill directions and the roles counted in the mix only.
-const MIX_LABEL = {
+export const MIX_LABEL = {
   ...Object.fromEntries(Object.entries(DIRECTION).filter(([k]) => k !== "it")),
   management: "Управление",
   design: "Дизайн"
@@ -42,7 +42,7 @@ export function change(base, recent) {
 }
 
 export const changeColor = (c) => (!c.significant ? NOISE : c.diff > 0 ? UP : DOWN);
-const changeText = (c) => (c.significant ? points(c.diff) : "≈");
+export const changeText = (c) => (c.significant ? points(c.diff) : "≈");
 
 const BLOCKS = [
   {title: "Растут", color: UP, test: (c) => c.significant && c.diff > 0},

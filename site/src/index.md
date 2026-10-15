@@ -7,8 +7,10 @@ toc: false
 
 ```js
 import {SKILL, int, pct, plural} from "./components/labels.js";
-import {DIRECTION, GRADE_GROUP, change, directionTiles, gradeChart, skillChart} from "./components/skills.js";
+import {DIRECTION, GRADE_GROUP, MIX_LABEL, change, directionTiles, gradeChart, skillChart} from "./components/skills.js";
 import {effectsChart} from "./components/effects.js";
+import {parseStack, stackReport} from "./components/stack.js";
+import {csvLink} from "./components/csv.js";
 
 const trends = FileAttachment("data/skill_trends.json").json();
 const effects = FileAttachment("data/skill_effects.json").json();
@@ -55,12 +57,27 @@ const rows = [...d3.group(trends.shares.filter((s) => s.group === cell), (s) => 
   const b = baseYear ? list.find((s) => s.year === baseYear) : null;
   const base = b ? {share: b.posts_mentioning / b.posts, n: b.posts_mentioning, of: b.posts} : null;
   const now = {n: recent.posts_mentioning, of: recent.posts};
-  return {skill: SKILL[skill] ?? skill, share: now.n / now.of, ...now, base, change: base ? change(base, now) : null};
+  return {key: skill, skill: SKILL[skill] ?? skill, share: now.n / now.of, ...now, base, change: base ? change(base, now) : null};
 });
 // Growth order: significant rises by size, noise in the middle, falls last.
 const growthKey = (r) => (r.change?.significant ? r.change.diff : 0);
 const ordered = rows.slice().sort(sortBy === "share" || !baseYear ? (a, b) => b.share - a.share : (a, b) => growthKey(b) - growthKey(a));
 const label = `${DIRECTION[direction]}, ${GRADE_GROUP[grade].toLowerCase()}`;
+const round4 = (x) => (x == null ? null : Math.round(x * 10000) / 10000);
+const skillsCsv = () =>
+  csvLink(
+    ordered,
+    [
+      ["skill", (r) => r.skill],
+      [`share_${recentLabel}`, (r) => round4(r.share)],
+      ["posts_with_skill", (r) => r.n],
+      ["posts", (r) => r.of],
+      [`share_${baseYear ?? "base"}`, (r) => round4(r.base?.share)],
+      ["change_points", (r) => (r.change ? round4(r.change.diff * 100) : null)],
+      ["beyond_noise", (r) => (r.change ? r.change.significant : null)]
+    ],
+    `skills_${cell}.csv`
+  );
 const top = rows.slice().sort((a, b) => b.share - a.share)[0];
 const riser = rows.filter((r) => r.change?.significant && r.change.diff > 0).sort((a, b) => b.change.diff - a.change.diff)[0];
 const skillTitle = !posts.size
@@ -80,12 +97,39 @@ const skillTitle = !posts.size
 
 ${!posts.size
   ? html`<p>Для сочетания «${label}» данных недостаточно: за ${recentLabel} меньше ${int(trends.min_cell_posts)} постов. Выберите все грейды или другое направление.</p>`
-  : html`<p class="note-small">${baseYear ? html`Доля постов с навыком за ${recentLabel} (${int(posts.get(null))} ${plural(posts.get(null), ["пост", "поста", "постов"])}) против ${baseYear} года (${int(posts.get(baseYear))}), справа изменение в п. п.` : html`Доля постов с навыком за ${recentLabel} (${int(posts.get(null))} ${plural(posts.get(null), ["пост", "поста", "постов"])}); за ${trends.base_year} год данных мало, поэтому без сравнения.`}</p>`}
+  : html`<p class="note-small">${baseYear ? html`Доля постов с навыком за ${recentLabel} (${int(posts.get(null))} ${plural(posts.get(null), ["пост", "поста", "постов"])}) против ${baseYear} года (${int(posts.get(baseYear))}), справа изменение в п. п. ${skillsCsv()}` : html`Доля постов с навыком за ${recentLabel} (${int(posts.get(null))} ${plural(posts.get(null), ["пост", "поста", "постов"])}); за ${trends.base_year} год данных мало, поэтому без сравнения. ${skillsCsv()}`}</p>`}
 
 ```js
 // Always display a node: a block that displays nothing keeps its previous output.
 display(posts.size ? skillChart(ordered, {width, recentLabel, baseYear}) : document.createElement("span"));
 ```
+
+</div>
+
+## Проверьте свой стек
+
+```js
+// The stack lives in the address (#stack=Python,SQL), so a reader can share the result.
+const stackFromHash = () => {
+  const m = location.hash.match(/stack=([^&]*)/);
+  return m ? decodeURIComponent(m[1]) : "";
+};
+const stackInput = Inputs.text({label: "Ваши навыки", placeholder: "Python, SQL, Docker", value: stackFromHash(), width: Math.min(width, 520)});
+const stackText = Generators.input(stackInput);
+```
+
+<div class="filters stacked">${stackInput}</div>
+
+```js
+const mine = parseStack(stackText);
+history.replaceState(null, "", mine.length ? `#stack=${encodeURIComponent(mine.join(","))}` : location.pathname + location.search);
+```
+
+<div class="card">
+
+<p class="note-small">Навыки через запятую; сравнение с направлением и грейдом, выбранными выше: «${label}». Вилка по всем IT-вакансиям из раздела ниже.</p>
+
+${posts.size ? stackReport(rows, effects.effects, {mine, name: (e) => SKILL[e.skill] ?? e.skill, fdr: effects.fdr, label, baseYear}) : html`<p>Для «${label}» данных недостаточно, выберите выше все грейды или другое направление.</p>`}
 
 </div>
 
@@ -102,7 +146,7 @@ const moneyTitle =
 
 <div class="card">
 
-<p class="note-small">Разница середины вилки у вакансий с навыком и у похожих без него; полоса это интервал с поправкой на ${effects.estimated} проверок, и навык с полосой через ноль не доказан; ${int(effects.rows)} вакансий, почти все с портала «Работа в России». <a href="./methodology#skill-effects">Как считается</a>.</p>
+<p class="note-small">Разница середины вилки у вакансий с навыком и у похожих без него; полоса это интервал с поправкой на ${effects.estimated} проверок, и навык с полосой через ноль не доказан; ${int(effects.rows)} вакансий, почти все с портала «Работа в России». <a href="./methodology#skill-effects">Как считается</a>. ${csvLink(effects.effects, [["skill", name], ["effect_pct", (e) => e.pct], ["band_low_pct", (e) => e.pct_ci_low], ["band_high_pct", (e) => e.pct_ci_high], ["q_bh", (e) => e.q_bh], ["comparable_vacancies", (e) => e.rows_kept]], "skill_salary_effects.csv")}</p>
 
 ```js
 effectsChart(effects.effects, {width, name})
@@ -133,7 +177,7 @@ const dirTitle = gainer && loser ? `${gainer.name} растёт, ${loser.name} �
 
 <div class="card">
 
-<p class="note-small">Доля среди всех IT-постов ${int(trends.direction_panel_channels)} каналов, которые писали вакансии каждый год с ${dirYears[0]}-го (так новые каналы не сдвигают доли); остальные ${pct(otherNow.posts / otherNow.total)} это прочие роли; справа изменение с ${dirYears[0]} года в п. п.</p>
+<p class="note-small">Доля среди всех IT-постов ${int(trends.direction_panel_channels)} каналов, которые писали вакансии каждый год с ${dirYears[0]}-го (так новые каналы не сдвигают доли); остальные ${pct(otherNow.posts / otherNow.total)} это прочие роли; справа изменение с ${dirYears[0]} года в п. п. ${csvLink(trends.directions, [["year", (d) => d.year], ["direction", (d) => MIX_LABEL[d.direction] ?? "Прочие роли"], ["share", (d) => Math.round((d.posts / d.total) * 10000) / 10000], ["posts", (d) => d.posts], ["panel_posts", (d) => d.total]], "directions.csv")}</p>
 
 ```js
 directionTiles(trends.directions, {width, partialYear: lastYear})
@@ -145,7 +189,7 @@ directionTiles(trends.directions, {width, partialYear: lastYear})
 
 <div class="card">
 
-<p class="note-small">Доля среди IT-постов, где указан грейд (а он указан в ${Math.round(d3.min(graded) * 100)}-${Math.round(d3.max(graded) * 100)} % постов); ${lastYear} год неполный.</p>
+<p class="note-small">Доля среди IT-постов, где указан грейд (а он указан в ${Math.round(d3.min(graded) * 100)}-${Math.round(d3.max(graded) * 100)} % постов); ${lastYear} год неполный. ${csvLink(trends.grades, [["year", (g) => g.year], ["grade", (g) => g.grade], ["share", (g) => Math.round((g.posts / g.graded) * 10000) / 10000], ["posts", (g) => g.posts], ["graded_posts", (g) => g.graded]], "grades.csv")}</p>
 
 ```js
 gradeChart(trends.grades, {width, partialYear: lastYear})
