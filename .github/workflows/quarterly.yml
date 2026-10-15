@@ -57,7 +57,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "docs/quarterly/${QUARTER}.md" "results/quarterly/${QUARTER}.json"
-          if [ -f "docs/quarterly/${QUARTER}.png" ]; then git add "docs/quarterly/${QUARTER}.png"; fi
+          git add docs/quarterly/"${QUARTER}"*.png
           if ! git diff --cached --quiet; then
             git commit -q -m "Add the quarterly skill report for ${QUARTER}"
             git pull -q --rebase origin main

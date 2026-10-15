@@ -253,24 +253,24 @@ def headline(rep: Mapping[str, Any]) -> str:
     return (text[0].upper() + text[1:] + ".") if text else "Заметных изменений за год нет."
 
 
-def _table(rows: list[tuple[str, dict[str, Any]]], with_direction: bool) -> list[str]:
-    head = (
-        "| Навык | Направление | Год назад | За год | Изменение |"
-        if with_direction
-        else "| Навык | Год назад | За год | Изменение |"
-    )
-    out = [head, "|---|---|---:|---:|---:|" if with_direction else "|---|---:|---:|---:|"]
-    for d, r in rows:
-        where = f" {LABEL[d]} |" if with_direction else ""
-        sign = "▲" if r["diff"] > 0 else "▼"
-        out.append(f"| {r['skill']} |{where} {_pct(r['before'])} | {_pct(r['now'])} | {sign} {_points(r['diff'])} |")
-    return out
+def _signed(x: float) -> str:
+    return _points(x).replace(" п. п.", "")
 
 
-def notes(rep: Mapping[str, Any], image: str | None = None) -> str:
+def direction_line(cell: Mapping[str, Any]) -> str:
+    """One line a direction: its moves beyond noise, rises first."""
+    moved = sorted((r for r in cell["skills"] if r["q"] < FDR), key=lambda r: -r["diff"])
+    ups = [f"{r['skill']} {_signed(r['diff'])}" for r in moved if r["diff"] > 0]
+    downs = [f"{r['skill']} {_signed(r['diff'])}" for r in moved if r["diff"] < 0]
+    body = "; ".join(p for p in (", ".join(ups), ", ".join(downs)) if p) or "заметных изменений нет"
+    return f"- **{LABEL[cell['direction']]}:** {body}."
+
+
+def notes(rep: Mapping[str, Any], images: Mapping[str, str] | None = None) -> str:
+    """The release text; images maps "changes" and "directions" to the addresses of the two pictures."""
     first, middle, end = rep["window"]
     m = rep["metrics"]
-    top = leaders(rep, 1) + leaders(rep, -1)
+    images = images or {}
     lines = [
         f"# Навыки в IT за год {span(middle, end)}",
         "",
@@ -278,26 +278,15 @@ def notes(rep: Mapping[str, Any], image: str | None = None) -> str:
         f"Telegram-каналах. Все навыки по направлениям и грейдам на [сайте]({SITE}).",
         "",
     ]
-    if image:
-        lines += [f"![Что изменилось за год]({image})", ""]
-    if top:
-        lines += ["## Главное", "", *_table(sorted(top, key=lambda x: -x[1]["diff"]), with_direction=True), ""]
-    lines += ["## По направлениям"]
-    for cell in rep["cells"]:
-        d, rows = cell["direction"], cell["skills"]
-        moved = sorted(((d, r) for r in rows if r["q"] < FDR), key=lambda x: -x[1]["diff"])
-        steady = [r["skill"] for r in sorted(rows, key=lambda r: -r["now"]) if r["q"] >= FDR][:6]
-        lines += [
-            "",
-            f"### {LABEL[d]}",
-            "",
-            f"{_int(cell['posts_now'])} {plural(cell['posts_now'], ('пост', 'поста', 'постов'))} за год, "
-            f"{cell['channels']} {plural(cell['channels'], ('канал', 'канала', 'каналов'))} в оба года.",
-            "",
-        ]
-        lines += [*_table(moved, with_direction=False), ""] if moved else ["Заметных изменений нет.", ""]
-        if steady:
-            lines.append(f"Без заметных изменений: {', '.join(steady)}.")
+    if "changes" in images:
+        lines += [f"![Что изменилось за год]({images['changes']})", ""]
+    if "directions" in images:
+        lines += ["## Навыки по направлениям", "", f"![Навыки по направлениям]({images['directions']})", ""]
+    moved = [c for c in rep["cells"] if any(r["q"] < FDR for r in c["skills"])]
+    still = [LABEL[c["direction"]] for c in rep["cells"] if c not in moved]
+    lines += ["## Изменения по направлениям, п. п.", "", *[direction_line(c) for c in moved]]
+    if still:
+        lines += ["", f"Без заметных изменений за год: {', '.join(still)}."]
     lines += [
         "",
         "<details>",
@@ -306,18 +295,18 @@ def notes(rep: Mapping[str, Any], image: str | None = None) -> str:
         f"Последние двенадцать месяцев ({span(middle, end)}) против предыдущих ({span(first, middle)}). "
         f"Каналов {m['channels.now']['value']} за последний год и {m['channels.before']['value']} за предыдущий. "
         "Изменение доли считается внутри каналов, которые публиковали вакансии направления в оба года, с одинаковым "
-        "весом канала в обоих: так новый или замолчавший канал не сдвигает доли сам по себе. В таблицах только "
-        "изменения, которые выходят за случайный разброс и по постам, и по каналам и проходят поправку "
-        f"Бенджамини-Хохберга на {round(FDR * 100)} % среди навыков направления. Роль, грейд и навыки из текста "
-        "поста читает модель проекта. Числа выпуска лежат в `results/quarterly/`, код в `src/radar/site/quarterly.py`.",
+        "весом канала в обоих: так новый или замолчавший канал не сдвигает доли сам по себе. Цветом и числом "
+        "отмечены только изменения, которые выходят за случайный разброс и по постам, и по каналам и проходят "
+        f"поправку Бенджамини-Хохберга на {round(FDR * 100)} % среди навыков направления. Роль, грейд и навыки из "
+        "текста поста читает модель проекта. Числа выпуска лежат в `results/quarterly/`, код в "
+        "`src/radar/site/quarterly.py`.",
         "",
         "</details>",
     ]
     return "\n".join(lines) + "\n"
 
 
-def chart(rows: list[tuple[str, str, float]], subtitle: str, path: Path) -> None:
-    """Bars of the largest changes, each skill once and at most three a direction: (direction, skill, change)."""
+def _style() -> Any:
     import matplotlib
 
     matplotlib.use("Agg")
@@ -326,7 +315,80 @@ def chart(rows: list[tuple[str, str, float]], subtitle: str, path: Path) -> None
 
     fonts = {f.name for f in font_manager.fontManager.ttflist}
     plt.rcParams.update({"font.family": "Segoe UI" if "Segoe UI" in fonts else "DejaVu Sans", "font.size": 13})
-    up, down, muted, ink = "#1a7f37", "#cf222e", "#6b6963", "#1a1a1a"
+    return plt
+
+
+UP, DOWN, NOISE, BASE_DOT, MUTED, INK = "#1a7f37", "#cf222e", "#9a9890", "#bdbab2", "#6b6963", "#1a1a1a"
+
+
+def directions_chart(rep: Mapping[str, Any], subtitle: str, path: Path, per_panel: int = 8) -> None:
+    """A panel a direction that moved: first its skills that changed beyond noise, then its most named ones for
+    context; a small grey dot a year earlier, a line to the dot of the last year, coloured when the change is
+    beyond noise. Directions without a move get no panel."""
+    plt = _style()
+    cells = [c for c in rep["cells"] if any(r["q"] < FDR for r in c["skills"])]
+    cols = 2
+    rows_n = -(-len(cells) // cols)
+    fig, axes = plt.subplots(rows_n, cols, figsize=(14, 2.75 * rows_n + 1.4), squeeze=False)
+    for ax in axes.flat[len(cells) :]:
+        ax.set_axis_off()
+    for ax, cell in zip(axes.flat, cells, strict=False):
+        moved = sorted((r for r in cell["skills"] if r["q"] < FDR), key=lambda r: -abs(r["diff"]))[:per_panel]
+        steady = [r for r in sorted(cell["skills"], key=lambda r: -r["now"]) if r not in moved]
+        top = sorted(moved + steady[: per_panel - len(moved)], key=lambda r: r["now"])
+        reach = max(max(r["now"], r["before"]) for r in top) * 100 * 1.28
+        for i, r in enumerate(top):
+            color = (UP if r["diff"] > 0 else DOWN) if r["q"] < FDR else NOISE
+            was, now = r["before"] * 100, r["now"] * 100
+            ax.plot([was, now], [i, i], color=BASE_DOT, lw=2.2, solid_capstyle="round", zorder=1)
+            ax.scatter([was], [i], s=22, color=BASE_DOT, zorder=2)
+            ax.scatter([now], [i], s=60, color=color, zorder=3, edgecolors="white", linewidths=0.8)
+            label = f"{_pct(r['now'])}" + (f"  {_signed(r['diff'])}" if r["q"] < FDR else "")
+            ax.text(
+                max(was, now) + reach * 0.03,
+                i,
+                label,
+                va="center",
+                fontsize=10.5,
+                color=color if r["q"] < FDR else MUTED,
+                fontweight="bold" if r["q"] < FDR else "normal",
+            )
+        ax.set_yticks(range(len(top)), [r["skill"] for r in top])
+        ax.tick_params(axis="y", length=0, labelsize=11)
+        ax.set_xlim(0, reach)
+        ax.set_xticks([])
+        for side in ("top", "right", "left", "bottom"):
+            ax.spines[side].set_visible(False)
+        ax.set_title(
+            f"{LABEL[cell['direction']]}  ·  {_int(cell['posts_now'])} "
+            f"{plural(cell['posts_now'], ('пост', 'поста', 'постов'))}",
+            loc="left",
+            fontsize=13,
+            fontweight="bold",
+            color=INK,
+            pad=6,
+        )
+    fig.subplots_adjust(top=1 - 1.25 / fig.get_figheight(), hspace=0.45, wspace=0.55)
+    fig.text(0.02, 0.995, "Навыки по направлениям", fontsize=19, fontweight="bold", color=INK, va="top")
+    fig.text(0.02, 0.995 - 0.45 / fig.get_figheight(), subtitle, fontsize=12.5, color=MUTED, va="top")
+    fig.text(0.02, 0.003, f"Радар IT-вакансий · {SITE}", fontsize=9.5, color=MUTED, va="bottom")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(path, dpi=170, bbox_inches="tight", pad_inches=0.25)
+    plt.close(fig)
+
+
+def directions_subtitle(quarter: str) -> str:
+    _, middle, end = window(quarter)
+    return (
+        f"Доля IT-постов направления с навыком: маленькая точка год назад, большая {span(middle, end)}.\n"
+        "Зелёным и красным навыки, чья доля сдвинулась сверх случайного разброса, серым самые частые для сравнения"
+    )
+
+
+def chart(rows: list[tuple[str, str, float]], subtitle: str, path: Path) -> None:
+    """Bars of the largest changes, each skill once and at most three a direction: (direction, skill, change)."""
+    plt = _style()
+    up, down, muted, ink = UP, DOWN, MUTED, INK
     picked: list[tuple[str, str, float]] = []
     per: Counter[str] = Counter()
     seen: set[str] = set()
@@ -400,14 +462,17 @@ def main() -> int:
         fdr=FDR,
     )
     NOTES.mkdir(parents=True, exist_ok=True)
-    picture = NOTES / f"{quarter}.png"
+    changes, grid = NOTES / f"{quarter}.png", NOTES / f"{quarter}_directions.png"
     found = [(d, r["skill"], r["diff"]) for d, r in moves(rep)]
     if found:
-        chart(found, chart_subtitle(quarter), picture)
-    # an absolute address: the same text becomes the release notes, where a relative path does not resolve
-    image = f"{RAW}{picture.relative_to(ROOT).as_posix()}" if found else None
+        chart(found, chart_subtitle(quarter), changes)
+    directions_chart(rep, directions_subtitle(quarter), grid)
+    # absolute addresses: the same text becomes the release notes, where a relative path does not resolve
+    images = {"directions": f"{RAW}{grid.relative_to(ROOT).as_posix()}"}
+    if found:
+        images["changes"] = f"{RAW}{changes.relative_to(ROOT).as_posix()}"
     out = NOTES / f"{quarter}.md"
-    out.write_text(notes(rep, image), encoding="utf-8", newline="\n")
+    out.write_text(notes(rep, images), encoding="utf-8", newline="\n")
     print(f"{len(rep['metrics'])} metrics -> {path}; notes -> {out}")
     return 0
 
