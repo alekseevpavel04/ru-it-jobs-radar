@@ -35,7 +35,6 @@ TOP_SKILLS = 30
 BASE_YEAR = 2022
 GROWTH_SKILLS = 10
 GROWTH_MIN_SHARE = 0.005
-NEW_BELOW = 10
 
 _UNITS = f"FROM staging.int_extracted_weekly_units WHERE source = 'telegram' AND is_it AND toYear(week) IN {YEARS}"
 SIZE_SQL = f"""
@@ -125,7 +124,6 @@ def main() -> int:
         base_year=BASE_YEAR,
         growth_skills=GROWTH_SKILLS,
         growth_min_share=GROWTH_MIN_SHARE,
-        new_below=NEW_BELOW,
         definitions={
             "groups": "it_all: Telegram single-vacancy IT posts; it_junior: graded intern or junior; ml_all: roles "
             f"{', '.join(ML_ROLES)}; ml_junior: both.",

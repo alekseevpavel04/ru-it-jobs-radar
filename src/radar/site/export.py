@@ -404,7 +404,6 @@ class SkillTrends(Provenance):
     base_year: int
     min_mentions: int
     min_year_posts: int
-    new_below: int
     groups: list[SkillGroupYear]
     shares: list[SkillShare]
 
@@ -908,7 +907,6 @@ def skill_trends(doc: Mapping[str, Any], source_file: str) -> SkillTrends:
         base_year=doc["base_year"],
         min_mentions=doc["min_mentions"],
         min_year_posts=doc["min_year_posts"],
-        new_below=doc["new_below"],
         groups=sorted(groups, key=lambda r: (r.group, r.year or 0)),
         shares=sorted(shares, key=lambda r: (r.group, r.skill, r.year or 0)),
     )

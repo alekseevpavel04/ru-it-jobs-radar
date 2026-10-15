@@ -1,8 +1,8 @@
 {
   "source_file": "results/market/skill_trends.json",
   "source_script": "src/radar/site/skill_trends.py",
-  "commit": "eb43a5f-dirty",
-  "created_at": "2026-10-15T07:56:06+00:00",
+  "commit": "0fb3172-dirty",
+  "created_at": "2026-10-15T08:17:34+00:00",
   "recent_years": [
     2025,
     2026
@@ -10,7 +10,6 @@
   "base_year": 2022,
   "min_mentions": 20,
   "min_year_posts": 300,
-  "new_below": 10,
   "groups": [
     {
       "group": "it_all",

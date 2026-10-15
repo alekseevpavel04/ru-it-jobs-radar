@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/skill_trends.py",
   "command": "python -m radar.site.skill_trends",
-  "commit": "eb43a5f-dirty",
-  "created_at": "2026-10-15T07:56:06+00:00",
+  "commit": "0fb3172-dirty",
+  "created_at": "2026-10-15T08:17:34+00:00",
   "metrics": {
     "posts.it_all.recent": {
       "value": 46424,
@@ -5881,7 +5881,6 @@
   "base_year": 2022,
   "growth_skills": 10,
   "growth_min_share": 0.005,
-  "new_below": 10,
   "definitions": {
     "groups": "it_all: Telegram single-vacancy IT posts; it_junior: graded intern or junior; ml_all: roles data_scientist, ml_engineer, mlops; ml_junior: both.",
     "share": "posts of the group naming the skill (extracted skills) of the group's posts; recent pools 2025-2026, a year by the week's Monday."

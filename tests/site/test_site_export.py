@@ -384,7 +384,6 @@ TRENDS_RESULT: dict[str, Any] = {
     "base_year": 2022,
     "min_mentions": 20,
     "min_year_posts": 300,
-    "new_below": 10,
     "metrics": {
         "posts.ml_all.recent": {"value": 3313},
         "posts.ml_all.2025": {"value": 1880},

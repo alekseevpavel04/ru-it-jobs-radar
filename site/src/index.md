@@ -7,7 +7,7 @@ toc: false
 
 ```js
 import {SKILL, int, plural} from "./components/labels.js";
-import {GROUP_LABEL, LOOKS, change, skillChart} from "./components/skills.js";
+import {GROUP_LABEL, HEADS, change, skillChart} from "./components/skills.js";
 
 const trends = FileAttachment("data/skill_trends.json").json();
 ```
@@ -19,12 +19,12 @@ const groupInput = Inputs.radio(new Map([["Всё IT", "it_all"], ["ML", "ml_all
 const group = Generators.input(groupInput);
 const sortInput = Inputs.radio(new Map([["по доле", "share"], ["по росту", "growth"]]), {label: "Порядок", value: "share"});
 const sortBy = Generators.input(sortInput);
-// Temporary: four ways to show the numbers, for the author to pick one.
-const lookInput = Inputs.radio(LOOKS, {label: "Числа", value: "columns"});
-const look = Generators.input(lookInput);
+// Temporary: four looks of the block headings, for the author to pick one.
+const headInput = Inputs.radio(HEADS, {label: "Заголовки", value: "big"});
+const head = Generators.input(headInput);
 ```
 
-<div class="filters">${groupInput}${sortInput}${lookInput}</div>
+<div class="filters stacked">${groupInput}${sortInput}${headInput}</div>
 
 ```js
 const posts = new Map(trends.groups.filter((g) => g.group === group).map((g) => [g.year, g.posts]));
@@ -39,7 +39,7 @@ const rows = [...d3.group(trends.shares.filter((s) => s.group === group && own.h
   const series = years.map((y) => list.find((s) => s.year === y)).map((s, i) => ({year: years[i], share: s.posts_mentioning / s.posts, n: s.posts_mentioning, of: s.posts}));
   const base = series.find((x) => x.year === baseYear);
   const now = {n: recent.posts_mentioning, of: recent.posts};
-  return {skill: SKILL[skill] ?? skill, share: now.n / now.of, ...now, base, series, change: change(base, now, trends.new_below)};
+  return {skill: SKILL[skill] ?? skill, share: now.n / now.of, ...now, base, series, change: change(base, now)};
 });
 // Growth order: significant rises by size, noise in the middle, falls last.
 const growthKey = (r) => (r.change.significant ? r.change.diff : 0);
@@ -48,10 +48,10 @@ const ordered = rows.slice().sort(sortBy === "share" ? (a, b) => b.share - a.sha
 
 <div class="card">
 
-<p class="note-small">${GROUP_LABEL[group]}: доля постов, где назван навык, за ${recentLabel} (${int(posts.get(null))} постов) и в ${baseYear} году (${int(posts.get(baseYear))}). Справа изменение доли с ${baseYear} года в процентных пунктах; «≈» значит, что изменение не выходит за случайный разброс, «новый навык» значит, что в ${baseYear} году его назвали меньше ${trends.new_below} постов. В списке ${rows.length} ${plural(rows.length, ["навык", "навыка", "навыков"])}: самые частые и самые быстрорастущие. База ${baseYear} год: с него набор каналов устойчивый, <a href="./methodology#telegram">почему</a>. Наведите на строку, чтобы увидеть долю по каждому году.</p>
+<p class="note-small">${GROUP_LABEL[group]}: доля постов, где назван навык, за ${recentLabel} (${int(posts.get(null))} постов) и в ${baseYear} году (${int(posts.get(baseYear))}). Справа изменение доли с ${baseYear} года в процентных пунктах; «≈» значит, что изменение не выходит за случайный разброс. В списке ${rows.length} ${plural(rows.length, ["навык", "навыка", "навыков"])}: самые частые и самые быстрорастущие. База ${baseYear} год: с него набор каналов устойчивый, <a href="./methodology#telegram">почему</a>. Наведите на строку, чтобы увидеть долю по каждому году.</p>
 
 ```js
-skillChart(ordered, {width, recentLabel, baseYear, look})
+skillChart(ordered, {width, recentLabel, baseYear, head})
 ```
 
 </div>
