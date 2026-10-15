@@ -7,7 +7,7 @@ toc: false
 
 ```js
 import {SKILL, int, plural} from "./components/labels.js";
-import {GROUP_LABEL, VARIANTS, change, skillChart} from "./components/skills.js";
+import {GROUP_LABEL, LOOKS, change, skillChart} from "./components/skills.js";
 
 const trends = FileAttachment("data/skill_trends.json").json();
 ```
@@ -19,12 +19,12 @@ const groupInput = Inputs.radio(new Map([["Всё IT", "it_all"], ["ML", "ml_all
 const group = Generators.input(groupInput);
 const sortInput = Inputs.radio(new Map([["по доле", "share"], ["по росту", "growth"]]), {label: "Порядок", value: "share"});
 const sortBy = Generators.input(sortInput);
-// Temporary: looks of the dumbbell for the author to pick one.
-const variantInput = Inputs.radio(VARIANTS, {label: "Вид", value: "colored_arrow_groups"});
-const variant = Generators.input(variantInput);
+// Temporary: four ways to show the numbers, for the author to pick one.
+const lookInput = Inputs.radio(LOOKS, {label: "Числа", value: "columns"});
+const look = Generators.input(lookInput);
 ```
 
-<div class="filters">${groupInput}${sortInput}${variantInput}</div>
+<div class="filters">${groupInput}${sortInput}${lookInput}</div>
 
 ```js
 const posts = new Map(trends.groups.filter((g) => g.group === group).map((g) => [g.year, g.posts]));
@@ -51,7 +51,7 @@ const ordered = rows.slice().sort(sortBy === "share" ? (a, b) => b.share - a.sha
 <p class="note-small">${GROUP_LABEL[group]}: доля постов, где назван навык, за ${recentLabel} (${int(posts.get(null))} постов) и в ${baseYear} году (${int(posts.get(baseYear))}). Справа изменение доли с ${baseYear} года в процентных пунктах; «≈» значит, что изменение не выходит за случайный разброс, «новый навык» значит, что в ${baseYear} году его назвали меньше ${trends.new_below} постов. В списке ${rows.length} ${plural(rows.length, ["навык", "навыка", "навыков"])}: самые частые и самые быстрорастущие. База ${baseYear} год: с него набор каналов устойчивый, <a href="./methodology#telegram">почему</a>. Наведите на строку, чтобы увидеть долю по каждому году.</p>
 
 ```js
-skillChart(ordered, {width, recentLabel, baseYear, variant})
+skillChart(ordered, {width, recentLabel, baseYear, look})
 ```
 
 </div>
