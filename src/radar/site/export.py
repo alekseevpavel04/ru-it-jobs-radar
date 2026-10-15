@@ -50,6 +50,8 @@ SURVIVAL = RESULTS / "models" / "survival.json"
 FORECAST = RESULTS / "models" / "forecast.json"
 MARKET_FACTS = RESULTS / "market" / "facts.json"
 SKILL_EFFECTS = RESULTS / "models" / "skill_effects.json"
+# The same estimate without one-bound vacancies and placeholder midpoints (radar.models.skill_effects --sensitivity)
+SKILL_EFFECTS_SENSITIVITY = RESULTS / "models" / "skill_effects_sensitivity.json"
 HISTORY = RESULTS / "dbt" / "history.json"
 SKILL_TRENDS = RESULTS / "market" / "skill_trends.json"
 FORECAST_SOURCE = "telegram"
@@ -362,6 +364,9 @@ class SkillEffect(Row):
     pct_ci_high: float
     p_holm: float
     q_bh: float
+    # The sensitivity run: True when it confirms the effect (same sign, q below the rate), False when it does
+    # not, None when it could not estimate the skill.
+    robust: bool | None = None
 
 
 class SkillEffects(Provenance):
@@ -870,7 +875,9 @@ def telegram_years(doc: Mapping[str, Any], source_file: str) -> TelegramYears:
     )
 
 
-def skill_effects(doc: Mapping[str, Any], source_file: str) -> SkillEffects:
+def skill_effects(
+    doc: Mapping[str, Any], source_file: str, sensitivity: Mapping[str, Any] | None = None
+) -> SkillEffects:
     """The intervals are the false coverage rate ones of Benjamini and Yekutieli (2005) for the skills the
     Benjamini-Hochberg test selects: level 1 - R * alpha / m with R selected of m. At that level an interval
     leaves out zero exactly when the test selects the skill, so the band agrees with the block it sits in;
@@ -885,6 +892,14 @@ def skill_effects(doc: Mapping[str, Any], source_file: str) -> SkillEffects:
     def pct(theta: float) -> float:
         return round(100 * (math.exp(theta) - 1), 1)
 
+    checked = {m["skill"]: m for k, m in (sensitivity or {}).get("metrics", {}).items() if k.startswith("effect.")}
+
+    def robust(m: Mapping[str, Any]) -> bool | None:
+        other = checked.get(m["skill"])
+        if other is None:
+            return None
+        return bool(other["q_bh"] < fdr and (other["value"] > 0) == (m["value"] > 0))
+
     effects = [
         SkillEffect(
             skill=m["skill"],
@@ -896,6 +911,7 @@ def skill_effects(doc: Mapping[str, Any], source_file: str) -> SkillEffects:
             pct_ci_high=pct(m["value"] + z * m["se"]),
             p_holm=m["p_holm"],
             q_bh=m["q_bh"],
+            robust=robust(m) if sensitivity else None,
         )
         for key, m in metrics.items()
         if key.startswith("effect.")
@@ -1074,7 +1090,9 @@ def build(
         "lifetime.json": lifetime(survival, rel[SURVIVAL]),
         "forecast.json": forecast_doc,
         "telegram_years.json": telegram_years(results[MARKET_FACTS], rel[MARKET_FACTS]),
-        "skill_effects.json": skill_effects(results[SKILL_EFFECTS], rel[SKILL_EFFECTS]),
+        "skill_effects.json": skill_effects(
+            results[SKILL_EFFECTS], rel[SKILL_EFFECTS], results.get(SKILL_EFFECTS_SENSITIVITY)
+        ),
         "vacancy_history.json": vacancy_history(results[HISTORY], rel[HISTORY]),
         "skill_trends.json": skill_trends(results[SKILL_TRENDS], rel[SKILL_TRENDS]),
         **files,
@@ -1141,7 +1159,7 @@ def main() -> int:
         forecast_history=history,
         results={
             path: json.loads(path.read_text(encoding="utf-8"))
-            for path in (MARKET_FACTS, SKILL_EFFECTS, HISTORY, SKILL_TRENDS)
+            for path in (MARKET_FACTS, SKILL_EFFECTS, SKILL_EFFECTS_SENSITIVITY, HISTORY, SKILL_TRENDS)
         },
     )
     sizes = write(docs, args.out)

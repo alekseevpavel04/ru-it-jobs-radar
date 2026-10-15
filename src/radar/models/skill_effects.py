@@ -54,6 +54,11 @@ log = logging.getLogger("radar.models.skill_effects")
 
 CONFIG = ROOT / "configs" / "skill_effects.toml"
 RESULT = "models/skill_effects.json"
+# A vacancy with one bound gets that bound as its midpoint ("от 100 000" -> 100 000), which overstates the
+# midpoint of "до" and understates "от"; a few midpoints are placeholders such as 999 999. The sensitivity run
+# drops both and is compared with the main one.
+SENSITIVITY = "models/skill_effects_sensitivity.json"
+SENSITIVITY_CAP = 500_000
 CATEGORICAL = ("role_bucket", "grade", "region_group", "work_format", "employment_type", "source")
 LEARNER_INT = ("max_iter", "max_leaf_nodes", "min_samples_leaf", "n_iter_no_change")
 LEARNER_FLOAT = ("learning_rate", "l2_regularization", "validation_fraction")
@@ -418,17 +423,29 @@ def key(skill: str) -> str:
     return skill.replace(":", "_")
 
 
+def sensitivity_rows(frame: pd.DataFrame) -> pd.DataFrame:
+    keep = frame["salary_from"].notna() & frame["salary_to"].notna() & (frame["salary_mid"] < SENSITIVITY_CAP)
+    return frame[keep].reset_index(drop=True)
+
+
 def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
     ap = argparse.ArgumentParser(prog="python -m radar.models.skill_effects", description=__doc__.splitlines()[0])
     ap.add_argument("--frame", type=Path, default=None, help="salary frame (parquet), default the saved one")
     ap.add_argument("--config", type=Path, default=CONFIG)
     ap.add_argument("--limit", type=int, help="probe: estimate only the first skills, write nothing")
+    ap.add_argument(
+        "--sensitivity",
+        action="store_true",
+        help=f"only vacancies with both bounds and a midpoint under {SENSITIVITY_CAP:,} rub; writes {SENSITIVITY}",
+    )
     args = ap.parse_args(argv)
     cfg = load_config(args.config)
     path = args.frame or frame_path()
     frame = with_features(pd.read_parquet(path), cfg.feature_set)
     frame = frame[frame["split"].isin(cfg.splits)].reset_index(drop=True)
+    if args.sensitivity:
+        frame = sensitivity_rows(frame)
     des = design(frame, cfg.min_rows)
     log.info("%d rows, %d treated skills, %d controls", len(frame), len(des.skills), des.controls.shape[1])
     started = time.perf_counter()
@@ -447,7 +464,7 @@ def main(argv: list[str] | None = None) -> int:
     metrics |= {f"overlap.{key(skill)}": row | {"skill": skill} for skill, row in out["overlap"].items()}
     metrics |= {f"effect.{key(skill)}": row | {"skill": skill} for skill, row in out["rows"].items()}
     written = write_result(
-        RESULT,
+        SENSITIVITY if args.sensitivity else RESULT,
         metrics,
         source_script="src/radar/models/skill_effects.py",
         definitions=DEFINITIONS,

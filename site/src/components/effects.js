@@ -37,7 +37,8 @@ function blockPlot(rows, {width, color, reach, name, row, font}) {
       Plot.ruleX([0], {stroke: "#9a9890"}),
       Plot.link(rows, {y1: name, y2: name, x1: "pct_ci_low", x2: "pct_ci_high", stroke: color, strokeOpacity: 0.35, strokeWidth: band, strokeLinecap: "round"}),
       Plot.dot(rows, {y: name, x: "pct", r: dot, fill: color, stroke: "white", strokeWidth: 1.5}),
-      Plot.text(rows, {y: name, text: (e) => signedPct(e.pct), frameAnchor: "right", textAnchor: "end", dx: narrow ? 50 : 76, fill: color === NOISE ? COLOR.muted : color, fontWeight: 700}),
+      // An asterisk marks a found effect that the sensitivity run does not confirm (footnote below the chart).
+      Plot.text(rows, {y: name, text: (e) => `${signedPct(e.pct)}${color !== NOISE && e.robust !== true ? "*" : ""}`, frameAnchor: "right", textAnchor: "end", dx: narrow ? 50 : 76, fill: color === NOISE ? COLOR.muted : color, fontWeight: 700}),
       Plot.text(rows, {y: name, text: (e) => int(e.rows_kept), frameAnchor: "right", textAnchor: "end", dx: right - 6, fill: COLOR.muted}),
     ]
   });
@@ -48,8 +49,17 @@ export function effectsChart(effects, {width, name, row = 16, font = 14}) {
   const reach = Math.max(...rows.map((e) => Math.max(Math.abs(e.pct_ci_low), Math.abs(e.pct_ci_high)))) * 1.05;
   const head = html`<div class="effects-head"><span>эффект</span><span>сравнимых<br>вакансий</span></div>`;
   const parts = BLOCKS.map((b) => [b, rows.filter(b.test)]).filter(([, part]) => part.length);
+  const unconfirmed = rows.filter((e) => e.q_bh < FDR && e.robust !== true);
+  const failed = unconfirmed.filter((e) => e.robust === false).map(name);
+  const unchecked = unconfirmed.filter((e) => e.robust == null).map(name);
+  const note = unconfirmed.length
+    ? html`<p class="note-small">* Проверка без вакансий с одной границей вилки и с серединой от 500 тыс. руб.: ${[
+        failed.length ? `эффект не доказан (${failed.join(", ")})` : "",
+        unchecked.length ? `не оценивается, вакансий с навыком остаётся слишком мало (${unchecked.join(", ")})` : ""
+      ].filter(Boolean).join("; ")}.</p>`
+    : "";
   return html`<div>${head}${parts.map(
     ([b, part]) =>
       html`<div class="block-head" style=${`--block: ${b.color}`}>${b.title}</div>${blockPlot(part, {width, color: b.color, reach, name, row, font})}`
-  )}</div>`;
+  )}${note}</div>`;
 }

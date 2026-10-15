@@ -706,6 +706,15 @@ def test_skill_effects_copy_the_estimates_and_check_their_count() -> None:
         skill_effects(broken, "results/models/skill_effects.json")
 
 
+def test_the_sensitivity_run_marks_which_effects_hold() -> None:
+    kube = {**effect("Kubernetes", 162, 40.0, -5.4, 1.0), "value": -0.05, "q_bh": 0.01}
+    sensitivity = {"metrics": {"effect.Kubernetes": kube}}
+    doc = skill_effects(EFFECTS_RESULT, "results/models/skill_effects.json", sensitivity)
+    # Kubernetes is confirmed there; Microservices is missing from the sensitivity run, so it is not checked
+    assert {e.skill: e.robust for e in doc.effects} == {"Kubernetes": True, "Microservices": None}
+    assert all(e.robust is None for e in skill_effects(EFFECTS_RESULT, "results/models/skill_effects.json").effects)
+
+
 def test_vacancy_history_takes_the_snapshot_counts() -> None:
     doc = vacancy_history(HISTORY_RESULT, "results/dbt/history.json")
     assert (doc.vacancies_tracked, doc.closed, doc.reopened, doc.reposted) == (25992, 15173, 2256, 2820)
