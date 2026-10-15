@@ -21,6 +21,8 @@ const years = FileAttachment("data/telegram_years.json").json();
 const name = (e) => SKILL[e.skill] ?? e.skill;
 const level = Math.round(effects.ci_level * 100);
 const k8s = effects.effects.find((e) => e.skill === "Kubernetes");
+// Temporary: row density for the author to pick one.
+const compact = view(Inputs.radio(new Map([["обычная", false], ["компактная", true]]), {label: "Плотность", value: false}));
 ```
 
 <div class="card">
@@ -28,7 +30,7 @@ const k8s = effects.effects.find((e) => e.skill === "Kubernetes");
 <p class="note-small">Сравниваются похожие вакансии: та же роль, грейд, регион, опыт, формат работы и остальной стек, одни с навыком, другие без. Точка показывает, на сколько процентов выше или ниже середина вилки у вакансий с навыком, полоса показывает ${level} % интервал. Чем меньше сравнимых вакансий, тем шире полоса: у Kubernetes их ${int(k8s.rows_kept)}, поэтому его ${signedPct(k8s.pct)} неотличимы от нуля. Навык попадает в «повышают» или «понижают», если эффект подтверждён с поправкой на ${effects.estimated} проверок (доля ложных находок до ${Math.round(FDR * 100)} %, поправка Бенджамини-Хохберга): таких ${effects.significant_bh} из ${effects.estimated}.</p>
 
 ```js
-effectsChart(effects.effects, {width, name})
+effectsChart(effects.effects, {width, name, compact})
 ```
 
 <p class="note-small">${int(effects.rows)} вакансий с вилкой в рублях, почти все с портала «Работа в России». Это связь, а не обещание: выучив навык, этих процентов к офферу не получишь. <a href="./methodology#skill-effects">Ограничения оценки</a>.</p>
