@@ -30,7 +30,7 @@ function blockPlot(rows, {width, color, reach, name, row, font}) {
     marginTop: 4,
     marginBottom: 8,
     x: {domain: [-reach, reach], axis: null},
-    // On a phone a long skill name is cut short; the tooltip has it whole.
+    // On a phone a long skill name is cut short.
     y: {domain: rows.map(name), label: null, tickSize: 0, tickFormat: (t) => (narrow && t.length > 15 ? `${t.slice(0, 14)}…` : t)},
     style: {fontSize: `${narrow ? 12 : font}px`},
     marks: [
@@ -39,18 +39,6 @@ function blockPlot(rows, {width, color, reach, name, row, font}) {
       Plot.dot(rows, {y: name, x: "pct", r: dot, fill: color, stroke: "white", strokeWidth: 1.5}),
       Plot.text(rows, {y: name, text: (e) => signedPct(e.pct), frameAnchor: "right", textAnchor: "end", dx: narrow ? 50 : 76, fill: color === NOISE ? COLOR.muted : color, fontWeight: 700}),
       Plot.text(rows, {y: name, text: (e) => int(e.rows_kept), frameAnchor: "right", textAnchor: "end", dx: right - 6, fill: COLOR.muted}),
-      Plot.tip(
-        rows,
-        Plot.pointerY({
-          y: name,
-          x: "pct",
-          title: (e) =>
-            `${name(e)}: ${signedPct(e.pct)}, интервал от ${signedPct(e.pct_ci_low)} до ${signedPct(e.pct_ci_high)}\nсравнимых вакансий ${int(e.rows_kept)}: ${int(e.rows_kept_with_skill)} с навыком и ${int(e.rows_kept - e.rows_kept_with_skill)} без` +
-            (e.q_bh >= FDR && (e.pct_ci_low > 0 || e.pct_ci_high < 0)
-              ? "\nинтервал не задевает ноль, но с поправкой на число проверенных навыков эффект не подтверждён"
-              : "")
-        })
-      )
     ]
   });
 }

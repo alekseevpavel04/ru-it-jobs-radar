@@ -97,3 +97,5 @@ def test_direction_mix_keeps_only_channels_of_every_year() -> None:
     assert m["directions.panel_channels"] == {"value": 0.5, "n": 1, "denominator": 2}
     assert m["directions.2026.backend"] == {"value": 0.5, "n": 10, "denominator": 20}
     assert m["directions.2026.ml"]["n"] == 0
+    assert m["directions.2026.design"]["n"] == 10
+    assert sum(v["n"] for k, v in m.items() if k.startswith("directions.2026.")) == 20

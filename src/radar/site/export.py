@@ -894,7 +894,8 @@ def skill_trends(doc: Mapping[str, Any], source_file: str) -> SkillTrends:
         year = None if rest[-1] == "recent" else int(rest[-1])
         if kind == "posts":
             groups.append(SkillGroupYear(group=rest[0], year=year, posts=m["value"]))
-        elif kind == "share":
+        elif kind == "share" and year in (None, doc["base_year"]):
+            # the site compares the pooled recent years with the base year; other years stay in results/
             skill = ".".join(rest[1:-1])
             shares.append(
                 SkillShare(

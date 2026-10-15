@@ -260,6 +260,9 @@ details.more summary {
 .direction-name {
   font-size: 13px;
   color: var(--theme-foreground-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .direction-numbers {
@@ -303,4 +306,14 @@ details.more summary {
 #observablehq-main > .lead + h2,
 #observablehq-main > p.lead ~ h2:first-of-type {
   margin-top: 2rem;
+}
+
+/* A tile's chart shrinks with its column instead of pushing the grid wider. */
+.direction-tile {
+  min-width: 0;
+}
+
+.direction-tile svg {
+  max-width: 100%;
+  height: auto;
 }

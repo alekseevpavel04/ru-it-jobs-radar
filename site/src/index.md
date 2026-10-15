@@ -49,8 +49,8 @@ gradeChart(trends.grades, {width, partialYear: lastYear})
 ```js
 // The direction that gained most and the one that lost most since the base year, if the change is real.
 const dirYears = [...new Set(trends.directions.map((d) => d.year))].sort();
-const dirChanges = Object.keys(DIRECTION)
-  .filter((k) => k !== "it")
+const dirChanges = [...new Set(trends.directions.map((d) => d.direction))]
+  .filter((k) => k !== "other" && DIRECTION[k])
   .map((k) => {
     const at = (y) => trends.directions.find((d) => d.direction === k && d.year === y);
     const a = at(dirYears[0]), b = at(dirYears.at(-1));
@@ -60,6 +60,7 @@ const dirChanges = Object.keys(DIRECTION)
   .sort((x, y) => y.c.diff - x.c.diff);
 const gainer = dirChanges.find((d) => d.c.diff > 0);
 const loser = dirChanges.at(-1)?.c.diff < 0 ? dirChanges.at(-1) : null;
+const otherNow = trends.directions.find((d) => d.direction === "other" && d.year === dirYears.at(-1));
 const dirTitle = gainer && loser ? `${gainer.name} растёт, ${loser.name} теряет долю` : "Какие направления растут";
 ```
 
@@ -67,7 +68,7 @@ const dirTitle = gainer && loser ? `${gainer.name} растёт, ${loser.name} �
 
 <div class="card">
 
-<p class="note-small">Доля направления среди всех IT-постов ${int(trends.direction_panel_channels)} каналов, которые писали вакансии каждый год с ${dirYears[0]}-го (так новые каналы не сдвигают доли); справа изменение с ${dirYears[0]} года в п. п.</p>
+<p class="note-small">Доля среди всех IT-постов ${int(trends.direction_panel_channels)} каналов, которые писали вакансии каждый год с ${dirYears[0]}-го (так новые каналы не сдвигают доли); остальные ${pct(otherNow.posts / otherNow.total)} это прочие роли; справа изменение с ${dirYears[0]} года в п. п.</p>
 
 ```js
 directionTiles(trends.directions, {width, partialYear: lastYear})
@@ -87,17 +88,16 @@ const sortBy = Generators.input(sortInput);
 ```js
 const cell = `${direction}_${grade}`;
 const posts = new Map(trends.groups.filter((g) => g.group === cell).map((g) => [g.year, g.posts]));
-const years = [...posts.keys()].filter((y) => y !== null).sort();
 // The base year of the result file (2022): from then on the channel set is steady. A cell without
 // enough posts that year shows the recent shares only.
 const baseYear = posts.has(trends.base_year) ? trends.base_year : null;
 const recentLabel = `${trends.recent_years[0]}-${trends.recent_years.at(-1)}`;
 const rows = [...d3.group(trends.shares.filter((s) => s.group === cell), (s) => s.skill)].map(([skill, list]) => {
   const recent = list.find((s) => s.year === null);
-  const series = years.map((y) => list.find((s) => s.year === y)).map((s, i) => ({year: years[i], share: s.posts_mentioning / s.posts, n: s.posts_mentioning, of: s.posts}));
-  const base = baseYear ? series.find((x) => x.year === baseYear) : null;
+  const b = baseYear ? list.find((s) => s.year === baseYear) : null;
+  const base = b ? {share: b.posts_mentioning / b.posts, n: b.posts_mentioning, of: b.posts} : null;
   const now = {n: recent.posts_mentioning, of: recent.posts};
-  return {skill: SKILL[skill] ?? skill, share: now.n / now.of, ...now, base, series, change: base ? change(base, now) : null};
+  return {skill: SKILL[skill] ?? skill, share: now.n / now.of, ...now, base, change: base ? change(base, now) : null};
 });
 // Growth order: significant rises by size, noise in the middle, falls last.
 const growthKey = (r) => (r.change?.significant ? r.change.diff : 0);

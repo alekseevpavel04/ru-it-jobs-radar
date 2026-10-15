@@ -18,6 +18,14 @@ export const DIRECTION = {
   devops: "DevOps и администрирование",
   mobile: "Мобильная разработка"
 };
+// Tiles of the direction mix: the eight skill directions and the roles counted in the mix only.
+const MIX_LABEL = {
+  ...Object.fromEntries(Object.entries(DIRECTION).filter(([k]) => k !== "it")),
+  management: "Управление",
+  design: "Дизайн",
+  fullstack: "Fullstack",
+  security: "Инфобезопасность"
+};
 export const GRADE_GROUP = {all: "Все грейды", junior: "Стажёры и джуны", middle: "Мидлы", senior: "Сеньоры и лиды"};
 
 export const UP = "#1a7f37";
@@ -42,7 +50,7 @@ const BLOCKS = [
   {title: "Падают", color: DOWN, test: (c) => c.significant && c.diff < 0}
 ];
 
-function blockPlot(rows, {width, recentLabel, top, row, font}) {
+function blockPlot(rows, {width, top, row, font}) {
   // Dots, arrow and label gap scale with the row height.
   const dot = Math.max(3.5, Math.min(7.5, row / 3.2));
   const gap = dot + 5;
@@ -50,8 +58,6 @@ function blockPlot(rows, {width, recentLabel, top, row, font}) {
   const base = (r) => r.base.share;
   const rises = (r) => r.share >= r.base.share;
   const right = narrow ? 72 : 120;
-  const tip = (r) =>
-    [`${r.skill}`, `${recentLabel}: ${int(r.n)} из ${int(r.of)} (${pct(r.share)})`, ...r.series.map((s) => `${s.year}: ${int(s.n)} из ${int(s.of)} (${pct(s.share)})`)].join("\n");
   return Plot.plot({
     width,
     height: rows.length * row + 16,
@@ -61,7 +67,7 @@ function blockPlot(rows, {width, recentLabel, top, row, font}) {
     marginBottom: 8,
     x: {domain: [0, top * (narrow ? 1.5 : 1.12)], axis: null},
     y: {domain: rows.map((r) => r.skill), label: null, tickSize: 0, tickFormat: (t) => (narrow && t.length > 13 ? `${t.slice(0, 12)}…` : t)},
-    // A phone keeps 12px whatever the desktop size, and cuts long names short (the tooltip has them).
+    // A phone keeps 12px whatever the desktop size, and cuts long names short.
     style: {fontSize: `${narrow ? 12 : font}px`},
     marks: [
       Plot.arrow(rows, {y1: "skill", y2: "skill", x1: base, x2: "share", stroke: "#bdbab2", strokeWidth: 1.6, headLength: Math.min(6, row / 4), insetStart: 5, insetEnd: dot + 2}),
@@ -71,7 +77,6 @@ function blockPlot(rows, {width, recentLabel, top, row, font}) {
       Plot.text(rows.filter(rises), {y: "skill", x: "share", text: (r) => pct(r.share), dx: gap, textAnchor: "start", fontWeight: 650, fill: COLOR.bar}),
       Plot.text(rows.filter((r) => !rises(r)), {y: "skill", x: "share", text: (r) => pct(r.share), dx: -gap, textAnchor: "end", fontWeight: 650, fill: COLOR.bar}),
       Plot.text(rows, {y: "skill", text: (r) => changeText(r.change), frameAnchor: "right", textAnchor: "end", dx: right - 6, fill: (r) => changeColor(r.change), fontWeight: 700}),
-      Plot.tip(rows, Plot.pointerY({y: "skill", x: "share", title: tip}))
     ]
   });
 }
@@ -80,7 +85,7 @@ function blockPlot(rows, {width, recentLabel, top, row, font}) {
 const heading = (block) => html`<div class="block-head" style=${`--block: ${block.color}`}>${block.title}</div>`;
 
 // Without a base year: the recent share alone, one dot per skill with the share beside it.
-function nowPlot(rows, {width, recentLabel, row, font}) {
+function nowPlot(rows, {width, row, font}) {
   const dot = Math.max(3.5, Math.min(7, row / 3.2));
   const narrow = width < 600;
   const top = Math.max(...rows.map((r) => r.share));
@@ -93,23 +98,21 @@ function nowPlot(rows, {width, recentLabel, row, font}) {
     marginBottom: 8,
     x: {domain: [0, top * 1.12], axis: null},
     y: {domain: rows.map((r) => r.skill), label: null, tickSize: 0, tickFormat: (t) => (narrow && t.length > 13 ? `${t.slice(0, 12)}…` : t)},
-    // A phone keeps 12px whatever the desktop size, and cuts long names short (the tooltip has them).
+    // A phone keeps 12px whatever the desktop size, and cuts long names short.
     style: {fontSize: `${narrow ? 12 : font}px`},
     marks: [
       Plot.dot(rows, {y: "skill", x: "share", r: dot, fill: COLOR.bar, stroke: "white", strokeWidth: 1.5}),
       Plot.text(rows, {y: "skill", x: "share", text: (r) => pct(r.share), dx: dot + 5, textAnchor: "start", fontWeight: 650, fill: COLOR.bar}),
-      Plot.tip(rows, Plot.pointerY({y: "skill", x: "share", title: (r) => `${r.skill}
-${recentLabel}: ${int(r.n)} из ${int(r.of)} (${pct(r.share)})`}))
     ]
   });
 }
 
 export function skillChart(rows, {width, recentLabel, baseYear, row = 16, font = 14}) {
-  if (!baseYear) return nowPlot(rows, {width, recentLabel, row, font});
+  if (!baseYear) return nowPlot(rows, {width, row, font});
   const top = Math.max(...rows.map((r) => Math.max(r.share, r.base.share)));
   const legend = html`<div class="dot-legend"><span><i class="up-dot"></i><i class="down-dot"></i>сейчас, ${recentLabel}</span><span><i class="base"></i>${baseYear}</span><span>стрелка показывает, куда сдвинулась доля</span></div>`;
   const parts = BLOCKS.map((b) => [b, rows.filter((r) => b.test(r.change))]).filter(([, part]) => part.length);
-  return html`<div>${legend}${parts.map(([b, part]) => html`${heading(b)}${blockPlot(part, {width, recentLabel, top, row, font})}`)}</div>`;
+  return html`<div>${legend}${parts.map(([b, part]) => html`${heading(b)}${blockPlot(part, {width, top, row, font})}`)}</div>`;
 }
 
 // The grade mix of all IT by year: a line per grade, labelled at its end, the unfinished year dashed.
@@ -160,7 +163,6 @@ export function gradeChart(grades, {width, partialYear}) {
     style: {fontSize: narrow ? "12px" : "14px"},
     marks: [
       ...marks,
-      Plot.tip(rows, Plot.pointer({x: "year", y: "share", title: (r) => `${r.year}, ${GRADE_LINE.find((g) => g.grade === r.grade).label}: ${int(r.posts)} из ${int(r.graded)} (${pct(r.share)})\nгрейд указан в ${int(r.graded)} постах из ${int(r.total)}`}))
     ]
   });
 }
@@ -171,8 +173,7 @@ export function directionTiles(directions, {width, partialYear}) {
   const narrow = width < 600;
   const years = [...new Set(directions.map((d) => d.year))].sort();
   const first = years[0], last = years.at(-1);
-  const tiles = Object.keys(DIRECTION)
-    .filter((key) => key !== "it")
+  const tiles = Object.keys(MIX_LABEL)
     .map((key) => {
       const line = directions.filter((d) => d.direction === key).map((d) => ({...d, share: d.posts / d.total}));
       const a = line.find((d) => d.year === first), b = line.find((d) => d.year === last);
@@ -180,15 +181,18 @@ export function directionTiles(directions, {width, partialYear}) {
     })
     .sort((x, y) => y.c.diff - x.c.diff);
   const cols = narrow ? 2 : 4;
-  const tileWidth = Math.floor((width - (cols - 1) * 12) / cols);
+  // width is the page column; the card takes 2 x 16px of padding, each tile 2 x 12px plus its border.
+  const tileWidth = Math.floor((width - 32 - (cols - 1) * 12) / cols) - 26;
   return html`<div class="direction-tiles" style=${`grid-template-columns: repeat(${cols}, 1fr)`}>${tiles.map(({key, line, b, c}) => {
     const color = changeColor(c);
     const done = line.filter((d) => d.year !== partialYear);
     const plot = Plot.plot({
-      width: tileWidth - 24,
-      height: 64,
-      margin: 4,
-      marginBottom: 16,
+      width: tileWidth,
+      height: 72,
+      marginTop: 6,
+      marginLeft: 14,
+      marginRight: 18,
+      marginBottom: 20,
       x: {domain: years, type: "point", axis: "bottom", ticks: [first, last], tickFormat: (y) => (y === partialYear ? `${y}*` : `${y}`), tickSize: 0, label: null},
       y: {domain: [0, Math.max(...line.map((d) => d.share)) * 1.15], axis: null},
       style: {fontSize: "11px", color: "#8c8a84"},
@@ -197,11 +201,10 @@ export function directionTiles(directions, {width, partialYear}) {
         Plot.line(done, {x: "year", y: "share", stroke: color, strokeWidth: 2}),
         partialYear ? Plot.line(line.filter((d) => d.year >= last - 1), {x: "year", y: "share", stroke: color, strokeWidth: 2, strokeDasharray: "3,3"}) : null,
         Plot.dot(line.filter((d) => d.year === last), {x: "year", y: "share", r: 3, fill: color}),
-        Plot.tip(line, Plot.pointerX({x: "year", y: "share", title: (d) => `${d.year}: ${int(d.posts)} из ${int(d.total)} (${pct(d.share)})`}))
       ]
     });
     return html`<div class="direction-tile">
-      <div class="direction-name">${DIRECTION[key]}</div>
+      <div class="direction-name" title=${MIX_LABEL[key]}>${MIX_LABEL[key]}</div>
       <div class="direction-numbers"><b>${pct(b.share)}</b><span style=${`color: ${color}`}>${c.significant ? points(c.diff) : "≈"}</span></div>
       ${plot}
     </div>`;

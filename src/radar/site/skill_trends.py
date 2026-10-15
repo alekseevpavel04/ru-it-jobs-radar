@@ -43,6 +43,14 @@ DIRECTIONS: dict[str, tuple[str, ...]] = {
     "devops": ("devops", "sysadmin"),
     "mobile": ("mobile",),
 }
+# Roles of the direction mix only (no skill cells: their skills are mostly tools and soft skills); every
+# other IT role goes to "other", so the mix adds up to all IT posts.
+MIX_ONLY: dict[str, tuple[str, ...]] = {
+    "management": ("manager",),
+    "design": ("designer",),
+    "fullstack": ("fullstack",),
+    "security": ("security",),
+}
 GRADES: dict[str, tuple[str, ...]] = {"junior": JUNIOR_GRADES, "middle": ("middle",), "senior": ("senior", "lead")}
 MIN_CELL_POSTS = 200
 MIN_MENTIONS = 20
@@ -131,18 +139,17 @@ def direction_mix(rows: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
     for r in rows:
         seen[r["channel"]].add(int(r["year"]))
     panel = {c for c, ys in seen.items() if set(years) <= ys}
-    direction_of = {role: d for d, roles in DIRECTIONS.items() for role in roles}
+    direction_of = {role: d for d, roles in (DIRECTIONS | MIX_ONLY).items() for role in roles}
     counts: dict[int, Counter[str]] = defaultdict(Counter)
     total: Counter[int] = Counter()
     for r in rows:
         year = int(r["year"])
         if year in years and r["channel"] in panel:
             total[year] += int(r["posts"])
-            if r["role"] in direction_of:
-                counts[year][direction_of[r["role"]]] += int(r["posts"])
+            counts[year][direction_of.get(r["role"], "other")] += int(r["posts"])
     metrics: dict[str, Any] = {"directions.panel_channels": share(len(panel), len(seen))}
     for year in years:
-        for d in DIRECTIONS:
+        for d in [*DIRECTIONS, *MIX_ONLY, "other"]:
             metrics[f"directions.{year}.{d}"] = share(counts[year][d], total[year])
     return metrics
 
