@@ -21,21 +21,15 @@ const years = FileAttachment("data/telegram_years.json").json();
 const name = (e) => SKILL[e.skill] ?? e.skill;
 const level = Math.round(effects.ci_level * 100);
 const k8s = effects.effects.find((e) => e.skill === "Kubernetes");
-// Temporary: row height and font size for the author to pick.
-const rowInput = Inputs.range([12, 32], {label: "Строка, px", step: 1, value: 20});
-const row = Generators.input(rowInput);
-const fontInput = Inputs.range([10, 15], {label: "Шрифт, px", step: 0.5, value: 12});
-const font = Generators.input(fontInput);
-```
 
-<div class="filters stacked">${rowInput}${fontInput}</div>
+```
 
 <div class="card">
 
 <p class="note-small">Сравниваются похожие вакансии: та же роль, грейд, регион, опыт, формат работы и остальной стек, одни с навыком, другие без. Точка показывает, на сколько процентов выше или ниже середина вилки у вакансий с навыком, полоса показывает ${level} % интервал. Чем меньше сравнимых вакансий, тем шире полоса: у Kubernetes их ${int(k8s.rows_kept)}, поэтому его ${signedPct(k8s.pct)} неотличимы от нуля. Навык попадает в «повышают» или «понижают», если эффект подтверждён с поправкой на ${effects.estimated} проверок (доля ложных находок до ${Math.round(FDR * 100)} %, поправка Бенджамини-Хохберга): таких ${effects.significant_bh} из ${effects.estimated}.</p>
 
 ```js
-effectsChart(effects.effects, {width, name, row, font})
+effectsChart(effects.effects, {width, name})
 ```
 
 <p class="note-small">${int(effects.rows)} вакансий с вилкой в рублях, почти все с портала «Работа в России». Это связь, а не обещание: выучив навык, этих процентов к офферу не получишь. <a href="./methodology#skill-effects">Ограничения оценки</a>.</p>

@@ -25,6 +25,11 @@ export const DOWN = "#cf222e";
 const NOISE = "#9a9890";
 const BASE = "#8c8a84";
 
+// A faint rule between rows across the whole width, from the skill name to the numbers on the right:
+// half a row below each row's centre, so it never runs through the text.
+export const rowRules = (rows, y, {left, right, row}) =>
+  Plot.ruleY(rows, {y, dy: row / 2, stroke: "#e6e4df", strokeWidth: 1, insetLeft: -left, insetRight: -right});
+
 // Change of two shares beyond the 95 % interval of their difference (normal approximation, both samples
 // large here: hundreds to tens of thousands of posts).
 export function change(base, recent) {
@@ -60,9 +65,11 @@ function blockPlot(rows, {width, recentLabel, top, row, font}) {
     marginTop: 4,
     marginBottom: 8,
     x: {domain: [0, top * (narrow ? 1.5 : 1.12)], axis: null},
-    y: {domain: rows.map((r) => r.skill), label: null, tickSize: 0},
-    style: {fontSize: `${font}px`},
+    y: {domain: rows.map((r) => r.skill), label: null, tickSize: 0, tickFormat: (t) => (narrow && t.length > 13 ? `${t.slice(0, 12)}…` : t)},
+    // A phone keeps 12px whatever the desktop size, and cuts long names short (the tooltip has them).
+    style: {fontSize: `${narrow ? 12 : font}px`},
     marks: [
+      rowRules(rows, "skill", {left: narrow ? 96 : 160, right, row}),
       Plot.arrow(rows, {y1: "skill", y2: "skill", x1: base, x2: "share", stroke: "#bdbab2", strokeWidth: 1.6, headLength: Math.min(6, row / 4), insetStart: 5, insetEnd: dot + 2}),
       Plot.dot(rows, {y: "skill", x: base, r: Math.max(2.5, dot / 1.9), fill: BASE}),
       Plot.dot(rows, {y: "skill", x: "share", r: dot, fill: (r) => changeColor(r.change), stroke: "white", strokeWidth: 1.5}),
@@ -91,10 +98,11 @@ function nowPlot(rows, {width, recentLabel, row, font}) {
     marginTop: 4,
     marginBottom: 8,
     x: {domain: [0, top * 1.12], axis: null},
-    y: {domain: rows.map((r) => r.skill), label: null, tickSize: 0},
-    style: {fontSize: `${font}px`},
+    y: {domain: rows.map((r) => r.skill), label: null, tickSize: 0, tickFormat: (t) => (narrow && t.length > 13 ? `${t.slice(0, 12)}…` : t)},
+    // A phone keeps 12px whatever the desktop size, and cuts long names short (the tooltip has them).
+    style: {fontSize: `${narrow ? 12 : font}px`},
     marks: [
-      Plot.ruleY(rows, {y: "skill", stroke: "#ebe9e4"}),
+      rowRules(rows, "skill", {left: narrow ? 96 : 160, right: 16, row}),
       Plot.dot(rows, {y: "skill", x: "share", r: dot, fill: COLOR.bar, stroke: "white", strokeWidth: 1.5}),
       Plot.text(rows, {y: "skill", x: "share", text: (r) => pct(r.share), dx: dot + 5, textAnchor: "start", fontWeight: 650, fill: COLOR.bar}),
       Plot.tip(rows, Plot.pointerY({y: "skill", x: "share", title: (r) => `${r.skill}
@@ -103,7 +111,7 @@ ${recentLabel}: ${int(r.n)} из ${int(r.of)} (${pct(r.share)})`}))
   });
 }
 
-export function skillChart(rows, {width, recentLabel, baseYear, row = 30, font = 13}) {
+export function skillChart(rows, {width, recentLabel, baseYear, row = 16, font = 14}) {
   if (!baseYear) return nowPlot(rows, {width, recentLabel, row, font});
   const top = Math.max(...rows.map((r) => Math.max(r.share, r.base.share)));
   const legend = html`<div class="dot-legend"><span><i class="up-dot"></i><i class="down-dot"></i>сейчас, ${recentLabel}</span><span><i class="base"></i>${baseYear}</span><span>стрелка показывает, куда сдвинулась доля</span></div>`;

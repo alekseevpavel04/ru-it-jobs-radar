@@ -4,7 +4,7 @@
 import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {COLOR, int, signedPct} from "./labels.js";
-import {DOWN, UP} from "./skills.js";
+import {DOWN, UP, rowRules} from "./skills.js";
 
 const NOISE = "#9a9890";
 // The share of false findings the Benjamini-Hochberg test allows among the skills it marks.
@@ -32,8 +32,9 @@ function blockPlot(rows, {width, color, reach, name, row, font}) {
     x: {domain: [-reach, reach], axis: null},
     // On a phone a long skill name is cut short; the tooltip has it whole.
     y: {domain: rows.map(name), label: null, tickSize: 0, tickFormat: (t) => (narrow && t.length > 15 ? `${t.slice(0, 14)}…` : t)},
-    style: {fontSize: `${font}px`},
+    style: {fontSize: `${narrow ? 12 : font}px`},
     marks: [
+      rowRules(rows, name, {left: narrow ? 118 : 200, right, row}),
       Plot.ruleX([0], {stroke: "#9a9890"}),
       Plot.link(rows, {y1: name, y2: name, x1: "pct_ci_low", x2: "pct_ci_high", stroke: color, strokeOpacity: 0.35, strokeWidth: band, strokeLinecap: "round"}),
       Plot.dot(rows, {y: name, x: "pct", r: dot, fill: color, stroke: "white", strokeWidth: 1.5}),
@@ -55,7 +56,7 @@ function blockPlot(rows, {width, color, reach, name, row, font}) {
   });
 }
 
-export function effectsChart(effects, {width, name, row = 20, font = 12}) {
+export function effectsChart(effects, {width, name, row = 16, font = 14}) {
   const rows = effects.slice().sort((a, b) => b.pct - a.pct);
   const reach = Math.max(...rows.map((e) => Math.max(Math.abs(e.pct_ci_low), Math.abs(e.pct_ci_high)))) * 1.05;
   const head = html`<div class="effects-head"><span>эффект</span><span>сравнимых<br>вакансий</span></div>`;

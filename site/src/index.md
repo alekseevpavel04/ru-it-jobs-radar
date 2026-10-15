@@ -21,14 +21,9 @@ const gradeInput = Inputs.radio(new Map(Object.entries(GRADE_GROUP).map(([k, v])
 const grade = Generators.input(gradeInput);
 const sortInput = Inputs.radio(new Map([["по доле", "share"], ["по росту", "growth"]]), {label: "Порядок", value: "share"});
 const sortBy = Generators.input(sortInput);
-// Temporary: row height and font size for the author to pick.
-const rowInput = Inputs.range([12, 32], {label: "Строка, px", step: 1, value: 20});
-const row = Generators.input(rowInput);
-const fontInput = Inputs.range([10, 15], {label: "Шрифт, px", step: 0.5, value: 12});
-const font = Generators.input(fontInput);
 ```
 
-<div class="filters stacked">${directionInput}${gradeInput}${sortInput}${rowInput}${fontInput}</div>
+<div class="filters stacked">${directionInput}${gradeInput}${sortInput}</div>
 
 ```js
 const cell = `${direction}_${grade}`;
@@ -59,7 +54,7 @@ ${!posts.size
 
 ```js
 // Always display a node: a block that displays nothing keeps its previous output.
-display(posts.size ? skillChart(ordered, {width, recentLabel, baseYear, row, font}) : document.createElement("span"));
+display(posts.size ? skillChart(ordered, {width, recentLabel, baseYear}) : document.createElement("span"));
 ```
 
 </div>
