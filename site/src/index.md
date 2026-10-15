@@ -7,7 +7,7 @@ toc: false
 
 ```js
 import {SKILL, int, plural} from "./components/labels.js";
-import {GROUP_LABEL, HEADS, change, skillChart} from "./components/skills.js";
+import {GROUP_LABEL, change, skillChart} from "./components/skills.js";
 
 const trends = FileAttachment("data/skill_trends.json").json();
 ```
@@ -19,12 +19,9 @@ const groupInput = Inputs.radio(new Map([["Всё IT", "it_all"], ["ML", "ml_all
 const group = Generators.input(groupInput);
 const sortInput = Inputs.radio(new Map([["по доле", "share"], ["по росту", "growth"]]), {label: "Порядок", value: "share"});
 const sortBy = Generators.input(sortInput);
-// Temporary: four looks of the block headings, for the author to pick one.
-const headInput = Inputs.radio(HEADS, {label: "Заголовки", value: "big"});
-const head = Generators.input(headInput);
 ```
 
-<div class="filters stacked">${groupInput}${sortInput}${headInput}</div>
+<div class="filters stacked">${groupInput}${sortInput}</div>
 
 ```js
 const posts = new Map(trends.groups.filter((g) => g.group === group).map((g) => [g.year, g.posts]));
@@ -51,7 +48,7 @@ const ordered = rows.slice().sort(sortBy === "share" ? (a, b) => b.share - a.sha
 <p class="note-small">${GROUP_LABEL[group]}: доля постов, где назван навык, за ${recentLabel} (${int(posts.get(null))} постов) и в ${baseYear} году (${int(posts.get(baseYear))}). Справа изменение доли с ${baseYear} года в процентных пунктах; «≈» значит, что изменение не выходит за случайный разброс. В списке ${rows.length} ${plural(rows.length, ["навык", "навыка", "навыков"])}: самые частые и самые быстрорастущие. База ${baseYear} год: с него набор каналов устойчивый, <a href="./methodology#telegram">почему</a>. Наведите на строку, чтобы увидеть долю по каждому году.</p>
 
 ```js
-skillChart(ordered, {width, recentLabel, baseYear, head})
+skillChart(ordered, {width, recentLabel, baseYear})
 ```
 
 </div>

@@ -29,18 +29,10 @@ export function change(base, recent) {
 export const changeColor = (c) => (!c.significant ? NOISE : c.diff > 0 ? UP : DOWN);
 const changeText = (c) => (c.significant ? points(c.diff) : "≈");
 
-// Temporary: four looks of the block headings, for the author to pick one.
-export const HEADS = new Map([
-  ["крупно", "big"],
-  ["плашка", "pill"],
-  ["полоса", "strip"],
-  ["с пояснением", "note"]
-]);
-
 const BLOCKS = [
-  {key: "up", title: "Растут", color: UP, note: "доля выросла сильнее, чем мог бы дать случайный разброс", test: (c) => c.significant && c.diff > 0},
-  {key: "noise", title: "В пределах шума", color: NOISE, note: "изменение не выходит за случайный разброс", test: (c) => !c.significant},
-  {key: "down", title: "Падают", color: DOWN, note: "доля упала сильнее, чем мог бы дать случайный разброс", test: (c) => c.significant && c.diff < 0}
+  {title: "Растут", color: UP, test: (c) => c.significant && c.diff > 0},
+  {title: "В пределах шума", color: NOISE, test: (c) => !c.significant},
+  {title: "Падают", color: DOWN, test: (c) => c.significant && c.diff < 0}
 ];
 
 function blockPlot(rows, {width, recentLabel, top}) {
@@ -73,16 +65,12 @@ function blockPlot(rows, {width, recentLabel, top}) {
   });
 }
 
-function heading(block, count, look) {
-  const style = `--block: ${block.color}`;
-  if (look === "note")
-    return html`<div class="block-head explained" style=${style}><i></i><b>${block.title}</b><span class="count">${count}</span><span class="why">${block.note}</span></div>`;
-  return html`<div class=${`block-head ${look}`} style=${style}><b>${block.title}</b><span class="count">${count}</span></div>`;
-}
+// A tinted strip across the width with a bar of the block colour on the left.
+const heading = (block) => html`<div class="block-head" style=${`--block: ${block.color}`}>${block.title}</div>`;
 
-export function skillChart(rows, {width, recentLabel, baseYear, head}) {
+export function skillChart(rows, {width, recentLabel, baseYear}) {
   const top = Math.max(...rows.map((r) => Math.max(r.share, r.base.share)));
   const legend = html`<div class="dot-legend"><span><i class="up-dot"></i><i class="down-dot"></i>сейчас, ${recentLabel}</span><span><i class="base"></i>${baseYear}</span><span>стрелка показывает, куда сдвинулась доля</span></div>`;
   const parts = BLOCKS.map((b) => [b, rows.filter((r) => b.test(r.change))]).filter(([, part]) => part.length);
-  return html`<div>${legend}${parts.map(([b, part]) => html`${heading(b, part.length, head)}${blockPlot(part, {width, recentLabel, top})}`)}</div>`;
+  return html`<div>${legend}${parts.map(([b, part]) => html`${heading(b)}${blockPlot(part, {width, recentLabel, top})}`)}</div>`;
 }
