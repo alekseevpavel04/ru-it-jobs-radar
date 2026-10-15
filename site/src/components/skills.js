@@ -16,15 +16,15 @@ export const DIRECTION = {
   ml: "ML и Data Science",
   dataeng: "Инженерия данных",
   devops: "DevOps и администрирование",
-  mobile: "Мобильная разработка"
+  mobile: "Мобильная разработка",
+  fullstack: "Fullstack",
+  security: "Инфобезопасность"
 };
 // Tiles of the direction mix: the eight skill directions and the roles counted in the mix only.
 const MIX_LABEL = {
   ...Object.fromEntries(Object.entries(DIRECTION).filter(([k]) => k !== "it")),
   management: "Управление",
-  design: "Дизайн",
-  fullstack: "Fullstack",
-  security: "Инфобезопасность"
+  design: "Дизайн"
 };
 export const GRADE_GROUP = {all: "Все грейды", junior: "Стажёры и джуны", middle: "Мидлы", senior: "Сеньоры и лиды"};
 

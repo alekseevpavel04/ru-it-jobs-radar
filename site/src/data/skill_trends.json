@@ -1,8 +1,8 @@
 {
   "source_file": "results/market/skill_trends.json",
   "source_script": "src/radar/site/skill_trends.py",
-  "commit": "f8f035f-dirty",
-  "created_at": "2026-10-15T09:28:09+00:00",
+  "commit": "2999e80-dirty",
+  "created_at": "2026-10-15T09:31:11+00:00",
   "recent_years": [
     2025,
     2026
@@ -653,6 +653,81 @@
       "posts": 518
     },
     {
+      "group": "fullstack_all",
+      "year": null,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "year": 2019,
+      "posts": 573
+    },
+    {
+      "group": "fullstack_all",
+      "year": 2020,
+      "posts": 699
+    },
+    {
+      "group": "fullstack_all",
+      "year": 2021,
+      "posts": 914
+    },
+    {
+      "group": "fullstack_all",
+      "year": 2022,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "year": 2023,
+      "posts": 1062
+    },
+    {
+      "group": "fullstack_all",
+      "year": 2024,
+      "posts": 848
+    },
+    {
+      "group": "fullstack_all",
+      "year": 2025,
+      "posts": 1061
+    },
+    {
+      "group": "fullstack_all",
+      "year": 2026,
+      "posts": 837
+    },
+    {
+      "group": "fullstack_middle",
+      "year": null,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "year": 2021,
+      "posts": 351
+    },
+    {
+      "group": "fullstack_middle",
+      "year": 2022,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "year": 2023,
+      "posts": 359
+    },
+    {
+      "group": "fullstack_senior",
+      "year": null,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "year": 2026,
+      "posts": 307
+    },
+    {
       "group": "it_all",
       "year": null,
       "posts": 46424
@@ -1146,6 +1221,41 @@
       "group": "qa_senior",
       "year": 2026,
       "posts": 434
+    },
+    {
+      "group": "security_all",
+      "year": null,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "year": 2022,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "year": 2023,
+      "posts": 881
+    },
+    {
+      "group": "security_all",
+      "year": 2024,
+      "posts": 967
+    },
+    {
+      "group": "security_all",
+      "year": 2025,
+      "posts": 1181
+    },
+    {
+      "group": "security_all",
+      "year": 2026,
+      "posts": 766
+    },
+    {
+      "group": "security_senior",
+      "year": null,
+      "posts": 553
     }
   ],
   "shares": [
@@ -9298,6 +9408,1168 @@
       "posts": 644
     },
     {
+      "group": "fullstack_all",
+      "skill": ".NET",
+      "year": null,
+      "posts_mentioning": 125,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": ".NET",
+      "year": 2022,
+      "posts_mentioning": 241,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Android",
+      "year": null,
+      "posts_mentioning": 30,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Android",
+      "year": 2022,
+      "posts_mentioning": 3,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Angular",
+      "year": null,
+      "posts_mentioning": 169,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Angular",
+      "year": 2022,
+      "posts_mentioning": 221,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "C#",
+      "year": null,
+      "posts_mentioning": 113,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "C#",
+      "year": 2022,
+      "posts_mentioning": 220,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "CI/CD",
+      "year": null,
+      "posts_mentioning": 213,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "CI/CD",
+      "year": 2022,
+      "posts_mentioning": 63,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "CSS",
+      "year": null,
+      "posts_mentioning": 163,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "CSS",
+      "year": 2022,
+      "posts_mentioning": 193,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "DevOps",
+      "year": null,
+      "posts_mentioning": 52,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "DevOps",
+      "year": 2022,
+      "posts_mentioning": 15,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Django",
+      "year": null,
+      "posts_mentioning": 77,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Django",
+      "year": 2022,
+      "posts_mentioning": 52,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Docker",
+      "year": null,
+      "posts_mentioning": 252,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Docker",
+      "year": 2022,
+      "posts_mentioning": 163,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "FastAPI",
+      "year": null,
+      "posts_mentioning": 68,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "FastAPI",
+      "year": 2022,
+      "posts_mentioning": 19,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Figma",
+      "year": null,
+      "posts_mentioning": 40,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Figma",
+      "year": 2022,
+      "posts_mentioning": 6,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Git",
+      "year": null,
+      "posts_mentioning": 202,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Git",
+      "year": 2022,
+      "posts_mentioning": 192,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Go",
+      "year": null,
+      "posts_mentioning": 132,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Go",
+      "year": 2022,
+      "posts_mentioning": 35,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "HTML",
+      "year": null,
+      "posts_mentioning": 160,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "HTML",
+      "year": 2022,
+      "posts_mentioning": 199,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Java",
+      "year": null,
+      "posts_mentioning": 106,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Java",
+      "year": 2022,
+      "posts_mentioning": 77,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "JavaScript",
+      "year": null,
+      "posts_mentioning": 575,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "JavaScript",
+      "year": 2022,
+      "posts_mentioning": 541,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Kubernetes",
+      "year": null,
+      "posts_mentioning": 93,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Kubernetes",
+      "year": 2022,
+      "posts_mentioning": 68,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Laravel",
+      "year": null,
+      "posts_mentioning": 95,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Laravel",
+      "year": 2022,
+      "posts_mentioning": 66,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "MCP",
+      "year": null,
+      "posts_mentioning": 27,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "MCP",
+      "year": 2022,
+      "posts_mentioning": 0,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Microservices",
+      "year": null,
+      "posts_mentioning": 118,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Microservices",
+      "year": 2022,
+      "posts_mentioning": 85,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "MySQL",
+      "year": null,
+      "posts_mentioning": 106,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "MySQL",
+      "year": 2022,
+      "posts_mentioning": 136,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "NestJS",
+      "year": null,
+      "posts_mentioning": 146,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "NestJS",
+      "year": 2022,
+      "posts_mentioning": 36,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Next.js",
+      "year": null,
+      "posts_mentioning": 261,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Next.js",
+      "year": 2022,
+      "posts_mentioning": 23,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Node.js",
+      "year": null,
+      "posts_mentioning": 622,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Node.js",
+      "year": 2022,
+      "posts_mentioning": 272,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Nuxt",
+      "year": null,
+      "posts_mentioning": 64,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Nuxt",
+      "year": 2022,
+      "posts_mentioning": 12,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "PHP",
+      "year": null,
+      "posts_mentioning": 209,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "PHP",
+      "year": 2022,
+      "posts_mentioning": 210,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "PostgreSQL",
+      "year": null,
+      "posts_mentioning": 356,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "PostgreSQL",
+      "year": 2022,
+      "posts_mentioning": 218,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Python",
+      "year": null,
+      "posts_mentioning": 280,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Python",
+      "year": 2022,
+      "posts_mentioning": 113,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "REST",
+      "year": null,
+      "posts_mentioning": 176,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "REST",
+      "year": 2022,
+      "posts_mentioning": 160,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "React",
+      "year": null,
+      "posts_mentioning": 900,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "React",
+      "year": 2022,
+      "posts_mentioning": 365,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "React Native",
+      "year": null,
+      "posts_mentioning": 107,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "React Native",
+      "year": 2022,
+      "posts_mentioning": 20,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Redis",
+      "year": null,
+      "posts_mentioning": 160,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Redis",
+      "year": 2022,
+      "posts_mentioning": 97,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Rust",
+      "year": null,
+      "posts_mentioning": 54,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Rust",
+      "year": 2022,
+      "posts_mentioning": 2,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "SEO",
+      "year": null,
+      "posts_mentioning": 32,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "SEO",
+      "year": 2022,
+      "posts_mentioning": 3,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "SQL",
+      "year": null,
+      "posts_mentioning": 174,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "SQL",
+      "year": 2022,
+      "posts_mentioning": 141,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Tailwind CSS",
+      "year": null,
+      "posts_mentioning": 66,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Tailwind CSS",
+      "year": 2022,
+      "posts_mentioning": 3,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "TypeScript",
+      "year": null,
+      "posts_mentioning": 503,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "TypeScript",
+      "year": 2022,
+      "posts_mentioning": 298,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Vite",
+      "year": null,
+      "posts_mentioning": 52,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Vite",
+      "year": 2022,
+      "posts_mentioning": 3,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Vue.js",
+      "year": null,
+      "posts_mentioning": 268,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "Vue.js",
+      "year": 2022,
+      "posts_mentioning": 237,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "WebSocket",
+      "year": null,
+      "posts_mentioning": 91,
+      "posts": 1898
+    },
+    {
+      "group": "fullstack_all",
+      "skill": "WebSocket",
+      "year": 2022,
+      "posts_mentioning": 38,
+      "posts": 1189
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": ".NET",
+      "year": null,
+      "posts_mentioning": 40,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": ".NET",
+      "year": 2022,
+      "posts_mentioning": 87,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Angular",
+      "year": null,
+      "posts_mentioning": 40,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Angular",
+      "year": 2022,
+      "posts_mentioning": 88,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "C#",
+      "year": null,
+      "posts_mentioning": 31,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "C#",
+      "year": 2022,
+      "posts_mentioning": 89,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "CI/CD",
+      "year": null,
+      "posts_mentioning": 52,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "CI/CD",
+      "year": 2022,
+      "posts_mentioning": 22,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "CSS",
+      "year": null,
+      "posts_mentioning": 51,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "CSS",
+      "year": 2022,
+      "posts_mentioning": 59,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Docker",
+      "year": null,
+      "posts_mentioning": 66,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Docker",
+      "year": 2022,
+      "posts_mentioning": 83,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Git",
+      "year": null,
+      "posts_mentioning": 86,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Git",
+      "year": 2022,
+      "posts_mentioning": 69,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "HTML",
+      "year": null,
+      "posts_mentioning": 49,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "HTML",
+      "year": 2022,
+      "posts_mentioning": 65,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Java",
+      "year": null,
+      "posts_mentioning": 23,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Java",
+      "year": 2022,
+      "posts_mentioning": 26,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "JavaScript",
+      "year": null,
+      "posts_mentioning": 148,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "JavaScript",
+      "year": 2022,
+      "posts_mentioning": 200,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Kubernetes",
+      "year": null,
+      "posts_mentioning": 21,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Kubernetes",
+      "year": 2022,
+      "posts_mentioning": 26,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Laravel",
+      "year": null,
+      "posts_mentioning": 47,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Laravel",
+      "year": 2022,
+      "posts_mentioning": 33,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Microservices",
+      "year": null,
+      "posts_mentioning": 27,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Microservices",
+      "year": 2022,
+      "posts_mentioning": 33,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "MongoDB",
+      "year": null,
+      "posts_mentioning": 24,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "MongoDB",
+      "year": 2022,
+      "posts_mentioning": 31,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "MySQL",
+      "year": null,
+      "posts_mentioning": 38,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "MySQL",
+      "year": 2022,
+      "posts_mentioning": 48,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "NestJS",
+      "year": null,
+      "posts_mentioning": 24,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "NestJS",
+      "year": 2022,
+      "posts_mentioning": 9,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Next.js",
+      "year": null,
+      "posts_mentioning": 45,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Next.js",
+      "year": 2022,
+      "posts_mentioning": 7,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Node.js",
+      "year": null,
+      "posts_mentioning": 92,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Node.js",
+      "year": 2022,
+      "posts_mentioning": 87,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "PHP",
+      "year": null,
+      "posts_mentioning": 85,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "PHP",
+      "year": 2022,
+      "posts_mentioning": 84,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "PostgreSQL",
+      "year": null,
+      "posts_mentioning": 95,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "PostgreSQL",
+      "year": 2022,
+      "posts_mentioning": 77,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Python",
+      "year": null,
+      "posts_mentioning": 58,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Python",
+      "year": 2022,
+      "posts_mentioning": 51,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "REST",
+      "year": null,
+      "posts_mentioning": 47,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "REST",
+      "year": 2022,
+      "posts_mentioning": 55,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "React",
+      "year": null,
+      "posts_mentioning": 167,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "React",
+      "year": 2022,
+      "posts_mentioning": 124,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Redis",
+      "year": null,
+      "posts_mentioning": 36,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Redis",
+      "year": 2022,
+      "posts_mentioning": 43,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "SQL",
+      "year": null,
+      "posts_mentioning": 47,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "SQL",
+      "year": 2022,
+      "posts_mentioning": 53,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Tailwind CSS",
+      "year": null,
+      "posts_mentioning": 23,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Tailwind CSS",
+      "year": 2022,
+      "posts_mentioning": 1,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "TypeScript",
+      "year": null,
+      "posts_mentioning": 99,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "TypeScript",
+      "year": 2022,
+      "posts_mentioning": 92,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Vue.js",
+      "year": null,
+      "posts_mentioning": 63,
+      "posts": 384
+    },
+    {
+      "group": "fullstack_middle",
+      "skill": "Vue.js",
+      "year": 2022,
+      "posts_mentioning": 110,
+      "posts": 390
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": ".NET",
+      "year": null,
+      "posts_mentioning": 41,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "AWS",
+      "year": null,
+      "posts_mentioning": 23,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Angular",
+      "year": null,
+      "posts_mentioning": 49,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "C#",
+      "year": null,
+      "posts_mentioning": 42,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "CI/CD",
+      "year": null,
+      "posts_mentioning": 73,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "CSS",
+      "year": null,
+      "posts_mentioning": 21,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Django",
+      "year": null,
+      "posts_mentioning": 22,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Docker",
+      "year": null,
+      "posts_mentioning": 85,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Git",
+      "year": null,
+      "posts_mentioning": 32,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Go",
+      "year": null,
+      "posts_mentioning": 49,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Java",
+      "year": null,
+      "posts_mentioning": 49,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "JavaScript",
+      "year": null,
+      "posts_mentioning": 152,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Kafka",
+      "year": null,
+      "posts_mentioning": 22,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Kubernetes",
+      "year": null,
+      "posts_mentioning": 44,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Microservices",
+      "year": null,
+      "posts_mentioning": 37,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "NestJS",
+      "year": null,
+      "posts_mentioning": 31,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Next.js",
+      "year": null,
+      "posts_mentioning": 71,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Node.js",
+      "year": null,
+      "posts_mentioning": 195,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Nuxt",
+      "year": null,
+      "posts_mentioning": 25,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "PHP",
+      "year": null,
+      "posts_mentioning": 39,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "PostgreSQL",
+      "year": null,
+      "posts_mentioning": 113,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Python",
+      "year": null,
+      "posts_mentioning": 100,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "REST",
+      "year": null,
+      "posts_mentioning": 47,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "React",
+      "year": null,
+      "posts_mentioning": 275,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "React Native",
+      "year": null,
+      "posts_mentioning": 30,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Redis",
+      "year": null,
+      "posts_mentioning": 47,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "SOLID",
+      "year": null,
+      "posts_mentioning": 21,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "SQL",
+      "year": null,
+      "posts_mentioning": 43,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "TypeScript",
+      "year": null,
+      "posts_mentioning": 173,
+      "posts": 585
+    },
+    {
+      "group": "fullstack_senior",
+      "skill": "Vue.js",
+      "year": null,
+      "posts_mentioning": 72,
+      "posts": 585
+    },
+    {
       "group": "it_all",
       "skill": "Airflow",
       "year": null,
@@ -15351,6 +16623,762 @@
       "year": 2022,
       "posts_mentioning": 3,
       "posts": 498
+    },
+    {
+      "group": "security_all",
+      "skill": "AWS",
+      "year": null,
+      "posts_mentioning": 128,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "AWS",
+      "year": 2022,
+      "posts_mentioning": 7,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Active Directory",
+      "year": null,
+      "posts_mentioning": 86,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Active Directory",
+      "year": 2022,
+      "posts_mentioning": 10,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Azure",
+      "year": null,
+      "posts_mentioning": 73,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Azure",
+      "year": 2022,
+      "posts_mentioning": 4,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Bash",
+      "year": null,
+      "posts_mentioning": 220,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Bash",
+      "year": 2022,
+      "posts_mentioning": 26,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Burp Suite",
+      "year": null,
+      "posts_mentioning": 69,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Burp Suite",
+      "year": 2022,
+      "posts_mentioning": 2,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "C#",
+      "year": null,
+      "posts_mentioning": 54,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "C#",
+      "year": 2022,
+      "posts_mentioning": 4,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "C++",
+      "year": null,
+      "posts_mentioning": 98,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "C++",
+      "year": 2022,
+      "posts_mentioning": 7,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "CI/CD",
+      "year": null,
+      "posts_mentioning": 191,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "CI/CD",
+      "year": 2022,
+      "posts_mentioning": 14,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "DAST",
+      "year": null,
+      "posts_mentioning": 172,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "DAST",
+      "year": 2022,
+      "posts_mentioning": 15,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "DNS",
+      "year": null,
+      "posts_mentioning": 126,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "DNS",
+      "year": 2022,
+      "posts_mentioning": 16,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "DevOps",
+      "year": null,
+      "posts_mentioning": 92,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "DevOps",
+      "year": 2022,
+      "posts_mentioning": 5,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "DevSecOps",
+      "year": null,
+      "posts_mentioning": 127,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "DevSecOps",
+      "year": 2022,
+      "posts_mentioning": 12,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Docker",
+      "year": null,
+      "posts_mentioning": 121,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Docker",
+      "year": 2022,
+      "posts_mentioning": 15,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "GCP",
+      "year": null,
+      "posts_mentioning": 73,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "GCP",
+      "year": 2022,
+      "posts_mentioning": 3,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Go",
+      "year": null,
+      "posts_mentioning": 213,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Go",
+      "year": 2022,
+      "posts_mentioning": 15,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "HTTP",
+      "year": null,
+      "posts_mentioning": 100,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "HTTP",
+      "year": 2022,
+      "posts_mentioning": 5,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "IaC",
+      "year": null,
+      "posts_mentioning": 51,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "IaC",
+      "year": 2022,
+      "posts_mentioning": 2,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Java",
+      "year": null,
+      "posts_mentioning": 113,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Java",
+      "year": 2022,
+      "posts_mentioning": 9,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "JavaScript",
+      "year": null,
+      "posts_mentioning": 94,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "JavaScript",
+      "year": 2022,
+      "posts_mentioning": 13,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Kaspersky",
+      "year": null,
+      "posts_mentioning": 108,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Kaspersky",
+      "year": 2022,
+      "posts_mentioning": 39,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Kubernetes",
+      "year": null,
+      "posts_mentioning": 188,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Kubernetes",
+      "year": 2022,
+      "posts_mentioning": 21,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "LDAP",
+      "year": null,
+      "posts_mentioning": 27,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "LDAP",
+      "year": 2022,
+      "posts_mentioning": 0,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Linux",
+      "year": null,
+      "posts_mentioning": 557,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Linux",
+      "year": 2022,
+      "posts_mentioning": 99,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Microservices",
+      "year": null,
+      "posts_mentioning": 70,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Microservices",
+      "year": 2022,
+      "posts_mentioning": 6,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Nmap",
+      "year": null,
+      "posts_mentioning": 35,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Nmap",
+      "year": 2022,
+      "posts_mentioning": 1,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "OAuth",
+      "year": null,
+      "posts_mentioning": 46,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "OAuth",
+      "year": 2022,
+      "posts_mentioning": 4,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "OWASP",
+      "year": null,
+      "posts_mentioning": 296,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "OWASP",
+      "year": 2022,
+      "posts_mentioning": 23,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Pentest",
+      "year": null,
+      "posts_mentioning": 165,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Pentest",
+      "year": 2022,
+      "posts_mentioning": 14,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "PowerShell",
+      "year": null,
+      "posts_mentioning": 162,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "PowerShell",
+      "year": 2022,
+      "posts_mentioning": 19,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Python",
+      "year": null,
+      "posts_mentioning": 479,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Python",
+      "year": 2022,
+      "posts_mentioning": 68,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "REST",
+      "year": null,
+      "posts_mentioning": 53,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "REST",
+      "year": 2022,
+      "posts_mentioning": 3,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "SAST",
+      "year": null,
+      "posts_mentioning": 191,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "SAST",
+      "year": 2022,
+      "posts_mentioning": 15,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "SCA",
+      "year": null,
+      "posts_mentioning": 108,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "SCA",
+      "year": 2022,
+      "posts_mentioning": 3,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "SDLC",
+      "year": null,
+      "posts_mentioning": 60,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "SDLC",
+      "year": 2022,
+      "posts_mentioning": 4,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "SQL",
+      "year": null,
+      "posts_mentioning": 92,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "SQL",
+      "year": 2022,
+      "posts_mentioning": 16,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "TCP/IP",
+      "year": null,
+      "posts_mentioning": 150,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "TCP/IP",
+      "year": 2022,
+      "posts_mentioning": 17,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "TLS",
+      "year": null,
+      "posts_mentioning": 63,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "TLS",
+      "year": 2022,
+      "posts_mentioning": 2,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Terraform",
+      "year": null,
+      "posts_mentioning": 55,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Terraform",
+      "year": 2022,
+      "posts_mentioning": 2,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "Windows",
+      "year": null,
+      "posts_mentioning": 375,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "Windows",
+      "year": 2022,
+      "posts_mentioning": 59,
+      "posts": 398
+    },
+    {
+      "group": "security_all",
+      "skill": "macOS",
+      "year": null,
+      "posts_mentioning": 60,
+      "posts": 1947
+    },
+    {
+      "group": "security_all",
+      "skill": "macOS",
+      "year": 2022,
+      "posts_mentioning": 4,
+      "posts": 398
+    },
+    {
+      "group": "security_senior",
+      "skill": "AWS",
+      "year": null,
+      "posts_mentioning": 53,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "Azure",
+      "year": null,
+      "posts_mentioning": 26,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "Bash",
+      "year": null,
+      "posts_mentioning": 45,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "CI/CD",
+      "year": null,
+      "posts_mentioning": 52,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "DAST",
+      "year": null,
+      "posts_mentioning": 39,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "DNS",
+      "year": null,
+      "posts_mentioning": 25,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "DevOps",
+      "year": null,
+      "posts_mentioning": 30,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "DevSecOps",
+      "year": null,
+      "posts_mentioning": 27,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "Docker",
+      "year": null,
+      "posts_mentioning": 29,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "ELK",
+      "year": null,
+      "posts_mentioning": 20,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "GCP",
+      "year": null,
+      "posts_mentioning": 28,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "Go",
+      "year": null,
+      "posts_mentioning": 48,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "IaC",
+      "year": null,
+      "posts_mentioning": 25,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "Java",
+      "year": null,
+      "posts_mentioning": 23,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "JavaScript",
+      "year": null,
+      "posts_mentioning": 21,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "Kaspersky",
+      "year": null,
+      "posts_mentioning": 27,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "Kubernetes",
+      "year": null,
+      "posts_mentioning": 59,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "Linux",
+      "year": null,
+      "posts_mentioning": 141,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "OWASP",
+      "year": null,
+      "posts_mentioning": 49,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "Pentest",
+      "year": null,
+      "posts_mentioning": 39,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "PowerShell",
+      "year": null,
+      "posts_mentioning": 37,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "Python",
+      "year": null,
+      "posts_mentioning": 108,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "SAST",
+      "year": null,
+      "posts_mentioning": 44,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "SCA",
+      "year": null,
+      "posts_mentioning": 22,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "SQL",
+      "year": null,
+      "posts_mentioning": 21,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "TCP/IP",
+      "year": null,
+      "posts_mentioning": 29,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "Terraform",
+      "year": null,
+      "posts_mentioning": 24,
+      "posts": 553
+    },
+    {
+      "group": "security_senior",
+      "skill": "Windows",
+      "year": null,
+      "posts_mentioning": 96,
+      "posts": 553
     }
   ],
   "grades": [

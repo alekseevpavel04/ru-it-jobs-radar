@@ -42,15 +42,13 @@ DIRECTIONS: dict[str, tuple[str, ...]] = {
     "dataeng": ("data_engineer",),
     "devops": ("devops", "sysadmin"),
     "mobile": ("mobile",),
-}
-# Roles of the direction mix only (no skill cells: their skills are mostly tools and soft skills); every
-# other IT role goes to "other", so the mix adds up to all IT posts.
-MIX_ONLY: dict[str, tuple[str, ...]] = {
-    "management": ("manager",),
-    "design": ("designer",),
     "fullstack": ("fullstack",),
     "security": ("security",),
 }
+# Roles of the direction mix only, without skill cells: managers' posts name few skills (Agile in 4 %), and
+# "designer" mixes interface designers with game artists. Every other IT role goes to "other", so the mix
+# adds up to all IT posts.
+MIX_ONLY: dict[str, tuple[str, ...]] = {"management": ("manager",), "design": ("designer",)}
 GRADES: dict[str, tuple[str, ...]] = {"junior": JUNIOR_GRADES, "middle": ("middle",), "senior": ("senior", "lead")}
 MIN_CELL_POSTS = 200
 MIN_MENTIONS = 20
