@@ -129,7 +129,7 @@ class LlamaServer:
     def __init__(self, client: httpx.Client, max_new_tokens: int, schema: Mapping[str, Any] | None) -> None:
         self.client, self.max_new_tokens, self.schema = client, max_new_tokens, schema
 
-    def body(self, prompt: str) -> dict[str, Any]:
+    def body(self, prompt: str | list[int]) -> dict[str, Any]:
         body: dict[str, Any] = {
             "prompt": prompt,
             "n_predict": self.max_new_tokens,
@@ -160,7 +160,9 @@ class LlamaServer:
         )
         template.raise_for_status()
         started = time.perf_counter()
-        r = self.client.post("/completion", json=self.body(row["prompt"]))
+        # Token ids when the caller has them: llama.cpp splits some emoji sequences of the same text into other
+        # tokens than the student's tokenizer (5 of 2 000 Telegram posts, results/autopilot/quant_drift.json).
+        r = self.client.post("/completion", json=self.body(row.get("prompt_ids") or row["prompt"]))
         seconds = time.perf_counter() - started
         r.raise_for_status()
         data = r.json()
@@ -340,6 +342,8 @@ class CorpusBackend:
     def answer(self, text: str) -> Answer:
         with self._render:
             (row,) = prompt_rows([{"id": "", "input": text}], self.tokenizer, self.meta)
+            # the corpus sends the tokens it rendered, so the server reads the scored prompt token for token
+            row["prompt_ids"] = self.tokenizer(row["prompt"], add_special_tokens=False).input_ids
         cut = row["truncated_input"]
         try:
             out = self.server.predict(row)

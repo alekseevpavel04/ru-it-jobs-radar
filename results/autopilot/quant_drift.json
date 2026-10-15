@@ -1,0 +1,298 @@
+{
+  "source_script": "src/radar/autopilot/quant_drift.py",
+  "command": "python -m radar.autopilot.quant_drift --base-url http://127.0.0.1:8094 --sample 2000",
+  "commit": "f0b4f20-dirty",
+  "created_at": "2026-10-15T11:32:01+00:00",
+  "metrics": {
+    "valid": {
+      "value": 0.9985,
+      "n": 1997,
+      "denominator": 2000
+    },
+    "still_it": {
+      "value": 0.9905,
+      "n": 1978,
+      "denominator": 1997
+    },
+    "same_role": {
+      "value": 0.9434,
+      "n": 1884,
+      "denominator": 1997
+    },
+    "same_grade": {
+      "value": 0.9479,
+      "n": 1893,
+      "denominator": 1997
+    },
+    "skills_jaccard_mean": {
+      "value": 0.9524,
+      "n": null,
+      "denominator": null
+    },
+    "skills_per_post_awq": {
+      "value": 3.952,
+      "n": null,
+      "denominator": null
+    },
+    "skills_per_post_q4": {
+      "value": 3.896,
+      "n": null,
+      "denominator": null
+    },
+    "share.Python": {
+      "value": -0.003,
+      "n": null,
+      "denominator": null,
+      "awq": 442,
+      "q4": 436,
+      "posts": 1997
+    },
+    "share.SQL": {
+      "value": -0.008,
+      "n": null,
+      "denominator": null,
+      "awq": 337,
+      "q4": 321,
+      "posts": 1997
+    },
+    "share.PostgreSQL": {
+      "value": -0.003,
+      "n": null,
+      "denominator": null,
+      "awq": 262,
+      "q4": 256,
+      "posts": 1997
+    },
+    "share.Docker": {
+      "value": -0.0035,
+      "n": null,
+      "denominator": null,
+      "awq": 222,
+      "q4": 215,
+      "posts": 1997
+    },
+    "share.Git": {
+      "value": -0.0015,
+      "n": null,
+      "denominator": null,
+      "awq": 201,
+      "q4": 198,
+      "posts": 1997
+    },
+    "share.Java": {
+      "value": 0.0005,
+      "n": null,
+      "denominator": null,
+      "awq": 197,
+      "q4": 198,
+      "posts": 1997
+    },
+    "share.REST": {
+      "value": -0.0045,
+      "n": null,
+      "denominator": null,
+      "awq": 183,
+      "q4": 174,
+      "posts": 1997
+    },
+    "share.Kubernetes": {
+      "value": -0.0005,
+      "n": null,
+      "denominator": null,
+      "awq": 169,
+      "q4": 168,
+      "posts": 1997
+    },
+    "share.CI/CD": {
+      "value": -0.0005,
+      "n": null,
+      "denominator": null,
+      "awq": 155,
+      "q4": 154,
+      "posts": 1997
+    },
+    "share.JavaScript": {
+      "value": -0.0025,
+      "n": null,
+      "denominator": null,
+      "awq": 155,
+      "q4": 150,
+      "posts": 1997
+    },
+    "share.Linux": {
+      "value": -0.0015,
+      "n": null,
+      "denominator": null,
+      "awq": 151,
+      "q4": 148,
+      "posts": 1997
+    },
+    "share.Kafka": {
+      "value": -0.001,
+      "n": null,
+      "denominator": null,
+      "awq": 136,
+      "q4": 134,
+      "posts": 1997
+    },
+    "share.React": {
+      "value": -0.0005,
+      "n": null,
+      "denominator": null,
+      "awq": 119,
+      "q4": 118,
+      "posts": 1997
+    },
+    "share.Go": {
+      "value": 0.0015,
+      "n": null,
+      "denominator": null,
+      "awq": 115,
+      "q4": 118,
+      "posts": 1997
+    },
+    "share.Microservices": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "awq": 104,
+      "q4": 104,
+      "posts": 1997
+    },
+    "share.TypeScript": {
+      "value": -0.0005,
+      "n": null,
+      "denominator": null,
+      "awq": 99,
+      "q4": 98,
+      "posts": 1997
+    },
+    "share.DevOps": {
+      "value": -0.002,
+      "n": null,
+      "denominator": null,
+      "awq": 98,
+      "q4": 94,
+      "posts": 1997
+    },
+    "share.Redis": {
+      "value": -0.001,
+      "n": null,
+      "denominator": null,
+      "awq": 95,
+      "q4": 93,
+      "posts": 1997
+    },
+    "share.ООП": {
+      "value": -0.0005,
+      "n": null,
+      "denominator": null,
+      "awq": 76,
+      "q4": 75,
+      "posts": 1997
+    },
+    "share.C#": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "awq": 75,
+      "q4": 75,
+      "posts": 1997
+    },
+    "share.ClickHouse": {
+      "value": -0.0005,
+      "n": null,
+      "denominator": null,
+      "awq": 72,
+      "q4": 71,
+      "posts": 1997
+    },
+    "share.RabbitMQ": {
+      "value": -0.002,
+      "n": null,
+      "denominator": null,
+      "awq": 69,
+      "q4": 65,
+      "posts": 1997
+    },
+    "share.MySQL": {
+      "value": -0.0005,
+      "n": null,
+      "denominator": null,
+      "awq": 66,
+      "q4": 65,
+      "posts": 1997
+    },
+    "share.FastAPI": {
+      "value": -0.001,
+      "n": null,
+      "denominator": null,
+      "awq": 65,
+      "q4": 63,
+      "posts": 1997
+    },
+    "share.1С": {
+      "value": -0.0025,
+      "n": null,
+      "denominator": null,
+      "awq": 62,
+      "q4": 57,
+      "posts": 1997
+    },
+    "share.PHP": {
+      "value": 0.0,
+      "n": null,
+      "denominator": null,
+      "awq": 61,
+      "q4": 61,
+      "posts": 1997
+    },
+    "share.CSS": {
+      "value": -0.002,
+      "n": null,
+      "denominator": null,
+      "awq": 60,
+      "q4": 56,
+      "posts": 1997
+    },
+    "share.C++": {
+      "value": 0.0005,
+      "n": null,
+      "denominator": null,
+      "awq": 59,
+      "q4": 60,
+      "posts": 1997
+    },
+    "share.MongoDB": {
+      "value": -0.0015,
+      "n": null,
+      "denominator": null,
+      "awq": 59,
+      "q4": 56,
+      "posts": 1997
+    },
+    "share.Spring": {
+      "value": -0.001,
+      "n": null,
+      "denominator": null,
+      "awq": 59,
+      "q4": 57,
+      "posts": 1997
+    },
+    "share_diff_max_top": {
+      "value": 0.008,
+      "n": null,
+      "denominator": null
+    }
+  },
+  "history_model": "qwen3_1p7b_r16_clean-awq",
+  "daily_model": "qwen3_1p7b_r16_clean-q4_k_m",
+  "sample": 2000,
+  "years": [
+    2025,
+    2026
+  ],
+  "definitions": {
+    "share.<skill>": "share of the sampled posts naming the skill under Q4_K_M minus under AWQ; awq and q4 are the posts naming it, posts the posts both readings answered"
+  }
+}

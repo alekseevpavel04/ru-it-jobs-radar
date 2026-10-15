@@ -54,7 +54,8 @@ def server(seen: list[dict[str, Any]], model: str = "/weights/m-Q4_K_M.gguf", ex
             return httpx.Response(200, json={"prompt": template(body["messages"])})
         assert request.url.path == "/completion"
         seen.append(body)
-        n = len(body["prompt"].split()) + extra
+        prompt = body["prompt"]
+        n = (len(prompt) if isinstance(prompt, list) else len(prompt.split())) + extra
         return httpx.Response(
             200, json={"content": ANSWER, "stop_type": "eos", "tokens_evaluated": n, "tokens_predicted": 40}
         )
@@ -67,9 +68,9 @@ def test_input_is_cut_rendered_by_the_server_and_sent_with_the_schema(merged: Pa
     backend = student_cpu.backend("http://student:8080", name="m", transport=server(seen))
     assert backend.model_id == "m-q4_k_m" and backend.prompt_sha256 == "abc123"
     long, short = backend.extract(["ищем ml инженера в команду", "ищем ml"])
-    assert seen[0]["prompt"] == template(
-        [{"role": "system", "content": "S"}, {"role": "user", "content": "ищем ml инженера"}]
-    )
+    # the server gets the token ids of the rendered prompt, not its text to tokenize again
+    rendered = template([{"role": "system", "content": "S"}, {"role": "user", "content": "ищем ml инженера"}])
+    assert seen[0]["prompt"] == Tokenizer.from_file(str(merged / "m" / "tokenizer.json")).encode(rendered).ids
     assert seen[0]["json_schema"] == json_schema() and seen[0]["temperature"] == 0
     assert seen[0]["n_predict"] == student_server.MAX_NEW_TOKENS
     assert (long.input_truncated, short.input_truncated) == (True, False)
