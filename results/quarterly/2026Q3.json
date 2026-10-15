@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/site/quarterly.py",
   "command": "python -m radar.site.quarterly --quarter 2026Q3",
-  "commit": "2deb038-dirty",
-  "created_at": "2026-10-15T11:41:49+00:00",
+  "commit": "8c86308",
+  "created_at": "2026-10-15T11:46:40+00:00",
   "metrics": {
     "channels.now": {
       "value": 58,

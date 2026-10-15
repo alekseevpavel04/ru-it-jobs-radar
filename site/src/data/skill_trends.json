@@ -1,8 +1,8 @@
 {
   "source_file": "results/market/skill_trends.json",
   "source_script": "src/radar/site/skill_trends.py",
-  "commit": "f0b4f20-dirty",
-  "created_at": "2026-10-15T11:03:15+00:00",
+  "commit": "8c86308",
+  "created_at": "2026-10-15T11:46:36+00:00",
   "recent_years": [
     2025,
     2026
