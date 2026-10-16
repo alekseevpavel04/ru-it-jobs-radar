@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/dedup/__main__.py",
   "command": "python -m radar.dedup candidates",
-  "commit": "42a62d4-dirty",
+  "commit": "1b08b07-dirty",
   "created_at": "2026-10-12T19:30:28+00:00",
   "metrics": {
     "units.trudvsem": {

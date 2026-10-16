@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/models/survival.py",
   "command": "python -m radar.models.survival",
-  "commit": "5e5c3c0-dirty",
+  "commit": "2cff6fa-dirty",
   "created_at": "2026-10-11T15:23:08+00:00",
   "metrics": {
     "window_days": {

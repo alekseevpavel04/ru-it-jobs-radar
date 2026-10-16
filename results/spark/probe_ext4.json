@@ -1,7 +1,7 @@
 {
   "source_script": "jobs/spark/bench.py",
   "command": "python jobs/spark/bench.py --days 3 --lake /home/radar/spark-lake/trudvsem_snapshot --result probe_ext4.json",
-  "commit": "d52179b-dirty",
+  "commit": "a1a6be2-dirty",
   "created_at": "2026-10-13T20:41:52+00:00",
   "metrics": {
     "raw_rows": {

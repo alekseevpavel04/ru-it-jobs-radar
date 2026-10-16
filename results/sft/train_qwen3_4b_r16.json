@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/train/sft.py",
   "command": "python -m radar.train.sft --config configs/sft/qwen3_4b.toml --resume",
-  "commit": "f4f96bf",
+  "commit": "c042323",
   "created_at": "2026-10-12T12:22:17+00:00",
   "metrics": {
     "train_seconds": {
@@ -84,7 +84,7 @@
     "dataset_val_sha256": "266184de763ef034f1b07b5fe8e4328b298fd370e3bc786a8fd212f9b6c6ef2d",
     "prompt_sha256": "3450d19f9a7701f86aaa0da80c07b4320d42a68217e0001ca9409209a25c4bb1",
     "max_input_tokens": 1536,
-    "commit": "fc5257f",
+    "commit": "619e54c",
     "mode": "train"
   },
   "dataset_meta": {

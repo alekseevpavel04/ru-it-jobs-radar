@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/models/salary.py",
   "command": "python -m radar.models.salary --final-test",
-  "commit": "125ec81-dirty",
+  "commit": "1ec3e1e-dirty",
   "created_at": "2026-10-13T17:17:03+00:00",
   "metrics": {
     "test_global_median_mae_rub": {

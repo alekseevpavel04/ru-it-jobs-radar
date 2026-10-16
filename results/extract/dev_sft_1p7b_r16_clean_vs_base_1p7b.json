@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/eval/cli.py",
   "command": "python -m radar.eval --system sft_1p7b_r16_clean --split dev --compare base_1p7b",
-  "commit": "26c2296-dirty",
+  "commit": "7887db7-dirty",
   "created_at": "2026-10-13T12:11:53+00:00",
   "metrics": {
     "cities_f1": {

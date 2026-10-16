@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/collect/trudvsem_snapshot.py",
   "command": "python -m radar.collect.trudvsem_snapshot",
-  "commit": "59777d1-dirty",
+  "commit": "b328638-dirty",
   "created_at": "2026-10-11T14:31:59+00:00",
   "metrics": {
     "snapshots_complete": {

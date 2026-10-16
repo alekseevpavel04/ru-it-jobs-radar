@@ -1,7 +1,7 @@
 {
   "source_script": "dbt/report.py",
   "command": "python dbt/report.py",
-  "commit": "3edd1d0-dirty",
+  "commit": "50b10ca-dirty",
   "created_at": "2026-10-14T08:47:17+00:00",
   "metrics": {
     "collected_days_habr": {

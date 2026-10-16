@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/monitor/drift_quality.py",
   "command": "python -m radar.monitor.drift_quality --no-teacher",
-  "commit": "98f17ae-dirty",
+  "commit": "7eb392e-dirty",
   "created_at": "2026-10-14T07:48:06+00:00",
   "metrics": {
     "portals.reference.valid_json": {

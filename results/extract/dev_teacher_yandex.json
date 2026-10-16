@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/eval/cli.py",
   "command": "python -m radar.eval --system teacher_yandex --split dev --compare regex",
-  "commit": "44a142a-dirty",
+  "commit": "5d811dd-dirty",
   "created_at": "2026-10-10T15:22:48+00:00",
   "metrics": {
     "valid_json": {

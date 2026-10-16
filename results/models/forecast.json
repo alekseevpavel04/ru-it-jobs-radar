@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/models/forecast.py",
   "command": "python -m radar.models.forecast",
-  "commit": "b6e69cc-dirty",
+  "commit": "3d11c6d-dirty",
   "created_at": "2026-10-13T20:52:29+00:00",
   "metrics": {
     "data.telegram.weeks": {

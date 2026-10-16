@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/site/hf_scan.py",
   "command": "python -m radar.site.hf_scan",
-  "commit": "f3121e4-dirty",
+  "commit": "ef550c2-dirty",
   "created_at": "2026-10-13T21:00:42+00:00",
   "metrics": {
     "files_scanned": {

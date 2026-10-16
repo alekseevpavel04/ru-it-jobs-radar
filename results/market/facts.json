@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/site/market_facts.py",
   "command": "python -m radar.site.market_facts",
-  "commit": "24f7cf9-dirty",
+  "commit": "8367f37-dirty",
   "created_at": "2026-10-15T07:15:44+00:00",
   "metrics": {
     "ml_ds.habr.vacancies": {

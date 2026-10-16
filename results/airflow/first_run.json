@@ -1,7 +1,7 @@
 {
   "source_script": "airflow/run_report.py",
   "command": "python airflow/run_report.py radar_collect:manual__2026-10-08 radar_load:collect__2026-10-08 radar_dbt:load__2026-10-08 --out airflow/first_run.json",
-  "commit": "72a994c-dirty",
+  "commit": "b4fbfc4-dirty",
   "created_at": "2026-10-08T16:43:16+00:00",
   "metrics": {
     "runs_success": {

@@ -1,7 +1,7 @@
 {
   "source_script": "src/radar/train/quantize.py",
   "command": "python -m radar.train.quantize summary --name qwen3_1p7b_r16_clean --reference sft_1p7b_r16_clean --systems sft_1p7b_clean_f16 sft_1p7b_clean_q8_0 sft_1p7b_clean_q4_k_m sft_1p7b_clean_q4_k_m_schema sft_1p7b_clean_awq sft_1p7b_clean_awq_schema --bench data/inference/bench/sft_1p7b_clean_q4_k_m_w1.meta.json data/inference/bench/sft_1p7b_clean_q4_k_m_w2.meta.json data/inference/bench/sft_1p7b_clean_q4_k_m_w8.meta.json data/inference/bench/sft_1p7b_clean_awq_w1.meta.json data/inference/bench/sft_1p7b_clean_awq_w8.meta.json",
-  "commit": "26c9b4a-dirty",
+  "commit": "7f2e6f0-dirty",
   "created_at": "2026-10-12T19:06:09+00:00",
   "metrics": {
     "dev/sft_1p7b_r16_clean/macro_f1": {
@@ -974,7 +974,7 @@
         "from": "models/gguf/qwen3_1p7b_r16_clean/qwen3_1p7b_r16_clean-F16.gguf"
       }
     ],
-    "commit": "b0cbe3d-dirty",
+    "commit": "fc08cc4-dirty",
     "created_at": "2026-10-12T18:38:56+00:00"
   },
   "method": "macro F1 and valid JSON from results/extract/<split>_<system>.json (python -m radar.eval), the difference to the reference from <split>_<system>_vs_<reference>.json (paired bootstrap on the same gold rows); same answer: both parse to an equal JSON value, over every predicted record of the split, gold or not; records per second over the wall time of a run with `workers` requests in flight (llama-server with at least as many slots, vLLM with max-num-seqs 8); latency per record measured by the client; peak memory of the whole card by nvidia-smi, vLLM reserving 0.85 of it up front; sizes from the files"
