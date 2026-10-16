@@ -66,6 +66,11 @@ def test_ru_thousands() -> None:
     assert verify_numbers.render(1234.5, ",.1f|ru") == "1 234,5"
 
 
+def test_escaped_separator_in_table_rows() -> None:
+    assert verify_numbers.render(499817, ",d\\|ru") == "499 817"
+    assert verify_numbers.render(0.026, ".1f\\|pct\\|ru") == "2,6"
+
+
 def test_lookup_dotted_keys() -> None:
     doc = {
         "metrics": {

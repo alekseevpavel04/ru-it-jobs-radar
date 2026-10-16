@@ -72,7 +72,8 @@ def lookup(doc: Any, dotted: str) -> Any:
 
 
 def render(value: Any, fmt: str) -> str:
-    spec, *transforms = fmt.split("|")
+    # Inside a Markdown table row the separator is written as "\|", or GitHub splits the cell on it.
+    spec, *transforms = fmt.replace("\\|", "|").split("|")
     if "pct" in transforms:
         value = value * 100
     out = format(value, spec)

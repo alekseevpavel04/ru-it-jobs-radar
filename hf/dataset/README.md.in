@@ -35,10 +35,10 @@ configs:
 
 | Конфигурация | Строк | Что в строке |
 |---|---|---|
-| `trudvsem` | <!--n:public/hf_dataset.json:metrics.trudvsem.rows.value:,d|ru-->25 818<!--/n--> | вакансия: заголовок, текст, ссылка, поля портала и извлечённые поля |
-| `superjob` | <!--n:public/hf_dataset.json:metrics.superjob.rows.value:,d|ru-->764<!--/n--> | только извлечённые поля и дата публикации |
-| `telegram_aggregates` | <!--n:public/hf_dataset.json:metrics.telegram.cells.value:,d|ru-->51 170<!--/n--> | агрегат по всем каналам: неделя, поле, значение, число постов и знаменатель недели |
-| `habr_aggregates` | <!--n:public/hf_dataset.json:metrics.habr.cells.value:,d|ru-->426<!--/n--> | агрегат: месяц, поле, значение, число вакансий и знаменатель месяца |
+| `trudvsem` | <!--n:public/hf_dataset.json:metrics.trudvsem.rows.value:,d\|ru-->25 818<!--/n--> | вакансия: заголовок, текст, ссылка, поля портала и извлечённые поля |
+| `superjob` | <!--n:public/hf_dataset.json:metrics.superjob.rows.value:,d\|ru-->764<!--/n--> | только извлечённые поля и дата публикации |
+| `telegram_aggregates` | <!--n:public/hf_dataset.json:metrics.telegram.cells.value:,d\|ru-->51 170<!--/n--> | агрегат по всем каналам: неделя, поле, значение, число постов и знаменатель недели |
+| `habr_aggregates` | <!--n:public/hf_dataset.json:metrics.habr.cells.value:,d\|ru-->426<!--/n--> | агрегат: месяц, поле, значение, число вакансий и знаменатель месяца |
 
 Тексты есть только у «Работы в России»: <!--n:public/hf_dataset.json:metrics.trudvsem.with_text.n:,d|ru-->18 864<!--/n--> из <!--n:public/hf_dataset.json:metrics.trudvsem.with_text.denominator:,d|ru-->25 818<!--/n--> вакансий. Ещё <!--n:public/hf_dataset.json:metrics.trudvsem.text_withheld_reposted.n:,d|ru-->6 952<!--/n--> портал помечает как «Вакансия интернет ресурса»: это перепубликация с других сайтов, их заголовок и текст не выкладываются. У <!--n:public/hf_dataset.json:metrics.trudvsem.no_text_at_source.n:,d|ru-->2<!--/n--> вакансий текста нет у самого портала, поле `text_withheld` у них пустое. Тексты SuperJob, Telegram и Хабр Карьеры хранятся только в локальном сыром слое проекта. У SuperJob в выгрузке нет id вакансии, ссылки и работодателя.
 
