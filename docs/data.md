@@ -20,6 +20,8 @@
 
 ![Дашборд Superset: рынок по неделям](img/superset_market.png)
 
+Остальные дашборды Superset (они описаны кодом в [`infra/superset`](../infra/superset)): [навыки](img/superset_skills.png), [зарплаты](img/superset_salaries.png), [джуны и стажёры](img/superset_junior.png), [время жизни вакансий](img/superset_lifetime.png).
+
 ## Что публикуется
 
 **Персональные данные** вычищаются до записи в сырой слой: ФИО контактов, телефоны, почты, ники, реквизиты и адреса ИП. Только в снимках портала убрано телефонов <!--n:collect/trudvsem_snapshots.json:metrics.pii_removed_phone.value:,d|ru-->59 195 444<!--/n-->, почт <!--n:collect/trudvsem_snapshots.json:metrics.pii_removed_email.value:,d|ru-->93 889 690<!--/n-->. Всё, что публикуется (дерево git, собранный сайт, папки Hugging Face), дополнительно проверяет [`scripts/scan_pii.py`](../scripts/scan_pii.py).

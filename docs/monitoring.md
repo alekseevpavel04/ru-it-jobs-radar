@@ -65,6 +65,8 @@ docker compose -f infra/compose/docker-compose.yml --env-file .env --profile mlo
 
 ![Airflow: DAG проекта](img/airflow_dags.png)
 
+Запуски `radar_ml_label`, извлечения новых версий на CPU: [скриншот](img/airflow_radar_ml_label.png).
+
 Скриншоты: `scripts/airflow_screenshot.sh [--dag radar_ml_label]` (пароль администратора берётся из `.env` через окружение).
 
 ## Дрейф и качество извлечения (Evidently)
