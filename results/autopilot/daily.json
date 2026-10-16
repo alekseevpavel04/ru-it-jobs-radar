@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/autopilot/daily.py",
   "command": "python -m radar.autopilot.daily --base-url http://127.0.0.1:8080 --time-budget 3000",
-  "commit": "ab40043",
-  "created_at": "2026-10-15T13:26:11+00:00",
+  "commit": "0da5ab3",
+  "created_at": "2026-10-16T08:32:43+00:00",
   "metrics": {
     "channels": {
       "value": 58,
@@ -20,47 +20,47 @@
       "denominator": null
     },
     "requests": {
-      "value": 63,
+      "value": 58,
       "n": null,
       "denominator": null
     },
     "posts_fetched": {
-      "value": 407,
+      "value": 122,
       "n": null,
       "denominator": null
     },
     "vacancy_posts": {
-      "value": 304,
+      "value": 95,
       "n": null,
       "denominator": null
     },
     "multi_vacancy": {
-      "value": 22,
-      "n": null,
-      "denominator": null
-    },
-    "duplicates": {
       "value": 15,
       "n": null,
       "denominator": null
     },
+    "duplicates": {
+      "value": 10,
+      "n": null,
+      "denominator": null
+    },
     "units": {
-      "value": 267,
+      "value": 70,
       "n": null,
       "denominator": null
     },
     "extracted": {
-      "value": 235,
+      "value": 68,
       "n": null,
       "denominator": null
     },
     "valid": {
-      "value": 234,
+      "value": 68,
       "n": null,
       "denominator": null
     },
     "it": {
-      "value": 213,
+      "value": 64,
       "n": null,
       "denominator": null
     },
@@ -75,33 +75,32 @@
       "denominator": null
     },
     "skill_spellings_unseen_by_seed": {
-      "value": 3,
+      "value": 2,
       "n": null,
       "denominator": null
     },
     "seconds_collecting": {
-      "value": 200.0,
+      "value": 187.4,
       "n": null,
       "denominator": null
     },
     "seconds_extracting": {
-      "value": 2002.4,
+      "value": 467.5,
       "n": null,
       "denominator": null
     },
     "seconds_total": {
-      "value": 2202.8,
+      "value": 655.3,
       "n": null,
       "denominator": null
     }
   },
   "model_id": "qwen3_1p7b_r16_clean-q4_k_m",
   "aggregates": "aggregates/telegram",
-  "finished_at": "2026-10-15T13:26:11+00:00",
+  "finished_at": "2026-10-16T08:32:42+00:00",
   "failed_channels": [],
   "not_extracted": {
-    "link_stub": 24,
-    "digest": 8
+    "digest": 2
   },
   "weeks": [
     "2026-10-12"
