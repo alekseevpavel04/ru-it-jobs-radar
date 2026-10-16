@@ -67,6 +67,10 @@ bash scripts/check.sh    # ruff, mypy, pytest и пересчёт всех оп�
 
 Тесты в сеть не ходят. Свой сбор и стек описаны в [`docs/running.md`](docs/running.md).
 
+## In English
+
+A daily radar of the Russian IT job market. Collectors pull public Telegram channels and three job portals into a ClickHouse and dbt warehouse; a Qwen3-1.7B fine-tuned with QLoRA on labels from two 8B teachers turns vacancy text into eight fields (role, grade, skills, salary, work format, cities, experience, employment type). On held-out Telegram posts it reaches macro F1 <!--n:extract/final_test.json:metrics.tg_test/sft_1p7b_r16_clean/macro_f1.value:.3f-->0.842<!--/n--> against <!--n:extract/final_test.json:metrics.tg_test/regex/macro_f1.value:.3f-->0.647<!--/n--> for rules. On top of the fields sit a salary model with conformal intervals, skill-to-pay effects via double ML, vacancy matching and a text-to-SQL agent. The skills site rebuilds itself every day on a free GitHub Actions runner. The documentation is in Russian.
+
 ## Лицензия
 
 Код распространяется по лицензии MIT ([`LICENSE`](LICENSE)). Данные портала взяты из открытых данных Роструда, условия источников в [`docs/data.md`](docs/data.md).
