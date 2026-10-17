@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/autopilot/daily.py",
   "command": "python -m radar.autopilot.daily --base-url http://127.0.0.1:8080 --time-budget 3000",
-  "commit": "bdf3342",
-  "created_at": "2026-10-16T08:32:43+00:00",
+  "commit": "f952f40",
+  "created_at": "2026-10-17T08:09:33+00:00",
   "metrics": {
     "channels": {
       "value": 58,
@@ -20,17 +20,17 @@
       "denominator": null
     },
     "requests": {
-      "value": 58,
+      "value": 59,
       "n": null,
       "denominator": null
     },
     "posts_fetched": {
-      "value": 122,
+      "value": 148,
       "n": null,
       "denominator": null
     },
     "vacancy_posts": {
-      "value": 95,
+      "value": 99,
       "n": null,
       "denominator": null
     },
@@ -40,27 +40,27 @@
       "denominator": null
     },
     "duplicates": {
-      "value": 10,
+      "value": 4,
       "n": null,
       "denominator": null
     },
     "units": {
-      "value": 70,
+      "value": 80,
       "n": null,
       "denominator": null
     },
     "extracted": {
-      "value": 68,
+      "value": 78,
       "n": null,
       "denominator": null
     },
     "valid": {
-      "value": 68,
+      "value": 78,
       "n": null,
       "denominator": null
     },
     "it": {
-      "value": 64,
+      "value": 66,
       "n": null,
       "denominator": null
     },
@@ -80,24 +80,24 @@
       "denominator": null
     },
     "seconds_collecting": {
-      "value": 187.4,
+      "value": 191.3,
       "n": null,
       "denominator": null
     },
     "seconds_extracting": {
-      "value": 467.5,
+      "value": 571.7,
       "n": null,
       "denominator": null
     },
     "seconds_total": {
-      "value": 655.3,
+      "value": 763.4,
       "n": null,
       "denominator": null
     }
   },
   "model_id": "qwen3_1p7b_r16_clean-q4_k_m",
   "aggregates": "aggregates/telegram",
-  "finished_at": "2026-10-16T08:32:42+00:00",
+  "finished_at": "2026-10-17T08:09:32+00:00",
   "failed_channels": [],
   "not_extracted": {
     "digest": 2
