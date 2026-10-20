@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/autopilot/daily.py",
   "command": "python -m radar.autopilot.daily --base-url http://127.0.0.1:8080 --time-budget 3000",
-  "commit": "04a703d",
-  "created_at": "2026-10-19T09:19:40+00:00",
+  "commit": "32ab1a3",
+  "created_at": "2026-10-20T08:54:46+00:00",
   "metrics": {
     "channels": {
       "value": 58,
@@ -25,42 +25,42 @@
       "denominator": null
     },
     "posts_fetched": {
-      "value": 119,
+      "value": 201,
       "n": null,
       "denominator": null
     },
     "vacancy_posts": {
-      "value": 58,
+      "value": 148,
       "n": null,
       "denominator": null
     },
     "multi_vacancy": {
-      "value": 10,
+      "value": 17,
       "n": null,
       "denominator": null
     },
     "duplicates": {
-      "value": 1,
+      "value": 19,
       "n": null,
       "denominator": null
     },
     "units": {
-      "value": 47,
+      "value": 112,
       "n": null,
       "denominator": null
     },
     "extracted": {
-      "value": 46,
+      "value": 111,
       "n": null,
       "denominator": null
     },
     "valid": {
-      "value": 46,
+      "value": 111,
       "n": null,
       "denominator": null
     },
     "it": {
-      "value": 42,
+      "value": 104,
       "n": null,
       "denominator": null
     },
@@ -80,30 +80,29 @@
       "denominator": null
     },
     "seconds_collecting": {
-      "value": 188.3,
+      "value": 187.6,
       "n": null,
       "denominator": null
     },
     "seconds_extracting": {
-      "value": 420.1,
+      "value": 403.6,
       "n": null,
       "denominator": null
     },
     "seconds_total": {
-      "value": 608.8,
+      "value": 591.5,
       "n": null,
       "denominator": null
     }
   },
   "model_id": "qwen3_1p7b_r16_clean-q4_k_m",
   "aggregates": "aggregates/telegram",
-  "finished_at": "2026-10-19T09:19:40+00:00",
+  "finished_at": "2026-10-20T08:54:46+00:00",
   "failed_channels": [],
   "not_extracted": {
-    "digest": 1
+    "link_stub": 1
   },
   "weeks": [
-    "2026-10-12",
     "2026-10-19"
   ]
 }
