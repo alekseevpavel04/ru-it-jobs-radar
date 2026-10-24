@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/autopilot/daily.py",
   "command": "python -m radar.autopilot.daily --base-url http://127.0.0.1:8080 --time-budget 3000",
-  "commit": "3847012",
-  "created_at": "2026-10-23T08:58:23+00:00",
+  "commit": "8159ef7",
+  "created_at": "2026-10-24T08:31:01+00:00",
   "metrics": {
     "channels": {
       "value": 58,
@@ -20,47 +20,47 @@
       "denominator": null
     },
     "requests": {
-      "value": 60,
+      "value": 59,
       "n": null,
       "denominator": null
     },
     "posts_fetched": {
-      "value": 196,
+      "value": 121,
       "n": null,
       "denominator": null
     },
     "vacancy_posts": {
-      "value": 142,
+      "value": 90,
       "n": null,
       "denominator": null
     },
     "multi_vacancy": {
-      "value": 16,
+      "value": 13,
       "n": null,
       "denominator": null
     },
     "duplicates": {
-      "value": 16,
+      "value": 3,
       "n": null,
       "denominator": null
     },
     "units": {
-      "value": 110,
+      "value": 74,
       "n": null,
       "denominator": null
     },
     "extracted": {
-      "value": 106,
+      "value": 71,
       "n": null,
       "denominator": null
     },
     "valid": {
-      "value": 106,
+      "value": 71,
       "n": null,
       "denominator": null
     },
     "it": {
-      "value": 99,
+      "value": 65,
       "n": null,
       "denominator": null
     },
@@ -80,28 +80,28 @@
       "denominator": null
     },
     "seconds_collecting": {
-      "value": 193.6,
+      "value": 188.2,
       "n": null,
       "denominator": null
     },
     "seconds_extracting": {
-      "value": 710.6,
+      "value": 572.3,
       "n": null,
       "denominator": null
     },
     "seconds_total": {
-      "value": 904.6,
+      "value": 760.9,
       "n": null,
       "denominator": null
     }
   },
   "model_id": "qwen3_1p7b_r16_clean-q4_k_m",
   "aggregates": "aggregates/telegram",
-  "finished_at": "2026-10-23T08:58:22+00:00",
+  "finished_at": "2026-10-24T08:31:01+00:00",
   "failed_channels": [],
   "not_extracted": {
-    "link_stub": 3,
-    "digest": 1
+    "digest": 1,
+    "link_stub": 2
   },
   "weeks": [
     "2026-10-19"
