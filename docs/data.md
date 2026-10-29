@@ -10,7 +10,7 @@
 - **Telegram**, публичных каналов <!--n:collect/telegram.json:metrics.channels_enabled.value:d-->58<!--/n-->, посты с <!--n:corpus/telegram.json:published_range.0:s-->2016-11-04<!--/n--> по <!--n:corpus/telegram.json:published_range.1:s-->2026-10-08<!--/n-->: постов <!--n:collect/telegram.json:metrics.posts.value:,d|ru-->363 204<!--/n-->, из них с вакансиями <!--n:collect/telegram.json:metrics.vacancy_posts.n:,d|ru-->266 110<!--/n-->.
 - **SuperJob** с <!--n:collect/superjob.json:days.0.dt:s-->2026-10-12<!--/n-->: вакансий в первом срезе <!--n:collect/superjob.json:metrics.rows_total.value:,d|ru-->787<!--/n-->, дней сбора <!--n:dbt/history.json:metrics.collected_days_superjob.value:d-->2<!--/n-->; входит в модель зарплаты и подбор вакансий.
 
-Портал отдаёт в снимке все профессии, IT-часть выделяется в staging по названию и коду профессии. Telegram собран обходом веб-превью каналов от первого поста, поэтому его ряд длиннее остальных. Все источники собираются по cron на отдельном домашнем сервере ([`docs/vps.md`](vps.md)). Telegram, по которому считается сайт, кроме того каждый день собирает GitHub Actions ([autopilot.md](autopilot.md)).
+Портал отдаёт в снимке все профессии, IT-часть выделяется в staging по названию и коду профессии. Telegram собран обходом веб-превью каналов от первого поста, поэтому его ряд длиннее остальных. С 8 по 28 октября 2026 года все источники каждый день собирались по cron на отдельном домашнем сервере ([`docs/vps.md`](vps.md)), в стек вошёл сбор по 14 октября. Теперь каждый день собирается только Telegram, по которому считается сайт, это делает GitHub Actions ([autopilot.md](autopilot.md)).
 
 ## Что видно в сводных таблицах
 
