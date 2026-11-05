@@ -1,8 +1,8 @@
 {
   "source_script": "src/radar/autopilot/daily.py",
   "command": "python -m radar.autopilot.daily --base-url http://127.0.0.1:8080 --time-budget 3000",
-  "commit": "57305d1",
-  "created_at": "2026-11-04T11:32:20+00:00",
+  "commit": "a6aff71",
+  "created_at": "2026-11-05T11:29:20+00:00",
   "metrics": {
     "channels": {
       "value": 58,
@@ -20,7 +20,7 @@
       "denominator": null
     },
     "requests": {
-      "value": 59,
+      "value": 58,
       "n": null,
       "denominator": null
     },
@@ -30,37 +30,37 @@
       "denominator": null
     },
     "vacancy_posts": {
-      "value": 75,
+      "value": 74,
       "n": null,
       "denominator": null
     },
     "multi_vacancy": {
-      "value": 11,
+      "value": 5,
       "n": null,
       "denominator": null
     },
     "duplicates": {
-      "value": 6,
+      "value": 1,
       "n": null,
       "denominator": null
     },
     "units": {
-      "value": 58,
+      "value": 68,
       "n": null,
       "denominator": null
     },
     "extracted": {
-      "value": 55,
+      "value": 63,
       "n": null,
       "denominator": null
     },
     "valid": {
-      "value": 55,
+      "value": 63,
       "n": null,
       "denominator": null
     },
     "it": {
-      "value": 49,
+      "value": 62,
       "n": null,
       "denominator": null
     },
@@ -75,33 +75,33 @@
       "denominator": null
     },
     "skill_spellings_unseen_by_seed": {
-      "value": 2,
+      "value": 3,
       "n": null,
       "denominator": null
     },
     "seconds_collecting": {
-      "value": 185.8,
+      "value": 183.2,
       "n": null,
       "denominator": null
     },
     "seconds_extracting": {
-      "value": 591.6,
+      "value": 570.3,
       "n": null,
       "denominator": null
     },
     "seconds_total": {
-      "value": 777.8,
+      "value": 753.9,
       "n": null,
       "denominator": null
     }
   },
   "model_id": "qwen3_1p7b_r16_clean-q4_k_m",
   "aggregates": "aggregates/telegram",
-  "finished_at": "2026-11-04T11:32:20+00:00",
+  "finished_at": "2026-11-05T11:29:20+00:00",
   "failed_channels": [],
   "not_extracted": {
     "digest": 1,
-    "link_stub": 2
+    "link_stub": 4
   },
   "weeks": [
     "2026-11-02"
