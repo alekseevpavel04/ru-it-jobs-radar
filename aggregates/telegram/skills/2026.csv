@@ -65204,17 +65204,43 @@ week,channel,role,grade,skill,posts
 2026-11-02,v1c_rabota,manager,,1С,1
 2026-11-02,v1c_rabota,manager,,MS SQL Server,1
 2026-11-02,v1c_rabota,manager,,Windows Server,1
+2026-11-09,ai_rabota,data_analyst,senior,ClickHouse,1
+2026-11-09,ai_rabota,data_analyst,senior,HTTP,1
+2026-11-09,ai_rabota,data_analyst,senior,JSON,1
+2026-11-09,ai_rabota,data_analyst,senior,PostgreSQL,1
+2026-11-09,ai_rabota,data_analyst,senior,Python,1
+2026-11-09,ai_rabota,data_analyst,senior,REST,1
+2026-11-09,ai_rabota,data_analyst,senior,SQL,1
 2026-11-09,ai_rabota,ml_engineer,middle,Node.js,1
 2026-11-09,ai_rabota,ml_engineer,middle,PostgreSQL,1
 2026-11-09,ai_rabota,ml_engineer,middle,Python,1
+2026-11-09,alljvmjobs,backend,,AWS,1
+2026-11-09,alljvmjobs,backend,,C++,1
+2026-11-09,alljvmjobs,backend,,Java,1
 2026-11-09,alljvmjobs,backend,,Kotlin,1
+2026-11-09,alljvmjobs,backend,,Linux,1
+2026-11-09,alljvmjobs,backend,,MongoDB,1
+2026-11-09,alljvmjobs,backend,,Python,1
+2026-11-09,alljvmjobs,backend,,Redis,1
+2026-11-09,alljvmjobs,backend,,SQL,1
+2026-11-09,alljvmjobs,backend,,TCP,1
+2026-11-09,alljvmjobs,backend,,UDP,1
+2026-11-09,alljvmjobs,backend,,Unix,1
+2026-11-09,alljvmjobs,manager,lead,Java,1
 2026-11-09,alljvmjobs,software_engineer,middle,Java,1
 2026-11-09,alljvmjobs,software_engineer,middle,Kafka,1
 2026-11-09,alljvmjobs,software_engineer,middle,MongoDB,1
 2026-11-09,alljvmjobs,software_engineer,middle,PostgreSQL,1
 2026-11-09,alljvmjobs,software_engineer,middle,SQL,1
+2026-11-09,backend_frontend_jobs,backend,,Go,1
 2026-11-09,backend_frontend_jobs,frontend,lead,React,1
 2026-11-09,backend_frontend_jobs,frontend,lead,Vue.js,1
+2026-11-09,backend_frontend_jobs,ml_engineer,,ClickHouse,1
+2026-11-09,backend_frontend_jobs,ml_engineer,,Go,1
+2026-11-09,backend_frontend_jobs,ml_engineer,,Kubernetes,1
+2026-11-09,backend_frontend_jobs,ml_engineer,,MLOps,1
+2026-11-09,backend_frontend_jobs,ml_engineer,,Python,1
+2026-11-09,backend_frontend_jobs,ml_engineer,,Trino,1
 2026-11-09,data_engineer_jobs,data_engineer,,Airflow,1
 2026-11-09,data_engineer_jobs,data_engineer,,Docker,1
 2026-11-09,data_engineer_jobs,data_engineer,,ETL,1
@@ -65224,9 +65250,13 @@ week,channel,role,grade,skill,posts
 2026-11-09,data_engineer_jobs,data_engineer,,Python,1
 2026-11-09,data_engineer_jobs,data_engineer,,SQL,1
 2026-11-09,data_engineer_jobs,data_engineer,,Terraform,1
+2026-11-09,datajob,business_analyst,,BPMN,1
+2026-11-09,datajob,business_analyst,,CSV,1
+2026-11-09,datajob,business_analyst,,Excel,1
 2026-11-09,datajob,business_analyst,,Power BI,1
 2026-11-09,datajob,business_analyst,,Python,1
-2026-11-09,datajob,business_analyst,,SQL,1
+2026-11-09,datajob,business_analyst,,SAP,1
+2026-11-09,datajob,business_analyst,,SQL,2
 2026-11-09,datajob,business_analyst,,Tableau,1
 2026-11-09,datajob,data_engineer,middle,Airflow,1
 2026-11-09,datajob,data_engineer,middle,Data Vault,1
@@ -65252,6 +65282,7 @@ week,channel,role,grade,skill,posts
 2026-11-09,datajob,data_scientist,middle,SQL,1
 2026-11-09,datajob,data_scientist,middle,pandas,1
 2026-11-09,datajob,data_scientist,middle,scikit-learn,1
+2026-11-09,datajob,manager,lead,SRE,1
 2026-11-09,datajob,ml_engineer,senior,A/B-тесты,1
 2026-11-09,datajob,ml_engineer,senior,FAISS,1
 2026-11-09,datajob,ml_engineer,senior,LangChain,1
@@ -65309,6 +65340,18 @@ week,channel,role,grade,skill,posts
 2026-11-09,datascjobs,data_analyst,lead,S3,1
 2026-11-09,datascjobs,data_analyst,lead,SQL,1
 2026-11-09,datascjobs,data_analyst,lead,Trino,1
+2026-11-09,dataviz_jobs,data_analyst,senior,Excel,1
+2026-11-09,dataviz_jobs,data_analyst,senior,Power BI,1
+2026-11-09,dataviz_jobs,data_analyst,senior,Tableau,1
+2026-11-09,de_rabota,data_analyst,senior,Greenplum,1
+2026-11-09,de_rabota,data_analyst,senior,Hadoop,1
+2026-11-09,de_rabota,data_analyst,senior,Kafka,1
+2026-11-09,de_rabota,data_analyst,senior,Oracle,1
+2026-11-09,de_rabota,data_analyst,senior,PostgreSQL,1
+2026-11-09,de_rabota,data_analyst,senior,SQL,1
+2026-11-09,de_rabota,data_engineer,,Python,1
+2026-11-09,de_rabota,data_engineer,,SQL,1
+2026-11-09,de_rabota,data_engineer,,pandas,1
 2026-11-09,de_rabota,data_engineer,middle,Airflow,1
 2026-11-09,de_rabota,data_engineer,middle,Confluence,1
 2026-11-09,de_rabota,data_engineer,middle,ELT,1
@@ -65321,6 +65364,7 @@ week,channel,role,grade,skill,posts
 2026-11-09,de_rabota,data_engineer,middle,Python,1
 2026-11-09,de_rabota,data_engineer,middle,SQL,1
 2026-11-09,de_rabota,data_engineer,middle,Spark,1
+2026-11-09,devjobs,designer,,Unity,1
 2026-11-09,devjobs,designer,lead,Unity,1
 2026-11-09,devjobs,designer,lead,Unreal Engine,1
 2026-11-09,devjobs,designer,middle,Blender,1
@@ -65349,10 +65393,36 @@ week,channel,role,grade,skill,posts
 2026-11-09,devs_it,backend,middle,PostgreSQL,1
 2026-11-09,devs_it,backend,middle,SQL,1
 2026-11-09,devs_it,backend,middle,Web API,1
+2026-11-09,devs_it,backend,senior,Design patterns,1
+2026-11-09,devs_it,backend,senior,DevOps,1
+2026-11-09,devs_it,backend,senior,Docker,1
+2026-11-09,devs_it,backend,senior,Hadoop,1
+2026-11-09,devs_it,backend,senior,Java,1
+2026-11-09,devs_it,backend,senior,Kafka,1
+2026-11-09,devs_it,backend,senior,Kubernetes,1
+2026-11-09,devs_it,backend,senior,OpenShift,1
+2026-11-09,devs_it,backend,senior,SQL,1
+2026-11-09,devs_it,backend,senior,Spark,1
+2026-11-09,devs_it,backend,senior,Spring,1
+2026-11-09,devs_it,backend,senior,Spring Boot,1
+2026-11-09,devs_it,backend,senior,Spring Data,1
+2026-11-09,devs_it,backend,senior,ООП,1
 2026-11-09,devs_it,business_analyst,senior,BPMN,1
 2026-11-09,devs_it,business_analyst,senior,UML,1
 2026-11-09,devs_it,business_analyst,senior,Use case,1
 2026-11-09,devs_it,business_analyst,senior,User story,1
+2026-11-09,devs_it,qa,junior,CI/CD,1
+2026-11-09,devs_it,qa,junior,ChatGPT,1
+2026-11-09,devs_it,qa,junior,Cursor,1
+2026-11-09,devs_it,qa,junior,Cypress,1
+2026-11-09,devs_it,qa,junior,DevTools,1
+2026-11-09,devs_it,qa,junior,Docker,1
+2026-11-09,devs_it,qa,junior,Git,1
+2026-11-09,devs_it,qa,junior,JavaScript,1
+2026-11-09,devs_it,qa,junior,Jira,1
+2026-11-09,devs_it,qa,junior,Playwright,1
+2026-11-09,devs_it,qa,junior,Postman,1
+2026-11-09,devs_it,qa,junior,TypeScript,1
 2026-11-09,devs_it,qa,senior,CI/CD,1
 2026-11-09,devs_it,qa,senior,ELK,1
 2026-11-09,devs_it,qa,senior,Go,1
@@ -65417,6 +65487,7 @@ week,channel,role,grade,skill,posts
 2026-11-09,dotnetrujobsfeed,backend,senior,SQL,1
 2026-11-09,dotnetrujobsfeed,backend,senior,TypeScript,1
 2026-11-09,dotnetrujobsfeed,backend,senior,Web API,1
+2026-11-09,forallmobile,mobile,,Flutter,1
 2026-11-09,forallmobile,mobile,middle,iOS,1
 2026-11-09,forallmobile,mobile,senior,Android,1
 2026-11-09,forallmobile,mobile,senior,Kotlin Multiplatform,1
@@ -65427,9 +65498,11 @@ week,channel,role,grade,skill,posts
 2026-11-09,forallqa,qa,senior,MariaDB,1
 2026-11-09,foranalysts,system_analyst,senior,1С,1
 2026-11-09,foranalysts,system_analyst,senior,1С:ERP,1
-2026-11-09,fordevops,devops,,DevOps,2
+2026-11-09,fordevops,devops,,DevOps,3
 2026-11-09,fordevops,devops,lead,DevOps,1
 2026-11-09,fordevops,devops,senior,DevOps,3
+2026-11-09,fordevops,mlops,,AWS,1
+2026-11-09,fordevops,mlops,,MLOps,1
 2026-11-09,forfrontend,frontend,,Angular,1
 2026-11-09,forfrontend,frontend,,CSS,1
 2026-11-09,forfrontend,frontend,,HTML,1
@@ -65438,6 +65511,9 @@ week,channel,role,grade,skill,posts
 2026-11-09,forfrontend,frontend,,Sass,1
 2026-11-09,forfrontend,frontend,,Tailwind CSS,1
 2026-11-09,forfrontend,frontend,,TypeScript,1
+2026-11-09,forfrontend,fullstack,,JavaScript,1
+2026-11-09,forfrontend,fullstack,,Node.js,1
+2026-11-09,forfrontend,fullstack,,React,1
 2026-11-09,forfrontend,fullstack,senior,Node.js,1
 2026-11-09,forfrontend,fullstack,senior,React,1
 2026-11-09,forfrontend,fullstack,senior,TypeScript,1
@@ -65448,6 +65524,18 @@ week,channel,role,grade,skill,posts
 2026-11-09,forfrontend,ml_engineer,senior,React,1
 2026-11-09,forfrontend,ml_engineer,senior,TypeScript,1
 2026-11-09,forpython,backend,lead,Python,1
+2026-11-09,forpython,backend,senior,Airflow,1
+2026-11-09,forpython,backend,senior,Django,1
+2026-11-09,forpython,backend,senior,Elasticsearch,1
+2026-11-09,forpython,backend,senior,FastAPI,1
+2026-11-09,forpython,backend,senior,Flask,1
+2026-11-09,forpython,backend,senior,PostgreSQL,1
+2026-11-09,forpython,backend,senior,Python,1
+2026-11-09,forpython,backend,senior,Redis,1
+2026-11-09,forpython,backend,senior,TypeScript,1
+2026-11-09,forpython,backend,senior,Vue.js,1
+2026-11-09,forpython,fullstack,,Python,1
+2026-11-09,forpython,fullstack,,React,1
 2026-11-09,gamedevjob,manager,senior,Android,1
 2026-11-09,gamedevjob,manager,senior,iOS,1
 2026-11-09,getitrussia,backend,,C++,1
@@ -65509,6 +65597,15 @@ week,channel,role,grade,skill,posts
 2026-11-09,getitrussia,devops,senior,Python,1
 2026-11-09,getitrussia,devops,senior,Shell,1
 2026-11-09,getitrussia,devops,senior,Terraform,1
+2026-11-09,getitrussia,manager,,.NET,1
+2026-11-09,getitrussia,manager,,C#,1
+2026-11-09,getitrussia,manager,,DevOps,1
+2026-11-09,getitrussia,manager,,Docker,1
+2026-11-09,getitrussia,manager,,Go,1
+2026-11-09,getitrussia,manager,,Java,1
+2026-11-09,getitrussia,manager,,Kubernetes,1
+2026-11-09,getitrussia,manager,,Microservices,1
+2026-11-09,getitrussia,manager,,Python,1
 2026-11-09,getitrussia,qa,lead,Postman,1
 2026-11-09,getitrussia,qa,lead,SQL,1
 2026-11-09,getitrussia,qa,lead,Swagger,1
@@ -65567,12 +65664,15 @@ week,channel,role,grade,skill,posts
 2026-11-09,infosec_work,devops,,Splunk,1
 2026-11-09,infosec_work,devops,,Windows,1
 2026-11-09,infosec_work,security,,Active Directory,2
-2026-11-09,infosec_work,security,,Bash,2
+2026-11-09,infosec_work,security,,Bash,3
 2026-11-09,infosec_work,security,,Burp Suite,2
+2026-11-09,infosec_work,security,,CI/CD,1
 2026-11-09,infosec_work,security,,DAST,1
 2026-11-09,infosec_work,security,,DNS,2
+2026-11-09,infosec_work,security,,Git,1
+2026-11-09,infosec_work,security,,GitOps,1
 2026-11-09,infosec_work,security,,Group Policy,1
-2026-11-09,infosec_work,security,,Kubernetes,1
+2026-11-09,infosec_work,security,,Kubernetes,2
 2026-11-09,infosec_work,security,,Linux,2
 2026-11-09,infosec_work,security,,Metasploit,1
 2026-11-09,infosec_work,security,,Nginx,1
@@ -65580,7 +65680,7 @@ week,channel,role,grade,skill,posts
 2026-11-09,infosec_work,security,,OWASP,1
 2026-11-09,infosec_work,security,,Pentest,1
 2026-11-09,infosec_work,security,,PowerShell,1
-2026-11-09,infosec_work,security,,Python,1
+2026-11-09,infosec_work,security,,Python,2
 2026-11-09,infosec_work,security,,SAST,1
 2026-11-09,infosec_work,security,,SCA,1
 2026-11-09,infosec_work,security,,SonarQube,1
@@ -65628,9 +65728,22 @@ week,channel,role,grade,skill,posts
 2026-11-09,it_interns,data_engineer,,Python,1
 2026-11-09,jc_it,developer_1c,,1С,1
 2026-11-09,jc_it,devops,,DevOps,2
+2026-11-09,jc_it,fullstack,senior,.NET,1
 2026-11-09,jc_it,fullstack,senior,Flutter,1
 2026-11-09,jc_it,fullstack,senior,React,1
 2026-11-09,jc_it,fullstack,senior,TypeScript,1
+2026-11-09,jc_it,system_analyst,senior,1С,1
+2026-11-09,job_javadevs,backend,junior,CI/CD,1
+2026-11-09,job_javadevs,backend,junior,Docker,1
+2026-11-09,job_javadevs,backend,junior,Git,1
+2026-11-09,job_javadevs,backend,junior,GitHub,1
+2026-11-09,job_javadevs,backend,junior,GitLab,1
+2026-11-09,job_javadevs,backend,junior,Java,1
+2026-11-09,job_javadevs,backend,junior,Keycloak,1
+2026-11-09,job_javadevs,backend,junior,Kotlin,1
+2026-11-09,job_javadevs,backend,junior,OAuth,1
+2026-11-09,job_javadevs,backend,junior,Spring,1
+2026-11-09,job_javadevs,backend,junior,Spring Boot,1
 2026-11-09,job_javadevs,backend,middle,ClickHouse,1
 2026-11-09,job_javadevs,backend,middle,Confluence,1
 2026-11-09,job_javadevs,backend,middle,Docker,1
@@ -65651,17 +65764,28 @@ week,channel,role,grade,skill,posts
 2026-11-09,job_javadevs,backend,middle,Spring,1
 2026-11-09,job_javadevs,backend,middle,Spring Boot,1
 2026-11-09,job_javadevs,backend,middle,Vault,1
-2026-11-09,job_javadevs,backend,senior,Git,1
-2026-11-09,job_javadevs,backend,senior,Java,1
-2026-11-09,job_javadevs,backend,senior,Kafka,1
+2026-11-09,job_javadevs,backend,senior,Docker,1
+2026-11-09,job_javadevs,backend,senior,Git,2
+2026-11-09,job_javadevs,backend,senior,Gradle,1
+2026-11-09,job_javadevs,backend,senior,JUnit,1
+2026-11-09,job_javadevs,backend,senior,Java,2
+2026-11-09,job_javadevs,backend,senior,Jenkins,1
+2026-11-09,job_javadevs,backend,senior,Kafka,2
+2026-11-09,job_javadevs,backend,senior,Keycloak,1
 2026-11-09,job_javadevs,backend,senior,Kotlin,1
-2026-11-09,job_javadevs,backend,senior,Maven,1
+2026-11-09,job_javadevs,backend,senior,Kubernetes,1
+2026-11-09,job_javadevs,backend,senior,Maven,2
+2026-11-09,job_javadevs,backend,senior,Microservices,1
 2026-11-09,job_javadevs,backend,senior,Oracle,1
-2026-11-09,job_javadevs,backend,senior,PostgreSQL,1
+2026-11-09,job_javadevs,backend,senior,PostgreSQL,2
 2026-11-09,job_javadevs,backend,senior,REST,1
 2026-11-09,job_javadevs,backend,senior,SOAP,1
+2026-11-09,job_javadevs,backend,senior,SOLID,1
 2026-11-09,job_javadevs,backend,senior,SQL,1
-2026-11-09,job_javadevs,backend,senior,Spring,1
+2026-11-09,job_javadevs,backend,senior,SSL,1
+2026-11-09,job_javadevs,backend,senior,SonarQube,1
+2026-11-09,job_javadevs,backend,senior,Spring,2
+2026-11-09,job_javadevs,backend,senior,TLS,1
 2026-11-09,job_javadevs,ml_engineer,middle,CI/CD,1
 2026-11-09,job_javadevs,ml_engineer,middle,Docker,1
 2026-11-09,job_javadevs,ml_engineer,middle,GitLab CI,1
@@ -65705,6 +65829,25 @@ week,channel,role,grade,skill,posts
 2026-11-09,job_javadevs,qa,middle,Kibana,1
 2026-11-09,job_javadevs,qa,middle,Microservices,1
 2026-11-09,job_javadevs,qa,middle,Postman,1
+2026-11-09,job_python,backend,junior,CI/CD,1
+2026-11-09,job_python,backend,junior,CSS,1
+2026-11-09,job_python,backend,junior,Django,1
+2026-11-09,job_python,backend,junior,Docker,1
+2026-11-09,job_python,backend,junior,FastAPI,1
+2026-11-09,job_python,backend,junior,Flask,1
+2026-11-09,job_python,backend,junior,Git,1
+2026-11-09,job_python,backend,junior,GitHub,1
+2026-11-09,job_python,backend,junior,HTML,1
+2026-11-09,job_python,backend,junior,JavaScript,1
+2026-11-09,job_python,backend,junior,Linux,1
+2026-11-09,job_python,backend,junior,Microservices,1
+2026-11-09,job_python,backend,junior,PostgreSQL,1
+2026-11-09,job_python,backend,junior,Python,1
+2026-11-09,job_python,backend,junior,REST,1
+2026-11-09,job_python,backend,junior,SQL,1
+2026-11-09,job_python,backend,junior,SQLAlchemy,1
+2026-11-09,job_python,backend,junior,TypeScript,1
+2026-11-09,job_python,backend,junior,ООП,1
 2026-11-09,job_python,backend,middle,CI/CD,1
 2026-11-09,job_python,backend,middle,DeepSeek,1
 2026-11-09,job_python,backend,middle,DevOps,1
@@ -65743,15 +65886,30 @@ week,channel,role,grade,skill,posts
 2026-11-09,job_python,backend,middle,pytest,1
 2026-11-09,job_python,backend,middle,vLLM,1
 2026-11-09,job_python,backend,senior,CI/CD,1
-2026-11-09,job_python,backend,senior,Docker,1
-2026-11-09,job_python,backend,senior,FastAPI,1
+2026-11-09,job_python,backend,senior,Celery,1
+2026-11-09,job_python,backend,senior,Claude Code,1
+2026-11-09,job_python,backend,senior,Docker,2
+2026-11-09,job_python,backend,senior,FastAPI,2
 2026-11-09,job_python,backend,senior,Git,1
 2026-11-09,job_python,backend,senior,Go,1
 2026-11-09,job_python,backend,senior,Kafka,1
-2026-11-09,job_python,backend,senior,PostgreSQL,1
-2026-11-09,job_python,backend,senior,Python,1
-2026-11-09,job_python,backend,senior,Redis,1
+2026-11-09,job_python,backend,senior,PostgreSQL,2
+2026-11-09,job_python,backend,senior,Pydantic,1
+2026-11-09,job_python,backend,senior,Python,2
+2026-11-09,job_python,backend,senior,RAG,1
+2026-11-09,job_python,backend,senior,React,1
+2026-11-09,job_python,backend,senior,Redis,2
 2026-11-09,job_python,backend,senior,SQLAlchemy,1
+2026-11-09,job_python,backend,senior,TypeScript,1
+2026-11-09,job_python,backend,senior,asyncio,1
+2026-11-09,job_python,fullstack,senior,Docker,1
+2026-11-09,job_python,fullstack,senior,FastAPI,1
+2026-11-09,job_python,fullstack,senior,GCP,1
+2026-11-09,job_python,fullstack,senior,LangChain,1
+2026-11-09,job_python,fullstack,senior,Microservices,1
+2026-11-09,job_python,fullstack,senior,PostgreSQL,1
+2026-11-09,job_python,fullstack,senior,Python,1
+2026-11-09,job_python,fullstack,senior,RAG,1
 2026-11-09,job_python,ml_engineer,middle,Agile,1
 2026-11-09,job_python,ml_engineer,middle,DevOps,1
 2026-11-09,job_python,ml_engineer,middle,Django,1
@@ -65778,12 +65936,40 @@ week,channel,role,grade,skill,posts
 2026-11-09,job_python,qa,senior,Scrum,1
 2026-11-09,job_python,qa,senior,gRPC,1
 2026-11-09,job_python,qa,senior,pytest,1
+2026-11-09,job_react,backend,senior,.NET,1
+2026-11-09,job_react,backend,senior,ASP.NET,1
+2026-11-09,job_react,backend,senior,Azure,1
+2026-11-09,job_react,backend,senior,Azure DevOps,1
+2026-11-09,job_react,backend,senior,C#,1
+2026-11-09,job_react,backend,senior,CI/CD,1
+2026-11-09,job_react,backend,senior,Clean architecture,1
+2026-11-09,job_react,backend,senior,Docker,1
+2026-11-09,job_react,backend,senior,Git,1
+2026-11-09,job_react,backend,senior,GitHub,1
+2026-11-09,job_react,backend,senior,MS SQL Server,1
+2026-11-09,job_react,backend,senior,Microservices,1
+2026-11-09,job_react,backend,senior,MongoDB,1
+2026-11-09,job_react,backend,senior,OpenAPI,1
+2026-11-09,job_react,backend,senior,Playwright,1
+2026-11-09,job_react,backend,senior,REST,1
+2026-11-09,job_react,backend,senior,React,1
+2026-11-09,job_react,backend,senior,Swagger,1
+2026-11-09,job_react,backend,senior,TypeScript,1
 2026-11-09,job_react,frontend,middle,Angular,1
 2026-11-09,job_react,frontend,middle,Astra Linux,1
 2026-11-09,job_react,frontend,middle,C++,1
 2026-11-09,job_react,frontend,middle,Debian,1
+2026-11-09,job_react,frontend,middle,GraphQL,1
+2026-11-09,job_react,frontend,middle,JavaScript,1
+2026-11-09,job_react,frontend,middle,Jest,1
+2026-11-09,job_react,frontend,middle,MobX,1
+2026-11-09,job_react,frontend,middle,NestJS,1
+2026-11-09,job_react,frontend,middle,Node.js,1
+2026-11-09,job_react,frontend,middle,Playwright,1
 2026-11-09,job_react,frontend,middle,Qt,1
-2026-11-09,job_react,frontend,middle,React,1
+2026-11-09,job_react,frontend,middle,React,2
+2026-11-09,job_react,frontend,middle,Redux,1
+2026-11-09,job_react,frontend,middle,TypeScript,1
 2026-11-09,job_react,frontend,middle,Vue.js,1
 2026-11-09,job_react,frontend,middle,WebSocket,1
 2026-11-09,job_react,frontend,senior,CI/CD,1
@@ -65824,19 +66010,30 @@ week,channel,role,grade,skill,posts
 2026-11-09,job_react,fullstack,senior,Webpack,1
 2026-11-09,jobforqa,qa,,MCP,1
 2026-11-09,jobforqa,qa,,YADRO,1
+2026-11-09,jobforqa,qa,middle,Python,1
 2026-11-09,jobofferinside,backend,middle,.NET,1
 2026-11-09,jobofferinside,backend,middle,C#,1
 2026-11-09,jobofferinside,backend,middle,Docker,1
 2026-11-09,jobofferinside,backend,middle,JSON,1
 2026-11-09,jobofferinside,backend,middle,SOLID,1
 2026-11-09,jobofferinside,backend,middle,SQL,1
+2026-11-09,jobofferinside,fullstack,senior,AWS,1
+2026-11-09,jobofferinside,fullstack,senior,Kotlin,1
+2026-11-09,jobofferinside,fullstack,senior,Kubernetes,1
+2026-11-09,jobofferinside,fullstack,senior,MySQL,1
+2026-11-09,jobofferinside,fullstack,senior,Python,1
+2026-11-09,jobofferinside,fullstack,senior,React,1
+2026-11-09,jobofferinside,fullstack,senior,Vue.js,1
 2026-11-09,jobofferinside,manager,,ETL,1
 2026-11-09,jobofferinside,ml_engineer,lead,AWS,1
+2026-11-09,jobofferinside,ml_engineer,lead,Airflow,1
 2026-11-09,jobofferinside,ml_engineer,lead,Azure,1
 2026-11-09,jobofferinside,ml_engineer,lead,DevOps,1
 2026-11-09,jobofferinside,ml_engineer,lead,GCP,1
 2026-11-09,jobofferinside,ml_engineer,lead,MCP,1
 2026-11-09,jobofferinside,ml_engineer,lead,Neo4j,1
+2026-11-09,jobofferinside,ml_engineer,lead,Python,1
+2026-11-09,jobofferinside,ml_engineer,lead,Spark,1
 2026-11-09,jobofferinside,other_it,senior,CI/CD,1
 2026-11-09,jobofferinside,other_it,senior,DevSecOps,1
 2026-11-09,jobofferinside,other_it,senior,GitLab,1
@@ -65864,10 +66061,12 @@ week,channel,role,grade,skill,posts
 2026-11-09,jun_qa,qa,intern,Java,1
 2026-11-09,juniors_rabota_jobs,designer,,CJM,1
 2026-11-09,juniors_rabota_jobs,designer,,Figma,1
-2026-11-09,myitjob,backend,junior,Git,1
+2026-11-09,myitjob,backend,junior,Django,1
+2026-11-09,myitjob,backend,junior,Git,2
 2026-11-09,myitjob,backend,junior,Java,1
+2026-11-09,myitjob,backend,junior,Python,1
 2026-11-09,myitjob,backend,junior,REST,1
-2026-11-09,myitjob,backend,junior,SQL,1
+2026-11-09,myitjob,backend,junior,SQL,2
 2026-11-09,myitjob,backend,junior,Spring Boot,1
 2026-11-09,myitjob,business_analyst,junior,BPMN,1
 2026-11-09,myitjob,business_analyst,junior,Excel,1
@@ -65897,10 +66096,15 @@ week,channel,role,grade,skill,posts
 2026-11-09,myitjob,sysadmin,,Prometheus,1
 2026-11-09,myitjob,sysadmin,,Python,1
 2026-11-09,myitjob,sysadmin,,Zabbix,1
+2026-11-09,myitjob,system_analyst,junior,HDFS,1
+2026-11-09,myitjob,system_analyst,junior,Hive,1
+2026-11-09,myitjob,system_analyst,junior,SQL,1
+2026-11-09,progjob,backend,,C++,1
 2026-11-09,progjob,backend,,Gradle,1
 2026-11-09,progjob,backend,,JUnit,1
 2026-11-09,progjob,backend,,Java,1
 2026-11-09,progjob,backend,,PostgreSQL,1
+2026-11-09,progjob,backend,,Python,1
 2026-11-09,progjob,backend,,Rust,1
 2026-11-09,progjob,backend,,SQL,1
 2026-11-09,progjob,backend,,Spring Boot,1
@@ -65923,10 +66127,21 @@ week,channel,role,grade,skill,posts
 2026-11-09,progjob,designer,senior,Unreal Engine,2
 2026-11-09,progjob,developer_1c,,1С,1
 2026-11-09,progjob,developer_1c,,1С:ЗУП,1
-2026-11-09,progjob,developer_1c,senior,HTTP,1
+2026-11-09,progjob,developer_1c,senior,HTTP,2
+2026-11-09,progjob,developer_1c,senior,SOAP,1
+2026-11-09,progjob,devops,senior,Ansible,1
+2026-11-09,progjob,devops,senior,CI/CD,1
+2026-11-09,progjob,devops,senior,DevOps,1
+2026-11-09,progjob,devops,senior,Docker,1
+2026-11-09,progjob,devops,senior,Jenkins,1
+2026-11-09,progjob,devops,senior,Kafka,1
+2026-11-09,progjob,devops,senior,Kubernetes,1
+2026-11-09,progjob,devops,senior,Terraform,1
 2026-11-09,progjob,embedded,middle,Git,1
 2026-11-09,progjob,embedded,middle,Linux,1
 2026-11-09,progjob,embedded,middle,SQL,1
+2026-11-09,progjob,embedded,senior,Linux,1
+2026-11-09,progjob,embedded,senior,RISC-V,1
 2026-11-09,progjob,frontend,,.NET,1
 2026-11-09,progjob,frontend,,C#,1
 2026-11-09,progjob,frontend,,GraphQL,1
@@ -65976,6 +66191,7 @@ week,channel,role,grade,skill,posts
 2026-11-09,progjob,sysadmin,senior,Yandex Cloud,1
 2026-11-09,progjob,sysadmin,senior,vSphere,1
 2026-11-09,progjob,system_analyst,,1С,1
+2026-11-09,progjob,system_analyst,,1С:ERP,1
 2026-11-09,progjob,system_analyst,,BPMN,2
 2026-11-09,progjob,system_analyst,,Camunda,1
 2026-11-09,progjob,system_analyst,,JSON,1
@@ -66005,11 +66221,12 @@ week,channel,role,grade,skill,posts
 2026-11-09,pydevjob,backend,,RAG,1
 2026-11-09,pydevjob,backend,,Redis,2
 2026-11-09,pydevjob,backend,,SNMP,1
+2026-11-09,pydevjob,ml_engineer,,Python,1
 2026-11-09,pythonpythonjobs,backend,,Docker,1
 2026-11-09,pythonpythonjobs,backend,,FastAPI,1
 2026-11-09,pythonpythonjobs,backend,,JSON,1
 2026-11-09,pythonpythonjobs,backend,,PostgreSQL,1
-2026-11-09,pythonpythonjobs,backend,,Python,3
+2026-11-09,pythonpythonjobs,backend,,Python,4
 2026-11-09,pythonpythonjobs,backend,,REST,1
 2026-11-09,pythonpythonjobs,backend,,SQL,1
 2026-11-09,pythonpythonjobs,backend,junior,Django,1
@@ -66024,6 +66241,26 @@ week,channel,role,grade,skill,posts
 2026-11-09,qa_testirovshchik_jobs_vakansii,qa,,REST,1
 2026-11-09,qa_testirovshchik_jobs_vakansii,qa,,SOAP,1
 2026-11-09,qa_testirovshchik_jobs_vakansii,qa,,SQL,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,lead,Android,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,lead,Git,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,lead,Unity,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,lead,iOS,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,.NET,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,Bitbucket,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,C#,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,CI/CD,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,Confluence,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,Git,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,GitLab CI,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,Java,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,Jenkins,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,Jira,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,Kafka,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,Postman,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,REST,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,RabbitMQ,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,SQL,1
+2026-11-09,qa_testirovshchik_jobs_vakansii,qa,middle,Visual Studio,1
 2026-11-09,qa_testirovshchik_jobs_vakansii,qa,senior,Bitbucket,1
 2026-11-09,qa_testirovshchik_jobs_vakansii,qa,senior,CI/CD,1
 2026-11-09,qa_testirovshchik_jobs_vakansii,qa,senior,Confluence,1
@@ -66066,6 +66303,16 @@ week,channel,role,grade,skill,posts
 2026-11-09,rabota_golang,backend,middle,TCP,1
 2026-11-09,rabota_golang,backend,middle,Tarantool,1
 2026-11-09,rabota_golang,backend,middle,gRPC,1
+2026-11-09,rabota_golang,backend,senior,ClickHouse,1
+2026-11-09,rabota_golang,backend,senior,Docker,1
+2026-11-09,rabota_golang,backend,senior,Go,1
+2026-11-09,rabota_golang,backend,senior,Kubernetes,1
+2026-11-09,rabota_golang,backend,senior,Linux,1
+2026-11-09,rabota_golang,backend,senior,Microservices,1
+2026-11-09,rabota_golang,backend,senior,MongoDB,1
+2026-11-09,rabota_golang,backend,senior,PostgreSQL,1
+2026-11-09,rabota_golang,backend,senior,Python,1
+2026-11-09,rabota_golang,backend,senior,RabbitMQ,1
 2026-11-09,remotegeekjob,backend,lead,Go,1
 2026-11-09,remotegeekjob,backend,lead,Python,1
 2026-11-09,remotegeekjob,designer,lead,Atlassian,1
@@ -66077,6 +66324,8 @@ week,channel,role,grade,skill,posts
 2026-11-09,remotegeekjob,frontend,senior,React,1
 2026-11-09,remotegeekjob,fullstack,senior,Go,1
 2026-11-09,remotegeekjob,fullstack,senior,React,1
+2026-11-09,remotegeekjob,manager,junior,Android,1
+2026-11-09,remotegeekjob,manager,junior,iOS,1
 2026-11-09,runello_rus_frontend,backend,senior,FastAPI,1
 2026-11-09,runello_rus_frontend,backend,senior,NestJS,1
 2026-11-09,runello_rus_frontend,backend,senior,Node.js,1
@@ -66107,19 +66356,23 @@ week,channel,role,grade,skill,posts
 2026-11-09,runello_rus_frontend,frontend,junior,HTML,1
 2026-11-09,runello_rus_frontend,frontend,junior,JavaScript,1
 2026-11-09,runello_rus_frontend,frontend,junior,REST,1
-2026-11-09,runello_rus_frontend,frontend,middle,CSS,2
-2026-11-09,runello_rus_frontend,frontend,middle,HTML,2
+2026-11-09,runello_rus_frontend,frontend,middle,CSS,4
+2026-11-09,runello_rus_frontend,frontend,middle,Docker,1
+2026-11-09,runello_rus_frontend,frontend,middle,HTML,3
 2026-11-09,runello_rus_frontend,frontend,middle,JWT,1
-2026-11-09,runello_rus_frontend,frontend,middle,JavaScript,3
+2026-11-09,runello_rus_frontend,frontend,middle,JavaScript,5
+2026-11-09,runello_rus_frontend,frontend,middle,Kubernetes,1
 2026-11-09,runello_rus_frontend,frontend,middle,Next.js,2
 2026-11-09,runello_rus_frontend,frontend,middle,Nuxt,1
 2026-11-09,runello_rus_frontend,frontend,middle,OAuth,1
-2026-11-09,runello_rus_frontend,frontend,middle,REST,1
-2026-11-09,runello_rus_frontend,frontend,middle,React,3
+2026-11-09,runello_rus_frontend,frontend,middle,REST,2
+2026-11-09,runello_rus_frontend,frontend,middle,React,5
 2026-11-09,runello_rus_frontend,frontend,middle,Redux,1
-2026-11-09,runello_rus_frontend,frontend,middle,TypeScript,2
+2026-11-09,runello_rus_frontend,frontend,middle,TypeScript,4
+2026-11-09,runello_rus_frontend,frontend,middle,Vite,1
 2026-11-09,runello_rus_frontend,frontend,middle,Vue.js,1
 2026-11-09,runello_rus_frontend,frontend,middle,WebSocket,1
+2026-11-09,runello_rus_frontend,frontend,middle,gRPC,1
 2026-11-09,runello_rus_frontend,frontend,senior,CSS,1
 2026-11-09,runello_rus_frontend,frontend,senior,Git,1
 2026-11-09,runello_rus_frontend,frontend,senior,GitHub,1
@@ -66148,6 +66401,11 @@ week,channel,role,grade,skill,posts
 2026-11-09,runello_rus_frontend,fullstack,senior,REST,1
 2026-11-09,runello_rus_frontend,fullstack,senior,React,1
 2026-11-09,runello_rus_frontend,fullstack,senior,TypeScript,1
+2026-11-09,v1c_rabota,business_analyst,senior,1С,1
+2026-11-09,v1c_rabota,business_analyst,senior,1С:ERP,1
+2026-11-09,v1c_rabota,business_analyst,senior,1С:КА,1
+2026-11-09,v1c_rabota,business_analyst,senior,SAP,1
+2026-11-09,v1c_rabota,business_analyst,senior,МСФО,1
 2026-11-09,v1c_rabota,developer_1c,middle,1С,1
 2026-11-09,v1c_rabota,developer_1c,middle,HTTP,1
 2026-11-09,v1c_rabota,developer_1c,middle,JSON,1
