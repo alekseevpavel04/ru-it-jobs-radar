@@ -1,8 +1,7 @@
 {
- "last_id": 419,
+ "last_id": 420,
  "first_seen_id": 367,
  "recent": {
-  "220": "c1f06c78f6a43372",
   "221": "f9f4a23f99e6bcd5",
   "222": "e4ca14a34b7724df",
   "223": "e46e276bb815f7bc",
@@ -201,8 +200,9 @@
   "416": "688eca2afef88388",
   "417": "ce896d7322ccdec1",
   "418": "34af9bc951604e99",
-  "419": "60cb01aea94c3bd2"
+  "419": "60cb01aea94c3bd2",
+  "420": "1d31ee25e4e1b839"
  },
- "subscribers": "6.75K",
- "updated_at": "2026-11-27T12:53:43+00:00"
+ "subscribers": "6.76K",
+ "updated_at": "2026-11-28T12:05:28+00:00"
 }
